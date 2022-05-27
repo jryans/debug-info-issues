@@ -26,7 +26,8 @@ expression for "result" looks way more complicated that it needs to be.
 
 At the time of the issue (2018), LLVM didn't have a way to express debug values
 involving multiple SSA locations, such as this case with speculation via a
-`select` instruction, so the only choice back then was to drop the debug info.
+`select` instruction, so the only choice back then was to drop the debug info as
+part of `SimplifyCFG` (where the instruction change took place).
 
 ```diff
    // Move all 'aggressive' instructions, which are defined in the
