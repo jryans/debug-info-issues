@@ -9,22 +9,26 @@ Compile with -g -O2.
 CodeGenPrepare seems to drop a reference to a local from a dbg.value
 intrinsic:
 
-*** IR Dump Before CodeGen Prepare ***
-...
-entry:
-call void @​llvm.dbg.value(metadata i32 %p, metadata !​12, ...
-%add = add nsw i32 %p, 4, !dbg !​15
-call void @​llvm.dbg.value(metadata i32 %add, metadata !​13, ...
+## IR before `CodeGenPrepare`
 
-*** IR Dump After CodeGen Prepare ***
+```llvm
 entry:
-call void @​llvm.dbg.value(metadata i32 %p, metadata !​12, ...
-%add = add nsw i32 %p, 4, !dbg !​15
-call void @​llvm.dbg.value(metadata !​2, metadata !​13, ...
+  call void @​llvm.dbg.value(metadata i32 %p, metadata !​12, ...
+  %add = add nsw i32 %p, 4, !dbg !​15
+  call void @​llvm.dbg.value(metadata i32 %add, metadata !​13, ...
+```
 
-with:
+## IR after `CodeGenPrepare`
+
+```llvm
+entry:
+  call void @​llvm.dbg.value(metadata i32 %p, metadata !​12, ...
+  %add = add nsw i32 %p, 4, !dbg !​15
+  call void @​llvm.dbg.value(metadata !​2, metadata !​13, ...
+
 !​2 = !{}
 !​13 = !DILocalVariable(name: "i", scope: !​7, ...
+```
 
 # Reproduction
 
