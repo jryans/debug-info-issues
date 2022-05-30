@@ -1,8 +1,7 @@
 extern void use(int);
 extern int foo(long long);
 
-void test(int p)
-{
+void test(int p) {
   int i = p + 4;
   (void)foo(i);  // sign extension of i
   if (p)
