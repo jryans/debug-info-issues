@@ -18,9 +18,49 @@ loads are done.
 I get the impression that something DWARFy is going wrong, as the DW_AT_location
 expression for "result" looks way more complicated that it needs to be.
 
+## IR before `SimplifyCFG`
+
+```llvm
+define i32 @main() {
+  ...
+  %5 = icmp eq i32 %3, 4, !dbg line: 7
+  br i1 %5, label %6, label %8, !dbg line: 7
+
+  %7 = add nsw i32 %4, 2, !dbg line: 8
+  call void @llvm.dbg.value(metadata i32 %7, "result", ...), !dbg line: 6
+  br label %10, !dbg line: 9
+
+  %9 = add nsw i32 %4, -2, !dbg line: 10
+  call void @llvm.dbg.value(metadata i32 %9, "result", ...), !dbg line: 6
+  br label %10
+
+  %11 = phi i32 [ %7, %6 ], [ %9, %8 ]
+  call void @llvm.dbg.value(metadata i32 %11, "result", ...), !dbg line: 6
+  ret i32 %11, !dbg line: 13
+}
+```
+
+## IR after `SimplifyCFG`
+
+```llvm
+define i32 @main() {
+  ...
+  %5 = icmp eq i32 %3, 4, !dbg line: 7
+  %6 = add nsw i32 %4, 2, !dbg line: 8
+  call void @llvm.dbg.value(metadata i32 %6, "result", ...), !dbg line: 6
+  %7 = add nsw i32 %4, -2, !dbg line: 10
+  call void @llvm.dbg.value(metadata i32 %7, "result", ...), !dbg line: 6
+  %8 = select i1 %5, i32 %6, i32 %7, !dbg line: 7
+  call void @llvm.dbg.value(metadata i32 %8, "result", ...), !dbg line: 6
+  ret i32 %8, !dbg line: 13
+}
+```
+
 # Reproduction
 
-...
+1. Use official release of clang 7.0.0
+2. `clang -g -02 -mllvm -opt-bisect-limit=...` with 10 vs. 11 for before vs.
+   after
 
 # Issue resolution
 
