@@ -56,6 +56,95 @@ define i32 @main() {
 }
 ```
 
+## Debug info for `result`
+
+```
+$ $(brew --prefix llvm)/bin/llvm-dwarfdump a.out.dSYM/Contents/Resources/DWARF/a.out -n result
+DW_TAG_variable
+  DW_AT_location   (0x00000023:
+    [0x0000000100003fa1, 0x0000000100003fa1): 
+      DW_OP_consts +0, DW_OP_stack_value
+    [0x0000000100003fa1, 0x0000000100003fa1): 
+      DW_OP_breg2 RCX+2, DW_OP_constu 0xffffffff, 
+      DW_OP_and, DW_OP_stack_value
+    [0x0000000100003fa1, 0x0000000100003fad): 
+      DW_OP_breg2 RCX+0, DW_OP_constu 0xffffffff, 
+      DW_OP_and, DW_OP_constu 0x2, 
+      DW_OP_minus, DW_OP_stack_value
+    [0x0000000100003fad, 0x0000000100003faf): 
+      DW_OP_reg0 RAX)
+  DW_AT_name       ("result")
+  DW_AT_decl_line  (6)
+  DW_AT_type       (0x0000007f "int")
+```
+
+## Debugger source view
+
+```
+(lldb) dis -n main -m
+
+** 1   	int main() {
+
+a.out`main:
+    0x100003f90 <+0>:  push   rbp
+    0x100003f91 <+1>:  mov    rbp, rsp
+
+** 2   	  volatile int foo = 4;
+
+    0x100003f94 <+4>:  mov    dword ptr [rbp - 0x4], 0x4
+
+** 3   	  int read = foo;
+
+    0x100003f9b <+11>: mov    eax, dword ptr [rbp - 0x4]
+
+** 4   	  int read1 = foo;
+   5
+   6   	  int result = 0;
+
+    0x100003f9e <+14>: mov    ecx, dword ptr [rbp - 0x4]
+
+-> 7   	  if (read == 4) { // debugger shows `result: 2` here
+-> 8   	    result = read1 + 2;
+-> 9   	  } else {
+
+->  0x100003fa1 <+17>: xor    edx, edx
+    0x100003fa3 <+19>: cmp    eax, 0x4
+    0x100003fa6 <+22>: sete   dl
+    0x100003fa9 <+25>: lea    eax, [rcx + 4*rdx - 0x2]
+
+   11  	  }
+   12
+** 13  	  return result;
+   14  	}
+
+    0x100003fad <+29>: pop    rbp
+    0x100003fae <+30>: ret
+
+(lldb) reg read
+General Purpose Registers:
+       rax = 0x0000000000000004
+       rbx = 0x00000001000c0060
+       rcx = 0x0000000000000004
+       rdx = 0x00007ff7bfefdf88
+       rdi = 0x0000000000000001
+       rsi = 0x00007ff7bfefdf78
+       rbp = 0x00007ff7bfefde40
+       rsp = 0x00007ff7bfefde40
+        r8 = 0x00000000000de67e
+        r9 = 0xffffffff00000000
+       r10 = 0x0000000000000000
+       r11 = 0x0000000000000246
+       r12 = 0x00000001000883a0  dyld`_NSConcreteStackBlock
+       r13 = 0x00007ff7bfefdef8
+       r14 = 0x0000000100003f90  a.out`main at example.c:1
+       r15 = 0x0000000100074010  dyld`dyld4::sConfigBuffer
+       rip = 0x0000000100003fa1  a.out`main + 17 at example.c:7:12
+    rflags = 0x0000000000000246
+        cs = 0x000000000000002b
+        fs = 0x0000000000000000
+        gs = 0x0000000000000000
+```
+
 # Reproduction
 
 1. Use official release of clang 7.0.0
