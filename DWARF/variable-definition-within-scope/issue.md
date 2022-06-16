@@ -10,6 +10,9 @@ it's thus correct to not cover them).
 LLVM IR however is fully aware when a source variable first becomes live, so
 finding a way to pass this through to DWARF would improve metrics.
 
+Thinking a bit further though... why don't existing tools try going from
+declaration line to address and treat that as the start of the live window?
+
 ## IR
 
 ```llvm
