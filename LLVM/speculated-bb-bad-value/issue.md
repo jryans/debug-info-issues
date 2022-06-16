@@ -78,7 +78,7 @@ DW_TAG_variable
   DW_AT_type       (0x0000007f "int")
 ```
 
-## Debugger source view
+## Debugger view
 
 ```
 (lldb) dis -n main -m

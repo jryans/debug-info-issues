@@ -47,5 +47,51 @@ entry:
                   DW_AT_type	(0x00000068 "int")
 ```
 
+```
+Address            Line   Column File   ISA Discriminator Flags
+------------------ ------ ------ ------ --- ------------- -------------
+0x0000000100003f90      1      0      1   0             0  is_stmt
+0x0000000100003f9b      2      7      1   0             0  is_stmt prologue_end
+0x0000000100003fa2      3      7      1   0             0  is_stmt
+0x0000000100003fab      4      7      1   0             0  is_stmt
+0x0000000100003fb2      5     10      1   0             0  is_stmt
+0x0000000100003fb5      5      3      1   0             0
+0x0000000100003fb7      5      3      1   0             0  end_sequence
+```
+
+## Debugger view
+
+```
+(lldb) dis -n main -m
+
+** 1   	int main() {
+
+a.out`main:
+a.out[0x100003f90] <+0>:  push   rbp
+a.out[0x100003f91] <+1>:  mov    rbp, rsp
+a.out[0x100003f94] <+4>:  mov    dword ptr [rbp - 0x4], 0x0
+
+** 2   	  int bob = 0;
+
+a.out[0x100003f9b] <+11>: mov    dword ptr [rbp - 0x8], 0x0
+
+** 3   	  bob += 2;
+
+a.out[0x100003fa2] <+18>: mov    eax, dword ptr [rbp - 0x8]
+a.out[0x100003fa5] <+21>: add    eax, 0x2
+a.out[0x100003fa8] <+24>: mov    dword ptr [rbp - 0x8], eax
+
+** 4   	  int alice = 4;
+
+a.out[0x100003fab] <+27>: mov    dword ptr [rbp - 0xc], 0x4
+
+** 5   	  return bob;
+   6   	}
+
+a.out[0x100003fb2] <+34>: mov    eax, dword ptr [rbp - 0x8]
+a.out[0x100003fb5] <+37>: pop    rbp
+a.out[0x100003fb6] <+38>: ret
+```
+
 [roc]:
   https://robert.ocallahan.org/2018/11/comparing-quality-of-debug-information.html
