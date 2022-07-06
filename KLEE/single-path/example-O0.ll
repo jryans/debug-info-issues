@@ -1,4 +1,4 @@
-; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-discard-value-names -c -emit-llvm -S -Xclang -disable-O0-optnone -o example-O0.ll
+; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-discard-value-names -c -S -emit-llvm -Xclang -disable-O0-optnone -o example-O0.ll
 
 ; ModuleID = 'example.c'
 source_filename = "example.c"
@@ -37,13 +37,17 @@ define i32 @main() #0 !dbg !28 {
 entry:
   %retval = alloca i32, align 4
   %n = alloca i32, align 4
+  %result = alloca i32, align 4
   store i32 0, i32* %retval, align 4
   call void @llvm.dbg.declare(metadata i32* %n, metadata !31, metadata !DIExpression()), !dbg !32
   %0 = bitcast i32* %n to i8*, !dbg !33
   call void @klee_make_symbolic(i8* %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !34
-  %1 = load i32, i32* %n, align 4, !dbg !35
-  %call = call i32 @example(i32 %1), !dbg !36
-  ret i32 %call, !dbg !37
+  call void @llvm.dbg.declare(metadata i32* %result, metadata !35, metadata !DIExpression()), !dbg !36
+  %1 = load i32, i32* %n, align 4, !dbg !37
+  %call = call i32 @example(i32 %1), !dbg !38
+  store i32 %call, i32* %result, align 4, !dbg !36
+  %2 = load i32, i32* %result, align 4, !dbg !39
+  ret i32 %2, !dbg !40
 }
 
 declare void @klee_make_symbolic(i8*, i64, i8*) #2
@@ -57,7 +61,7 @@ attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !llvm.ident = !{!9}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "Homebrew clang version 13.0.0", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, splitDebugInlining: false, nameTableKind: None, sysroot: "/Library/Developer/CommandLineTools/SDKs/MacOSX11.sdk", sdk: "MacOSX11.sdk")
-!1 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/KLEE/basic-math")
+!1 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/KLEE/single-path")
 !2 = !{}
 !3 = !{i32 7, !"Dwarf Version", i32 4}
 !4 = !{i32 2, !"Debug Info Version", i32 3}
@@ -91,6 +95,9 @@ attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !32 = !DILocation(line: 10, column: 7, scope: !28)
 !33 = !DILocation(line: 11, column: 22, scope: !28)
 !34 = !DILocation(line: 11, column: 3, scope: !28)
-!35 = !DILocation(line: 12, column: 18, scope: !28)
-!36 = !DILocation(line: 12, column: 10, scope: !28)
-!37 = !DILocation(line: 12, column: 3, scope: !28)
+!35 = !DILocalVariable(name: "result", scope: !28, file: !1, line: 12, type: !13)
+!36 = !DILocation(line: 12, column: 7, scope: !28)
+!37 = !DILocation(line: 12, column: 24, scope: !28)
+!38 = !DILocation(line: 12, column: 16, scope: !28)
+!39 = !DILocation(line: 13, column: 10, scope: !28)
+!40 = !DILocation(line: 13, column: 3, scope: !28)

@@ -9,5 +9,6 @@ int example(int n) {
 int main() {
   int n;
   klee_make_symbolic(&n, sizeof(n), "n");
-  return example(n);
+  int result = example(n);
+  return result;
 }

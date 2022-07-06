@@ -1,4 +1,4 @@
-; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-discard-value-names -c -emit-llvm -S -O1 -o example-O1.ll
+; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-discard-value-names -c -S -emit-llvm -O1 -o example-O1.ll
 
 ; ModuleID = 'example.c'
 source_filename = "example.c"
@@ -29,23 +29,24 @@ declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #1
 define i32 @main() local_unnamed_addr #2 !dbg !23 {
 entry:
   %n = alloca i32, align 4
-  %0 = bitcast i32* %n to i8*, !dbg !28
-  call void @llvm.lifetime.start.p0i8(i64 4, i8* nonnull %0) #5, !dbg !28
-  call void @llvm.dbg.value(metadata i32* %n, metadata !27, metadata !DIExpression(DW_OP_deref)), !dbg !29
-  call void @klee_make_symbolic(i8* nonnull %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #5, !dbg !30
-  %1 = load i32, i32* %n, align 4, !dbg !31, !tbaa !32
-  call void @llvm.dbg.value(metadata i32 %1, metadata !27, metadata !DIExpression()), !dbg !29
-  call void @llvm.dbg.value(metadata i32 %1, metadata !15, metadata !DIExpression()), !dbg !36
-  %mul.i = shl nsw i32 %1, 1, !dbg !38
-  call void @llvm.dbg.value(metadata i32 %mul.i, metadata !16, metadata !DIExpression()), !dbg !36
-  %add.i = add i32 %1, 4, !dbg !39
-  %add1.i = add i32 %add.i, %mul.i, !dbg !40
-  call void @llvm.dbg.value(metadata i32 %add1.i, metadata !17, metadata !DIExpression()), !dbg !36
-  call void @llvm.lifetime.end.p0i8(i64 4, i8* nonnull %0) #5, !dbg !41
-  ret i32 %add1.i, !dbg !42
+  %0 = bitcast i32* %n to i8*, !dbg !29
+  call void @llvm.lifetime.start.p0i8(i64 4, i8* nonnull %0) #5, !dbg !29
+  call void @llvm.dbg.value(metadata i32* %n, metadata !27, metadata !DIExpression(DW_OP_deref)), !dbg !30
+  call void @klee_make_symbolic(i8* nonnull %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #5, !dbg !31
+  %1 = load i32, i32* %n, align 4, !dbg !32, !tbaa !33
+  call void @llvm.dbg.value(metadata i32 %1, metadata !27, metadata !DIExpression()), !dbg !30
+  call void @llvm.dbg.value(metadata i32 %1, metadata !15, metadata !DIExpression()), !dbg !37
+  %mul.i = shl nsw i32 %1, 1, !dbg !39
+  call void @llvm.dbg.value(metadata i32 %mul.i, metadata !16, metadata !DIExpression()), !dbg !37
+  %add.i = add i32 %1, 4, !dbg !40
+  %add1.i = add i32 %add.i, %mul.i, !dbg !41
+  call void @llvm.dbg.value(metadata i32 %add1.i, metadata !17, metadata !DIExpression()), !dbg !37
+  call void @llvm.dbg.value(metadata i32 %add1.i, metadata !28, metadata !DIExpression()), !dbg !30
+  call void @llvm.lifetime.end.p0i8(i64 4, i8* nonnull %0) #5, !dbg !42
+  ret i32 %add1.i, !dbg !43
 }
 
-declare !dbg !43 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #3
+declare !dbg !44 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #3
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #4
@@ -62,7 +63,7 @@ attributes #5 = { nounwind }
 !llvm.ident = !{!9}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "Homebrew clang version 13.0.0", isOptimized: true, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, splitDebugInlining: false, nameTableKind: None, sysroot: "/Library/Developer/CommandLineTools/SDKs/MacOSX11.sdk", sdk: "MacOSX11.sdk")
-!1 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/KLEE/basic-math")
+!1 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/KLEE/single-path")
 !2 = !{}
 !3 = !{i32 7, !"Dwarf Version", i32 4}
 !4 = !{i32 2, !"Debug Info Version", i32 3}
@@ -87,29 +88,30 @@ attributes #5 = { nounwind }
 !23 = distinct !DISubprogram(name: "main", scope: !1, file: !1, line: 9, type: !24, scopeLine: 9, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !26)
 !24 = !DISubroutineType(types: !25)
 !25 = !{!13}
-!26 = !{!27}
+!26 = !{!27, !28}
 !27 = !DILocalVariable(name: "n", scope: !23, file: !1, line: 10, type: !13)
-!28 = !DILocation(line: 10, column: 3, scope: !23)
-!29 = !DILocation(line: 0, scope: !23)
-!30 = !DILocation(line: 11, column: 3, scope: !23)
-!31 = !DILocation(line: 12, column: 18, scope: !23)
-!32 = !{!33, !33, i64 0}
-!33 = !{!"int", !34, i64 0}
-!34 = !{!"omnipotent char", !35, i64 0}
-!35 = !{!"Simple C/C++ TBAA"}
-!36 = !DILocation(line: 0, scope: !10, inlinedAt: !37)
-!37 = distinct !DILocation(line: 12, column: 10, scope: !23)
-!38 = !DILocation(line: 4, column: 13, scope: !10, inlinedAt: !37)
-!39 = !DILocation(line: 5, column: 13, scope: !10, inlinedAt: !37)
-!40 = !DILocation(line: 5, column: 17, scope: !10, inlinedAt: !37)
-!41 = !DILocation(line: 13, column: 1, scope: !23)
-!42 = !DILocation(line: 12, column: 3, scope: !23)
-!43 = !DISubprogram(name: "klee_make_symbolic", scope: !44, file: !44, line: 37, type: !45, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
-!44 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
-!45 = !DISubroutineType(types: !46)
-!46 = !{null, !47, !48, !49}
-!47 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
-!48 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
-!49 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !50, size: 64)
-!50 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !51)
-!51 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)
+!28 = !DILocalVariable(name: "result", scope: !23, file: !1, line: 12, type: !13)
+!29 = !DILocation(line: 10, column: 3, scope: !23)
+!30 = !DILocation(line: 0, scope: !23)
+!31 = !DILocation(line: 11, column: 3, scope: !23)
+!32 = !DILocation(line: 12, column: 24, scope: !23)
+!33 = !{!34, !34, i64 0}
+!34 = !{!"int", !35, i64 0}
+!35 = !{!"omnipotent char", !36, i64 0}
+!36 = !{!"Simple C/C++ TBAA"}
+!37 = !DILocation(line: 0, scope: !10, inlinedAt: !38)
+!38 = distinct !DILocation(line: 12, column: 16, scope: !23)
+!39 = !DILocation(line: 4, column: 13, scope: !10, inlinedAt: !38)
+!40 = !DILocation(line: 5, column: 13, scope: !10, inlinedAt: !38)
+!41 = !DILocation(line: 5, column: 17, scope: !10, inlinedAt: !38)
+!42 = !DILocation(line: 14, column: 1, scope: !23)
+!43 = !DILocation(line: 13, column: 3, scope: !23)
+!44 = !DISubprogram(name: "klee_make_symbolic", scope: !45, file: !45, line: 37, type: !46, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
+!45 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
+!46 = !DISubroutineType(types: !47)
+!47 = !{null, !48, !49, !50}
+!48 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
+!49 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
+!50 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !51, size: 64)
+!51 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !52)
+!52 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)
