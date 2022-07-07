@@ -1,0 +1,14 @@
+array n[4] : w32 -> w8 = symbolic
+
+(query
+ []
+ (Eq
+  (Add w32 4
+       (Add w32 (Mul w32 2
+                     N0:(ReadLSB w32 0 n))
+            N0))
+  (Add w32 4
+       (Add w32 N0
+            (Shl w32 N0 1)))
+  )
+ [] [n])
