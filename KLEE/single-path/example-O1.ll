@@ -1,4 +1,4 @@
-; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-discard-value-names -c -S -emit-llvm -O1 -o example-O1.ll
+; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-inline -fno-discard-value-names -c -S -emit-llvm -O1 -o example-O1.ll
 
 ; ModuleID = 'example.c'
 source_filename = "example.c"
@@ -25,7 +25,7 @@ declare void @llvm.lifetime.start.p0i8(i64 immarg, i8* nocapture) #1
 ; Function Attrs: argmemonly mustprogress nofree nosync nounwind willreturn
 declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #1
 
-; Function Attrs: nounwind ssp uwtable
+; Function Attrs: noinline nounwind ssp uwtable
 define i32 @main() local_unnamed_addr #2 !dbg !23 {
 entry:
   %n = alloca i32, align 4
@@ -48,7 +48,7 @@ declare void @llvm.dbg.value(metadata, metadata, metadata) #4
 
 attributes #0 = { mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { argmemonly mustprogress nofree nosync nounwind willreturn }
-attributes #2 = { nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
+attributes #2 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #3 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #4 = { nofree nosync nounwind readnone speculatable willreturn }
 attributes #5 = { nounwind }
@@ -67,36 +67,36 @@ attributes #5 = { nounwind }
 !7 = !{i32 7, !"uwtable", i32 1}
 !8 = !{i32 7, !"frame-pointer", i32 2}
 !9 = !{!"Homebrew clang version 13.0.0"}
-!10 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 4, type: !11, scopeLine: 4, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !14)
+!10 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 3, type: !11, scopeLine: 3, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !14)
 !11 = !DISubroutineType(types: !12)
 !12 = !{!13, !13}
 !13 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !14 = !{!15, !16, !17}
-!15 = !DILocalVariable(name: "n", arg: 1, scope: !10, file: !1, line: 4, type: !13)
-!16 = !DILocalVariable(name: "x", scope: !10, file: !1, line: 5, type: !13)
-!17 = !DILocalVariable(name: "y", scope: !10, file: !1, line: 6, type: !13)
+!15 = !DILocalVariable(name: "n", arg: 1, scope: !10, file: !1, line: 3, type: !13)
+!16 = !DILocalVariable(name: "x", scope: !10, file: !1, line: 4, type: !13)
+!17 = !DILocalVariable(name: "y", scope: !10, file: !1, line: 5, type: !13)
 !18 = !DILocation(line: 0, scope: !10)
-!19 = !DILocation(line: 5, column: 13, scope: !10)
-!20 = !DILocation(line: 6, column: 13, scope: !10)
-!21 = !DILocation(line: 6, column: 17, scope: !10)
-!22 = !DILocation(line: 7, column: 3, scope: !10)
-!23 = distinct !DISubprogram(name: "main", scope: !1, file: !1, line: 10, type: !24, scopeLine: 10, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !26)
+!19 = !DILocation(line: 4, column: 13, scope: !10)
+!20 = !DILocation(line: 5, column: 13, scope: !10)
+!21 = !DILocation(line: 5, column: 17, scope: !10)
+!22 = !DILocation(line: 6, column: 3, scope: !10)
+!23 = distinct !DISubprogram(name: "main", scope: !1, file: !1, line: 9, type: !24, scopeLine: 9, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !26)
 !24 = !DISubroutineType(types: !25)
 !25 = !{!13}
 !26 = !{!27, !28}
-!27 = !DILocalVariable(name: "n", scope: !23, file: !1, line: 11, type: !13)
-!28 = !DILocalVariable(name: "result", scope: !23, file: !1, line: 13, type: !13)
-!29 = !DILocation(line: 11, column: 3, scope: !23)
+!27 = !DILocalVariable(name: "n", scope: !23, file: !1, line: 10, type: !13)
+!28 = !DILocalVariable(name: "result", scope: !23, file: !1, line: 12, type: !13)
+!29 = !DILocation(line: 10, column: 3, scope: !23)
 !30 = !DILocation(line: 0, scope: !23)
-!31 = !DILocation(line: 12, column: 3, scope: !23)
-!32 = !DILocation(line: 13, column: 24, scope: !23)
+!31 = !DILocation(line: 11, column: 3, scope: !23)
+!32 = !DILocation(line: 12, column: 24, scope: !23)
 !33 = !{!34, !34, i64 0}
 !34 = !{!"int", !35, i64 0}
 !35 = !{!"omnipotent char", !36, i64 0}
 !36 = !{!"Simple C/C++ TBAA"}
-!37 = !DILocation(line: 13, column: 16, scope: !23)
-!38 = !DILocation(line: 15, column: 1, scope: !23)
-!39 = !DILocation(line: 14, column: 3, scope: !23)
+!37 = !DILocation(line: 12, column: 16, scope: !23)
+!38 = !DILocation(line: 14, column: 1, scope: !23)
+!39 = !DILocation(line: 13, column: 3, scope: !23)
 !40 = !DISubprogram(name: "klee_make_symbolic", scope: !41, file: !41, line: 37, type: !42, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
 !41 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
 !42 = !DISubroutineType(types: !43)

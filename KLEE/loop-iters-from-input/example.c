@@ -1,6 +1,5 @@
 #include "klee/klee.h"
 
-__attribute__((noinline))
 int example(int n) {
   int x = n * 2;
   int y = 0;
