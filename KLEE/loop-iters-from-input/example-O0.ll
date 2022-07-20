@@ -1,4 +1,4 @@
-; $(brew --prefix llvm)/bin/clang example.c -I ~/Projects/klee/include -g -fno-inline -fno-discard-value-names -c -S -emit-llvm -Xclang -disable-O0-optnone -o example-O0.ll
+; $(brew --prefix llvm)/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -c -S -emit-llvm -Xclang -disable-O0-optnone -o example-O0.ll
 
 ; ModuleID = 'example.c'
 source_filename = "example.c"
