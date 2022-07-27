@@ -1,5 +1,3 @@
-; $(brew --prefix llvm)/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -c -S -emit-llvm -O1 -mllvm -opt-bisect-limit=48 -o example-O1-partial-bad.ll
-
 ; ModuleID = 'example.c'
 source_filename = "example.c"
 target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
