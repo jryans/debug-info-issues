@@ -59,21 +59,22 @@ declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #2
 ; Function Attrs: noinline nounwind ssp uwtable
 define i32 @main() local_unnamed_addr #4 !dbg !52 {
 entry:
-  %n = alloca i64, align 8
-  %0 = bitcast i64* %n to i8*, !dbg !59
-  call void @llvm.lifetime.start.p0i8(i64 8, i8* nonnull %0) #7, !dbg !59
-  call void @llvm.dbg.value(metadata i64* %n, metadata !57, metadata !DIExpression(DW_OP_deref)), !dbg !60
-  call void @klee_make_symbolic(i8* nonnull %0, i64 8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #7, !dbg !61
-  %1 = load i64, i64* %n, align 8, !dbg !62, !tbaa !36
-  call void @llvm.dbg.value(metadata i64 %1, metadata !57, metadata !DIExpression()), !dbg !60
-  %call = call i64 @example(i64 %1), !dbg !63
-  call void @llvm.dbg.value(metadata i64 %call, metadata !58, metadata !DIExpression()), !dbg !60
-  %conv = trunc i64 %call to i32, !dbg !64
-  call void @llvm.lifetime.end.p0i8(i64 8, i8* nonnull %0) #7, !dbg !65
-  ret i32 %conv, !dbg !66
+  %n = alloca i32, align 4
+  %0 = bitcast i32* %n to i8*, !dbg !59
+  call void @llvm.lifetime.start.p0i8(i64 4, i8* nonnull %0) #7, !dbg !59
+  call void @llvm.dbg.value(metadata i32* %n, metadata !57, metadata !DIExpression(DW_OP_deref)), !dbg !60
+  call void @klee_make_symbolic(i8* nonnull %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #7, !dbg !61
+  %1 = load i32, i32* %n, align 4, !dbg !62, !tbaa !63
+  call void @llvm.dbg.value(metadata i32 %1, metadata !57, metadata !DIExpression()), !dbg !60
+  %conv = sext i32 %1 to i64, !dbg !62
+  %call = call i64 @example(i64 %conv), !dbg !65
+  %conv1 = trunc i64 %call to i32, !dbg !65
+  call void @llvm.dbg.value(metadata i32 %conv1, metadata !58, metadata !DIExpression()), !dbg !60
+  call void @llvm.lifetime.end.p0i8(i64 4, i8* nonnull %0) #7, !dbg !66
+  ret i32 %conv1, !dbg !67
 }
 
-declare !dbg !67 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #5
+declare !dbg !68 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #5
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #6
@@ -148,21 +149,22 @@ attributes #7 = { nounwind }
 !54 = !{!55}
 !55 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !56 = !{!57, !58}
-!57 = !DILocalVariable(name: "n", scope: !52, file: !1, line: 15, type: !13)
-!58 = !DILocalVariable(name: "result", scope: !52, file: !1, line: 17, type: !13)
+!57 = !DILocalVariable(name: "n", scope: !52, file: !1, line: 15, type: !55)
+!58 = !DILocalVariable(name: "result", scope: !52, file: !1, line: 17, type: !55)
 !59 = !DILocation(line: 15, column: 3, scope: !52)
 !60 = !DILocation(line: 0, scope: !52)
 !61 = !DILocation(line: 16, column: 3, scope: !52)
-!62 = !DILocation(line: 17, column: 34, scope: !52)
-!63 = !DILocation(line: 17, column: 26, scope: !52)
-!64 = !DILocation(line: 18, column: 10, scope: !52)
-!65 = !DILocation(line: 19, column: 1, scope: !52)
-!66 = !DILocation(line: 18, column: 3, scope: !52)
-!67 = !DISubprogram(name: "klee_make_symbolic", scope: !68, file: !68, line: 37, type: !69, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
-!68 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
-!69 = !DISubroutineType(types: !70)
-!70 = !{null, !71, !13, !72}
-!71 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
-!72 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !73, size: 64)
-!73 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !74)
-!74 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)
+!62 = !DILocation(line: 17, column: 24, scope: !52)
+!63 = !{!64, !64, i64 0}
+!64 = !{!"int", !38, i64 0}
+!65 = !DILocation(line: 17, column: 16, scope: !52)
+!66 = !DILocation(line: 19, column: 1, scope: !52)
+!67 = !DILocation(line: 18, column: 3, scope: !52)
+!68 = !DISubprogram(name: "klee_make_symbolic", scope: !69, file: !69, line: 37, type: !70, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
+!69 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
+!70 = !DISubroutineType(types: !71)
+!71 = !{null, !72, !13, !73}
+!72 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
+!73 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !74, size: 64)
+!74 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !75)
+!75 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)

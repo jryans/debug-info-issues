@@ -75,19 +75,20 @@ declare void @llvm.memcpy.p0i8.p0i8.i64(i8* noalias nocapture writeonly, i8* noa
 define i32 @main() #0 !dbg !58 {
 entry:
   %retval = alloca i32, align 4
-  %n = alloca i64, align 8
-  %result = alloca i64, align 8
+  %n = alloca i32, align 4
+  %result = alloca i32, align 4
   store i32 0, i32* %retval, align 4
-  call void @llvm.dbg.declare(metadata i64* %n, metadata !62, metadata !DIExpression()), !dbg !63
-  %0 = bitcast i64* %n to i8*, !dbg !64
-  call void @klee_make_symbolic(i8* %0, i64 8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !65
-  call void @llvm.dbg.declare(metadata i64* %result, metadata !66, metadata !DIExpression()), !dbg !67
-  %1 = load i64, i64* %n, align 8, !dbg !68
-  %call = call i64 @example(i64 %1), !dbg !69
-  store i64 %call, i64* %result, align 8, !dbg !67
-  %2 = load i64, i64* %result, align 8, !dbg !70
-  %conv = trunc i64 %2 to i32, !dbg !70
-  ret i32 %conv, !dbg !71
+  call void @llvm.dbg.declare(metadata i32* %n, metadata !62, metadata !DIExpression()), !dbg !63
+  %0 = bitcast i32* %n to i8*, !dbg !64
+  call void @klee_make_symbolic(i8* %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !65
+  call void @llvm.dbg.declare(metadata i32* %result, metadata !66, metadata !DIExpression()), !dbg !67
+  %1 = load i32, i32* %n, align 4, !dbg !68
+  %conv = sext i32 %1 to i64, !dbg !68
+  %call = call i64 @example(i64 %conv), !dbg !69
+  %conv1 = trunc i64 %call to i32, !dbg !69
+  store i32 %conv1, i32* %result, align 4, !dbg !67
+  %2 = load i32, i32* %result, align 4, !dbg !70
+  ret i32 %2, !dbg !71
 }
 
 declare void @klee_make_symbolic(i8*, i64, i8*) #3
@@ -163,13 +164,13 @@ attributes #3 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !59 = !DISubroutineType(types: !60)
 !60 = !{!61}
 !61 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
-!62 = !DILocalVariable(name: "n", scope: !58, file: !1, line: 15, type: !13)
-!63 = !DILocation(line: 15, column: 17, scope: !58)
+!62 = !DILocalVariable(name: "n", scope: !58, file: !1, line: 15, type: !61)
+!63 = !DILocation(line: 15, column: 7, scope: !58)
 !64 = !DILocation(line: 16, column: 22, scope: !58)
 !65 = !DILocation(line: 16, column: 3, scope: !58)
-!66 = !DILocalVariable(name: "result", scope: !58, file: !1, line: 17, type: !13)
-!67 = !DILocation(line: 17, column: 17, scope: !58)
-!68 = !DILocation(line: 17, column: 34, scope: !58)
-!69 = !DILocation(line: 17, column: 26, scope: !58)
+!66 = !DILocalVariable(name: "result", scope: !58, file: !1, line: 17, type: !61)
+!67 = !DILocation(line: 17, column: 7, scope: !58)
+!68 = !DILocation(line: 17, column: 24, scope: !58)
+!69 = !DILocation(line: 17, column: 16, scope: !58)
 !70 = !DILocation(line: 18, column: 10, scope: !58)
 !71 = !DILocation(line: 18, column: 3, scope: !58)

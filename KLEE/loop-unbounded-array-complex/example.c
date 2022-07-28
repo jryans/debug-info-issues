@@ -12,8 +12,8 @@ unsigned long example(unsigned long n) {
 }
 
 int main() {
-  unsigned long n;
+  int n;
   klee_make_symbolic(&n, sizeof(n), "n");
-  unsigned long result = example(n);
+  int result = example(n);
   return result;
 }
