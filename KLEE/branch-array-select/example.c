@@ -1,5 +1,3 @@
-#include "klee/klee.h"
-
 unsigned long example(unsigned long n) {
   unsigned long data[4] = { 0, 1, 2, 3 };
   unsigned long i;
@@ -11,9 +9,4 @@ unsigned long example(unsigned long n) {
   return data[i];
 }
 
-int main() {
-  unsigned long n;
-  klee_make_symbolic(&n, sizeof(n), "n");
-  unsigned long result = example(n);
-  return result;
-}
+#include "../main.h"

@@ -56,20 +56,21 @@ declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #2
 ; Function Attrs: noinline nounwind ssp uwtable
 define i32 @main() local_unnamed_addr #3 !dbg !35 {
 entry:
-  %n = alloca i32, align 4
-  %0 = bitcast i32* %n to i8*, !dbg !41
-  call void @llvm.lifetime.start.p0i8(i64 4, i8* nonnull %0) #6, !dbg !41
-  call void @llvm.dbg.value(metadata i32* %n, metadata !39, metadata !DIExpression(DW_OP_deref)), !dbg !42
-  call void @klee_make_symbolic(i8* nonnull %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #6, !dbg !43
-  %1 = load i32, i32* %n, align 4, !dbg !44, !tbaa !45
-  call void @llvm.dbg.value(metadata i32 %1, metadata !39, metadata !DIExpression()), !dbg !42
-  %call = call i32 @example(i32 %1), !dbg !49
-  call void @llvm.dbg.value(metadata i32 %call, metadata !40, metadata !DIExpression()), !dbg !42
-  call void @llvm.lifetime.end.p0i8(i64 4, i8* nonnull %0) #6, !dbg !50
-  ret i32 %call, !dbg !51
+  %n = alloca i64, align 8
+  %0 = bitcast i64* %n to i8*, !dbg !43
+  call void @llvm.lifetime.start.p0i8(i64 8, i8* nonnull %0) #6, !dbg !43
+  call void @llvm.dbg.value(metadata i64* %n, metadata !40, metadata !DIExpression(DW_OP_deref)), !dbg !44
+  call void @klee_make_symbolic(i8* nonnull %0, i64 8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #6, !dbg !45
+  %1 = load i64, i64* %n, align 8, !dbg !46, !tbaa !47
+  call void @llvm.dbg.value(metadata i64 %1, metadata !40, metadata !DIExpression()), !dbg !44
+  %conv = trunc i64 %1 to i32, !dbg !46
+  %call = call i32 @example(i32 %conv), !dbg !51
+  call void @llvm.dbg.value(metadata i32 %call, metadata !42, metadata !DIExpression(DW_OP_LLVM_convert, 32, DW_ATE_signed, DW_OP_LLVM_convert, 64, DW_ATE_signed, DW_OP_stack_value)), !dbg !44
+  call void @llvm.lifetime.end.p0i8(i64 8, i8* nonnull %0) #6, !dbg !52
+  ret i32 %call, !dbg !53
 }
 
-declare !dbg !52 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #4
+declare !dbg !54 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #4
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #5
@@ -96,54 +97,55 @@ attributes #6 = { nounwind }
 !7 = !{i32 7, !"uwtable", i32 1}
 !8 = !{i32 7, !"frame-pointer", i32 2}
 !9 = !{!"Homebrew clang version 13.0.0"}
-!10 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 3, type: !11, scopeLine: 3, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !14)
+!10 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 1, type: !11, scopeLine: 1, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !14)
 !11 = !DISubroutineType(types: !12)
 !12 = !{!13, !13}
 !13 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !14 = !{!15, !16, !17, !18}
-!15 = !DILocalVariable(name: "n", arg: 1, scope: !10, file: !1, line: 3, type: !13)
-!16 = !DILocalVariable(name: "x", scope: !10, file: !1, line: 4, type: !13)
-!17 = !DILocalVariable(name: "y", scope: !10, file: !1, line: 5, type: !13)
-!18 = !DILocalVariable(name: "i", scope: !19, file: !1, line: 6, type: !20)
-!19 = distinct !DILexicalBlock(scope: !10, file: !1, line: 6, column: 3)
+!15 = !DILocalVariable(name: "n", arg: 1, scope: !10, file: !1, line: 1, type: !13)
+!16 = !DILocalVariable(name: "x", scope: !10, file: !1, line: 2, type: !13)
+!17 = !DILocalVariable(name: "y", scope: !10, file: !1, line: 3, type: !13)
+!18 = !DILocalVariable(name: "i", scope: !19, file: !1, line: 4, type: !20)
+!19 = distinct !DILexicalBlock(scope: !10, file: !1, line: 4, column: 3)
 !20 = !DIBasicType(name: "unsigned int", size: 32, encoding: DW_ATE_unsigned)
 !21 = !DILocation(line: 0, scope: !10)
-!22 = !DILocation(line: 4, column: 13, scope: !10)
+!22 = !DILocation(line: 2, column: 13, scope: !10)
 !23 = !DILocation(line: 0, scope: !19)
-!24 = !DILocation(line: 6, column: 30, scope: !25)
-!25 = distinct !DILexicalBlock(scope: !19, file: !1, line: 6, column: 3)
-!26 = !DILocation(line: 6, column: 3, scope: !19)
-!27 = !DILocation(line: 7, column: 7, scope: !28)
-!28 = distinct !DILexicalBlock(scope: !25, file: !1, line: 6, column: 40)
-!29 = !DILocation(line: 9, column: 3, scope: !10)
-!30 = !DILocation(line: 6, column: 36, scope: !25)
+!24 = !DILocation(line: 4, column: 30, scope: !25)
+!25 = distinct !DILexicalBlock(scope: !19, file: !1, line: 4, column: 3)
+!26 = !DILocation(line: 4, column: 3, scope: !19)
+!27 = !DILocation(line: 5, column: 7, scope: !28)
+!28 = distinct !DILexicalBlock(scope: !25, file: !1, line: 4, column: 40)
+!29 = !DILocation(line: 7, column: 3, scope: !10)
+!30 = !DILocation(line: 4, column: 36, scope: !25)
 !31 = distinct !{!31, !26, !32, !33, !34}
-!32 = !DILocation(line: 8, column: 3, scope: !19)
+!32 = !DILocation(line: 6, column: 3, scope: !19)
 !33 = !{!"llvm.loop.mustprogress"}
 !34 = !{!"llvm.loop.unroll.disable"}
-!35 = distinct !DISubprogram(name: "main", scope: !1, file: !1, line: 12, type: !36, scopeLine: 12, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !38)
-!36 = !DISubroutineType(types: !37)
-!37 = !{!13}
-!38 = !{!39, !40}
-!39 = !DILocalVariable(name: "n", scope: !35, file: !1, line: 13, type: !13)
-!40 = !DILocalVariable(name: "result", scope: !35, file: !1, line: 15, type: !13)
-!41 = !DILocation(line: 13, column: 3, scope: !35)
-!42 = !DILocation(line: 0, scope: !35)
-!43 = !DILocation(line: 14, column: 3, scope: !35)
-!44 = !DILocation(line: 15, column: 24, scope: !35)
-!45 = !{!46, !46, i64 0}
-!46 = !{!"int", !47, i64 0}
-!47 = !{!"omnipotent char", !48, i64 0}
-!48 = !{!"Simple C/C++ TBAA"}
-!49 = !DILocation(line: 15, column: 16, scope: !35)
-!50 = !DILocation(line: 17, column: 1, scope: !35)
-!51 = !DILocation(line: 16, column: 3, scope: !35)
-!52 = !DISubprogram(name: "klee_make_symbolic", scope: !53, file: !53, line: 37, type: !54, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
-!53 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
-!54 = !DISubroutineType(types: !55)
-!55 = !{null, !56, !57, !58}
-!56 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
-!57 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
-!58 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !59, size: 64)
-!59 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !60)
-!60 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)
+!35 = distinct !DISubprogram(name: "main", scope: !36, file: !36, line: 3, type: !37, scopeLine: 3, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !39)
+!36 = !DIFile(filename: "./../main.h", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/KLEE/loop-unbounded")
+!37 = !DISubroutineType(types: !38)
+!38 = !{!13}
+!39 = !{!40, !42}
+!40 = !DILocalVariable(name: "n", scope: !35, file: !36, line: 4, type: !41)
+!41 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
+!42 = !DILocalVariable(name: "result", scope: !35, file: !36, line: 6, type: !41)
+!43 = !DILocation(line: 4, column: 3, scope: !35)
+!44 = !DILocation(line: 0, scope: !35)
+!45 = !DILocation(line: 5, column: 3, scope: !35)
+!46 = !DILocation(line: 6, column: 34, scope: !35)
+!47 = !{!48, !48, i64 0}
+!48 = !{!"long", !49, i64 0}
+!49 = !{!"omnipotent char", !50, i64 0}
+!50 = !{!"Simple C/C++ TBAA"}
+!51 = !DILocation(line: 6, column: 26, scope: !35)
+!52 = !DILocation(line: 8, column: 1, scope: !35)
+!53 = !DILocation(line: 7, column: 3, scope: !35)
+!54 = !DISubprogram(name: "klee_make_symbolic", scope: !55, file: !55, line: 37, type: !56, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !2)
+!55 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
+!56 = !DISubroutineType(types: !57)
+!57 = !{null, !58, !41, !59}
+!58 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
+!59 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !60, size: 64)
+!60 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !61)
+!61 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)

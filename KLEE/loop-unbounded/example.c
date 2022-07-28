@@ -1,5 +1,3 @@
-#include "klee/klee.h"
-
 int example(int n) {
   int x = n * 2;
   int y = 0;
@@ -9,9 +7,4 @@ int example(int n) {
   return y;
 }
 
-int main() {
-  int n;
-  klee_make_symbolic(&n, sizeof(n), "n");
-  int result = example(n);
-  return result;
-}
+#include "../main.h"

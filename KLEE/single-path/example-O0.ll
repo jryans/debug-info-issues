@@ -34,18 +34,21 @@ declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
 define i32 @main() #0 !dbg !28 {
 entry:
   %retval = alloca i32, align 4
-  %n = alloca i32, align 4
-  %result = alloca i32, align 4
+  %n = alloca i64, align 8
+  %result = alloca i64, align 8
   store i32 0, i32* %retval, align 4
-  call void @llvm.dbg.declare(metadata i32* %n, metadata !31, metadata !DIExpression()), !dbg !32
-  %0 = bitcast i32* %n to i8*, !dbg !33
-  call void @klee_make_symbolic(i8* %0, i64 4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !34
-  call void @llvm.dbg.declare(metadata i32* %result, metadata !35, metadata !DIExpression()), !dbg !36
-  %1 = load i32, i32* %n, align 4, !dbg !37
-  %call = call i32 @example(i32 %1), !dbg !38
-  store i32 %call, i32* %result, align 4, !dbg !36
-  %2 = load i32, i32* %result, align 4, !dbg !39
-  ret i32 %2, !dbg !40
+  call void @llvm.dbg.declare(metadata i64* %n, metadata !32, metadata !DIExpression()), !dbg !34
+  %0 = bitcast i64* %n to i8*, !dbg !35
+  call void @klee_make_symbolic(i8* %0, i64 8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !36
+  call void @llvm.dbg.declare(metadata i64* %result, metadata !37, metadata !DIExpression()), !dbg !38
+  %1 = load i64, i64* %n, align 8, !dbg !39
+  %conv = trunc i64 %1 to i32, !dbg !39
+  %call = call i32 @example(i32 %conv), !dbg !40
+  %conv1 = sext i32 %call to i64, !dbg !40
+  store i64 %conv1, i64* %result, align 8, !dbg !38
+  %2 = load i64, i64* %result, align 8, !dbg !41
+  %conv2 = trunc i64 %2 to i32, !dbg !41
+  ret i32 %conv2, !dbg !42
 }
 
 declare void @klee_make_symbolic(i8*, i64, i8*) #2
@@ -68,34 +71,36 @@ attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !7 = !{i32 7, !"uwtable", i32 1}
 !8 = !{i32 7, !"frame-pointer", i32 2}
 !9 = !{!"Homebrew clang version 13.0.0"}
-!10 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 3, type: !11, scopeLine: 3, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
+!10 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 1, type: !11, scopeLine: 1, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
 !11 = !DISubroutineType(types: !12)
 !12 = !{!13, !13}
 !13 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
-!14 = !DILocalVariable(name: "n", arg: 1, scope: !10, file: !1, line: 3, type: !13)
-!15 = !DILocation(line: 3, column: 17, scope: !10)
-!16 = !DILocalVariable(name: "x", scope: !10, file: !1, line: 4, type: !13)
-!17 = !DILocation(line: 4, column: 7, scope: !10)
-!18 = !DILocation(line: 4, column: 11, scope: !10)
-!19 = !DILocation(line: 4, column: 13, scope: !10)
-!20 = !DILocalVariable(name: "y", scope: !10, file: !1, line: 5, type: !13)
-!21 = !DILocation(line: 5, column: 7, scope: !10)
-!22 = !DILocation(line: 5, column: 11, scope: !10)
-!23 = !DILocation(line: 5, column: 13, scope: !10)
-!24 = !DILocation(line: 5, column: 19, scope: !10)
-!25 = !DILocation(line: 5, column: 17, scope: !10)
-!26 = !DILocation(line: 6, column: 10, scope: !10)
-!27 = !DILocation(line: 6, column: 3, scope: !10)
-!28 = distinct !DISubprogram(name: "main", scope: !1, file: !1, line: 9, type: !29, scopeLine: 9, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
-!29 = !DISubroutineType(types: !30)
-!30 = !{!13}
-!31 = !DILocalVariable(name: "n", scope: !28, file: !1, line: 10, type: !13)
-!32 = !DILocation(line: 10, column: 7, scope: !28)
-!33 = !DILocation(line: 11, column: 22, scope: !28)
-!34 = !DILocation(line: 11, column: 3, scope: !28)
-!35 = !DILocalVariable(name: "result", scope: !28, file: !1, line: 12, type: !13)
-!36 = !DILocation(line: 12, column: 7, scope: !28)
-!37 = !DILocation(line: 12, column: 24, scope: !28)
-!38 = !DILocation(line: 12, column: 16, scope: !28)
-!39 = !DILocation(line: 13, column: 10, scope: !28)
-!40 = !DILocation(line: 13, column: 3, scope: !28)
+!14 = !DILocalVariable(name: "n", arg: 1, scope: !10, file: !1, line: 1, type: !13)
+!15 = !DILocation(line: 1, column: 17, scope: !10)
+!16 = !DILocalVariable(name: "x", scope: !10, file: !1, line: 2, type: !13)
+!17 = !DILocation(line: 2, column: 7, scope: !10)
+!18 = !DILocation(line: 2, column: 11, scope: !10)
+!19 = !DILocation(line: 2, column: 13, scope: !10)
+!20 = !DILocalVariable(name: "y", scope: !10, file: !1, line: 3, type: !13)
+!21 = !DILocation(line: 3, column: 7, scope: !10)
+!22 = !DILocation(line: 3, column: 11, scope: !10)
+!23 = !DILocation(line: 3, column: 13, scope: !10)
+!24 = !DILocation(line: 3, column: 19, scope: !10)
+!25 = !DILocation(line: 3, column: 17, scope: !10)
+!26 = !DILocation(line: 4, column: 10, scope: !10)
+!27 = !DILocation(line: 4, column: 3, scope: !10)
+!28 = distinct !DISubprogram(name: "main", scope: !29, file: !29, line: 3, type: !30, scopeLine: 3, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
+!29 = !DIFile(filename: "./../main.h", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/KLEE/single-path")
+!30 = !DISubroutineType(types: !31)
+!31 = !{!13}
+!32 = !DILocalVariable(name: "n", scope: !28, file: !29, line: 4, type: !33)
+!33 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
+!34 = !DILocation(line: 4, column: 17, scope: !28)
+!35 = !DILocation(line: 5, column: 22, scope: !28)
+!36 = !DILocation(line: 5, column: 3, scope: !28)
+!37 = !DILocalVariable(name: "result", scope: !28, file: !29, line: 6, type: !33)
+!38 = !DILocation(line: 6, column: 17, scope: !28)
+!39 = !DILocation(line: 6, column: 34, scope: !28)
+!40 = !DILocation(line: 6, column: 26, scope: !28)
+!41 = !DILocation(line: 7, column: 10, scope: !28)
+!42 = !DILocation(line: 7, column: 3, scope: !28)
