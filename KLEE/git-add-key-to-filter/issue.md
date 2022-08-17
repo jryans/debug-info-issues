@@ -8,3 +8,9 @@ does this matter?
 After some investigation, it doesn't seem to matter. When running the final
 binary in `lldb`, the value of `i` is always visible after declaration, and
 seems to take on the right value across loop iterations.
+
+# Resolution
+
+The answer is revealed by `replaceAllDbgUsesWith`, which allows integer values
+to extend to larger bit widths without emitting explicit conversions. It assumes
+debuggers will automatically truncate in such a situation.
