@@ -151,7 +151,7 @@ General Purpose Registers:
 2. `clang -g -02 -mllvm -opt-bisect-limit=...` with 10 vs. 11 for before vs.
    after
 
-# Issue resolution
+# Resolution
 
 At the time of the issue (2018), LLVM didn't have a way to express debug values
 involving multiple SSA locations, such as this case with speculation via a

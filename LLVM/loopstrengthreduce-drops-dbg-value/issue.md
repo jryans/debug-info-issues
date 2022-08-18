@@ -77,7 +77,7 @@ cleanup:
 
 ...
 
-# Issue resolution
+# Resolution
 
 In https://reviews.llvm.org/D87494 (one of several LSR debug improvements), the
 `LoopStrengthReduce` pass learns how to adjust debug info to match the changes

@@ -35,7 +35,7 @@ entry:
 1. Build LLVM in release mode at 79c994d9767212c97f87846c7cd76e678f889052
 2. `~/Projects/LLVM/llvm/build-release-clang-lldb/bin/clang -S -emit-llvm -o - -O2 -g example.c | ~/Projects/LLVM/llvm/build-release-clang-lldb/bin/opt -S -codegenprepare -`
 
-# Issue resolution
+# Resolution
 
 In https://reviews.llvm.org/D55396, part of `CodeGenPrepare` (which runs various
 IR simplifications just before code gen) was updated to fix this.
