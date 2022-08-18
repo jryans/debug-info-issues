@@ -7,7 +7,7 @@ CC_O1_OPTS="-O1"
 CC_LINK_OPTS="-D CONCRETE -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
 KLEE="${HOME}/Projects/klee/build-release/bin/klee"
-KLEE_COMMON_OPTS="--output-module --debug-print-instructions=all:file --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4"
+KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4"
 
 BEFORE_BC="klee-out-O0/final.bc"
 AFTER_BC="klee-out-O1/final.bc"
