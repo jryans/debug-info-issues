@@ -1,7 +1,7 @@
 set -eux
 
 CC_COMMON_OPTS="-I ${HOME}/Projects/klee/include -g -fno-inline -fno-discard-value-names"
-CC_ASM_OPTS="-S -emit-llvm"
+CC_IR_OPTS="-S -emit-llvm"
 CC_O0_OPTS="-Xclang -disable-O0-optnone"
 CC_O1_OPTS="-O1"
 CC_LINK_OPTS="-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
