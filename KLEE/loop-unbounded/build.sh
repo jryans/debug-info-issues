@@ -6,6 +6,7 @@ SRC_FILE="example.c"
 
 $(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_ASM_OPTS} ${CC_O0_OPTS} -o example-O0.ll
 $(brew --prefix llvm)/bin/llvm-as example-O0.ll
+# $(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O0_OPTS} ${CC_LINK_OPTS} -o example-O0
 
 # IndVarSimplifyPass removes loop debug values with Clang 13.0.0
 # Limit below stops just before this
