@@ -12,4 +12,4 @@ rm -rf klee-out-O1-partial-bad
 ${KLEE} ${KLEE_COMMON_OPTS} --output-dir=klee-out-O1-partial-bad example-O1-partial-bad.bc
 
 rm -rf klee-out-O1
-${KLEE} ${KLEE_COMMON_OPTS} --output-dir=klee-out-O1 example-O1.bc
+${KLEE} ${KLEE_COMMON_OPTS} --output-dir=klee-out-O1 example-O1-cg.bc
