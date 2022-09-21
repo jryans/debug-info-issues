@@ -1,10 +1,13 @@
 # Description
 
+This example is adapted from the "SCEV salvage" debug info tests in LLVM. This
+salvaging occurs as part of the `LoopStrengthReduce` pass.
+
 `LoopStrengthReduce` is one of several IR passes which are only added when
 codegen is enabled, so they are missed if you use the default IR emitting
 options (which stop before these codegen passes).
 
-# Location info in loop body
+## Location info in loop body
 
 `LoopStrengthReduce` changes the value mapping for the induction variable `i` at
 the end of the loop to depend on the same input as the beginning of loop and
