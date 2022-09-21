@@ -13,4 +13,4 @@ KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --deb
 BEFORE_BC="klee-out-O0/final.bc"
 AFTER_BC="klee-out-O1/final.bc"
 CHECK="${HOME}/Projects/klee/build-debug/bin/debug-info-check"
-CHECK_OPTS="--debug-only=debug-info-check,values-collector"
+CHECK_OPTS="--debug-only=debug-info-check,values-collector,variable"
