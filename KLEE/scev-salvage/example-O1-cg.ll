@@ -33,7 +33,8 @@ while.body:                                       ; preds = %while.body.preheade
   %uglygep10 = bitcast i8* %uglygep to i32*
   %tmp = trunc i64 %3 to i32
   store i32 %tmp, i32* %uglygep10, align 4, !dbg !28, !tbaa !29
-  call void @llvm.dbg.value(metadata i64 %lsr.iv, metadata !19, metadata !DIExpression(DW_OP_consts, 4, DW_OP_div, DW_OP_consts, 1, DW_OP_plus, DW_OP_stack_value)), !dbg !23
+  %lsr.iv.copy = add nuw nsw i64 %lsr.iv, 0, !dbg !24 ; Workaround poor phi handling with a noop
+  call void @llvm.dbg.value(metadata i64 %lsr.iv.copy, metadata !19, metadata !DIExpression(DW_OP_consts, 4, DW_OP_div, DW_OP_consts, 1, DW_OP_plus, DW_OP_stack_value)), !dbg !23
   %lsr.iv.next = add nuw nsw i64 %lsr.iv, 4, !dbg !24
   %exitcond.not = icmp eq i64 %1, %lsr.iv.next, !dbg !24
   br i1 %exitcond.not, label %while.end, label %while.body, !dbg !25, !llvm.loop !33

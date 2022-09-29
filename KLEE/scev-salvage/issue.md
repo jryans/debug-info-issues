@@ -22,3 +22,7 @@ is lost, since that hangs off the input value.
   @dbg.value(i64 %lsr.iv, "i" l2, !DIExpression(DW_OP_consts, 4, DW_OP_div, DW_OP_consts, 1, DW_OP_plus, DW_OP_stack_value))
   %lsr.iv.next = add nuw nsw i64 %lsr.iv, 4, l4 c12
 ```
+
+# TODO
+
+* Remove phi workaround from `example-O1-cg.ll`
