@@ -3,7 +3,7 @@ set -eux
 source ../vars.sh
 
 rm -rf klee-out-O0
-${KLEE} ${KLEE_COMMON_OPTS} --output-dir=klee-out-O0  example-O0.bc
+${KLEE} ${KLEE_COMMON_OPTS} --output-dir=klee-out-O0 example-O0.bc
 
 rm -rf klee-out-O1-partial-good
 ${KLEE} ${KLEE_COMMON_OPTS} --output-dir=klee-out-O1-partial-good example-O1-partial-good.bc
