@@ -4,3 +4,5 @@ This example tests support for:
 * Pointers as function arguments
 * Avoiding the KLEE over-shift check
 * Avoiding the KLEE divide by zero check
+* Multiple functions
+* Function calls
