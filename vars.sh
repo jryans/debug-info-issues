@@ -10,7 +10,7 @@ CC_LINK_OPTS="-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/P
 KLEE="${HOME}/Projects/klee/build-release/bin/klee"
 KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4"
 
-BEFORE_BC="klee-out-O0/final.bc"
-AFTER_BC="klee-out-O1/final.bc"
+O0_BC="klee-out-O0/final.bc"
+O1_BC="klee-out-O1/final.bc"
 CHECK="${HOME}/Projects/klee/build-debug/bin/debug-info-check"
 CHECK_OPTS="--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace"

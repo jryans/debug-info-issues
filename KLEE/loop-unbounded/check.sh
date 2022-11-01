@@ -3,4 +3,4 @@ set -eux
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
 
-${CHECK} ${BEFORE_BC} ${AFTER_BC} ${CHECK_OPTS}
+${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
