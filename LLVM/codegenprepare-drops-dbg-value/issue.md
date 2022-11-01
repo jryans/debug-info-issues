@@ -90,3 +90,7 @@ if the action is undone.
 
 * Fix is pass-specific
 * Debug info restored
+
+# Availability
+
+* First fixed release: 8.0.0
