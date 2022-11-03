@@ -9,9 +9,9 @@ input of the intrinsic:
 ```
 
 `dbg.value` intrinsics don't track line numbers themselves. When the input value
-is previous SSA value, that typically has the correct location. However, with a
-constant input like this, there's no attached location, so the correct location
-ends up getting lost.
+is a previous SSA value, that typically has the correct location. However, with
+a constant input like this, there's no attached location, so the correct
+location ends up getting lost.
 
 # Commentary
 

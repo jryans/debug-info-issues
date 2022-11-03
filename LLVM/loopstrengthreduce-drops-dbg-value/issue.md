@@ -196,3 +196,7 @@ presented at EuroLLVM 2022.
 * Fix is pass-specific
 * Debug info restored
 * Semi-complex and fiddly manual adjustment
+
+# Availability
+
+* First fixed release: 12.0.0

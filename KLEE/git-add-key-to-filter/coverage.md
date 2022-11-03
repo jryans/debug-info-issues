@@ -6,3 +6,4 @@ This example tests support for:
 * Avoiding the KLEE divide by zero check
 * Multiple functions
 * Function calls
+* Source line info for constant / argument inputs

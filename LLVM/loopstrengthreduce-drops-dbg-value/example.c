@@ -6,3 +6,5 @@ int foo(int blah) {
   }
   return 1;
 }
+
+int main() { foo(0); }
