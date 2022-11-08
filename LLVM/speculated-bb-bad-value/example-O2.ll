@@ -6,7 +6,7 @@ target datalayout = "e-m:o-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-apple-macosx10.17.0"
 
 ; Function Attrs: nounwind ssp uwtable
-define i32 @main() local_unnamed_addr #0 !dbg !8 {
+define i32 @example() local_unnamed_addr #0 !dbg !8 {
 entry:
   %foo = alloca i32, align 4
   %foo.0..sroa_cast = bitcast i32* %foo to i8*, !dbg !18
@@ -57,7 +57,7 @@ attributes #2 = { nounwind readnone speculatable }
 !5 = !{i32 1, !"wchar_size", i32 4}
 !6 = !{i32 7, !"PIC Level", i32 2}
 !7 = !{!"clang version 7.0.0 "}
-!8 = distinct !DISubprogram(name: "main", scope: !1, file: !1, line: 1, type: !9, isLocal: false, isDefinition: true, scopeLine: 1, isOptimized: true, unit: !0, retainedNodes: !12)
+!8 = distinct !DISubprogram(name: "example", scope: !1, file: !1, line: 1, type: !9, isLocal: false, isDefinition: true, scopeLine: 1, isOptimized: true, unit: !0, retainedNodes: !12)
 !9 = !DISubroutineType(types: !10)
 !10 = !{!11}
 !11 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)

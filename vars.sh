@@ -13,5 +13,7 @@ KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --deb
 O0_BC="klee-out-O0/final.bc"
 O1_BC="klee-out-O1/final.bc"
 O1_FIXED_BC="klee-out-O1-fixed/final.bc"
+O2_BC="klee-out-O2/final.bc"
+O2_FIXED_BC="klee-out-O2-fixed/final.bc"
 CHECK="${HOME}/Projects/klee/build-debug/bin/debug-info-check"
 CHECK_OPTS="--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace"

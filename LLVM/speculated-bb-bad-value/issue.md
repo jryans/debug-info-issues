@@ -191,3 +191,7 @@ An somewhat interesting case in terms of our desire to find what's wrong in
 debug info handling... Our (future) tooling would presumably mark this pass as
 removing debug info, but that was also the only correct option without a larger
 rework of LLVM debug metadata.
+
+# Availability
+
+* First fixed release: 8.0.0

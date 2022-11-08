@@ -1,4 +1,4 @@
-int main() {
+int example() {
   volatile int foo = 4;
   int read = foo;
   int read1 = foo;
