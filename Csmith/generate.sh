@@ -13,3 +13,4 @@ csmith \
 > example.c
 
 replace --silent '\"csmith.h\"' '<stdint.h>' example.c
+replace --silent '^.*platform_main.*$' '' example.c
