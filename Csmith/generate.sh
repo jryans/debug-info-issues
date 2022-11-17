@@ -9,7 +9,6 @@ csmith \
 --max-expr-complexity 4 \
 --max-funcs 2 \
 --no-safe-math \
---no-global-variables \
 --no-builtins \
 > example.c
 
