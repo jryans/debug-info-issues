@@ -1,5 +1,8 @@
 set -eux
 
+CLANG=$(brew --prefix llvm)/bin/clang
+LLVM_AS=$(brew --prefix llvm)/bin/llvm-as
+
 CC_COMMON_OPTS="-I ${HOME}/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone"
 CC_IR_OPTS="-S -emit-llvm"
 CC_CG_IR_OPTS="-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope"

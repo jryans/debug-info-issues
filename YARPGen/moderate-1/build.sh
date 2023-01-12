@@ -6,13 +6,13 @@ source "${SCRIPT_DIR}/../vars.sh"
 SRC_FILE="func.c"
 
 mkdir -p klee-out-O0
-$(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O0_OPTS} -o example-O0.ll
-$(brew --prefix llvm)/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O0_OPTS} -o example-O0.ll
+${LLVM_AS} -o klee-out-O0/final.bc example-O0.ll
 
-$(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -o example-O1.ll
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -o example-O1.ll
 
 mkdir -p klee-out-O1
-$(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_CG_IR_OPTS} ${CC_O1_OPTS} -o /dev/null 2> example-O1-cg-raw.ll
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_CG_IR_OPTS} ${CC_O1_OPTS} -o /dev/null 2> example-O1-cg-raw.ll
 sed '2,/IR Dump/!d' example-O1-cg-raw.ll | grep -v "IR Dump" > example-O1-cg.ll
 rm example-O1-cg-raw.ll
-$(brew --prefix llvm)/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
+${LLVM_AS} -o klee-out-O1/final.bc example-O1-cg.ll

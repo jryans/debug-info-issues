@@ -4,10 +4,10 @@ SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
 
 mkdir -p klee-out-O0
-$(brew --prefix llvm)/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
+${LLVM_AS} -o klee-out-O0/final.bc example-O0.ll
 
 mkdir -p klee-out-O2
-$(brew --prefix llvm)/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
+${LLVM_AS} -o klee-out-O2/final.bc example-O2.ll
 
 mkdir -p klee-out-O2-fixed
-$(brew --prefix llvm)/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
+${LLVM_AS} -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
