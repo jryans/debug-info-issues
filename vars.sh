@@ -10,6 +10,12 @@ CC_O0_OPTS=""
 CC_O1_OPTS="-O1"
 CC_LINK_OPTS="-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
+filter_cg_ir() {
+  local input_ir="$1"
+  local output_ir="$2"
+  < ${input_ir} sed '2,/IR Dump/!d' | grep -v 'IR Dump' > ${output_ir}
+}
+
 KLEE="${HOME}/Projects/klee/build-release/bin/klee"
 KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4"
 
