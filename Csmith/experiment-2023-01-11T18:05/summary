@@ -1,0 +1,5 @@
+Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
+2	:	1673460337.701	     2.694	0	12360	134	0	script -q results ../../job.sh 2
+3	:	1673460337.705	     2.721	0	10512	134	0	script -q results ../../job.sh 3
+1	:	1673460337.697	     2.754	0	11016	134	0	script -q results ../../job.sh 1
+4	:	1673460337.710	     3.359	0	22335	1	0	script -q results ../../job.sh 4

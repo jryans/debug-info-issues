@@ -1,0 +1,130 @@
+^D++ dirname ../../job.sh
++ SCRIPT_DIR=../..
++ ../../generate.sh
+++ csmith --no-argc --no-checksum --no-float --max-block-depth 2 --max-block-size 2 --max-expr-complexity 4 --max-funcs 2 --no-safe-math --no-builtins
+++ replace --silent '\"csmith.h\"' '<stdint.h>' example.c
+++ replace --silent '^.*platform_main.*$' '' example.c
++ ../../build.sh
++++ dirname ../../build.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ SRC_FILE=example.c
+++ mkdir -p klee-out-O0
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
+[1mexample.c:106:80: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+            l_34 = (g_6 <= (((int8_t)((((uint16_t)(((uint32_t)((((g_30 = &g_7) == ((g_33 = (!g_7)) , l_15[3][2])) , g_20[0]) , 1UL) - (uint32_t)g_31) == p_11) + (uint16_t)0xE8BFL) , 0x6B71L) > (-1L)) * (int8_t)p_12) != g_29));
+[0;1;32m                                                                 ~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:106:123: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+            l_34 = (g_6 <= (((int8_t)((((uint16_t)(((uint32_t)((((g_30 = &g_7) == ((g_33 = (!g_7)) , l_15[3][2])) , g_20[0]) , 1UL) - (uint32_t)g_31) == p_11) + (uint16_t)0xE8BFL) , 0x6B71L) > (-1L)) * (int8_t)p_12) != g_29));
+[0;1;32m                                                                                                                    ~~~~ ~^
+[0m[1mexample.c:106:160: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+            l_34 = (g_6 <= (((int8_t)((((uint16_t)(((uint32_t)((((g_30 = &g_7) == ((g_33 = (!g_7)) , l_15[3][2])) , g_20[0]) , 1UL) - (uint32_t)g_31) == p_11) + (uint16_t)0xE8BFL) , 0x6B71L) > (-1L)) * (int8_t)p_12) != g_29));
+[0;1;32m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:109:59: [0m[0;1;35mwarning: [0m[1mcomparison of distinct pointer types ('const int32_t **' (aka 'const int **') and 'int32_t **' (aka 'int **')) [-Wcompare-distinct-pointer-types][0m
+        g_6 = ((uint8_t)((uint16_t)p_9 - (uint16_t)(&g_30 == (l_45 = &l_37))) * (uint8_t)0xD9L);
+[0;1;32m                                                    ~~~~~ ^  ~~~~~~~~~~~~~~
+[0m4 warnings generated.
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
+[1mexample.c:106:80: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+            l_34 = (g_6 <= (((int8_t)((((uint16_t)(((uint32_t)((((g_30 = &g_7) == ((g_33 = (!g_7)) , l_15[3][2])) , g_20[0]) , 1UL) - (uint32_t)g_31) == p_11) + (uint16_t)0xE8BFL) , 0x6B71L) > (-1L)) * (int8_t)p_12) != g_29));
+[0;1;32m                                                                 ~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:106:123: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+            l_34 = (g_6 <= (((int8_t)((((uint16_t)(((uint32_t)((((g_30 = &g_7) == ((g_33 = (!g_7)) , l_15[3][2])) , g_20[0]) , 1UL) - (uint32_t)g_31) == p_11) + (uint16_t)0xE8BFL) , 0x6B71L) > (-1L)) * (int8_t)p_12) != g_29));
+[0;1;32m                                                                                                                    ~~~~ ~^
+[0m[1mexample.c:106:160: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+            l_34 = (g_6 <= (((int8_t)((((uint16_t)(((uint32_t)((((g_30 = &g_7) == ((g_33 = (!g_7)) , l_15[3][2])) , g_20[0]) , 1UL) - (uint32_t)g_31) == p_11) + (uint16_t)0xE8BFL) , 0x6B71L) > (-1L)) * (int8_t)p_12) != g_29));
+[0;1;32m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:109:59: [0m[0;1;35mwarning: [0m[1mcomparison of distinct pointer types ('const int32_t **' (aka 'const int **') and 'int32_t **' (aka 'int **')) [-Wcompare-distinct-pointer-types][0m
+        g_6 = ((uint8_t)((uint16_t)p_9 - (uint16_t)(&g_30 == (l_45 = &l_37))) * (uint8_t)0xD9L);
+[0;1;32m                                                    ~~~~~ ^  ~~~~~~~~~~~~~~
+[0m4 warnings generated.
+++ mkdir -p klee-out-O1
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
+++ sed '2,/IR Dump/!d' example-O1-cg-raw.ll
+++ grep -v 'IR Dump'
+++ rm example-O1-cg-raw.ll
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
++ ../../check.sh
++++ dirname ../../check.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
+
+## Functions
+
+❌ 2 before defined functions(s), 1 after defined functions(s)
+
+## Function `func_1`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `l_5` (decl src line 60)
+Before variable `l_54` (decl src line 61)
+Assertion failed: ((isa<Instruction>(*producer) || isa<Argument>(*producer) || isa<ConstantInt>(*producer) || isa<GlobalVariable>(*producer)) && "Unexpected producer type"), function addAssignment, file main.cpp, line 111.
+PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  debug-info-check         0x00000001036d9c87 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x00000001036d8ac8 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x00000001036da2d0 SignalHandler(int) + 288
+3  libsystem_platform.dylib 0x00007ff80efb3c1d _sigtramp + 29
+4  libsystem_platform.dylib 0x00007ff7be2e7b70 _sigtramp + 18446744072353955696
+5  libsystem_c.dylib        0x00007ff80eed2ca5 abort + 123
+6  libsystem_c.dylib        0x00007ff80eed1fbe err + 0
+7  debug-info-check         0x0000000101c18ff0 addAssignment(klee::InstructionInfoTable const&, llvm::DbgVariableIntrinsic const*, Variable const&, llvm::StringRef, llvm::Instruction const*, llvm::SmallVector<llvm::Value const*, 2u> const&&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 752
+8  debug-info-check         0x0000000101c1b8d3 gatherAssignments(llvm::StringRef, llvm::Instruction const&, klee::InstructionInfoTable const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 1235
+9  debug-info-check         0x0000000101c1c2d7 gatherAssignments(llvm::StringRef, llvm::Function const&, klee::InstructionInfoTable const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 343
+10 debug-info-check         0x0000000101c1faef checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef) + 751
+11 debug-info-check         0x0000000101c21b08 main + 1112
+12 dyld                     0x00007ff80ec56310 start + 2432
+../../check.sh: line 6: 92164 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
