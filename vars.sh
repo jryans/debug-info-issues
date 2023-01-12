@@ -1,7 +1,14 @@
 set -eux
 
-CLANG=$(brew --prefix llvm)/bin/clang
-LLVM_AS=$(brew --prefix llvm)/bin/llvm-as
+llvm() {
+  local build=$1
+  local program=$2
+  shift 2
+  $HOME/Projects/LLVM/llvm/build-$build/bin/$program "$@"
+}
+
+CLANG="llvm release-clang-lldb-13.0.0 clang"
+LLVM_AS="llvm release-clang-lldb-13.0.0 llvm-as"
 
 CC_COMMON_OPTS="-I ${HOME}/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone"
 CC_IR_OPTS="-S -emit-llvm"
@@ -13,7 +20,7 @@ CC_LINK_OPTS="-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/P
 filter_cg_ir() {
   local input_ir="$1"
   local output_ir="$2"
-  < ${input_ir} sed '2,/IR Dump/!d' | grep -v 'IR Dump' > ${output_ir}
+  < ${input_ir} grep -v '^+' | sed '2,/IR Dump/!d' | grep -v 'IR Dump' > ${output_ir}
 }
 
 KLEE="${HOME}/Projects/klee/build-release/bin/klee"
