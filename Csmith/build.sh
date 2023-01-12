@@ -16,3 +16,5 @@ $(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_CG_IR_OPTS} $
 sed '2,/IR Dump/!d' example-O1-cg-raw.ll | grep -v "IR Dump" > example-O1-cg.ll
 rm example-O1-cg-raw.ll
 $(brew --prefix llvm)/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
+
+$(brew --prefix llvm)/bin/clang ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O1_OPTS} ${CC_LINK_OPTS} -o example-O1
