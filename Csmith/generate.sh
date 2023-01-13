@@ -13,6 +13,7 @@ ${CSMITH} \
 --max-funcs 2 \
 --no-safe-math \
 --no-builtins \
+--no-force-globals-static \
 > ${SRC_FILE}
 
 replace --silent '\"csmith.h\"' '<stdint.h>' ${SRC_FILE}
