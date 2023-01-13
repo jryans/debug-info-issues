@@ -13,7 +13,7 @@ ${CSMITH} \
 --max-funcs 2 \
 --no-safe-math \
 --no-builtins \
-> example.c
+> ${SRC_FILE}
 
-replace --silent '\"csmith.h\"' '<stdint.h>' example.c
-replace --silent '^.*platform_main.*$' '' example.c
+replace --silent '\"csmith.h\"' '<stdint.h>' ${SRC_FILE}
+replace --silent '^.*platform_main.*$' '' ${SRC_FILE}

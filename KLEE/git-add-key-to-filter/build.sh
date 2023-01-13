@@ -3,8 +3,6 @@ set -eux
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
 
-SRC_FILE="example.c"
-
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O0_OPTS} -o example-O0.ll
 ${LLVM_AS} example-O0.ll
 

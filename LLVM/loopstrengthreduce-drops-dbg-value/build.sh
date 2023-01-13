@@ -3,8 +3,6 @@ set -eux
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
 
-SRC_FILE="example.c"
-
 mkdir -p klee-out-O0
 ${LLVM_AS} -o klee-out-O0/final.bc example-O0.ll
 

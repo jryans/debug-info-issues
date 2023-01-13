@@ -23,6 +23,8 @@ csmith() {
 
 CSMITH="csmith release csmith"
 
+SRC_FILE="example.c"
+
 CLANG="llvm release-clang-lldb-13.0.0 clang"
 LLVM_AS="llvm release-clang-lldb-13.0.0 llvm-as"
 
