@@ -1,6 +1,9 @@
 set -eux
 
-csmith \
+SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+source "${SCRIPT_DIR}/vars.sh"
+
+${CSMITH} \
 --no-argc \
 --no-checksum \
 --no-float \

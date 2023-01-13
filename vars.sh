@@ -14,6 +14,15 @@ klee() {
   $HOME/Projects/klee/build-$build/bin/$program "$@"
 }
 
+csmith() {
+  local build=$1
+  local program=$2
+  shift 2
+  $HOME/Projects/csmith/build-$build/src/$program "$@"
+}
+
+CSMITH="csmith release csmith"
+
 CLANG="llvm release-clang-lldb-13.0.0 clang"
 LLVM_AS="llvm release-clang-lldb-13.0.0 llvm-as"
 
