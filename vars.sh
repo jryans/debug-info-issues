@@ -7,6 +7,13 @@ llvm() {
   $HOME/Projects/LLVM/llvm/build-$build/bin/$program "$@"
 }
 
+klee() {
+  local build=$1
+  local program=$2
+  shift 2
+  $HOME/Projects/klee/build-$build/bin/$program "$@"
+}
+
 CLANG="llvm release-clang-lldb-13.0.0 clang"
 LLVM_AS="llvm release-clang-lldb-13.0.0 llvm-as"
 
@@ -22,6 +29,8 @@ filter_cg_ir() {
   local output_ir="$2"
   < ${input_ir} grep -v '^+' | sed '2,/IR Dump/!d' | grep -v 'IR Dump' > ${output_ir}
 }
+
+PRINT_MODULE="klee debug print-module"
 
 KLEE="${HOME}/Projects/klee/build-release/bin/klee"
 KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4"
