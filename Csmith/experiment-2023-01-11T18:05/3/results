@@ -1,0 +1,128 @@
+^D++ dirname ../../job.sh
++ SCRIPT_DIR=../..
++ ../../generate.sh
+++ csmith --no-argc --no-checksum --no-float --max-block-depth 2 --max-block-size 2 --max-expr-complexity 4 --max-funcs 2 --no-safe-math --no-builtins
+++ replace --silent '\"csmith.h\"' '<stdint.h>' example.c
+++ replace --silent '^.*platform_main.*$' '' example.c
++ ../../build.sh
++++ dirname ../../build.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ SRC_FILE=example.c
+++ mkdir -p klee-out-O0
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
+[1mexample.c:43:147: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*l_30) = ((func_2(((*l_22) = (((((uint8_t)((int64_t)((int8_t)0x72L * (int8_t)((uint16_t)(((g_18 ^ (((uint16_t)l_21 >> (uint16_t)7) >= l_21)) == 0xCAFA32FDL) , g_18) / (uint16_t)g_18)) - (int64_t)0L) % (uint8_t)0xC3L) , g_18) >= g_18) || 0UL)), g_18, l_24[1][2], g_18, g_18) < g_18) > l_24[0][1]);
+[0;1;32m                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~
+[0m[1mexample.c:43:205: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*l_30) = ((func_2(((*l_22) = (((((uint8_t)((int64_t)((int8_t)0x72L * (int8_t)((uint16_t)(((g_18 ^ (((uint16_t)l_21 >> (uint16_t)7) >= l_21)) == 0xCAFA32FDL) , g_18) / (uint16_t)g_18)) - (int64_t)0L) % (uint8_t)0xC3L) , g_18) >= g_18) || 0UL)), g_18, l_24[1][2], g_18, g_18) < g_18) > l_24[0][1]);
+[0;1;32m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~
+[0m[1mexample.c:60:14: [0m[0;1;35mwarning: [0m[1mbitwise negation of a boolean expression; did you mean logical negation? [-Wbool-operation][0m
+    g_29 &= (~(((((void*)0 == l_28) <= g_26) == 0L) >= g_26));
+[0;1;32m            ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[0m[0;32m             !
+[0m3 warnings generated.
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
+[1mexample.c:43:147: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*l_30) = ((func_2(((*l_22) = (((((uint8_t)((int64_t)((int8_t)0x72L * (int8_t)((uint16_t)(((g_18 ^ (((uint16_t)l_21 >> (uint16_t)7) >= l_21)) == 0xCAFA32FDL) , g_18) / (uint16_t)g_18)) - (int64_t)0L) % (uint8_t)0xC3L) , g_18) >= g_18) || 0UL)), g_18, l_24[1][2], g_18, g_18) < g_18) > l_24[0][1]);
+[0;1;32m                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~
+[0m[1mexample.c:43:205: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*l_30) = ((func_2(((*l_22) = (((((uint8_t)((int64_t)((int8_t)0x72L * (int8_t)((uint16_t)(((g_18 ^ (((uint16_t)l_21 >> (uint16_t)7) >= l_21)) == 0xCAFA32FDL) , g_18) / (uint16_t)g_18)) - (int64_t)0L) % (uint8_t)0xC3L) , g_18) >= g_18) || 0UL)), g_18, l_24[1][2], g_18, g_18) < g_18) > l_24[0][1]);
+[0;1;32m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~
+[0m[1mexample.c:60:14: [0m[0;1;35mwarning: [0m[1mbitwise negation of a boolean expression; did you mean logical negation? [-Wbool-operation][0m
+    g_29 &= (~(((((void*)0 == l_28) <= g_26) == 0L) >= g_26));
+[0;1;32m            ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[0m[0;32m             !
+[0m3 warnings generated.
+++ mkdir -p klee-out-O1
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
+++ sed '2,/IR Dump/!d' example-O1-cg-raw.ll
+++ grep -v 'IR Dump'
+++ rm example-O1-cg-raw.ll
++++ brew --prefix llvm
+++ /usr/local/opt/llvm/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
++ ../../check.sh
++++ dirname ../../check.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
+
+## Functions
+
+✅ 2 before defined functions(s), 2 after defined functions(s)
+
+## Function `func_1`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `l_21` (decl src line 38)
+Store to `l_21` (decl src line 38), value -1
+  Added assignment starting at src line 38, column 13
+Before variable `l_22` (decl src line 39)
+Assertion failed: ((isa<Instruction>(*producer) || isa<Argument>(*producer) || isa<ConstantInt>(*producer) || isa<GlobalVariable>(*producer)) && "Unexpected producer type"), function addAssignment, file main.cpp, line 111.
+PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  debug-info-check         0x0000000106c40c87 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x0000000106c3fac8 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x0000000106c412d0 SignalHandler(int) + 288
+3  libsystem_platform.dylib 0x00007ff80efb3c1d _sigtramp + 29
+4  libsystem_platform.dylib 0x00007ff7bad80b70 _sigtramp + 18446744072297959280
+5  libsystem_c.dylib        0x00007ff80eed2ca5 abort + 123
+6  libsystem_c.dylib        0x00007ff80eed1fbe err + 0
+7  debug-info-check         0x000000010517fff0 addAssignment(klee::InstructionInfoTable const&, llvm::DbgVariableIntrinsic const*, Variable const&, llvm::StringRef, llvm::Instruction const*, llvm::SmallVector<llvm::Value const*, 2u> const&&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 752
+8  debug-info-check         0x00000001051828d3 gatherAssignments(llvm::StringRef, llvm::Instruction const&, klee::InstructionInfoTable const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 1235
+9  debug-info-check         0x00000001051832d7 gatherAssignments(llvm::StringRef, llvm::Function const&, klee::InstructionInfoTable const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 343
+10 debug-info-check         0x0000000105186aef checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef) + 751
+11 debug-info-check         0x0000000105188b08 main + 1112
+12 dyld                     0x00007ff80ec56310 start + 2432
+../../check.sh: line 6: 92173 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
