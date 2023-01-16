@@ -1,0 +1,2 @@
+Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
+1	:	1673634082.092	     2.213	0	19606	1	0	script -q results ../../job.sh 1
