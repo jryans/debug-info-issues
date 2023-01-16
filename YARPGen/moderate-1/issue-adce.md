@@ -25,7 +25,7 @@ if.then:                                          ; preds = %cond.end29
   br i1 %tobool61.not, label %cond.false83, label %cond.true63
 ```
 
-## IR after `IPSCCP`
+## IR after `ADCE`
 
 ```llvm
 if.then:                                          ; preds = %cond.end29
