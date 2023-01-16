@@ -3,3 +3,4 @@ a.out*
 klee-out*
 *.dSYM
 example-O?
+*.tmp
