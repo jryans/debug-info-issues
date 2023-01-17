@@ -1,0 +1,349 @@
+^D++ dirname ../../job.sh
++ SCRIPT_DIR=../..
++ ../../generate.sh
++++ dirname ../../generate.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
+++++ SRC_FILE=example.c
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/csmith/build-release/src/csmith --no-argc --no-checksum --no-float --max-block-depth 2 --max-block-size 2 --max-expr-complexity 4 --max-funcs 2 --no-safe-math --no-builtins --no-force-globals-static
+++ replace --silent '\"csmith.h\"' '<stdint.h>' example.c
+++ replace --silent '^.*platform_main.*$' '' example.c
++ ../../build.sh
++++ dirname ../../build.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
+++++ SRC_FILE=example.c
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ mkdir -p klee-out-O0
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
+[1mexample.c:70:35: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_23) = func_2(((*l_19) = ((g_8 , (g_17 = (g_16 ^= (+(((*l_12) = l_10) != g_13))))) | g_18)), g_18, g_21, &g_22[1], &g_22[2]);
+[0;1;32m                                  ^~~
+[0m1 warning generated.
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
+[1mexample.c:70:35: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_23) = func_2(((*l_19) = ((g_8 , (g_17 = (g_16 ^= (+(((*l_12) = l_10) != g_13))))) | g_18)), g_18, g_21, &g_22[1], &g_22[2]);
+[0;1;32m                                  ^~~
+[0m1 warning generated.
+++ mkdir -p klee-out-O1
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
+++ filter_cg_ir example-O1-cg-raw.ll example-O1-cg.ll
+++ local input_ir=example-O1-cg-raw.ll
+++ local output_ir=example-O1-cg.ll
+++ grep -v '^+'
+++ sed '2,/IR Dump/!d'
+++ grep -v 'IR Dump'
+++ rm example-O1-cg-raw.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -O1 -D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -o example-O1
+[1mexample.c:70:35: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_23) = func_2(((*l_19) = ((g_8 , (g_17 = (g_16 ^= (+(((*l_12) = l_10) != g_13))))) | g_18)), g_18, g_21, &g_22[1], &g_22[2]);
+[0;1;32m                                  ^~~
+[0m1 warning generated.
++ ../../check.sh
++++ dirname ../../check.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
+++++ SRC_FILE=example.c
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
+
+## Functions
+
+✅ 2 before defined functions(s), 2 after defined functions(s)
+
+## Function `func_1`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `l_10` (decl src line 64)
+Store to `l_10` (decl src line 64), asm line 36
+  const i32* null
+  Added assignment starting at src line 64, column 14
+Before variable `l_11` (decl src line 65)
+Store to `l_11` (decl src line 65), asm line 38
+  const i32** null
+  Added assignment starting at src line 65, column 15
+Before variable `l_12` (decl src line 66)
+Store to `l_12` (decl src line 66), asm line 40
+  %l_10 = alloca i32*, asm line 27
+  Added assignment starting at src line 66, column 15
+Before variable `l_15` (decl src line 67)
+Before variable `l_19` (decl src line 68)
+Store to `l_19` (decl src line 68), asm line 45
+  global g_20
+  Added assignment starting at src line 68, column 14
+Before variable `i` (decl src line 69)
+Before variable `j` (decl src line 69)
+Before variable `k` (decl src line 69)
+
+After variable `l_10` (decl src line 64)
+@dbg.value mapping for `l_10` (decl src line 64), asm line 26
+Value produced for `l_10` (decl src line 64), asm line 26
+  const i32* null
+  Added assignment starting at src line 64, column 0
+After variable `l_11` (decl src line 65)
+@dbg.value mapping for `l_11` (decl src line 65), asm line 27
+Value produced for `l_11` (decl src line 65), asm line 27
+  const i32** null
+  Added assignment starting at src line 65, column 0
+After variable `l_12` (decl src line 66)
+After variable intrinsic with undef input, asm line 28, ignoring undefined variable
+  @dbg.value(i32** undef, !81)
+After variable `l_19` (decl src line 68)
+@dbg.value mapping for `l_19` (decl src line 68), asm line 29
+Value produced for `l_19` (decl src line 68), asm line 29
+  global g_20
+  Added assignment starting at src line 68, column 0
+After variable `i` (decl src line 69)
+After variable intrinsic with undef input, asm line 30, ignoring undefined variable
+  @dbg.declare(i32* undef, !89), l69 c9
+After variable `j` (decl src line 69)
+After variable intrinsic with undef input, asm line 31, ignoring undefined variable
+  @dbg.declare(i32* undef, !90), l69 c12
+After variable `k` (decl src line 69)
+After variable intrinsic with undef input, asm line 32, ignoring undefined variable
+  @dbg.declare(i32* undef, !91), l69 c15
+After variable `l_10` (decl src line 64)
+@dbg.value mapping for `l_10` (decl src line 64), asm line 33
+Value produced for `l_10` (decl src line 64), asm line 33
+  const i32* null
+  Value is same as last assignment, skipping
+
+❌ 8 before variables found, 7 after variables found, 1 mismatched
+
+### Assignments
+
+❌ After live ranges for `l_12` (decl src line 66) not found
+🔔 Before live ranges for `l_15` (decl src line 67) not found, variable likely undefined
+🔔 Before live ranges for `i` (decl src line 69) not found, variable likely undefined
+🔔 Before live ranges for `j` (decl src line 69) not found, variable likely undefined
+🔔 Before live ranges for `k` (decl src line 69) not found, variable likely undefined
+❌ 3 before live ranges covered, 1 uncovered, 4 undefined
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `l_10`
+i32* null
+0x0
+Collected value for `l_11`
+i32** null
+0x0
+Concrete pointer resolves to l_10, offset 0x0
+Replaced concrete pointer with hash 0x6F12609E9AE82E02
+Collected value for `l_12`
+%l_10 = alloca i32*
+0x6F12609E9AE82E02
+[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0mConcrete pointer resolves to g_20, offset 0x0
+Replaced concrete pointer with hash 0xC0BCAC4766056EC8
+Collected value for `l_19`
+@g_20 = global i32 1817629194, align 4, !dbg !37
+0xC0BCAC4766056EC8
+Assertion failed: (!arg->getType()->isPointerTy() && "Function to skip has pointer argument"), function executeCall, file Executor.cpp, line 2079.
+PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  debug-info-check         0x000000010ea719d7 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x000000010ea70818 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x000000010ea72020 SignalHandler(int) + 288
+3  libsystem_platform.dylib 0x00007ff81a86ec1d _sigtramp + 29
+4  debug-info-check         0x000000010e8f3418 PPrinter::~PPrinter() + 152
+5  libsystem_c.dylib        0x00007ff81a78dca5 abort + 123
+6  libsystem_c.dylib        0x00007ff81a78cfbe err + 0
+7  debug-info-check         0x000000010d02245b klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 8283
+8  debug-info-check         0x000000010d028efd klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8685
+9  debug-info-check         0x000000010d035014 klee::Executor::run(klee::ExecutionState&) + 1860
+10 debug-info-check         0x000000010d039c9d klee::Executor::runFunction(llvm::Function*) + 205
+11 debug-info-check         0x000000010cfe212a collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1338
+12 debug-info-check         0x000000010cfb854b checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef) + 4203
+13 debug-info-check         0x000000010cfb9828 main + 1112
+14 dyld                     0x00007ff81a511310 start + 2432
+../../check.sh: line 6: 26274 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
