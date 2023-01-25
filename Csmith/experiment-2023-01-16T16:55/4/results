@@ -1,41 +1,56 @@
-^D++ dirname ../../job.sh
+++ dirname ../../job.sh
 + SCRIPT_DIR=../..
-+ ../../generate.sh
-+++ dirname ../../generate.sh
++ source ../../vars.sh
+++ set -eux
++++ dirname ../../vars.sh
 ++ SCRIPT_DIR=../..
-++ source ../../vars.sh
+++ source ../../../vars.sh
 +++ set -eux
-++++ dirname ../../vars.sh
-+++ SCRIPT_DIR=../..
-+++ source ../../../vars.sh
-++++ set -eux
-++++ CSMITH='csmith release csmith'
-++++ SRC_FILE=example.c
-++++ CLANG='llvm release-clang-lldb-13.0.0 clang'
-++++ LLVM_AS='llvm release-clang-lldb-13.0.0 llvm-as'
-++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
-++++ CC_IR_OPTS='-S -emit-llvm'
-++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
-++++ CC_O0_OPTS=
-++++ CC_O1_OPTS=-O1
-++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
-++++ PRINT_MODULE='klee debug print-module'
-++++ KLEE='klee release klee'
-++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
-++++ O0_BC=klee-out-O0/final.bc
-++++ O1_BC=klee-out-O1/final.bc
-++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
-++++ O2_BC=klee-out-O2/final.bc
-++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
-++++ CHECK='klee debug debug-info-check'
-++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
-++ csmith release csmith --no-argc --no-checksum --no-float --max-block-depth 2 --max-block-size 2 --max-expr-complexity 4 --max-funcs 2 --no-safe-math --no-builtins --no-force-globals-static
-++ local build=release
-++ local program=csmith
-++ shift 2
-++ /Users/jryans/Projects/csmith/build-release/src/csmith --no-argc --no-checksum --no-float --max-block-depth 2 --max-block-size 2 --max-expr-complexity 4 --max-funcs 2 --no-safe-math --no-builtins --no-force-globals-static
-++ replace --silent '\"csmith.h\"' '<stdint.h>' example.c
-++ replace --silent '^.*platform_main.*$' '' example.c
+++++ csmith release csmith
+++++ local build=release
+++++ local program=csmith
+++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
++++ SRC_FILE=example.c
+++++ llvm release-clang-lldb-13.0.0 clang
+++++ local build=release-clang-lldb-13.0.0
+++++ local program=clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ llvm release-clang-lldb-13.0.0 llvm-as
+++++ local build=release-clang-lldb-13.0.0
+++++ local program=llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
++++ CC_IR_OPTS='-S -emit-llvm'
++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
++++ CC_O0_OPTS=
++++ CC_O1_OPTS=-O1
++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+++++ klee debug print-module
+++++ local build=debug
+++++ local program=print-module
+++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ klee release klee
+++++ local build=release
+++++ local program=klee
+++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
++++ O0_BC=klee-out-O0/final.bc
++++ O1_BC=klee-out-O1/final.bc
++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
++++ O2_BC=klee-out-O2/final.bc
++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
+++++ klee debug debug-info-check
+++++ local build=debug
+++++ local program=debug-info-check
+++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
++ [[ ! -s example.c ]]
 + ../../build.sh
 +++ dirname ../../build.sh
 ++ SCRIPT_DIR=../..
@@ -45,31 +60,51 @@
 +++ SCRIPT_DIR=../..
 +++ source ../../../vars.sh
 ++++ set -eux
-++++ CSMITH='csmith release csmith'
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
 ++++ SRC_FILE=example.c
-++++ CLANG='llvm release-clang-lldb-13.0.0 clang'
-++++ LLVM_AS='llvm release-clang-lldb-13.0.0 llvm-as'
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
 ++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 ++++ CC_IR_OPTS='-S -emit-llvm'
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
 ++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
-++++ PRINT_MODULE='klee debug print-module'
-++++ KLEE='klee release klee'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
 ++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
 ++++ O0_BC=klee-out-O0/final.bc
 ++++ O1_BC=klee-out-O1/final.bc
 ++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 ++++ O2_BC=klee-out-O2/final.bc
 ++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
-++++ CHECK='klee debug debug-info-check'
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
 ++ mkdir -p klee-out-O0
-++ llvm release-clang-lldb-13.0.0 clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
-++ local build=release-clang-lldb-13.0.0
-++ local program=clang
-++ shift 2
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 [1mexample.c:48:128: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
     l_24 = func_2((g_17 = ((((((int8_t)((uint16_t)g_10 + (uint16_t)g_11) + (int8_t)(((uint32_t)g_11 % (uint32_t)l_14) < l_15)) | l_15) , g_10) >= l_14) > g_11)), g_11, g_11);
@@ -88,15 +123,7 @@
         (*g_32) = g_30;
 [0;1;32m                ^ ~~~~
 [0m3 warnings generated.
-++ llvm release-clang-lldb-13.0.0 llvm-as -o klee-out-O0/final.bc example-O0.ll
-++ local build=release-clang-lldb-13.0.0
-++ local program=llvm-as
-++ shift 2
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
-++ llvm release-clang-lldb-13.0.0 clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
-++ local build=release-clang-lldb-13.0.0
-++ local program=clang
-++ shift 2
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
 [1mexample.c:48:128: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
     l_24 = func_2((g_17 = ((((((int8_t)((uint16_t)g_10 + (uint16_t)g_11) + (int8_t)(((uint32_t)g_11 % (uint32_t)l_14) < l_15)) | l_15) , g_10) >= l_14) > g_11)), g_11, g_11);
@@ -116,7 +143,7 @@
 [0;1;32m                ^ ~~~~
 [0m3 warnings generated.
 ++ mkdir -p klee-out-O1
-++ llvm release-clang-lldb-13.0.0 clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
 ++ filter_cg_ir example-O1-cg-raw.ll example-O1-cg.ll
 ++ local input_ir=example-O1-cg-raw.ll
 ++ local output_ir=example-O1-cg.ll
@@ -124,15 +151,7 @@
 ++ sed '2,/IR Dump/!d'
 ++ grep -v 'IR Dump'
 ++ rm example-O1-cg-raw.ll
-++ llvm release-clang-lldb-13.0.0 llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
-++ local build=release-clang-lldb-13.0.0
-++ local program=llvm-as
-++ shift 2
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
-++ llvm release-clang-lldb-13.0.0 clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -O1 -D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -o example-O1
-++ local build=release-clang-lldb-13.0.0
-++ local program=clang
-++ shift 2
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -O1 -D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -o example-O1
 [1mexample.c:48:128: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
     l_24 = func_2((g_17 = ((((((int8_t)((uint16_t)g_10 + (uint16_t)g_11) + (int8_t)(((uint32_t)g_11 % (uint32_t)l_14) < l_15)) | l_15) , g_10) >= l_14) > g_11)), g_11, g_11);
@@ -160,30 +179,50 @@
 +++ SCRIPT_DIR=../..
 +++ source ../../../vars.sh
 ++++ set -eux
-++++ CSMITH='csmith release csmith'
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
 ++++ SRC_FILE=example.c
-++++ CLANG='llvm release-clang-lldb-13.0.0 clang'
-++++ LLVM_AS='llvm release-clang-lldb-13.0.0 llvm-as'
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
 ++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 ++++ CC_IR_OPTS='-S -emit-llvm'
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
 ++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
-++++ PRINT_MODULE='klee debug print-module'
-++++ KLEE='klee release klee'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
 ++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
 ++++ O0_BC=klee-out-O0/final.bc
 ++++ O1_BC=klee-out-O1/final.bc
 ++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 ++++ O2_BC=klee-out-O2/final.bc
 ++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
-++++ CHECK='klee debug debug-info-check'
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
-++ klee debug debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
-++ local build=debug
-++ local program=debug-info-check
-++ shift 2
 ++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
@@ -255,13 +294,13 @@ Value produced for `l_31` (decl src line 46), asm line 25
   const i32 8
   Added assignment starting at src line 46, column 0
 After variable `i` (decl src line 47)
-❌ After variable intrinsic with undef input, asm line 26
+After variable intrinsic with undef input, asm line 26, ignoring undefined variable
   @dbg.declare(i32* undef, !69), l47 c9
 After variable `j` (decl src line 47)
-❌ After variable intrinsic with undef input, asm line 27
+After variable intrinsic with undef input, asm line 27, ignoring undefined variable
   @dbg.declare(i32* undef, !70), l47 c12
 After variable `k` (decl src line 47)
-❌ After variable intrinsic with undef input, asm line 28
+After variable intrinsic with undef input, asm line 28, ignoring undefined variable
   @dbg.declare(i32* undef, !71), l47 c15
 After variable `l_24` (decl src line 45)
 @dbg.value mapping for `l_24` (decl src line 45), asm line 38
@@ -283,12 +322,12 @@ Value produced for `l_24` (decl src line 45), asm line 40
 
 ### Assignments
 
-❌ Before live ranges for `i` (decl src line 47) not found
-❌ Before live ranges for `j` (decl src line 47) not found
-❌ Before live ranges for `k` (decl src line 47) not found
-❌ Before live ranges for `l_16` (decl src line 44) not found
+🔔 Before live ranges for `i` (decl src line 47) not found, variable likely undefined
+🔔 Before live ranges for `j` (decl src line 47) not found, variable likely undefined
+🔔 Before live ranges for `k` (decl src line 47) not found, variable likely undefined
+🔔 Before live ranges for `l_16` (decl src line 44) not found, variable likely undefined
 ❌ After live ranges for `l_27` (decl src line 51) not found
-❌ 4 before live ranges covered, 5 uncovered
+❌ 4 before live ranges covered, 1 uncovered, 4 undefined
 
 ### Symbolic values
 
@@ -301,44 +340,6 @@ Collected value for `l_15`
 i16 -1
 0xFFFF
 [0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
 [0mCollected value for `l_24`
 i32 1
 0x1
@@ -552,13 +553,13 @@ Store to `i` (decl src line 72), asm line 152
   Added assignment starting at src line 73, column 12
 
 After variable `p_3` (decl src line 64)
-❌ After variable intrinsic with undef input, asm line 56
+After variable intrinsic with undef input, asm line 56, ignoring undefined variable
   @dbg.value(i32 undef, !100)
 After variable `p_4` (decl src line 64)
-❌ After variable intrinsic with undef input, asm line 57
+After variable intrinsic with undef input, asm line 57, ignoring undefined variable
   @dbg.value(i32 undef, !101)
 After variable `p_5` (decl src line 64)
-❌ After variable intrinsic with undef input, asm line 58
+After variable intrinsic with undef input, asm line 58, ignoring undefined variable
   @dbg.value(i8 undef, !102)
 After variable `l_18` (decl src line 66)
 After variable `l_19` (decl src line 67)
@@ -577,10 +578,10 @@ Value produced for `l_23` (decl src line 69), asm line 64
   global g_17
   Added assignment starting at src line 69, column 0
 After variable `l_22` (decl src line 70)
-❌ After variable intrinsic with undef input, asm line 65
+After variable intrinsic with undef input, asm line 65, ignoring undefined variable
   @dbg.value(i32** undef, !109)
 After variable `l_21` (decl src line 71)
-❌ After variable intrinsic with undef input, asm line 66
+After variable intrinsic with undef input, asm line 66, ignoring undefined variable
   @dbg.value(i32*** undef, !110)
 After variable `i` (decl src line 72)
 @dbg.value mapping for `i` (decl src line 72), asm line 67
@@ -588,16 +589,20 @@ Value produced for `i` (decl src line 72), asm line 67
   const i32 0
   Added assignment starting at src line 72, column 0
 After variable `i` (decl src line 72)
-❌ After variable intrinsic with undef input, asm line 69
-  @dbg.value(i32 undef, !111)
+@dbg.value mapping for `i` (decl src line 72), asm line 69
+Value produced for `i` (decl src line 72), asm line 69
+  const i32 undef
+❌ Value produced for `i` (decl src line 72): missing line info
 After variable `i` (decl src line 72)
-❌ After variable intrinsic with undef input, asm line 70
-  @dbg.value(i32 undef, !111, !DIExpression(DW_OP_plus_uconst, 1, DW_OP_stack_value))
+@dbg.value mapping for `i` (decl src line 72), asm line 70
+Value produced for `i` (decl src line 72), asm line 70
+  const i32 undef
+❌ Value produced for `i` (decl src line 72): missing line info
 After variable `p_3` (decl src line 64)
-❌ After variable intrinsic with undef input, asm line 72
+After variable intrinsic with undef input, asm line 72, ignoring undefined variable
   @dbg.value(i32 undef, !100)
 After variable `p_3` (decl src line 64)
-❌ After variable intrinsic with undef input, asm line 73
+After variable intrinsic with undef input, asm line 73, ignoring undefined variable
   @dbg.value(i32 undef, !100, !DIExpression(DW_OP_plus_uconst, 1, DW_OP_stack_value))
 After variable `l_22` (decl src line 70)
 @dbg.value mapping for `l_22` (decl src line 70), asm line 74
@@ -610,12 +615,12 @@ Value produced for `l_22` (decl src line 70), asm line 74
 ### Assignments
 
 ❌ Live ranges for `i` (decl src line 72) don't match: [73.12,∞) vs. [72.0,∞)
-❌ Before live ranges for `l_18` (decl src line 66) not found
+🔔 Before live ranges for `l_18` (decl src line 66) not found, variable likely undefined
 ❌ After live ranges for `l_21` (decl src line 71) not found
 ❌ After live ranges for `p_3` (decl src line 64) not found
 ❌ After live ranges for `p_4` (decl src line 64) not found
 ❌ After live ranges for `p_5` (decl src line 64) not found
-❌ 4 before live ranges covered, 6 uncovered
+❌ 4 before live ranges covered, 5 uncovered, 1 undefined
 
 ### Symbolic values
 
@@ -680,7 +685,7 @@ Collected value for `l_23`
 Collected value for `i`
 i32 0
 0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x10C292BE8, 0x10C294310, 0x8) at example.c:l0:c0
+[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x10F768BE8, 0x10F76A310, 0x8) at example.c:l0:c0
 [0mCollected value for `l_22`
 i32** null
 0x0
