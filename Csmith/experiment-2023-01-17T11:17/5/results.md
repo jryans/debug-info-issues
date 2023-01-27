@@ -394,39 +394,39 @@ After variable intrinsic with undef input, asm line 41, ignoring undefined varia
 #### Before values
 
 Collected value for `l_39`
-i64 4854783486782308943
-0x435FA7DC0717824F
-Concrete pointer resolves to g_41, offset 0x0
-Replaced concrete pointer with hash 0x2EC441EE04A35A20
+  i64 4854783486782308943
+  0x435FA7DC0717824F
 Collected value for `l_40`
-@g_41 = global i32 -366872074, align 4, !dbg !48
-0x2EC441EE04A35A20
-Concrete pointer resolves to g_8, offset 0x0
-Replaced concrete pointer with hash 0x637480294135CF34
+  Concrete pointer resolves to g_41, offset 0x0
+  Replaced concrete pointer with hash 0x2EC441EE04A35A20
+  @g_41 = global i32 -366872074, align 4, !dbg !48
+  0x2EC441EE04A35A20
 Collected value for `l_15`
-@g_8 = global i32 0, align 4, !dbg !28
-0x637480294135CF34
+  Concrete pointer resolves to g_8, offset 0x0
+  Replaced concrete pointer with hash 0x637480294135CF34
+  @g_8 = global i32 0, align 4, !dbg !28
+  0x637480294135CF34
 [0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
 [0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
 [0m
 #### After values
 
 Collected value for `l_39`
-i64 4854783486782308943
-0x435FA7DC0717824F
-Concrete pointer resolves to g_41, offset 0x0
-Replaced concrete pointer with hash 0x2EC441EE04A35A20
+  i64 4854783486782308943
+  0x435FA7DC0717824F
 Collected value for `l_40`
-@g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
-0x2EC441EE04A35A20
+  Concrete pointer resolves to g_41, offset 0x0
+  Replaced concrete pointer with hash 0x2EC441EE04A35A20
+  @g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
+  0x2EC441EE04A35A20
 Collected value for `l_22`
-i32 207861890
-0xC63B882
-Concrete pointer resolves to g_26, offset 0x0
-Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  i32 207861890
+  0xC63B882
 Collected value for `l_25`
-@g_26 = local_unnamed_addr global i64 1, align 8, !dbg !32
-0xCFD37D5648DF5F09
+  Concrete pointer resolves to g_26, offset 0x0
+  Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  @g_26 = local_unnamed_addr global i64 1, align 8, !dbg !32
+  0xCFD37D5648DF5F09
 
 #### Check before against after
 
@@ -533,31 +533,31 @@ Value produced for `l_32` (decl src line 73), asm line 99
 #### Before values
 
 Collected value for `p_12`
-i64 %p_12
-(ReadLSB w64 0x0 p_12)
-Concrete pointer resolves to g_3, offset 0x0
-Replaced concrete pointer with hash 0x21B47D327CD9D433
+  i64 %p_12
+  (ReadLSB w64 0x0 p_12)
 Collected value for `l_30`
-@g_3 = global i32 -1, align 4, !dbg !22
-0x21B47D327CD9D433
-Concrete pointer resolves to g_5, offset 0x0
-Replaced concrete pointer with hash 0x1037124233222291
+  Concrete pointer resolves to g_3, offset 0x0
+  Replaced concrete pointer with hash 0x21B47D327CD9D433
+  @g_3 = global i32 -1, align 4, !dbg !22
+  0x21B47D327CD9D433
 Collected value for `l_32`
-@g_5 = global i32 -1087046240, align 4, !dbg !26
-0x1037124233222291
+  Concrete pointer resolves to g_5, offset 0x0
+  Replaced concrete pointer with hash 0x1037124233222291
+  @g_5 = global i32 -1087046240, align 4, !dbg !26
+  0x1037124233222291
 
 #### After values
 
-Concrete pointer resolves to g_3, offset 0x0
-Replaced concrete pointer with hash 0x21B47D327CD9D433
 Collected value for `l_30`
-@g_3 = global i32 -1, align 4, !dbg !22
-0x21B47D327CD9D433
-Concrete pointer resolves to g_5, offset 0x0
-Replaced concrete pointer with hash 0x1037124233222291
+  Concrete pointer resolves to g_3, offset 0x0
+  Replaced concrete pointer with hash 0x21B47D327CD9D433
+  @g_3 = global i32 -1, align 4, !dbg !22
+  0x21B47D327CD9D433
 Collected value for `l_32`
-@g_5 = global i32 -1087046240, align 4, !dbg !26
-0x1037124233222291
+  Concrete pointer resolves to g_5, offset 0x0
+  Replaced concrete pointer with hash 0x1037124233222291
+  @g_5 = global i32 -1087046240, align 4, !dbg !26
+  0x1037124233222291
 
 #### Check before against after
 
