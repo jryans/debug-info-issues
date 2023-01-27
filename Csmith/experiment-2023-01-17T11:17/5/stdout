@@ -1,0 +1,609 @@
+^D++ dirname ../../job.sh
++ SCRIPT_DIR=../..
++ ../../generate.sh
++++ dirname ../../generate.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
+++++ SRC_FILE=example.c
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/csmith/build-release/src/csmith --no-argc --no-checksum --no-float --max-block-depth 2 --max-block-size 2 --max-expr-complexity 4 --max-funcs 2 --no-safe-math --no-builtins --no-force-globals-static
+++ replace --silent '\"csmith.h\"' '<stdint.h>' example.c
+++ replace --silent '^.*platform_main.*$' '' example.c
++ ../../build.sh
++++ dirname ../../build.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
+++++ SRC_FILE=example.c
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ mkdir -p klee-out-O0
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
+[1mexample.c:60:66: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_34) = (g_4 || ((uint32_t)((*l_40) = (((int64_t)(l_39 || (g_24 , 6L)) << (int64_t)61) , 0UL)) << (uint32_t)22));
+[0;1;32m                                                                 ^~~~
+[0m[1mexample.c:60:78: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_34) = (g_4 || ((uint32_t)((*l_40) = (((int64_t)(l_39 || (g_24 , 6L)) << (int64_t)61) , 0UL)) << (uint32_t)22));
+[0;1;32m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~
+[0m[1mexample.c:57:162: [0m[0;1;35mwarning: [0m[1mresult of comparison of constant 16249538427974043974 with boolean expression is always false [-Wtautological-constant-out-of-range-compare][0m
+            (*g_33) = func_11(((int64_t)((*l_25) = ((l_15 != (void*)0) && ((int8_t)((int64_t)((uint16_t)(g_24 = (((0x76E5B14F4E797535LL & l_22[3][1][6]) && g_2) > 0xE181F51B4373C946LL)) * (uint16_t)l_22[3][1][5]) % (int64_t)l_22[4][1][2]) >> (int8_t)7))) - (int64_t)0x5C5BCCBF785B8EEBLL));
+[0;1;32m                                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:61:12: [0m[0;1;35mwarning: [0m[1mimplicit conversion from 'const uint64_t' (aka 'const unsigned long long') to 'int8_t' (aka 'signed char') changes value from 4854783486782308943 to 79 [-Wconstant-conversion][0m
+    return l_39;
+[0;1;32m    ~~~~~~ ^~~~
+[0m[1mexample.c:75:30: [0m[0;1;35mwarning: [0m[1mequality comparison with extraneous parentheses [-Wparentheses-equality][0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                        ~~~~~^~~~~~~~
+[0m[1mexample.c:75:30: [0m[0;1;30mnote: [0mremove extraneous parentheses around the comparison to silence this warning[0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                       ~     ^       ~
+[0m[1mexample.c:75:30: [0m[0;1;30mnote: [0muse '=' to turn this equality comparison into an assignment[0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                             ^~
+[0m[0;32m                             =
+[0m5 warnings generated.
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
+[1mexample.c:60:66: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_34) = (g_4 || ((uint32_t)((*l_40) = (((int64_t)(l_39 || (g_24 , 6L)) << (int64_t)61) , 0UL)) << (uint32_t)22));
+[0;1;32m                                                                 ^~~~
+[0m[1mexample.c:60:78: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_34) = (g_4 || ((uint32_t)((*l_40) = (((int64_t)(l_39 || (g_24 , 6L)) << (int64_t)61) , 0UL)) << (uint32_t)22));
+[0;1;32m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~
+[0m[1mexample.c:57:162: [0m[0;1;35mwarning: [0m[1mresult of comparison of constant 16249538427974043974 with boolean expression is always false [-Wtautological-constant-out-of-range-compare][0m
+            (*g_33) = func_11(((int64_t)((*l_25) = ((l_15 != (void*)0) && ((int8_t)((int64_t)((uint16_t)(g_24 = (((0x76E5B14F4E797535LL & l_22[3][1][6]) && g_2) > 0xE181F51B4373C946LL)) * (uint16_t)l_22[3][1][5]) % (int64_t)l_22[4][1][2]) >> (int8_t)7))) - (int64_t)0x5C5BCCBF785B8EEBLL));
+[0;1;32m                                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:61:12: [0m[0;1;35mwarning: [0m[1mimplicit conversion from 'const uint64_t' (aka 'const unsigned long long') to 'int8_t' (aka 'signed char') changes value from 4854783486782308943 to 79 [-Wconstant-conversion][0m
+    return l_39;
+[0;1;32m    ~~~~~~ ^~~~
+[0m[1mexample.c:75:30: [0m[0;1;35mwarning: [0m[1mequality comparison with extraneous parentheses [-Wparentheses-equality][0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                        ~~~~~^~~~~~~~
+[0m[1mexample.c:75:30: [0m[0;1;30mnote: [0mremove extraneous parentheses around the comparison to silence this warning[0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                       ~     ^       ~
+[0m[1mexample.c:75:30: [0m[0;1;30mnote: [0muse '=' to turn this equality comparison into an assignment[0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                             ^~
+[0m[0;32m                             =
+[0m5 warnings generated.
+++ mkdir -p klee-out-O1
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
+++ filter_cg_ir example-O1-cg-raw.ll example-O1-cg.ll
+++ local input_ir=example-O1-cg-raw.ll
+++ local output_ir=example-O1-cg.ll
+++ grep -v '^+'
+++ sed '2,/IR Dump/!d'
+++ grep -v 'IR Dump'
+++ rm example-O1-cg-raw.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -O1 -D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -o example-O1
+[1mexample.c:60:66: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_34) = (g_4 || ((uint32_t)((*l_40) = (((int64_t)(l_39 || (g_24 , 6L)) << (int64_t)61) , 0UL)) << (uint32_t)22));
+[0;1;32m                                                                 ^~~~
+[0m[1mexample.c:60:78: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
+    (*g_34) = (g_4 || ((uint32_t)((*l_40) = (((int64_t)(l_39 || (g_24 , 6L)) << (int64_t)61) , 0UL)) << (uint32_t)22));
+[0;1;32m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~
+[0m[1mexample.c:57:162: [0m[0;1;35mwarning: [0m[1mresult of comparison of constant 16249538427974043974 with boolean expression is always false [-Wtautological-constant-out-of-range-compare][0m
+            (*g_33) = func_11(((int64_t)((*l_25) = ((l_15 != (void*)0) && ((int8_t)((int64_t)((uint16_t)(g_24 = (((0x76E5B14F4E797535LL & l_22[3][1][6]) && g_2) > 0xE181F51B4373C946LL)) * (uint16_t)l_22[3][1][5]) % (int64_t)l_22[4][1][2]) >> (int8_t)7))) - (int64_t)0x5C5BCCBF785B8EEBLL));
+[0;1;32m                                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~
+[0m[1mexample.c:61:12: [0m[0;1;35mwarning: [0m[1mimplicit conversion from 'const uint64_t' (aka 'const unsigned long long') to 'int8_t' (aka 'signed char') changes value from 4854783486782308943 to 79 [-Wconstant-conversion][0m
+    return l_39;
+[0;1;32m    ~~~~~~ ^~~~
+[0m[1mexample.c:75:30: [0m[0;1;35mwarning: [0m[1mequality comparison with extraneous parentheses [-Wparentheses-equality][0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                        ~~~~~^~~~~~~~
+[0m[1mexample.c:75:30: [0m[0;1;30mnote: [0mremove extraneous parentheses around the comparison to silence this warning[0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                       ~     ^       ~
+[0m[1mexample.c:75:30: [0m[0;1;30mnote: [0muse '=' to turn this equality comparison into an assignment[0m
+    for (g_26 = (-30); (g_26 == (-28)); g_26 += 5)
+[0;1;32m                             ^~
+[0m[0;32m                             =
+[0m5 warnings generated.
++ ../../check.sh
++++ dirname ../../check.sh
+++ SCRIPT_DIR=../..
+++ source ../../vars.sh
++++ set -eux
+++++ dirname ../../vars.sh
++++ SCRIPT_DIR=../..
++++ source ../../../vars.sh
+++++ set -eux
++++++ csmith release csmith
++++++ local build=release
++++++ local program=csmith
++++++ echo /Users/jryans/Projects/csmith/build-release/src/csmith
+++++ CSMITH=/Users/jryans/Projects/csmith/build-release/src/csmith
+++++ SRC_FILE=example.c
++++++ llvm release-clang-lldb-13.0.0 clang
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=clang
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
++++++ llvm release-clang-lldb-13.0.0 llvm-as
++++++ local build=release-clang-lldb-13.0.0
++++++ local program=llvm-as
++++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ CC_COMMON_OPTS='-I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
+++++ CC_IR_OPTS='-S -emit-llvm'
+++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
+++++ CC_O0_OPTS=
+++++ CC_O1_OPTS=-O1
+++++ CC_LINK_OPTS='-D CONCRETE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
++++++ klee debug print-module
++++++ local build=debug
++++++ local program=print-module
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/print-module
+++++ PRINT_MODULE=/Users/jryans/Projects/klee/build-debug/bin/print-module
++++++ klee release klee
++++++ local build=release
++++++ local program=klee
++++++ echo /Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE=/Users/jryans/Projects/klee/build-release/bin/klee
+++++ KLEE_COMMON_OPTS='--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4'
+++++ O0_BC=klee-out-O0/final.bc
+++++ O1_BC=klee-out-O1/final.bc
+++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
+++++ O2_BC=klee-out-O2/final.bc
+++++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++++ klee debug debug-info-check
++++++ local build=debug
++++++ local program=debug-info-check
++++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
+
+## Functions
+
+✅ 2 before defined functions(s), 2 after defined functions(s)
+
+## Function `func_1`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `l_39` (decl src line 44)
+Store to `l_39` (decl src line 44), asm line 34
+  const i64 4854783486782308943
+  Added assignment starting at src line 44, column 20
+Before variable `l_40` (decl src line 45)
+Store to `l_40` (decl src line 45), asm line 36
+  global g_41
+  Added assignment starting at src line 45, column 15
+Before variable `l_15` (decl src line 48)
+Store to `l_15` (decl src line 48), asm line 47
+  global g_8
+  Added assignment starting at src line 48, column 18
+Before variable `l_22` (decl src line 51)
+Before variable `l_23` (decl src line 52)
+Before variable `l_25` (decl src line 53)
+Store to `l_25` (decl src line 53), asm line 64
+  global g_26
+  Added assignment starting at src line 53, column 22
+Before variable `i` (decl src line 54)
+Before variable `j` (decl src line 54)
+Before variable `k` (decl src line 54)
+
+After variable `l_22` (decl src line 51)
+After variable intrinsic with undef input, asm line 22, ignoring undefined variable
+  @dbg.declare([436 x i8]* undef, !73, !DIExpression(DW_OP_LLVM_fragment, 0, 3488)), l51 c21
+After variable `l_22` (decl src line 51)
+After variable intrinsic with undef input, asm line 23, ignoring undefined variable
+  @dbg.declare([108 x i8]* undef, !73, !DIExpression(DW_OP_LLVM_fragment, 3552, 864)), l51 c21
+After variable `l_22` (decl src line 51)
+After variable intrinsic with undef input, asm line 24, ignoring undefined variable
+  @dbg.declare([468 x i8]* undef, !73, !DIExpression(DW_OP_LLVM_fragment, 4448, 3744)), l51 c21
+After variable `l_39` (decl src line 44)
+@dbg.value mapping for `l_39` (decl src line 44), asm line 25
+Value produced for `l_39` (decl src line 44), asm line 25
+  const i64 4854783486782308943
+  Added assignment starting at src line 44, column 0
+After variable `l_40` (decl src line 45)
+@dbg.value mapping for `l_40` (decl src line 45), asm line 26
+Value produced for `l_40` (decl src line 45), asm line 26
+  global g_41
+  Added assignment starting at src line 45, column 0
+After variable `l_22` (decl src line 51)
+@dbg.value mapping for `l_22` (decl src line 51), asm line 35
+Value produced for `l_22` (decl src line 51), asm line 35
+  const i32 207861890
+  Added assignment starting at src line 51, column 0
+After variable `l_22` (decl src line 51)
+@dbg.value mapping for `l_22` (decl src line 51), asm line 36
+Value produced for `l_22` (decl src line 51), asm line 36
+  const i32 2028829755
+❌ Value produced for `l_22` (decl src line 51): missing line info
+After variable `l_22` (decl src line 51)
+@dbg.value mapping for `l_22` (decl src line 51), asm line 37
+Value produced for `l_22` (decl src line 51), asm line 37
+  const i32 0
+❌ Value produced for `l_22` (decl src line 51): missing line info
+After variable `l_25` (decl src line 53)
+@dbg.value mapping for `l_25` (decl src line 53), asm line 38
+Value produced for `l_25` (decl src line 53), asm line 38
+  global g_26
+  Added assignment starting at src line 53, column 0
+After variable `i` (decl src line 54)
+After variable intrinsic with undef input, asm line 39, ignoring undefined variable
+  @dbg.declare(i32* undef, !89), l54 c17
+After variable `j` (decl src line 54)
+After variable intrinsic with undef input, asm line 40, ignoring undefined variable
+  @dbg.declare(i32* undef, !90), l54 c20
+After variable `k` (decl src line 54)
+After variable intrinsic with undef input, asm line 41, ignoring undefined variable
+  @dbg.declare(i32* undef, !91), l54 c23
+
+❌ 9 before variables found, 7 after variables found, 2 mismatched
+
+### Assignments
+
+🔔 Before live ranges for `i` (decl src line 54) not found, variable likely undefined
+🔔 Before live ranges for `j` (decl src line 54) not found, variable likely undefined
+🔔 Before live ranges for `k` (decl src line 54) not found, variable likely undefined
+❌ After live ranges for `l_15` (decl src line 48) not found
+🔔 Before live ranges for `l_22` (decl src line 51) not found, variable likely undefined
+🔔 Before live ranges for `l_23` (decl src line 52) not found, variable likely undefined
+❌ 3 before live ranges covered, 1 uncovered, 5 undefined
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `l_39`
+i64 4854783486782308943
+0x435FA7DC0717824F
+Concrete pointer resolves to g_41, offset 0x0
+Replaced concrete pointer with hash 0x2EC441EE04A35A20
+Collected value for `l_40`
+@g_41 = global i32 -366872074, align 4, !dbg !48
+0x2EC441EE04A35A20
+Concrete pointer resolves to g_8, offset 0x0
+Replaced concrete pointer with hash 0x637480294135CF34
+Collected value for `l_15`
+@g_8 = global i32 0, align 4, !dbg !28
+0x637480294135CF34
+[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+[0m
+#### After values
+
+Collected value for `l_39`
+i64 4854783486782308943
+0x435FA7DC0717824F
+Concrete pointer resolves to g_41, offset 0x0
+Replaced concrete pointer with hash 0x2EC441EE04A35A20
+Collected value for `l_40`
+@g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
+0x2EC441EE04A35A20
+Collected value for `l_22`
+i32 207861890
+0xC63B882
+Concrete pointer resolves to g_26, offset 0x0
+Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+Collected value for `l_25`
+@g_26 = local_unnamed_addr global i64 1, align 8, !dbg !32
+0xCFD37D5648DF5F09
+
+#### Check before against after
+
+❌ After live range for `l_15` (decl src line 48) not found
+Expected 1 symbolic value(s), got 0
+❌ Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value from @g_26 = global i64 1, align 8, !dbg !32
+Checking equivalence of `l_39` (decl src line 44) from
+assn 0, src line 44, column 20
+i64 4854783486782308943
+0x435FA7DC0717824F
+and
+assn 0, src line 44, column 0
+i64 4854783486782308943
+0x435FA7DC0717824F
+Checking equivalence of `l_40` (decl src line 45) from
+assn 0, src line 45, column 15
+@g_41 = global i32 -366872074, align 4, !dbg !48
+0x2EC441EE04A35A20
+and
+assn 0, src line 45, column 0
+@g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
+0x2EC441EE04A35A20
+❌ Before checked against after: 2 matching symbolic values, 2 mismatched
+
+#### Check after against before
+
+❌ Before live range for `l_22` (decl src line 51) not found
+Expected 1 symbolic value(s), got 0
+❌ Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value from @g_26 = global i64 1, align 8, !dbg !32
+Checking equivalence of `l_39` (decl src line 44) from
+assn 0, src line 44, column 0
+i64 4854783486782308943
+0x435FA7DC0717824F
+and
+assn 0, src line 44, column 20
+i64 4854783486782308943
+0x435FA7DC0717824F
+Checking equivalence of `l_40` (decl src line 45) from
+assn 0, src line 45, column 0
+@g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
+0x2EC441EE04A35A20
+and
+assn 0, src line 45, column 15
+@g_41 = global i32 -366872074, align 4, !dbg !48
+0x2EC441EE04A35A20
+❌ After checked against before: 2 matching symbolic values, 2 mismatched
+
+## Function `func_11`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `p_12` (decl src line 70)
+Store to `p_12` (decl src line 70), asm line 181
+  arg 0
+  Added assignment starting at src line 70, column 0
+Before variable `l_30` (decl src line 72)
+Store to `l_30` (decl src line 72), asm line 201
+  %1 = load volatile i32*, i32** getelementptr inbounds ([9 x i32*], [9 x i32*]* @g_29, i64 0, i64 3), l77 c16, asm line 200
+  Added assignment starting at src line 77, column 16
+Store to `l_30` (decl src line 72), asm line 184
+  global g_3
+  Added assignment starting at src line 72, column 33
+Before variable `l_32` (decl src line 73)
+Store to `l_32` (decl src line 73), asm line 186
+  global g_5
+  Added assignment starting at src line 73, column 14
+
+After variable `p_12` (decl src line 70)
+After variable intrinsic with undef input, asm line 94, ignoring undefined variable
+  @dbg.value(i64 undef, !141)
+After variable `l_30` (decl src line 72)
+Store to `l_30` (decl src line 72), asm line 98
+  global g_3
+  Added assignment starting at src line 72, column 33
+After variable `l_32` (decl src line 73)
+@dbg.value mapping for `l_32` (decl src line 73), asm line 99
+Value produced for `l_32` (decl src line 73), asm line 99
+  global g_5
+  Added assignment starting at src line 73, column 0
+
+✅ 3 before variables found, 3 after variables found, 0 mismatched
+
+### Assignments
+
+❌ After live ranges for `p_12` (decl src line 70) not found
+❌ 2 before live ranges covered, 1 uncovered, 0 undefined
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `p_12`
+i64 %p_12
+(ReadLSB w64 0x0 p_12)
+Concrete pointer resolves to g_3, offset 0x0
+Replaced concrete pointer with hash 0x21B47D327CD9D433
+Collected value for `l_30`
+@g_3 = global i32 -1, align 4, !dbg !22
+0x21B47D327CD9D433
+Concrete pointer resolves to g_5, offset 0x0
+Replaced concrete pointer with hash 0x1037124233222291
+Collected value for `l_32`
+@g_5 = global i32 -1087046240, align 4, !dbg !26
+0x1037124233222291
+
+#### After values
+
+Concrete pointer resolves to g_3, offset 0x0
+Replaced concrete pointer with hash 0x21B47D327CD9D433
+Collected value for `l_30`
+@g_3 = global i32 -1, align 4, !dbg !22
+0x21B47D327CD9D433
+Concrete pointer resolves to g_5, offset 0x0
+Replaced concrete pointer with hash 0x1037124233222291
+Collected value for `l_32`
+@g_5 = global i32 -1087046240, align 4, !dbg !26
+0x1037124233222291
+
+#### Check before against after
+
+Checking equivalence of `l_30` (decl src line 72) from
+assn 0, src line 72, column 33
+@g_3 = global i32 -1, align 4, !dbg !22
+0x21B47D327CD9D433
+and
+assn 0, src line 72, column 33
+@g_3 = global i32 -1, align 4, !dbg !22
+0x21B47D327CD9D433
+🔔 After assn 0, src line 72, column 33 doesn't match before assn 1, src line 77, column 16
+Expected 1 symbolic value(s), got 0
+❌ Before `l_30` (decl src line 72) assn 1, src line 77, column 16 has no symbolic value from %1 = load volatile i32*, i32** getelementptr inbounds ([9 x i32*], [9 x i32*]* @g_29, i64 0, i64 3), l77 c16
+Checking equivalence of `l_32` (decl src line 73) from
+assn 0, src line 73, column 14
+@g_5 = global i32 -1087046240, align 4, !dbg !26
+0x1037124233222291
+and
+assn 0, src line 73, column 0
+@g_5 = global i32 -1087046240, align 4, !dbg !26
+0x1037124233222291
+❌ After live range for `p_12` (decl src line 70) not found
+❌ Before checked against after: 2 matching symbolic values, 2 mismatched
+
+#### Check after against before
+
+Checking equivalence of `l_30` (decl src line 72) from
+assn 0, src line 72, column 33
+@g_3 = global i32 -1, align 4, !dbg !22
+0x21B47D327CD9D433
+and
+assn 0, src line 72, column 33
+@g_3 = global i32 -1, align 4, !dbg !22
+0x21B47D327CD9D433
+Checking equivalence of `l_32` (decl src line 73) from
+assn 0, src line 73, column 0
+@g_5 = global i32 -1087046240, align 4, !dbg !26
+0x1037124233222291
+and
+assn 0, src line 73, column 14
+@g_5 = global i32 -1087046240, align 4, !dbg !26
+0x1037124233222291
+✅ After checked against before: 2 matching symbolic values, 0 mismatched
+
+## Summary
+
+❌ Some consistency checks failed

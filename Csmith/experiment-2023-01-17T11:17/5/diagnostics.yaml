@@ -1,0 +1,105 @@
+---
+MainSourceFile:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-tautological-constant-out-of-range-compare
+    DiagnosticMessage:
+      Message:         result of comparison of constant 16249538427974043974 with boolean expression is always false
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+      FileOffset:      5863
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      5815
+          Length:          47
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      5865
+          Length:          20
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+      FileOffset:      6073
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      6073
+          Length:          4
+        - FilePath:        ''
+          FileOffset:      0
+          Length:          0
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+      FileOffset:      6085
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      6054
+          Length:          30
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      6088
+          Length:          11
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5'
+  - DiagnosticName:  clang-diagnostic-constant-conversion
+    DiagnosticMessage:
+      Message:         'implicit conversion from ''const uint64_t'' (aka ''const unsigned long long'') to ''int8_t'' (aka ''signed char'') changes value from 4854783486782308943 to 79'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+      FileOffset:      6139
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      6139
+          Length:          4
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      6132
+          Length:          6
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_12'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+      FileOffset:      6270
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5'
+  - DiagnosticName:  clang-diagnostic-parentheses-equality
+    DiagnosticMessage:
+      Message:         equality comparison with extraneous parentheses
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+      FileOffset:      6431
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+          FileOffset:      6426
+          Length:          13
+    Notes:
+      - Message:         remove extraneous parentheses around the comparison to silence this warning
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+        FileOffset:      6431
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+            Offset:          6425
+            Length:          1
+            ReplacementText: ''
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+            Offset:          6439
+            Length:          1
+            ReplacementText: ''
+      - Message:         'use ''='' to turn this equality comparison into an assignment'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+        FileOffset:      6431
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c'
+            Offset:          6431
+            Length:          2
+            ReplacementText: '='
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5'
+...
