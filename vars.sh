@@ -19,12 +19,14 @@ csmith() {
 }
 
 CSMITH=$(csmith release csmith)
-
 SRC_FILE="example.c"
+
+CLANG_TIDY=$(llvm release-clang-lldb-13.0.0 clang-tidy)
+DIAGNOSTICS_FILE="diagnostics.yaml"
+CLANG_TIDY_OPTS="--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=${DIAGNOSTICS_FILE}"
 
 CLANG=$(llvm release-clang-lldb-13.0.0 clang)
 LLVM_AS=$(llvm release-clang-lldb-13.0.0 llvm-as)
-
 CC_COMMON_OPTS="-I ${HOME}/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone"
 CC_IR_OPTS="-S -emit-llvm"
 CC_CG_IR_OPTS="-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope"
@@ -50,4 +52,4 @@ O2_BC="klee-out-O2/final.bc"
 O2_FIXED_BC="klee-out-O2-fixed/final.bc"
 
 CHECK=$(klee debug debug-info-check)
-CHECK_OPTS="--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace"
+CHECK_OPTS="--relax-via-diagnostics=${DIAGNOSTICS_FILE} --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace"
