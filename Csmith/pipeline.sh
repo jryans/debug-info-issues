@@ -12,5 +12,5 @@ parallel -j -2 \
 --joblog "${OUTPUT_DIR}/summary" \
 --wd "${OUTPUT_DIR}/{}/" \
 --results "${OUTPUT_DIR}/{}/" \
-script -q results \
+script -q results.md \
 ../../job.sh
