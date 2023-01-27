@@ -1,3 +1,3 @@
 This example tests support for:
 
-* Store instructions that use separate `getelementptr` steps
+* Ignoring statically unreachable blocks
