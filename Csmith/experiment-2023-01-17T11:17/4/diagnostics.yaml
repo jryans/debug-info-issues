@@ -1,0 +1,161 @@
+---
+MainSourceFile:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-constant-logical-operand
+    DiagnosticMessage:
+      Message:         'use of logical ''||'' with constant operand'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      2478
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      2481
+          Length:          11
+    Notes:
+      - Message:         'use ''|'' for a bitwise operation'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+        FileOffset:      2478
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+            Offset:          2478
+            Length:          2
+            ReplacementText: '|'
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      2478
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      2474
+          Length:          3
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      2481
+          Length:          11
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-tautological-constant-out-of-range-compare
+    DiagnosticMessage:
+      Message:         result of comparison of constant 141 with boolean expression is always false
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      2545
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      2469
+          Length:          75
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      2548
+          Length:          5
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_4'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      2855
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_6'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      2883
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_7'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      2898
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      3276
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3264
+          Length:          10
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3275
+          Length:          1
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-constant-logical-operand
+    DiagnosticMessage:
+      Message:         'use of logical ''||'' with constant operand'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      3307
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3310
+          Length:          3
+    Notes:
+      - Message:         'use ''|'' for a bitwise operation'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+        FileOffset:      3307
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+            Offset:          3307
+            Length:          2
+            ReplacementText: '|'
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      3315
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3241
+          Length:          73
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3318
+          Length:          11
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-bool-operation
+    DiagnosticMessage:
+      Message:         'bitwise negation of a boolean expression; did you mean logical negation?'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      3364
+      Replacements:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          Offset:          3364
+          Length:          1
+          ReplacementText: '!'
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3363
+          Length:          84
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+      FileOffset:      3448
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3363
+          Length:          84
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c'
+          FileOffset:      3451
+          Length:          2
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4'
+...
