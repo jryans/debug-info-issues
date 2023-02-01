@@ -377,12 +377,12 @@ After variable intrinsic with undef input, asm line 41, ignoring undefined varia
 
 ### Assignments
 
-🔔 Before live ranges for `i` (decl src line 54) not found, variable likely undefined
-🔔 Before live ranges for `j` (decl src line 54) not found, variable likely undefined
-🔔 Before live ranges for `k` (decl src line 54) not found, variable likely undefined
+🔔 Before live ranges for `i` (decl src line 54) not found (variable likely undefined)
+🔔 Before live ranges for `j` (decl src line 54) not found (variable likely undefined)
+🔔 Before live ranges for `k` (decl src line 54) not found (variable likely undefined)
 ❌ After live ranges for `l_15` (decl src line 48) not found
-🔔 Before live ranges for `l_22` (decl src line 51) not found, variable likely undefined
-🔔 Before live ranges for `l_23` (decl src line 52) not found, variable likely undefined
+🔔 Before live ranges for `l_22` (decl src line 51) not found (variable likely undefined)
+🔔 Before live ranges for `l_23` (decl src line 52) not found (variable likely undefined)
 ❌ Before live range coverage
   Covered:   3
   Uncovered: 1
@@ -432,7 +432,7 @@ Collected value for `l_25`
 
 ❌ After live range for `l_15` (decl src line 48) not found
 Expected 1 symbolic value(s), got 0
-❌ Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value from @g_26 = global i64 1, align 8, !dbg !32
+🔔 Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value (likely unreachable) from @g_26 = global i64 1, align 8, !dbg !32
 Checking equivalence of `l_39` (decl src line 44) from
 assn 0, src line 44, column 20
 i64 4854783486782308943
@@ -450,15 +450,16 @@ assn 0, src line 45, column 0
 @g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
 0x2EC441EE04A35A20
 ❌ Before symbolic values checked against after
-  Matching:   2
-  Mismatched: 2
-  Unused:     0
+  Matching:    2
+  Mismatched:  1
+  Unused:      0
+  Unreachable: 1
 
 #### Check after against before
 
 ❌ Before live range for `l_22` (decl src line 51) not found
 Expected 1 symbolic value(s), got 0
-❌ Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value from @g_26 = global i64 1, align 8, !dbg !32
+🔔 Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value (likely unreachable) from @g_26 = global i64 1, align 8, !dbg !32
 Checking equivalence of `l_39` (decl src line 44) from
 assn 0, src line 44, column 0
 i64 4854783486782308943
@@ -476,9 +477,10 @@ assn 0, src line 45, column 15
 @g_41 = global i32 -366872074, align 4, !dbg !48
 0x2EC441EE04A35A20
 ❌ After symbolic values checked against before
-  Matching:   2
-  Mismatched: 2
-  Unused:     0
+  Matching:    2
+  Mismatched:  1
+  Unused:      0
+  Unreachable: 1
 
 ## Function `func_11`
 
@@ -571,7 +573,7 @@ assn 0, src line 72, column 33
 0x21B47D327CD9D433
 🔔 After assn 0, src line 72, column 33 doesn't match before assn 1, src line 77, column 16
 Expected 1 symbolic value(s), got 0
-❌ Before `l_30` (decl src line 72) assn 1, src line 77, column 16 has no symbolic value from %1 = load volatile i32*, i32** getelementptr inbounds ([9 x i32*], [9 x i32*]* @g_29, i64 0, i64 3), l77 c16
+🔔 Before `l_30` (decl src line 72) assn 1, src line 77, column 16 has no symbolic value (likely unreachable) from %1 = load volatile i32*, i32** getelementptr inbounds ([9 x i32*], [9 x i32*]* @g_29, i64 0, i64 3), l77 c16
 Checking equivalence of `l_32` (decl src line 73) from
 assn 0, src line 73, column 14
 @g_5 = global i32 -1087046240, align 4, !dbg !26
@@ -581,10 +583,11 @@ assn 0, src line 73, column 0
 @g_5 = global i32 -1087046240, align 4, !dbg !26
 0x1037124233222291
 🔔 After live ranges for (unused) `p_12` (decl src line 70) not found
-❌ Before symbolic values checked against after
-  Matching:   2
-  Mismatched: 1
-  Unused:     1
+✅ Before symbolic values checked against after
+  Matching:    2
+  Mismatched:  0
+  Unused:      1
+  Unreachable: 1
 
 #### Check after against before
 
@@ -605,9 +608,10 @@ assn 0, src line 73, column 14
 @g_5 = global i32 -1087046240, align 4, !dbg !26
 0x1037124233222291
 ✅ After symbolic values checked against before
-  Matching:   2
-  Mismatched: 0
-  Unused:     0
+  Matching:    2
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
 
 ## Summary
 
