@@ -406,9 +406,12 @@ Collected value for `l_15`
   Replaced concrete pointer with hash 0x637480294135CF34
   @g_8 = global i32 0, align 4, !dbg !28
   0x637480294135CF34
-[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m
+Collected value for `l_25`
+  Concrete pointer resolves to g_26, offset 0x0
+  Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  @g_26 = global i64 1, align 8, !dbg !32
+  0xCFD37D5648DF5F09
+
 #### After values
 
 Collected value for `l_39`
@@ -431,8 +434,14 @@ Collected value for `l_25`
 #### Check before against after
 
 ❌ After live range for `l_15` (decl src line 48) not found
-Expected 1 symbolic value(s), got 0
-🔔 Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value (likely unreachable) from @g_26 = global i64 1, align 8, !dbg !32
+Checking equivalence of `l_25` (decl src line 53) from
+assn 0, src line 53, column 22
+@g_26 = global i64 1, align 8, !dbg !32
+0xCFD37D5648DF5F09
+and
+assn 0, src line 53, column 0
+@g_26 = local_unnamed_addr global i64 1, align 8, !dbg !32
+0xCFD37D5648DF5F09
 Checking equivalence of `l_39` (decl src line 44) from
 assn 0, src line 44, column 20
 i64 4854783486782308943
@@ -450,16 +459,22 @@ assn 0, src line 45, column 0
 @g_41 = local_unnamed_addr global i32 -366872074, align 4, !dbg !48
 0x2EC441EE04A35A20
 ❌ Before symbolic values checked against after
-  Matching:    2
+  Matching:    3
   Mismatched:  1
   Unused:      0
-  Unreachable: 1
+  Unreachable: 0
 
 #### Check after against before
 
 ❌ Before live range for `l_22` (decl src line 51) not found
-Expected 1 symbolic value(s), got 0
-🔔 Before `l_25` (decl src line 53) assn 0, src line 53, column 22 has no symbolic value (likely unreachable) from @g_26 = global i64 1, align 8, !dbg !32
+Checking equivalence of `l_25` (decl src line 53) from
+assn 0, src line 53, column 0
+@g_26 = local_unnamed_addr global i64 1, align 8, !dbg !32
+0xCFD37D5648DF5F09
+and
+assn 0, src line 53, column 22
+@g_26 = global i64 1, align 8, !dbg !32
+0xCFD37D5648DF5F09
 Checking equivalence of `l_39` (decl src line 44) from
 assn 0, src line 44, column 0
 i64 4854783486782308943
@@ -477,10 +492,10 @@ assn 0, src line 45, column 15
 @g_41 = global i32 -366872074, align 4, !dbg !48
 0x2EC441EE04A35A20
 ❌ After symbolic values checked against before
-  Matching:    2
+  Matching:    3
   Mismatched:  1
   Unused:      0
-  Unreachable: 1
+  Unreachable: 0
 
 ## Function `func_11`
 
