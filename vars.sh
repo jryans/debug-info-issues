@@ -52,4 +52,4 @@ O2_BC="klee-out-O2/final.bc"
 O2_FIXED_BC="klee-out-O2-fixed/final.bc"
 
 CHECK=$(klee debug debug-info-check)
-CHECK_OPTS="--relax-via-diagnostics=${DIAGNOSTICS_FILE} --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace"
+CHECK_OPTS="--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace"
