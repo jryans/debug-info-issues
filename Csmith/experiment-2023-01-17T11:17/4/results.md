@@ -261,7 +261,7 @@ int32_t  func_2(uint64_t  p_3, uint64_t  p_4, int32_t  p_5, uint8_t  p_6, uint32
 [0m[1mexample.c:79:59: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
     l_19[3][0][3] |= (((int32_t)(((*l_17) = ((g_12[3][2][3] , g_15) , (l_16 > g_15.f9))) || 5UL) >> (int32_t)23) , p_5);
 [0;1;32m                                              ~~~~~~~~~~ ~^
-[0m[1mexample.c:79:90: [0m[0;1;35mwarning: [0m[1muse of logical '||' with constant operand [-Wconstant-logical-operand][0m
+[0m[1mexample.c:79:90: [0m[0;1;35mwarning: [0m[1muse of logical '||' with constant operand [-Wconstant-logical-operand][0m
     l_19[3][0][3] |= (((int32_t)(((*l_17) = ((g_12[3][2][3] , g_15) , (l_16 > g_15.f9))) || 5UL) >> (int32_t)23) , p_5);
 [0;1;32m                                                                                         ^  ~~~
 [0m[1mexample.c:79:90: [0m[0;1;30mnote: [0muse '|' for a bitwise operation[0m
@@ -396,30 +396,30 @@ Value produced for `l_25` (decl src line 53), asm line 21
 #### Before values
 
 Collected value for `l_8`
-i64 8889101807056336539
-0x7B5C6EFF3DE0369B
+  i64 8889101807056336539
+  0x7B5C6EFF3DE0369B
 Collected value for `l_11`
-i64 -3004284430612479775
-0xD64EA33A4D1B40E1
-Concrete pointer resolves to g_26, offset 0x0
-Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  i64 -3004284430612479775
+  0xD64EA33A4D1B40E1
 Collected value for `l_25`
-@g_26 = global i32 417948106, align 4, !dbg !48
-0xCFD37D5648DF5F09
+  Concrete pointer resolves to g_26, offset 0x0
+  Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  @g_26 = global i32 417948106, align 4, !dbg !48
+  0xCFD37D5648DF5F09
 
 #### After values
 
 Collected value for `l_8`
-i64 8889101807056336539
-0x7B5C6EFF3DE0369B
+  i64 8889101807056336539
+  0x7B5C6EFF3DE0369B
 Collected value for `l_11`
-i64 -3004284430612479775
-0xD64EA33A4D1B40E1
-Concrete pointer resolves to g_26, offset 0x0
-Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  i64 -3004284430612479775
+  0xD64EA33A4D1B40E1
 Collected value for `l_25`
-@g_26 = local_unnamed_addr global i32 417948106, align 4, !dbg !48
-0xCFD37D5648DF5F09
+  Concrete pointer resolves to g_26, offset 0x0
+  Replaced concrete pointer with hash 0xCFD37D5648DF5F09
+  @g_26 = local_unnamed_addr global i32 417948106, align 4, !dbg !48
+  0xCFD37D5648DF5F09
 
 #### Check before against after
 
@@ -448,9 +448,10 @@ assn 0, src line 51, column 0
 i64 8889101807056336539
 0x7B5C6EFF3DE0369B
 ✅ Before symbolic values checked against after
-  Matching:   3
-  Mismatched: 0
-  Unused:     0
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
 
 #### Check after against before
 
@@ -479,9 +480,10 @@ assn 0, src line 51, column 14
 i64 8889101807056336539
 0x7B5C6EFF3DE0369B
 ✅ After symbolic values checked against before
-  Matching:   3
-  Mismatched: 0
-  Unused:     0
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
 
 ## Function `func_2`
 
@@ -626,7 +628,7 @@ Value produced for `i` (decl src line 70), asm line 67
 ❌ Live ranges for `i` (decl src line 70) don't match: [71.12,∞) vs. [70.0,∞)
 ❌ After live ranges for `j` (decl src line 70) not found
 ❌ Live ranges for `k` (decl src line 70) don't match: [75.20,∞) vs. [70.0,∞)
-🔔 Before live ranges for `l_19` (decl src line 68) not found, variable likely undefined
+🔔 Before live ranges for `l_19` (decl src line 68) not found (variable likely undefined)
 🔔 After live ranges for (unused) `p_4` (decl src line 64) not found
 🔔 After live ranges for (unused) `p_6` (decl src line 64) not found
 🔔 After live ranges for (unused) `p_7` (decl src line 64) not found
@@ -641,84 +643,80 @@ Value produced for `i` (decl src line 70), asm line 67
 #### Before values
 
 Collected value for `p_3`
-i64 %p_3
-(ReadLSB w64 0x0 p_3)
+  i64 %p_3
+  (ReadLSB w64 0x0 p_3)
 Collected value for `p_4`
-i64 %p_4
-(ReadLSB w64 0x0 p_4)
+  i64 %p_4
+  (ReadLSB w64 0x0 p_4)
 Collected value for `p_5`
-i32 %p_5
-(ReadLSB w32 0x0 p_5)
+  i32 %p_5
+  (ReadLSB w32 0x0 p_5)
 Collected value for `p_6`
-i8 %p_6
-(Read w8 0x0 p_6)
+  i8 %p_6
+  (Read w8 0x0 p_6)
 Collected value for `p_7`
-i32 %p_7
-(ReadLSB w32 0x0 p_7)
+  i32 %p_7
+  (ReadLSB w32 0x0 p_7)
 Collected value for `l_16`
-i64 1
-0x1
-Concrete pointer resolves to g_18, offset 0x0
-Replaced concrete pointer with hash 0x1E814E2E948DA31C
+  i64 1
+  0x1
 Collected value for `l_17`
-@g_18 = global i64 3085331500618835686, align 8, !dbg !42
-0x1E814E2E948DA31C
-Concrete pointer resolves to g_24, offset 0x0
-Replaced concrete pointer with hash 0xB993649DD050A035
+  Concrete pointer resolves to g_18, offset 0x0
+  Replaced concrete pointer with hash 0x1E814E2E948DA31C
+  @g_18 = global i64 3085331500618835686, align 8, !dbg !42
+  0x1E814E2E948DA31C
 Collected value for `l_23`
-@g_24 = global i8 -4, align 1, !dbg !46
-0xB993649DD050A035
+  Concrete pointer resolves to g_24, offset 0x0
+  Replaced concrete pointer with hash 0xB993649DD050A035
+  @g_24 = global i8 -4, align 1, !dbg !46
+  0xB993649DD050A035
 Collected value for `i`
-i32 0
-0x0
+  i32 0
+  0x0
 Collected value for `j`
-i32 0
-0x0
+  i32 0
+  0x0
 Collected value for `k`
-i32 0
-0x0
+  i32 0
+  0x0
 Collected value for `k`
-%inc = add nsw i32 %6, 1, l75 c33
-0x1
+  %inc = add nsw i32 %6, 1, l75 c33
+  0x1
 Collected value for `j`
-%inc12 = add nsw i32 %7, 1, l73 c29
-0x1
+  %inc12 = add nsw i32 %7, 1, l73 c29
+  0x1
 Collected value for `i`
-%inc15 = add nsw i32 %8, 1, l71 c25
-0x1
-[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m
+  %inc15 = add nsw i32 %8, 1, l71 c25
+  0x1
+
 #### After values
 
 Collected value for `p_3`
-i64 %p_3
-(ReadLSB w64 0x0 p_3)
+  i64 %p_3
+  (ReadLSB w64 0x0 p_3)
 Collected value for `p_5`
-i32 %p_5
-(ReadLSB w32 0x0 p_5)
+  i32 %p_5
+  (ReadLSB w32 0x0 p_5)
 Collected value for `l_16`
-i64 1
-0x1
-Concrete pointer resolves to g_18, offset 0x0
-Replaced concrete pointer with hash 0x1E814E2E948DA31C
+  i64 1
+  0x1
 Collected value for `l_17`
-@g_18 = local_unnamed_addr global i64 3085331500618835686, align 8, !dbg !42
-0x1E814E2E948DA31C
-Concrete pointer resolves to g_24, offset 0x0
-Replaced concrete pointer with hash 0xB993649DD050A035
+  Concrete pointer resolves to g_18, offset 0x0
+  Replaced concrete pointer with hash 0x1E814E2E948DA31C
+  @g_18 = local_unnamed_addr global i64 3085331500618835686, align 8, !dbg !42
+  0x1E814E2E948DA31C
 Collected value for `l_23`
-@g_24 = local_unnamed_addr global i8 -4, align 1, !dbg !46
-0xB993649DD050A035
+  Concrete pointer resolves to g_24, offset 0x0
+  Replaced concrete pointer with hash 0xB993649DD050A035
+  @g_24 = local_unnamed_addr global i8 -4, align 1, !dbg !46
+  0xB993649DD050A035
 Collected value for `i`
-i32 0
-0x0
+  i32 0
+  0x0
 Collected value for `k`
-i32 0
-0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x10B751D40, 0x10B712900, 0x18) at example.c:l0:c0
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
-[0m[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memcpy.c`
+  i32 0
+  0x0
+[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x109E31EC0, 0x109DF2900, 0x18) at example.c:l0:c0
 [0m
 #### Check before against after
 
@@ -818,9 +816,10 @@ Parsed query
 🔔 After live ranges for (unused) `p_6` (decl src line 64) not found
 🔔 After live ranges for (unused) `p_7` (decl src line 64) not found
 ❌ Before symbolic values checked against after
-  Matching:   7
-  Mismatched: 4
-  Unused:     3
+  Matching:    7
+  Mismatched:  4
+  Unused:      3
+  Unreachable: 0
 
 #### Check after against before
 
@@ -897,9 +896,10 @@ Parsed query
 (Eq N0:(ReadLSB w32 0x0 p_5)
      N0)
 ✅ After symbolic values checked against before
-  Matching:   7
-  Mismatched: 0
-  Unused:     0
+  Matching:    7
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
 
 ## Summary
 
