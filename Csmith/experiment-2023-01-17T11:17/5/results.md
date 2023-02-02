@@ -56,7 +56,7 @@
 ++++ local program=debug-info-check
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
-+++ CHECK_OPTS='--relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
 + [[ ! -s example.c ]]
 + ../../build.sh
 +++ dirname ../../build.sh
@@ -117,7 +117,7 @@
 +++++ local program=debug-info-check
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
-++++ CHECK_OPTS='--relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy '--checks=clang-diagnostic-*,clang-analyzer-*,misc-*' --export-fixes=diagnostics.yaml example.c --
 6 warnings generated.
 [1m/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/5/example.c:57:162: [0m[0;1;35mwarning: [0m[1mresult of comparison of constant 16249538427974043974 with boolean expression is always false [clang-diagnostic-tautological-constant-out-of-range-compare][0m
@@ -288,8 +288,8 @@ int32_t * func_11(int64_t  p_12)
 +++++ local program=debug-info-check
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
-++++ CHECK_OPTS='--relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
-++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -305,6 +305,7 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 Before variable `l_39` (decl src line 44)
 Store to `l_39` (decl src line 44), asm line 34
   const i64 4854783486782308943
+  @dbg.declare without read users, removable
   Added assignment starting at src line 44, column 20
 Before variable `l_40` (decl src line 45)
 Store to `l_40` (decl src line 45), asm line 36
@@ -388,6 +389,7 @@ After variable intrinsic with undef input, asm line 41, ignoring undefined varia
   Uncovered: 1
   Undefined: 5
   Unused:    0
+  Removable: 0
 
 ### Symbolic values
 
@@ -463,6 +465,7 @@ assn 0, src line 45, column 0
   Mismatched:  1
   Unused:      0
   Unreachable: 0
+  Removable:   0
 
 #### Check after against before
 
@@ -496,6 +499,7 @@ assn 0, src line 45, column 15
   Mismatched:  1
   Unused:      0
   Unreachable: 0
+  Removable:   0
 
 ## Function `func_11`
 
@@ -503,24 +507,25 @@ assn 0, src line 45, column 15
 
 ### Variables
 
-🔔 Before variable `p_12` marked unused by diagnostic: parameter 'p_12' is unused
 Before variable `p_12` (decl src line 70)
 Store to `p_12` (decl src line 70), asm line 181
   arg 0
+  @dbg.declare without read users, removable
   Added assignment starting at src line 70, column 0
 Before variable `l_30` (decl src line 72)
 Store to `l_30` (decl src line 72), asm line 201
   %1 = load volatile i32*, i32** getelementptr inbounds ([9 x i32*], [9 x i32*]* @g_29, i64 0, i64 3), l77 c16, asm line 200
+  @dbg.declare without read users, removable
   Added assignment starting at src line 77, column 16
 Store to `l_30` (decl src line 72), asm line 184
   global g_3
+  @dbg.declare without read users, removable
   Added assignment starting at src line 72, column 33
 Before variable `l_32` (decl src line 73)
 Store to `l_32` (decl src line 73), asm line 186
   global g_5
   Added assignment starting at src line 73, column 14
 
-🔔 After variable `p_12` marked unused by diagnostic: parameter 'p_12' is unused
 After variable `p_12` (decl src line 70)
 After variable intrinsic with undef input, asm line 94, ignoring undefined variable
   @dbg.value(i64 undef, !141)
@@ -538,12 +543,13 @@ Value produced for `l_32` (decl src line 73), asm line 99
 
 ### Assignments
 
-🔔 After live ranges for (unused) `p_12` (decl src line 70) not found
+🔔 After live ranges for (removable) `p_12` (decl src line 70) not found
 ✅ Before live range coverage
   Covered:   2
   Uncovered: 0
   Undefined: 0
-  Unused:    1
+  Unused:    0
+  Removable: 1
 
 ### Symbolic values
 
@@ -597,12 +603,13 @@ and
 assn 0, src line 73, column 0
 @g_5 = global i32 -1087046240, align 4, !dbg !26
 0x1037124233222291
-🔔 After live ranges for (unused) `p_12` (decl src line 70) not found
+🔔 After live ranges for (removable) `p_12` (decl src line 70) not found
 ✅ Before symbolic values checked against after
   Matching:    2
   Mismatched:  0
-  Unused:      1
+  Unused:      0
   Unreachable: 1
+  Removable:   1
 
 #### Check after against before
 
@@ -627,6 +634,7 @@ assn 0, src line 73, column 14
   Mismatched:  0
   Unused:      0
   Unreachable: 0
+  Removable:   0
 
 ## Summary
 
