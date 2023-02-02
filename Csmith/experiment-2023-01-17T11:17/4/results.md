@@ -56,7 +56,7 @@
 ++++ local program=debug-info-check
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
-+++ CHECK_OPTS='--relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
 + [[ ! -s example.c ]]
 + ../../build.sh
 +++ dirname ../../build.sh
@@ -117,7 +117,7 @@
 +++++ local program=debug-info-check
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
-++++ CHECK_OPTS='--relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy '--checks=clang-diagnostic-*,clang-analyzer-*,misc-*' --export-fixes=diagnostics.yaml example.c --
 11 warnings generated.
 [1m/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/4/example.c:54:63: [0m[0;1;35mwarning: [0m[1muse of logical '||' with constant operand [clang-diagnostic-constant-logical-operand][0m
@@ -261,7 +261,7 @@ int32_t  func_2(uint64_t  p_3, uint64_t  p_4, int32_t  p_5, uint8_t  p_6, uint32
 [0m[1mexample.c:79:59: [0m[0;1;35mwarning: [0m[1mexpression result unused [-Wunused-value][0m
     l_19[3][0][3] |= (((int32_t)(((*l_17) = ((g_12[3][2][3] , g_15) , (l_16 > g_15.f9))) || 5UL) >> (int32_t)23) , p_5);
 [0;1;32m                                              ~~~~~~~~~~ ~^
-[0m[1mexample.c:79:90: [0m[0;1;35mwarning: [0m[1muse of logical '||' with constant operand [-Wconstant-logical-operand][0m
+[0m[1mexample.c:79:90: [0m[0;1;35mwarning: [0m[1muse of logical '||' with constant operand [-Wconstant-logical-operand][0m
     l_19[3][0][3] |= (((int32_t)(((*l_17) = ((g_12[3][2][3] , g_15) , (l_16 > g_15.f9))) || 5UL) >> (int32_t)23) , p_5);
 [0;1;32m                                                                                         ^  ~~~
 [0m[1mexample.c:79:90: [0m[0;1;30mnote: [0muse '|' for a bitwise operation[0m
@@ -338,8 +338,8 @@ int32_t  func_2(uint64_t  p_3, uint64_t  p_4, int32_t  p_5, uint8_t  p_6, uint32
 +++++ local program=debug-info-check
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
-++++ CHECK_OPTS='--relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
-++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --relax-via-diagnostics=diagnostics.yaml --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
+++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -390,6 +390,7 @@ Value produced for `l_25` (decl src line 53), asm line 21
   Uncovered: 0
   Undefined: 0
   Unused:    0
+  Removable: 0
 
 ### Symbolic values
 
@@ -452,6 +453,7 @@ i64 8889101807056336539
   Mismatched:  0
   Unused:      0
   Unreachable: 0
+  Removable:   0
 
 #### Check after against before
 
@@ -484,6 +486,7 @@ i64 8889101807056336539
   Mismatched:  0
   Unused:      0
   Unreachable: 0
+  Removable:   0
 
 ## Function `func_2`
 
@@ -495,24 +498,24 @@ Before variable `p_3` (decl src line 64)
 Store to `p_3` (decl src line 64), asm line 118
   arg 0
   Added assignment starting at src line 64, column 0
-🔔 Before variable `p_4` marked unused by diagnostic: parameter 'p_4' is unused
 Before variable `p_4` (decl src line 64)
 Store to `p_4` (decl src line 64), asm line 120
   arg 1
+  @dbg.declare without read users, removable
   Added assignment starting at src line 64, column 0
 Before variable `p_5` (decl src line 64)
 Store to `p_5` (decl src line 64), asm line 122
   arg 2
   Added assignment starting at src line 64, column 0
-🔔 Before variable `p_6` marked unused by diagnostic: parameter 'p_6' is unused
 Before variable `p_6` (decl src line 64)
 Store to `p_6` (decl src line 64), asm line 124
   arg 3
+  @dbg.declare without read users, removable
   Added assignment starting at src line 64, column 0
-🔔 Before variable `p_7` marked unused by diagnostic: parameter 'p_7' is unused
 Before variable `p_7` (decl src line 64)
 Store to `p_7` (decl src line 64), asm line 126
   arg 4
+  @dbg.declare without read users, removable
   Added assignment starting at src line 64, column 0
 Before variable `l_16` (decl src line 66)
 Store to `l_16` (decl src line 66), asm line 129
@@ -553,8 +556,8 @@ After variable `p_3` (decl src line 64)
 @dbg.value mapping for `p_3` (decl src line 64), asm line 43
 Value produced for `p_3` (decl src line 64), asm line 43
   arg 0
+  @dbg.value without non-debug users, removable
   Added assignment starting at src line 64, column 0
-🔔 After variable `p_4` marked unused by diagnostic: parameter 'p_4' is unused
 After variable `p_4` (decl src line 64)
 After variable intrinsic with undef input, asm line 44, ignoring undefined variable
   @dbg.value(i64 undef, !84)
@@ -563,11 +566,9 @@ After variable `p_5` (decl src line 64)
 Value produced for `p_5` (decl src line 64), asm line 45
   arg 2
   Added assignment starting at src line 64, column 0
-🔔 After variable `p_6` marked unused by diagnostic: parameter 'p_6' is unused
 After variable `p_6` (decl src line 64)
 After variable intrinsic with undef input, asm line 46, ignoring undefined variable
   @dbg.value(i8 undef, !86)
-🔔 After variable `p_7` marked unused by diagnostic: parameter 'p_7' is unused
 After variable `p_7` (decl src line 64)
 After variable intrinsic with undef input, asm line 47, ignoring undefined variable
   @dbg.value(i32 undef, !87)
@@ -629,14 +630,15 @@ Value produced for `i` (decl src line 70), asm line 67
 ❌ After live ranges for `j` (decl src line 70) not found
 ❌ Live ranges for `k` (decl src line 70) don't match: [75.20,∞) vs. [70.0,∞)
 🔔 Before live ranges for `l_19` (decl src line 68) not found (variable likely undefined)
-🔔 After live ranges for (unused) `p_4` (decl src line 64) not found
-🔔 After live ranges for (unused) `p_6` (decl src line 64) not found
-🔔 After live ranges for (unused) `p_7` (decl src line 64) not found
+🔔 After live ranges for (removable) `p_4` (decl src line 64) not found
+🔔 After live ranges for (removable) `p_6` (decl src line 64) not found
+🔔 After live ranges for (removable) `p_7` (decl src line 64) not found
 ❌ Before live range coverage
   Covered:   5
   Uncovered: 3
   Undefined: 1
-  Unused:    3
+  Unused:    0
+  Removable: 3
 
 ### Symbolic values
 
@@ -716,7 +718,7 @@ Collected value for `i`
 Collected value for `k`
   i32 0
   0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x109E31EC0, 0x109DF2900, 0x18) at example.c:l0:c0
+[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x11178A6C0, 0x11174C8F0, 0x18) at example.c:l0:c0
 [0m
 #### Check before against after
 
@@ -797,7 +799,7 @@ array p_3[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 p_3)
      N0)
-🔔 After live ranges for (unused) `p_4` (decl src line 64) not found
+🔔 After live ranges for (removable) `p_4` (decl src line 64) not found
 Checking equivalence of `p_5` (decl src line 64) from
 assn 0, src line 64, column 0
 i32 %p_5
@@ -813,13 +815,14 @@ array p_5[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 0x0 p_5)
      N0)
-🔔 After live ranges for (unused) `p_6` (decl src line 64) not found
-🔔 After live ranges for (unused) `p_7` (decl src line 64) not found
+🔔 After live ranges for (removable) `p_6` (decl src line 64) not found
+🔔 After live ranges for (removable) `p_7` (decl src line 64) not found
 ❌ Before symbolic values checked against after
   Matching:    7
   Mismatched:  4
-  Unused:      3
+  Unused:      0
   Unreachable: 0
+  Removable:   3
 
 #### Check after against before
 
@@ -900,6 +903,7 @@ Parsed query
   Mismatched:  0
   Unused:      0
   Unreachable: 0
+  Removable:   0
 
 ## Summary
 
