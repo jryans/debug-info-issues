@@ -556,7 +556,6 @@ After variable `p_3` (decl src line 64)
 @dbg.value mapping for `p_3` (decl src line 64), asm line 43
 Value produced for `p_3` (decl src line 64), asm line 43
   arg 0
-  @dbg.value without non-debug users, removable
   Added assignment starting at src line 64, column 0
 After variable `p_4` (decl src line 64)
 After variable intrinsic with undef input, asm line 44, ignoring undefined variable
@@ -718,7 +717,7 @@ Collected value for `i`
 Collected value for `k`
   i32 0
   0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x11178A6C0, 0x11174C8F0, 0x18) at example.c:l0:c0
+[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x1124D8900, 0x11249A8F0, 0x18) at example.c:l0:c0
 [0m
 #### Check before against after
 
