@@ -6,3 +6,4 @@ This example tests support for:
   * DW_OP_shra
   * DW_OP_xor
 * Ignoring value expressions that use `undef` inputs
+* Treat `memcpy` and friends as alternative stores
