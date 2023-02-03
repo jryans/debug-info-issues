@@ -355,7 +355,7 @@ Value produced for `l_20` (decl src line 41), asm line 21
   const i8 -113
   Value is same as last assignment, skipping
 
-❌ 11 before variables found, 1 after variables found, 10 mismatched
+🔔 11 before variables found, 1 after variables found, 10 mismatched
 
 ### Assignments
 
@@ -641,4 +641,4 @@ Parsed query
 
 ## Summary
 
-❌ Some consistency checks failed
+🎉 All consistency checks passed
