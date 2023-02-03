@@ -438,7 +438,7 @@ Collected value for `l_2`
 Collected value for `i`
   i32 0
   0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x108390EF8, 0x108392890, 0x8) at example.c:l0:c0
+[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x109C1CEF8, 0x109C1E890, 0x8) at example.c:l0:c0
 [0mCollected value for `l_11`
   i32 -1
   0xFFFFFFFF
@@ -810,66 +810,8 @@ assn 0, src line 93, column 0
 i32* null
 0x0
 🔔 After assn 1, src line 95, column 0 doesn't match before assn 0, src line 95, column 13
-LLVM_arg: 0x1
-LLVM_arg: (ReadLSB w64 0x0 p_6)
-convert: already 64 bit(s), skipping
-convert: (Extract w32 0 (ReadLSB w64 0x0 p_6))
-constu/s: 0x18
-shl: (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-          0x18)
-constu/s: 0x18
-shra: (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                    0x18)
-           0x18)
-minus: (Sub w32 0x1
-          (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                             0x18)
-                    0x18))
-LLVM_arg: 0x0
-xor: (Xor w32 0x0
-          (Sub w32 0x1
-                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                      0x18)
-                             0x18)))
-Result: (Xor w32 0x0
-          (Sub w32 0x1
-                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                      0x18)
-                             0x18)))
-Checking equivalence of `l_24` (decl src line 95) from
-assn 0, src line 95, column 13
-i32 0
-0x0
-and
-assn 1, src line 95, column 0
-[ i32 1, i32 undef, i64 %p_6 ]
-(Xor w32 0x0
-          (Sub w32 0x1
-                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                      0x18)
-                             0x18)))
-Query to parse
-array p_6[8] : w32 -> w8 = symbolic
-(query [] (Eq 0x0
-     (Xor w32 0x0
-              (Sub w32 0x1
-                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                          0x18)
-                                 0x18)))))
-Parsed query
-(Eq 0x0
-     (Xor w32 0x0
-              (Sub w32 0x1
-                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                          0x18)
-                                 0x18))))
-❌ Symbolic values don't match:
-(Eq 0x0
-     (Xor w32 0x0
-              (Sub w32 0x1
-                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                          0x18)
-                                 0x18))))
+Variable intrinsic with undef input
+❌ After `l_24` (decl src line 95) assn 1, src line 95, column 0 has no symbolic value from [ i32 1, i32 undef, i64 %p_6 ]
 ❌ After live range for `l_27` (decl src line 96) not found
 ❌ After live range for `l_39` (decl src line 105) not found
 Checking equivalence of `p_6` (decl src line 91) from
@@ -950,40 +892,8 @@ assn 0, src line 95, column 13
 i32 0
 0x0
 🔔 Before assn 0, src line 95, column 13 doesn't match after assn 1, src line 95, column 0
-Checking equivalence of `l_24` (decl src line 95) from
-assn 1, src line 95, column 0
-[ i32 1, i32 undef, i64 %p_6 ]
-(Xor w32 0x0
-          (Sub w32 0x1
-                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                      0x18)
-                             0x18)))
-and
-assn 0, src line 95, column 13
-i32 0
-0x0
-Query to parse
-array p_6[8] : w32 -> w8 = symbolic
-(query [] (Eq (Xor w32 0x0
-              (Sub w32 0x1
-                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                          0x18)
-                                 0x18)))
-     0x0))
-Parsed query
-(Eq (Xor w32 0x0
-              (Sub w32 0x1
-                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                          0x18)
-                                 0x18)))
-     0x0)
-❌ Symbolic values don't match:
-(Eq (Xor w32 0x0
-              (Sub w32 0x1
-                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
-                                          0x18)
-                                 0x18)))
-     0x0)
+Variable intrinsic with undef input
+❌ After `l_24` (decl src line 95) assn 1, src line 95, column 0 has no symbolic value from [ i32 1, i32 undef, i64 %p_6 ]
 Checking equivalence of `p_6` (decl src line 91) from
 assn 0, src line 91, column 0
 i64 %p_6
