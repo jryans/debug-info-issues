@@ -438,7 +438,7 @@ Collected value for `l_2`
 Collected value for `i`
   i32 0
   0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x1115E6EF8, 0x1115E8890, 0x8) at example.c:l0:c0
+[0;1;35mKLEE: WARNING ONCE: calling external: memset_pattern16(0x109210EF8, 0x109212890, 0x8) at example.c:l0:c0
 [0mCollected value for `l_11`
   i32 -1
   0xFFFFFFFF
@@ -815,23 +815,49 @@ LLVM_arg: (ReadLSB w64 0x0 p_6)
 convert: already 64 bit(s), skipping
 convert: (Extract w32 0 (ReadLSB w64 0x0 p_6))
 constu/s: 0x18
-Current opcode: 36
-Unexpected expression opcode
-UNREACHABLE executed at /Users/jryans/Projects/klee/tools/debug-info-check/Variable.cpp:237!
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x000000010d9b7657 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x000000010d9b6498 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x000000010d9b7ca0 SignalHandler(int) + 288
-3  libsystem_platform.dylib 0x00007ff81a86ec1d _sigtramp + 29
-4  libsystem_platform.dylib 0x00007ff7b4015000 _sigtramp + 18446744071989519360
-5  libsystem_c.dylib        0x00007ff81a78dca5 abort + 123
-6  debug-info-check         0x000000010d903683 llvm::llvm_unreachable_internal(char const*, char const*, unsigned int) + 467
-7  debug-info-check         0x000000010bf3168c Assignment::evaluate() + 4508
-8  debug-info-check         0x000000010bef1baa checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 2298
-9  debug-info-check         0x000000010bef4fd2 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 5922
-10 debug-info-check         0x000000010bef62ae main + 1742
-11 dyld                     0x00007ff81a511310 start + 2432
-../../check.sh: line 6:  1464 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+shl: (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+          (Extract w32 0 0x18))
+constu/s: 0x18
+shra: (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+                    N0:(Extract w32 0 0x18))
+           N0)
+minus: (Sub w32 0x1
+          (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+                             N0:(Extract w32 0 0x18))
+                    N0))
+LLVM_arg: 0x0
+xor: (Xor w32 0x0
+          (Sub w32 0x1
+                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+                                      N0:(Extract w32 0 0x18))
+                             N0)))
+Result: (Xor w32 0x0
+          (Sub w32 0x1
+                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+                                      N0:(Extract w32 0 0x18))
+                             N0)))
+Checking equivalence of `l_24` (decl src line 95) from
+assn 0, src line 95, column 13
+i32 0
+0x0
+and
+assn 1, src line 95, column 0
+[ i32 1, i32 undef, i64 %p_6 ]
+(Xor w32 0x0
+          (Sub w32 0x1
+                   (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+                                      N0:(Extract w32 0 0x18))
+                             N0)))
+Query to parse
+array p_6[8] : w32 -> w8 = symbolic
+(query [] (Eq 0x0
+     (Xor w32 0x0
+              (Sub w32 0x1
+                       (AShr w32 (Shl w32 (Extract w32 0 (ReadLSB w64 0x0 p_6))
+                                          N0:(Extract w32 0 0x18))
+                                 N0)))))
+:6:60: error: cannot infer type of number.
+                                          N0:(Extract w32 0 0x18))
+                                                            ~~~~
+[0;1;31mKLEE: ERROR: Unable to parse query
+[0m
