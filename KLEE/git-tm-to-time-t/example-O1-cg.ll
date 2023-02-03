@@ -82,11 +82,42 @@ cleanup:                                          ; preds = %if.end6, %lor.lhs.f
   ret i64 %retval.0, !dbg !101
 }
 
+; Function Attrs: mustprogress nofree nosync nounwind readnone speculatable willreturn
+declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
+
+; Function Attrs: argmemonly mustprogress nofree nosync nounwind willreturn
+declare void @llvm.lifetime.start.p0i8(i64 immarg, i8* nocapture) #2
+
+; Function Attrs: argmemonly mustprogress nofree nosync nounwind willreturn
+declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #2
+
+; Function Attrs: mustprogress nofree noinline nosync nounwind readonly ssp uwtable willreturn
+define i32 @main() local_unnamed_addr #3 !dbg !102 {
+entry:
+  %test = alloca %struct.tm, align 8
+  %0 = bitcast %struct.tm* %test to i8*, !dbg !107
+  call void @llvm.lifetime.start.p0i8(i64 56, i8* nonnull %0) #6, !dbg !107
+  call void @llvm.dbg.declare(metadata %struct.tm* %test, metadata !106, metadata !DIExpression()), !dbg !108
+  call void @llvm.memset.p0i8.i64(i8* noundef nonnull align 8 dereferenceable(56) %0, i8 0, i64 56, i1 false), !dbg !108
+  %call = call i64 @tm_to_time_t(%struct.tm* nonnull %test), !dbg !109
+  %conv = trunc i64 %call to i32, !dbg !109
+  call void @llvm.lifetime.end.p0i8(i64 56, i8* nonnull %0) #6, !dbg !110
+  ret i32 %conv, !dbg !111
+}
+
+; Function Attrs: argmemonly mustprogress nofree nounwind willreturn writeonly
+declare void @llvm.memset.p0i8.i64(i8* nocapture writeonly, i8, i64, i1 immarg) #4
+
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
-declare void @llvm.dbg.value(metadata, metadata, metadata) #1
+declare void @llvm.dbg.value(metadata, metadata, metadata) #5
 
 attributes #0 = { mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
-attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #1 = { mustprogress nofree nosync nounwind readnone speculatable willreturn }
+attributes #2 = { argmemonly mustprogress nofree nosync nounwind willreturn }
+attributes #3 = { mustprogress nofree noinline nosync nounwind readonly ssp uwtable willreturn "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
+attributes #4 = { argmemonly mustprogress nofree nounwind willreturn writeonly }
+attributes #5 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #6 = { nounwind }
 
 !llvm.module.flags = !{!42, !43, !44, !45, !46, !47, !48}
 !llvm.dbg.cu = !{!30}
@@ -194,3 +225,13 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !99 = !DILocation(line: 21, column: 41, scope: !2)
 !100 = !DILocation(line: 20, column: 2, scope: !2)
 !101 = !DILocation(line: 22, column: 1, scope: !2)
+!102 = distinct !DISubprogram(name: "main", scope: !3, file: !3, line: 24, type: !103, scopeLine: 24, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !30, retainedNodes: !105)
+!103 = !DISubroutineType(types: !104)
+!104 = !{!17}
+!105 = !{!106}
+!106 = !DILocalVariable(name: "test", scope: !102, file: !3, line: 25, type: !13)
+!107 = !DILocation(line: 25, column: 2, scope: !102)
+!108 = !DILocation(line: 25, column: 12, scope: !102)
+!109 = !DILocation(line: 26, column: 9, scope: !102)
+!110 = !DILocation(line: 27, column: 1, scope: !102)
+!111 = !DILocation(line: 26, column: 2, scope: !102)

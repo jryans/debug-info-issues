@@ -272,6 +272,7 @@ Value produced for `day` (decl src line 10), asm line 38
 
 #### Before values
 
+warning: linking module flags 'SDK Version': IDs have conflicting values ('[2 x i32] [i32 13, i32 0]' from memset64_Debug+Asserts.bc with '[2 x i32] [i32 13, i32 1]' from klee-out-O0/final.bc)
 Collected value for `tm`
   Concrete pointer resolves to tm.deref, offset 0x0
   Replaced concrete pointer with hash 0x3A21E742A608B2F9
@@ -294,19 +295,20 @@ Collected value for `day`
 
 #### After values
 
+warning: linking module flags 'SDK Version': IDs have conflicting values ('[2 x i32] [i32 13, i32 0]' from memset64_Debug+Asserts.bc with '[2 x i32] [i32 13, i32 1]' from klee-out-O1/final.bc)
 Collected value for `tm`
   Concrete pointer resolves to tm.deref, offset 0x0
   Replaced concrete pointer with hash 0x3A21E742A608B2F9
   %struct.tm.2* %tm
   0x3A21E742A608B2F9
 Collected value for `year`
-  %0 = load i32, i32* %tm_year, !tbaa !52, l8 c17
+  %0 = load i32, i32* %tm_year, !tbaa !54, l8 c17
   (ReadLSB w32 0x14 tm.deref)
 Collected value for `month`
-  %1 = load i32, i32* %tm_mon, !tbaa !60, l9 c18
+  %1 = load i32, i32* %tm_mon, !tbaa !62, l9 c18
   (ReadLSB w32 0x10 tm.deref)
 Collected value for `day`
-  %5 = load i32, i32* %tm_mday, !tbaa !65, l10 c16
+  %5 = load i32, i32* %tm_mday, !tbaa !67, l10 c16
   (ReadLSB w32 0xC tm.deref)
 
 #### Check before against after
@@ -317,7 +319,7 @@ assn 0, src line 10, column 16
 (ReadLSB w32 0xC tm.deref)
 and
 assn 0, src line 10, column 16
-%5 = load i32, i32* %tm_mday, !tbaa !65, l10 c16
+%5 = load i32, i32* %tm_mday, !tbaa !67, l10 c16
 (ReadLSB w32 0xC tm.deref)
 Query to parse
 array tm.deref[56] : w32 -> w8 = symbolic
@@ -334,7 +336,7 @@ assn 1, src line 17, column 6
           (ReadLSB w32 0xC tm.deref))
 and
 assn 0, src line 10, column 16
-%5 = load i32, i32* %tm_mday, !tbaa !65, l10 c16
+%5 = load i32, i32* %tm_mday, !tbaa !67, l10 c16
 (ReadLSB w32 0xC tm.deref)
 Query to parse
 array tm.deref[56] : w32 -> w8 = symbolic
@@ -355,7 +357,7 @@ assn 0, src line 9, column 18
 (ReadLSB w32 0x10 tm.deref)
 and
 assn 0, src line 9, column 18
-%1 = load i32, i32* %tm_mon, !tbaa !60, l9 c18
+%1 = load i32, i32* %tm_mon, !tbaa !62, l9 c18
 (ReadLSB w32 0x10 tm.deref)
 Query to parse
 array tm.deref[56] : w32 -> w8 = symbolic
@@ -386,7 +388,7 @@ assn 0, src line 8, column 25
           (ReadLSB w32 0x14 tm.deref))
 and
 assn 0, src line 8, column 17
-%0 = load i32, i32* %tm_year, !tbaa !52, l8 c17
+%0 = load i32, i32* %tm_year, !tbaa !54, l8 c17
 (Sub w32 (ReadLSB w32 0x14 tm.deref)
           (Extract w32 0 0x46))
 Query to parse

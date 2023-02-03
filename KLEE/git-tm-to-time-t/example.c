@@ -20,3 +20,8 @@ time_t tm_to_time_t(const struct tm *tm)
 	return (year * 365 + (year + 1) / 4 + mdays[month] + day) * 24*60*60UL +
 		tm->tm_hour * 60*60 + tm->tm_min * 60 + tm->tm_sec;
 }
+
+int main() {
+	struct tm test = {};
+	return tm_to_time_t(&test);
+}

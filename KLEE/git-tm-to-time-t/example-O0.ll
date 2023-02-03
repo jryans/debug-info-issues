@@ -150,8 +150,26 @@ return:                                           ; preds = %if.end17, %if.then1
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @main() #0 !dbg !129 {
+entry:
+  %retval = alloca i32, align 4
+  %test = alloca %struct.tm, align 8
+  store i32 0, i32* %retval, align 4
+  call void @llvm.dbg.declare(metadata %struct.tm* %test, metadata !132, metadata !DIExpression()), !dbg !133
+  %0 = bitcast %struct.tm* %test to i8*, !dbg !133
+  call void @llvm.memset.p0i8.i64(i8* align 8 %0, i8 0, i64 56, i1 false), !dbg !133
+  %call = call i64 @tm_to_time_t(%struct.tm* %test), !dbg !134
+  %conv = trunc i64 %call to i32, !dbg !134
+  ret i32 %conv, !dbg !135
+}
+
+; Function Attrs: argmemonly nofree nounwind willreturn writeonly
+declare void @llvm.memset.p0i8.i64(i8* nocapture writeonly, i8, i64, i1 immarg) #2
+
 attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #2 = { argmemonly nofree nounwind willreturn writeonly }
 
 !llvm.module.flags = !{!37, !38, !39, !40, !41, !42, !43}
 !llvm.dbg.cu = !{!30}
@@ -286,3 +304,10 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !126 = !DILocation(line: 21, column: 41, scope: !2)
 !127 = !DILocation(line: 20, column: 2, scope: !2)
 !128 = !DILocation(line: 22, column: 1, scope: !2)
+!129 = distinct !DISubprogram(name: "main", scope: !3, file: !3, line: 24, type: !130, scopeLine: 24, spFlags: DISPFlagDefinition, unit: !30, retainedNodes: !31)
+!130 = !DISubroutineType(types: !131)
+!131 = !{!17}
+!132 = !DILocalVariable(name: "test", scope: !129, file: !3, line: 25, type: !13)
+!133 = !DILocation(line: 25, column: 12, scope: !129)
+!134 = !DILocation(line: 26, column: 9, scope: !129)
+!135 = !DILocation(line: 26, column: 2, scope: !129)
