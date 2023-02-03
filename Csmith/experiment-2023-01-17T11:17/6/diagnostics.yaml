@@ -1,0 +1,141 @@
+---
+MainSourceFile:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-parentheses-equality
+    DiagnosticMessage:
+      Message:         equality comparison with extraneous parentheses
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+      FileOffset:      3620
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+          FileOffset:      3616
+          Length:          9
+    Notes:
+      - Message:         remove extraneous parentheses around the comparison to silence this warning
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3620
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            Offset:          3615
+            Length:          1
+            ReplacementText: ''
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            Offset:          3625
+            Length:          1
+            ReplacementText: ''
+      - Message:         'use ''='' to turn this equality comparison into an assignment'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3620
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            Offset:          3620
+            Length:          2
+            ReplacementText: '='
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+      FileOffset:      3778
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+          FileOffset:      3763
+          Length:          14
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+          FileOffset:      3781
+          Length:          103
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_20'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+      FileOffset:      4099
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_21'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+      FileOffset:      4115
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6'
+  - DiagnosticName:  clang-analyzer-core.NullDereference
+    DiagnosticMessage:
+      Message:         'Dereference of null pointer (loaded from variable ''g_34'')'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+      FileOffset:      4475
+      Replacements:    []
+    Notes:
+      - Message:         'Calling ''func_1'''
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      4683
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            FileOffset:      4683
+            Length:          8
+      - Message:         Loop condition is true.  Entering loop body
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3499
+        Replacements:    []
+      - Message:         Loop condition is false. Execution continues on line 55
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3597
+        Replacements:    []
+      - Message:         Loop condition is true.  Entering loop body
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3499
+        Replacements:    []
+      - Message:         Loop condition is false. Execution continues on line 55
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3597
+        Replacements:    []
+      - Message:         Loop condition is false. Execution continues on line 57
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3499
+        Replacements:    []
+      - Message:         'Calling ''func_17'''
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      3803
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            FileOffset:      3803
+            Length:          37
+      - Message:         Loop condition is true.  Entering loop body
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      4169
+        Replacements:    []
+      - Message:         Loop condition is true.  Entering loop body
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      4306
+        Replacements:    []
+      - Message:         '''g_3'' is 1'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      4437
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            FileOffset:      4437
+            Length:          3
+      - Message:         'Left side of ''&&'' is true'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      4437
+        Replacements:    []
+      - Message:         'Dereference of null pointer (loaded from variable ''g_34'')'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+        FileOffset:      4475
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6/example.c'
+            FileOffset:      4477
+            Length:          4
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/6'
+...
