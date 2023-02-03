@@ -5,3 +5,4 @@ This example tests support for:
   * DW_OP_shl
   * DW_OP_shra
   * DW_OP_xor
+* Ignoring value expressions that use `undef` inputs
