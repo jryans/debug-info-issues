@@ -1,0 +1,70 @@
+---
+MainSourceFile:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-constant-logical-operand
+    DiagnosticMessage:
+      Message:         'use of logical ''&&'' with constant operand'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+      FileOffset:      1819
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+          FileOffset:      1822
+          Length:          27
+    Notes:
+      - Message:         'use ''&'' for a bitwise operation'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+        FileOffset:      1819
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+            Offset:          1819
+            Length:          2
+            ReplacementText: '&'
+      - Message:         remove constant to silence this warning
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+        FileOffset:      1819
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+            Offset:          1818
+            Length:          31
+            ReplacementText: ''
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8'
+  - DiagnosticName:  clang-diagnostic-constant-logical-operand
+    DiagnosticMessage:
+      Message:         'use of logical ''&&'' with constant operand'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+      FileOffset:      1830
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+          FileOffset:      1833
+          Length:          5
+    Notes:
+      - Message:         'use ''&'' for a bitwise operation'
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+        FileOffset:      1830
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+            Offset:          1830
+            Length:          2
+            ReplacementText: '&'
+      - Message:         remove constant to silence this warning
+        FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+        FileOffset:      1830
+        Replacements:
+          - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+            Offset:          1829
+            Length:          9
+            ReplacementText: ''
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8'
+  - DiagnosticName:  misc-unused-parameters
+    DiagnosticMessage:
+      Message:         'parameter ''p_25'' is unused'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8/example.c'
+      FileOffset:      2087
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/8'
+...
