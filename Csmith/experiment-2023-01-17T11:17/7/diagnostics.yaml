@@ -1,0 +1,64 @@
+---
+MainSourceFile:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-tautological-constant-out-of-range-compare
+    DiagnosticMessage:
+      Message:         result of comparison of constant 3567753028 with boolean expression is always true
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+      FileOffset:      1900
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      1799
+          Length:          100
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      1903
+          Length:          11
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7'
+  - DiagnosticName:  clang-diagnostic-unused-value
+    DiagnosticMessage:
+      Message:         expression result unused
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+      FileOffset:      3493
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      3488
+          Length:          4
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      3495
+          Length:          30
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7'
+  - DiagnosticName:  clang-diagnostic-compare-distinct-pointer-types
+    DiagnosticMessage:
+      Message:         'comparison of distinct pointer types (''uint32_t *'' (aka ''unsigned int *'') and ''int32_t *'' (aka ''int *''))'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+      FileOffset:      3852
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      3837
+          Length:          14
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      3855
+          Length:          4
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7'
+  - DiagnosticName:  clang-diagnostic-tautological-constant-out-of-range-compare
+    DiagnosticMessage:
+      Message:         'result of comparison of constant -10 with expression of type ''uint16_t'' (aka ''unsigned short'') is always false'
+      FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+      FileOffset:      3862
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      3824
+          Length:          37
+        - FilePath:        '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7/example.c'
+          FileOffset:      3864
+          Length:          6
+    Level:           Warning
+    BuildDirectory:  '/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/experiment-2023-01-17T11:17/7'
+...
