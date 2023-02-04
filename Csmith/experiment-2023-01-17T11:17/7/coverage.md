@@ -5,5 +5,6 @@ This example tests support for:
   * DW_OP_shl
   * DW_OP_shra
   * DW_OP_xor
+* Value expressions with relaxed truncation (shifts)
 * Ignoring value expressions that use `undef` inputs
 * Treat `memcpy` and friends as alternative stores
