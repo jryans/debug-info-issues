@@ -4,3 +4,5 @@ klee-out*
 *.dSYM
 example-O?
 *.tmp
+reduced-*
+!reduced-*.c
