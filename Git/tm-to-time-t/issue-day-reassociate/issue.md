@@ -11,8 +11,8 @@ the value becoming inaccessible when debugging.
 
 ## Versions
 
-* clang: version 17.0.0 (https://github.com/llvm/llvm-project.git 0981ff8968bdfbd59d6db388db5ad1708b84ef05)
-* lldb: version 17.0.0git (git@github.com:llvm/llvm-project.git revision 55e2cd16095d64e9afca6e109e40ed95d735dc7f)
+* Clang: version 17.0.0 (https://github.com/llvm/llvm-project.git 0981ff8968bdfbd59d6db388db5ad1708b84ef05)
+* LLDB: version 17.0.0git (git@github.com:llvm/llvm-project.git revision 55e2cd16095d64e9afca6e109e40ed95d735dc7f)
 
 ## Program source
 
@@ -35,17 +35,17 @@ int main() {
 
 ## Debug session
 
-```shell
+```
 $ clang example.c -g -fno-inline -fno-discard-value-names -O1 -o example
 $ lldb -- example
-(lldb) target create "reduced-day-reassociate"
+(lldb) target create "example"
 (lldb) b 8
-Breakpoint 1: where = reduced-day-reassociate`example + 11 at reduced-day-reassociate.c:8:14, address = 0x0000000100003f5b
+Breakpoint 1: where = example`example + 11 at example.c:8:14, address = 0x0000000100003f5b
 (lldb) r
 Process 82154 launched
 Process 82154 stopped
 * thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
-    frame #0: 0x000000010a795f5b reduced-day-reassociate`example(tm=0x00007ff7b576bb10) at reduced-day-reassociate.c:8:14 [opt]
+    frame #0: 0x000000010a795f5b example`example(tm=0x00007ff7b576bb10) at example.c:8:14 [opt]
    5      int c = tm->tm_year, d = tm->tm_mon;
    6      int day = tm->tm_mday;
    7      day--;
@@ -53,8 +53,8 @@ Process 82154 stopped
    9    }
    10  
    11   int main() {
-Target 0: (reduced-day-reassociate) stopped.
-warning: reduced-day-reassociate was compiled with optimization - stepping may behave oddly; variables may not be available.
+Target 0: (example) stopped.
+warning: example was compiled with optimization - stepping may behave oddly; variables may not be available.
 (lldb) p day
 error: Couldn't materialize: couldn't get the value of variable day: no location, value may have been optimized out
 error: errored out in DoExecute, couldn't PrepareToExecuteJITExpression
