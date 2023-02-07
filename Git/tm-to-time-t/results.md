@@ -375,9 +375,9 @@ assn 0, src ln 3, col 0
 Pushed initial value onto stack: (ReadLSB w32 0x14 tm.deref)
 constu/s: 0x46
 minus: (Sub w32 (ReadLSB w32 0x14 tm.deref)
-          (Extract w32 0 0x46))
+          0x46)
 Result: (Sub w32 (ReadLSB w32 0x14 tm.deref)
-          (Extract w32 0 0x46))
+          0x46)
 Checking equivalence of `year` (decl src ln 8) from
 assn 0, src ln 8, col 25
 %sub = sub nsw i32 %1, 70, l8 c25
@@ -387,15 +387,92 @@ and
 assn 0, src ln 8, col 17
 %0 = load i32, i32* %tm_year, !tbaa !54, l8 c17
 (Sub w32 (ReadLSB w32 0x14 tm.deref)
-          (Extract w32 0 0x46))
+          0x46)
 Query to parse
 array tm.deref[56] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 0xFFFFFFBA
               (ReadLSB w32 0x14 tm.deref))
      (Sub w32 (ReadLSB w32 0x14 tm.deref)
-              (Extract w32 0 0x46))))
-:5:29: error: cannot infer type of number.
-              (Extract w32 0 0x46))))
-                             ~~~~
-[0;1;31mKLEE: ERROR: Unable to parse query
-[0m
+              0x46)))
+Parsed query
+(Eq (Add w32 0xFFFFFFBA
+              N0:(ReadLSB w32 0x14 tm.deref))
+     (Sub w32 N0 0x46))
+❌ Before symbolic values checked against after
+  Matching:    4
+  Mismatched:  1
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `day` (decl src ln 10) from
+assn 0, src ln 10, col 16
+%5 = load i32, i32* %tm_mday, !tbaa !67, l10 c16
+(ReadLSB w32 0xC tm.deref)
+and
+assn 0, src ln 10, col 16
+%5 = load i32, i32* %tm_mday, l10 c16
+(ReadLSB w32 0xC tm.deref)
+Query to parse
+array tm.deref[56] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0xC tm.deref)
+     (ReadLSB w32 0xC tm.deref)))
+Parsed query
+(Eq N0:(ReadLSB w32 0xC tm.deref)
+     N0)
+Checking equivalence of `month` (decl src ln 9) from
+assn 0, src ln 9, col 18
+%1 = load i32, i32* %tm_mon, !tbaa !62, l9 c18
+(ReadLSB w32 0x10 tm.deref)
+and
+assn 0, src ln 9, col 18
+%3 = load i32, i32* %tm_mon, l9 c18
+(ReadLSB w32 0x10 tm.deref)
+Query to parse
+array tm.deref[56] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x10 tm.deref)
+     (ReadLSB w32 0x10 tm.deref)))
+Parsed query
+(Eq N0:(ReadLSB w32 0x10 tm.deref)
+     N0)
+Checking equivalence of `tm` (decl src ln 3) from
+assn 0, src ln 3, col 0
+%struct.tm.2* %tm
+0x3A21E742A608B2F9
+and
+assn 0, src ln 3, col 0
+%struct.tm.1* %tm
+0x3A21E742A608B2F9
+🔔 Before `year` (decl src ln 8) assn 0, src ln 8, col 25 coordinates don't match after assn 0, src ln 8, col 17
+Checking equivalence of `year` (decl src ln 8) from
+assn 0, src ln 8, col 17
+%0 = load i32, i32* %tm_year, !tbaa !54, l8 c17
+(Sub w32 (ReadLSB w32 0x14 tm.deref)
+          0x46)
+and
+assn 0, src ln 8, col 25
+%sub = sub nsw i32 %1, 70, l8 c25
+(Add w32 0xFFFFFFBA
+          (ReadLSB w32 0x14 tm.deref))
+Query to parse
+array tm.deref[56] : w32 -> w8 = symbolic
+(query [] (Eq (Sub w32 (ReadLSB w32 0x14 tm.deref)
+              0x46)
+     (Add w32 0xFFFFFFBA
+              (ReadLSB w32 0x14 tm.deref))))
+Parsed query
+(Eq (Sub w32 N0:(ReadLSB w32 0x14 tm.deref)
+              0x46)
+     (Add w32 0xFFFFFFBA N0))
+✅ After symbolic values checked against before
+  Matching:    4
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Summary
+
+❌ Some consistency checks failed
