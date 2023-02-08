@@ -6,6 +6,8 @@ source "${SCRIPT_DIR}/../vars.sh"
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O0_OPTS} -o example-O0.ll
 ${LLVM_AS} example-O0.ll
 # ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O0_OPTS} ${CC_LINK_OPTS} -o example-O0
+${OPT} ${OPT_CFG_OPTS} example-O0.ll
+mv .example.dot example-O0.dot
 
 # IndVarSimplifyPass removes loop debug values with Clang 13.0.0
 # Limit below stops just before this
@@ -24,3 +26,5 @@ ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_CG_IR_OPTS} ${CC_O1_OPTS} -o /dev/nu
 filter_cg_ir example-O1-cg-raw.ll example-O1-cg.ll
 rm example-O1-cg-raw.ll
 ${LLVM_AS} example-O1-cg.ll
+${OPT} ${OPT_CFG_OPTS} example-O1-cg.ll
+mv .example.dot example-O1-cg.dot
