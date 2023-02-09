@@ -391,6 +391,7 @@ and
 assn 0, src ln 3, col 0
 i32 0
 0x0
+❌ After `i` (decl src ln 3) assn 0, src ln 3, col 0 symbolic value doesn't match before assn 1, src ln 3, col 27
 Checking equivalence of `i2` (decl src ln 4) from
 assn 0, src ln 4, col 22
 %rem = srem i32 %add, 4, l4 c22
@@ -440,6 +441,7 @@ and
 assn 1, src ln 3, col 27
 %inc = add nsw i32 %10, 1, l3 c27
 0x1
+❌ Before `i` (decl src ln 3) assn 1, src ln 3, col 27 symbolic value doesn't match after assn 0, src ln 3, col 0
 Checking equivalence of `i2` (decl src ln 4) from
 assn 0, src ln 4, col 22
 %rem = and i32 %lsr.iv, 3, l4 c22
