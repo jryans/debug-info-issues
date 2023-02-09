@@ -233,25 +233,25 @@ Store to `n` (decl src ln 1), asm ln 18
   Added assignment starting at src ln 1, col 0
 Before variable `data` (decl src ln 2)
 Before variable `i` (decl src ln 3)
-Store to `i` (decl src ln 3), asm ln 57
-  %inc = add i64 %9, 1, l3 c37, asm ln 56
-  Added assignment starting at src ln 3, col 37
+Store to `i` (decl src ln 3), asm ln 59
+  %inc = add nsw i32 %9, 1, l3 c27, asm ln 58
+  Added assignment starting at src ln 3, col 27
 Store to `i` (decl src ln 3), asm ln 24
-  const i64 0
-  Added assignment starting at src ln 3, col 22
+  const i32 0
+  Added assignment starting at src ln 3, col 12
 Before variable `i2` (decl src ln 4)
 Store to `i2` (decl src ln 4), asm ln 38
-  %rem = urem i64 %add, 4, l4 c32, asm ln 37
-  Added assignment starting at src ln 4, col 32
+  %rem = srem i32 %add, 4, l4 c22, asm ln 37
+  Added assignment starting at src ln 4, col 22
 Before variable `a` (decl src ln 5)
-Store to `a` (decl src ln 5), asm ln 42
-  %arrayidx = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %4, l5 c25, asm ln 41
+Store to `a` (decl src ln 5), asm ln 43
+  %arrayidx = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom, l5 c15, asm ln 42
   @dbg.declare without read users, removable
-  Added assignment starting at src ln 5, col 25
+  Added assignment starting at src ln 5, col 15
 Before variable `b` (decl src ln 6)
-Store to `b` (decl src ln 6), asm ln 46
-  %arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %5, l6 c25, asm ln 45
-  Added assignment starting at src ln 6, col 25
+Store to `b` (decl src ln 6), asm ln 48
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15, asm ln 47
+  Added assignment starting at src ln 6, col 15
 
 After variable `n` (decl src ln 1)
 @dbg.value mapping for `n` (decl src ln 1), asm ln 13
@@ -262,40 +262,40 @@ After variable `data` (decl src ln 2)
 After variable `i` (decl src ln 3)
 @dbg.value mapping for `i` (decl src ln 3), asm ln 18
 Value produced for `i` (decl src ln 3), asm ln 18
-  const i64 0
+  const i32 0
   Added assignment starting at src ln 3, col 0
 After variable `i2` (decl src ln 4)
-@dbg.value mapping for `i2` (decl src ln 4), asm ln 38
-Value produced for `i2` (decl src ln 4), asm ln 38
-  %rem = and i64 %lsr.iv, 3, l4 c32, asm ln 37
-  Added assignment starting at src ln 4, col 32
+@dbg.value mapping for `i2` (decl src ln 4), asm ln 39
+Value produced for `i2` (decl src ln 4), asm ln 39
+  %rem = and i32 %lsr.iv, 3, l4 c22, asm ln 38
+  Added assignment starting at src ln 4, col 22
 After variable `a` (decl src ln 5)
-After variable intrinsic with undef input, asm ln 39, ignoring undefined variable
-  @dbg.value(!DIArgList([4 x i64]* %data, i64 undef), !26, !DIExpression(DW_OP_LLVM_arg, 0, DW_OP_LLVM_arg, 1, DW_OP_constu, 8, DW_OP_mul, DW_OP_plus, DW_OP_stack_value))
+After variable intrinsic with undef input, asm ln 40, ignoring undefined variable
+  @dbg.value(!DIArgList([4 x i32]* %data, i32 undef), !26, !DIExpression(DW_OP_LLVM_arg, 0, DW_OP_LLVM_arg, 1, DW_OP_LLVM_convert, 32, DW_ATE_signed, DW_OP_LLVM_convert, 64, DW_ATE_signed, DW_OP_constu, 4, DW_OP_mul, DW_OP_plus, DW_OP_stack_value))
 After variable `b` (decl src ln 6)
-@dbg.value mapping for `b` (decl src ln 6), asm ln 41
-Value produced for `b` (decl src ln 6), asm ln 41
-  %arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %rem, l6 c25, asm ln 40
-  Added assignment starting at src ln 6, col 25
+@dbg.value mapping for `b` (decl src ln 6), asm ln 43
+Value produced for `b` (decl src ln 6), asm ln 43
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15, asm ln 42
+  Added assignment starting at src ln 6, col 15
 After variable `i` (decl src ln 3)
-@dbg.value mapping for `i` (decl src ln 3), asm ln 36
-Value produced for `i` (decl src ln 3), asm ln 36
-  %lsr.iv = phi i64 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 35
-  Checking phi edge [ i64 2, %for.body.preheader ]
+@dbg.value mapping for `i` (decl src ln 3), asm ln 37
+Value produced for `i` (decl src ln 3), asm ln 37
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 36
+  Checking phi edge [ i32 2, %for.body.preheader ]
   Last assignment for phi edge: 0, src ln 3, col 0
   Phi edge value mismatch
-    i64 0
-    i64 2
+    i32 0
+    i32 2
 ❌ Value produced for `i` (decl src ln 3): missing line info
 After variable `i` (decl src ln 3)
-@dbg.value mapping for `i` (decl src ln 3), asm ln 45
-Value produced for `i` (decl src ln 3), asm ln 45
-  %lsr.iv = phi i64 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 35
-  Checking phi edge [ i64 2, %for.body.preheader ]
+@dbg.value mapping for `i` (decl src ln 3), asm ln 47
+Value produced for `i` (decl src ln 3), asm ln 47
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 36
+  Checking phi edge [ i32 2, %for.body.preheader ]
   Last assignment for phi edge: 0, src ln 3, col 0
   Phi edge value mismatch
-    i64 0
-    i64 2
+    i32 0
+    i32 2
 ❌ Value produced for `i` (decl src ln 3): missing line info
 
 ✅ 6 before variables found, 6 after variables found, 0 mismatched
@@ -316,95 +316,103 @@ Value produced for `i` (decl src ln 3), asm ln 45
 #### Before values
 
 Collected value for `n`
-  i64 %n
-  (ReadLSB w64 0x0 n)
+  i32 %n
+  (ReadLSB w32 0x0 n)
 Collected value for `i`
-  i64 0
+  i32 0
   0x0
-Collected value for `i2`
-  %rem = urem i64 %add, 4, l4 c32
+[0;1;31mKLEE: ERROR: example.c:9: memory error: out of bound pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0mCollected value for `i2`
+  %rem = srem i32 %add, 4, l4 c22
   0x2
 Collected value for `a`
   Concrete pointer resolves to data, offset 0x0
   Replaced concrete pointer with hash 0xA5339ABD7813258B
-  %arrayidx = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %5, l5 c25
+  %arrayidx = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom, l5 c15
   0xA5339ABD7813258B
 Collected value for `b`
-  Concrete pointer resolves to data, offset 0x10
-  Replaced concrete pointer with hash 0xF6E81D305F3028D3
-  %arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %6, l6 c25
-  0xF6E81D305F3028D3
+  Concrete pointer resolves to data, offset 0x8
+  Replaced concrete pointer with hash 0xDBBE71147BA862F4
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+  0xDBBE71147BA862F4
 Collected value for `i`
-  %inc = add i64 %10, 1, l3 c37
+  %inc = add nsw i32 %10, 1, l3 c27
   0x1
+
+❌ Unable to execute all before program states
 
 #### After values
 
 Collected value for `n`
-  i64 %n
-  (ReadLSB w64 0x0 n)
+  i32 %n
+  (ReadLSB w32 0x0 n)
 Collected value for `i`
-  i64 0
+  i32 0
   0x0
 Collected value for `i2`
-  %rem = and i64 %lsr.iv, 3, l4 c32
+  %rem = and i32 %lsr.iv, 3, l4 c22
   0x2
-Collected value for `b`
-  Concrete pointer resolves to data, offset 0x10
-  Replaced concrete pointer with hash 0xF6E81D305F3028D3
-  %arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %rem, l6 c25
-  0xF6E81D305F3028D3
+[0;1;31mKLEE: ERROR: example.c:9: memory error: out of bound pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0mCollected value for `b`
+  Concrete pointer resolves to data, offset 0x8
+  Replaced concrete pointer with hash 0xDBBE71147BA862F4
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+  0xDBBE71147BA862F4
+
+❌ Unable to execute all after program states
 
 #### Check before against after
 
 🔔 After live ranges for (removable) `a` (decl src ln 5) not found
 Checking equivalence of `b` (decl src ln 6) from
-assn 0, src ln 6, col 25
-%arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %6, l6 c25
-0xF6E81D305F3028D3
+assn 0, src ln 6, col 15
+%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+0xDBBE71147BA862F4
 and
-assn 0, src ln 6, col 25
-%arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %rem, l6 c25
-0xF6E81D305F3028D3
+assn 0, src ln 6, col 15
+%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+0xDBBE71147BA862F4
 Checking equivalence of `i` (decl src ln 3) from
-assn 0, src ln 3, col 22
-i64 0
+assn 0, src ln 3, col 12
+i32 0
 0x0
 and
 assn 0, src ln 3, col 0
-i64 0
+i32 0
 0x0
-🔔 After `i` (decl src ln 3) assn 0, src ln 3, col 0 coordinates don't match before assn 1, src ln 3, col 37
+🔔 After `i` (decl src ln 3) assn 0, src ln 3, col 0 coordinates don't match before assn 1, src ln 3, col 27
 Checking equivalence of `i` (decl src ln 3) from
-assn 1, src ln 3, col 37
-%inc = add i64 %10, 1, l3 c37
+assn 1, src ln 3, col 27
+%inc = add nsw i32 %10, 1, l3 c27
 0x1
 and
 assn 0, src ln 3, col 0
-i64 0
+i32 0
 0x0
 Checking equivalence of `i2` (decl src ln 4) from
-assn 0, src ln 4, col 32
-%rem = urem i64 %add, 4, l4 c32
+assn 0, src ln 4, col 22
+%rem = srem i32 %add, 4, l4 c22
 0x2
 and
-assn 0, src ln 4, col 32
-%rem = and i64 %lsr.iv, 3, l4 c32
+assn 0, src ln 4, col 22
+%rem = and i32 %lsr.iv, 3, l4 c22
 0x2
 Checking equivalence of `n` (decl src ln 1) from
 assn 0, src ln 1, col 0
-i64 %n
-(ReadLSB w64 0x0 n)
+i32 %n
+(ReadLSB w32 0x0 n)
 and
 assn 0, src ln 1, col 0
-i64 %n
-(ReadLSB w64 0x0 n)
+i32 %n
+(ReadLSB w32 0x0 n)
 Query to parse
-array n[8] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w64 0x0 n)
-     (ReadLSB w64 0x0 n)))
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x0 n)
+     (ReadLSB w32 0x0 n)))
 Parsed query
-(Eq N0:(ReadLSB w64 0x0 n)
+(Eq N0:(ReadLSB w32 0x0 n)
      N0)
 ❌ Before symbolic values checked against after
   Matching:    4
@@ -416,44 +424,44 @@ Parsed query
 #### Check after against before
 
 Checking equivalence of `b` (decl src ln 6) from
-assn 0, src ln 6, col 25
-%arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %rem, l6 c25
-0xF6E81D305F3028D3
+assn 0, src ln 6, col 15
+%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+0xDBBE71147BA862F4
 and
-assn 0, src ln 6, col 25
-%arrayidx1 = getelementptr inbounds [4 x i64], [4 x i64]* %data, i64 0, i64 %6, l6 c25
-0xF6E81D305F3028D3
-🔔 Before `i` (decl src ln 3) assn 1, src ln 3, col 37 coordinates don't match after assn 0, src ln 3, col 0
+assn 0, src ln 6, col 15
+%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+0xDBBE71147BA862F4
+🔔 Before `i` (decl src ln 3) assn 1, src ln 3, col 27 coordinates don't match after assn 0, src ln 3, col 0
 Checking equivalence of `i` (decl src ln 3) from
 assn 0, src ln 3, col 0
-i64 0
+i32 0
 0x0
 and
-assn 1, src ln 3, col 37
-%inc = add i64 %10, 1, l3 c37
+assn 1, src ln 3, col 27
+%inc = add nsw i32 %10, 1, l3 c27
 0x1
 Checking equivalence of `i2` (decl src ln 4) from
-assn 0, src ln 4, col 32
-%rem = and i64 %lsr.iv, 3, l4 c32
+assn 0, src ln 4, col 22
+%rem = and i32 %lsr.iv, 3, l4 c22
 0x2
 and
-assn 0, src ln 4, col 32
-%rem = urem i64 %add, 4, l4 c32
+assn 0, src ln 4, col 22
+%rem = srem i32 %add, 4, l4 c22
 0x2
 Checking equivalence of `n` (decl src ln 1) from
 assn 0, src ln 1, col 0
-i64 %n
-(ReadLSB w64 0x0 n)
+i32 %n
+(ReadLSB w32 0x0 n)
 and
 assn 0, src ln 1, col 0
-i64 %n
-(ReadLSB w64 0x0 n)
+i32 %n
+(ReadLSB w32 0x0 n)
 Query to parse
-array n[8] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w64 0x0 n)
-     (ReadLSB w64 0x0 n)))
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x0 n)
+     (ReadLSB w32 0x0 n)))
 Parsed query
-(Eq N0:(ReadLSB w64 0x0 n)
+(Eq N0:(ReadLSB w32 0x0 n)
      N0)
 ❌ After symbolic values checked against before
   Matching:    3

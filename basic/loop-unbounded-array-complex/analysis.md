@@ -1,3 +1,4 @@
+* Typical case of state explosion for symbolic execution
 * Initial array data is set via `memcpy`
   * Currently this is made opaque and results become symbolic
   * However, the symbolic dest memory doesn't seem carry over to other SSA
