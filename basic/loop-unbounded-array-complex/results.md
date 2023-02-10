@@ -38,7 +38,9 @@
 ++++ local program=opt
 ++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 +++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT_CFG_OPTS='--cfg-func-name=example --passes=dot-cfg-only --disable-output'
++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
+++++ dirname ../../vars.sh
++++ FILTER_DOT=../../tools/filter-dot.js
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -105,7 +107,9 @@
 +++++ local program=opt
 +++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-++++ OPT_CFG_OPTS='--cfg-func-name=example --passes=dot-cfg-only --disable-output'
+++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
++++++ dirname ./../../vars.sh
+++++ FILTER_DOT=./../../tools/filter-dot.js
 +++++ klee debug print-module
 +++++ local build=debug
 +++++ local program=print-module
@@ -131,9 +135,10 @@
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --cfg-func-name=example --passes=dot-cfg-only --disable-output example-O0.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --passes=dot-cfg-only --disable-output --cfg-func-name=example example-O0.ll
 Writing '.example.dot'...
 ++ mv .example.dot example-O0.dot
+++ ./../../tools/filter-dot.js example-O0.dot
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
 ++ mkdir -p klee-out-O1
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
@@ -145,9 +150,10 @@ Writing '.example.dot'...
 ++ grep -v 'IR Dump'
 ++ rm example-O1-cg-raw.ll
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --cfg-func-name=example --passes=dot-cfg-only --disable-output example-O1-cg.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --passes=dot-cfg-only --disable-output --cfg-func-name=example example-O1-cg.ll
 Writing '.example.dot'...
 ++ mv .example.dot example-O1-cg.dot
+++ ./../../tools/filter-dot.js example-O1-cg.dot
 + ./check.sh
 +++ dirname ./check.sh
 ++ SCRIPT_DIR=.
@@ -191,7 +197,9 @@ Writing '.example.dot'...
 +++++ local program=opt
 +++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-++++ OPT_CFG_OPTS='--cfg-func-name=example --passes=dot-cfg-only --disable-output'
+++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
++++++ dirname ./../../vars.sh
+++++ FILTER_DOT=./../../tools/filter-dot.js
 +++++ klee debug print-module
 +++++ local build=debug
 +++++ local program=print-module

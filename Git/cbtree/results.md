@@ -39,6 +39,8 @@
 ++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 +++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
+++++ dirname ../../vars.sh
++++ FILTER_DOT=../../tools/filter-dot.js
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -106,6 +108,8 @@
 +++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
++++++ dirname ./../../vars.sh
+++++ FILTER_DOT=./../../tools/filter-dot.js
 +++++ klee debug print-module
 +++++ local build=debug
 +++++ local program=print-module
@@ -138,6 +142,7 @@
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --passes=dot-cfg-only --disable-output --cfg-func-name=cb_insert example-O0.ll
 Writing '.cb_insert.dot'...
 ++ mv .cb_insert.dot example-O0.cb_insert.dot
+++ ./../../tools/filter-dot.js example-O0.cb_insert.dot
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
 [1mexample.c:68:2: [0m[0;1;35mwarning: [0m[1mimplicit declaration of function 'assert' is invalid in C99 [-Wimplicit-function-declaration][0m
         assert(!((uintptr_t)node & 1)); /* allocations must be aligned */
@@ -156,6 +161,7 @@ Writing '.cb_insert.dot'...
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --passes=dot-cfg-only --disable-output --cfg-func-name=cb_insert example-O1-cg.ll
 Writing '.cb_insert.dot'...
 ++ mv .cb_insert.dot example-O1-cg.cb_insert.dot
+++ ./../../tools/filter-dot.js example-O1-cg.cb_insert.dot
 + ./check.sh
 +++ dirname ./check.sh
 ++ SCRIPT_DIR=.
@@ -200,6 +206,8 @@ Writing '.cb_insert.dot'...
 +++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
++++++ dirname ./../../vars.sh
+++++ FILTER_DOT=./../../tools/filter-dot.js
 +++++ klee debug print-module
 +++++ local build=debug
 +++++ local program=print-module

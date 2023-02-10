@@ -38,7 +38,9 @@
 ++++ local program=opt
 ++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 +++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT_CFG_OPTS='--cfg-func-name=example --passes=dot-cfg-only --disable-output'
++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
+++++ dirname ../../vars.sh
++++ FILTER_DOT=../../tools/filter-dot.js
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -105,7 +107,9 @@
 +++++ local program=opt
 +++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-++++ OPT_CFG_OPTS='--cfg-func-name=example --passes=dot-cfg-only --disable-output'
+++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
++++++ dirname ./../../vars.sh
+++++ FILTER_DOT=./../../tools/filter-dot.js
 +++++ klee debug print-module
 +++++ local build=debug
 +++++ local program=print-module
@@ -128,11 +132,14 @@
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/debug-info-check
 ++++ CHECK_OPTS='--debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace'
+++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as example-O0.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --cfg-func-name=example --passes=dot-cfg-only --disable-output example-O0.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --passes=dot-cfg-only --disable-output --cfg-func-name=example example-O0.ll
 Writing '.example.dot'...
 ++ mv .example.dot example-O0.dot
+++ ./../../tools/filter-dot.js example-O0.dot
+++ mkdir -p klee-out-O1-partial-good
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -mllvm -opt-bisect-limit=47 -o example-O1-partial-good.ll
 BISECT: running pass (1) Annotation2MetadataPass on [module]
 BISECT: running pass (2) ForceFunctionAttrsPass on [module]
@@ -272,7 +279,8 @@ BISECT: NOT running pass (135) ConstantMergePass on [module]
 BISECT: NOT running pass (136) RelLookupTableConverterPass on [module]
 BISECT: NOT running pass (137) AnnotationRemarksPass on example
 BISECT: NOT running pass (138) AnnotationRemarksPass on main
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as example-O1-partial-good.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1-partial-good/final.bc example-O1-partial-good.ll
+++ mkdir -p klee-out-O1-partial-bad
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -mllvm -opt-bisect-limit=48 -o example-O1-partial-bad.ll
 BISECT: running pass (1) Annotation2MetadataPass on [module]
 BISECT: running pass (2) ForceFunctionAttrsPass on [module]
@@ -412,9 +420,9 @@ BISECT: NOT running pass (135) ConstantMergePass on [module]
 BISECT: NOT running pass (136) RelLookupTableConverterPass on [module]
 BISECT: NOT running pass (137) AnnotationRemarksPass on example
 BISECT: NOT running pass (138) AnnotationRemarksPass on main
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as example-O1-partial-bad.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1-partial-bad/final.bc example-O1-partial-bad.ll
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -O1 -o example-O1.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as example-O1.ll
+++ mkdir -p klee-out-O1
 ++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I /Users/jryans/Projects/klee/include -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope -O1 -o /dev/null
 ++ filter_cg_ir example-O1-cg-raw.ll example-O1-cg.ll
 ++ local input_ir=example-O1-cg-raw.ll
@@ -423,10 +431,11 @@ BISECT: NOT running pass (138) AnnotationRemarksPass on main
 ++ sed '2,/IR Dump/!d'
 ++ grep -v 'IR Dump'
 ++ rm example-O1-cg-raw.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as example-O1-cg.ll
-++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --cfg-func-name=example --passes=dot-cfg-only --disable-output example-O1-cg.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O1/final.bc example-O1-cg.ll
+++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt --passes=dot-cfg-only --disable-output --cfg-func-name=example example-O1-cg.ll
 Writing '.example.dot'...
 ++ mv .example.dot example-O1-cg.dot
+++ ./../../tools/filter-dot.js example-O1-cg.dot
 + ./check.sh
 +++ dirname ./check.sh
 ++ SCRIPT_DIR=.
@@ -470,7 +479,9 @@ Writing '.example.dot'...
 +++++ local program=opt
 +++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
 ++++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-++++ OPT_CFG_OPTS='--cfg-func-name=example --passes=dot-cfg-only --disable-output'
+++++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
++++++ dirname ./../../vars.sh
+++++ FILTER_DOT=./../../tools/filter-dot.js
 +++++ klee debug print-module
 +++++ local build=debug
 +++++ local program=print-module
@@ -522,8 +533,8 @@ Store to `y` (decl src ln 3), asm ln 22
   const i32 0
   Added assignment starting at src ln 3, col 7
 Before variable `i` (decl src ln 4)
-Store to `i` (decl src ln 4), asm ln 43
-  %inc = add i32 %6, 1, l4 c36, asm ln 42
+Store to `i` (decl src ln 4), asm ln 46
+  %inc = add i32 %6, 1, l4 c36, asm ln 45
   Added assignment starting at src ln 4, col 36
 Store to `i` (decl src ln 4), asm ln 24
   const i32 0
@@ -667,6 +678,7 @@ and
 assn 0, src ln 4, col 0
 i32 0
 0x0
+❌ After `i` (decl src ln 4) assn 0, src ln 4, col 0 symbolic value doesn't match before assn 1, src ln 4, col 36
 Checking equivalence of `n` (decl src ln 1) from
 assn 0, src ln 1, col 0
 i32 %n
@@ -760,6 +772,7 @@ and
 assn 1, src ln 4, col 36
 %inc = add i32 %6, 1, l4 c36
 0x1
+❌ Before `i` (decl src ln 4) assn 1, src ln 4, col 36 symbolic value doesn't match after assn 0, src ln 4, col 0
 Checking equivalence of `n` (decl src ln 1) from
 assn 0, src ln 1, col 0
 i32 %n
