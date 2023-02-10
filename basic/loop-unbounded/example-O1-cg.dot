@@ -1,10 +1,10 @@
 digraph "CFG for 'example' function" {
 	label="CFG for 'example' function";
 
-	Node0x7fea72814d10 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{entry|{<s0>T|<s1>F}}"];
-	Node0x7fea72814d10:s0 -> Node0x7fea72904ea0;
-	Node0x7fea72814d10:s1 -> Node0x7fea72904f90;
-	Node0x7fea72904f90 [shape=record,color="#b70d28ff", style=filled, fillcolor="#e8765c70",label="{for.cond.cleanup.loopexit}"];
-	Node0x7fea72904f90 -> Node0x7fea72904ea0;
-	Node0x7fea72904ea0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{for.cond.cleanup}"];
+	Node0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{entry|{<s0>T|<s1>F}}"];
+	Node0:s0 -> Node1;
+	Node0:s1 -> Node2;
+	Node2 [shape=record,color="#b70d28ff", style=filled, fillcolor="#e8765c70",label="{for.cond.cleanup.loopexit}"];
+	Node2 -> Node1;
+	Node1 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{for.cond.cleanup}"];
 }
