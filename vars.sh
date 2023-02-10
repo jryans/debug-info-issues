@@ -35,7 +35,7 @@ CC_O1_OPTS="-O1"
 CC_LINK_OPTS="-D CONCRETE -Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
 OPT=$(llvm release-clang-lldb-13.0.0 opt)
-OPT_CFG_OPTS="--cfg-func-name=example --passes=dot-cfg-only --disable-output"
+OPT_CFG_OPTS="--passes=dot-cfg-only --disable-output"
 
 filter_cg_ir() {
   local input_ir="$1"
