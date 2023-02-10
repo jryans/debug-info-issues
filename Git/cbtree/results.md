@@ -1100,26 +1100,213 @@ Collected value for `p`
 
 #### Check before against after
 
-LLVM ERROR: unable to attach shared memory region
+Checking equivalence of `k` (decl src ln 123) from
+assn 0, src ln 123, col 0
+i8* %k
+0x6E0F93060F5E7E8D
+and
+assn 0, src ln 123, col 0
+i8* %k
+0x6E0F93060F5E7E8D
+Checking equivalence of `klen` (decl src ln 123) from
+assn 0, src ln 123, col 0
+i64 %klen
+(ReadLSB w64 0x0 klen)
+and
+assn 0, src ln 123, col 0
+i64 %klen
+(ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+Checking equivalence of `p` (decl src ln 125) from
+assn 0, src ln 125, col 22
+%call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
+0xDBD6D2BE1EF15D48
+and
+assn 0, src ln 125, col 22
+%call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
+0xDBD6D2BE1EF15D48
+Checking equivalence of `t` (decl src ln 123) from
+assn 0, src ln 123, col 0
+%struct.cb_tree.27* %t
+0x8292380893C10F33
+and
+assn 0, src ln 123, col 0
+%struct.cb_tree.29* %t
+0x8292380893C10F33
+✅ Before symbolic values checked against after
+  Matching:    4
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `k` (decl src ln 123) from
+assn 0, src ln 123, col 0
+i8* %k
+0x6E0F93060F5E7E8D
+and
+assn 0, src ln 123, col 0
+i8* %k
+0x6E0F93060F5E7E8D
+Checking equivalence of `klen` (decl src ln 123) from
+assn 0, src ln 123, col 0
+i64 %klen
+(ReadLSB w64 0x0 klen)
+and
+assn 0, src ln 123, col 0
+i64 %klen
+(ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+Checking equivalence of `p` (decl src ln 125) from
+assn 0, src ln 125, col 22
+%call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
+0xDBD6D2BE1EF15D48
+and
+assn 0, src ln 125, col 22
+%call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
+0xDBD6D2BE1EF15D48
+Checking equivalence of `t` (decl src ln 123) from
+assn 0, src ln 123, col 0
+%struct.cb_tree.29* %t
+0x8292380893C10F33
+and
+assn 0, src ln 123, col 0
+%struct.cb_tree.27* %t
+0x8292380893C10F33
+✅ After symbolic values checked against before
+  Matching:    4
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Function `cb_each`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `t` (decl src ln 142)
+Store to `t` (decl src ln 142), asm ln 473
+  arg 0
+  Added assignment starting at src ln 142, col 0
+Before variable `kpfx` (decl src ln 142)
+Store to `kpfx` (decl src ln 142), asm ln 475
+  arg 1
+  Added assignment starting at src ln 142, col 0
+Before variable `klen` (decl src ln 142)
+Store to `klen` (decl src ln 142), asm ln 477
+  arg 2
+  Added assignment starting at src ln 142, col 0
+Before variable `fn` (decl src ln 143)
+Store to `fn` (decl src ln 143), asm ln 479
+  arg 3
+  Added assignment starting at src ln 143, col 0
+Before variable `arg` (decl src ln 143)
+Store to `arg` (decl src ln 143), asm ln 481
+  arg 4
+  Added assignment starting at src ln 143, col 0
+Before variable `p` (decl src ln 145)
+Store to `p` (decl src ln 145), asm ln 560
+  %20 = load %struct.cb_node.34*, %struct.cb_node.34** %arrayidx9, l157 c7, asm ln 559
+  Added assignment starting at src ln 157, col 7
+Store to `p` (decl src ln 145), asm ln 487
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l145 c25, asm ln 486
+  Added assignment starting at src ln 145, col 25
+Before variable `top` (decl src ln 146)
+Store to `top` (decl src ln 146), asm ln 571
+  %24 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l159 c10, asm ln 570
+  Added assignment starting at src ln 159, col 10
+Store to `top` (decl src ln 146), asm ln 490
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l146 c24, asm ln 489
+  Added assignment starting at src ln 146, col 24
+Before variable `i` (decl src ln 147)
+Store to `i` (decl src ln 147), asm ln 611
+  %inc = add i64 %33, 1, l162 c25, asm ln 610
+  Added assignment starting at src ln 162, col 25
+Store to `i` (decl src ln 147), asm ln 578
+  const i64 0
+  Added assignment starting at src ln 162, col 9
+Store to `i` (decl src ln 147), asm ln 492
+  const i64 0
+  Value is same as last assignment, skipping
+Before variable `q` (decl src ln 153)
+Store to `q` (decl src ln 153), asm ln 515
+  %call = call %struct.cb_node.34* @cb_node_of(i8* %7), l153 c23, asm ln 514
+  Added assignment starting at src ln 153, col 23
+Before variable `c` (decl src ln 154)
+Store to `c` (decl src ln 154), asm ln 542
+  %conv5 = trunc i32 %cond to i8, l154 c15, asm ln 541
+  Added assignment starting at src ln 154, col 15
+Before variable `direction` (decl src ln 155)
+Store to `direction` (decl src ln 155), asm ln 554
+  %conv8 = sext i32 %shr to i64, l155 c22, asm ln 553
+  Added assignment starting at src ln 155, col 22
+
+After variable `t` (decl src ln 142)
+@dbg.value mapping for `t` (decl src ln 142), asm ln 277
+Value produced for `t` (decl src ln 142), asm ln 277
+  arg 0
+  Added assignment starting at src ln 142, col 0
+After variable `kpfx` (decl src ln 142)
+@dbg.value mapping for `kpfx` (decl src ln 142), asm ln 278
+Value produced for `kpfx` (decl src ln 142), asm ln 278
+  arg 1
+  Added assignment starting at src ln 142, col 0
+After variable `klen` (decl src ln 142)
+@dbg.value mapping for `klen` (decl src ln 142), asm ln 279
+Value produced for `klen` (decl src ln 142), asm ln 279
+  arg 2
+  Added assignment starting at src ln 142, col 0
+After variable `fn` (decl src ln 143)
+@dbg.value mapping for `fn` (decl src ln 143), asm ln 280
+Value produced for `fn` (decl src ln 143), asm ln 280
+  arg 3
+  Added assignment starting at src ln 143, col 0
+After variable `arg` (decl src ln 143)
+@dbg.value mapping for `arg` (decl src ln 143), asm ln 281
+Value produced for `arg` (decl src ln 143), asm ln 281
+  arg 4
+  Added assignment starting at src ln 143, col 0
+After variable `p` (decl src ln 145)
+@dbg.value mapping for `p` (decl src ln 145), asm ln 284
+Value produced for `p` (decl src ln 145), asm ln 284
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
+  Added assignment starting at src ln 145, col 25
+After variable `top` (decl src ln 146)
+@dbg.value mapping for `top` (decl src ln 146), asm ln 285
+Value produced for `top` (decl src ln 146), asm ln 285
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
+Assertion failed: (assignment.startLine >= variable.declLine && "Assignment starts before declaration"), function addAssignment, file main.cpp, line 334.
 PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
 Stack dump:
 0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x00000001045925f7 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x0000000104591438 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x0000000104592c40 SignalHandler(int) + 288
+0  debug-info-check         0x00000001089b1657 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x00000001089b0498 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x00000001089b1ca0 SignalHandler(int) + 288
 3  libsystem_platform.dylib 0x00007ff813128c1d _sigtramp + 29
-4  libtcmalloc.4.dylib      0x0000000107fdc814 (anonymous namespace)::mz_size(_malloc_zone_t*, void const*) + 39
+4  libsystem_platform.dylib 0x000000010e796b00 _sigtramp + 18446603374798757632
 5  libsystem_c.dylib        0x00007ff813047ca5 abort + 123
-6  debug-info-check         0x00000001044de21d llvm::report_fatal_error(llvm::Twine const&, bool) + 445
-7  debug-info-check         0x00000001044de059 llvm::report_fatal_error(char const*, bool) + 41
-8  debug-info-check         0x0000000104367477 klee::STPSolverImpl::STPSolverImpl(bool, bool) + 583
-9  debug-info-check         0x00000001043674f6 klee::STPSolverImpl::STPSolverImpl(bool, bool) + 54
-10 debug-info-check         0x00000001043689bf klee::STPSolver::STPSolver(bool, bool) + 79
-11 debug-info-check         0x0000000104368a26 klee::STPSolver::STPSolver(bool, bool) + 54
-12 debug-info-check         0x000000010431f35f klee::createCoreSolver(klee::CoreSolverType) + 127
-13 debug-info-check         0x0000000102ac9a6f checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 239
-14 debug-info-check         0x0000000102acd862 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 5842
-15 debug-info-check         0x0000000102aceb3e main + 1742
-16 dyld                     0x00007ff812dcb310 start + 2432
-./check.sh: line 6: 80672 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+6  libsystem_c.dylib        0x00007ff813046fbe err + 0
+7  debug-info-check         0x0000000106ee4e42 addAssignment(llvm::StringRef, klee::InstructionInfoTable const&, llvm::DbgVariableIntrinsic const*, Variable const&, llvm::StringRef, llvm::Instruction const*, llvm::SmallVector<llvm::Value const*, 2u> const&&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 5250
+8  debug-info-check         0x0000000106ee6bf3 gatherAssignments(llvm::StringRef, llvm::Instruction const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 2083
+9  debug-info-check         0x0000000106ee7233 gatherAssignments(llvm::StringRef, llvm::Function const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 355
+10 debug-info-check         0x0000000106eeb65a checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 1034
+11 debug-info-check         0x0000000106eedbfe main + 1742
+12 dyld                     0x00007ff812dcb310 start + 2432
+./check.sh: line 6: 81358 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
