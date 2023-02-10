@@ -1,0 +1,47 @@
+digraph "CFG for 'cb_insert' function" {
+	label="CFG for 'cb_insert' function";
+
+	Node0x7fe7c3a232f0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f7b99e70",label="{entry|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3a232f0:s0 -> Node0x7fe7c3a24ee0;
+	Node0x7fe7c3a232f0:s1 -> Node0x7fe7c3a24f90;
+	Node0x7fe7c3a24ee0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#d9dce170",label="{if.then}"];
+	Node0x7fe7c3a24ee0 -> Node0x7fe7c3a253e0;
+	Node0x7fe7c3a24f90 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#eed0c070",label="{if.end|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3a24f90:s0 -> Node0x7fe7c3a253e0;
+	Node0x7fe7c3a24f90:s1 -> Node0x7fe7c3a26460;
+	Node0x7fe7c3a26460 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#d9dce170",label="{for.body.preheader}"];
+	Node0x7fe7c3a26460 -> Node0x7fe7c3a230d0;
+	Node0x7fe7c3a230d0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{for.body|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3a230d0:s0 -> Node0x7fe7c3a26720;
+	Node0x7fe7c3a230d0:s1 -> Node0x7fe7c3a27570;
+	Node0x7fe7c3a26720 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{for.inc|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3a26720:s0 -> Node0x7fe7c3a253e0;
+	Node0x7fe7c3a26720:s1 -> Node0x7fe7c3a230d0;
+	Node0x7fe7c3a27570 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#b2ccfb70",label="{different_byte_found}"];
+	Node0x7fe7c3a27570 -> Node0x7fe7c3807030;
+	Node0x7fe7c3807030 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{for.cond37|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3807030:s0 -> Node0x7fe7c3807260;
+	Node0x7fe7c3807030:s1 -> Node0x7fe7c3807d90;
+	Node0x7fe7c3807d90 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#e1675170",label="{if.end41|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3807d90:s0 -> Node0x7fe7c3807260;
+	Node0x7fe7c3807d90:s1 -> Node0x7fe7c3808db0;
+	Node0x7fe7c3808db0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f59c7d70",label="{if.end48|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3808db0:s0 -> Node0x7fe7c38091c0;
+	Node0x7fe7c3808db0:s1 -> Node0x7fe7c3809220;
+	Node0x7fe7c38091c0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f3c7b170",label="{land.lhs.true|{<s0>T|<s1>F}}"];
+	Node0x7fe7c38091c0:s0 -> Node0x7fe7c3807260;
+	Node0x7fe7c38091c0:s1 -> Node0x7fe7c3809220;
+	Node0x7fe7c3809220 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f7af9170",label="{if.end58|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3809220:s0 -> Node0x7fe7c3809e20;
+	Node0x7fe7c3809220:s1 -> Node0x7fe7c3809e80;
+	Node0x7fe7c3809e20 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#ecd3c570",label="{cond.true}"];
+	Node0x7fe7c3809e20 -> Node0x7fe7c3809e80;
+	Node0x7fe7c3809e80 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f7af9170",label="{cond.end}"];
+	Node0x7fe7c3809e80 -> Node0x7fe7c3807260;
+	Node0x7fe7c3807260 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{cleanup|{<s0>T|<s1>F}}"];
+	Node0x7fe7c3807260:s0 -> Node0x7fe7c3807030;
+	Node0x7fe7c3807260:s1 -> Node0x7fe7c380b970;
+	Node0x7fe7c380b970 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#b2ccfb70",label="{for.end79}"];
+	Node0x7fe7c380b970 -> Node0x7fe7c3a253e0;
+	Node0x7fe7c3a253e0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f7b99e70",label="{cleanup84}"];
+}
