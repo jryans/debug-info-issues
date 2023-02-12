@@ -260,6 +260,17 @@ Before variable `b` (decl src ln 6)
 Store to `b` (decl src ln 6), asm ln 48
   %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15, asm ln 47
   Added assignment starting at src ln 6, col 15
+Computing generations: `n` (decl src ln 1)
+  asm line 18, src ln 1, col 0, gen 0
+Computing generations: `i` (decl src ln 3)
+  asm line 24, src ln 3, col 12, gen 0
+  asm line 59, src ln 3, col 27, gen 1
+Computing generations: `i2` (decl src ln 4)
+  asm line 38, src ln 4, col 22, gen 0
+Computing generations: `a` (decl src ln 5)
+  asm line 43, src ln 5, col 15, gen 0
+Computing generations: `b` (decl src ln 6)
+  asm line 48, src ln 6, col 15, gen 0
 
 After variable `n` (decl src ln 1)
 @dbg.value mapping for `n` (decl src ln 1), asm ln 13
@@ -289,22 +300,22 @@ After variable `i` (decl src ln 3)
 @dbg.value mapping for `i` (decl src ln 3), asm ln 37
 Value produced for `i` (decl src ln 3), asm ln 37
   %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 36
-  Checking phi edge [ i32 2, %for.body.preheader ]
-  Last assignment for phi edge: 0, src ln 3, col 0
-  Phi edge value mismatch
-    i32 0
-    i32 2
-❌ Value produced for `i` (decl src ln 3): missing line info
+  Phi-based assignment in prologue, skipping
 After variable `i` (decl src ln 3)
 @dbg.value mapping for `i` (decl src ln 3), asm ln 47
 Value produced for `i` (decl src ln 3), asm ln 47
   %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 36
-  Checking phi edge [ i32 2, %for.body.preheader ]
-  Last assignment for phi edge: 0, src ln 3, col 0
-  Phi edge value mismatch
-    i32 0
-    i32 2
-❌ Value produced for `i` (decl src ln 3): missing line info
+❌ Value produced for `i` (decl src ln 3): missing line info, using decl ln
+  Added assignment starting at src ln 3, col 0
+Computing generations: `n` (decl src ln 1)
+  asm line 13, src ln 1, col 0, gen 0
+Computing generations: `i` (decl src ln 3)
+  asm line 18, src ln 3, col 0, gen 0
+  asm line 47, src ln 3, col 0, gen 1
+Computing generations: `i2` (decl src ln 4)
+  asm line 39, src ln 4, col 22, gen 0
+Computing generations: `b` (decl src ln 6)
+  asm line 43, src ln 6, col 15, gen 0
 
 ✅ 6 before variables found, 6 after variables found, 0 mismatched
 
@@ -368,6 +379,10 @@ Collected value for `i2`
   Replaced concrete pointer with hash 0xDBBE71147BA862F4
   %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
   0xDBBE71147BA862F4
+Collected value for `i`
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
+  Block: 0
+  0x2
 
 ❌ Unable to execute all after program states
 
@@ -375,47 +390,61 @@ Collected value for `i2`
 
 🔔 After live ranges for (removable) `a` (decl src ln 5) not found
 Checking equivalence of `b` (decl src ln 6) from
-assn 0, src ln 6, col 15
-%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
-0xDBBE71147BA862F4
+  assn src ln 6, col 15, gen 0
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+  0xDBBE71147BA862F4
 and
-assn 0, src ln 6, col 15
-%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
-0xDBBE71147BA862F4
+  assn src ln 6, col 15, gen 0
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+  0xDBBE71147BA862F4
+
 Checking equivalence of `i` (decl src ln 3) from
-assn 0, src ln 3, col 12
-i32 0
-0x0
+  assn src ln 3, col 12, gen 0
+  i32 0
+  0x0
 and
-assn 0, src ln 3, col 0
-i32 0
-0x0
-🔔 After `i` (decl src ln 3) assn 0, src ln 3, col 0 coordinates don't match before assn 1, src ln 3, col 27
+  assn src ln 3, col 0, gen 0
+  i32 0
+  0x0
+
+Pushed initial value onto stack: 0x2
+constu/s: 0x2
+minus: (Sub w32 0x2 0x2)
+constu/s: 0x1
+plus: (Add w32 0x1 (Sub w32 0x2 0x2))
+Result: (Add w32 0x1 (Sub w32 0x2 0x2))
 Checking equivalence of `i` (decl src ln 3) from
-assn 1, src ln 3, col 27
-%inc = add nsw i32 %10, 1, l3 c27
-0x1
+  assn src ln 3, col 27, gen 1
+  %inc = add nsw i32 %10, 1, l3 c27
+  0x1
 and
-assn 0, src ln 3, col 0
-i32 0
-0x0
-❌ After `i` (decl src ln 3) assn 0, src ln 3, col 0 symbolic value doesn't match before assn 1, src ln 3, col 27
+  assn src ln 3, col 0, gen 1
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
+  (Add w32 0x1 (Sub w32 0x2 0x2))
+Query to parse
+(query [] (Eq 0x1
+     (Add w32 0x1 (Sub w32 0x2 0x2))))
+Parsed query
+(Eq 0x1
+     (Add w32 0x1 (Sub w32 0x2 0x2)))
+
 Checking equivalence of `i2` (decl src ln 4) from
-assn 0, src ln 4, col 22
-%rem = srem i32 %add, 4, l4 c22
-0x2
+  assn src ln 4, col 22, gen 0
+  %rem = srem i32 %add, 4, l4 c22
+  0x2
 and
-assn 0, src ln 4, col 22
-%rem = and i32 %lsr.iv, 3, l4 c22
-0x2
+  assn src ln 4, col 22, gen 0
+  %rem = and i32 %lsr.iv, 3, l4 c22
+  0x2
+
 Checking equivalence of `n` (decl src ln 1) from
-assn 0, src ln 1, col 0
-i32 %n
-(ReadLSB w32 0x0 n)
+  assn src ln 1, col 0, gen 0
+  i32 %n
+  (ReadLSB w32 0x0 n)
 and
-assn 0, src ln 1, col 0
-i32 %n
-(ReadLSB w32 0x0 n)
+  assn src ln 1, col 0, gen 0
+  i32 %n
+  (ReadLSB w32 0x0 n)
 Query to parse
 array n[4] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 0x0 n)
@@ -423,9 +452,10 @@ array n[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 0x0 n)
      N0)
-❌ Before symbolic values checked against after
-  Matching:    4
-  Mismatched:  1
+
+✅ Before symbolic values checked against after
+  Matching:    5
+  Mismatched:  0
   Unused:      0
   Unreachable: 0
   Removable:   1
@@ -433,39 +463,55 @@ Parsed query
 #### Check after against before
 
 Checking equivalence of `b` (decl src ln 6) from
-assn 0, src ln 6, col 15
-%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
-0xDBBE71147BA862F4
+  assn src ln 6, col 15, gen 0
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+  0xDBBE71147BA862F4
 and
-assn 0, src ln 6, col 15
-%arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
-0xDBBE71147BA862F4
-🔔 Before `i` (decl src ln 3) assn 1, src ln 3, col 27 coordinates don't match after assn 0, src ln 3, col 0
+  assn src ln 6, col 15, gen 0
+  %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
+  0xDBBE71147BA862F4
+
 Checking equivalence of `i` (decl src ln 3) from
-assn 0, src ln 3, col 0
-i32 0
-0x0
+  assn src ln 3, col 0, gen 0
+  i32 0
+  0x0
 and
-assn 1, src ln 3, col 27
-%inc = add nsw i32 %10, 1, l3 c27
-0x1
-❌ Before `i` (decl src ln 3) assn 1, src ln 3, col 27 symbolic value doesn't match after assn 0, src ln 3, col 0
+  assn src ln 3, col 12, gen 0
+  i32 0
+  0x0
+
+Checking equivalence of `i` (decl src ln 3) from
+  assn src ln 3, col 0, gen 1
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
+  (Add w32 0x1 (Sub w32 0x2 0x2))
+and
+  assn src ln 3, col 27, gen 1
+  %inc = add nsw i32 %10, 1, l3 c27
+  0x1
+Query to parse
+(query [] (Eq (Add w32 0x1 (Sub w32 0x2 0x2))
+     0x1))
+Parsed query
+(Eq (Add w32 0x1 (Sub w32 0x2 0x2))
+     0x1)
+
 Checking equivalence of `i2` (decl src ln 4) from
-assn 0, src ln 4, col 22
-%rem = and i32 %lsr.iv, 3, l4 c22
-0x2
+  assn src ln 4, col 22, gen 0
+  %rem = and i32 %lsr.iv, 3, l4 c22
+  0x2
 and
-assn 0, src ln 4, col 22
-%rem = srem i32 %add, 4, l4 c22
-0x2
+  assn src ln 4, col 22, gen 0
+  %rem = srem i32 %add, 4, l4 c22
+  0x2
+
 Checking equivalence of `n` (decl src ln 1) from
-assn 0, src ln 1, col 0
-i32 %n
-(ReadLSB w32 0x0 n)
+  assn src ln 1, col 0, gen 0
+  i32 %n
+  (ReadLSB w32 0x0 n)
 and
-assn 0, src ln 1, col 0
-i32 %n
-(ReadLSB w32 0x0 n)
+  assn src ln 1, col 0, gen 0
+  i32 %n
+  (ReadLSB w32 0x0 n)
 Query to parse
 array n[4] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 0x0 n)
@@ -473,9 +519,10 @@ array n[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 0x0 n)
      N0)
-❌ After symbolic values checked against before
-  Matching:    3
-  Mismatched:  1
+
+✅ After symbolic values checked against before
+  Matching:    5
+  Mismatched:  0
   Unused:      0
   Unreachable: 0
   Removable:   0

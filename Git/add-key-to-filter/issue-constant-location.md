@@ -16,6 +16,8 @@ location ends up getting lost.
 # Commentary
 
 I thought the `dbg.assign` proposal might help here, but it also doesn't seem to
-track lines any more than `dbg.value` does.
+track lines any more than `dbg.value` does. It does track related store
+instructions (which have a location), but that doesn't help with this constant
+value case.
 
 In the compiled binary...
