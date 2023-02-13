@@ -689,6 +689,7 @@ and
   (Read w8 0x15 cb_internal_best_match.return.deref)
 Query to parse
 array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
 (query [] (Eq (Read w8 0x15 cb_internal_best_match.return.deref) (Read w8 0x15 cb_internal_best_match.return.deref)))
 Parsed query
 (Eq N0:(Read w8 0x15 cb_internal_best_match.return.deref) N0)
@@ -709,6 +710,7 @@ and
   i64 %klen
   (ReadLSB w64 0x0 klen)
 Query to parse
+array klen[8] : w32 -> w8 = symbolic
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
      (ReadLSB w64 0x0 klen)))
@@ -810,6 +812,8 @@ and
 Query to parse
 array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
 array k.deref[1] : w32 -> w8 = symbolic
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
 (query [] (Eq (Extract w32 0 (LShr w64 (Add w64 0x1
                                        (Or w64 (Xor w64 0xFF
                                                         (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
@@ -833,8 +837,2222 @@ array k.deref[1] : w32 -> w8 = symbolic
                                                                  (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1))))
                                                N9))
                               0x8))))
-:15:163: error: invalid version reference.
-                                                        (And w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                                                                                                   ~~~~~~~~~~
-[0;1;31mKLEE: ERROR: Unable to parse query
-[0m
+Parsed query
+(Eq (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
+                                                                                                  (LShr w64 N3 0x1))
+                                                                                       (LShr w64 N2 0x2))
+                                                                            (LShr w64 N1 0x4))
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                               N5:(ZExt w64 N4)))
+                              0x8))
+     (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(Or w64 (LShr w64 N9:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref) (Extract w8 0 N5)))
+                                                                                                                                0x1)
+                                                                                                                      N9)
+                                                                                                           0x2)
+                                                                                                 N8)
+                                                                                      0x4)
+                                                                            N7)
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N6 0x1))))
+                                               N5))
+                              0x8)))
+❌ After `newdirection` (decl src ln 66) assn src ln 93, col 42, gen 0 symbolic value doesn't match before assn src ln 93, col 17, gen 0
+(Eq (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
+                                                                                                  (LShr w64 N3 0x1))
+                                                                                       (LShr w64 N2 0x2))
+                                                                            (LShr w64 N1 0x4))
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                               N5:(ZExt w64 N4)))
+                              0x8))
+     (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(Or w64 (LShr w64 N9:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref) (Extract w8 0 N5)))
+                                                                                                                                0x1)
+                                                                                                                      N9)
+                                                                                                           0x2)
+                                                                                                 N8)
+                                                                                      0x4)
+                                                                            N7)
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N6 0x1))))
+                                               N5))
+                              0x8)))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 87, col 17, gen 0
+  %conv22 = sext i32 %xor to i64, l87 c17
+  (SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                    (ZExt w32 (Read w8 0x0 k.deref))))
+and
+  assn src ln 87, col 17, gen 0
+  %conv22 = zext i8 %xor154 to i64, l87 c17
+  (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                   (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+Query to parse
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+(query [] (Eq (SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                        (ZExt w32 (Read w8 0x0 k.deref))))
+     (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                       (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))))
+Parsed query
+(Eq (SExt w64 (Xor w32 (ZExt w32 N0:(Read w8 0x15 cb_internal_best_match.return.deref))
+                        (ZExt w32 (Read w8 0x0 k.deref))))
+     (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                       (Extract w8 0 (ZExt w64 N0)))))
+❌ After `newotherbits` (decl src ln 64) assn src ln 87, col 17, gen 0 symbolic value doesn't match before assn src ln 87, col 17, gen 0
+(Eq (SExt w64 (Xor w32 (ZExt w32 N0:(Read w8 0x15 cb_internal_best_match.return.deref))
+                        (ZExt w32 (Read w8 0x0 k.deref))))
+     (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                       (Extract w8 0 (ZExt w64 N0)))))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 88, col 15, gen 1
+  %or = or i64 %27, %shr, l88 c15
+  (Or w64 N0:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                               (ZExt w32 (Read w8 0x0 k.deref))))
+         (LShr w64 N0 0x1))
+and
+  assn src ln 88, col 15, gen 1
+  %or = or i64 %shr, %conv22, l88 c15
+  (Or w64 (LShr w64 N0:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                        (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                   0x1)
+         N0)
+Query to parse
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+(query [] (Eq (Or w64 N0:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                   (ZExt w32 (Read w8 0x0 k.deref))))
+             (LShr w64 N0 0x1))
+     (Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                            (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                       0x1)
+             N1)))
+Parsed query
+(Eq (Or w64 N0:(SExt w64 (Xor w32 (ZExt w32 N1:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                   (ZExt w32 (Read w8 0x0 k.deref))))
+             (LShr w64 N0 0x1))
+     (Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                            (Extract w8 0 (ZExt w64 N1))))
+                       0x1)
+             N2))
+❌ After `newotherbits` (decl src ln 64) assn src ln 88, col 15, gen 1 symbolic value doesn't match before assn src ln 88, col 15, gen 1
+(Eq (Or w64 N0:(SExt w64 (Xor w32 (ZExt w32 N1:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                   (ZExt w32 (Read w8 0x0 k.deref))))
+             (LShr w64 N0 0x1))
+     (Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                            (Extract w8 0 (ZExt w64 N1))))
+                       0x1)
+             N2))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 89, col 15, gen 2
+  %or24 = or i64 %29, %shr23, l89 c15
+  (Or w64 N0:(Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                          (ZExt w32 (Read w8 0x0 k.deref))))
+                    (LShr w64 N1 0x1))
+         (LShr w64 N0 0x2))
+and
+  assn src ln 89, col 15, gen 2
+  %or24 = or i64 %shr23, %or, l89 c15
+  (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                             (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                        0x1)
+                              N1)
+                   0x2)
+         N0)
+Query to parse
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+(query [] (Eq (Or w64 N0:(Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                        (LShr w64 N1 0x1))
+             (LShr w64 N0 0x2))
+     (Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                 (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                            0x1)
+                                  N3)
+                       0x2)
+             N2)))
+Parsed query
+(Eq (Or w64 N0:(Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 N2:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                        (LShr w64 N1 0x1))
+             (LShr w64 N0 0x2))
+     (Or w64 (LShr w64 N3:(Or w64 (LShr w64 N4:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                 (Extract w8 0 (ZExt w64 N2))))
+                                            0x1)
+                                  N4)
+                       0x2)
+             N3))
+❌ After `newotherbits` (decl src ln 64) assn src ln 89, col 15, gen 2 symbolic value doesn't match before assn src ln 89, col 15, gen 2
+(Eq (Or w64 N0:(Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 N2:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                        (LShr w64 N1 0x1))
+             (LShr w64 N0 0x2))
+     (Or w64 (LShr w64 N3:(Or w64 (LShr w64 N4:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                 (Extract w8 0 (ZExt w64 N2))))
+                                            0x1)
+                                  N4)
+                       0x2)
+             N3))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 90, col 15, gen 3
+  %or26 = or i64 %31, %shr25, l90 c15
+  (Or w64 N0:(Or w64 N1:(Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                     (ZExt w32 (Read w8 0x0 k.deref))))
+                               (LShr w64 N2 0x1))
+                    (LShr w64 N1 0x2))
+         (LShr w64 N0 0x4))
+and
+  assn src ln 90, col 15, gen 3
+  %or26 = or i64 %shr25, %or24, l90 c15
+  (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                  (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                             0x1)
+                                                   N2)
+                                        0x2)
+                              N1)
+                   0x4)
+         N0)
+Query to parse
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+(query [] (Eq (Or w64 N0:(Or w64 N1:(Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                         (ZExt w32 (Read w8 0x0 k.deref))))
+                                   (LShr w64 N2 0x1))
+                        (LShr w64 N1 0x2))
+             (LShr w64 N0 0x4))
+     (Or w64 (LShr w64 N3:(Or w64 (LShr w64 N4:(Or w64 (LShr w64 N5:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                      (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                 0x1)
+                                                       N5)
+                                            0x2)
+                                  N4)
+                       0x4)
+             N3)))
+Parsed query
+(Eq (Or w64 N0:(Or w64 N1:(Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 N3:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                         (ZExt w32 (Read w8 0x0 k.deref))))
+                                   (LShr w64 N2 0x1))
+                        (LShr w64 N1 0x2))
+             (LShr w64 N0 0x4))
+     (Or w64 (LShr w64 N4:(Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                      (Extract w8 0 (ZExt w64 N3))))
+                                                                 0x1)
+                                                       N6)
+                                            0x2)
+                                  N5)
+                       0x4)
+             N4))
+❌ After `newotherbits` (decl src ln 64) assn src ln 90, col 15, gen 3 symbolic value doesn't match before assn src ln 90, col 15, gen 3
+(Eq (Or w64 N0:(Or w64 N1:(Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 N3:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                         (ZExt w32 (Read w8 0x0 k.deref))))
+                                   (LShr w64 N2 0x1))
+                        (LShr w64 N1 0x2))
+             (LShr w64 N0 0x4))
+     (Or w64 (LShr w64 N4:(Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                      (Extract w8 0 (ZExt w64 N3))))
+                                                                 0x1)
+                                                       N6)
+                                            0x2)
+                                  N5)
+                       0x4)
+             N4))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 91, col 55, gen 4
+  %xor29 = xor i64 %and28, 255, l91 c55
+  (Xor w64 0xFF
+          (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                          (ZExt w32 (Read w8 0x0 k.deref))))
+                                                    (LShr w64 N3 0x1))
+                                         (LShr w64 N2 0x2))
+                              (LShr w64 N1 0x4))
+                   (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+and
+  assn src ln 91, col 55, gen 4
+  %xor29 = xor i64 %and28, 255, l91 c55
+  (Xor w64 0xFF
+          (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                       (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                  0x1)
+                                                                        N3)
+                                                             0x2)
+                                                   N2)
+                                        0x4)
+                              N1)
+                   (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+Query to parse
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+(query [] (Eq (Xor w64 0xFF
+              (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                                                        (LShr w64 N3 0x1))
+                                             (LShr w64 N2 0x2))
+                                  (LShr w64 N1 0x4))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+     (Xor w64 0xFF
+              (And w64 N4:(Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                      0x1)
+                                                                            N7)
+                                                                 0x2)
+                                                       N6)
+                                            0x4)
+                                  N5)
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N4 0x1))))))
+Parsed query
+(Eq (Xor w64 0xFF
+              (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                                                        (LShr w64 N3 0x1))
+                                             (LShr w64 N2 0x2))
+                                  (LShr w64 N1 0x4))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+     (Xor w64 0xFF
+              (And w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 N4))))
+                                                                                      0x1)
+                                                                            N8)
+                                                                 0x2)
+                                                       N7)
+                                            0x4)
+                                  N6)
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
+❌ After `newotherbits` (decl src ln 64) assn src ln 91, col 55, gen 4 symbolic value doesn't match before assn src ln 91, col 55, gen 4
+(Eq (Xor w64 0xFF
+              (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                                                        (LShr w64 N3 0x1))
+                                             (LShr w64 N2 0x2))
+                                  (LShr w64 N1 0x4))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+     (Xor w64 0xFF
+              (And w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 N4))))
+                                                                                      0x1)
+                                                                            N8)
+                                                                 0x2)
+                                                       N7)
+                                            0x4)
+                                  N6)
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
+
+Checking equivalence of `node` (decl src ln 62) from
+  assn src ln 62, col 0, gen 0
+  %struct.cb_node.2* %node
+  0xE5FBC9EAFE029AE2
+and
+  assn src ln 62, col 0, gen 0
+  %struct.cb_node.4* %node
+  0xE5FBC9EAFE029AE2
+
+Checking equivalence of `p` (decl src ln 67) from
+  assn src ln 77, col 6, gen 0
+  %call = call %struct.cb_node.2* @cb_internal_best_match(%struct.cb_node.2* %7, i8* %arraydecay, i64 %9), l77 c6
+  0xBBDF9EF64113A051
+and
+  assn src ln 77, col 6, gen 0
+  %call = call fastcc %struct.cb_node.4* @cb_internal_best_match(%struct.cb_node.4* nonnull %1, i8* nonnull %arraydecay, i64 %klen), l77 c6
+  0xBBDF9EF64113A051
+
+Checking equivalence of `p` (decl src ln 67) from
+  assn src ln 105, col 7, gen 1
+  %48 = load %struct.cb_node.2*, %struct.cb_node.2** %47, l105 c7
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 105, col 7, gen 1
+  %9 = load %struct.cb_node.4*, %struct.cb_node.4** %wherep.0, !tbaa !129, l105 c7
+  0xF04B5269B3FFCE6E
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `q` (decl src ln 102) assn src ln 108, col 7, gen 0 has no symbolic value (likely unreachable) from %call45 = call %struct.cb_node.2* @cb_node_of(i8* %52), l108 c7
+Checking equivalence of `t` (decl src ln 62) from
+  assn src ln 62, col 0, gen 0
+  %struct.cb_tree.3* %t
+  0x8292380893C10F33
+and
+  assn src ln 62, col 0, gen 0
+  %struct.cb_tree.5* %t
+  0x8292380893C10F33
+
+🔔 After `wherep` (decl src ln 67) assn src ln 71, col 10, gen 0 coordinates don't match before assn src ln 100, col 15, gen 0
+Checking equivalence of `wherep` (decl src ln 67) from
+  assn src ln 100, col 15, gen 0
+  %root39 = getelementptr inbounds %struct.cb_tree.3, %struct.cb_tree.3* %46, i32 0, i32 0, l100 c15
+  0x8292380893C10F33
+and
+  assn src ln 71, col 10, gen 0
+  %root181 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, l71 c10
+  0x8292380893C10F33
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `wherep` (decl src ln 67) assn src ln 115, col 21, gen 1 has no symbolic value (likely unreachable) from %add.ptr = getelementptr inbounds %struct.cb_node.2*, %struct.cb_node.2** %arraydecay83, i64 %73, l115 c21
+❌ Before symbolic values checked against after
+  Matching:    8
+  Mismatched:  7
+  Unused:      0
+  Unreachable: 4
+  Removable:   0
+
+#### Check after against before
+
+🔔 Before `c` (decl src ln 65) assn src ln 92, col 6, gen 0 coordinates don't match after assn src ln 81, col 7, gen 0
+Checking equivalence of `c` (decl src ln 65) from
+  assn src ln 81, col 7, gen 0
+  %5 = load i8, i8* %scevgep, !tbaa !94, l81 c7
+  (Read w8 0x15 cb_internal_best_match.return.deref)
+and
+  assn src ln 92, col 6, gen 0
+  %36 = load i8, i8* %arrayidx31, l92 c6
+  (Read w8 0x15 cb_internal_best_match.return.deref)
+Query to parse
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+(query [] (Eq (Read w8 0x15 cb_internal_best_match.return.deref) (Read w8 0x15 cb_internal_best_match.return.deref)))
+Parsed query
+(Eq N0:(Read w8 0x15 cb_internal_best_match.return.deref) N0)
+
+🔔 Before `direction` (decl src ln 103) assn src ln 114, col 15, gen 0 coordinates don't match after assn src ln 114, col 40, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `direction` (decl src ln 103) assn src ln 114, col 40, gen 0 has no symbolic value (likely unreachable) from %16 = lshr i64 %add79, 8, l114 c40
+Checking equivalence of `klen` (decl src ln 62) from
+  assn src ln 62, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 62, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+🔔 Before `newbyte` (decl src ln 64) assn src ln 80, col 15, gen 0 coordinates don't match after assn src ln 64, col 0, gen 0
+Checking equivalence of `newbyte` (decl src ln 64) from
+  assn src ln 64, col 0, gen 0
+  i64 0
+  0x0
+and
+  assn src ln 80, col 15, gen 0
+  i64 0
+  0x0
+
+🔔 Before `newbyte` (decl src ln 64) assn src ln 80, col 15, gen 0 coordinates don't match after assn src ln 64, col 0, gen 1
+Checking equivalence of `newbyte` (decl src ln 64) from
+  assn src ln 64, col 0, gen 1
+  %newbyte.0160 = phi i64 [ %inc, %for.inc ], [ 0, %if.end ]
+  0x0
+and
+  assn src ln 80, col 15, gen 0
+  i64 0
+  0x0
+
+🔔 Before `newbyte` (decl src ln 64) assn src ln 80, col 43, gen 1 coordinates don't match after assn src ln 80, col 43, gen 2
+Checking equivalence of `newbyte` (decl src ln 64) from
+  assn src ln 80, col 43, gen 2
+  %inc = add nuw i64 %newbyte.0160, 1, l80 c43
+  0x1
+and
+  assn src ln 80, col 43, gen 1
+  %inc = add i64 %18, 1, l80 c43
+  0x1
+
+🔔 Before `newdirection` (decl src ln 66) assn src ln 93, col 17, gen 0 coordinates don't match after assn src ln 93, col 42, gen 0
+Checking equivalence of `newdirection` (decl src ln 66) from
+  assn src ln 93, col 42, gen 0
+  %shr34 = lshr i64 %add, 8, l93 c42
+  (Extract w32 0 (LShr w64 (Add w64 0x1
+                                   (Or w64 (Xor w64 0xFF
+                                                    (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                                                                 (Extract w8 0 N4:(ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                                                            0x1)
+                                                                                                                  N3)
+                                                                                                       0x2)
+                                                                                             N2)
+                                                                                  0x4)
+                                                                        N1)
+                                                             (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                           N4))
+                          0x8))
+and
+  assn src ln 93, col 17, gen 0
+  %conv35 = trunc i64 %shr34 to i32, l93 c17
+  (Extract w32 0 (LShr w64 (Add w64 0x1
+                                   (Or w64 (Xor w64 0xFF
+                                                    (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                                                                    (ZExt w32 (Read w8 0x0 k.deref))))
+                                                                                              (LShr w64 N3 0x1))
+                                                                                   (LShr w64 N2 0x2))
+                                                                        (LShr w64 N1 0x4))
+                                                             (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                           (ZExt w64 N4)))
+                          0x8))
+Query to parse
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+(query [] (Eq (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                                                                     (Extract w8 0 N4:(ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                                                                0x1)
+                                                                                                                      N3)
+                                                                                                           0x2)
+                                                                                                 N2)
+                                                                                      0x4)
+                                                                            N1)
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                               N4))
+                              0x8))
+     (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N5:(Or w64 N6:(Or w64 N7:(Or w64 N8:(SExt w64 (Xor w32 (ZExt w32 N9:(Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
+                                                                                                  (LShr w64 N8 0x1))
+                                                                                       (LShr w64 N7 0x2))
+                                                                            (LShr w64 N6 0x4))
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1))))
+                                               (ZExt w64 N9)))
+                              0x8))))
+Parsed query
+(Eq (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                                                                     (Extract w8 0 N4:(ZExt w64 N5:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                                                                0x1)
+                                                                                                                      N3)
+                                                                                                           0x2)
+                                                                                                 N2)
+                                                                                      0x4)
+                                                                            N1)
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                               N4))
+                              0x8))
+     (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N6:(Or w64 N7:(Or w64 N8:(Or w64 N9:(SExt w64 (Xor w32 (ZExt w32 N5)
+                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
+                                                                                                  (LShr w64 N9 0x1))
+                                                                                       (LShr w64 N8 0x2))
+                                                                            (LShr w64 N7 0x4))
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N6 0x1))))
+                                               N4))
+                              0x8)))
+❌ Before `newdirection` (decl src ln 66) assn src ln 93, col 17, gen 0 symbolic value doesn't match after assn src ln 93, col 42, gen 0
+(Eq (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                                                                     (Extract w8 0 N4:(ZExt w64 N5:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                                                                0x1)
+                                                                                                                      N3)
+                                                                                                           0x2)
+                                                                                                 N2)
+                                                                                      0x4)
+                                                                            N1)
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+                                               N4))
+                              0x8))
+     (Extract w32 0 (LShr w64 (Add w64 0x1
+                                       (Or w64 (Xor w64 0xFF
+                                                        (And w64 N6:(Or w64 N7:(Or w64 N8:(Or w64 N9:(SExt w64 (Xor w32 (ZExt w32 N5)
+                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
+                                                                                                  (LShr w64 N9 0x1))
+                                                                                       (LShr w64 N8 0x2))
+                                                                            (LShr w64 N7 0x4))
+                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N6 0x1))))
+                                               N4))
+                              0x8)))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 87, col 17, gen 0
+  %conv22 = zext i8 %xor154 to i64, l87 c17
+  (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                   (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+and
+  assn src ln 87, col 17, gen 0
+  %conv22 = sext i32 %xor to i64, l87 c17
+  (SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                    (ZExt w32 (Read w8 0x0 k.deref))))
+Query to parse
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+(query [] (Eq (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                       (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+     (SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                        (ZExt w32 (Read w8 0x0 k.deref))))))
+Parsed query
+(Eq (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                       (Extract w8 0 (ZExt w64 N0:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+     (SExt w64 (Xor w32 (ZExt w32 N0)
+                        (ZExt w32 (Read w8 0x0 k.deref)))))
+❌ Before `newotherbits` (decl src ln 64) assn src ln 87, col 17, gen 0 symbolic value doesn't match after assn src ln 87, col 17, gen 0
+(Eq (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                       (Extract w8 0 (ZExt w64 N0:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+     (SExt w64 (Xor w32 (ZExt w32 N0)
+                        (ZExt w32 (Read w8 0x0 k.deref)))))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 88, col 15, gen 1
+  %or = or i64 %shr, %conv22, l88 c15
+  (Or w64 (LShr w64 N0:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                        (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                   0x1)
+         N0)
+and
+  assn src ln 88, col 15, gen 1
+  %or = or i64 %27, %shr, l88 c15
+  (Or w64 N0:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                               (ZExt w32 (Read w8 0x0 k.deref))))
+         (LShr w64 N0 0x1))
+Query to parse
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+(query [] (Eq (Or w64 (LShr w64 N0:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                            (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                       0x1)
+             N0)
+     (Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                   (ZExt w32 (Read w8 0x0 k.deref))))
+             (LShr w64 N1 0x1))))
+Parsed query
+(Eq (Or w64 (LShr w64 N0:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                            (Extract w8 0 (ZExt w64 N1:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                       0x1)
+             N0)
+     (Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 N1)
+                                   (ZExt w32 (Read w8 0x0 k.deref))))
+             (LShr w64 N2 0x1)))
+❌ Before `newotherbits` (decl src ln 64) assn src ln 88, col 15, gen 1 symbolic value doesn't match after assn src ln 88, col 15, gen 1
+(Eq (Or w64 (LShr w64 N0:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                            (Extract w8 0 (ZExt w64 N1:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                       0x1)
+             N0)
+     (Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 N1)
+                                   (ZExt w32 (Read w8 0x0 k.deref))))
+             (LShr w64 N2 0x1)))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 89, col 15, gen 2
+  %or24 = or i64 %shr23, %or, l89 c15
+  (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                             (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                        0x1)
+                              N1)
+                   0x2)
+         N0)
+and
+  assn src ln 89, col 15, gen 2
+  %or24 = or i64 %29, %shr23, l89 c15
+  (Or w64 N0:(Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                          (ZExt w32 (Read w8 0x0 k.deref))))
+                    (LShr w64 N1 0x1))
+         (LShr w64 N0 0x2))
+Query to parse
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+(query [] (Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                 (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                            0x1)
+                                  N1)
+                       0x2)
+             N0)
+     (Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                        (LShr w64 N3 0x1))
+             (LShr w64 N2 0x2))))
+Parsed query
+(Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                 (Extract w8 0 (ZExt w64 N2:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                            0x1)
+                                  N1)
+                       0x2)
+             N0)
+     (Or w64 N3:(Or w64 N4:(SExt w64 (Xor w32 (ZExt w32 N2)
+                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                        (LShr w64 N4 0x1))
+             (LShr w64 N3 0x2)))
+❌ Before `newotherbits` (decl src ln 64) assn src ln 89, col 15, gen 2 symbolic value doesn't match after assn src ln 89, col 15, gen 2
+(Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                 (Extract w8 0 (ZExt w64 N2:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                            0x1)
+                                  N1)
+                       0x2)
+             N0)
+     (Or w64 N3:(Or w64 N4:(SExt w64 (Xor w32 (ZExt w32 N2)
+                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                        (LShr w64 N4 0x1))
+             (LShr w64 N3 0x2)))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 90, col 15, gen 3
+  %or26 = or i64 %shr25, %or24, l90 c15
+  (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                  (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                             0x1)
+                                                   N2)
+                                        0x2)
+                              N1)
+                   0x4)
+         N0)
+and
+  assn src ln 90, col 15, gen 3
+  %or26 = or i64 %31, %shr25, l90 c15
+  (Or w64 N0:(Or w64 N1:(Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                     (ZExt w32 (Read w8 0x0 k.deref))))
+                               (LShr w64 N2 0x1))
+                    (LShr w64 N1 0x2))
+         (LShr w64 N0 0x4))
+Query to parse
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+(query [] (Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                      (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                 0x1)
+                                                       N2)
+                                            0x2)
+                                  N1)
+                       0x4)
+             N0)
+     (Or w64 N3:(Or w64 N4:(Or w64 N5:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                         (ZExt w32 (Read w8 0x0 k.deref))))
+                                   (LShr w64 N5 0x1))
+                        (LShr w64 N4 0x2))
+             (LShr w64 N3 0x4))))
+Parsed query
+(Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                      (Extract w8 0 (ZExt w64 N3:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                 0x1)
+                                                       N2)
+                                            0x2)
+                                  N1)
+                       0x4)
+             N0)
+     (Or w64 N4:(Or w64 N5:(Or w64 N6:(SExt w64 (Xor w32 (ZExt w32 N3)
+                                                         (ZExt w32 (Read w8 0x0 k.deref))))
+                                   (LShr w64 N6 0x1))
+                        (LShr w64 N5 0x2))
+             (LShr w64 N4 0x4)))
+❌ Before `newotherbits` (decl src ln 64) assn src ln 90, col 15, gen 3 symbolic value doesn't match after assn src ln 90, col 15, gen 3
+(Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                      (Extract w8 0 (ZExt w64 N3:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                 0x1)
+                                                       N2)
+                                            0x2)
+                                  N1)
+                       0x4)
+             N0)
+     (Or w64 N4:(Or w64 N5:(Or w64 N6:(SExt w64 (Xor w32 (ZExt w32 N3)
+                                                         (ZExt w32 (Read w8 0x0 k.deref))))
+                                   (LShr w64 N6 0x1))
+                        (LShr w64 N5 0x2))
+             (LShr w64 N4 0x4)))
+
+Checking equivalence of `newotherbits` (decl src ln 64) from
+  assn src ln 91, col 55, gen 4
+  %xor29 = xor i64 %and28, 255, l91 c55
+  (Xor w64 0xFF
+          (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                       (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                  0x1)
+                                                                        N3)
+                                                             0x2)
+                                                   N2)
+                                        0x4)
+                              N1)
+                   (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+and
+  assn src ln 91, col 55, gen 4
+  %xor29 = xor i64 %and28, 255, l91 c55
+  (Xor w64 0xFF
+          (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                          (ZExt w32 (Read w8 0x0 k.deref))))
+                                                    (LShr w64 N3 0x1))
+                                         (LShr w64 N2 0x2))
+                              (LShr w64 N1 0x4))
+                   (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+Query to parse
+array node.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
+array k.deref[1] : w32 -> w8 = symbolic
+(query [] (Eq (Xor w64 0xFF
+              (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                      0x1)
+                                                                            N3)
+                                                                 0x2)
+                                                       N2)
+                                            0x4)
+                                  N1)
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+     (Xor w64 0xFF
+              (And w64 N4:(Or w64 N5:(Or w64 N6:(Or w64 N7:(SExt w64 (Xor w32 (ZExt w32 (Read w8 0x15 cb_internal_best_match.return.deref))
+                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                                                        (LShr w64 N7 0x1))
+                                             (LShr w64 N6 0x2))
+                                  (LShr w64 N5 0x4))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N4 0x1))))))
+Parsed query
+(Eq (Xor w64 0xFF
+              (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 N4:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                      0x1)
+                                                                            N3)
+                                                                 0x2)
+                                                       N2)
+                                            0x4)
+                                  N1)
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+     (Xor w64 0xFF
+              (And w64 N5:(Or w64 N6:(Or w64 N7:(Or w64 N8:(SExt w64 (Xor w32 (ZExt w32 N4)
+                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                                                        (LShr w64 N8 0x1))
+                                             (LShr w64 N7 0x2))
+                                  (LShr w64 N6 0x4))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
+❌ Before `newotherbits` (decl src ln 64) assn src ln 91, col 55, gen 4 symbolic value doesn't match after assn src ln 91, col 55, gen 4
+(Eq (Xor w64 0xFF
+              (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 N4:(Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                      0x1)
+                                                                            N3)
+                                                                 0x2)
+                                                       N2)
+                                            0x4)
+                                  N1)
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
+     (Xor w64 0xFF
+              (And w64 N5:(Or w64 N6:(Or w64 N7:(Or w64 N8:(SExt w64 (Xor w32 (ZExt w32 N4)
+                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
+                                                        (LShr w64 N8 0x1))
+                                             (LShr w64 N7 0x2))
+                                  (LShr w64 N6 0x4))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
+
+Checking equivalence of `node` (decl src ln 62) from
+  assn src ln 62, col 0, gen 0
+  %struct.cb_node.4* %node
+  0xE5FBC9EAFE029AE2
+and
+  assn src ln 62, col 0, gen 0
+  %struct.cb_node.2* %node
+  0xE5FBC9EAFE029AE2
+
+Checking equivalence of `p` (decl src ln 67) from
+  assn src ln 77, col 6, gen 0
+  %call = call fastcc %struct.cb_node.4* @cb_internal_best_match(%struct.cb_node.4* nonnull %1, i8* nonnull %arraydecay, i64 %klen), l77 c6
+  0xBBDF9EF64113A051
+and
+  assn src ln 77, col 6, gen 0
+  %call = call %struct.cb_node.2* @cb_internal_best_match(%struct.cb_node.2* %7, i8* %arraydecay, i64 %9), l77 c6
+  0xBBDF9EF64113A051
+
+Checking equivalence of `p` (decl src ln 67) from
+  assn src ln 105, col 7, gen 1
+  %9 = load %struct.cb_node.4*, %struct.cb_node.4** %wherep.0, !tbaa !129, l105 c7
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 105, col 7, gen 1
+  %48 = load %struct.cb_node.2*, %struct.cb_node.2** %47, l105 c7
+  0xF04B5269B3FFCE6E
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `q` (decl src ln 102) assn src ln 108, col 7, gen 0 has no symbolic value (likely unreachable) from %call45 = call fastcc %struct.cb_node.4* @cb_node_of(i8* %11), l108 c7
+Checking equivalence of `t` (decl src ln 62) from
+  assn src ln 62, col 0, gen 0
+  %struct.cb_tree.5* %t
+  0x8292380893C10F33
+and
+  assn src ln 62, col 0, gen 0
+  %struct.cb_tree.3* %t
+  0x8292380893C10F33
+
+🔔 Before `wherep` (decl src ln 67) assn src ln 100, col 15, gen 0 coordinates don't match after assn src ln 71, col 10, gen 0
+Checking equivalence of `wherep` (decl src ln 67) from
+  assn src ln 71, col 10, gen 0
+  %root181 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, l71 c10
+  0x8292380893C10F33
+and
+  assn src ln 100, col 15, gen 0
+  %root39 = getelementptr inbounds %struct.cb_tree.3, %struct.cb_tree.3* %46, i32 0, i32 0, l100 c15
+  0x8292380893C10F33
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `wherep` (decl src ln 67) assn src ln 115, col 21, gen 1 has no symbolic value (likely unreachable) from %add.ptr = getelementptr inbounds %struct.cb_node.4, %struct.cb_node.4* %call45, i64 0, i32 0, i64 %16, l115 c21
+❌ After symbolic values checked against before
+  Matching:    10
+  Mismatched:  6
+  Unused:      0
+  Unreachable: 3
+  Removable:   0
+
+## Function `cb_internal_best_match`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `p` (decl src ln 48)
+Store to `p` (decl src ln 48), asm ln 406
+  %16 = load %struct.cb_node.10*, %struct.cb_node.10** %arrayidx8, l56 c7, asm ln 405
+  Added assignment starting at src ln 56, col 7
+Store to `p` (decl src ln 48), asm ln 341
+  arg 0
+  Added assignment starting at src ln 48, col 0
+Before variable `k` (decl src ln 49)
+Store to `k` (decl src ln 49), asm ln 343
+  arg 1
+  Added assignment starting at src ln 49, col 0
+Before variable `klen` (decl src ln 49)
+Store to `klen` (decl src ln 49), asm ln 345
+  arg 2
+  Added assignment starting at src ln 49, col 0
+Before variable `q` (decl src ln 52)
+Store to `q` (decl src ln 52), asm ln 361
+  %call = call %struct.cb_node.10* @cb_node_of(i8* %3), l52 c23, asm ln 360
+  Added assignment starting at src ln 52, col 23
+Before variable `c` (decl src ln 53)
+Store to `c` (decl src ln 53), asm ln 388
+  %conv4 = trunc i32 %cond to i8, l53 c15, asm ln 387
+  Added assignment starting at src ln 53, col 15
+Before variable `direction` (decl src ln 54)
+Store to `direction` (decl src ln 54), asm ln 400
+  %conv7 = sext i32 %shr to i64, l54 c22, asm ln 399
+  Added assignment starting at src ln 54, col 22
+Computing generations: `p` (decl src ln 48)
+  asm line 341, src ln 48, col 0, gen 0
+  asm line 406, src ln 56, col 7, gen 1
+Computing generations: `k` (decl src ln 49)
+  asm line 343, src ln 49, col 0, gen 0
+Computing generations: `klen` (decl src ln 49)
+  asm line 345, src ln 49, col 0, gen 0
+Computing generations: `q` (decl src ln 52)
+  asm line 361, src ln 52, col 23, gen 0
+Computing generations: `c` (decl src ln 53)
+  asm line 388, src ln 53, col 15, gen 0
+Computing generations: `direction` (decl src ln 54)
+  asm line 400, src ln 54, col 22, gen 0
+
+After variable `p` (decl src ln 48)
+@dbg.value mapping for `p` (decl src ln 48), asm ln 195
+Value produced for `p` (decl src ln 48), asm ln 195
+  arg 0
+  Added assignment starting at src ln 48, col 0
+After variable `k` (decl src ln 49)
+@dbg.value mapping for `k` (decl src ln 49), asm ln 196
+Value produced for `k` (decl src ln 49), asm ln 196
+  arg 1
+  Added assignment starting at src ln 49, col 0
+After variable `klen` (decl src ln 49)
+@dbg.value mapping for `klen` (decl src ln 49), asm ln 197
+Value produced for `klen` (decl src ln 49), asm ln 197
+  arg 2
+  Added assignment starting at src ln 49, col 0
+After variable `q` (decl src ln 52)
+@dbg.value mapping for `q` (decl src ln 52), asm ln 208
+Value produced for `q` (decl src ln 52), asm ln 208
+  %call = call fastcc %struct.cb_node.12* @cb_node_of(i8* %1), l52 c23, asm ln 207
+  Added assignment starting at src ln 52, col 23
+After variable `direction` (decl src ln 54)
+@dbg.value mapping for `direction` (decl src ln 54), asm ln 229
+Value produced for `direction` (decl src ln 54), asm ln 229
+  %5 = lshr i64 %add, 8, l54 c47, asm ln 228
+  Added assignment starting at src ln 54, col 47
+After variable `p` (decl src ln 48)
+@dbg.value mapping for `p` (decl src ln 48), asm ln 232
+Value produced for `p` (decl src ln 48), asm ln 232
+  %6 = load %struct.cb_node.12*, %struct.cb_node.12** %arrayidx8, !tbaa !76, l56 c7, asm ln 231
+  Added assignment starting at src ln 56, col 7
+After variable `p` (decl src ln 48)
+@dbg.value mapping for `p` (decl src ln 48), asm ln 205
+Value produced for `p` (decl src ln 48), asm ln 205
+  %p.addr.019 = phi %struct.cb_node.12* [ %6, %cond.end ], [ %p, %entry ], asm ln 204
+  Phi-based assignment in prologue, skipping
+After variable `c` (decl src ln 53)
+@dbg.value mapping for `c` (decl src ln 53), asm ln 222
+Value produced for `c` (decl src ln 53), asm ln 222
+  %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l53 c15, asm ln 221
+  Added assignment starting at src ln 53, col 15
+Computing generations: `p` (decl src ln 48)
+  asm line 195, src ln 48, col 0, gen 0
+  asm line 232, src ln 56, col 7, gen 1
+Computing generations: `k` (decl src ln 49)
+  asm line 196, src ln 49, col 0, gen 0
+Computing generations: `klen` (decl src ln 49)
+  asm line 197, src ln 49, col 0, gen 0
+Computing generations: `q` (decl src ln 52)
+  asm line 208, src ln 52, col 23, gen 0
+Computing generations: `direction` (decl src ln 54)
+  asm line 229, src ln 54, col 47, gen 0
+Computing generations: `c` (decl src ln 53)
+  asm line 222, src ln 53, col 15, gen 0
+
+✅ 6 before variables found, 6 after variables found, 0 mismatched
+
+### Assignments
+
+❌ Live ranges for `direction` (decl src ln 54) don't match: src ln 54, col 22, gen 0 vs. src ln 54, col 47, gen 0
+❌ Before live range coverage
+  Covered:   5
+  Uncovered: 1
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  %struct.cb_node.10* %p
+  0x6B9649B5C91006F4
+Collected value for `k`
+  Concrete pointer resolves to k.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6E0F93060F5E7E8D
+  i8* %k
+  0x6E0F93060F5E7E8D
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+
+#### After values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  %struct.cb_node.12* %p
+  0x6B9649B5C91006F4
+Collected value for `k`
+  Concrete pointer resolves to k.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6E0F93060F5E7E8D
+  i8* %k
+  0x6E0F93060F5E7E8D
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+
+#### Check before against after
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `c` (decl src ln 53) assn src ln 53, col 15, gen 0 has no symbolic value (likely unreachable) from %conv4 = trunc i32 %cond to i8, l53 c15
+🔔 After `direction` (decl src ln 54) assn src ln 54, col 47, gen 0 coordinates don't match before assn src ln 54, col 22, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `direction` (decl src ln 54) assn src ln 54, col 22, gen 0 has no symbolic value (likely unreachable) from %conv7 = sext i32 %shr to i64, l54 c22
+Checking equivalence of `k` (decl src ln 49) from
+  assn src ln 49, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+and
+  assn src ln 49, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
+Checking equivalence of `klen` (decl src ln 49) from
+  assn src ln 49, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 49, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `p` (decl src ln 48) from
+  assn src ln 48, col 0, gen 0
+  %struct.cb_node.10* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 48, col 0, gen 0
+  %struct.cb_node.12* %p
+  0x6B9649B5C91006F4
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `p` (decl src ln 48) assn src ln 56, col 7, gen 1 has no symbolic value (likely unreachable) from %16 = load %struct.cb_node.10*, %struct.cb_node.10** %arrayidx8, l56 c7
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `q` (decl src ln 52) assn src ln 52, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.10* @cb_node_of(i8* %3), l52 c23
+✅ Before symbolic values checked against after
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 4
+  Removable:   0
+
+#### Check after against before
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `c` (decl src ln 53) assn src ln 53, col 15, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l53 c15
+🔔 Before `direction` (decl src ln 54) assn src ln 54, col 22, gen 0 coordinates don't match after assn src ln 54, col 47, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `direction` (decl src ln 54) assn src ln 54, col 47, gen 0 has no symbolic value (likely unreachable) from %5 = lshr i64 %add, 8, l54 c47
+Checking equivalence of `k` (decl src ln 49) from
+  assn src ln 49, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+and
+  assn src ln 49, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
+Checking equivalence of `klen` (decl src ln 49) from
+  assn src ln 49, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 49, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `p` (decl src ln 48) from
+  assn src ln 48, col 0, gen 0
+  %struct.cb_node.12* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 48, col 0, gen 0
+  %struct.cb_node.10* %p
+  0x6B9649B5C91006F4
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `p` (decl src ln 48) assn src ln 56, col 7, gen 1 has no symbolic value (likely unreachable) from %6 = load %struct.cb_node.12*, %struct.cb_node.12** %arrayidx8, !tbaa !79, l56 c7
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `q` (decl src ln 52) assn src ln 52, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.12* @cb_node_of(i8* %1), l52 c23
+✅ After symbolic values checked against before
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 4
+  Removable:   0
+
+## Function `cb_node_of`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `p` (decl src ln 42)
+Store to `p` (decl src ln 42), asm ln 421
+  arg 0
+  Added assignment starting at src ln 42, col 0
+Computing generations: `p` (decl src ln 42)
+  asm line 421, src ln 42, col 0, gen 0
+
+After variable `p` (decl src ln 42)
+@dbg.value mapping for `p` (decl src ln 42), asm ln 249
+Value produced for `p` (decl src ln 42), asm ln 249
+  arg 0
+  Added assignment starting at src ln 42, col 0
+Computing generations: `p` (decl src ln 42)
+  asm line 249, src ln 42, col 0, gen 0
+
+✅ 1 before variables found, 1 after variables found, 0 mismatched
+
+### Assignments
+
+✅ Before live range coverage
+  Covered:   1
+  Uncovered: 0
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  i8* %p
+  0x6B9649B5C91006F4
+
+#### After values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  i8* %p
+  0x6B9649B5C91006F4
+
+#### Check before against after
+
+Checking equivalence of `p` (decl src ln 42) from
+  assn src ln 42, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 42, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
+
+✅ Before symbolic values checked against after
+  Matching:    1
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `p` (decl src ln 42) from
+  assn src ln 42, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 42, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
+
+✅ After symbolic values checked against before
+  Matching:    1
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Function `cb_lookup`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `t` (decl src ln 124)
+Store to `t` (decl src ln 124), asm ln 437
+  arg 0
+  Added assignment starting at src ln 124, col 0
+Before variable `k` (decl src ln 124)
+Store to `k` (decl src ln 124), asm ln 439
+  arg 1
+  Added assignment starting at src ln 124, col 0
+Before variable `klen` (decl src ln 124)
+Store to `klen` (decl src ln 124), asm ln 441
+  arg 2
+  Added assignment starting at src ln 124, col 0
+Before variable `p` (decl src ln 126)
+Store to `p` (decl src ln 126), asm ln 450
+  %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l126 c22, asm ln 449
+  Added assignment starting at src ln 126, col 22
+Computing generations: `t` (decl src ln 124)
+  asm line 437, src ln 124, col 0, gen 0
+Computing generations: `k` (decl src ln 124)
+  asm line 439, src ln 124, col 0, gen 0
+Computing generations: `klen` (decl src ln 124)
+  asm line 441, src ln 124, col 0, gen 0
+Computing generations: `p` (decl src ln 126)
+  asm line 450, src ln 126, col 22, gen 0
+
+After variable `t` (decl src ln 124)
+@dbg.value mapping for `t` (decl src ln 124), asm ln 259
+Value produced for `t` (decl src ln 124), asm ln 259
+  arg 0
+  Added assignment starting at src ln 124, col 0
+After variable `k` (decl src ln 124)
+@dbg.value mapping for `k` (decl src ln 124), asm ln 260
+Value produced for `k` (decl src ln 124), asm ln 260
+  arg 1
+  Added assignment starting at src ln 124, col 0
+After variable `klen` (decl src ln 124)
+@dbg.value mapping for `klen` (decl src ln 124), asm ln 261
+Value produced for `klen` (decl src ln 124), asm ln 261
+  arg 2
+  Added assignment starting at src ln 124, col 0
+After variable `p` (decl src ln 126)
+@dbg.value mapping for `p` (decl src ln 126), asm ln 265
+Value produced for `p` (decl src ln 126), asm ln 265
+  %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l126 c22, asm ln 264
+  Added assignment starting at src ln 126, col 22
+Computing generations: `t` (decl src ln 124)
+  asm line 259, src ln 124, col 0, gen 0
+Computing generations: `k` (decl src ln 124)
+  asm line 260, src ln 124, col 0, gen 0
+Computing generations: `klen` (decl src ln 124)
+  asm line 261, src ln 124, col 0, gen 0
+Computing generations: `p` (decl src ln 126)
+  asm line 265, src ln 126, col 22, gen 0
+
+✅ 4 before variables found, 4 after variables found, 0 mismatched
+
+### Assignments
+
+✅ Before live range coverage
+  Covered:   4
+  Uncovered: 0
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `t`
+  Concrete pointer resolves to t.deref, offset 0x0
+  Replaced concrete pointer with hash 0x8292380893C10F33
+  %struct.cb_tree.27* %t
+  0x8292380893C10F33
+Collected value for `k`
+  Concrete pointer resolves to k.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6E0F93060F5E7E8D
+  i8* %k
+  0x6E0F93060F5E7E8D
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Collected value for `p`
+  Concrete pointer resolves to cb_internal_best_match.return.deref, offset 0x0
+  Replaced concrete pointer with hash 0xBBDF9EF64113A051
+  %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l126 c22
+  0xBBDF9EF64113A051
+
+#### After values
+
+Collected value for `t`
+  Concrete pointer resolves to t.deref, offset 0x0
+  Replaced concrete pointer with hash 0x8292380893C10F33
+  %struct.cb_tree.29* %t
+  0x8292380893C10F33
+Collected value for `k`
+  Concrete pointer resolves to k.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6E0F93060F5E7E8D
+  i8* %k
+  0x6E0F93060F5E7E8D
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Collected value for `p`
+  Concrete pointer resolves to cb_internal_best_match.return.deref, offset 0x0
+  Replaced concrete pointer with hash 0xBBDF9EF64113A051
+  %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l126 c22
+  0xBBDF9EF64113A051
+
+#### Check before against after
+
+Checking equivalence of `k` (decl src ln 124) from
+  assn src ln 124, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+and
+  assn src ln 124, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
+Checking equivalence of `klen` (decl src ln 124) from
+  assn src ln 124, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 124, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `p` (decl src ln 126) from
+  assn src ln 126, col 22, gen 0
+  %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l126 c22
+  0xBBDF9EF64113A051
+and
+  assn src ln 126, col 22, gen 0
+  %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l126 c22
+  0xBBDF9EF64113A051
+
+Checking equivalence of `t` (decl src ln 124) from
+  assn src ln 124, col 0, gen 0
+  %struct.cb_tree.27* %t
+  0x8292380893C10F33
+and
+  assn src ln 124, col 0, gen 0
+  %struct.cb_tree.29* %t
+  0x8292380893C10F33
+
+✅ Before symbolic values checked against after
+  Matching:    4
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `k` (decl src ln 124) from
+  assn src ln 124, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+and
+  assn src ln 124, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
+Checking equivalence of `klen` (decl src ln 124) from
+  assn src ln 124, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 124, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `p` (decl src ln 126) from
+  assn src ln 126, col 22, gen 0
+  %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l126 c22
+  0xBBDF9EF64113A051
+and
+  assn src ln 126, col 22, gen 0
+  %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l126 c22
+  0xBBDF9EF64113A051
+
+Checking equivalence of `t` (decl src ln 124) from
+  assn src ln 124, col 0, gen 0
+  %struct.cb_tree.29* %t
+  0x8292380893C10F33
+and
+  assn src ln 124, col 0, gen 0
+  %struct.cb_tree.27* %t
+  0x8292380893C10F33
+
+✅ After symbolic values checked against before
+  Matching:    4
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Function `cb_each`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `t` (decl src ln 143)
+Store to `t` (decl src ln 143), asm ln 493
+  arg 0
+  Added assignment starting at src ln 143, col 0
+Before variable `kpfx` (decl src ln 143)
+Store to `kpfx` (decl src ln 143), asm ln 495
+  arg 1
+  Added assignment starting at src ln 143, col 0
+Before variable `klen` (decl src ln 143)
+Store to `klen` (decl src ln 143), asm ln 497
+  arg 2
+  Added assignment starting at src ln 143, col 0
+Before variable `fn` (decl src ln 144)
+Store to `fn` (decl src ln 144), asm ln 499
+  arg 3
+  Added assignment starting at src ln 144, col 0
+Before variable `arg` (decl src ln 144)
+Store to `arg` (decl src ln 144), asm ln 501
+  arg 4
+  Added assignment starting at src ln 144, col 0
+Before variable `p` (decl src ln 146)
+Store to `p` (decl src ln 146), asm ln 580
+  %20 = load %struct.cb_node.34*, %struct.cb_node.34** %arrayidx9, l158 c7, asm ln 579
+  Added assignment starting at src ln 158, col 7
+Store to `p` (decl src ln 146), asm ln 507
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l146 c25, asm ln 506
+  Added assignment starting at src ln 146, col 25
+Before variable `top` (decl src ln 147)
+Store to `top` (decl src ln 147), asm ln 591
+  %24 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l160 c10, asm ln 590
+  Added assignment starting at src ln 160, col 10
+Store to `top` (decl src ln 147), asm ln 510
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l147 c24, asm ln 509
+  Added assignment starting at src ln 147, col 24
+Before variable `i` (decl src ln 148)
+Store to `i` (decl src ln 148), asm ln 631
+  %inc = add i64 %33, 1, l163 c25, asm ln 630
+  Added assignment starting at src ln 163, col 25
+Store to `i` (decl src ln 148), asm ln 598
+  const i64 0
+  Added assignment starting at src ln 163, col 9
+Store to `i` (decl src ln 148), asm ln 512
+  const i64 0
+  Producers match last assignment, skipping
+Before variable `q` (decl src ln 154)
+Store to `q` (decl src ln 154), asm ln 535
+  %call = call %struct.cb_node.34* @cb_node_of(i8* %7), l154 c23, asm ln 534
+  Added assignment starting at src ln 154, col 23
+Before variable `c` (decl src ln 155)
+Store to `c` (decl src ln 155), asm ln 562
+  %conv5 = trunc i32 %cond to i8, l155 c15, asm ln 561
+  Added assignment starting at src ln 155, col 15
+Before variable `direction` (decl src ln 156)
+Store to `direction` (decl src ln 156), asm ln 574
+  %conv8 = sext i32 %shr to i64, l156 c22, asm ln 573
+  Added assignment starting at src ln 156, col 22
+Computing generations: `arg` (decl src ln 144)
+  asm line 501, src ln 144, col 0, gen 0
+Computing generations: `c` (decl src ln 155)
+  asm line 562, src ln 155, col 15, gen 0
+Computing generations: `direction` (decl src ln 156)
+  asm line 574, src ln 156, col 22, gen 0
+Computing generations: `fn` (decl src ln 144)
+  asm line 499, src ln 144, col 0, gen 0
+Computing generations: `i` (decl src ln 148)
+  asm line 598, src ln 163, col 9, gen 0
+  asm line 631, src ln 163, col 25, gen 1
+Computing generations: `klen` (decl src ln 143)
+  asm line 497, src ln 143, col 0, gen 0
+Computing generations: `kpfx` (decl src ln 143)
+  asm line 495, src ln 143, col 0, gen 0
+Computing generations: `p` (decl src ln 146)
+  asm line 507, src ln 146, col 25, gen 0
+  asm line 580, src ln 158, col 7, gen 1
+Computing generations: `q` (decl src ln 154)
+  asm line 535, src ln 154, col 23, gen 0
+Computing generations: `t` (decl src ln 143)
+  asm line 493, src ln 143, col 0, gen 0
+Computing generations: `top` (decl src ln 147)
+  asm line 510, src ln 147, col 24, gen 0
+  asm line 591, src ln 160, col 10, gen 1
+
+After variable `t` (decl src ln 143)
+@dbg.value mapping for `t` (decl src ln 143), asm ln 287
+Value produced for `t` (decl src ln 143), asm ln 287
+  arg 0
+  Added assignment starting at src ln 143, col 0
+After variable `kpfx` (decl src ln 143)
+@dbg.value mapping for `kpfx` (decl src ln 143), asm ln 288
+Value produced for `kpfx` (decl src ln 143), asm ln 288
+  arg 1
+  Added assignment starting at src ln 143, col 0
+After variable `klen` (decl src ln 143)
+@dbg.value mapping for `klen` (decl src ln 143), asm ln 289
+Value produced for `klen` (decl src ln 143), asm ln 289
+  arg 2
+  Added assignment starting at src ln 143, col 0
+After variable `fn` (decl src ln 144)
+@dbg.value mapping for `fn` (decl src ln 144), asm ln 290
+Value produced for `fn` (decl src ln 144), asm ln 290
+  arg 3
+  Added assignment starting at src ln 144, col 0
+After variable `arg` (decl src ln 144)
+@dbg.value mapping for `arg` (decl src ln 144), asm ln 291
+Value produced for `arg` (decl src ln 144), asm ln 291
+  arg 4
+  Added assignment starting at src ln 144, col 0
+After variable `p` (decl src ln 146)
+@dbg.value mapping for `p` (decl src ln 146), asm ln 294
+Value produced for `p` (decl src ln 146), asm ln 294
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l146 c25, asm ln 293
+  Added assignment starting at src ln 146, col 25
+After variable `top` (decl src ln 147)
+@dbg.value mapping for `top` (decl src ln 147), asm ln 295
+Value produced for `top` (decl src ln 147), asm ln 295
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l146 c25, asm ln 293
+❌ Value produced for `top` (decl src ln 147): assignment src ln 146, col 25, gen 0 starts before decl
+  Added assignment starting at src ln 146, col 25
+After variable `i` (decl src ln 148)
+@dbg.value mapping for `i` (decl src ln 148), asm ln 296
+Value produced for `i` (decl src ln 148), asm ln 296
+  const i64 0
+  Added assignment starting at src ln 148, col 0
+After variable `p` (decl src ln 146)
+@dbg.value mapping for `p` (decl src ln 146), asm ln 301
+Value produced for `p` (decl src ln 146), asm ln 301
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l146 c25, asm ln 293
+  Producers match last assignment, skipping
+After variable `top` (decl src ln 147)
+@dbg.value mapping for `top` (decl src ln 147), asm ln 302
+Value produced for `top` (decl src ln 147), asm ln 302
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l146 c25, asm ln 293
+  Producers match last assignment, skipping
+After variable `i` (decl src ln 148)
+@dbg.value mapping for `i` (decl src ln 148), asm ln 311
+Value produced for `i` (decl src ln 148), asm ln 311
+  const i64 0
+  Producers match last assignment, skipping
+After variable `q` (decl src ln 154)
+@dbg.value mapping for `q` (decl src ln 154), asm ln 322
+Value produced for `q` (decl src ln 154), asm ln 322
+  %call = call fastcc %struct.cb_node.36* @cb_node_of(i8* %2), l154 c23, asm ln 321
+  Added assignment starting at src ln 154, col 23
+After variable `direction` (decl src ln 156)
+@dbg.value mapping for `direction` (decl src ln 156), asm ln 343
+Value produced for `direction` (decl src ln 156), asm ln 343
+  %6 = lshr i64 %add, 8, l156 c47, asm ln 342
+  Added assignment starting at src ln 156, col 47
+After variable `p` (decl src ln 146)
+@dbg.value mapping for `p` (decl src ln 146), asm ln 346
+Value produced for `p` (decl src ln 146), asm ln 346
+  %7 = load %struct.cb_node.36*, %struct.cb_node.36** %arrayidx9, !tbaa !101, l158 c7, asm ln 345
+  Added assignment starting at src ln 158, col 7
+After variable `top` (decl src ln 147)
+@dbg.value mapping for `top` (decl src ln 147), asm ln 348
+Value produced for `top` (decl src ln 147), asm ln 348
+  %spec.select = select i1 %cmp, %struct.cb_node.36* %7, %struct.cb_node.36* %top.052, l159 c7, asm ln 347
+  Added assignment starting at src ln 159, col 7
+After variable `i` (decl src ln 148)
+@dbg.value mapping for `i` (decl src ln 148), asm ln 355
+Value produced for `i` (decl src ln 148), asm ln 355
+  %inc = add nuw i64 %i.056, 1, l163 c25, asm ln 367
+  Added assignment starting at src ln 163, col 25
+After variable `i` (decl src ln 148)
+@dbg.value mapping for `i` (decl src ln 148), asm ln 368
+Value produced for `i` (decl src ln 148), asm ln 368
+  %inc = add nuw i64 %i.056, 1, l163 c25, asm ln 367
+  Producers match last assignment, skipping
+After variable `p` (decl src ln 146)
+@dbg.value mapping for `p` (decl src ln 146), asm ln 318
+Value produced for `p` (decl src ln 146), asm ln 318
+  %p.053 = phi %struct.cb_node.36* [ %7, %cond.end ], [ %0, %while.cond.preheader ], asm ln 316
+  Phi-based assignment in prologue, skipping
+After variable `top` (decl src ln 147)
+@dbg.value mapping for `top` (decl src ln 147), asm ln 319
+Value produced for `top` (decl src ln 147), asm ln 319
+  %top.052 = phi %struct.cb_node.36* [ %spec.select, %cond.end ], [ %0, %while.cond.preheader ], asm ln 317
+  Phi-based assignment in prologue, skipping
+After variable `c` (decl src ln 155)
+@dbg.value mapping for `c` (decl src ln 155), asm ln 336
+Value produced for `c` (decl src ln 155), asm ln 336
+  %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l155 c15, asm ln 335
+  Added assignment starting at src ln 155, col 15
+After variable `i` (decl src ln 148)
+@dbg.value mapping for `i` (decl src ln 148), asm ln 361
+Value produced for `i` (decl src ln 148), asm ln 361
+  %i.056 = phi i64 [ %inc, %for.cond ], [ 0, %for.cond.preheader ], asm ln 360
+  Phi-based assignment in prologue, skipping
+Computing generations: `arg` (decl src ln 144)
+  asm line 291, src ln 144, col 0, gen 0
+Computing generations: `c` (decl src ln 155)
+  asm line 336, src ln 155, col 15, gen 0
+Computing generations: `direction` (decl src ln 156)
+  asm line 343, src ln 156, col 47, gen 0
+Computing generations: `fn` (decl src ln 144)
+  asm line 290, src ln 144, col 0, gen 0
+Computing generations: `i` (decl src ln 148)
+  asm line 296, src ln 148, col 0, gen 0
+  asm line 355, src ln 163, col 25, gen 1
+Computing generations: `klen` (decl src ln 143)
+  asm line 289, src ln 143, col 0, gen 0
+Computing generations: `kpfx` (decl src ln 143)
+  asm line 288, src ln 143, col 0, gen 0
+Computing generations: `p` (decl src ln 146)
+  asm line 294, src ln 146, col 25, gen 0
+  asm line 346, src ln 158, col 7, gen 1
+Computing generations: `q` (decl src ln 154)
+  asm line 322, src ln 154, col 23, gen 0
+Computing generations: `t` (decl src ln 143)
+  asm line 287, src ln 143, col 0, gen 0
+Computing generations: `top` (decl src ln 147)
+  asm line 295, src ln 146, col 25, gen 0
+  asm line 348, src ln 159, col 7, gen 1
+
+✅ 11 before variables found, 11 after variables found, 0 mismatched
+
+### Assignments
+
+❌ Live ranges for `direction` (decl src ln 156) don't match: src ln 156, col 22, gen 0 vs. src ln 156, col 47, gen 0
+❌ Live ranges for `i` (decl src ln 148) don't match: src ln 163, col 9, gen 0 vs. src ln 148, col 0, gen 0
+❌ Live ranges for `top` (decl src ln 147) don't match: src ln 147, col 24, gen 0 vs. src ln 146, col 25, gen 0
+❌ Before live range coverage
+  Covered:   8
+  Uncovered: 3
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `t`
+  Concrete pointer resolves to t.deref, offset 0x0
+  Replaced concrete pointer with hash 0x8292380893C10F33
+  %struct.cb_tree.35* %t
+  0x8292380893C10F33
+Collected value for `kpfx`
+  Concrete pointer resolves to kpfx.deref, offset 0x0
+  Replaced concrete pointer with hash 0xC317ACB09B96E91B
+  i8* %kpfx
+  0xC317ACB09B96E91B
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.34*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+Collected value for `p`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l146 c25
+  0xF04B5269B3FFCE6E
+Collected value for `top`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l147 c24
+  0xF04B5269B3FFCE6E
+Collected value for `i`
+  i64 0
+  0x0
+Collected value for `i`
+  %inc = add i64 %33, 1, l163 c25
+  0x1
+
+#### After values
+
+Collected value for `t`
+  Concrete pointer resolves to t.deref, offset 0x0
+  Replaced concrete pointer with hash 0x8292380893C10F33
+  %struct.cb_tree.37* %t
+  0x8292380893C10F33
+Collected value for `kpfx`
+  Concrete pointer resolves to kpfx.deref, offset 0x0
+  Replaced concrete pointer with hash 0xC317ACB09B96E91B
+  i8* %kpfx
+  0xC317ACB09B96E91B
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.36*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+Collected value for `p`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l146 c25
+  0xF04B5269B3FFCE6E
+Collected value for `top`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l146 c25
+  0xF04B5269B3FFCE6E
+Collected value for `i`
+  i64 0
+  0x0
+Collected value for `i`
+  %inc = add nuw i64 %i.056, 1, l163 c25
+  0x1
+
+#### Check before against after
+
+Checking equivalence of `arg` (decl src ln 144) from
+  assn src ln 144, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 144, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `c` (decl src ln 155) assn src ln 155, col 15, gen 0 has no symbolic value (likely unreachable) from %conv5 = trunc i32 %cond to i8, l155 c15
+🔔 After `direction` (decl src ln 156) assn src ln 156, col 47, gen 0 coordinates don't match before assn src ln 156, col 22, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `direction` (decl src ln 156) assn src ln 156, col 22, gen 0 has no symbolic value (likely unreachable) from %conv8 = sext i32 %shr to i64, l156 c22
+Checking equivalence of `fn` (decl src ln 144) from
+  assn src ln 144, col 0, gen 0
+  i32 (%struct.cb_node.34*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 144, col 0, gen 0
+  i32 (%struct.cb_node.36*, i8*)* %fn
+  0x49FEC10265F3871D
+
+🔔 After `i` (decl src ln 148) assn src ln 148, col 0, gen 0 coordinates don't match before assn src ln 163, col 9, gen 0
+Checking equivalence of `i` (decl src ln 148) from
+  assn src ln 163, col 9, gen 0
+  i64 0
+  0x0
+and
+  assn src ln 148, col 0, gen 0
+  i64 0
+  0x0
+
+Checking equivalence of `i` (decl src ln 148) from
+  assn src ln 163, col 25, gen 1
+  %inc = add i64 %33, 1, l163 c25
+  0x1
+and
+  assn src ln 163, col 25, gen 1
+  %inc = add nuw i64 %i.056, 1, l163 c25
+  0x1
+
+Checking equivalence of `klen` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 143, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `kpfx` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+and
+  assn src ln 143, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+
+Checking equivalence of `p` (decl src ln 146) from
+  assn src ln 146, col 25, gen 0
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l146 c25
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 146, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l146 c25
+  0xF04B5269B3FFCE6E
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `p` (decl src ln 146) assn src ln 158, col 7, gen 1 has no symbolic value (likely unreachable) from %20 = load %struct.cb_node.34*, %struct.cb_node.34** %arrayidx9, l158 c7
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `q` (decl src ln 154) assn src ln 154, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.34* @cb_node_of(i8* %7), l154 c23
+Checking equivalence of `t` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  %struct.cb_tree.35* %t
+  0x8292380893C10F33
+and
+  assn src ln 143, col 0, gen 0
+  %struct.cb_tree.37* %t
+  0x8292380893C10F33
+
+🔔 After `top` (decl src ln 147) assn src ln 146, col 25, gen 0 coordinates don't match before assn src ln 147, col 24, gen 0
+Checking equivalence of `top` (decl src ln 147) from
+  assn src ln 147, col 24, gen 0
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l147 c24
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 146, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l146 c25
+  0xF04B5269B3FFCE6E
+
+🔔 After `top` (decl src ln 147) assn src ln 159, col 7, gen 1 coordinates don't match before assn src ln 160, col 10, gen 1
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `top` (decl src ln 147) assn src ln 160, col 10, gen 1 has no symbolic value (likely unreachable) from %24 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l160 c10
+✅ Before symbolic values checked against after
+  Matching:    9
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 5
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `arg` (decl src ln 144) from
+  assn src ln 144, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 144, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `c` (decl src ln 155) assn src ln 155, col 15, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l155 c15
+🔔 Before `direction` (decl src ln 156) assn src ln 156, col 22, gen 0 coordinates don't match after assn src ln 156, col 47, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `direction` (decl src ln 156) assn src ln 156, col 47, gen 0 has no symbolic value (likely unreachable) from %6 = lshr i64 %add, 8, l156 c47
+Checking equivalence of `fn` (decl src ln 144) from
+  assn src ln 144, col 0, gen 0
+  i32 (%struct.cb_node.36*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 144, col 0, gen 0
+  i32 (%struct.cb_node.34*, i8*)* %fn
+  0x49FEC10265F3871D
+
+🔔 Before `i` (decl src ln 148) assn src ln 163, col 9, gen 0 coordinates don't match after assn src ln 148, col 0, gen 0
+Checking equivalence of `i` (decl src ln 148) from
+  assn src ln 148, col 0, gen 0
+  i64 0
+  0x0
+and
+  assn src ln 163, col 9, gen 0
+  i64 0
+  0x0
+
+Checking equivalence of `i` (decl src ln 148) from
+  assn src ln 163, col 25, gen 1
+  %inc = add nuw i64 %i.056, 1, l163 c25
+  0x1
+and
+  assn src ln 163, col 25, gen 1
+  %inc = add i64 %33, 1, l163 c25
+  0x1
+
+Checking equivalence of `klen` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 143, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `kpfx` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+and
+  assn src ln 143, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+
+Checking equivalence of `p` (decl src ln 146) from
+  assn src ln 146, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l146 c25
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 146, col 25, gen 0
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l146 c25
+  0xF04B5269B3FFCE6E
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `p` (decl src ln 146) assn src ln 158, col 7, gen 1 has no symbolic value (likely unreachable) from %7 = load %struct.cb_node.36*, %struct.cb_node.36** %arrayidx9, !tbaa !104, l158 c7
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `q` (decl src ln 154) assn src ln 154, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.36* @cb_node_of(i8* %2), l154 c23
+Checking equivalence of `t` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  %struct.cb_tree.37* %t
+  0x8292380893C10F33
+and
+  assn src ln 143, col 0, gen 0
+  %struct.cb_tree.35* %t
+  0x8292380893C10F33
+
+🔔 Before `top` (decl src ln 147) assn src ln 147, col 24, gen 0 coordinates don't match after assn src ln 146, col 25, gen 0
+Checking equivalence of `top` (decl src ln 147) from
+  assn src ln 146, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l146 c25
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 147, col 24, gen 0
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l147 c24
+  0xF04B5269B3FFCE6E
+
+🔔 Before `top` (decl src ln 147) assn src ln 147, col 24, gen 0 coordinates don't match after assn src ln 159, col 7, gen 1
+Expected 1 symbolic value(s), got 0
+🔔 After `top` (decl src ln 147) assn src ln 159, col 7, gen 1 has no symbolic value (likely unreachable) from %spec.select = select i1 %cmp, %struct.cb_node.36* %7, %struct.cb_node.36* %top.052, l159 c7
+✅ After symbolic values checked against before
+  Matching:    9
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 5
+  Removable:   0
+
+## Function `cb_descend`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `p` (decl src ln 131)
+Store to `p` (decl src ln 131), asm ln 654
+  arg 0
+  Added assignment starting at src ln 131, col 0
+Before variable `fn` (decl src ln 131)
+Store to `fn` (decl src ln 131), asm ln 656
+  arg 1
+  Added assignment starting at src ln 131, col 0
+Before variable `arg` (decl src ln 131)
+Store to `arg` (decl src ln 131), asm ln 658
+  arg 2
+  Added assignment starting at src ln 131, col 0
+Before variable `q` (decl src ln 134)
+Store to `q` (decl src ln 134), asm ln 671
+  %call = call %struct.cb_node.42* @cb_node_of(i8* %3), l134 c23, asm ln 670
+  Added assignment starting at src ln 134, col 23
+Before variable `n` (decl src ln 135)
+Store to `n` (decl src ln 135), asm ln 680
+  %call1 = call i32 @cb_descend(%struct.cb_node.42* %5, i32 (%struct.cb_node.42*, i8*)* %6, i8* %7), l135 c20, asm ln 679
+  Added assignment starting at src ln 135, col 20
+Computing generations: `p` (decl src ln 131)
+  asm line 654, src ln 131, col 0, gen 0
+Computing generations: `fn` (decl src ln 131)
+  asm line 656, src ln 131, col 0, gen 0
+Computing generations: `arg` (decl src ln 131)
+  asm line 658, src ln 131, col 0, gen 0
+Computing generations: `q` (decl src ln 134)
+  asm line 671, src ln 134, col 23, gen 0
+Computing generations: `n` (decl src ln 135)
+  asm line 680, src ln 135, col 20, gen 0
+
+After variable `p` (decl src ln 131)
+@dbg.value mapping for `p` (decl src ln 131), asm ln 382
+Value produced for `p` (decl src ln 131), asm ln 382
+  arg 0
+  Added assignment starting at src ln 131, col 0
+After variable `fn` (decl src ln 131)
+@dbg.value mapping for `fn` (decl src ln 131), asm ln 383
+Value produced for `fn` (decl src ln 131), asm ln 383
+  arg 1
+  Added assignment starting at src ln 131, col 0
+After variable `arg` (decl src ln 131)
+@dbg.value mapping for `arg` (decl src ln 131), asm ln 384
+Value produced for `arg` (decl src ln 131), asm ln 384
+  arg 2
+  Added assignment starting at src ln 131, col 0
+After variable `q` (decl src ln 134)
+@dbg.value mapping for `q` (decl src ln 134), asm ln 393
+Value produced for `q` (decl src ln 134), asm ln 393
+  %call = call fastcc %struct.cb_node.44* @cb_node_of(i8* %1), l134 c23, asm ln 392
+  Added assignment starting at src ln 134, col 23
+After variable `n` (decl src ln 135)
+@dbg.value mapping for `n` (decl src ln 135), asm ln 397
+Value produced for `n` (decl src ln 135), asm ln 397
+  %call1 = call fastcc i32 @cb_descend(%struct.cb_node.44* %2, i32 (%struct.cb_node.44*, i8*)* %fn, i8* %arg), l135 c20, asm ln 396
+  Added assignment starting at src ln 135, col 20
+Computing generations: `p` (decl src ln 131)
+  asm line 382, src ln 131, col 0, gen 0
+Computing generations: `fn` (decl src ln 131)
+  asm line 383, src ln 131, col 0, gen 0
+Computing generations: `arg` (decl src ln 131)
+  asm line 384, src ln 131, col 0, gen 0
+Computing generations: `q` (decl src ln 134)
+  asm line 393, src ln 134, col 23, gen 0
+Computing generations: `n` (decl src ln 135)
+  asm line 397, src ln 135, col 20, gen 0
+
+✅ 5 before variables found, 5 after variables found, 0 mismatched
+
+### Assignments
+
+✅ Before live range coverage
+  Covered:   5
+  Uncovered: 0
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  %struct.cb_node.42* %p
+  0x6B9649B5C91006F4
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.42*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+#### After values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  %struct.cb_node.44* %p
+  0x6B9649B5C91006F4
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.44*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+#### Check before against after
+
+Checking equivalence of `arg` (decl src ln 131) from
+  assn src ln 131, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 131, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Checking equivalence of `fn` (decl src ln 131) from
+  assn src ln 131, col 0, gen 0
+  i32 (%struct.cb_node.42*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 131, col 0, gen 0
+  i32 (%struct.cb_node.44*, i8*)* %fn
+  0x49FEC10265F3871D
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `n` (decl src ln 135) assn src ln 135, col 20, gen 0 has no symbolic value (likely unreachable) from %call1 = call i32 @cb_descend(%struct.cb_node.42* %5, i32 (%struct.cb_node.42*, i8*)* %6, i8* %7), l135 c20
+Checking equivalence of `p` (decl src ln 131) from
+  assn src ln 131, col 0, gen 0
+  %struct.cb_node.42* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 131, col 0, gen 0
+  %struct.cb_node.44* %p
+  0x6B9649B5C91006F4
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `q` (decl src ln 134) assn src ln 134, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.42* @cb_node_of(i8* %3), l134 c23
+✅ Before symbolic values checked against after
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 2
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `arg` (decl src ln 131) from
+  assn src ln 131, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 131, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Checking equivalence of `fn` (decl src ln 131) from
+  assn src ln 131, col 0, gen 0
+  i32 (%struct.cb_node.44*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 131, col 0, gen 0
+  i32 (%struct.cb_node.42*, i8*)* %fn
+  0x49FEC10265F3871D
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `n` (decl src ln 135) assn src ln 135, col 20, gen 0 has no symbolic value (likely unreachable) from %call1 = call fastcc i32 @cb_descend(%struct.cb_node.44* %2, i32 (%struct.cb_node.44*, i8*)* %fn, i8* %arg), l135 c20
+Checking equivalence of `p` (decl src ln 131) from
+  assn src ln 131, col 0, gen 0
+  %struct.cb_node.44* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 131, col 0, gen 0
+  %struct.cb_node.42* %p
+  0x6B9649B5C91006F4
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `q` (decl src ln 134) assn src ln 134, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.44* @cb_node_of(i8* %1), l134 c23
+✅ After symbolic values checked against before
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 2
+  Removable:   0
+
+## Summary
+
+❌ Some consistency checks failed

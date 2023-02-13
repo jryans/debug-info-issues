@@ -4,3 +4,4 @@ This example tests support for:
 * STP shared memory region after several functions
 * Assignment starts before declaration
 * Function pointer arguments
+* Merge lists of symbolic values from both versions
