@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <string.h>
+#include <assert.h>
 
 struct cb_node;
 struct cb_node {
