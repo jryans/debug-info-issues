@@ -1174,10 +1174,10 @@ Collected value for `klen`
   i64 %klen
   (ReadLSB w64 0x0 klen)
 Collected value for `p`
-  Concrete pointer resolves to cb_internal_best_match.deref, offset 0x0
-  Replaced concrete pointer with hash 0xDBD6D2BE1EF15D48
+  Concrete pointer resolves to cb_internal_best_match.return.deref, offset 0x0
+  Replaced concrete pointer with hash 0xBBDF9EF64113A051
   %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
-  0xDBD6D2BE1EF15D48
+  0xBBDF9EF64113A051
 
 #### After values
 
@@ -1195,10 +1195,10 @@ Collected value for `klen`
   i64 %klen
   (ReadLSB w64 0x0 klen)
 Collected value for `p`
-  Concrete pointer resolves to cb_internal_best_match.deref, offset 0x0
-  Replaced concrete pointer with hash 0xDBD6D2BE1EF15D48
+  Concrete pointer resolves to cb_internal_best_match.return.deref, offset 0x0
+  Replaced concrete pointer with hash 0xBBDF9EF64113A051
   %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
-  0xDBD6D2BE1EF15D48
+  0xBBDF9EF64113A051
 
 #### Check before against after
 
@@ -1230,11 +1230,11 @@ Parsed query
 Checking equivalence of `p` (decl src ln 125) from
   assn src ln 125, col 22, gen 0
   %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
-  0xDBD6D2BE1EF15D48
+  0xBBDF9EF64113A051
 and
   assn src ln 125, col 22, gen 0
   %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
-  0xDBD6D2BE1EF15D48
+  0xBBDF9EF64113A051
 
 Checking equivalence of `t` (decl src ln 123) from
   assn src ln 123, col 0, gen 0
@@ -1282,11 +1282,11 @@ Parsed query
 Checking equivalence of `p` (decl src ln 125) from
   assn src ln 125, col 22, gen 0
   %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
-  0xDBD6D2BE1EF15D48
+  0xBBDF9EF64113A051
 and
   assn src ln 125, col 22, gen 0
   %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
-  0xDBD6D2BE1EF15D48
+  0xBBDF9EF64113A051
 
 Checking equivalence of `t` (decl src ln 123) from
   assn src ln 123, col 0, gen 0
@@ -1424,7 +1424,7 @@ Value produced for `p` (decl src ln 145), asm ln 284
   Added assignment starting at src ln 145, col 25
 After variable `top` (decl src ln 146)
 @dbg.value mapping for `top` (decl src ln 146), asm ln 285
-Value produced for `top` (decl src ln 146), asm ln 285
+Value produced for `top` (decl src ln 146), asm ln 285
   %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
 ❌ Value produced for `top` (decl src ln 146): assignment src ln 145, col 25, gen 0 starts before decl
   Added assignment starting at src ln 145, col 25
@@ -1542,24 +1542,525 @@ Computing generations: `top` (decl src ln 146)
 
 #### Before values
 
-Assertion failed: (!valueType->isVoidTy() && !valueType->isFunctionTy() && !valueType->isVectorTy() && "Unexpected type when building symbolic value"), function buildSymbolicValue, file Executor.cpp, line 4714.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x00000001056a1667 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x00000001056a04a8 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x00000001056a1cb0 SignalHandler(int) + 288
-3  libsystem_platform.dylib 0x00007ff810197c1d _sigtramp + 29
-4  libsystem_platform.dylib 0xffffffffffffe000 _sigtramp + 18446603370310820864
-5  libsystem_c.dylib        0x00007ff8100b6ca5 abort + 123
-6  libsystem_c.dylib        0x00007ff8100b5fbe err + 0
-7  debug-info-check         0x0000000103c54e8f klee::Executor::buildSymbolicValue(klee::ExecutionState&, llvm::Value const*, llvm::Type*, llvm::Twine const&) + 191
-8  debug-info-check         0x0000000103c55309 klee::Executor::buildSymbolicValue(klee::ExecutionState&, llvm::Value const*, llvm::Type*, llvm::Twine const&) + 1337
-9  debug-info-check         0x0000000103c6911f klee::Executor::enterIndependentFunction(klee::ExecutionState&, klee::KFunction*) + 335
-10 debug-info-check         0x0000000103c694d9 klee::Executor::runFunction(llvm::Function*) + 137
-11 debug-info-check         0x0000000103c10c0a collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1338
-12 debug-info-check         0x0000000103bdb5e9 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 4825
-13 debug-info-check         0x0000000103bdcd2e main + 1742
-14 dyld                     0x00007ff80fe3a310 start + 2432
-./check.sh: line 6: 43547 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+Collected value for `t`
+  Concrete pointer resolves to t.deref, offset 0x0
+  Replaced concrete pointer with hash 0x8292380893C10F33
+  %struct.cb_tree.35* %t
+  0x8292380893C10F33
+Collected value for `kpfx`
+  Concrete pointer resolves to kpfx.deref, offset 0x0
+  Replaced concrete pointer with hash 0xC317ACB09B96E91B
+  i8* %kpfx
+  0xC317ACB09B96E91B
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.34*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+Collected value for `p`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l145 c25
+  0xF04B5269B3FFCE6E
+Collected value for `top`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l146 c24
+  0xF04B5269B3FFCE6E
+Collected value for `i`
+  i64 0
+  0x0
+Collected value for `i`
+  %inc = add i64 %33, 1, l162 c25
+  0x1
+
+#### After values
+
+Collected value for `t`
+  Concrete pointer resolves to t.deref, offset 0x0
+  Replaced concrete pointer with hash 0x8292380893C10F33
+  %struct.cb_tree.37* %t
+  0x8292380893C10F33
+Collected value for `kpfx`
+  Concrete pointer resolves to kpfx.deref, offset 0x0
+  Replaced concrete pointer with hash 0xC317ACB09B96E91B
+  i8* %kpfx
+  0xC317ACB09B96E91B
+Collected value for `klen`
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.36*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+Collected value for `p`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l145 c25
+  0xF04B5269B3FFCE6E
+Collected value for `top`
+  Concrete pointer resolves to t.deref.e0.deref, offset 0x0
+  Replaced concrete pointer with hash 0xF04B5269B3FFCE6E
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l145 c25
+  0xF04B5269B3FFCE6E
+Collected value for `i`
+  i64 0
+  0x0
+Collected value for `i`
+  %inc = add nuw i64 %i.056, 1, l162 c25
+  0x1
+
+#### Check before against after
+
+Checking equivalence of `arg` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 143, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `c` (decl src ln 154) assn src ln 154, col 15, gen 0 has no symbolic value (likely unreachable) from %conv5 = trunc i32 %cond to i8, l154 c15
+🔔 After `direction` (decl src ln 155) assn src ln 155, col 47, gen 0 coordinates don't match before assn src ln 155, col 22, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `direction` (decl src ln 155) assn src ln 155, col 22, gen 0 has no symbolic value (likely unreachable) from %conv8 = sext i32 %shr to i64, l155 c22
+Checking equivalence of `fn` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i32 (%struct.cb_node.34*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 143, col 0, gen 0
+  i32 (%struct.cb_node.36*, i8*)* %fn
+  0x49FEC10265F3871D
+
+🔔 After `i` (decl src ln 147) assn src ln 147, col 0, gen 0 coordinates don't match before assn src ln 162, col 9, gen 0
+Checking equivalence of `i` (decl src ln 147) from
+  assn src ln 162, col 9, gen 0
+  i64 0
+  0x0
+and
+  assn src ln 147, col 0, gen 0
+  i64 0
+  0x0
+
+Checking equivalence of `i` (decl src ln 147) from
+  assn src ln 162, col 25, gen 1
+  %inc = add i64 %33, 1, l162 c25
+  0x1
+and
+  assn src ln 162, col 25, gen 1
+  %inc = add nuw i64 %i.056, 1, l162 c25
+  0x1
+
+Checking equivalence of `klen` (decl src ln 142) from
+  assn src ln 142, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 142, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `kpfx` (decl src ln 142) from
+  assn src ln 142, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+and
+  assn src ln 142, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+
+Checking equivalence of `p` (decl src ln 145) from
+  assn src ln 145, col 25, gen 0
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l145 c25
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 145, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l145 c25
+  0xF04B5269B3FFCE6E
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `p` (decl src ln 145) assn src ln 157, col 7, gen 1 has no symbolic value (likely unreachable) from %20 = load %struct.cb_node.34*, %struct.cb_node.34** %arrayidx9, l157 c7
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `q` (decl src ln 153) assn src ln 153, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.34* @cb_node_of(i8* %7), l153 c23
+Checking equivalence of `t` (decl src ln 142) from
+  assn src ln 142, col 0, gen 0
+  %struct.cb_tree.35* %t
+  0x8292380893C10F33
+and
+  assn src ln 142, col 0, gen 0
+  %struct.cb_tree.37* %t
+  0x8292380893C10F33
+
+🔔 After `top` (decl src ln 146) assn src ln 145, col 25, gen 0 coordinates don't match before assn src ln 146, col 24, gen 0
+Checking equivalence of `top` (decl src ln 146) from
+  assn src ln 146, col 24, gen 0
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l146 c24
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 145, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l145 c25
+  0xF04B5269B3FFCE6E
+
+🔔 After `top` (decl src ln 146) assn src ln 158, col 7, gen 1 coordinates don't match before assn src ln 159, col 10, gen 1
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `top` (decl src ln 146) assn src ln 159, col 10, gen 1 has no symbolic value (likely unreachable) from %24 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l159 c10
+✅ Before symbolic values checked against after
+  Matching:    9
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 5
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `arg` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 143, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `c` (decl src ln 154) assn src ln 154, col 15, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l154 c15
+🔔 Before `direction` (decl src ln 155) assn src ln 155, col 22, gen 0 coordinates don't match after assn src ln 155, col 47, gen 0
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `direction` (decl src ln 155) assn src ln 155, col 47, gen 0 has no symbolic value (likely unreachable) from %6 = lshr i64 %add, 8, l155 c47
+Checking equivalence of `fn` (decl src ln 143) from
+  assn src ln 143, col 0, gen 0
+  i32 (%struct.cb_node.36*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 143, col 0, gen 0
+  i32 (%struct.cb_node.34*, i8*)* %fn
+  0x49FEC10265F3871D
+
+🔔 Before `i` (decl src ln 147) assn src ln 162, col 9, gen 0 coordinates don't match after assn src ln 147, col 0, gen 0
+Checking equivalence of `i` (decl src ln 147) from
+  assn src ln 147, col 0, gen 0
+  i64 0
+  0x0
+and
+  assn src ln 162, col 9, gen 0
+  i64 0
+  0x0
+
+Checking equivalence of `i` (decl src ln 147) from
+  assn src ln 162, col 25, gen 1
+  %inc = add nuw i64 %i.056, 1, l162 c25
+  0x1
+and
+  assn src ln 162, col 25, gen 1
+  %inc = add i64 %33, 1, l162 c25
+  0x1
+
+Checking equivalence of `klen` (decl src ln 142) from
+  assn src ln 142, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+and
+  assn src ln 142, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
+Query to parse
+array klen[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 0x0 klen)
+     (ReadLSB w64 0x0 klen)))
+Parsed query
+(Eq N0:(ReadLSB w64 0x0 klen)
+     N0)
+
+Checking equivalence of `kpfx` (decl src ln 142) from
+  assn src ln 142, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+and
+  assn src ln 142, col 0, gen 0
+  i8* %kpfx
+  0xC317ACB09B96E91B
+
+Checking equivalence of `p` (decl src ln 145) from
+  assn src ln 145, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l145 c25
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 145, col 25, gen 0
+  %1 = load %struct.cb_node.34*, %struct.cb_node.34** %root, l145 c25
+  0xF04B5269B3FFCE6E
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `p` (decl src ln 145) assn src ln 157, col 7, gen 1 has no symbolic value (likely unreachable) from %7 = load %struct.cb_node.36*, %struct.cb_node.36** %arrayidx9, !tbaa !104, l157 c7
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `q` (decl src ln 153) assn src ln 153, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.36* @cb_node_of(i8* %2), l153 c23
+Checking equivalence of `t` (decl src ln 142) from
+  assn src ln 142, col 0, gen 0
+  %struct.cb_tree.37* %t
+  0x8292380893C10F33
+and
+  assn src ln 142, col 0, gen 0
+  %struct.cb_tree.35* %t
+  0x8292380893C10F33
+
+🔔 Before `top` (decl src ln 146) assn src ln 146, col 24, gen 0 coordinates don't match after assn src ln 145, col 25, gen 0
+Checking equivalence of `top` (decl src ln 146) from
+  assn src ln 145, col 25, gen 0
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !74, l145 c25
+  0xF04B5269B3FFCE6E
+and
+  assn src ln 146, col 24, gen 0
+  %2 = load %struct.cb_node.34*, %struct.cb_node.34** %p, l146 c24
+  0xF04B5269B3FFCE6E
+
+🔔 Before `top` (decl src ln 146) assn src ln 146, col 24, gen 0 coordinates don't match after assn src ln 158, col 7, gen 1
+Expected 1 symbolic value(s), got 0
+🔔 After `top` (decl src ln 146) assn src ln 158, col 7, gen 1 has no symbolic value (likely unreachable) from %spec.select = select i1 %cmp, %struct.cb_node.36* %7, %struct.cb_node.36* %top.052, l158 c7
+✅ After symbolic values checked against before
+  Matching:    9
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 5
+  Removable:   0
+
+## Function `cb_descend`
+
+✅ Before and after function names match
+
+### Variables
+
+Before variable `p` (decl src ln 130)
+Store to `p` (decl src ln 130), asm ln 634
+  arg 0
+  Added assignment starting at src ln 130, col 0
+Before variable `fn` (decl src ln 130)
+Store to `fn` (decl src ln 130), asm ln 636
+  arg 1
+  Added assignment starting at src ln 130, col 0
+Before variable `arg` (decl src ln 130)
+Store to `arg` (decl src ln 130), asm ln 638
+  arg 2
+  Added assignment starting at src ln 130, col 0
+Before variable `q` (decl src ln 133)
+Store to `q` (decl src ln 133), asm ln 651
+  %call = call %struct.cb_node.42* @cb_node_of(i8* %3), l133 c23, asm ln 650
+  Added assignment starting at src ln 133, col 23
+Before variable `n` (decl src ln 134)
+Store to `n` (decl src ln 134), asm ln 660
+  %call1 = call i32 @cb_descend(%struct.cb_node.42* %5, i32 (%struct.cb_node.42*, i8*)* %6, i8* %7), l134 c20, asm ln 659
+  Added assignment starting at src ln 134, col 20
+Computing generations: `p` (decl src ln 130)
+  asm line 634, src ln 130, col 0, gen 0
+Computing generations: `fn` (decl src ln 130)
+  asm line 636, src ln 130, col 0, gen 0
+Computing generations: `arg` (decl src ln 130)
+  asm line 638, src ln 130, col 0, gen 0
+Computing generations: `q` (decl src ln 133)
+  asm line 651, src ln 133, col 23, gen 0
+Computing generations: `n` (decl src ln 134)
+  asm line 660, src ln 134, col 20, gen 0
+
+After variable `p` (decl src ln 130)
+@dbg.value mapping for `p` (decl src ln 130), asm ln 372
+Value produced for `p` (decl src ln 130), asm ln 372
+  arg 0
+  Added assignment starting at src ln 130, col 0
+After variable `fn` (decl src ln 130)
+@dbg.value mapping for `fn` (decl src ln 130), asm ln 373
+Value produced for `fn` (decl src ln 130), asm ln 373
+  arg 1
+  Added assignment starting at src ln 130, col 0
+After variable `arg` (decl src ln 130)
+@dbg.value mapping for `arg` (decl src ln 130), asm ln 374
+Value produced for `arg` (decl src ln 130), asm ln 374
+  arg 2
+  Added assignment starting at src ln 130, col 0
+After variable `q` (decl src ln 133)
+@dbg.value mapping for `q` (decl src ln 133), asm ln 383
+Value produced for `q` (decl src ln 133), asm ln 383
+  %call = call fastcc %struct.cb_node.44* @cb_node_of(i8* %1), l133 c23, asm ln 382
+  Added assignment starting at src ln 133, col 23
+After variable `n` (decl src ln 134)
+@dbg.value mapping for `n` (decl src ln 134), asm ln 387
+Value produced for `n` (decl src ln 134), asm ln 387
+  %call1 = call fastcc i32 @cb_descend(%struct.cb_node.44* %2, i32 (%struct.cb_node.44*, i8*)* %fn, i8* %arg), l134 c20, asm ln 386
+  Added assignment starting at src ln 134, col 20
+Computing generations: `p` (decl src ln 130)
+  asm line 372, src ln 130, col 0, gen 0
+Computing generations: `fn` (decl src ln 130)
+  asm line 373, src ln 130, col 0, gen 0
+Computing generations: `arg` (decl src ln 130)
+  asm line 374, src ln 130, col 0, gen 0
+Computing generations: `q` (decl src ln 133)
+  asm line 383, src ln 133, col 23, gen 0
+Computing generations: `n` (decl src ln 134)
+  asm line 387, src ln 134, col 20, gen 0
+
+✅ 5 before variables found, 5 after variables found, 0 mismatched
+
+### Assignments
+
+✅ Before live range coverage
+  Covered:   5
+  Uncovered: 0
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  %struct.cb_node.42* %p
+  0x6B9649B5C91006F4
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.42*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+#### After values
+
+Collected value for `p`
+  Concrete pointer resolves to p.deref, offset 0x0
+  Replaced concrete pointer with hash 0x6B9649B5C91006F4
+  %struct.cb_node.44* %p
+  0x6B9649B5C91006F4
+Collected value for `fn`
+  Concrete pointer resolves to fn.deref, offset 0x0
+  Replaced concrete pointer with hash 0x49FEC10265F3871D
+  i32 (%struct.cb_node.44*, i8*)* %fn
+  0x49FEC10265F3871D
+Collected value for `arg`
+  Concrete pointer resolves to arg.deref, offset 0x0
+  Replaced concrete pointer with hash 0xCBB9609E6B58D0C7
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+#### Check before against after
+
+Checking equivalence of `arg` (decl src ln 130) from
+  assn src ln 130, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 130, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Checking equivalence of `fn` (decl src ln 130) from
+  assn src ln 130, col 0, gen 0
+  i32 (%struct.cb_node.42*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 130, col 0, gen 0
+  i32 (%struct.cb_node.44*, i8*)* %fn
+  0x49FEC10265F3871D
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `n` (decl src ln 134) assn src ln 134, col 20, gen 0 has no symbolic value (likely unreachable) from %call1 = call i32 @cb_descend(%struct.cb_node.42* %5, i32 (%struct.cb_node.42*, i8*)* %6, i8* %7), l134 c20
+Checking equivalence of `p` (decl src ln 130) from
+  assn src ln 130, col 0, gen 0
+  %struct.cb_node.42* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 130, col 0, gen 0
+  %struct.cb_node.44* %p
+  0x6B9649B5C91006F4
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 Before `q` (decl src ln 133) assn src ln 133, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.42* @cb_node_of(i8* %3), l133 c23
+✅ Before symbolic values checked against after
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 2
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `arg` (decl src ln 130) from
+  assn src ln 130, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+and
+  assn src ln 130, col 0, gen 0
+  i8* %arg
+  0xCBB9609E6B58D0C7
+
+Checking equivalence of `fn` (decl src ln 130) from
+  assn src ln 130, col 0, gen 0
+  i32 (%struct.cb_node.44*, i8*)* %fn
+  0x49FEC10265F3871D
+and
+  assn src ln 130, col 0, gen 0
+  i32 (%struct.cb_node.42*, i8*)* %fn
+  0x49FEC10265F3871D
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `n` (decl src ln 134) assn src ln 134, col 20, gen 0 has no symbolic value (likely unreachable) from %call1 = call fastcc i32 @cb_descend(%struct.cb_node.44* %2, i32 (%struct.cb_node.44*, i8*)* %fn, i8* %arg), l134 c20
+Checking equivalence of `p` (decl src ln 130) from
+  assn src ln 130, col 0, gen 0
+  %struct.cb_node.44* %p
+  0x6B9649B5C91006F4
+and
+  assn src ln 130, col 0, gen 0
+  %struct.cb_node.42* %p
+  0x6B9649B5C91006F4
+
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+🔔 After `q` (decl src ln 133) assn src ln 133, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.44* @cb_node_of(i8* %1), l133 c23
+✅ After symbolic values checked against before
+  Matching:    3
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 2
+  Removable:   0
+
+## Summary
+
+❌ Some consistency checks failed
