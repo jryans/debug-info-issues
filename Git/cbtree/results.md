@@ -1426,22 +1426,140 @@ After variable `top` (decl src ln 146)
 @dbg.value mapping for `top` (decl src ln 146), asm ln 285
 Value produced for `top` (decl src ln 146), asm ln 285
   %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
-Assertion failed: (assignment.startLine >= variable.declLine && "Assignment starts before declaration"), function addAssignment, file main.cpp, line 281.
+❌ Value produced for `top` (decl src ln 146): assignment src ln 145, col 25, gen 0 starts before decl
+  Added assignment starting at src ln 145, col 25
+After variable `i` (decl src ln 147)
+@dbg.value mapping for `i` (decl src ln 147), asm ln 286
+Value produced for `i` (decl src ln 147), asm ln 286
+  const i64 0
+  Added assignment starting at src ln 147, col 0
+After variable `p` (decl src ln 145)
+@dbg.value mapping for `p` (decl src ln 145), asm ln 291
+Value produced for `p` (decl src ln 145), asm ln 291
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
+  Producers match last assignment, skipping
+After variable `top` (decl src ln 146)
+@dbg.value mapping for `top` (decl src ln 146), asm ln 292
+Value produced for `top` (decl src ln 146), asm ln 292
+  %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
+  Producers match last assignment, skipping
+After variable `i` (decl src ln 147)
+@dbg.value mapping for `i` (decl src ln 147), asm ln 301
+Value produced for `i` (decl src ln 147), asm ln 301
+  const i64 0
+  Producers match last assignment, skipping
+After variable `q` (decl src ln 153)
+@dbg.value mapping for `q` (decl src ln 153), asm ln 312
+Value produced for `q` (decl src ln 153), asm ln 312
+  %call = call fastcc %struct.cb_node.36* @cb_node_of(i8* %2), l153 c23, asm ln 311
+  Added assignment starting at src ln 153, col 23
+After variable `direction` (decl src ln 155)
+@dbg.value mapping for `direction` (decl src ln 155), asm ln 333
+Value produced for `direction` (decl src ln 155), asm ln 333
+  %6 = lshr i64 %add, 8, l155 c47, asm ln 332
+  Added assignment starting at src ln 155, col 47
+After variable `p` (decl src ln 145)
+@dbg.value mapping for `p` (decl src ln 145), asm ln 336
+Value produced for `p` (decl src ln 145), asm ln 336
+  %7 = load %struct.cb_node.36*, %struct.cb_node.36** %arrayidx9, !tbaa !101, l157 c7, asm ln 335
+  Added assignment starting at src ln 157, col 7
+After variable `top` (decl src ln 146)
+@dbg.value mapping for `top` (decl src ln 146), asm ln 338
+Value produced for `top` (decl src ln 146), asm ln 338
+  %spec.select = select i1 %cmp, %struct.cb_node.36* %7, %struct.cb_node.36* %top.052, l158 c7, asm ln 337
+  Added assignment starting at src ln 158, col 7
+After variable `i` (decl src ln 147)
+@dbg.value mapping for `i` (decl src ln 147), asm ln 345
+Value produced for `i` (decl src ln 147), asm ln 345
+  %inc = add nuw i64 %i.056, 1, l162 c25, asm ln 357
+  Added assignment starting at src ln 162, col 25
+After variable `i` (decl src ln 147)
+@dbg.value mapping for `i` (decl src ln 147), asm ln 358
+Value produced for `i` (decl src ln 147), asm ln 358
+  %inc = add nuw i64 %i.056, 1, l162 c25, asm ln 357
+  Producers match last assignment, skipping
+After variable `p` (decl src ln 145)
+@dbg.value mapping for `p` (decl src ln 145), asm ln 308
+Value produced for `p` (decl src ln 145), asm ln 308
+  %p.053 = phi %struct.cb_node.36* [ %7, %cond.end ], [ %0, %while.cond.preheader ], asm ln 306
+  Phi-based assignment in prologue, skipping
+After variable `top` (decl src ln 146)
+@dbg.value mapping for `top` (decl src ln 146), asm ln 309
+Value produced for `top` (decl src ln 146), asm ln 309
+  %top.052 = phi %struct.cb_node.36* [ %spec.select, %cond.end ], [ %0, %while.cond.preheader ], asm ln 307
+  Phi-based assignment in prologue, skipping
+After variable `c` (decl src ln 154)
+@dbg.value mapping for `c` (decl src ln 154), asm ln 326
+Value produced for `c` (decl src ln 154), asm ln 326
+  %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l154 c15, asm ln 325
+  Added assignment starting at src ln 154, col 15
+After variable `i` (decl src ln 147)
+@dbg.value mapping for `i` (decl src ln 147), asm ln 351
+Value produced for `i` (decl src ln 147), asm ln 351
+  %i.056 = phi i64 [ %inc, %for.cond ], [ 0, %for.cond.preheader ], asm ln 350
+  Phi-based assignment in prologue, skipping
+Computing generations: `arg` (decl src ln 143)
+  asm line 281, src ln 143, col 0, gen 0
+Computing generations: `c` (decl src ln 154)
+  asm line 326, src ln 154, col 15, gen 0
+Computing generations: `direction` (decl src ln 155)
+  asm line 333, src ln 155, col 47, gen 0
+Computing generations: `fn` (decl src ln 143)
+  asm line 280, src ln 143, col 0, gen 0
+Computing generations: `i` (decl src ln 147)
+  asm line 286, src ln 147, col 0, gen 0
+  asm line 345, src ln 162, col 25, gen 1
+Computing generations: `klen` (decl src ln 142)
+  asm line 279, src ln 142, col 0, gen 0
+Computing generations: `kpfx` (decl src ln 142)
+  asm line 278, src ln 142, col 0, gen 0
+Computing generations: `p` (decl src ln 145)
+  asm line 284, src ln 145, col 25, gen 0
+  asm line 336, src ln 157, col 7, gen 1
+Computing generations: `q` (decl src ln 153)
+  asm line 312, src ln 153, col 23, gen 0
+Computing generations: `t` (decl src ln 142)
+  asm line 277, src ln 142, col 0, gen 0
+Computing generations: `top` (decl src ln 146)
+  asm line 285, src ln 145, col 25, gen 0
+  asm line 338, src ln 158, col 7, gen 1
+
+✅ 11 before variables found, 11 after variables found, 0 mismatched
+
+### Assignments
+
+❌ Live ranges for `direction` (decl src ln 155) don't match: src ln 155, col 22, gen 0 vs. src ln 155, col 47, gen 0
+❌ Live ranges for `i` (decl src ln 147) don't match: src ln 162, col 9, gen 0 vs. src ln 147, col 0, gen 0
+❌ Live ranges for `top` (decl src ln 146) don't match: src ln 146, col 24, gen 0 vs. src ln 145, col 25, gen 0
+❌ Before live range coverage
+  Covered:   8
+  Uncovered: 3
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+### Symbolic values
+
+#### Before values
+
+Assertion failed: (!valueType->isVoidTy() && !valueType->isFunctionTy() && !valueType->isVectorTy() && "Unexpected type when building symbolic value"), function buildSymbolicValue, file Executor.cpp, line 4714.
 PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
 Stack dump:
 0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x000000010af07617 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x000000010af06458 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x000000010af07c60 SignalHandler(int) + 288
+0  debug-info-check         0x00000001056a1667 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x00000001056a04a8 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x00000001056a1cb0 SignalHandler(int) + 288
 3  libsystem_platform.dylib 0x00007ff810197c1d _sigtramp + 29
-4  libsystem_platform.dylib 0x0000000110d49860 _sigtramp + 18446603374888164448
+4  libsystem_platform.dylib 0xffffffffffffe000 _sigtramp + 18446603370310820864
 5  libsystem_c.dylib        0x00007ff8100b6ca5 abort + 123
 6  libsystem_c.dylib        0x00007ff8100b5fbe err + 0
-7  debug-info-check         0x0000000109439e4e addAssignment(llvm::StringRef, klee::InstructionInfoTable const&, llvm::DbgVariableIntrinsic const*, Variable const&, llvm::StringRef, llvm::Instruction const*, llvm::SmallVector<llvm::Value const*, 2u> const&&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 3646
-8  debug-info-check         0x000000010943b483 gatherAssignments(llvm::StringRef, llvm::Instruction const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 2083
-9  debug-info-check         0x000000010943bac3 gatherAssignments(llvm::StringRef, llvm::Function const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 355
-10 debug-info-check         0x00000001094406d1 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 1041
-11 debug-info-check         0x0000000109442cde main + 1742
-12 dyld                     0x00007ff80fe3a310 start + 2432
-./check.sh: line 6: 23895 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+7  debug-info-check         0x0000000103c54e8f klee::Executor::buildSymbolicValue(klee::ExecutionState&, llvm::Value const*, llvm::Type*, llvm::Twine const&) + 191
+8  debug-info-check         0x0000000103c55309 klee::Executor::buildSymbolicValue(klee::ExecutionState&, llvm::Value const*, llvm::Type*, llvm::Twine const&) + 1337
+9  debug-info-check         0x0000000103c6911f klee::Executor::enterIndependentFunction(klee::ExecutionState&, klee::KFunction*) + 335
+10 debug-info-check         0x0000000103c694d9 klee::Executor::runFunction(llvm::Function*) + 137
+11 debug-info-check         0x0000000103c10c0a collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1338
+12 debug-info-check         0x0000000103bdb5e9 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 4825
+13 debug-info-check         0x0000000103bdcd2e main + 1742
+14 dyld                     0x00007ff80fe3a310 start + 2432
+./check.sh: line 6: 43547 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
