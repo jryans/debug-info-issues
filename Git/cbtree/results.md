@@ -311,6 +311,36 @@ Before variable `direction` (decl src ln 102)
 Store to `direction` (decl src ln 102), asm ln 275
   %conv75 = sext i32 %shr74 to i64, l113 c15, asm ln 274
   Added assignment starting at src ln 113, col 15
+Computing generations: `c` (decl src ln 64)
+  asm line 153, src ln 91, col 6, gen 0
+  asm line 264, src ln 112, col 7, gen 1
+Computing generations: `direction` (decl src ln 102)
+  asm line 275, src ln 113, col 15, gen 0
+Computing generations: `klen` (decl src ln 61)
+  asm line 28, src ln 61, col 0, gen 0
+Computing generations: `newbyte` (decl src ln 63)
+  asm line 67, src ln 79, col 15, gen 0
+  asm line 101, src ln 79, col 43, gen 1
+Computing generations: `newdirection` (decl src ln 65)
+  asm line 161, src ln 92, col 17, gen 0
+Computing generations: `newotherbits` (decl src ln 63)
+  asm line 125, src ln 86, col 17, gen 0
+  asm line 130, src ln 87, col 15, gen 1
+  asm line 135, src ln 88, col 15, gen 2
+  asm line 140, src ln 89, col 15, gen 3
+  asm line 147, src ln 90, col 55, gen 4
+Computing generations: `node` (decl src ln 61)
+  asm line 26, src ln 61, col 0, gen 0
+Computing generations: `p` (decl src ln 66)
+  asm line 66, src ln 76, col 6, gen 0
+  asm line 190, src ln 104, col 7, gen 1
+Computing generations: `q` (decl src ln 101)
+  asm line 204, src ln 107, col 7, gen 0
+Computing generations: `t` (decl src ln 61)
+  asm line 24, src ln 61, col 0, gen 0
+Computing generations: `wherep` (decl src ln 66)
+  asm line 182, src ln 99, col 15, gen 0
+  asm line 281, src ln 114, col 21, gen 1
 
 After variable `t` (decl src ln 61)
 @dbg.value mapping for `t` (decl src ln 61), asm ln 12
@@ -406,51 +436,63 @@ After variable `newbyte` (decl src ln 63)
 @dbg.value mapping for `newbyte` (decl src ln 63), asm ln 45
 Value produced for `newbyte` (decl src ln 63), asm ln 45
   %newbyte.0154 = phi i64 [ %inc, %for.inc ], [ 0, %for.body.preheader ], asm ln 42
-  Checking phi edge [ %inc, %for.inc ]
-  Last assignment for phi edge: 0, src ln 79, col 43
-  Checking phi edge [ i64 0, %for.body.preheader ]
-  Last assignment for phi edge: 0, src ln 63, col 0
-  All phi values same as last assignments, skipping
+❌ Value produced for `newbyte` (decl src ln 63): missing line info, using decl ln
+  Added assignment starting at src ln 63, col 0
 After variable `wherep` (decl src ln 66)
 @dbg.value mapping for `wherep` (decl src ln 66), asm ln 104
 Value produced for `wherep` (decl src ln 66), asm ln 104
   %wherep.0 = phi %struct.cb_node.4** [ %11, %different_byte_found ], [ %wherep.1, %cleanup ], l99 c9, asm ln 103
-  Checking phi edge [   %11 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, !dbg !71, %different_byte_found ]
-  Last assignment for phi edge: 0, src ln 70, col 10
-  Phi edge value mismatch
-    %root175 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, l70 c10
-      %11 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, !dbg !71
-  Added assignment starting at src ln 99, col 9
+  Phi-based assignment in prologue, skipping
 After variable `c` (decl src ln 64)
 @dbg.value mapping for `c` (decl src ln 64), asm ln 144
 Value produced for `c` (decl src ln 64), asm ln 144
   %cond = phi i8 [ %17, %cond.true ], [ 0, %if.end58 ], l112 c7, asm ln 143
-  Checking phi edge [   %17 = load i8, i8* %arrayidx66, align 1, !dbg !152, !tbaa !92, %cond.true ]
-  Phi node with multiple predecessors
-  Added assignment starting at src ln 112, col 7
+  Phi-based assignment in prologue, skipping
 After variable `wherep` (decl src ln 66)
 @dbg.value mapping for `wherep` (decl src ln 66), asm ln 160
 Value produced for `wherep` (decl src ln 66), asm ln 160
   %wherep.1 = phi %struct.cb_node.4** [ %add.ptr, %cond.end ], [ %wherep.0, %for.cond37 ], [ %wherep.0, %if.end41 ], [ %wherep.0, %land.lhs.true ], asm ln 158
-  Checking phi edge [ %add.ptr, %cond.end ]
-  Last assignment for phi edge: 0, src ln 114, col 21
-  Checking phi edge [ %wherep.0, %for.cond37 ]
-  Last assignment for phi edge: 0, src ln 99, col 9
-  Checking phi edge [ %wherep.0, %if.end41 ]
-  Last assignment for phi edge: 0, src ln 99, col 9
-  Checking phi edge [ %wherep.0, %land.lhs.true ]
-  Last assignment for phi edge: 0, src ln 99, col 9
-  All phi values same as last assignments, skipping
+  Phi-based assignment in prologue, skipping
+Computing generations: `c` (decl src ln 64)
+  asm line 83, src ln 80, col 7, gen 0
+Computing generations: `direction` (decl src ln 102)
+  asm line 152, src ln 113, col 40, gen 0
+Computing generations: `klen` (decl src ln 61)
+  asm line 14, src ln 61, col 0, gen 0
+Computing generations: `newbyte` (decl src ln 63)
+  asm line 34, src ln 63, col 0, gen 0
+  asm line 45, src ln 63, col 0, gen 1
+  asm line 58, src ln 79, col 43, gen 2
+Computing generations: `newdirection` (decl src ln 65)
+  asm line 87, src ln 92, col 42, gen 0
+Computing generations: `newotherbits` (decl src ln 63)
+  asm line 68, src ln 86, col 17, gen 0
+  asm line 71, src ln 87, col 15, gen 1
+  asm line 74, src ln 88, col 15, gen 2
+  asm line 77, src ln 89, col 15, gen 3
+  asm line 82, src ln 90, col 55, gen 4
+Computing generations: `node` (decl src ln 61)
+  asm line 13, src ln 61, col 0, gen 0
+Computing generations: `p` (decl src ln 66)
+  asm line 33, src ln 76, col 6, gen 0
+  asm line 106, src ln 104, col 7, gen 1
+Computing generations: `q` (decl src ln 101)
+  asm line 115, src ln 107, col 7, gen 0
+Computing generations: `t` (decl src ln 61)
+  asm line 12, src ln 61, col 0, gen 0
+Computing generations: `wherep` (decl src ln 66)
+  asm line 99, src ln 70, col 10, gen 0
+  asm line 154, src ln 114, col 21, gen 1
 
 ✅ 11 before variables found, 11 after variables found, 0 mismatched
 
 ### Assignments
 
-❌ Live ranges for `c` (decl src ln 64) don't match: [91.6,∞) vs. [80.7,∞)
-❌ Live ranges for `direction` (decl src ln 102) don't match: [113.15,∞) vs. [113.40,∞)
-❌ Live ranges for `newbyte` (decl src ln 63) don't match: [79.15,∞) vs. [63.0,∞)
-❌ Live ranges for `newdirection` (decl src ln 65) don't match: [92.17,∞) vs. [92.42,∞)
-❌ Live ranges for `wherep` (decl src ln 66) don't match: [99.15,∞) vs. [70.10,∞)
+❌ Live ranges for `c` (decl src ln 64) don't match: src ln 91, col 6, gen 0 vs. src ln 80, col 7, gen 0
+❌ Live ranges for `direction` (decl src ln 102) don't match: src ln 113, col 15, gen 0 vs. src ln 113, col 40, gen 0
+❌ Live ranges for `newbyte` (decl src ln 63) don't match: src ln 79, col 15, gen 0 vs. src ln 63, col 0, gen 0
+❌ Live ranges for `newdirection` (decl src ln 65) don't match: src ln 92, col 17, gen 0 vs. src ln 92, col 42, gen 0
+❌ Live ranges for `wherep` (decl src ln 66) don't match: src ln 99, col 15, gen 0 vs. src ln 70, col 10, gen 0
 ❌ Before live range coverage
   Covered:   6
   Uncovered: 5
@@ -504,25 +546,26 @@ Collected value for `klen`
 
 #### Check before against after
 
-🔔 After `c` (decl src ln 64) assn 0, src ln 80, col 7 coordinates don't match before assn 0, src ln 91, col 6
+🔔 After `c` (decl src ln 64) assn src ln 80, col 7, gen 0 coordinates don't match before assn src ln 91, col 6, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `c` (decl src ln 64) assn 0, src ln 91, col 6 has no symbolic value from %36 = load i8, i8* %arrayidx28, l91 c6
+❌ Before `c` (decl src ln 64) assn src ln 91, col 6, gen 0 has no symbolic value from %36 = load i8, i8* %arrayidx28, l91 c6
+🔔 After `c` (decl src ln 64) assn src ln 80, col 7, gen 0 coordinates don't match before assn src ln 112, col 7, gen 1
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `c` (decl src ln 64) assn 1, src ln 112, col 7 has no symbolic value from %conv68 = trunc i32 %cond to i8, l112 c7
-🔔 After `direction` (decl src ln 102) assn 0, src ln 113, col 40 coordinates don't match before assn 0, src ln 113, col 15
+❌ Before `c` (decl src ln 64) assn src ln 112, col 7, gen 1 has no symbolic value from %conv68 = trunc i32 %cond to i8, l112 c7
+🔔 After `direction` (decl src ln 102) assn src ln 113, col 40, gen 0 coordinates don't match before assn src ln 113, col 15, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `direction` (decl src ln 102) assn 0, src ln 113, col 15 has no symbolic value from %conv75 = sext i32 %shr74 to i64, l113 c15
+❌ Before `direction` (decl src ln 102) assn src ln 113, col 15, gen 0 has no symbolic value from %conv75 = sext i32 %shr74 to i64, l113 c15
 Checking equivalence of `klen` (decl src ln 61) from
-assn 0, src ln 61, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 61, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 and
-assn 0, src ln 61, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 61, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
@@ -530,65 +573,68 @@ array klen[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
-🔔 After `newbyte` (decl src ln 63) assn 0, src ln 63, col 0 coordinates don't match before assn 0, src ln 79, col 15
+
+🔔 After `newbyte` (decl src ln 63) assn src ln 63, col 0, gen 1 coordinates don't match before assn src ln 79, col 15, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newbyte` (decl src ln 63) assn 0, src ln 79, col 15 has no symbolic value from i64 0
+❌ Before `newbyte` (decl src ln 63) assn src ln 79, col 15, gen 0 has no symbolic value from i64 0
+🔔 After `newbyte` (decl src ln 63) assn src ln 63, col 0, gen 1 coordinates don't match before assn src ln 79, col 43, gen 1
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newbyte` (decl src ln 63) assn 1, src ln 79, col 43 has no symbolic value from %inc = add i64 %18, 1, l79 c43
-🔔 After `newdirection` (decl src ln 65) assn 0, src ln 92, col 42 coordinates don't match before assn 0, src ln 92, col 17
+❌ Before `newbyte` (decl src ln 63) assn src ln 79, col 43, gen 1 has no symbolic value from %inc = add i64 %18, 1, l79 c43
+🔔 After `newdirection` (decl src ln 65) assn src ln 92, col 42, gen 0 coordinates don't match before assn src ln 92, col 17, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newdirection` (decl src ln 65) assn 0, src ln 92, col 17 has no symbolic value from %conv32 = trunc i64 %shr31 to i32, l92 c17
+❌ Before `newdirection` (decl src ln 65) assn src ln 92, col 17, gen 0 has no symbolic value from %conv32 = trunc i64 %shr31 to i32, l92 c17
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newotherbits` (decl src ln 63) assn 0, src ln 86, col 17 has no symbolic value from %conv19 = sext i32 %xor to i64, l86 c17
+❌ Before `newotherbits` (decl src ln 63) assn src ln 86, col 17, gen 0 has no symbolic value from %conv19 = sext i32 %xor to i64, l86 c17
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newotherbits` (decl src ln 63) assn 1, src ln 87, col 15 has no symbolic value from %or = or i64 %27, %shr, l87 c15
+❌ Before `newotherbits` (decl src ln 63) assn src ln 87, col 15, gen 1 has no symbolic value from %or = or i64 %27, %shr, l87 c15
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newotherbits` (decl src ln 63) assn 2, src ln 88, col 15 has no symbolic value from %or21 = or i64 %29, %shr20, l88 c15
+❌ Before `newotherbits` (decl src ln 63) assn src ln 88, col 15, gen 2 has no symbolic value from %or21 = or i64 %29, %shr20, l88 c15
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newotherbits` (decl src ln 63) assn 3, src ln 89, col 15 has no symbolic value from %or23 = or i64 %31, %shr22, l89 c15
+❌ Before `newotherbits` (decl src ln 63) assn src ln 89, col 15, gen 3 has no symbolic value from %or23 = or i64 %31, %shr22, l89 c15
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `newotherbits` (decl src ln 63) assn 4, src ln 90, col 55 has no symbolic value from %xor26 = xor i64 %and25, 255, l90 c55
+❌ Before `newotherbits` (decl src ln 63) assn src ln 90, col 55, gen 4 has no symbolic value from %xor26 = xor i64 %and25, 255, l90 c55
 Checking equivalence of `node` (decl src ln 61) from
-assn 0, src ln 61, col 0
-%struct.cb_node.2* %node
-0xE5FBC9EAFE029AE2
+  assn src ln 61, col 0, gen 0
+  %struct.cb_node.2* %node
+  0xE5FBC9EAFE029AE2
 and
-assn 0, src ln 61, col 0
-%struct.cb_node.4* %node
-0xE5FBC9EAFE029AE2
+  assn src ln 61, col 0, gen 0
+  %struct.cb_node.4* %node
+  0xE5FBC9EAFE029AE2
+
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `p` (decl src ln 66) assn 0, src ln 76, col 6 has no symbolic value from %call4 = call %struct.cb_node.2* @cb_internal_best_match(%struct.cb_node.2* %7, i8* %arraydecay, i64 %9), l76 c6
+❌ Before `p` (decl src ln 66) assn src ln 76, col 6, gen 0 has no symbolic value from %call4 = call %struct.cb_node.2* @cb_internal_best_match(%struct.cb_node.2* %7, i8* %arraydecay, i64 %9), l76 c6
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `p` (decl src ln 66) assn 1, src ln 104, col 7 has no symbolic value from %48 = load %struct.cb_node.2*, %struct.cb_node.2** %47, l104 c7
+❌ Before `p` (decl src ln 66) assn src ln 104, col 7, gen 1 has no symbolic value from %48 = load %struct.cb_node.2*, %struct.cb_node.2** %47, l104 c7
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `q` (decl src ln 101) assn 0, src ln 107, col 7 has no symbolic value from %call42 = call %struct.cb_node.2* @cb_node_of(i8* %52), l107 c7
+❌ Before `q` (decl src ln 101) assn src ln 107, col 7, gen 0 has no symbolic value from %call42 = call %struct.cb_node.2* @cb_node_of(i8* %52), l107 c7
 Checking equivalence of `t` (decl src ln 61) from
-assn 0, src ln 61, col 0
-%struct.cb_tree.3* %t
-0x8292380893C10F33
+  assn src ln 61, col 0, gen 0
+  %struct.cb_tree.3* %t
+  0x8292380893C10F33
 and
-assn 0, src ln 61, col 0
-%struct.cb_tree.5* %t
-0x8292380893C10F33
-🔔 After `wherep` (decl src ln 66) assn 1, src ln 99, col 9 coordinates don't match before assn 0, src ln 99, col 15
+  assn src ln 61, col 0, gen 0
+  %struct.cb_tree.5* %t
+  0x8292380893C10F33
+
+🔔 After `wherep` (decl src ln 66) assn src ln 70, col 10, gen 0 coordinates don't match before assn src ln 99, col 15, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `wherep` (decl src ln 66) assn 0, src ln 99, col 15 has no symbolic value from %root36 = getelementptr inbounds %struct.cb_tree.3, %struct.cb_tree.3* %46, i32 0, i32 0, l99 c15
-🔔 After `wherep` (decl src ln 66) assn 2, src ln 114, col 21 coordinates don't match before assn 1, src ln 114, col 21
+❌ Before `wherep` (decl src ln 66) assn src ln 99, col 15, gen 0 has no symbolic value from %root36 = getelementptr inbounds %struct.cb_tree.3, %struct.cb_tree.3* %46, i32 0, i32 0, l99 c15
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ Before `wherep` (decl src ln 66) assn 1, src ln 114, col 21 has no symbolic value from %add.ptr = getelementptr inbounds %struct.cb_node.2*, %struct.cb_node.2** %arraydecay77, i64 %73, l114 c21
+❌ Before `wherep` (decl src ln 66) assn src ln 114, col 21, gen 1 has no symbolic value from %add.ptr = getelementptr inbounds %struct.cb_node.2*, %struct.cb_node.2** %arraydecay77, i64 %73, l114 c21
 ❌ Before symbolic values checked against after
   Matching:    3
   Mismatched:  16
@@ -598,25 +644,22 @@ Expected 1 symbolic value(s), got 0
 
 #### Check after against before
 
-🔔 Before `c` (decl src ln 64) assn 0, src ln 91, col 6 coordinates don't match after assn 0, src ln 80, col 7
+🔔 Before `c` (decl src ln 64) assn src ln 91, col 6, gen 0 coordinates don't match after assn src ln 80, col 7, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `c` (decl src ln 64) assn 0, src ln 80, col 7 has no symbolic value from %8 = load i8, i8* %scevgep, !tbaa !95, l80 c7
+❌ After `c` (decl src ln 64) assn src ln 80, col 7, gen 0 has no symbolic value from %8 = load i8, i8* %scevgep, !tbaa !95, l80 c7
+🔔 Before `direction` (decl src ln 102) assn src ln 113, col 15, gen 0 coordinates don't match after assn src ln 113, col 40, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `c` (decl src ln 64) assn 1, src ln 112, col 7 has no symbolic value from %cond = phi i8 [ %17, %cond.true ], [ 0, %if.end58 ], l112 c7
-🔔 Before `direction` (decl src ln 102) assn 0, src ln 113, col 15 coordinates don't match after assn 0, src ln 113, col 40
-Expected 1 symbolic value(s), got 0
-Expected 1 symbolic value(s), got 0
-❌ After `direction` (decl src ln 102) assn 0, src ln 113, col 40 has no symbolic value from %19 = lshr i64 %add73, 8, l113 c40
+❌ After `direction` (decl src ln 102) assn src ln 113, col 40, gen 0 has no symbolic value from %19 = lshr i64 %add73, 8, l113 c40
 Checking equivalence of `klen` (decl src ln 61) from
-assn 0, src ln 61, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 61, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 and
-assn 0, src ln 61, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 61, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
@@ -624,72 +667,75 @@ array klen[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
-🔔 Before `newbyte` (decl src ln 63) assn 0, src ln 79, col 15 coordinates don't match after assn 0, src ln 63, col 0
+
+🔔 Before `newbyte` (decl src ln 63) assn src ln 79, col 15, gen 0 coordinates don't match after assn src ln 63, col 0, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newbyte` (decl src ln 63) assn 0, src ln 63, col 0 has no symbolic value from i64 0
+❌ After `newbyte` (decl src ln 63) assn src ln 63, col 0, gen 0 has no symbolic value from i64 0
+🔔 Before `newbyte` (decl src ln 63) assn src ln 79, col 15, gen 0 coordinates don't match after assn src ln 63, col 0, gen 1
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newbyte` (decl src ln 63) assn 1, src ln 79, col 43 has no symbolic value from %inc = add nuw i64 %newbyte.0154, 1, l79 c43
-🔔 Before `newdirection` (decl src ln 65) assn 0, src ln 92, col 17 coordinates don't match after assn 0, src ln 92, col 42
+❌ After `newbyte` (decl src ln 63) assn src ln 63, col 0, gen 1 has no symbolic value from %newbyte.0154 = phi i64 [ %inc, %for.inc ], [ 0, %if.end ]
+🔔 Before `newbyte` (decl src ln 63) assn src ln 79, col 43, gen 1 coordinates don't match after assn src ln 79, col 43, gen 2
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newdirection` (decl src ln 65) assn 0, src ln 92, col 42 has no symbolic value from %shr31 = lshr i64 %add, 8, l92 c42
+❌ After `newbyte` (decl src ln 63) assn src ln 79, col 43, gen 2 has no symbolic value from %inc = add nuw i64 %newbyte.0154, 1, l79 c43
+🔔 Before `newdirection` (decl src ln 65) assn src ln 92, col 17, gen 0 coordinates don't match after assn src ln 92, col 42, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newotherbits` (decl src ln 63) assn 0, src ln 86, col 17 has no symbolic value from %conv19 = zext i8 %xor148 to i64, l86 c17
+❌ After `newdirection` (decl src ln 65) assn src ln 92, col 42, gen 0 has no symbolic value from %shr31 = lshr i64 %add, 8, l92 c42
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newotherbits` (decl src ln 63) assn 1, src ln 87, col 15 has no symbolic value from %or = or i64 %shr, %conv19, l87 c15
+❌ After `newotherbits` (decl src ln 63) assn src ln 86, col 17, gen 0 has no symbolic value from %conv19 = zext i8 %xor148 to i64, l86 c17
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newotherbits` (decl src ln 63) assn 2, src ln 88, col 15 has no symbolic value from %or21 = or i64 %shr20, %or, l88 c15
+❌ After `newotherbits` (decl src ln 63) assn src ln 87, col 15, gen 1 has no symbolic value from %or = or i64 %shr, %conv19, l87 c15
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newotherbits` (decl src ln 63) assn 3, src ln 89, col 15 has no symbolic value from %or23 = or i64 %shr22, %or21, l89 c15
+❌ After `newotherbits` (decl src ln 63) assn src ln 88, col 15, gen 2 has no symbolic value from %or21 = or i64 %shr20, %or, l88 c15
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `newotherbits` (decl src ln 63) assn 4, src ln 90, col 55 has no symbolic value from %xor26 = xor i64 %and25, 255, l90 c55
+❌ After `newotherbits` (decl src ln 63) assn src ln 89, col 15, gen 3 has no symbolic value from %or23 = or i64 %shr22, %or21, l89 c15
+Expected 1 symbolic value(s), got 0
+Expected 1 symbolic value(s), got 0
+❌ After `newotherbits` (decl src ln 63) assn src ln 90, col 55, gen 4 has no symbolic value from %xor26 = xor i64 %and25, 255, l90 c55
 Checking equivalence of `node` (decl src ln 61) from
-assn 0, src ln 61, col 0
-%struct.cb_node.4* %node
-0xE5FBC9EAFE029AE2
+  assn src ln 61, col 0, gen 0
+  %struct.cb_node.4* %node
+  0xE5FBC9EAFE029AE2
 and
-assn 0, src ln 61, col 0
-%struct.cb_node.2* %node
-0xE5FBC9EAFE029AE2
+  assn src ln 61, col 0, gen 0
+  %struct.cb_node.2* %node
+  0xE5FBC9EAFE029AE2
+
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `p` (decl src ln 66) assn 0, src ln 76, col 6 has no symbolic value from %call4 = call fastcc %struct.cb_node.4* @cb_internal_best_match(%struct.cb_node.4* nonnull %4, i8* nonnull %arraydecay, i64 %klen), l76 c6
+❌ After `p` (decl src ln 66) assn src ln 76, col 6, gen 0 has no symbolic value from %call4 = call fastcc %struct.cb_node.4* @cb_internal_best_match(%struct.cb_node.4* nonnull %4, i8* nonnull %arraydecay, i64 %klen), l76 c6
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `p` (decl src ln 66) assn 1, src ln 104, col 7 has no symbolic value from %12 = load %struct.cb_node.4*, %struct.cb_node.4** %wherep.0, !tbaa !130, l104 c7
+❌ After `p` (decl src ln 66) assn src ln 104, col 7, gen 1 has no symbolic value from %12 = load %struct.cb_node.4*, %struct.cb_node.4** %wherep.0, !tbaa !130, l104 c7
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `q` (decl src ln 101) assn 0, src ln 107, col 7 has no symbolic value from %call42 = call fastcc %struct.cb_node.4* @cb_node_of(i8* %14), l107 c7
+❌ After `q` (decl src ln 101) assn src ln 107, col 7, gen 0 has no symbolic value from %call42 = call fastcc %struct.cb_node.4* @cb_node_of(i8* %14), l107 c7
 Checking equivalence of `t` (decl src ln 61) from
-assn 0, src ln 61, col 0
-%struct.cb_tree.5* %t
-0x8292380893C10F33
+  assn src ln 61, col 0, gen 0
+  %struct.cb_tree.5* %t
+  0x8292380893C10F33
 and
-assn 0, src ln 61, col 0
-%struct.cb_tree.3* %t
-0x8292380893C10F33
-🔔 Before `wherep` (decl src ln 66) assn 0, src ln 99, col 15 coordinates don't match after assn 0, src ln 70, col 10
+  assn src ln 61, col 0, gen 0
+  %struct.cb_tree.3* %t
+  0x8292380893C10F33
+
+🔔 Before `wherep` (decl src ln 66) assn src ln 99, col 15, gen 0 coordinates don't match after assn src ln 70, col 10, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `wherep` (decl src ln 66) assn 0, src ln 70, col 10 has no symbolic value from %root175 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, l70 c10
-🔔 Before `wherep` (decl src ln 66) assn 0, src ln 99, col 15 coordinates don't match after assn 1, src ln 99, col 9
+❌ After `wherep` (decl src ln 66) assn src ln 70, col 10, gen 0 has no symbolic value from %root175 = bitcast %struct.cb_tree.5* %t to %struct.cb_node.4**, l70 c10
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-❌ After `wherep` (decl src ln 66) assn 1, src ln 99, col 9 has no symbolic value from %wherep.0 = phi %struct.cb_node.4** [ %11, %different_byte_found ], [ %wherep.1, %cleanup ], l99 c9
-🔔 Before `wherep` (decl src ln 66) assn 1, src ln 114, col 21 coordinates don't match after assn 2, src ln 114, col 21
-Expected 1 symbolic value(s), got 0
-Expected 1 symbolic value(s), got 0
-❌ After `wherep` (decl src ln 66) assn 2, src ln 114, col 21 has no symbolic value from %add.ptr = getelementptr inbounds %struct.cb_node.4, %struct.cb_node.4* %call42, i64 0, i32 0, i64 %19, l114 c21
+❌ After `wherep` (decl src ln 66) assn src ln 114, col 21, gen 1 has no symbolic value from %add.ptr = getelementptr inbounds %struct.cb_node.4, %struct.cb_node.4* %call42, i64 0, i32 0, i64 %19, l114 c21
 ❌ After symbolic values checked against before
   Matching:    3
-  Mismatched:  17
+  Mismatched:  16
   Unused:      0
   Unreachable: 0
   Removable:   0
@@ -727,6 +773,19 @@ Before variable `direction` (decl src ln 53)
 Store to `direction` (decl src ln 53), asm ln 380
   %conv7 = sext i32 %shr to i64, l53 c22, asm ln 379
   Added assignment starting at src ln 53, col 22
+Computing generations: `p` (decl src ln 47)
+  asm line 321, src ln 47, col 0, gen 0
+  asm line 386, src ln 55, col 7, gen 1
+Computing generations: `k` (decl src ln 48)
+  asm line 323, src ln 48, col 0, gen 0
+Computing generations: `klen` (decl src ln 48)
+  asm line 325, src ln 48, col 0, gen 0
+Computing generations: `q` (decl src ln 51)
+  asm line 341, src ln 51, col 23, gen 0
+Computing generations: `c` (decl src ln 52)
+  asm line 368, src ln 52, col 15, gen 0
+Computing generations: `direction` (decl src ln 53)
+  asm line 380, src ln 53, col 22, gen 0
 
 After variable `p` (decl src ln 47)
 @dbg.value mapping for `p` (decl src ln 47), asm ln 185
@@ -762,24 +821,31 @@ After variable `p` (decl src ln 47)
 @dbg.value mapping for `p` (decl src ln 47), asm ln 195
 Value produced for `p` (decl src ln 47), asm ln 195
   %p.addr.019 = phi %struct.cb_node.12* [ %6, %cond.end ], [ %p, %entry ], asm ln 194
-  Checking phi edge [   %6 = load %struct.cb_node.12*, %struct.cb_node.12** %arrayidx8, align 8, !dbg !75, !tbaa !76, %cond.end ]
-  Last assignment for phi edge: 0, src ln 55, col 7
-  Checking phi edge [ %p, %entry ]
-  Last assignment for phi edge: 0, src ln 47, col 0
-  All phi values same as last assignments, skipping
+  Phi-based assignment in prologue, skipping
 After variable `c` (decl src ln 52)
 @dbg.value mapping for `c` (decl src ln 52), asm ln 212
 Value produced for `c` (decl src ln 52), asm ln 212
   %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l52 c15, asm ln 211
-  Checking phi edge [   %3 = load i8, i8* %arrayidx, align 1, !dbg !69, !tbaa !70, %cond.true ]
-  Phi node with multiple predecessors
   Added assignment starting at src ln 52, col 15
+Computing generations: `p` (decl src ln 47)
+  asm line 185, src ln 47, col 0, gen 0
+  asm line 222, src ln 55, col 7, gen 1
+Computing generations: `k` (decl src ln 48)
+  asm line 186, src ln 48, col 0, gen 0
+Computing generations: `klen` (decl src ln 48)
+  asm line 187, src ln 48, col 0, gen 0
+Computing generations: `q` (decl src ln 51)
+  asm line 198, src ln 51, col 23, gen 0
+Computing generations: `direction` (decl src ln 53)
+  asm line 219, src ln 53, col 47, gen 0
+Computing generations: `c` (decl src ln 52)
+  asm line 212, src ln 52, col 15, gen 0
 
 ✅ 6 before variables found, 6 after variables found, 0 mismatched
 
 ### Assignments
 
-❌ Live ranges for `direction` (decl src ln 53) don't match: [53.22,∞) vs. [53.47,∞)
+❌ Live ranges for `direction` (decl src ln 53) don't match: src ln 53, col 22, gen 0 vs. src ln 53, col 47, gen 0
 ❌ Before live range coverage
   Covered:   5
   Uncovered: 1
@@ -825,27 +891,28 @@ Collected value for `klen`
 
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 Before `c` (decl src ln 52) assn 0, src ln 52, col 15 has no symbolic value (likely unreachable) from %conv4 = trunc i32 %cond to i8, l52 c15
-🔔 After `direction` (decl src ln 53) assn 0, src ln 53, col 47 coordinates don't match before assn 0, src ln 53, col 22
+🔔 Before `c` (decl src ln 52) assn src ln 52, col 15, gen 0 has no symbolic value (likely unreachable) from %conv4 = trunc i32 %cond to i8, l52 c15
+🔔 After `direction` (decl src ln 53) assn src ln 53, col 47, gen 0 coordinates don't match before assn src ln 53, col 22, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 Before `direction` (decl src ln 53) assn 0, src ln 53, col 22 has no symbolic value (likely unreachable) from %conv7 = sext i32 %shr to i64, l53 c22
+🔔 Before `direction` (decl src ln 53) assn src ln 53, col 22, gen 0 has no symbolic value (likely unreachable) from %conv7 = sext i32 %shr to i64, l53 c22
 Checking equivalence of `k` (decl src ln 48) from
-assn 0, src ln 48, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 48, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
 and
-assn 0, src ln 48, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 48, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
 Checking equivalence of `klen` (decl src ln 48) from
-assn 0, src ln 48, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 48, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 and
-assn 0, src ln 48, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 48, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
@@ -853,20 +920,22 @@ array klen[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
+
 Checking equivalence of `p` (decl src ln 47) from
-assn 0, src ln 47, col 0
-%struct.cb_node.10* %p
-0x6B9649B5C91006F4
+  assn src ln 47, col 0, gen 0
+  %struct.cb_node.10* %p
+  0x6B9649B5C91006F4
 and
-assn 0, src ln 47, col 0
-%struct.cb_node.12* %p
-0x6B9649B5C91006F4
+  assn src ln 47, col 0, gen 0
+  %struct.cb_node.12* %p
+  0x6B9649B5C91006F4
+
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 Before `p` (decl src ln 47) assn 1, src ln 55, col 7 has no symbolic value (likely unreachable) from %16 = load %struct.cb_node.10*, %struct.cb_node.10** %arrayidx8, l55 c7
+🔔 Before `p` (decl src ln 47) assn src ln 55, col 7, gen 1 has no symbolic value (likely unreachable) from %16 = load %struct.cb_node.10*, %struct.cb_node.10** %arrayidx8, l55 c7
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 Before `q` (decl src ln 51) assn 0, src ln 51, col 23 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.10* @cb_node_of(i8* %3), l51 c23
+🔔 Before `q` (decl src ln 51) assn src ln 51, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call %struct.cb_node.10* @cb_node_of(i8* %3), l51 c23
 ✅ Before symbolic values checked against after
   Matching:    3
   Mismatched:  0
@@ -878,27 +947,28 @@ Expected 1 symbolic value(s), got 0
 
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 After `c` (decl src ln 52) assn 0, src ln 52, col 15 has no symbolic value (likely unreachable) from %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l52 c15
-🔔 Before `direction` (decl src ln 53) assn 0, src ln 53, col 22 coordinates don't match after assn 0, src ln 53, col 47
+🔔 After `c` (decl src ln 52) assn src ln 52, col 15, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l52 c15
+🔔 Before `direction` (decl src ln 53) assn src ln 53, col 22, gen 0 coordinates don't match after assn src ln 53, col 47, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 After `direction` (decl src ln 53) assn 0, src ln 53, col 47 has no symbolic value (likely unreachable) from %5 = lshr i64 %add, 8, l53 c47
+🔔 After `direction` (decl src ln 53) assn src ln 53, col 47, gen 0 has no symbolic value (likely unreachable) from %5 = lshr i64 %add, 8, l53 c47
 Checking equivalence of `k` (decl src ln 48) from
-assn 0, src ln 48, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 48, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
 and
-assn 0, src ln 48, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 48, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
 Checking equivalence of `klen` (decl src ln 48) from
-assn 0, src ln 48, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 48, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 and
-assn 0, src ln 48, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 48, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
@@ -906,20 +976,22 @@ array klen[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
+
 Checking equivalence of `p` (decl src ln 47) from
-assn 0, src ln 47, col 0
-%struct.cb_node.12* %p
-0x6B9649B5C91006F4
+  assn src ln 47, col 0, gen 0
+  %struct.cb_node.12* %p
+  0x6B9649B5C91006F4
 and
-assn 0, src ln 47, col 0
-%struct.cb_node.10* %p
-0x6B9649B5C91006F4
+  assn src ln 47, col 0, gen 0
+  %struct.cb_node.10* %p
+  0x6B9649B5C91006F4
+
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 After `p` (decl src ln 47) assn 1, src ln 55, col 7 has no symbolic value (likely unreachable) from %6 = load %struct.cb_node.12*, %struct.cb_node.12** %arrayidx8, !tbaa !79, l55 c7
+🔔 After `p` (decl src ln 47) assn src ln 55, col 7, gen 1 has no symbolic value (likely unreachable) from %6 = load %struct.cb_node.12*, %struct.cb_node.12** %arrayidx8, !tbaa !79, l55 c7
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 After `q` (decl src ln 51) assn 0, src ln 51, col 23 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.12* @cb_node_of(i8* %1), l51 c23
+🔔 After `q` (decl src ln 51) assn src ln 51, col 23, gen 0 has no symbolic value (likely unreachable) from %call = call fastcc %struct.cb_node.12* @cb_node_of(i8* %1), l51 c23
 ✅ After symbolic values checked against before
   Matching:    3
   Mismatched:  0
@@ -937,12 +1009,16 @@ Before variable `p` (decl src ln 41)
 Store to `p` (decl src ln 41), asm ln 401
   arg 0
   Added assignment starting at src ln 41, col 0
+Computing generations: `p` (decl src ln 41)
+  asm line 401, src ln 41, col 0, gen 0
 
 After variable `p` (decl src ln 41)
 @dbg.value mapping for `p` (decl src ln 41), asm ln 239
 Value produced for `p` (decl src ln 41), asm ln 239
   arg 0
   Added assignment starting at src ln 41, col 0
+Computing generations: `p` (decl src ln 41)
+  asm line 239, src ln 41, col 0, gen 0
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -976,13 +1052,14 @@ Collected value for `p`
 #### Check before against after
 
 Checking equivalence of `p` (decl src ln 41) from
-assn 0, src ln 41, col 0
-i8* %p
-0x6B9649B5C91006F4
+  assn src ln 41, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
 and
-assn 0, src ln 41, col 0
-i8* %p
-0x6B9649B5C91006F4
+  assn src ln 41, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
+
 ✅ Before symbolic values checked against after
   Matching:    1
   Mismatched:  0
@@ -993,13 +1070,14 @@ i8* %p
 #### Check after against before
 
 Checking equivalence of `p` (decl src ln 41) from
-assn 0, src ln 41, col 0
-i8* %p
-0x6B9649B5C91006F4
+  assn src ln 41, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
 and
-assn 0, src ln 41, col 0
-i8* %p
-0x6B9649B5C91006F4
+  assn src ln 41, col 0, gen 0
+  i8* %p
+  0x6B9649B5C91006F4
+
 ✅ After symbolic values checked against before
   Matching:    1
   Mismatched:  0
@@ -1029,6 +1107,14 @@ Before variable `p` (decl src ln 125)
 Store to `p` (decl src ln 125), asm ln 430
   %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22, asm ln 429
   Added assignment starting at src ln 125, col 22
+Computing generations: `t` (decl src ln 123)
+  asm line 417, src ln 123, col 0, gen 0
+Computing generations: `k` (decl src ln 123)
+  asm line 419, src ln 123, col 0, gen 0
+Computing generations: `klen` (decl src ln 123)
+  asm line 421, src ln 123, col 0, gen 0
+Computing generations: `p` (decl src ln 125)
+  asm line 430, src ln 125, col 22, gen 0
 
 After variable `t` (decl src ln 123)
 @dbg.value mapping for `t` (decl src ln 123), asm ln 249
@@ -1050,6 +1136,14 @@ After variable `p` (decl src ln 125)
 Value produced for `p` (decl src ln 125), asm ln 255
   %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22, asm ln 254
   Added assignment starting at src ln 125, col 22
+Computing generations: `t` (decl src ln 123)
+  asm line 249, src ln 123, col 0, gen 0
+Computing generations: `k` (decl src ln 123)
+  asm line 250, src ln 123, col 0, gen 0
+Computing generations: `klen` (decl src ln 123)
+  asm line 251, src ln 123, col 0, gen 0
+Computing generations: `p` (decl src ln 125)
+  asm line 255, src ln 125, col 22, gen 0
 
 ✅ 4 before variables found, 4 after variables found, 0 mismatched
 
@@ -1109,21 +1203,22 @@ Collected value for `p`
 #### Check before against after
 
 Checking equivalence of `k` (decl src ln 123) from
-assn 0, src ln 123, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 123, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
 and
-assn 0, src ln 123, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 123, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
 Checking equivalence of `klen` (decl src ln 123) from
-assn 0, src ln 123, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 123, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 and
-assn 0, src ln 123, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 123, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
@@ -1131,22 +1226,25 @@ array klen[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
+
 Checking equivalence of `p` (decl src ln 125) from
-assn 0, src ln 125, col 22
-%call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
-0xDBD6D2BE1EF15D48
+  assn src ln 125, col 22, gen 0
+  %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
+  0xDBD6D2BE1EF15D48
 and
-assn 0, src ln 125, col 22
-%call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
-0xDBD6D2BE1EF15D48
+  assn src ln 125, col 22, gen 0
+  %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
+  0xDBD6D2BE1EF15D48
+
 Checking equivalence of `t` (decl src ln 123) from
-assn 0, src ln 123, col 0
-%struct.cb_tree.27* %t
-0x8292380893C10F33
+  assn src ln 123, col 0, gen 0
+  %struct.cb_tree.27* %t
+  0x8292380893C10F33
 and
-assn 0, src ln 123, col 0
-%struct.cb_tree.29* %t
-0x8292380893C10F33
+  assn src ln 123, col 0, gen 0
+  %struct.cb_tree.29* %t
+  0x8292380893C10F33
+
 ✅ Before symbolic values checked against after
   Matching:    4
   Mismatched:  0
@@ -1157,21 +1255,22 @@ assn 0, src ln 123, col 0
 #### Check after against before
 
 Checking equivalence of `k` (decl src ln 123) from
-assn 0, src ln 123, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 123, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
 and
-assn 0, src ln 123, col 0
-i8* %k
-0x6E0F93060F5E7E8D
+  assn src ln 123, col 0, gen 0
+  i8* %k
+  0x6E0F93060F5E7E8D
+
 Checking equivalence of `klen` (decl src ln 123) from
-assn 0, src ln 123, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 123, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 and
-assn 0, src ln 123, col 0
-i64 %klen
-(ReadLSB w64 0x0 klen)
+  assn src ln 123, col 0, gen 0
+  i64 %klen
+  (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
@@ -1179,22 +1278,25 @@ array klen[8] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
+
 Checking equivalence of `p` (decl src ln 125) from
-assn 0, src ln 125, col 22
-%call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
-0xDBD6D2BE1EF15D48
+  assn src ln 125, col 22, gen 0
+  %call = call fastcc %struct.cb_node.28* @cb_internal_best_match(%struct.cb_node.28* %0, i8* %k, i64 %klen), l125 c22
+  0xDBD6D2BE1EF15D48
 and
-assn 0, src ln 125, col 22
-%call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
-0xDBD6D2BE1EF15D48
+  assn src ln 125, col 22, gen 0
+  %call = call %struct.cb_node.26* @cb_internal_best_match(%struct.cb_node.26* %1, i8* %2, i64 %3), l125 c22
+  0xDBD6D2BE1EF15D48
+
 Checking equivalence of `t` (decl src ln 123) from
-assn 0, src ln 123, col 0
-%struct.cb_tree.29* %t
-0x8292380893C10F33
+  assn src ln 123, col 0, gen 0
+  %struct.cb_tree.29* %t
+  0x8292380893C10F33
 and
-assn 0, src ln 123, col 0
-%struct.cb_tree.27* %t
-0x8292380893C10F33
+  assn src ln 123, col 0, gen 0
+  %struct.cb_tree.27* %t
+  0x8292380893C10F33
+
 ✅ After symbolic values checked against before
   Matching:    4
   Mismatched:  0
@@ -1251,7 +1353,7 @@ Store to `i` (decl src ln 147), asm ln 578
   Added assignment starting at src ln 162, col 9
 Store to `i` (decl src ln 147), asm ln 492
   const i64 0
-  Value is same as last assignment, skipping
+  Producers match last assignment, skipping
 Before variable `q` (decl src ln 153)
 Store to `q` (decl src ln 153), asm ln 515
   %call = call %struct.cb_node.34* @cb_node_of(i8* %7), l153 c23, asm ln 514
@@ -1264,6 +1366,31 @@ Before variable `direction` (decl src ln 155)
 Store to `direction` (decl src ln 155), asm ln 554
   %conv8 = sext i32 %shr to i64, l155 c22, asm ln 553
   Added assignment starting at src ln 155, col 22
+Computing generations: `arg` (decl src ln 143)
+  asm line 481, src ln 143, col 0, gen 0
+Computing generations: `c` (decl src ln 154)
+  asm line 542, src ln 154, col 15, gen 0
+Computing generations: `direction` (decl src ln 155)
+  asm line 554, src ln 155, col 22, gen 0
+Computing generations: `fn` (decl src ln 143)
+  asm line 479, src ln 143, col 0, gen 0
+Computing generations: `i` (decl src ln 147)
+  asm line 578, src ln 162, col 9, gen 0
+  asm line 611, src ln 162, col 25, gen 1
+Computing generations: `klen` (decl src ln 142)
+  asm line 477, src ln 142, col 0, gen 0
+Computing generations: `kpfx` (decl src ln 142)
+  asm line 475, src ln 142, col 0, gen 0
+Computing generations: `p` (decl src ln 145)
+  asm line 487, src ln 145, col 25, gen 0
+  asm line 560, src ln 157, col 7, gen 1
+Computing generations: `q` (decl src ln 153)
+  asm line 515, src ln 153, col 23, gen 0
+Computing generations: `t` (decl src ln 142)
+  asm line 473, src ln 142, col 0, gen 0
+Computing generations: `top` (decl src ln 146)
+  asm line 490, src ln 146, col 24, gen 0
+  asm line 571, src ln 159, col 10, gen 1
 
 After variable `t` (decl src ln 142)
 @dbg.value mapping for `t` (decl src ln 142), asm ln 277
@@ -1299,22 +1426,22 @@ After variable `top` (decl src ln 146)
 @dbg.value mapping for `top` (decl src ln 146), asm ln 285
 Value produced for `top` (decl src ln 146), asm ln 285
   %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l145 c25, asm ln 283
-Assertion failed: (assignment.startLine >= variable.declLine && "Assignment starts before declaration"), function addAssignment, file main.cpp, line 334.
+Assertion failed: (assignment.startLine >= variable.declLine && "Assignment starts before declaration"), function addAssignment, file main.cpp, line 281.
 PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
 Stack dump:
 0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x00000001089b1657 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x00000001089b0498 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x00000001089b1ca0 SignalHandler(int) + 288
-3  libsystem_platform.dylib 0x00007ff813128c1d _sigtramp + 29
-4  libsystem_platform.dylib 0x000000010e796b00 _sigtramp + 18446603374798757632
-5  libsystem_c.dylib        0x00007ff813047ca5 abort + 123
-6  libsystem_c.dylib        0x00007ff813046fbe err + 0
-7  debug-info-check         0x0000000106ee4e42 addAssignment(llvm::StringRef, klee::InstructionInfoTable const&, llvm::DbgVariableIntrinsic const*, Variable const&, llvm::StringRef, llvm::Instruction const*, llvm::SmallVector<llvm::Value const*, 2u> const&&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 5250
-8  debug-info-check         0x0000000106ee6bf3 gatherAssignments(llvm::StringRef, llvm::Instruction const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 2083
-9  debug-info-check         0x0000000106ee7233 gatherAssignments(llvm::StringRef, llvm::Function const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 355
-10 debug-info-check         0x0000000106eeb65a checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 1034
-11 debug-info-check         0x0000000106eedbfe main + 1742
-12 dyld                     0x00007ff812dcb310 start + 2432
-./check.sh: line 6: 81358 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+0  debug-info-check         0x000000010af07617 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x000000010af06458 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x000000010af07c60 SignalHandler(int) + 288
+3  libsystem_platform.dylib 0x00007ff810197c1d _sigtramp + 29
+4  libsystem_platform.dylib 0x0000000110d49860 _sigtramp + 18446603374888164448
+5  libsystem_c.dylib        0x00007ff8100b6ca5 abort + 123
+6  libsystem_c.dylib        0x00007ff8100b5fbe err + 0
+7  debug-info-check         0x0000000109439e4e addAssignment(llvm::StringRef, klee::InstructionInfoTable const&, llvm::DbgVariableIntrinsic const*, Variable const&, llvm::StringRef, llvm::Instruction const*, llvm::SmallVector<llvm::Value const*, 2u> const&&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 3646
+8  debug-info-check         0x000000010943b483 gatherAssignments(llvm::StringRef, llvm::Instruction const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 2083
+9  debug-info-check         0x000000010943bac3 gatherAssignments(llvm::StringRef, llvm::Function const&, klee::InstructionInfoTable const&, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, llvm::SmallSet<Variable, 8u, std::__1::less<Variable> >&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > >&) + 355
+10 debug-info-check         0x00000001094406d1 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 1041
+11 debug-info-check         0x0000000109442cde main + 1742
+12 dyld                     0x00007ff80fe3a310 start + 2432
+./check.sh: line 6: 23895 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
