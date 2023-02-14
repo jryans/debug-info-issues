@@ -7,3 +7,4 @@ This example tests support for:
 * Merge lists of symbolic values from both versions
 * Bitcasts as part of block prologue
 * Ignore column info when matching
+* Fork when bit-testing pointers
