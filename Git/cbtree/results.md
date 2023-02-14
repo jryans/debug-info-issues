@@ -478,14 +478,12 @@ Computing generations: `wherep` (decl src ln 67)
 
 ### Assignments
 
-❌ Live ranges for `c` (decl src ln 65) don't match: src ln 92, col 7, gen 0 vs. src ln 81, col 9, gen 0
-❌ Live ranges for `direction` (decl src ln 103) don't match: src ln 114, col 17, gen 0 vs. src ln 114, col 42, gen 0
-❌ Live ranges for `newbyte` (decl src ln 64) don't match: src ln 80, col 16, gen 0 vs. src ln 64, col 0, gen 0
-❌ Live ranges for `newdirection` (decl src ln 66) don't match: src ln 93, col 18, gen 0 vs. src ln 93, col 43, gen 0
-❌ Live ranges for `wherep` (decl src ln 67) don't match: src ln 100, col 16, gen 0 vs. src ln 71, col 11, gen 0
+❌ Live ranges for `c` (decl src ln 65) don't match: src ln 92, gen 0 vs. src ln 81, gen 0
+❌ Live ranges for `newbyte` (decl src ln 64) don't match: src ln 80, gen 0 vs. src ln 64, gen 0
+❌ Live ranges for `wherep` (decl src ln 67) don't match: src ln 100, gen 0 vs. src ln 71, gen 0
 ❌ Before live range coverage
-  Covered:   6
-  Uncovered: 5
+  Covered:   8
+  Uncovered: 3
   Undefined: 0
   Unused:    0
   Removable: 0
@@ -691,7 +689,6 @@ Parsed query
 🔔 After `c` (decl src ln 65) assn src ln 81, col 9, gen 0 coordinates don't match before assn src ln 113, col 9, gen 1
 Expected 1 symbolic value(s), got 0
 🔔 Before `c` (decl src ln 65) assn src ln 113, col 9, gen 1 has no symbolic value (likely unreachable) from %conv74 = trunc i32 %cond to i8, l113 c9
-🔔 After `direction` (decl src ln 103) assn src ln 114, col 42, gen 0 coordinates don't match before assn src ln 114, col 17, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 Before `direction` (decl src ln 103) assn src ln 114, col 17, gen 0 has no symbolic value (likely unreachable) from %conv81 = sext i32 %shr80 to i64, l114 c17
@@ -731,7 +728,6 @@ and
   %inc = add nuw i64 %newbyte.0160, 1, l80 c44
   0x1
 
-🔔 After `newdirection` (decl src ln 66) assn src ln 93, col 43, gen 0 coordinates don't match before assn src ln 93, col 18, gen 0
 Pushed initial value onto stack: (LShr w64 (Add w64 0x1
                     (Or w64 (Xor w64 0xFF
                                      (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
@@ -1227,7 +1223,6 @@ array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(Read w8 0x15 cb_internal_best_match.return.deref) N0)
 
-🔔 Before `direction` (decl src ln 103) assn src ln 114, col 17, gen 0 coordinates don't match after assn src ln 114, col 42, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `direction` (decl src ln 103) assn src ln 114, col 42, gen 0 has no symbolic value (likely unreachable) from %16 = lshr i64 %add79, 8, l114 c42
@@ -1267,7 +1262,6 @@ and
   %inc = add i64 %18, 1, l80 c44
   0x1
 
-🔔 Before `newdirection` (decl src ln 66) assn src ln 93, col 18, gen 0 coordinates don't match after assn src ln 93, col 43, gen 0
 Checking equivalence of `newdirection` (decl src ln 66) from
   assn src ln 93, col 43, gen 0
   %shr34 = lshr i64 %add, 8, l93 c43
@@ -1812,10 +1806,9 @@ Computing generations: `c` (decl src ln 53)
 
 ### Assignments
 
-❌ Live ranges for `direction` (decl src ln 54) don't match: src ln 54, col 24, gen 0 vs. src ln 54, col 49, gen 0
-❌ Before live range coverage
-  Covered:   5
-  Uncovered: 1
+✅ Before live range coverage
+  Covered:   6
+  Uncovered: 0
   Undefined: 0
   Unused:    0
   Removable: 0
@@ -1859,7 +1852,6 @@ Collected value for `klen`
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 Before `c` (decl src ln 53) assn src ln 53, col 17, gen 0 has no symbolic value (likely unreachable) from %conv4 = trunc i32 %cond to i8, l53 c17
-🔔 After `direction` (decl src ln 54) assn src ln 54, col 49, gen 0 coordinates don't match before assn src ln 54, col 24, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 Before `direction` (decl src ln 54) assn src ln 54, col 24, gen 0 has no symbolic value (likely unreachable) from %conv7 = sext i32 %shr to i64, l54 c24
@@ -1916,7 +1908,6 @@ Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `c` (decl src ln 53) assn src ln 53, col 17, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l53 c17
-🔔 Before `direction` (decl src ln 54) assn src ln 54, col 24, gen 0 coordinates don't match after assn src ln 54, col 49, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `direction` (decl src ln 54) assn src ln 54, col 49, gen 0 has no symbolic value (likely unreachable) from %5 = lshr i64 %add, 8, l54 c49
@@ -2243,7 +2234,7 @@ and
   (ReadLSB w64 0x0 klen)
 Query to parse
 array klen[8] : w32 -> w8 = symbolic
-array klen[8] : w32 -> w8 = symbolic
+array klen[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w64 0x0 klen)
      (ReadLSB w64 0x0 klen)))
 Parsed query
@@ -2499,12 +2490,11 @@ Computing generations: `top` (decl src ln 147)
 
 ### Assignments
 
-❌ Live ranges for `direction` (decl src ln 156) don't match: src ln 156, col 24, gen 0 vs. src ln 156, col 49, gen 0
-❌ Live ranges for `i` (decl src ln 148) don't match: src ln 163, col 10, gen 0 vs. src ln 148, col 0, gen 0
-❌ Live ranges for `top` (decl src ln 147) don't match: src ln 147, col 25, gen 0 vs. src ln 146, col 26, gen 0
+❌ Live ranges for `i` (decl src ln 148) don't match: src ln 163, gen 0 vs. src ln 148, gen 0
+❌ Live ranges for `top` (decl src ln 147) don't match: src ln 147, gen 0 vs. src ln 146, gen 0
 ❌ Before live range coverage
-  Covered:   8
-  Uncovered: 3
+  Covered:   9
+  Uncovered: 2
   Undefined: 0
   Unused:    0
   Removable: 0
@@ -2609,7 +2599,6 @@ and
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 Before `c` (decl src ln 155) assn src ln 155, col 17, gen 0 has no symbolic value (likely unreachable) from %conv5 = trunc i32 %cond to i8, l155 c17
-🔔 After `direction` (decl src ln 156) assn src ln 156, col 49, gen 0 coordinates don't match before assn src ln 156, col 24, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 Before `direction` (decl src ln 156) assn src ln 156, col 24, gen 0 has no symbolic value (likely unreachable) from %conv8 = sext i32 %shr to i64, l156 c24
@@ -2726,7 +2715,6 @@ and
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `c` (decl src ln 155) assn src ln 155, col 17, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l155 c17
-🔔 Before `direction` (decl src ln 156) assn src ln 156, col 24, gen 0 coordinates don't match after assn src ln 156, col 49, gen 0
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `direction` (decl src ln 156) assn src ln 156, col 49, gen 0 has no symbolic value (likely unreachable) from %6 = lshr i64 %add, 8, l156 c49

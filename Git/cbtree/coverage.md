@@ -6,3 +6,4 @@ This example tests support for:
 * Function pointer arguments
 * Merge lists of symbolic values from both versions
 * Bitcasts as part of block prologue
+* Ignore column info when matching
