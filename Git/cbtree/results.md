@@ -428,8 +428,7 @@ After variable `newbyte` (decl src ln 64)
 @dbg.value mapping for `newbyte` (decl src ln 64), asm ln 54
 Value produced for `newbyte` (decl src ln 64), asm ln 54
   %newbyte.0160 = phi i64 [ %inc, %for.inc ], [ 0, %for.body.preheader ], asm ln 51
-❌ Value produced for `newbyte` (decl src ln 64): missing line info, using decl ln
-  Added assignment starting at src ln 64, col 0
+  Phi-based assignment in prologue, skipping
 After variable `wherep` (decl src ln 67)
 @dbg.value mapping for `wherep` (decl src ln 67), asm ln 113
 Value produced for `wherep` (decl src ln 67), asm ln 113
@@ -453,8 +452,7 @@ Computing generations: `klen` (decl src ln 62)
   asm line 18, src ln 62, col 0, gen 0
 Computing generations: `newbyte` (decl src ln 64)
   asm line 43, src ln 64, col 0, gen 0
-  asm line 54, src ln 64, col 0, gen 1
-  asm line 67, src ln 80, col 43, gen 2
+  asm line 67, src ln 80, col 43, gen 1
 Computing generations: `newdirection` (decl src ln 66)
   asm line 96, src ln 93, col 42, gen 0
 Computing generations: `newotherbits` (decl src ln 64)
@@ -600,10 +598,6 @@ Collected value for `p`
 Collected value for `newbyte`
   i64 0
   0x0
-Collected value for `newbyte`
-  %newbyte.0160 = phi i64 [ %inc, %for.inc ], [ 0, %if.end ]
-  Block: 1
-  0x0
 Collected value for `newotherbits`
   %conv22 = zext i8 %xor154 to i64, l87 c17
   (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
@@ -718,26 +712,24 @@ Parsed query
 (Eq N0:(ReadLSB w64 0x0 klen)
      N0)
 
-🔔 After `newbyte` (decl src ln 64) assn src ln 64, col 0, gen 1 coordinates don't match before assn src ln 80, col 15, gen 0
+🔔 After `newbyte` (decl src ln 64) assn src ln 64, col 0, gen 0 coordinates don't match before assn src ln 80, col 15, gen 0
 Checking equivalence of `newbyte` (decl src ln 64) from
   assn src ln 80, col 15, gen 0
   i64 0
   0x0
 and
-  assn src ln 64, col 0, gen 1
-  %newbyte.0160 = phi i64 [ %inc, %for.inc ], [ 0, %if.end ]
+  assn src ln 64, col 0, gen 0
+  i64 0
   0x0
 
-🔔 After `newbyte` (decl src ln 64) assn src ln 64, col 0, gen 1 coordinates don't match before assn src ln 80, col 43, gen 1
 Checking equivalence of `newbyte` (decl src ln 64) from
   assn src ln 80, col 43, gen 1
   %inc = add i64 %18, 1, l80 c43
   0x1
 and
-  assn src ln 64, col 0, gen 1
-  %newbyte.0160 = phi i64 [ %inc, %for.inc ], [ 0, %if.end ]
-  0x0
-❌ After `newbyte` (decl src ln 64) assn src ln 64, col 0, gen 1 symbolic value doesn't match before assn src ln 80, col 43, gen 1
+  assn src ln 80, col 43, gen 1
+  %inc = add nuw i64 %newbyte.0160, 1, l80 c43
+  0x1
 
 🔔 After `newdirection` (decl src ln 66) assn src ln 93, col 42, gen 0 coordinates don't match before assn src ln 93, col 17, gen 0
 Pushed initial value onto stack: (LShr w64 (Add w64 0x1
@@ -1211,8 +1203,8 @@ Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 Before `wherep` (decl src ln 67) assn src ln 115, col 21, gen 1 has no symbolic value (likely unreachable) from %add.ptr = getelementptr inbounds %struct.cb_node.2*, %struct.cb_node.2** %arraydecay83, i64 %73, l115 c21
 ❌ Before symbolic values checked against after
-  Matching:    8
-  Mismatched:  7
+  Matching:    9
+  Mismatched:  6
   Unused:      0
   Unreachable: 4
   Removable:   0
@@ -1266,19 +1258,8 @@ and
   i64 0
   0x0
 
-🔔 Before `newbyte` (decl src ln 64) assn src ln 80, col 15, gen 0 coordinates don't match after assn src ln 64, col 0, gen 1
 Checking equivalence of `newbyte` (decl src ln 64) from
-  assn src ln 64, col 0, gen 1
-  %newbyte.0160 = phi i64 [ %inc, %for.inc ], [ 0, %if.end ]
-  0x0
-and
-  assn src ln 80, col 15, gen 0
-  i64 0
-  0x0
-
-🔔 Before `newbyte` (decl src ln 64) assn src ln 80, col 43, gen 1 coordinates don't match after assn src ln 80, col 43, gen 2
-Checking equivalence of `newbyte` (decl src ln 64) from
-  assn src ln 80, col 43, gen 2
+  assn src ln 80, col 43, gen 1
   %inc = add nuw i64 %newbyte.0160, 1, l80 c43
   0x1
 and
@@ -1720,7 +1701,7 @@ Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `wherep` (decl src ln 67) assn src ln 115, col 21, gen 1 has no symbolic value (likely unreachable) from %add.ptr = getelementptr inbounds %struct.cb_node.4, %struct.cb_node.4* %call45, i64 0, i32 0, i64 %16, l115 c21
 ❌ After symbolic values checked against before
-  Matching:    10
+  Matching:    9
   Mismatched:  6
   Unused:      0
   Unreachable: 3

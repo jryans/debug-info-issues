@@ -5,3 +5,4 @@ This example tests support for:
 * Assignment starts before declaration
 * Function pointer arguments
 * Merge lists of symbolic values from both versions
+* Bitcasts as part of block prologue
