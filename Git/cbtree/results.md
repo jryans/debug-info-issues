@@ -335,72 +335,72 @@ Computing generations: `wherep` (decl src ln 67)
   asm ln 300, prod ln 115.23, live ln 101, gen 1
 Building live ranges: `c` (decl src ln 65)
   asm ln 172, prod ln 92.7, live ln 93, gen 0
-    live ln 93, gen 0 →
-    live ln 114, gen 1
+    prod ln 92, gen 0 →
+    prod ln 113, gen 1
   asm ln 283, prod ln 113.9, live ln 114, gen 1
-    live ln 114, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 113, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 103)
   asm ln 294, prod ln 114.17, live ln 115, gen 0
-    live ln 115, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 114, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 62)
   asm ln 32, prod ln 62.0, live ln 69, gen 0
-    live ln 69, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 62, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `newbyte` (decl src ln 64)
   asm ln 86, prod ln 80.16, live ln 80, gen 0
-    live ln 80, gen 0 →
-    live ln 80, gen 1
+    prod ln 80, gen 0 →
+    prod ln 80, gen 1
   asm ln 120, prod ln 80.44, live ln 80, gen 1
-    live ln 80, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 80, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `newdirection` (decl src ln 66)
   asm ln 180, prod ln 93.18, live ln 95, gen 0
-    live ln 95, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 93, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `newotherbits` (decl src ln 64)
   asm ln 144, prod ln 87.18, live ln 88, gen 0
-    live ln 88, gen 0 →
-    live ln 89, gen 1
+    prod ln 87, gen 0 →
+    prod ln 88, gen 1
   asm ln 149, prod ln 88.16, live ln 89, gen 1
-    live ln 89, gen 1 →
-    live ln 90, gen 2
+    prod ln 88, gen 1 →
+    prod ln 89, gen 2
   asm ln 154, prod ln 89.16, live ln 90, gen 2
-    live ln 90, gen 2 →
-    live ln 91, gen 3
+    prod ln 89, gen 2 →
+    prod ln 90, gen 3
   asm ln 159, prod ln 90.16, live ln 91, gen 3
-    live ln 91, gen 3 →
-    live ln 92, gen 4
+    prod ln 90, gen 3 →
+    prod ln 91, gen 4
   asm ln 166, prod ln 91.56, live ln 92, gen 4
-    live ln 92, gen 4 →
-    live ln ∞, gen ∞
+    prod ln 91, gen 4 →
+    prod ln ∞, gen ∞
 Building live ranges: `node` (decl src ln 62)
   asm ln 30, prod ln 62.0, live ln 69, gen 0
-    live ln 69, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 62, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `p` (decl src ln 67)
   asm ln 85, prod ln 77.7, live ln 80, gen 0
-    live ln 80, gen 0 →
-    live ln 106, gen 1
+    prod ln 77, gen 0 →
+    prod ln 105, gen 1
   asm ln 209, prod ln 105.9, live ln 106, gen 1
-    live ln 106, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 105, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 102)
   asm ln 223, prod ln 108.9, live ln 109, gen 0
-    live ln 109, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 108, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `t` (decl src ln 62)
   asm ln 28, prod ln 62.0, live ln 69, gen 0
-    live ln 69, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 62, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `wherep` (decl src ln 67)
   asm ln 201, prod ln 100.16, live ln 101, gen 0
-    live ln 101, gen 0 →
-    live ln 101, gen 1
+    prod ln 100, gen 0 →
+    prod ln 115, gen 1
   asm ln 300, prod ln 115.23, live ln 101, gen 1
-    live ln 101, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 115, gen 1 →
+    prod ln ∞, gen ∞
 
 After variable `t` (decl src ln 62)
 @dbg.value mapping for `t` (decl src ln 62), asm ln 16
@@ -543,69 +543,69 @@ Computing generations: `wherep` (decl src ln 67)
   asm ln 163, prod ln 115.23, live ln 116, gen 1
 Building live ranges: `c` (decl src ln 65)
   asm ln 92, prod ln 81.9, live ln 93, gen 0
-    live ln 93, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 81, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 103)
   asm ln 161, prod ln 114.42, live ln 115, gen 0
-    live ln 115, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 114, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 62)
   asm ln 18, prod ln 62.0, live ln 69, gen 0
-    live ln 69, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 62, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `newbyte` (decl src ln 64)
   asm ln 43, prod ln 64.0, live ln 80, gen 0
-    live ln 80, gen 0 →
-    live ln 80, gen 1
+    prod ln 64, gen 0 →
+    prod ln 80, gen 1
   asm ln 67, prod ln 80.44, live ln 80, gen 1
-    live ln 80, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 80, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `newdirection` (decl src ln 66)
   asm ln 96, prod ln 93.43, live ln 95, gen 0
-    live ln 95, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 93, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `newotherbits` (decl src ln 64)
   asm ln 77, prod ln 87.18, live ln 88, gen 0
-    live ln 88, gen 0 →
-    live ln 89, gen 1
+    prod ln 87, gen 0 →
+    prod ln 88, gen 1
   asm ln 80, prod ln 88.16, live ln 89, gen 1
-    live ln 89, gen 1 →
-    live ln 90, gen 2
+    prod ln 88, gen 1 →
+    prod ln 89, gen 2
   asm ln 83, prod ln 89.16, live ln 90, gen 2
-    live ln 90, gen 2 →
-    live ln 91, gen 3
+    prod ln 89, gen 2 →
+    prod ln 90, gen 3
   asm ln 86, prod ln 90.16, live ln 91, gen 3
-    live ln 91, gen 3 →
-    live ln 93, gen 4
+    prod ln 90, gen 3 →
+    prod ln 91, gen 4
   asm ln 91, prod ln 91.56, live ln 93, gen 4
-    live ln 93, gen 4 →
-    live ln ∞, gen ∞
+    prod ln 91, gen 4 →
+    prod ln ∞, gen ∞
 Building live ranges: `node` (decl src ln 62)
   asm ln 17, prod ln 62.0, live ln 69, gen 0
-    live ln 69, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 62, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `p` (decl src ln 67)
   asm ln 42, prod ln 77.7, live ln 80, gen 0
-    live ln 80, gen 0 →
-    live ln 106, gen 1
+    prod ln 77, gen 0 →
+    prod ln 105, gen 1
   asm ln 115, prod ln 105.9, live ln 106, gen 1
-    live ln 106, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 105, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 102)
   asm ln 124, prod ln 108.9, live ln 109, gen 0
-    live ln 109, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 108, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `t` (decl src ln 62)
   asm ln 16, prod ln 62.0, live ln 69, gen 0
-    live ln 69, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 62, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `wherep` (decl src ln 67)
   asm ln 108, prod ln 71.11, live ln 101, gen 0
-    live ln 101, gen 0 →
-    live ln 116, gen 1
+    prod ln 71, gen 0 →
+    prod ln 115, gen 1
   asm ln 163, prod ln 115.23, live ln 116, gen 1
-    live ln 116, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 115, gen 1 →
+    prod ln ∞, gen ∞
 
 ✅ 11 before variables found, 11 after variables found, 0 mismatched
 
@@ -1192,7 +1192,7 @@ Parsed query
                        0x4)
              N4))
 
-🔔 After `newotherbits` (decl src ln 64) assn asm ln 86, prod ln 90.16, live ln 91, gen 3 coordinates don't match before assn asm ln 166, prod ln 91.56, live ln 92, gen 4
+🔔 After `newotherbits` (decl src ln 64) assn asm ln 91, prod ln 91.56, live ln 93, gen 4 coordinates don't match before assn asm ln 166, prod ln 91.56, live ln 92, gen 4
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 166, prod ln 91.56, live ln 92, gen 4
   %xor29 = xor i64 %and28, 255, l91 c56
@@ -1204,16 +1204,18 @@ Checking equivalence of `newotherbits` (decl src ln 64) from
                               (LShr w64 N1 0x4))
                    (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
 and
-  assn asm ln 86, prod ln 90.16, live ln 91, gen 3
-  %or26 = or i64 %shr25, %or24, l90 c16
-  (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                  (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
-                                                             0x1)
+  assn asm ln 91, prod ln 91.56, live ln 93, gen 4
+  %xor29 = xor i64 %and28, 255, l91 c56
+  (Xor w64 0xFF
+          (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                       (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                  0x1)
+                                                                        N3)
+                                                             0x2)
                                                    N2)
-                                        0x2)
+                                        0x4)
                               N1)
-                   0x4)
-         N0)
+                   (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
 Query to parse
 array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
 array k.deref[1] : w32 -> w8 = symbolic
@@ -1226,14 +1228,16 @@ array cb_internal_best_match.return.deref[24] : w32 -> w8 = symbolic
                                              (LShr w64 N2 0x2))
                                   (LShr w64 N1 0x4))
                        (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-     (Or w64 (LShr w64 N4:(Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                      (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
-                                                                 0x1)
+     (Xor w64 0xFF
+              (And w64 N4:(Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 (Read w8 0x15 cb_internal_best_match.return.deref)))))
+                                                                                      0x1)
+                                                                            N7)
+                                                                 0x2)
                                                        N6)
-                                            0x2)
+                                            0x4)
                                   N5)
-                       0x4)
-             N4)))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N4 0x1))))))
 Parsed query
 (Eq (Xor w64 0xFF
               (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
@@ -1242,15 +1246,17 @@ Parsed query
                                              (LShr w64 N2 0x2))
                                   (LShr w64 N1 0x4))
                        (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-     (Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                      (Extract w8 0 (ZExt w64 N4))))
-                                                                 0x1)
+     (Xor w64 0xFF
+              (And w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 N4))))
+                                                                                      0x1)
+                                                                            N8)
+                                                                 0x2)
                                                        N7)
-                                            0x2)
+                                            0x4)
                                   N6)
-                       0x4)
-             N5))
-❌ After `newotherbits` (decl src ln 64) assn asm ln 86, prod ln 90.16, live ln 91, gen 3 symbolic value doesn't match before assn asm ln 166, prod ln 91.56, live ln 92, gen 4
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
+❌ After `newotherbits` (decl src ln 64) assn asm ln 91, prod ln 91.56, live ln 93, gen 4 symbolic value doesn't match before assn asm ln 166, prod ln 91.56, live ln 92, gen 4
 (Eq (Xor w64 0xFF
               (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
                                                                               (ZExt w32 (Read w8 0x0 k.deref))))
@@ -1258,14 +1264,16 @@ Parsed query
                                              (LShr w64 N2 0x2))
                                   (LShr w64 N1 0x4))
                        (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-     (Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                      (Extract w8 0 (ZExt w64 N4))))
-                                                                 0x1)
+     (Xor w64 0xFF
+              (And w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
+                                                                                                           (Extract w8 0 (ZExt w64 N4))))
+                                                                                      0x1)
+                                                                            N8)
+                                                                 0x2)
                                                        N7)
-                                            0x2)
+                                            0x4)
                                   N6)
-                       0x4)
-             N5))
+                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
 
 Checking equivalence of `node` (decl src ln 62) from
   assn asm ln 30, prod ln 62.0, live ln 69, gen 0
@@ -1868,31 +1876,31 @@ Computing generations: `direction` (decl src ln 54)
   asm ln 400, prod ln 54.24, live ln 56, gen 0
 Building live ranges: `p` (decl src ln 48)
   asm ln 341, prod ln 48.0, live ln 51, gen 0
-    live ln 51, gen 0 →
-    live ln 51, gen 1
+    prod ln 48, gen 0 →
+    prod ln 56, gen 1
   asm ln 406, prod ln 56.9, live ln 51, gen 1
-    live ln 51, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 56, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `k` (decl src ln 49)
   asm ln 343, prod ln 49.0, live ln 51, gen 0
-    live ln 51, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 49, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 49)
   asm ln 345, prod ln 49.0, live ln 51, gen 0
-    live ln 51, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 49, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 52)
   asm ln 361, prod ln 52.25, live ln 53, gen 0
-    live ln 53, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 52, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `c` (decl src ln 53)
   asm ln 388, prod ln 53.17, live ln 54, gen 0
-    live ln 54, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 53, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 54)
   asm ln 400, prod ln 54.24, live ln 56, gen 0
-    live ln 56, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 54, gen 0 →
+    prod ln ∞, gen ∞
 
 After variable `p` (decl src ln 48)
 @dbg.value mapping for `p` (decl src ln 48), asm ln 195
@@ -1949,31 +1957,31 @@ Computing generations: `c` (decl src ln 53)
   asm ln 222, prod ln 53.17, live ln 54, gen 0
 Building live ranges: `p` (decl src ln 48)
   asm ln 195, prod ln 48.0, live ln 51, gen 0
-    live ln 51, gen 0 →
-    live ln 51, gen 1
+    prod ln 48, gen 0 →
+    prod ln 56, gen 1
   asm ln 232, prod ln 56.9, live ln 51, gen 1
-    live ln 51, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 56, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `k` (decl src ln 49)
   asm ln 196, prod ln 49.0, live ln 51, gen 0
-    live ln 51, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 49, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 49)
   asm ln 197, prod ln 49.0, live ln 51, gen 0
-    live ln 51, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 49, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 52)
   asm ln 208, prod ln 52.25, live ln 53, gen 0
-    live ln 53, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 52, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 54)
   asm ln 229, prod ln 54.49, live ln 56, gen 0
-    live ln 56, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 54, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `c` (decl src ln 53)
   asm ln 222, prod ln 53.17, live ln 54, gen 0
-    live ln 54, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 53, gen 0 →
+    prod ln ∞, gen ∞
 
 ✅ 6 before variables found, 6 after variables found, 0 mismatched
 
@@ -2063,7 +2071,7 @@ and
   %struct.cb_node.12* %p
   0x6B9649B5C91006F4
 
-Expected 1 symbolic value(s), got 0
+🔔 After `p` (decl src ln 48) assn asm ln 195, prod ln 48.0, live ln 51, gen 0 coordinates don't match before assn asm ln 406, prod ln 56.9, live ln 51, gen 1
 Expected 1 symbolic value(s), got 0
 🔔 Before `p` (decl src ln 48) assn asm ln 406, prod ln 56.9, live ln 51, gen 1 has no symbolic value (likely unreachable) from %16 = load %struct.cb_node.10*, %struct.cb_node.10** %arrayidx8, l56 c9
 Expected 1 symbolic value(s), got 0
@@ -2119,7 +2127,7 @@ and
   %struct.cb_node.10* %p
   0x6B9649B5C91006F4
 
-Expected 1 symbolic value(s), got 0
+🔔 Before `p` (decl src ln 48) assn asm ln 341, prod ln 48.0, live ln 51, gen 0 coordinates don't match after assn asm ln 232, prod ln 56.9, live ln 51, gen 1
 Expected 1 symbolic value(s), got 0
 🔔 After `p` (decl src ln 48) assn asm ln 232, prod ln 56.9, live ln 51, gen 1 has no symbolic value (likely unreachable) from %6 = load %struct.cb_node.12*, %struct.cb_node.12** %arrayidx8, !tbaa !79, l56 c9
 Expected 1 symbolic value(s), got 0
@@ -2146,8 +2154,8 @@ Computing generations: `p` (decl src ln 42)
   asm ln 421, prod ln 42.0, live ln 44, gen 0
 Building live ranges: `p` (decl src ln 42)
   asm ln 421, prod ln 42.0, live ln 44, gen 0
-    live ln 44, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 42, gen 0 →
+    prod ln ∞, gen ∞
 
 After variable `p` (decl src ln 42)
 @dbg.value mapping for `p` (decl src ln 42), asm ln 249
@@ -2158,8 +2166,8 @@ Computing generations: `p` (decl src ln 42)
   asm ln 249, prod ln 42.0, live ln 44, gen 0
 Building live ranges: `p` (decl src ln 42)
   asm ln 249, prod ln 42.0, live ln 44, gen 0
-    live ln 44, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 42, gen 0 →
+    prod ln ∞, gen ∞
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -2258,20 +2266,20 @@ Computing generations: `p` (decl src ln 126)
   asm ln 450, prod ln 126.23, live ln 128, gen 0
 Building live ranges: `t` (decl src ln 124)
   asm ln 437, prod ln 124.0, live ln 126, gen 0
-    live ln 126, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 124, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `k` (decl src ln 124)
   asm ln 439, prod ln 124.0, live ln 126, gen 0
-    live ln 126, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 124, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 124)
   asm ln 441, prod ln 124.0, live ln 126, gen 0
-    live ln 126, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 124, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `p` (decl src ln 126)
   asm ln 450, prod ln 126.23, live ln 128, gen 0
-    live ln 128, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 126, gen 0 →
+    prod ln ∞, gen ∞
 
 After variable `t` (decl src ln 124)
 @dbg.value mapping for `t` (decl src ln 124), asm ln 259
@@ -2303,20 +2311,20 @@ Computing generations: `p` (decl src ln 126)
   asm ln 265, prod ln 126.23, live ln 128, gen 0
 Building live ranges: `t` (decl src ln 124)
   asm ln 259, prod ln 124.0, live ln 126, gen 0
-    live ln 126, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 124, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `k` (decl src ln 124)
   asm ln 260, prod ln 124.0, live ln 126, gen 0
-    live ln 126, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 124, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 124)
   asm ln 261, prod ln 124.0, live ln 126, gen 0
-    live ln 126, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 124, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `p` (decl src ln 126)
   asm ln 265, prod ln 126.23, live ln 128, gen 0
-    live ln 128, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 126, gen 0 →
+    prod ln ∞, gen ∞
 
 ✅ 4 before variables found, 4 after variables found, 0 mismatched
 
@@ -2568,57 +2576,57 @@ Computing generations: `top` (decl src ln 147)
   asm ln 591, prod ln 160.13, live ln 160, gen 1
 Building live ranges: `arg` (decl src ln 144)
   asm ln 501, prod ln 144.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 144, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `c` (decl src ln 155)
   asm ln 562, prod ln 155.17, live ln 156, gen 0
-    live ln 156, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 155, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 156)
   asm ln 574, prod ln 156.24, live ln 158, gen 0
-    live ln 158, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 156, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `fn` (decl src ln 144)
   asm ln 499, prod ln 144.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 144, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `i` (decl src ln 148)
   asm ln 598, prod ln 163.10, live ln 163, gen 0
-    live ln 163, gen 0 →
-    live ln 163, gen 1
+    prod ln 163, gen 0 →
+    prod ln 163, gen 1
   asm ln 631, prod ln 163.26, live ln 163, gen 1
-    live ln 163, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 163, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 143)
   asm ln 497, prod ln 143.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 143, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `kpfx` (decl src ln 143)
   asm ln 495, prod ln 143.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 143, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `p` (decl src ln 146)
   asm ln 507, prod ln 146.26, live ln 147, gen 0
-    live ln 147, gen 0 →
-    live ln 159, gen 1
+    prod ln 146, gen 0 →
+    prod ln 158, gen 1
   asm ln 580, prod ln 158.9, live ln 159, gen 1
-    live ln 159, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 158, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 154)
   asm ln 535, prod ln 154.25, live ln 155, gen 0
-    live ln 155, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 154, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `t` (decl src ln 143)
   asm ln 493, prod ln 143.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 143, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `top` (decl src ln 147)
   asm ln 510, prod ln 147.25, live ln 148, gen 0
-    live ln 148, gen 0 →
-    live ln 160, gen 1
+    prod ln 147, gen 0 →
+    prod ln 160, gen 1
   asm ln 591, prod ln 160.13, live ln 160, gen 1
-    live ln 160, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 160, gen 1 →
+    prod ln ∞, gen ∞
 
 After variable `t` (decl src ln 143)
 @dbg.value mapping for `t` (decl src ln 143), asm ln 287
@@ -2654,7 +2662,6 @@ After variable `top` (decl src ln 147)
 @dbg.value mapping for `top` (decl src ln 147), asm ln 295
 Value produced for `top` (decl src ln 147), asm ln 295
   %0 = load %struct.cb_node.36*, %struct.cb_node.36** %root, !tbaa !71, l146 c26, asm ln 293
-❌ Value produced for `top` (decl src ln 147): asm ln 0, prod ln 146.26, live ln 0, gen 0 produced line starts before decl
   Added assignment asm ln 295, prod ln 146.26, live ln 150, gen 0
 After variable `i` (decl src ln 148)
 @dbg.value mapping for `i` (decl src ln 148), asm ln 296
@@ -2753,68 +2760,65 @@ Computing generations: `top` (decl src ln 147)
   asm ln 348, prod ln 159.9, live ln 153, gen 1
 Building live ranges: `arg` (decl src ln 144)
   asm ln 291, prod ln 144.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 144, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `c` (decl src ln 155)
   asm ln 336, prod ln 155.17, live ln 156, gen 0
-    live ln 156, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 155, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 156)
   asm ln 343, prod ln 156.49, live ln 158, gen 0
-    live ln 158, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 156, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `fn` (decl src ln 144)
   asm ln 290, prod ln 144.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 144, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `i` (decl src ln 148)
   asm ln 296, prod ln 148.0, live ln 150, gen 0
-    live ln 150, gen 0 →
-    live ln 163, gen 1
+    prod ln 148, gen 0 →
+    prod ln 163, gen 1
   asm ln 355, prod ln 163.26, live ln 163, gen 1
-    live ln 163, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 163, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `klen` (decl src ln 143)
   asm ln 289, prod ln 143.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 143, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `kpfx` (decl src ln 143)
   asm ln 288, prod ln 143.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 143, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `p` (decl src ln 146)
   asm ln 294, prod ln 146.26, live ln 150, gen 0
-    live ln 150, gen 0 →
-    live ln 159, gen 1
+    prod ln 146, gen 0 →
+    prod ln 158, gen 1
   asm ln 346, prod ln 158.9, live ln 159, gen 1
-    live ln 159, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 158, gen 1 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 154)
   asm ln 322, prod ln 154.25, live ln 155, gen 0
-    live ln 155, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 154, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `t` (decl src ln 143)
   asm ln 287, prod ln 143.0, live ln 146, gen 0
-    live ln 146, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 143, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `top` (decl src ln 147)
   asm ln 295, prod ln 146.26, live ln 150, gen 0
-    live ln 150, gen 0 →
-    live ln 153, gen 1
+    prod ln 146, gen 0 →
+    prod ln 159, gen 1
   asm ln 348, prod ln 159.9, live ln 153, gen 1
-    live ln 153, gen 1 →
-    live ln ∞, gen ∞
+    prod ln 159, gen 1 →
+    prod ln ∞, gen ∞
 
 ✅ 11 before variables found, 11 after variables found, 0 mismatched
 
 ### Assignments
 
-❌ Live ranges for `i` (decl src ln 148) don't match: live ln 163, gen 0 vs. live ln 150, gen 0
-❌ Live ranges for `p` (decl src ln 146) don't match: live ln 147, gen 0 vs. live ln 150, gen 0
-❌ Live ranges for `top` (decl src ln 147) don't match: live ln 148, gen 0 vs. live ln 150, gen 0
-❌ Before live range coverage
-  Covered:   8
-  Uncovered: 3
+✅ Before live range coverage
+  Covered:   11
+  Uncovered: 0
   Undefined: 0
   Unused:    0
   Removable: 0
@@ -3176,24 +3180,24 @@ Computing generations: `n` (decl src ln 135)
   asm ln 680, prod ln 135.22, live ln 137, gen 0
 Building live ranges: `p` (decl src ln 131)
   asm ln 654, prod ln 131.0, live ln 133, gen 0
-    live ln 133, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 131, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `fn` (decl src ln 131)
   asm ln 656, prod ln 131.0, live ln 133, gen 0
-    live ln 133, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 131, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `arg` (decl src ln 131)
   asm ln 658, prod ln 131.0, live ln 133, gen 0
-    live ln 133, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 131, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 134)
   asm ln 671, prod ln 134.25, live ln 135, gen 0
-    live ln 135, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 134, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `n` (decl src ln 135)
   asm ln 680, prod ln 135.22, live ln 137, gen 0
-    live ln 137, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 135, gen 0 →
+    prod ln ∞, gen ∞
 
 After variable `p` (decl src ln 131)
 @dbg.value mapping for `p` (decl src ln 131), asm ln 382
@@ -3232,24 +3236,24 @@ Computing generations: `n` (decl src ln 135)
   asm ln 397, prod ln 135.22, live ln 137, gen 0
 Building live ranges: `p` (decl src ln 131)
   asm ln 382, prod ln 131.0, live ln 133, gen 0
-    live ln 133, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 131, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `fn` (decl src ln 131)
   asm ln 383, prod ln 131.0, live ln 133, gen 0
-    live ln 133, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 131, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `arg` (decl src ln 131)
   asm ln 384, prod ln 131.0, live ln 133, gen 0
-    live ln 133, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 131, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `q` (decl src ln 134)
   asm ln 393, prod ln 134.25, live ln 135, gen 0
-    live ln 135, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 134, gen 0 →
+    prod ln ∞, gen ∞
 Building live ranges: `n` (decl src ln 135)
   asm ln 397, prod ln 135.22, live ln 137, gen 0
-    live ln 137, gen 0 →
-    live ln ∞, gen ∞
+    prod ln 135, gen 0 →
+    prod ln ∞, gen ∞
 
 ✅ 5 before variables found, 5 after variables found, 0 mismatched
 
