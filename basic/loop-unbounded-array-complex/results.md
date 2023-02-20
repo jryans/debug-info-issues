@@ -328,13 +328,12 @@ After variable `i` (decl src ln 3)
 @dbg.value mapping for `i` (decl src ln 3), asm ln 47
 Value produced for `i` (decl src ln 3), asm ln 47
   %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 36
-🔔 Value produced for `i` (decl src ln 3): missing produced line, using decl ln
-  Added assignment asm ln 47, prod ln 3.0, live ln 3, gen 0
+  Added assignment asm ln 47, prod ln 3.21, live ln 3, gen 0
 Computing generations: `n` (decl src ln 1)
   asm ln 13, prod ln 1.0, live ln 2, gen 0
 Computing generations: `i` (decl src ln 3)
   asm ln 18, prod ln 3.0, live ln 3, gen 0
-  asm ln 47, prod ln 3.0, live ln 3, gen 1
+  asm ln 47, prod ln 3.21, live ln 3, gen 1
 Computing generations: `i2` (decl src ln 4)
   asm ln 39, prod ln 4.22, live ln 6, gen 0
 Computing generations: `b` (decl src ln 6)
@@ -347,7 +346,7 @@ Building live ranges: `i` (decl src ln 3)
   asm ln 18, prod ln 3.0, live ln 3, gen 0
     prod ln 3, gen 0 →
     prod ln 3, gen 1
-  asm ln 47, prod ln 3.0, live ln 3, gen 1
+  asm ln 47, prod ln 3.21, live ln 3, gen 1
     prod ln 3, gen 1 →
     prod ln ∞, gen ∞
 Building live ranges: `i2` (decl src ln 4)
@@ -460,7 +459,7 @@ Checking equivalence of `i` (decl src ln 3) from
   %inc = add nsw i32 %10, 1, l3 c27
   0x1
 and
-  assn asm ln 47, prod ln 3.0, live ln 3, gen 1
+  assn asm ln 47, prod ln 3.21, live ln 3, gen 1
   %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
   (Add w32 0x1 (Sub w32 0x2 0x2))
 Query to parse
@@ -525,7 +524,7 @@ and
   0x0
 
 Checking equivalence of `i` (decl src ln 3) from
-  assn asm ln 47, prod ln 3.0, live ln 3, gen 1
+  assn asm ln 47, prod ln 3.21, live ln 3, gen 1
   %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
   (Add w32 0x1 (Sub w32 0x2 0x2))
 and

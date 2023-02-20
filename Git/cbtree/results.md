@@ -1941,7 +1941,7 @@ After variable `c` (decl src ln 53)
 @dbg.value mapping for `c` (decl src ln 53), asm ln 222
 Value produced for `c` (decl src ln 53), asm ln 222
   %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l53 c17, asm ln 221
-  Added assignment asm ln 222, prod ln 53.17, live ln 54, gen 0
+  Added assignment asm ln 222, prod ln 53.34, live ln 54, gen 0
 Computing generations: `p` (decl src ln 48)
   asm ln 195, prod ln 48.0, live ln 51, gen 0
   asm ln 232, prod ln 56.9, live ln 51, gen 1
@@ -1954,7 +1954,7 @@ Computing generations: `q` (decl src ln 52)
 Computing generations: `direction` (decl src ln 54)
   asm ln 229, prod ln 54.49, live ln 56, gen 0
 Computing generations: `c` (decl src ln 53)
-  asm ln 222, prod ln 53.17, live ln 54, gen 0
+  asm ln 222, prod ln 53.34, live ln 54, gen 0
 Building live ranges: `p` (decl src ln 48)
   asm ln 195, prod ln 48.0, live ln 51, gen 0
     prod ln 48, gen 0 →
@@ -1979,7 +1979,7 @@ Building live ranges: `direction` (decl src ln 54)
     prod ln 54, gen 0 →
     prod ln ∞, gen ∞
 Building live ranges: `c` (decl src ln 53)
-  asm ln 222, prod ln 53.17, live ln 54, gen 0
+  asm ln 222, prod ln 53.34, live ln 54, gen 0
     prod ln 53, gen 0 →
     prod ln ∞, gen ∞
 
@@ -2088,7 +2088,7 @@ Expected 1 symbolic value(s), got 0
 
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 After `c` (decl src ln 53) assn asm ln 222, prod ln 53.17, live ln 54, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l53 c17
+🔔 After `c` (decl src ln 53) assn asm ln 222, prod ln 53.34, live ln 54, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %3, %cond.true ], [ 0, %while.body ], l53 c17
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `direction` (decl src ln 54) assn asm ln 229, prod ln 54.49, live ln 56, gen 0 has no symbolic value (likely unreachable) from %5 = lshr i64 %add, 8, l54 c49
@@ -2727,7 +2727,7 @@ After variable `c` (decl src ln 155)
 @dbg.value mapping for `c` (decl src ln 155), asm ln 336
 Value produced for `c` (decl src ln 155), asm ln 336
   %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l155 c17, asm ln 335
-  Added assignment asm ln 336, prod ln 155.17, live ln 156, gen 0
+  Added assignment asm ln 336, prod ln 155.34, live ln 156, gen 0
 After variable `i` (decl src ln 148)
 @dbg.value mapping for `i` (decl src ln 148), asm ln 361
 Value produced for `i` (decl src ln 148), asm ln 361
@@ -2736,7 +2736,7 @@ Value produced for `i` (decl src ln 148), asm ln 361
 Computing generations: `arg` (decl src ln 144)
   asm ln 291, prod ln 144.0, live ln 146, gen 0
 Computing generations: `c` (decl src ln 155)
-  asm ln 336, prod ln 155.17, live ln 156, gen 0
+  asm ln 336, prod ln 155.34, live ln 156, gen 0
 Computing generations: `direction` (decl src ln 156)
   asm ln 343, prod ln 156.49, live ln 158, gen 0
 Computing generations: `fn` (decl src ln 144)
@@ -2763,7 +2763,7 @@ Building live ranges: `arg` (decl src ln 144)
     prod ln 144, gen 0 →
     prod ln ∞, gen ∞
 Building live ranges: `c` (decl src ln 155)
-  asm ln 336, prod ln 155.17, live ln 156, gen 0
+  asm ln 336, prod ln 155.34, live ln 156, gen 0
     prod ln 155, gen 0 →
     prod ln ∞, gen ∞
 Building live ranges: `direction` (decl src ln 156)
@@ -3039,7 +3039,7 @@ and
 
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
-🔔 After `c` (decl src ln 155) assn asm ln 336, prod ln 155.17, live ln 156, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l155 c17
+🔔 After `c` (decl src ln 155) assn asm ln 336, prod ln 155.34, live ln 156, gen 0 has no symbolic value (likely unreachable) from %cond = phi i8 [ %4, %cond.true ], [ 0, %while.body ], l155 c17
 Expected 1 symbolic value(s), got 0
 Expected 1 symbolic value(s), got 0
 🔔 After `direction` (decl src ln 156) assn asm ln 343, prod ln 156.49, live ln 158, gen 0 has no symbolic value (likely unreachable) from %6 = lshr i64 %add, 8, l156 c49
