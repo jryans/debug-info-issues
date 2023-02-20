@@ -1,0 +1,21 @@
+digraph "CFG for 'example' function" {
+	label="CFG for 'example' function";
+
+	Node0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#cedaeb70",label="{entry|{<s0>T|<s1>F}}"];
+	Node0:s0 -> Node1;
+	Node0:s1 -> Node2;
+	Node1 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#abc8fd70",label="{if.then}"];
+	Node1 -> Node3;
+	Node2 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#abc8fd70",label="{if.end}"];
+	Node2 -> Node4;
+	Node4 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{for.cond|{<s0>T|<s1>F}}"];
+	Node4:s0 -> Node5;
+	Node4:s1 -> Node6;
+	Node5 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{for.body}"];
+	Node5 -> Node3;
+	Node3 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{inside}"];
+	Node3 -> Node7;
+	Node7 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{for.inc}"];
+	Node7 -> Node4;
+	Node6 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#cedaeb70",label="{for.end}"];
+}
