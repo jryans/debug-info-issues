@@ -1115,28 +1115,6 @@ Parsed query
                                                N5))
                               0x8)))
 ❌ After `newdirection` (decl src ln 66) assn asm ln 96, prod ln 93.43, live ln 95, gen 0 symbolic value doesn't match before assn asm ln 180, prod ln 93.18, live ln 95, gen 0
-(Eq (Extract w32 0 (LShr w64 (Add w64 0x1
-                                       (Or w64 (Xor w64 0xFF
-                                                        (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
-                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
-                                                                                                  (LShr w64 N3 0x1))
-                                                                                       (LShr w64 N2 0x2))
-                                                                            (LShr w64 N1 0x4))
-                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-                                               N5:(ZExt w64 N4)))
-                              0x8))
-     (Extract w32 0 (LShr w64 (Add w64 0x1
-                                       (Or w64 (Xor w64 0xFF
-                                                        (And w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(Or w64 (LShr w64 N9:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref) (Extract w8 0 N5)))
-                                                                                                                                0x1)
-                                                                                                                      N9)
-                                                                                                           0x2)
-                                                                                                 N8)
-                                                                                      0x4)
-                                                                            N7)
-                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N6 0x1))))
-                                               N5))
-                              0x8)))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 144, prod ln 87.18, live ln 88, gen 0
@@ -1163,10 +1141,6 @@ Parsed query
      (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
                        (Extract w8 0 (ZExt w64 N0)))))
 ❌ After `newotherbits` (decl src ln 64) assn asm ln 77, prod ln 87.18, live ln 88, gen 0 symbolic value doesn't match before assn asm ln 144, prod ln 87.18, live ln 88, gen 0
-(Eq (SExt w64 (Xor w32 (ZExt w32 N0:(Read w8 0x15 cb_internal_best_match.return.deref))
-                        (ZExt w32 (Read w8 0x0 k.deref))))
-     (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                       (Extract w8 0 (ZExt w64 N0)))))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 149, prod ln 88.16, live ln 89, gen 1
@@ -1202,13 +1176,6 @@ Parsed query
                        0x1)
              N2))
 ❌ After `newotherbits` (decl src ln 64) assn asm ln 80, prod ln 88.16, live ln 89, gen 1 symbolic value doesn't match before assn asm ln 149, prod ln 88.16, live ln 89, gen 1
-(Eq (Or w64 N0:(SExt w64 (Xor w32 (ZExt w32 N1:(Read w8 0x15 cb_internal_best_match.return.deref))
-                                   (ZExt w32 (Read w8 0x0 k.deref))))
-             (LShr w64 N0 0x1))
-     (Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                            (Extract w8 0 (ZExt w64 N1))))
-                       0x1)
-             N2))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 154, prod ln 89.16, live ln 90, gen 2
@@ -1253,16 +1220,6 @@ Parsed query
                        0x2)
              N3))
 ❌ After `newotherbits` (decl src ln 64) assn asm ln 83, prod ln 89.16, live ln 90, gen 2 symbolic value doesn't match before assn asm ln 154, prod ln 89.16, live ln 90, gen 2
-(Eq (Or w64 N0:(Or w64 N1:(SExt w64 (Xor w32 (ZExt w32 N2:(Read w8 0x15 cb_internal_best_match.return.deref))
-                                              (ZExt w32 (Read w8 0x0 k.deref))))
-                        (LShr w64 N1 0x1))
-             (LShr w64 N0 0x2))
-     (Or w64 (LShr w64 N3:(Or w64 (LShr w64 N4:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                 (Extract w8 0 (ZExt w64 N2))))
-                                            0x1)
-                                  N4)
-                       0x2)
-             N3))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 159, prod ln 90.16, live ln 91, gen 3
@@ -1316,19 +1273,6 @@ Parsed query
                        0x4)
              N4))
 ❌ After `newotherbits` (decl src ln 64) assn asm ln 86, prod ln 90.16, live ln 91, gen 3 symbolic value doesn't match before assn asm ln 159, prod ln 90.16, live ln 91, gen 3
-(Eq (Or w64 N0:(Or w64 N1:(Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 N3:(Read w8 0x15 cb_internal_best_match.return.deref))
-                                                         (ZExt w32 (Read w8 0x0 k.deref))))
-                                   (LShr w64 N2 0x1))
-                        (LShr w64 N1 0x2))
-             (LShr w64 N0 0x4))
-     (Or w64 (LShr w64 N4:(Or w64 (LShr w64 N5:(Or w64 (LShr w64 N6:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                      (Extract w8 0 (ZExt w64 N3))))
-                                                                 0x1)
-                                                       N6)
-                                            0x2)
-                                  N5)
-                       0x4)
-             N4))
 
 🔔 After `newotherbits` (decl src ln 64) assn asm ln 91, prod ln 91.56, live ln 93, gen 4 coordinates don't match before assn asm ln 166, prod ln 91.56, live ln 92, gen 4
 Checking equivalence of `newotherbits` (decl src ln 64) from
@@ -1395,23 +1339,6 @@ Parsed query
                                   N6)
                        (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
 ❌ After `newotherbits` (decl src ln 64) assn asm ln 91, prod ln 91.56, live ln 93, gen 4 symbolic value doesn't match before assn asm ln 166, prod ln 91.56, live ln 92, gen 4
-(Eq (Xor w64 0xFF
-              (And w64 N0:(Or w64 N1:(Or w64 N2:(Or w64 N3:(SExt w64 (Xor w32 (ZExt w32 N4:(Read w8 0x15 cb_internal_best_match.return.deref))
-                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
-                                                        (LShr w64 N3 0x1))
-                                             (LShr w64 N2 0x2))
-                                  (LShr w64 N1 0x4))
-                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-     (Xor w64 0xFF
-              (And w64 N5:(Or w64 (LShr w64 N6:(Or w64 (LShr w64 N7:(Or w64 (LShr w64 N8:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                                           (Extract w8 0 (ZExt w64 N4))))
-                                                                                      0x1)
-                                                                            N8)
-                                                                 0x2)
-                                                       N7)
-                                            0x4)
-                                  N6)
-                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
 
 Checking equivalence of `node` (decl src ln 62) from
   assn asm ln 30, prod ln 62.0, live ln 69, gen 0
@@ -1615,29 +1542,6 @@ Parsed query
                                                N4))
                               0x8)))
 ❌ Before `newdirection` (decl src ln 66) assn asm ln 180, prod ln 93.18, live ln 95, gen 0 symbolic value doesn't match after assn asm ln 96, prod ln 93.43, live ln 95, gen 0
-(Eq (Extract w32 0 (LShr w64 (Add w64 0x1
-                                       (Or w64 (Xor w64 0xFF
-                                                        (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                                                                                     (Extract w8 0 N4:(ZExt w64 N5:(Read w8 0x15 cb_internal_best_match.return.deref)))))
-                                                                                                                                0x1)
-                                                                                                                      N3)
-                                                                                                           0x2)
-                                                                                                 N2)
-                                                                                      0x4)
-                                                                            N1)
-                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-                                               N4))
-                              0x8))
-     (Extract w32 0 (LShr w64 (Add w64 0x1
-                                       (Or w64 (Xor w64 0xFF
-                                                        (And w64 N6:(Or w64 N7:(Or w64 N8:(Or w64 N9:(SExt w64 (Xor w32 (ZExt w32 N5)
-                                                                                                                        (ZExt w32 (Read w8 0x0 k.deref))))
-                                                                                                  (LShr w64 N9 0x1))
-                                                                                       (LShr w64 N8 0x2))
-                                                                            (LShr w64 N7 0x4))
-                                                                 (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N6 0x1))))
-                                               N4))
-                              0x8)))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 77, prod ln 87.18, live ln 88, gen 0
@@ -1664,10 +1568,6 @@ Parsed query
      (SExt w64 (Xor w32 (ZExt w32 N0)
                         (ZExt w32 (Read w8 0x0 k.deref)))))
 ❌ Before `newotherbits` (decl src ln 64) assn asm ln 144, prod ln 87.18, live ln 88, gen 0 symbolic value doesn't match after assn asm ln 77, prod ln 87.18, live ln 88, gen 0
-(Eq (ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                       (Extract w8 0 (ZExt w64 N0:(Read w8 0x15 cb_internal_best_match.return.deref)))))
-     (SExt w64 (Xor w32 (ZExt w32 N0)
-                        (ZExt w32 (Read w8 0x0 k.deref)))))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 80, prod ln 88.16, live ln 89, gen 1
@@ -1703,13 +1603,6 @@ Parsed query
                                    (ZExt w32 (Read w8 0x0 k.deref))))
              (LShr w64 N2 0x1)))
 ❌ Before `newotherbits` (decl src ln 64) assn asm ln 149, prod ln 88.16, live ln 89, gen 1 symbolic value doesn't match after assn asm ln 80, prod ln 88.16, live ln 89, gen 1
-(Eq (Or w64 (LShr w64 N0:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                            (Extract w8 0 (ZExt w64 N1:(Read w8 0x15 cb_internal_best_match.return.deref)))))
-                       0x1)
-             N0)
-     (Or w64 N2:(SExt w64 (Xor w32 (ZExt w32 N1)
-                                   (ZExt w32 (Read w8 0x0 k.deref))))
-             (LShr w64 N2 0x1)))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 83, prod ln 89.16, live ln 90, gen 2
@@ -1754,16 +1647,6 @@ Parsed query
                         (LShr w64 N4 0x1))
              (LShr w64 N3 0x2)))
 ❌ Before `newotherbits` (decl src ln 64) assn asm ln 154, prod ln 89.16, live ln 90, gen 2 symbolic value doesn't match after assn asm ln 83, prod ln 89.16, live ln 90, gen 2
-(Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                 (Extract w8 0 (ZExt w64 N2:(Read w8 0x15 cb_internal_best_match.return.deref)))))
-                                            0x1)
-                                  N1)
-                       0x2)
-             N0)
-     (Or w64 N3:(Or w64 N4:(SExt w64 (Xor w32 (ZExt w32 N2)
-                                              (ZExt w32 (Read w8 0x0 k.deref))))
-                        (LShr w64 N4 0x1))
-             (LShr w64 N3 0x2)))
 
 Checking equivalence of `newotherbits` (decl src ln 64) from
   assn asm ln 86, prod ln 90.16, live ln 91, gen 3
@@ -1817,19 +1700,6 @@ Parsed query
                         (LShr w64 N5 0x2))
              (LShr w64 N4 0x4)))
 ❌ Before `newotherbits` (decl src ln 64) assn asm ln 159, prod ln 90.16, live ln 91, gen 3 symbolic value doesn't match after assn asm ln 86, prod ln 90.16, live ln 91, gen 3
-(Eq (Or w64 (LShr w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                      (Extract w8 0 (ZExt w64 N3:(Read w8 0x15 cb_internal_best_match.return.deref)))))
-                                                                 0x1)
-                                                       N2)
-                                            0x2)
-                                  N1)
-                       0x4)
-             N0)
-     (Or w64 N4:(Or w64 N5:(Or w64 N6:(SExt w64 (Xor w32 (ZExt w32 N3)
-                                                         (ZExt w32 (Read w8 0x0 k.deref))))
-                                   (LShr w64 N6 0x1))
-                        (LShr w64 N5 0x2))
-             (LShr w64 N4 0x4)))
 
 🔔 Before `newotherbits` (decl src ln 64) assn asm ln 166, prod ln 91.56, live ln 92, gen 4 coordinates don't match after assn asm ln 91, prod ln 91.56, live ln 93, gen 4
 Checking equivalence of `newotherbits` (decl src ln 64) from
@@ -1896,23 +1766,6 @@ Parsed query
                                   (LShr w64 N6 0x4))
                        (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
 ❌ Before `newotherbits` (decl src ln 64) assn asm ln 166, prod ln 91.56, live ln 92, gen 4 symbolic value doesn't match after assn asm ln 91, prod ln 91.56, live ln 93, gen 4
-(Eq (Xor w64 0xFF
-              (And w64 N0:(Or w64 (LShr w64 N1:(Or w64 (LShr w64 N2:(Or w64 (LShr w64 N3:(ZExt w64 (Xor w8 (Read w8 0x15 node.deref)
-                                                                                                           (Extract w8 0 (ZExt w64 N4:(Read w8 0x15 cb_internal_best_match.return.deref)))))
-                                                                                      0x1)
-                                                                            N3)
-                                                                 0x2)
-                                                       N2)
-                                            0x4)
-                                  N1)
-                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N0 0x1))))
-     (Xor w64 0xFF
-              (And w64 N5:(Or w64 N6:(Or w64 N7:(Or w64 N8:(SExt w64 (Xor w32 (ZExt w32 N4)
-                                                                              (ZExt w32 (Read w8 0x0 k.deref))))
-                                                        (LShr w64 N8 0x1))
-                                             (LShr w64 N7 0x2))
-                                  (LShr w64 N6 0x4))
-                       (Xor w64 0xFFFFFFFFFFFFFFFF (LShr w64 N5 0x1)))))
 
 Checking equivalence of `node` (decl src ln 62) from
   assn asm ln 17, prod ln 62.0, live ln 69, gen 0
