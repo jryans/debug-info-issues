@@ -271,29 +271,6 @@ Computing generations: `a` (decl src ln 5)
   asm ln 43, prod ln 5.15, live ln 6, gen 0
 Computing generations: `b` (decl src ln 6)
   asm ln 48, prod ln 6.15, live ln 7, gen 0
-Building live ranges: `n` (decl src ln 1)
-  asm ln 18, prod ln 1.0, live ln 2, gen 0
-    prod ln 1, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `i` (decl src ln 3)
-  asm ln 24, prod ln 3.12, live ln 3, gen 0
-    prod ln 3, gen 0 →
-    prod ln 3, gen 1
-  asm ln 59, prod ln 3.27, live ln 3, gen 1
-    prod ln 3, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `i2` (decl src ln 4)
-  asm ln 38, prod ln 4.22, live ln 5, gen 0
-    prod ln 4, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `a` (decl src ln 5)
-  asm ln 43, prod ln 5.15, live ln 6, gen 0
-    prod ln 5, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `b` (decl src ln 6)
-  asm ln 48, prod ln 6.15, live ln 7, gen 0
-    prod ln 6, gen 0 →
-    prod ln ∞, gen ∞
 
 After variable `n` (decl src ln 1)
 @dbg.value mapping for `n` (decl src ln 1), asm ln 13
@@ -323,7 +300,7 @@ After variable `i` (decl src ln 3)
 @dbg.value mapping for `i` (decl src ln 3), asm ln 37
 Value produced for `i` (decl src ln 3), asm ln 37
   %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ], asm ln 36
-  Phi-based assignment in prologue, skipping
+  Added assignment asm ln 37, prod ln 3.21, live ln 4, gen 0
 After variable `i` (decl src ln 3)
 @dbg.value mapping for `i` (decl src ln 3), asm ln 47
 Value produced for `i` (decl src ln 3), asm ln 47
@@ -333,43 +310,14 @@ Computing generations: `n` (decl src ln 1)
   asm ln 13, prod ln 1.0, live ln 2, gen 0
 Computing generations: `i` (decl src ln 3)
   asm ln 18, prod ln 3.0, live ln 3, gen 0
-  asm ln 47, prod ln 3.21, live ln 3, gen 1
+  asm ln 37, prod ln 3.21, live ln 4, gen 1
+  asm ln 47, prod ln 3.21, live ln 3, gen 2
 Computing generations: `i2` (decl src ln 4)
   asm ln 39, prod ln 4.22, live ln 6, gen 0
 Computing generations: `b` (decl src ln 6)
   asm ln 43, prod ln 6.15, live ln 7, gen 0
-Building live ranges: `n` (decl src ln 1)
-  asm ln 13, prod ln 1.0, live ln 2, gen 0
-    prod ln 1, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `i` (decl src ln 3)
-  asm ln 18, prod ln 3.0, live ln 3, gen 0
-    prod ln 3, gen 0 →
-    prod ln 3, gen 1
-  asm ln 47, prod ln 3.21, live ln 3, gen 1
-    prod ln 3, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `i2` (decl src ln 4)
-  asm ln 39, prod ln 4.22, live ln 6, gen 0
-    prod ln 4, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `b` (decl src ln 6)
-  asm ln 43, prod ln 6.15, live ln 7, gen 0
-    prod ln 6, gen 0 →
-    prod ln ∞, gen ∞
 
 ✅ 6 before variables found, 6 after variables found, 0 mismatched
-
-### Assignments
-
-🔔 Before live ranges for `data` (decl src ln 2) not found (variable likely undefined)
-🔔 After live ranges for (removable) `a` (decl src ln 5) not found
-✅ Before live range coverage
-  Covered:   4
-  Uncovered: 0
-  Undefined: 1
-  Unused:    0
-  Removable: 1
 
 ### Symbolic values
 
@@ -410,6 +358,10 @@ Collected value for `n`
 Collected value for `i`
   i32 0
   0x0
+Collected value for `i`
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
+  Block: 0
+  0x2
 Collected value for `i2`
   %rem = and i32 %lsr.iv, 3, l4 c22
   0x2
@@ -427,9 +379,128 @@ Collected value for `i`
 
 ❌ Unable to execute all after program states
 
+### Assignments
+
+Filtering redundant before assignments: `i` (decl src ln 3)
+
+Filtering redundant after assignments: `i` (decl src ln 3)
+
+Pushed initial value onto stack: 0x2
+constu/s: 0x2
+minus: (Sub w32 0x2 0x2)
+Result: (Sub w32 0x2 0x2)
+Checking equivalence of `i` (decl src ln 3) from
+  assn asm ln 37, prod ln 3.21, live ln 4, gen 1
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
+  (Sub w32 0x2 0x2)
+and
+  assn asm ln 18, prod ln 3.0, live ln 3, gen 0
+  i32 0
+  0x0
+Query to parse
+(query [] (Eq (Sub w32 0x2 0x2) 0x0))
+Parsed query
+(Eq (Sub w32 0x2 0x2) 0x0)
+Removing: asm ln 37, prod ln 3.21, live ln 4, gen 1
+
+Pushed initial value onto stack: 0x2
+constu/s: 0x2
+minus: (Sub w32 0x2 0x2)
+constu/s: 0x1
+plus: (Add w32 0x1 (Sub w32 0x2 0x2))
+Result: (Add w32 0x1 (Sub w32 0x2 0x2))
+Checking equivalence of `i` (decl src ln 3) from
+  assn asm ln 47, prod ln 3.21, live ln 3, gen 2
+  %lsr.iv = phi i32 [ 2, %for.body.preheader ], [ %lsr.iv.next, %for.body ]
+  (Add w32 0x1 (Sub w32 0x2 0x2))
+and
+  assn asm ln 18, prod ln 3.0, live ln 3, gen 0
+  i32 0
+  0x0
+Query to parse
+(query [] (Eq (Add w32 0x1 (Sub w32 0x2 0x2))
+     0x0))
+Parsed query
+(Eq (Add w32 0x1 (Sub w32 0x2 0x2))
+     0x0)
+
+Computing generations: `n` (decl src ln 1)
+  asm ln 18, prod ln 1.0, live ln 2, gen 0
+Computing generations: `i` (decl src ln 3)
+  asm ln 24, prod ln 3.12, live ln 3, gen 0
+  asm ln 59, prod ln 3.27, live ln 3, gen 1
+Computing generations: `i2` (decl src ln 4)
+  asm ln 38, prod ln 4.22, live ln 5, gen 0
+Computing generations: `a` (decl src ln 5)
+  asm ln 43, prod ln 5.15, live ln 6, gen 0
+Computing generations: `b` (decl src ln 6)
+  asm ln 48, prod ln 6.15, live ln 7, gen 0
+Building live ranges: `n` (decl src ln 1)
+  asm ln 18, prod ln 1.0, live ln 2, gen 0
+    prod ln 1, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `i` (decl src ln 3)
+  asm ln 24, prod ln 3.12, live ln 3, gen 0
+    prod ln 3, gen 0 →
+    prod ln 3, gen 1
+  asm ln 59, prod ln 3.27, live ln 3, gen 1
+    prod ln 3, gen 1 →
+    prod ln ∞, gen ∞
+Building live ranges: `i2` (decl src ln 4)
+  asm ln 38, prod ln 4.22, live ln 5, gen 0
+    prod ln 4, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `a` (decl src ln 5)
+  asm ln 43, prod ln 5.15, live ln 6, gen 0
+    prod ln 5, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `b` (decl src ln 6)
+  asm ln 48, prod ln 6.15, live ln 7, gen 0
+    prod ln 6, gen 0 →
+    prod ln ∞, gen ∞
+
+Computing generations: `n` (decl src ln 1)
+  asm ln 13, prod ln 1.0, live ln 2, gen 0
+Computing generations: `i` (decl src ln 3)
+  asm ln 18, prod ln 3.0, live ln 3, gen 0
+  asm ln 47, prod ln 3.21, live ln 3, gen 1
+Computing generations: `i2` (decl src ln 4)
+  asm ln 39, prod ln 4.22, live ln 6, gen 0
+Computing generations: `b` (decl src ln 6)
+  asm ln 43, prod ln 6.15, live ln 7, gen 0
+Building live ranges: `n` (decl src ln 1)
+  asm ln 13, prod ln 1.0, live ln 2, gen 0
+    prod ln 1, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `i` (decl src ln 3)
+  asm ln 18, prod ln 3.0, live ln 3, gen 0
+    prod ln 3, gen 0 →
+    prod ln 3, gen 1
+  asm ln 47, prod ln 3.21, live ln 3, gen 1
+    prod ln 3, gen 1 →
+    prod ln ∞, gen ∞
+Building live ranges: `i2` (decl src ln 4)
+  asm ln 39, prod ln 4.22, live ln 6, gen 0
+    prod ln 4, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `b` (decl src ln 6)
+  asm ln 43, prod ln 6.15, live ln 7, gen 0
+    prod ln 6, gen 0 →
+    prod ln ∞, gen ∞
+
+🔔 Before live ranges for `data` (decl src ln 2) not found (variable likely undefined)
+🔔 After live ranges for (removable) `a` (decl src ln 5) not found
+✅ Before live range coverage
+  Covered:   4
+  Uncovered: 0
+  Undefined: 1
+  Unused:    0
+  Removable: 1
+
 #### Check before against after
 
 🔔 After live ranges for (removable) `a` (decl src ln 5) not found
+
 Checking equivalence of `b` (decl src ln 6) from
   assn asm ln 48, prod ln 6.15, live ln 7, gen 0
   %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
@@ -448,12 +519,6 @@ and
   i32 0
   0x0
 
-Pushed initial value onto stack: 0x2
-constu/s: 0x2
-minus: (Sub w32 0x2 0x2)
-constu/s: 0x1
-plus: (Add w32 0x1 (Sub w32 0x2 0x2))
-Result: (Add w32 0x1 (Sub w32 0x2 0x2))
 Checking equivalence of `i` (decl src ln 3) from
   assn asm ln 59, prod ln 3.27, live ln 3, gen 1
   %inc = add nsw i32 %10, 1, l3 c27
