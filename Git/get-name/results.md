@@ -465,27 +465,37 @@ Collected value for `path_to_match`
 Collected value for `is_tag`
   i32 1
   0x1
-Assertion failed: (!isByteUnflushed(offset) && "unflushed byte without cache value"), function read8, file Memory.cpp, line 371.
+Collected value for `is_annotated`
+  i32 0
+  0x0
+Collected value for `is_annotated`
+  %lnot.ext = zext i1 %lnot to i32, l128 c18
+  (ZExt w32 (Eq 0x0
+               (ReadLSB w32 0x0 oideq.return)))
+Collected value for `prio`
+  i32 2
+  0x2
+Collected value for `prio`
+  i32 1
+  0x1
+Assertion failed: (state.addressSpace.resolveOne(address, op) && "Concrete pointer not bound to MemoryObject"), function executeCall, file Executor.cpp, line 1905.
 PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
 Stack dump:
 0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x0000000105918587 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x00000001059173c8 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x0000000105918bd0 SignalHandler(int) + 288
+0  debug-info-check         0x000000010eb5b587 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x000000010eb5a3c8 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x000000010eb5bbd0 SignalHandler(int) + 288
 3  libsystem_platform.dylib 0x00007ff819786c1d _sigtramp + 29
-4  debug-info-check         0x0000000103e5d3c5 klee::ref<klee::Expr>::~ref() + 21
+4  debug-info-check         0x000000010d0a03c5 klee::ref<klee::Expr>::~ref() + 21
 5  libsystem_c.dylib        0x00007ff8196a5ca5 abort + 123
 6  libsystem_c.dylib        0x00007ff8196a4fbe err + 0
-7  debug-info-check         0x0000000103f59295 klee::ObjectState::read8(unsigned int) const + 261
-8  debug-info-check         0x0000000103f5a5ae klee::ObjectState::read(unsigned int, unsigned int) const + 302
-9  debug-info-check         0x0000000103f5a26f klee::ObjectState::read(klee::ref<klee::Expr>, unsigned int) const + 159
-10 debug-info-check         0x0000000103ec573a klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 2874
-11 debug-info-check         0x0000000103ece2db klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8699
-12 debug-info-check         0x0000000103eda374 klee::Executor::run(klee::ExecutionState&) + 1860
-13 debug-info-check         0x0000000103edf0bd klee::Executor::runFunction(llvm::Function*) + 205
-14 debug-info-check         0x0000000103e8604d collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1341
-15 debug-info-check         0x0000000103e51a3a checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 2506
-16 debug-info-check         0x0000000103e53e8e main + 1742
-17 dyld                     0x00007ff819429310 start + 2432
-./check.sh: line 6: 78103 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+7  debug-info-check         0x000000010d10837e klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 1918
+8  debug-info-check         0x000000010d1112db klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8699
+9  debug-info-check         0x000000010d11d374 klee::Executor::run(klee::ExecutionState&) + 1860
+10 debug-info-check         0x000000010d1220bd klee::Executor::runFunction(llvm::Function*) + 205
+11 debug-info-check         0x000000010d0c904d collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1341
+12 debug-info-check         0x000000010d094a3a checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 2506
+13 debug-info-check         0x000000010d096e8e main + 1742
+14 dyld                     0x00007ff819429310 start + 2432
+./check.sh: line 6: 14416 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
