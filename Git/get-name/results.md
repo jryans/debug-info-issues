@@ -462,255 +462,30 @@ Collected value for `is_tag`
 Collected value for `path_to_match`
   i8* null
   0x0
-[0;1;35mKLEE: WARNING ONCE: calling external: skip_prefix(0x1137A25B0, 0x1137A45E0, 0x1137A27A0) at example.c:l80:c6
-[0m[0;1;31mKLEE: ERROR: example.c:80: failed external call: skip_prefix
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
-[0m
-❌ Unable to execute all before program states
-
-#### After values
-
-Collected value for `path`
-  Concrete pointer resolves to path.deref, offset 0x0
-  Replaced concrete pointer with hash 0x448F4ECF717B6818
-  i8* %path
-  0x448F4ECF717B6818
-Collected value for `oid`
-  Concrete pointer resolves to oid.deref, offset 0x0
-  Replaced concrete pointer with hash 0x21765CC5F3C8C0D5
-  %struct.object_id.4* %oid
-  0x21765CC5F3C8C0D5
-Collected value for `flag`
-  i32 %flag
-  (ReadLSB w32 0x0 flag)
-Collected value for `cb_data`
-  Concrete pointer resolves to cb_data.deref, offset 0x0
-  Replaced concrete pointer with hash 0x6E7C9DC1E05E6D9
-  i8* %cb_data
-  0x6E7C9DC1E05E6D9
 Collected value for `is_tag`
-  i32 0
-  0x0
-Collected value for `path_to_match`
-  i8* null
-  0x0
-Collected value for `path_to_match`
-  Concrete pointer resolves to path_to_match, offset 0x0
-  Replaced concrete pointer with hash 0xB9AA4B967455F09A
-  %path_to_match = alloca i8*
-  0xB9AA4B967455F09A
-[0;1;35mKLEE: WARNING ONCE: calling external: skip_prefix(0x1137A2690, 0x1137A4650, 0x1137A2960) at example.c:l80:c6
-[0m[0;1;31mKLEE: ERROR: example.c:80: failed external call: skip_prefix
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
-[0m
-❌ Unable to execute all after program states
-
-### Assignments
-
-Filtering redundant before assignments: `found` (decl src ln 112)
-
-Filtering redundant before assignments: `is_annotated` (decl src ln 77)
-
-Filtering redundant before assignments: `is_tag` (decl src ln 75)
-
-Filtering redundant before assignments: `item` (decl src ln 99)
-
-Filtering redundant before assignments: `item` (decl src ln 113)
-
-Filtering redundant before assignments: `prio` (decl src ln 77)
-
-Filtering redundant after assignments: `is_annotated` (decl src ln 77)
-
-Filtering redundant after assignments: `is_tag` (decl src ln 75)
-
-Filtering redundant after assignments: `path_to_match` (decl src ln 78)
-
-Filtering redundant after assignments: `prio` (decl src ln 77)
-
-Expected 1 symbolic value(s), got 0
-Expected 1 symbolic value(s), got 0
-❌ After `prio` (decl src ln 77) assn asm ln 58, prod ln 77.0, live ln 147, gen 1 has no symbolic value from %prio.0 = phi i32 [ 1, %if.then59 ], [ 2, %if.then50 ]
-
-Computing generations: `cb_data` (decl src ln 73)
-  asm ln 39, prod ln 73.0, live ln 75, gen 0
-Computing generations: `flag` (decl src ln 73)
-  asm ln 37, prod ln 73.0, live ln 75, gen 0
-Computing generations: `found` (decl src ln 112)
-  asm ln 158, prod ln 112.7, live ln 115, gen 0
-  asm ln 191, prod ln 117.11, live ln 118, gen 1
-Computing generations: `is_annotated` (decl src ln 77)
-  asm ln 233, prod ln 131.16, live ln 77, gen 0
-  asm ln 227, prod ln 128.18, live ln 129, gen 1
-Computing generations: `is_tag` (decl src ln 75)
-  asm ln 42, prod ln 75.6, live ln 78, gen 0
-  asm ln 54, prod ln 81.10, live ln 82, gen 1
-Computing generations: `item` (decl src ln 99)
-  asm ln 106, prod ln 101.3, live ln 101, gen 0
-  asm ln 145, prod ln 101.3, live ln 101, gen 1
-Computing generations: `item` (decl src ln 113)
-  asm ln 161, prod ln 115.3, live ln 115, gen 0
-  asm ln 200, prod ln 115.3, live ln 115, gen 1
-Computing generations: `oid` (decl src ln 72)
-  asm ln 35, prod ln 72.0, live ln 75, gen 0
-Computing generations: `path` (decl src ln 72)
-  asm ln 33, prod ln 72.0, live ln 75, gen 0
-Computing generations: `path_to_match` (decl src ln 78)
-  asm ln 47, prod ln 78.14, live ln 80, gen 0
-Computing generations: `prio` (decl src ln 77)
-  asm ln 255, prod ln 145.8, live ln 77, gen 0
-  asm ln 251, prod ln 143.8, live ln 143, gen 1
-  asm ln 242, prod ln 141.8, live ln 141, gen 2
-Building live ranges: `cb_data` (decl src ln 73)
-  asm ln 39, prod ln 73.0, live ln 75, gen 0
-    prod ln 73, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `flag` (decl src ln 73)
-  asm ln 37, prod ln 73.0, live ln 75, gen 0
-    prod ln 73, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `found` (decl src ln 112)
-  asm ln 158, prod ln 112.7, live ln 115, gen 0
-    prod ln 112, gen 0 →
-    prod ln 117, gen 1
-  asm ln 191, prod ln 117.11, live ln 118, gen 1
-    prod ln 117, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `is_annotated` (decl src ln 77)
-  asm ln 233, prod ln 131.16, live ln 77, gen 0
-    prod ln 131, gen 0 →
-    prod ln 128, gen 1
-❌ Invalid range for `is_annotated` (decl src ln 77) from prod ln 131, gen 0 to prod ln 128, gen 1
-  asm ln 227, prod ln 128.18, live ln 129, gen 1
-    prod ln 128, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `is_tag` (decl src ln 75)
-  asm ln 42, prod ln 75.6, live ln 78, gen 0
-    prod ln 75, gen 0 →
-    prod ln 81, gen 1
-  asm ln 54, prod ln 81.10, live ln 82, gen 1
-    prod ln 81, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `item` (decl src ln 99)
-  asm ln 106, prod ln 101.3, live ln 101, gen 0
-    prod ln 101, gen 0 →
-    prod ln 101, gen 1
-  asm ln 145, prod ln 101.3, live ln 101, gen 1
-    prod ln 101, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `item` (decl src ln 113)
-  asm ln 161, prod ln 115.3, live ln 115, gen 0
-    prod ln 115, gen 0 →
-    prod ln 115, gen 1
-  asm ln 200, prod ln 115.3, live ln 115, gen 1
-    prod ln 115, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `oid` (decl src ln 72)
-  asm ln 35, prod ln 72.0, live ln 75, gen 0
-    prod ln 72, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `path` (decl src ln 72)
-  asm ln 33, prod ln 72.0, live ln 75, gen 0
-    prod ln 72, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `path_to_match` (decl src ln 78)
-  asm ln 47, prod ln 78.14, live ln 80, gen 0
-    prod ln 78, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `prio` (decl src ln 77)
-  asm ln 255, prod ln 145.8, live ln 77, gen 0
-    prod ln 145, gen 0 →
-    prod ln 143, gen 1
-❌ Invalid range for `prio` (decl src ln 77) from prod ln 145, gen 0 to prod ln 143, gen 1
-  asm ln 251, prod ln 143.8, live ln 143, gen 1
-    prod ln 143, gen 1 →
-    prod ln 141, gen 2
-❌ Invalid range for `prio` (decl src ln 77) from prod ln 143, gen 1 to prod ln 141, gen 2
-  asm ln 242, prod ln 141.8, live ln 141, gen 2
-    prod ln 141, gen 2 →
-    prod ln ∞, gen ∞
-
-Computing generations: `cb_data` (decl src ln 73)
-  asm ln 18, prod ln 73.0, live ln 76, gen 0
-Computing generations: `flag` (decl src ln 73)
-  asm ln 17, prod ln 73.0, live ln 76, gen 0
-Computing generations: `is_annotated` (decl src ln 77)
-  asm ln 42, prod ln 128.18, live ln 140, gen 0
-  asm ln 43, prod ln 77.0, live ln 140, gen 1
-  asm ln 48, prod ln 77.0, live ln 140, gen 2
-  asm ln 49, prod ln 77.0, live ln 140, gen 3
-Computing generations: `is_tag` (decl src ln 75)
-  asm ln 19, prod ln 75.0, live ln 76, gen 0
-  asm ln 33, prod ln 75.0, live ln 127, gen 1
-Computing generations: `oid` (decl src ln 72)
-  asm ln 16, prod ln 72.0, live ln 76, gen 0
-Computing generations: `path` (decl src ln 72)
-  asm ln 15, prod ln 72.0, live ln 76, gen 0
-Computing generations: `path_to_match` (decl src ln 78)
-  asm ln 25, prod ln 78.0, live ln 78, gen 0
-  asm ln 27, prod ln 78.0, live ln 80, gen 1
-Computing generations: `prio` (decl src ln 77)
-  asm ln 53, prod ln 77.0, live ln 143, gen 0
-  asm ln 58, prod ln 77.0, live ln 147, gen 1
-Building live ranges: `cb_data` (decl src ln 73)
-  asm ln 18, prod ln 73.0, live ln 76, gen 0
-    prod ln 73, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `flag` (decl src ln 73)
-  asm ln 17, prod ln 73.0, live ln 76, gen 0
-    prod ln 73, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `is_annotated` (decl src ln 77)
-  asm ln 42, prod ln 128.18, live ln 140, gen 0
-    prod ln 128, gen 0 →
-    prod ln 77, gen 1
-❌ Invalid range for `is_annotated` (decl src ln 77) from prod ln 128, gen 0 to prod ln 77, gen 1
-  asm ln 48, prod ln 77.0, live ln 140, gen 2
-    prod ln 77, gen 2 →
-    prod ln 77, gen 3
-Building live ranges: `is_tag` (decl src ln 75)
-  asm ln 19, prod ln 75.0, live ln 76, gen 0
-    prod ln 75, gen 0 →
-    prod ln 75, gen 1
-  asm ln 33, prod ln 75.0, live ln 127, gen 1
-    prod ln 75, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `oid` (decl src ln 72)
-  asm ln 16, prod ln 72.0, live ln 76, gen 0
-    prod ln 72, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `path` (decl src ln 72)
-  asm ln 15, prod ln 72.0, live ln 76, gen 0
-    prod ln 72, gen 0 →
-    prod ln ∞, gen ∞
-Building live ranges: `path_to_match` (decl src ln 78)
-  asm ln 25, prod ln 78.0, live ln 78, gen 0
-    prod ln 78, gen 0 →
-    prod ln 78, gen 1
-  asm ln 27, prod ln 78.0, live ln 80, gen 1
-    prod ln 78, gen 1 →
-    prod ln ∞, gen ∞
-Building live ranges: `prio` (decl src ln 77)
-  asm ln 53, prod ln 77.0, live ln 143, gen 0
-    prod ln 77, gen 0 →
-    prod ln 77, gen 1
-  asm ln 58, prod ln 77.0, live ln 147, gen 1
-    prod ln 77, gen 1 →
-    prod ln ∞, gen ∞
-
-❌ After live ranges for `found` (decl src ln 112) not found
-Assertion failed: (afterRange.stop().line == UINT_MAX && "After live range terminates early"), function checkFunction, file main.cpp, line 1080.
+  i32 1
+  0x1
+Assertion failed: (!isByteUnflushed(offset) && "unflushed byte without cache value"), function read8, file Memory.cpp, line 371.
 PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
 Stack dump:
 0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/debug-info-check klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=debug-info-check,independent-function,values-collector,variable --debug-execution-trace
 Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  debug-info-check         0x000000010fb5f587 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  debug-info-check         0x000000010fb5e3c8 llvm::sys::RunSignalHandlers() + 248
-2  debug-info-check         0x000000010fb5fbd0 SignalHandler(int) + 288
+0  debug-info-check         0x0000000105918587 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
+1  debug-info-check         0x00000001059173c8 llvm::sys::RunSignalHandlers() + 248
+2  debug-info-check         0x0000000105918bd0 SignalHandler(int) + 288
 3  libsystem_platform.dylib 0x00007ff819786c1d _sigtramp + 29
-4  libsystem_platform.dylib 0x00007ff7b1e71650 _sigtramp + 18446744071971973712
+4  debug-info-check         0x0000000103e5d3c5 klee::ref<klee::Expr>::~ref() + 21
 5  libsystem_c.dylib        0x00007ff8196a5ca5 abort + 123
 6  libsystem_c.dylib        0x00007ff8196a4fbe err + 0
-7  debug-info-check         0x000000010e099796 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 5926
-8  debug-info-check         0x000000010e09ae8e main + 1742
-9  dyld                     0x00007ff819429310 start + 2432
-./check.sh: line 6: 65584 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+7  debug-info-check         0x0000000103f59295 klee::ObjectState::read8(unsigned int) const + 261
+8  debug-info-check         0x0000000103f5a5ae klee::ObjectState::read(unsigned int, unsigned int) const + 302
+9  debug-info-check         0x0000000103f5a26f klee::ObjectState::read(klee::ref<klee::Expr>, unsigned int) const + 159
+10 debug-info-check         0x0000000103ec573a klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 2874
+11 debug-info-check         0x0000000103ece2db klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8699
+12 debug-info-check         0x0000000103eda374 klee::Executor::run(klee::ExecutionState&) + 1860
+13 debug-info-check         0x0000000103edf0bd klee::Executor::runFunction(llvm::Function*) + 205
+14 debug-info-check         0x0000000103e8604d collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1341
+15 debug-info-check         0x0000000103e51a3a checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 2506
+16 debug-info-check         0x0000000103e53e8e main + 1742
+17 dyld                     0x00007ff819429310 start + 2432
+./check.sh: line 6: 78103 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
