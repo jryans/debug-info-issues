@@ -4,3 +4,4 @@ klee-out*
 *.dSYM
 example-O?
 *.tmp
+*.o
