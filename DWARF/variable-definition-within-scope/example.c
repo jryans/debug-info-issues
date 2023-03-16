@@ -1,11 +1,11 @@
-int main(int argc, char* argv[]) {
+int example(int n) {
   int bob;
   int tom;
-  if (argc) {
-    bob = argc;
+  if (n) {
+    bob = n;
   } else {
-    bob = argc + 2;
+    bob = n + 2;
   }
-  tom = argc + bob + 1;
+  tom = n + bob + 1;
   return bob + tom;
 }
