@@ -7,39 +7,39 @@ target triple = "x86_64-apple-macosx13.0.0"
 define i32 @example(i32 %n) #0 !dbg !11 {
 entry:
   %n.addr = alloca i32, align 4
-  %bob = alloca i32, align 4
-  %tom = alloca i32, align 4
+  %a = alloca i32, align 4
+  %b = alloca i32, align 4
   store i32 %n, i32* %n.addr, align 4
   call void @llvm.dbg.declare(metadata i32* %n.addr, metadata !15, metadata !DIExpression()), !dbg !16
-  call void @llvm.dbg.declare(metadata i32* %bob, metadata !17, metadata !DIExpression()), !dbg !18
-  call void @llvm.dbg.declare(metadata i32* %tom, metadata !19, metadata !DIExpression()), !dbg !20
+  call void @llvm.dbg.declare(metadata i32* %a, metadata !17, metadata !DIExpression()), !dbg !18
+  call void @llvm.dbg.declare(metadata i32* %b, metadata !19, metadata !DIExpression()), !dbg !20
   %0 = load i32, i32* %n.addr, align 4, !dbg !21
   %tobool = icmp ne i32 %0, 0, !dbg !21
   br i1 %tobool, label %if.then, label %if.else, !dbg !23
 
 if.then:                                          ; preds = %entry
-  store i32 1, i32* %tom, align 4, !dbg !24
+  store i32 1, i32* %b, align 4, !dbg !24
   %1 = load i32, i32* %n.addr, align 4, !dbg !26
-  store i32 %1, i32* %bob, align 4, !dbg !27
+  store i32 %1, i32* %a, align 4, !dbg !27
   br label %if.end, !dbg !28
 
 if.else:                                          ; preds = %entry
-  store i32 2, i32* %tom, align 4, !dbg !29
+  store i32 2, i32* %b, align 4, !dbg !29
   %2 = load i32, i32* %n.addr, align 4, !dbg !31
   %add = add nsw i32 %2, 2, !dbg !32
-  store i32 %add, i32* %bob, align 4, !dbg !33
+  store i32 %add, i32* %a, align 4, !dbg !33
   br label %if.end
 
 if.end:                                           ; preds = %if.else, %if.then
   %3 = load i32, i32* %n.addr, align 4, !dbg !34
-  %4 = load i32, i32* %bob, align 4, !dbg !35
+  %4 = load i32, i32* %a, align 4, !dbg !35
   %add1 = add nsw i32 %3, %4, !dbg !36
   %add2 = add nsw i32 %add1, 1, !dbg !37
-  %5 = load i32, i32* %tom, align 4, !dbg !38
+  %5 = load i32, i32* %b, align 4, !dbg !38
   %add3 = add nsw i32 %5, %add2, !dbg !38
-  store i32 %add3, i32* %tom, align 4, !dbg !38
-  %6 = load i32, i32* %bob, align 4, !dbg !39
-  %7 = load i32, i32* %tom, align 4, !dbg !40
+  store i32 %add3, i32* %b, align 4, !dbg !38
+  %6 = load i32, i32* %a, align 4, !dbg !39
+  %7 = load i32, i32* %b, align 4, !dbg !40
   %add4 = add nsw i32 %6, %7, !dbg !41
   ret i32 %add4, !dbg !42
 }
@@ -71,29 +71,29 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !14 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !15 = !DILocalVariable(name: "n", arg: 1, scope: !11, file: !8, line: 1, type: !14)
 !16 = !DILocation(line: 1, column: 17, scope: !11)
-!17 = !DILocalVariable(name: "bob", scope: !11, file: !8, line: 2, type: !14)
+!17 = !DILocalVariable(name: "a", scope: !11, file: !8, line: 2, type: !14)
 !18 = !DILocation(line: 2, column: 7, scope: !11)
-!19 = !DILocalVariable(name: "tom", scope: !11, file: !8, line: 3, type: !14)
+!19 = !DILocalVariable(name: "b", scope: !11, file: !8, line: 3, type: !14)
 !20 = !DILocation(line: 3, column: 7, scope: !11)
 !21 = !DILocation(line: 4, column: 7, scope: !22)
 !22 = distinct !DILexicalBlock(scope: !11, file: !8, line: 4, column: 7)
 !23 = !DILocation(line: 4, column: 7, scope: !11)
-!24 = !DILocation(line: 5, column: 9, scope: !25)
+!24 = !DILocation(line: 5, column: 7, scope: !25)
 !25 = distinct !DILexicalBlock(scope: !22, file: !8, line: 4, column: 10)
-!26 = !DILocation(line: 6, column: 11, scope: !25)
-!27 = !DILocation(line: 6, column: 9, scope: !25)
+!26 = !DILocation(line: 6, column: 9, scope: !25)
+!27 = !DILocation(line: 6, column: 7, scope: !25)
 !28 = !DILocation(line: 7, column: 3, scope: !25)
-!29 = !DILocation(line: 8, column: 9, scope: !30)
+!29 = !DILocation(line: 8, column: 7, scope: !30)
 !30 = distinct !DILexicalBlock(scope: !22, file: !8, line: 7, column: 10)
-!31 = !DILocation(line: 9, column: 11, scope: !30)
-!32 = !DILocation(line: 9, column: 13, scope: !30)
-!33 = !DILocation(line: 9, column: 9, scope: !30)
-!34 = !DILocation(line: 11, column: 10, scope: !11)
-!35 = !DILocation(line: 11, column: 14, scope: !11)
-!36 = !DILocation(line: 11, column: 12, scope: !11)
-!37 = !DILocation(line: 11, column: 18, scope: !11)
-!38 = !DILocation(line: 11, column: 7, scope: !11)
+!31 = !DILocation(line: 9, column: 9, scope: !30)
+!32 = !DILocation(line: 9, column: 11, scope: !30)
+!33 = !DILocation(line: 9, column: 7, scope: !30)
+!34 = !DILocation(line: 11, column: 8, scope: !11)
+!35 = !DILocation(line: 11, column: 12, scope: !11)
+!36 = !DILocation(line: 11, column: 10, scope: !11)
+!37 = !DILocation(line: 11, column: 14, scope: !11)
+!38 = !DILocation(line: 11, column: 5, scope: !11)
 !39 = !DILocation(line: 12, column: 10, scope: !11)
-!40 = !DILocation(line: 12, column: 16, scope: !11)
-!41 = !DILocation(line: 12, column: 14, scope: !11)
+!40 = !DILocation(line: 12, column: 14, scope: !11)
+!41 = !DILocation(line: 12, column: 12, scope: !11)
 !42 = !DILocation(line: 12, column: 3, scope: !11)

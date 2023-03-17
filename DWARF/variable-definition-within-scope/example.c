@@ -1,13 +1,13 @@
 int example(int n) {
-  int bob;
-  int tom;
+  int a;
+  int b;
   if (n) {
-    tom = 1;
-    bob = n;
+    b = 1;
+    a = n;
   } else {
-    tom = 2;
-    bob = n + 2;
+    b = 2;
+    a = n + 2;
   }
-  tom += n + bob + 1;
-  return bob + tom;
+  b += n + a + 1;
+  return a + b;
 }

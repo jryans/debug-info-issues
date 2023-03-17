@@ -22,15 +22,15 @@ if.else:                                          ; preds = %entry
   br label %if.end
 
 if.end:                                           ; preds = %if.else, %if.then
-  %bob.0 = phi i32 [ %n, %if.then ], [ %add, %if.else ], !dbg !27
-  %tom.0 = phi i32 [ 1, %if.then ], [ 2, %if.else ], !dbg !27
-  call void @llvm.dbg.value(metadata i32 %tom.0, metadata !18, metadata !DIExpression()), !dbg !19
-  call void @llvm.dbg.value(metadata i32 %bob.0, metadata !17, metadata !DIExpression()), !dbg !19
-  %add1 = add nsw i32 %n, %bob.0, !dbg !28
+  %a.0 = phi i32 [ %n, %if.then ], [ %add, %if.else ], !dbg !27
+  %b.0 = phi i32 [ 1, %if.then ], [ 2, %if.else ], !dbg !27
+  call void @llvm.dbg.value(metadata i32 %b.0, metadata !18, metadata !DIExpression()), !dbg !19
+  call void @llvm.dbg.value(metadata i32 %a.0, metadata !17, metadata !DIExpression()), !dbg !19
+  %add1 = add nsw i32 %n, %a.0, !dbg !28
   %add2 = add nsw i32 %add1, 1, !dbg !29
-  %add3 = add nsw i32 %tom.0, %add2, !dbg !30
+  %add3 = add nsw i32 %b.0, %add2, !dbg !30
   call void @llvm.dbg.value(metadata i32 %add3, metadata !18, metadata !DIExpression()), !dbg !19
-  %add4 = add nsw i32 %bob.0, %add3, !dbg !31
+  %add4 = add nsw i32 %a.0, %add3, !dbg !31
   ret i32 %add4, !dbg !32
 }
 
@@ -72,19 +72,19 @@ attributes #3 = { nofree nosync nounwind readnone speculatable willreturn }
 !14 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !15 = !{!16, !17, !18}
 !16 = !DILocalVariable(name: "n", arg: 1, scope: !11, file: !8, line: 1, type: !14)
-!17 = !DILocalVariable(name: "bob", scope: !11, file: !8, line: 2, type: !14)
-!18 = !DILocalVariable(name: "tom", scope: !11, file: !8, line: 3, type: !14)
+!17 = !DILocalVariable(name: "a", scope: !11, file: !8, line: 2, type: !14)
+!18 = !DILocalVariable(name: "b", scope: !11, file: !8, line: 3, type: !14)
 !19 = !DILocation(line: 0, scope: !11)
 !20 = !DILocation(line: 4, column: 7, scope: !21)
 !21 = distinct !DILexicalBlock(scope: !11, file: !8, line: 4, column: 7)
 !22 = !DILocation(line: 4, column: 7, scope: !11)
 !23 = !DILocation(line: 7, column: 3, scope: !24)
 !24 = distinct !DILexicalBlock(scope: !21, file: !8, line: 4, column: 10)
-!25 = !DILocation(line: 9, column: 13, scope: !26)
+!25 = !DILocation(line: 9, column: 11, scope: !26)
 !26 = distinct !DILexicalBlock(scope: !21, file: !8, line: 7, column: 10)
 !27 = !DILocation(line: 0, scope: !21)
-!28 = !DILocation(line: 11, column: 12, scope: !11)
-!29 = !DILocation(line: 11, column: 18, scope: !11)
-!30 = !DILocation(line: 11, column: 7, scope: !11)
-!31 = !DILocation(line: 12, column: 14, scope: !11)
+!28 = !DILocation(line: 11, column: 10, scope: !11)
+!29 = !DILocation(line: 11, column: 14, scope: !11)
+!30 = !DILocation(line: 11, column: 5, scope: !11)
+!31 = !DILocation(line: 12, column: 12, scope: !11)
 !32 = !DILocation(line: 12, column: 3, scope: !11)
