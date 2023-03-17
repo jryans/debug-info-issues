@@ -18,26 +18,30 @@ entry:
   br i1 %tobool, label %if.then, label %if.else, !dbg !23
 
 if.then:                                          ; preds = %entry
-  %1 = load i32, i32* %n.addr, align 4, !dbg !24
-  store i32 %1, i32* %bob, align 4, !dbg !26
-  br label %if.end, !dbg !27
+  store i32 1, i32* %tom, align 4, !dbg !24
+  %1 = load i32, i32* %n.addr, align 4, !dbg !26
+  store i32 %1, i32* %bob, align 4, !dbg !27
+  br label %if.end, !dbg !28
 
 if.else:                                          ; preds = %entry
-  %2 = load i32, i32* %n.addr, align 4, !dbg !28
-  %add = add nsw i32 %2, 2, !dbg !30
-  store i32 %add, i32* %bob, align 4, !dbg !31
+  store i32 2, i32* %tom, align 4, !dbg !29
+  %2 = load i32, i32* %n.addr, align 4, !dbg !31
+  %add = add nsw i32 %2, 2, !dbg !32
+  store i32 %add, i32* %bob, align 4, !dbg !33
   br label %if.end
 
 if.end:                                           ; preds = %if.else, %if.then
-  %3 = load i32, i32* %n.addr, align 4, !dbg !32
-  %4 = load i32, i32* %bob, align 4, !dbg !33
-  %add1 = add nsw i32 %3, %4, !dbg !34
-  %add2 = add nsw i32 %add1, 1, !dbg !35
-  store i32 %add2, i32* %tom, align 4, !dbg !36
-  %5 = load i32, i32* %bob, align 4, !dbg !37
-  %6 = load i32, i32* %tom, align 4, !dbg !38
-  %add3 = add nsw i32 %5, %6, !dbg !39
-  ret i32 %add3, !dbg !40
+  %3 = load i32, i32* %n.addr, align 4, !dbg !34
+  %4 = load i32, i32* %bob, align 4, !dbg !35
+  %add1 = add nsw i32 %3, %4, !dbg !36
+  %add2 = add nsw i32 %add1, 1, !dbg !37
+  %5 = load i32, i32* %tom, align 4, !dbg !38
+  %add3 = add nsw i32 %5, %add2, !dbg !38
+  store i32 %add3, i32* %tom, align 4, !dbg !38
+  %6 = load i32, i32* %bob, align 4, !dbg !39
+  %7 = load i32, i32* %tom, align 4, !dbg !40
+  %add4 = add nsw i32 %6, %7, !dbg !41
+  ret i32 %add4, !dbg !42
 }
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
@@ -74,20 +78,22 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !21 = !DILocation(line: 4, column: 7, scope: !22)
 !22 = distinct !DILexicalBlock(scope: !11, file: !8, line: 4, column: 7)
 !23 = !DILocation(line: 4, column: 7, scope: !11)
-!24 = !DILocation(line: 5, column: 11, scope: !25)
+!24 = !DILocation(line: 5, column: 9, scope: !25)
 !25 = distinct !DILexicalBlock(scope: !22, file: !8, line: 4, column: 10)
-!26 = !DILocation(line: 5, column: 9, scope: !25)
-!27 = !DILocation(line: 6, column: 3, scope: !25)
-!28 = !DILocation(line: 7, column: 11, scope: !29)
-!29 = distinct !DILexicalBlock(scope: !22, file: !8, line: 6, column: 10)
-!30 = !DILocation(line: 7, column: 13, scope: !29)
-!31 = !DILocation(line: 7, column: 9, scope: !29)
-!32 = !DILocation(line: 9, column: 9, scope: !11)
-!33 = !DILocation(line: 9, column: 13, scope: !11)
-!34 = !DILocation(line: 9, column: 11, scope: !11)
-!35 = !DILocation(line: 9, column: 17, scope: !11)
-!36 = !DILocation(line: 9, column: 7, scope: !11)
-!37 = !DILocation(line: 10, column: 10, scope: !11)
-!38 = !DILocation(line: 10, column: 16, scope: !11)
-!39 = !DILocation(line: 10, column: 14, scope: !11)
-!40 = !DILocation(line: 10, column: 3, scope: !11)
+!26 = !DILocation(line: 6, column: 11, scope: !25)
+!27 = !DILocation(line: 6, column: 9, scope: !25)
+!28 = !DILocation(line: 7, column: 3, scope: !25)
+!29 = !DILocation(line: 8, column: 9, scope: !30)
+!30 = distinct !DILexicalBlock(scope: !22, file: !8, line: 7, column: 10)
+!31 = !DILocation(line: 9, column: 11, scope: !30)
+!32 = !DILocation(line: 9, column: 13, scope: !30)
+!33 = !DILocation(line: 9, column: 9, scope: !30)
+!34 = !DILocation(line: 11, column: 10, scope: !11)
+!35 = !DILocation(line: 11, column: 14, scope: !11)
+!36 = !DILocation(line: 11, column: 12, scope: !11)
+!37 = !DILocation(line: 11, column: 18, scope: !11)
+!38 = !DILocation(line: 11, column: 7, scope: !11)
+!39 = !DILocation(line: 12, column: 10, scope: !11)
+!40 = !DILocation(line: 12, column: 16, scope: !11)
+!41 = !DILocation(line: 12, column: 14, scope: !11)
+!42 = !DILocation(line: 12, column: 3, scope: !11)

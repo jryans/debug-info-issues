@@ -8,13 +8,16 @@ define i32 @example(i32 %n) local_unnamed_addr #0 !dbg !11 {
 entry:
   call void @llvm.dbg.value(metadata i32 %n, metadata !16, metadata !DIExpression()), !dbg !19
   %tobool.not = icmp eq i32 %n, 0, !dbg !20
+  %. = select i1 %tobool.not, i32 2, i32 1
+  call void @llvm.dbg.value(metadata i32 %., metadata !18, metadata !DIExpression()), !dbg !19
   call void @llvm.dbg.value(metadata i32 undef, metadata !17, metadata !DIExpression()), !dbg !19
   call void @llvm.dbg.value(metadata i32 undef, metadata !18, metadata !DIExpression()), !dbg !19
   %n.op = shl i32 %n, 1
   %factor = select i1 %tobool.not, i32 4, i32 %n.op
   %add2 = add i32 %n, 1, !dbg !22
-  %add3 = add i32 %add2, %factor, !dbg !23
-  ret i32 %add3, !dbg !24
+  %add3 = add i32 %add2, %., !dbg !23
+  %add4 = add i32 %add3, %factor, !dbg !24
+  ret i32 %add4, !dbg !25
 }
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
@@ -49,6 +52,7 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !19 = !DILocation(line: 0, scope: !11)
 !20 = !DILocation(line: 4, column: 7, scope: !21)
 !21 = distinct !DILexicalBlock(scope: !11, file: !8, line: 4, column: 7)
-!22 = !DILocation(line: 9, column: 17, scope: !11)
-!23 = !DILocation(line: 10, column: 14, scope: !11)
-!24 = !DILocation(line: 10, column: 3, scope: !11)
+!22 = !DILocation(line: 11, column: 18, scope: !11)
+!23 = !DILocation(line: 11, column: 7, scope: !11)
+!24 = !DILocation(line: 12, column: 14, scope: !11)
+!25 = !DILocation(line: 12, column: 3, scope: !11)
