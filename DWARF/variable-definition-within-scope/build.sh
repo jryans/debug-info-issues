@@ -9,10 +9,10 @@ ${LLVM_AS} -o klee-out-O0/final.bc example-O0.ll
 
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O0_OPTS} -c -o example-O0.o
 
-# Stop after SROA for `dbg.value` without bugs from later passes
-${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=6 -o example-O1-sroa.ll
+# Run only SROA to lower dbg.declare to dbg.value for realistic value coverage
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=6 -o example-O0-plus-sroa.ll
 
-${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=6 -c -o example-O1-sroa.o
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=6 -c -o example-O0-plus-sroa.o
 
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -o example-O1.ll
 
