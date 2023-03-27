@@ -9,10 +9,9 @@ ${LLVM_AS} -o klee-out-O0/final.bc example-O0.ll
 
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O0_OPTS} -c -o example-O0.o
 
-# Run only SROA to lower dbg.declare to dbg.value for realistic value coverage
-${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=6 -o example-O0-plus-sroa.ll
-
-${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=6 -c -o example-O0-plus-sroa.o
+# Run only mem2reg to lower dbg.declare to dbg.value for realistic value coverage
+${OPT} -S -o example-O0-mem2reg.ll --mem2reg example-O0.ll
+${LLC} -O0 -o example-O0-mem2reg.o --filetype obj example-O0-mem2reg.ll
 
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -o example-O1.ll
 

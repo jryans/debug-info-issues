@@ -38,6 +38,8 @@ OPT=$(llvm release-clang-lldb-13.0.0 opt)
 OPT_CFG_OPTS="--passes=dot-cfg-only --disable-output"
 FILTER_DOT="$(dirname "${BASH_SOURCE[0]}")/tools/filter-dot.js"
 
+LLC=$(llvm release-clang-lldb-13.0.0 llc)
+
 filter_cg_ir() {
   local input_ir="$1"
   local output_ir="$2"
