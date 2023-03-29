@@ -291,10 +291,10 @@ Computing generations: `cheese` (decl src ln 6)
 Computing generations: `a` (decl src ln 7)
   asm ln 31, prod ln 7.17, live ln 8, gen 0
   asm ln 35, prod ln 8.5, live ln 10, gen 1
-  asm ln 59, prod ln 16.7, live ln 17, gen 2
-  asm ln 49, prod ln 12.7, live ln 13, gen 3
-  asm ln 52, prod ln 13.7, live ln 14, gen 4
-  asm ln 55, prod ln 14.7, live ln 15, gen 5
+  asm ln 49, prod ln 12.7, live ln 13, gen 2
+  asm ln 52, prod ln 13.7, live ln 14, gen 3
+  asm ln 55, prod ln 14.7, live ln 15, gen 4
+  asm ln 59, prod ln 16.7, live ln 17, gen 5
 
 After variable `foo` (decl src ln 2)
 Store to `foo` (decl src ln 2), asm ln 13
@@ -487,10 +487,10 @@ Computing generations: `cheese` (decl src ln 6)
 Computing generations: `a` (decl src ln 7)
   asm ln 31, prod ln 7.17, live ln 8, gen 0
   asm ln 35, prod ln 8.5, live ln 10, gen 1
-  asm ln 59, prod ln 16.7, live ln 17, gen 2
-  asm ln 49, prod ln 12.7, live ln 13, gen 3
-  asm ln 52, prod ln 13.7, live ln 14, gen 4
-  asm ln 55, prod ln 14.7, live ln 15, gen 5
+  asm ln 49, prod ln 12.7, live ln 13, gen 2
+  asm ln 52, prod ln 13.7, live ln 14, gen 3
+  asm ln 55, prod ln 14.7, live ln 15, gen 4
+  asm ln 59, prod ln 16.7, live ln 17, gen 5
 Building live ranges: `foo` (decl src ln 2)
   asm ln 17, prod ln 2.16, live ln 3, gen 0
     prod ln 2, gen 0 →
@@ -516,23 +516,19 @@ Building live ranges: `a` (decl src ln 7)
     prod ln 8, gen 1
   asm ln 35, prod ln 8.5, live ln 10, gen 1
     prod ln 8, gen 1 →
-    prod ln 16, gen 2
-  asm ln 59, prod ln 16.7, live ln 17, gen 2
-    prod ln 16, gen 2 →
-    prod ln 12, gen 3
-❌ Invalid range for `a` (decl src ln 7) from prod ln 16, gen 2 to prod ln 12, gen 3
-  asm ln 49, prod ln 12.7, live ln 13, gen 3
-    prod ln 12, gen 3 →
-    prod ln 13, gen 4
-🔔 Multiple assignments to variable `a` (decl src ln 7) in source range from prod ln 12, gen 3 to prod ln 13, gen 4
-  asm ln 52, prod ln 13.7, live ln 14, gen 4
-    prod ln 13, gen 4 →
-    prod ln 14, gen 5
-🔔 Multiple assignments to variable `a` (decl src ln 7) in source range from prod ln 13, gen 4 to prod ln 14, gen 5
-  asm ln 55, prod ln 14.7, live ln 15, gen 5
-    prod ln 14, gen 5 →
+    prod ln 12, gen 2
+  asm ln 49, prod ln 12.7, live ln 13, gen 2
+    prod ln 12, gen 2 →
+    prod ln 13, gen 3
+  asm ln 52, prod ln 13.7, live ln 14, gen 3
+    prod ln 13, gen 3 →
+    prod ln 14, gen 4
+  asm ln 55, prod ln 14.7, live ln 15, gen 4
+    prod ln 14, gen 4 →
+    prod ln 16, gen 5
+  asm ln 59, prod ln 16.7, live ln 17, gen 5
+    prod ln 16, gen 5 →
     prod ln ∞, gen ∞
-🔔 Multiple assignments to variable `a` (decl src ln 7) in source range from prod ln 14, gen 5 to prod ln ∞, gen ∞
 
 Computing generations: `foo` (decl src ln 2)
   asm ln 13, prod ln 2.16, live ln 3, gen 0
@@ -577,7 +573,6 @@ Building live ranges: `a` (decl src ln 7)
     prod ln 14, gen 3 →
     prod ln ∞, gen ∞
 
-🔔 Before live range for `a` (decl src ln 7) terminates early
 ✅ Before live range coverage
   Covered:   5
   Uncovered: 0
@@ -647,19 +642,9 @@ Parsed query
      (Add w32 N0 0xC))
 ❌ After `a` (decl src ln 7) assn asm ln 25, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 35, prod ln 8.5, live ln 10, gen 1
 
-🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 59, prod ln 16.7, live ln 17, gen 2
+🔔 After `a` (decl src ln 7) assn asm ln 28, prod ln 13.7, live ln 14, gen 1 coordinates don't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 2
 Checking equivalence of `a` (decl src ln 7) from
-  assn asm ln 59, prod ln 16.7, live ln 17, gen 2
-  i32 0
-  0x0
-and
-  assn asm ln 35, prod ln 14.7, live ln 20, gen 3
-  %a.0 = phi i32 [ %div, %if.then ], [ 0, %entry ]
-  0x0
-
-🔔 After `a` (decl src ln 7) assn asm ln 28, prod ln 13.7, live ln 14, gen 1 coordinates don't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 3
-Checking equivalence of `a` (decl src ln 7) from
-  assn asm ln 49, prod ln 12.7, live ln 13, gen 3
+  assn asm ln 49, prod ln 12.7, live ln 13, gen 2
   %sub3 = sub nsw i32 %11, %sub, l12 c7
   (Add w32 0xC
           (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
@@ -692,11 +677,11 @@ Parsed query
                                 N1:(ReadLSB w32 0x0 foo_2))
                        N0))
      (Add w32 0xF0 (Mul w32 0x14 N1)))
-❌ After `a` (decl src ln 7) assn asm ln 28, prod ln 13.7, live ln 14, gen 1 symbolic value doesn't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 3
+❌ After `a` (decl src ln 7) assn asm ln 28, prod ln 13.7, live ln 14, gen 1 symbolic value doesn't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 2
 
-🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 52, prod ln 13.7, live ln 14, gen 4
+🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 52, prod ln 13.7, live ln 14, gen 3
 Checking equivalence of `a` (decl src ln 7) from
-  assn asm ln 52, prod ln 13.7, live ln 14, gen 4
+  assn asm ln 52, prod ln 13.7, live ln 14, gen 3
   %mul = mul nsw i32 %12, 20, l13 c7
   (Mul w32 0x14
           (Add w32 0xC
@@ -727,11 +712,11 @@ Parsed query
                                          (ReadLSB w32 0x0 foo_2))
                                 N0)))
      0x0)
-❌ After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 symbolic value doesn't match before assn asm ln 52, prod ln 13.7, live ln 14, gen 4
+❌ After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 symbolic value doesn't match before assn asm ln 52, prod ln 13.7, live ln 14, gen 3
 
-🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 55, prod ln 14.7, live ln 15, gen 5
+🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 55, prod ln 14.7, live ln 15, gen 4
 Checking equivalence of `a` (decl src ln 7) from
-  assn asm ln 55, prod ln 14.7, live ln 15, gen 5
+  assn asm ln 55, prod ln 14.7, live ln 15, gen 4
   %div = sdiv i32 %13, 3, l14 c7
   (SDiv w32 (Mul w32 0x14
                     (Add w32 0xC
@@ -765,7 +750,17 @@ Parsed query
                                           N0)))
                0x3)
      0x0)
-❌ After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 symbolic value doesn't match before assn asm ln 55, prod ln 14.7, live ln 15, gen 5
+❌ After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 symbolic value doesn't match before assn asm ln 55, prod ln 14.7, live ln 15, gen 4
+
+🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 59, prod ln 16.7, live ln 17, gen 5
+Checking equivalence of `a` (decl src ln 7) from
+  assn asm ln 59, prod ln 16.7, live ln 17, gen 5
+  i32 0
+  0x0
+and
+  assn asm ln 35, prod ln 14.7, live ln 20, gen 3
+  %a.0 = phi i32 [ %div, %if.then ], [ 0, %entry ]
+  0x0
 
 🔔 After `cheese` (decl src ln 6) assn asm ln 19, prod ln 6.16, live ln 10, gen 0 coordinates don't match before assn asm ln 26, prod ln 6.16, live ln 7, gen 0
 Checking equivalence of `cheese` (decl src ln 6) from
@@ -860,18 +855,20 @@ Parsed query
 
 #### Check after against before
 
-🔔 Before `a` (decl src ln 7) assn asm ln 35, prod ln 8.5, live ln 10, gen 1 coordinates don't match after assn asm ln 25, prod ln 7.16, live ln 13, gen 0
+🔔 Before `a` (decl src ln 7) assn asm ln 49, prod ln 12.7, live ln 13, gen 2 coordinates don't match after assn asm ln 25, prod ln 7.16, live ln 13, gen 0
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 25, prod ln 7.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !20, l6 c16
   (Add w32 (ReadLSB w32 0x0 foo_2)
           0xC)
 and
-  assn asm ln 35, prod ln 8.5, live ln 10, gen 1
-  %add1 = add nsw i32 %6, %5, l8 c5
-  (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                   (ReadLSB w32 0x0 foo_1))
-          (ReadLSB w32 0x0 foo_2))
+  assn asm ln 49, prod ln 12.7, live ln 13, gen 2
+  %sub3 = sub nsw i32 %11, %sub, l12 c7
+  (Add w32 0xC
+          (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
+                                        (ReadLSB w32 0x0 foo_1))
+                            (ReadLSB w32 0x0 foo_2))
+                   N0))
 Query to parse
 array foo_2[4] : w32 -> w8 = symbolic
 array foo[4] : w32 -> w8 = symbolic
@@ -879,18 +876,21 @@ array foo_1[4] : w32 -> w8 = symbolic
 array foo_2[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (ReadLSB w32 0x0 foo_2)
               0xC)
-     (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                       (ReadLSB w32 0x0 foo_1))
-              (ReadLSB w32 0x0 foo_2))))
+     (Add w32 0xC
+              (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
+                                            (ReadLSB w32 0x0 foo_1))
+                                (ReadLSB w32 0x0 foo_2))
+                       N0))))
 Parsed query
 (Eq (Add w32 N0:(ReadLSB w32 0x0 foo_2)
               0xC)
-     (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                       (ReadLSB w32 0x0 foo_1))
-              N0))
-❌ Before `a` (decl src ln 7) assn asm ln 35, prod ln 8.5, live ln 10, gen 1 symbolic value doesn't match after assn asm ln 25, prod ln 7.16, live ln 13, gen 0
+     (Add w32 0xC
+              (Sub w32 (Add w32 N1:(Add w32 (ReadLSB w32 0x0 foo)
+                                            (ReadLSB w32 0x0 foo_1))
+                                N0)
+                       N1)))
 
-🔔 Before `a` (decl src ln 7) assn asm ln 35, prod ln 8.5, live ln 10, gen 1 coordinates don't match after assn asm ln 28, prod ln 13.7, live ln 14, gen 1
+🔔 Before `a` (decl src ln 7) assn asm ln 52, prod ln 13.7, live ln 14, gen 3 coordinates don't match after assn asm ln 28, prod ln 13.7, live ln 14, gen 1
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 28, prod ln 13.7, live ln 14, gen 1
   %mul = add i32 %0, 240, l13 c7
@@ -898,11 +898,14 @@ Checking equivalence of `a` (decl src ln 7) from
           (Mul w32 0x14
                    (ReadLSB w32 0x0 foo_2)))
 and
-  assn asm ln 35, prod ln 8.5, live ln 10, gen 1
-  %add1 = add nsw i32 %6, %5, l8 c5
-  (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                   (ReadLSB w32 0x0 foo_1))
-          (ReadLSB w32 0x0 foo_2))
+  assn asm ln 52, prod ln 13.7, live ln 14, gen 3
+  %mul = mul nsw i32 %12, 20, l13 c7
+  (Mul w32 0x14
+          (Add w32 0xC
+                   (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
+                                                 (ReadLSB w32 0x0 foo_1))
+                                     (ReadLSB w32 0x0 foo_2))
+                            N0)))
 Query to parse
 array foo_2[4] : w32 -> w8 = symbolic
 array foo[4] : w32 -> w8 = symbolic
@@ -911,19 +914,24 @@ array foo_2[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 0xF0
               (Mul w32 0x14
                        (ReadLSB w32 0x0 foo_2)))
-     (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                       (ReadLSB w32 0x0 foo_1))
-              (ReadLSB w32 0x0 foo_2))))
+     (Mul w32 0x14
+              (Add w32 0xC
+                       (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
+                                                     (ReadLSB w32 0x0 foo_1))
+                                         (ReadLSB w32 0x0 foo_2))
+                                N0)))))
 Parsed query
 (Eq (Add w32 0xF0
               (Mul w32 0x14
                        N0:(ReadLSB w32 0x0 foo_2)))
-     (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                       (ReadLSB w32 0x0 foo_1))
-              N0))
-❌ Before `a` (decl src ln 7) assn asm ln 35, prod ln 8.5, live ln 10, gen 1 symbolic value doesn't match after assn asm ln 28, prod ln 13.7, live ln 14, gen 1
+     (Mul w32 0x14
+              (Add w32 0xC
+                       (Sub w32 (Add w32 N1:(Add w32 (ReadLSB w32 0x0 foo)
+                                                     (ReadLSB w32 0x0 foo_1))
+                                         N0)
+                                N1))))
 
-🔔 Before `a` (decl src ln 7) assn asm ln 35, prod ln 8.5, live ln 10, gen 1 coordinates don't match after assn asm ln 30, prod ln 14.7, live ln 15, gen 2
+🔔 Before `a` (decl src ln 7) assn asm ln 55, prod ln 14.7, live ln 15, gen 4 coordinates don't match after assn asm ln 30, prod ln 14.7, live ln 15, gen 2
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 30, prod ln 14.7, live ln 15, gen 2
   %div = sdiv i32 %mul, 3, l14 c7
@@ -932,11 +940,15 @@ Checking equivalence of `a` (decl src ln 7) from
                              (ReadLSB w32 0x0 foo_2)))
            0x3)
 and
-  assn asm ln 35, prod ln 8.5, live ln 10, gen 1
-  %add1 = add nsw i32 %6, %5, l8 c5
-  (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                   (ReadLSB w32 0x0 foo_1))
-          (ReadLSB w32 0x0 foo_2))
+  assn asm ln 55, prod ln 14.7, live ln 15, gen 4
+  %div = sdiv i32 %13, 3, l14 c7
+  (SDiv w32 (Mul w32 0x14
+                    (Add w32 0xC
+                             (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
+                                                           (ReadLSB w32 0x0 foo_1))
+                                               (ReadLSB w32 0x0 foo_2))
+                                      N0)))
+           0x3)
 Query to parse
 array foo_2[4] : w32 -> w8 = symbolic
 array foo[4] : w32 -> w8 = symbolic
@@ -946,20 +958,35 @@ array foo_2[4] : w32 -> w8 = symbolic
                         (Mul w32 0x14
                                  (ReadLSB w32 0x0 foo_2)))
                0x3)
-     (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                       (ReadLSB w32 0x0 foo_1))
-              (ReadLSB w32 0x0 foo_2))))
+     (SDiv w32 (Mul w32 0x14
+                        (Add w32 0xC
+                                 (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 0x0 foo)
+                                                               (ReadLSB w32 0x0 foo_1))
+                                                   (ReadLSB w32 0x0 foo_2))
+                                          N0)))
+               0x3)))
 Parsed query
 (Eq (SDiv w32 (Add w32 0xF0
                         (Mul w32 0x14
                                  N0:(ReadLSB w32 0x0 foo_2)))
                0x3)
-     (Add w32 (Add w32 (ReadLSB w32 0x0 foo)
-                       (ReadLSB w32 0x0 foo_1))
-              N0))
-❌ Before `a` (decl src ln 7) assn asm ln 35, prod ln 8.5, live ln 10, gen 1 symbolic value doesn't match after assn asm ln 30, prod ln 14.7, live ln 15, gen 2
+     (SDiv w32 (Mul w32 0x14
+                        (Add w32 0xC
+                                 (Sub w32 (Add w32 N1:(Add w32 (ReadLSB w32 0x0 foo)
+                                                               (ReadLSB w32 0x0 foo_1))
+                                                   N0)
+                                          N1)))
+               0x3))
 
-❌ Before live range for `a` (decl src ln 7) at asm ln 35, prod ln 14.7, live ln 20, gen 3 not found
+🔔 Before `a` (decl src ln 7) assn asm ln 59, prod ln 16.7, live ln 17, gen 5 coordinates don't match after assn asm ln 35, prod ln 14.7, live ln 20, gen 3
+Checking equivalence of `a` (decl src ln 7) from
+  assn asm ln 35, prod ln 14.7, live ln 20, gen 3
+  %a.0 = phi i32 [ %div, %if.then ], [ 0, %entry ]
+  0x0
+and
+  assn asm ln 59, prod ln 16.7, live ln 17, gen 5
+  i32 0
+  0x0
 
 🔔 Before `cheese` (decl src ln 6) assn asm ln 26, prod ln 6.16, live ln 7, gen 0 coordinates don't match after assn asm ln 19, prod ln 6.16, live ln 10, gen 0
 Checking equivalence of `cheese` (decl src ln 6) from
@@ -1022,9 +1049,9 @@ Parsed query
 (Eq N0:(ReadLSB w32 0x0 foo_1)
      N0)
 
-❌ After symbolic values checked against before
-  Matching:    4
-  Mismatched:  4
+✅ After symbolic values checked against before
+  Matching:    8
+  Mismatched:  0
   Unused:      0
   Unreachable: 0
   Removable:   0
