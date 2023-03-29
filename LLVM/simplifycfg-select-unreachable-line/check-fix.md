@@ -130,14 +130,14 @@ After variable `brains` (decl src ln 4)
 @dbg.value mapping for `brains` (decl src ln 4), asm ln 22
 Value produced for `brains` (decl src ln 4), asm ln 22
   %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7, asm ln 21
-  Added assignment asm ln 22, prod ln 6.7, live ln 12, gen 0
+  Added assignment asm ln 22, prod ln 6.7, live ln 11, gen 0
 Computing generations: `foo` (decl src ln 2)
   asm ln 13, prod ln 2.16, live ln 3, gen 0
 Computing generations: `read1` (decl src ln 3)
   asm ln 15, prod ln 3.15, live ln 4, gen 0
 Computing generations: `brains` (decl src ln 4)
   asm ln 17, prod ln 4.16, live ln 6, gen 0
-  asm ln 22, prod ln 6.7, live ln 12, gen 1
+  asm ln 22, prod ln 6.7, live ln 11, gen 1
 
 ✅ 3 before variables found, 3 after variables found, 0 mismatched
 
@@ -224,7 +224,7 @@ Computing generations: `read1` (decl src ln 3)
   asm ln 15, prod ln 3.15, live ln 4, gen 0
 Computing generations: `brains` (decl src ln 4)
   asm ln 17, prod ln 4.16, live ln 6, gen 0
-  asm ln 22, prod ln 6.7, live ln 12, gen 1
+  asm ln 22, prod ln 6.7, live ln 11, gen 1
 Building live ranges: `foo` (decl src ln 2)
   asm ln 13, prod ln 2.16, live ln 3, gen 0
     prod ln 2, gen 0 →
@@ -237,7 +237,7 @@ Building live ranges: `brains` (decl src ln 4)
   asm ln 17, prod ln 4.16, live ln 6, gen 0
     prod ln 4, gen 0 →
     prod ln 6, gen 1
-  asm ln 22, prod ln 6.7, live ln 12, gen 1
+  asm ln 22, prod ln 6.7, live ln 11, gen 1
     prod ln 6, gen 1 →
     prod ln ∞, gen ∞
 
@@ -267,14 +267,14 @@ Parsed query
 (Eq N0:(ReadLSB w32 0x0 foo_1)
      N0)
 
-🔔 After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 coordinates don't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+🔔 After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 11, gen 1 coordinates don't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1
 Checking equivalence of `brains` (decl src ln 4) from
   assn asm ln 27, prod ln 7.12, live ln 8, gen 1
   %mul = mul nsw i32 %3, 2, l7 c12
   (Mul w32 0x2
           (ReadLSB w32 0x0 foo_1))
 and
-  assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+  assn asm ln 22, prod ln 6.7, live ln 11, gen 1
   %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
   (Select w32 (Slt 0x3
                   (ReadLSB w32 0x0 foo))
@@ -301,9 +301,9 @@ Parsed query
                       (ReadLSB w32 0x0 foo))
                  (Or w32 (Shl w32 N0 0x1) 0x1)
                  N0))
-❌ After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 symbolic value doesn't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+❌ After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 11, gen 1 symbolic value doesn't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1
 
-🔔 After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 coordinates don't match before assn asm ln 30, prod ln 8.12, live ln 9, gen 2
+🔔 After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 11, gen 1 coordinates don't match before assn asm ln 30, prod ln 8.12, live ln 9, gen 2
 Checking equivalence of `brains` (decl src ln 4) from
   assn asm ln 30, prod ln 8.12, live ln 9, gen 2
   %add = add nsw i32 %4, 1, l8 c12
@@ -311,7 +311,7 @@ Checking equivalence of `brains` (decl src ln 4) from
           (Mul w32 0x2
                    (ReadLSB w32 0x0 foo_1)))
 and
-  assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+  assn asm ln 22, prod ln 6.7, live ln 11, gen 1
   %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
   (Select w32 (Slt 0x3
                   (ReadLSB w32 0x0 foo))
@@ -340,7 +340,7 @@ Parsed query
                       (ReadLSB w32 0x0 foo))
                  (Or w32 (Shl w32 N0 0x1) 0x1)
                  N0))
-❌ After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 symbolic value doesn't match before assn asm ln 30, prod ln 8.12, live ln 9, gen 2
+❌ After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 11, gen 1 symbolic value doesn't match before assn asm ln 30, prod ln 8.12, live ln 9, gen 2
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 13, prod ln 2.16, live ln 3, gen 0
@@ -394,9 +394,9 @@ Parsed query
 (Eq N0:(ReadLSB w32 0x0 foo_1)
      N0)
 
-🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 22, prod ln 6.7, live ln 11, gen 1
 Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+  assn asm ln 22, prod ln 6.7, live ln 11, gen 1
   %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
   (Select w32 (Slt 0x3
                   (ReadLSB w32 0x0 foo))
@@ -431,7 +431,7 @@ Parsed query
                          0x1)
                  N0)
      (Add w32 0x1 (Mul w32 0x2 N0)))
-❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 22, prod ln 6.7, live ln 11, gen 1
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 13, prod ln 2.16, live ln 3, gen 0
