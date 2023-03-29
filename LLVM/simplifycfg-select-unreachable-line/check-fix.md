@@ -167,26 +167,305 @@ Collected value for `brains`
 
 #### After values
 
-Assertion failed: (idx < size()), function operator[], file SmallVector.h, line 277.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x0000000108e10597 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  check-debug-info         0x0000000108e0f3d8 llvm::sys::RunSignalHandlers() + 248
-2  check-debug-info         0x0000000108e10be0 SignalHandler(int) + 288
-3  libsystem_platform.dylib 0x00007ff819786c1d _sigtramp + 29
-4  libsystem_platform.dylib 0x000000010c36c510 _sigtramp + 18446603374653495568
-5  libsystem_c.dylib        0x00007ff8196a5ca5 abort + 123
-6  libsystem_c.dylib        0x00007ff8196a4fbe err + 0
-7  check-debug-info         0x00000001073ae3a0 llvm::SmallVectorTemplateCommon<llvm::StringRef, void>::operator[](unsigned long) + 96
-8  check-debug-info         0x00000001073ae1a2 klee::SourceInfo::SourceInfo(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, unsigned int, unsigned int) + 706
-9  check-debug-info         0x00000001073ae5d1 klee::SourceInfo::SourceInfo(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, unsigned int, unsigned int) + 33
-10 check-debug-info         0x00000001073ba6c6 klee::Executor::printTraceBeforeExecution(klee::ExecutionState&, klee::KInstruction*) + 966
-11 check-debug-info         0x00000001073d2371 klee::Executor::run(klee::ExecutionState&) + 1793
-12 check-debug-info         0x00000001073d715d klee::Executor::runFunction(llvm::Function*) + 205
-13 check-debug-info         0x000000010737debd collectValues(llvm::StringRef, std::__1::unique_ptr<llvm::Module, std::__1::default_delete<llvm::Module> >, llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>&) + 1341
-14 check-debug-info         0x0000000107349785 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 3109
-15 check-debug-info         0x000000010734b93e main + 1742
-16 dyld                     0x00007ff819429310 start + 2432
-./check-fix.sh: line 6: 40635 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_FIXED_BC} ${CHECK_OPTS}
+Collected value for `foo`
+  i32 0
+  0x0
+Collected value for `read1`
+  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !19, l3 c15
+  (ReadLSB w32 0x0 foo)
+Collected value for `brains`
+  %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !19, l4 c16
+  (ReadLSB w32 0x0 foo_1)
+Collected value for `brains`
+  %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
+  (Select w32 (Slt 0x3
+                  (ReadLSB w32 0x0 foo))
+             (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                              0x1)
+                     0x1)
+             N0)
+
+### Assignments
+
+Filtering redundant before assignments: `brains` (decl src ln 4)
+
+Filtering redundant after assignments: `brains` (decl src ln 4)
+
+Computing generations: `foo` (decl src ln 2)
+  asm ln 13, prod ln 2.16, live ln 3, gen 0
+Computing generations: `read1` (decl src ln 3)
+  asm ln 16, prod ln 3.15, live ln 4, gen 0
+Computing generations: `brains` (decl src ln 4)
+  asm ln 19, prod ln 4.16, live ln 6, gen 0
+  asm ln 27, prod ln 7.12, live ln 8, gen 1
+  asm ln 30, prod ln 8.12, live ln 9, gen 2
+Building live ranges: `foo` (decl src ln 2)
+  asm ln 13, prod ln 2.16, live ln 3, gen 0
+    prod ln 2, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `read1` (decl src ln 3)
+  asm ln 16, prod ln 3.15, live ln 4, gen 0
+    prod ln 3, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `brains` (decl src ln 4)
+  asm ln 19, prod ln 4.16, live ln 6, gen 0
+    prod ln 4, gen 0 →
+    prod ln 7, gen 1
+  asm ln 27, prod ln 7.12, live ln 8, gen 1
+    prod ln 7, gen 1 →
+    prod ln 8, gen 2
+  asm ln 30, prod ln 8.12, live ln 9, gen 2
+    prod ln 8, gen 2 →
+    prod ln ∞, gen ∞
+
+Computing generations: `foo` (decl src ln 2)
+  asm ln 13, prod ln 2.16, live ln 3, gen 0
+Computing generations: `read1` (decl src ln 3)
+  asm ln 15, prod ln 3.15, live ln 4, gen 0
+Computing generations: `brains` (decl src ln 4)
+  asm ln 17, prod ln 4.16, live ln 6, gen 0
+  asm ln 22, prod ln 6.7, live ln 12, gen 1
+Building live ranges: `foo` (decl src ln 2)
+  asm ln 13, prod ln 2.16, live ln 3, gen 0
+    prod ln 2, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `read1` (decl src ln 3)
+  asm ln 15, prod ln 3.15, live ln 4, gen 0
+    prod ln 3, gen 0 →
+    prod ln ∞, gen ∞
+Building live ranges: `brains` (decl src ln 4)
+  asm ln 17, prod ln 4.16, live ln 6, gen 0
+    prod ln 4, gen 0 →
+    prod ln 6, gen 1
+  asm ln 22, prod ln 6.7, live ln 12, gen 1
+    prod ln 6, gen 1 →
+    prod ln ∞, gen ∞
+
+✅ Before live range coverage
+  Covered:   3
+  Uncovered: 0
+  Undefined: 0
+  Unused:    0
+  Removable: 0
+
+#### Check before against after
+
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 19, prod ln 4.16, live ln 6, gen 0
+  %1 = load volatile i32, i32* %foo, l4 c16
+  (ReadLSB w32 0x0 foo_1)
+and
+  assn asm ln 17, prod ln 4.16, live ln 6, gen 0
+  %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !19, l4 c16
+  (ReadLSB w32 0x0 foo_1)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x0 foo_1)
+     (ReadLSB w32 0x0 foo_1)))
+Parsed query
+(Eq N0:(ReadLSB w32 0x0 foo_1)
+     N0)
+
+🔔 After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 coordinates don't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+  %mul = mul nsw i32 %3, 2, l7 c12
+  (Mul w32 0x2
+          (ReadLSB w32 0x0 foo_1))
+and
+  assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+  %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
+  (Select w32 (Slt 0x3
+                  (ReadLSB w32 0x0 foo))
+             (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                              0x1)
+                     0x1)
+             N0)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (Mul w32 0x2
+              (ReadLSB w32 0x0 foo_1))
+     (Select w32 (Slt 0x3
+                      (ReadLSB w32 0x0 foo))
+                 (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                                  0x1)
+                         0x1)
+                 N0)))
+Parsed query
+(Eq (Mul w32 0x2
+              N0:(ReadLSB w32 0x0 foo_1))
+     (Select w32 (Slt 0x3
+                      (ReadLSB w32 0x0 foo))
+                 (Or w32 (Shl w32 N0 0x1) 0x1)
+                 N0))
+❌ After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 symbolic value doesn't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+
+🔔 After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 coordinates don't match before assn asm ln 30, prod ln 8.12, live ln 9, gen 2
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 30, prod ln 8.12, live ln 9, gen 2
+  %add = add nsw i32 %4, 1, l8 c12
+  (Add w32 0x1
+          (Mul w32 0x2
+                   (ReadLSB w32 0x0 foo_1)))
+and
+  assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+  %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
+  (Select w32 (Slt 0x3
+                  (ReadLSB w32 0x0 foo))
+             (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                              0x1)
+                     0x1)
+             N0)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 0x1
+              (Mul w32 0x2
+                       (ReadLSB w32 0x0 foo_1)))
+     (Select w32 (Slt 0x3
+                      (ReadLSB w32 0x0 foo))
+                 (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                                  0x1)
+                         0x1)
+                 N0)))
+Parsed query
+(Eq (Add w32 0x1
+              (Mul w32 0x2
+                       N0:(ReadLSB w32 0x0 foo_1)))
+     (Select w32 (Slt 0x3
+                      (ReadLSB w32 0x0 foo))
+                 (Or w32 (Shl w32 N0 0x1) 0x1)
+                 N0))
+❌ After `brains` (decl src ln 4) assn asm ln 22, prod ln 6.7, live ln 12, gen 1 symbolic value doesn't match before assn asm ln 30, prod ln 8.12, live ln 9, gen 2
+
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 13, prod ln 2.16, live ln 3, gen 0
+  i32 0
+  0x0
+and
+  assn asm ln 13, prod ln 2.16, live ln 3, gen 0
+  i32 0
+  0x0
+
+Checking equivalence of `read1` (decl src ln 3) from
+  assn asm ln 16, prod ln 3.15, live ln 4, gen 0
+  %0 = load volatile i32, i32* %foo, l3 c15
+  (ReadLSB w32 0x0 foo)
+and
+  assn asm ln 15, prod ln 3.15, live ln 4, gen 0
+  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !19, l3 c15
+  (ReadLSB w32 0x0 foo)
+Query to parse
+array foo[4] : w32 -> w8 = symbolic
+array foo[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x0 foo)
+     (ReadLSB w32 0x0 foo)))
+Parsed query
+(Eq N0:(ReadLSB w32 0x0 foo)
+     N0)
+
+❌ Before symbolic values checked against after
+  Matching:    3
+  Mismatched:  2
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+#### Check after against before
+
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 17, prod ln 4.16, live ln 6, gen 0
+  %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !19, l4 c16
+  (ReadLSB w32 0x0 foo_1)
+and
+  assn asm ln 19, prod ln 4.16, live ln 6, gen 0
+  %1 = load volatile i32, i32* %foo, l4 c16
+  (ReadLSB w32 0x0 foo_1)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x0 foo_1)
+     (ReadLSB w32 0x0 foo_1)))
+Parsed query
+(Eq N0:(ReadLSB w32 0x0 foo_1)
+     N0)
+
+🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+  %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
+  (Select w32 (Slt 0x3
+                  (ReadLSB w32 0x0 foo))
+             (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                              0x1)
+                     0x1)
+             N0)
+and
+  assn asm ln 30, prod ln 8.12, live ln 9, gen 2
+  %add = add nsw i32 %4, 1, l8 c12
+  (Add w32 0x1
+          (Mul w32 0x2
+                   (ReadLSB w32 0x0 foo_1)))
+Query to parse
+array foo[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (Select w32 (Slt 0x3
+                      (ReadLSB w32 0x0 foo))
+                 (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                                  0x1)
+                         0x1)
+                 N0)
+     (Add w32 0x1
+              (Mul w32 0x2
+                       (ReadLSB w32 0x0 foo_1)))))
+Parsed query
+(Eq (Select w32 (Slt 0x3
+                      (ReadLSB w32 0x0 foo))
+                 (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                                  0x1)
+                         0x1)
+                 N0)
+     (Add w32 0x1 (Mul w32 0x2 N0)))
+❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 22, prod ln 6.7, live ln 12, gen 1
+
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 13, prod ln 2.16, live ln 3, gen 0
+  i32 0
+  0x0
+and
+  assn asm ln 13, prod ln 2.16, live ln 3, gen 0
+  i32 0
+  0x0
+
+Checking equivalence of `read1` (decl src ln 3) from
+  assn asm ln 15, prod ln 3.15, live ln 4, gen 0
+  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !19, l3 c15
+  (ReadLSB w32 0x0 foo)
+and
+  assn asm ln 16, prod ln 3.15, live ln 4, gen 0
+  %0 = load volatile i32, i32* %foo, l3 c15
+  (ReadLSB w32 0x0 foo)
+Query to parse
+array foo[4] : w32 -> w8 = symbolic
+array foo[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 0x0 foo)
+     (ReadLSB w32 0x0 foo)))
+Parsed query
+(Eq N0:(ReadLSB w32 0x0 foo)
+     N0)
+
+❌ After symbolic values checked against before
+  Matching:    3
+  Mismatched:  1
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Summary
+
+❌ Some consistency checks failed

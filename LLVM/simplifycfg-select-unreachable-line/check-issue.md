@@ -135,7 +135,8 @@ After variable `brains` (decl src ln 4)
 @dbg.value mapping for `brains` (decl src ln 4), asm ln 22
 Value produced for `brains` (decl src ln 4), asm ln 22
   %add = or i32 %mul, 1, l8 c12, asm ln 21
-  Added assignment asm ln 22, prod ln 8.12, live ln 6, gen 0
+🔔 Value produced for `brains` (decl src ln 4): live ln too early, using produced ln + 1
+  Added assignment asm ln 22, prod ln 8.12, live ln 9, gen 0
 After variable `brains` (decl src ln 4)
 @dbg.value mapping for `brains` (decl src ln 4), asm ln 24
 Value produced for `brains` (decl src ln 4), asm ln 24
@@ -147,8 +148,8 @@ Computing generations: `read1` (decl src ln 3)
   asm ln 15, prod ln 3.15, live ln 4, gen 0
 Computing generations: `brains` (decl src ln 4)
   asm ln 17, prod ln 4.16, live ln 6, gen 0
-  asm ln 22, prod ln 8.12, live ln 6, gen 1
-  asm ln 20, prod ln 7.12, live ln 8, gen 2
+  asm ln 20, prod ln 7.12, live ln 8, gen 1
+  asm ln 22, prod ln 8.12, live ln 9, gen 2
   asm ln 24, prod ln 6.7, live ln 12, gen 3
 
 ✅ 3 before variables found, 3 after variables found, 0 mismatched
@@ -245,8 +246,8 @@ Computing generations: `read1` (decl src ln 3)
   asm ln 15, prod ln 3.15, live ln 4, gen 0
 Computing generations: `brains` (decl src ln 4)
   asm ln 17, prod ln 4.16, live ln 6, gen 0
-  asm ln 22, prod ln 8.12, live ln 6, gen 1
-  asm ln 20, prod ln 7.12, live ln 8, gen 2
+  asm ln 20, prod ln 7.12, live ln 8, gen 1
+  asm ln 22, prod ln 8.12, live ln 9, gen 2
   asm ln 24, prod ln 6.7, live ln 12, gen 3
 Building live ranges: `foo` (decl src ln 2)
   asm ln 13, prod ln 2.16, live ln 3, gen 0
@@ -259,15 +260,14 @@ Building live ranges: `read1` (decl src ln 3)
 Building live ranges: `brains` (decl src ln 4)
   asm ln 17, prod ln 4.16, live ln 6, gen 0
     prod ln 4, gen 0 →
-    prod ln 8, gen 1
-  asm ln 22, prod ln 8.12, live ln 6, gen 1
-    prod ln 8, gen 1 →
-    prod ln 7, gen 2
-❌ Invalid range for `brains` (decl src ln 4) from prod ln 8, gen 1 to prod ln 7, gen 2
-  asm ln 20, prod ln 7.12, live ln 8, gen 2
-    prod ln 7, gen 2 →
+    prod ln 7, gen 1
+  asm ln 20, prod ln 7.12, live ln 8, gen 1
+    prod ln 7, gen 1 →
+    prod ln 8, gen 2
+  asm ln 22, prod ln 8.12, live ln 9, gen 2
+    prod ln 8, gen 2 →
     prod ln 6, gen 3
-❌ Invalid range for `brains` (decl src ln 4) from prod ln 7, gen 2 to prod ln 6, gen 3
+❌ Invalid range for `brains` (decl src ln 4) from prod ln 8, gen 2 to prod ln 6, gen 3
   asm ln 24, prod ln 6.7, live ln 12, gen 3
     prod ln 6, gen 3 →
     prod ln ∞, gen ∞
@@ -300,7 +300,27 @@ Parsed query
 (Eq N0:(ReadLSB w32 0x0 foo_1)
      N0)
 
-❌ After live range for `brains` (decl src ln 4) at asm ln 27, prod ln 7.12, live ln 8, gen 1 not found
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+  %mul = mul nsw i32 %3, 2, l7 c12
+  (Mul w32 0x2
+          (ReadLSB w32 0x0 foo_1))
+and
+  assn asm ln 20, prod ln 7.12, live ln 8, gen 1
+  %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12
+  (Shl w32 (ReadLSB w32 0x0 foo_1)
+          0x1)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (Mul w32 0x2
+              (ReadLSB w32 0x0 foo_1))
+     (Shl w32 (ReadLSB w32 0x0 foo_1)
+              0x1)))
+Parsed query
+(Eq (Mul w32 0x2
+              N0:(ReadLSB w32 0x0 foo_1))
+     (Shl w32 N0 0x1))
 
 ❌ After live range for `brains` (decl src ln 4) at asm ln 30, prod ln 8.12, live ln 9, gen 2 not found
 
@@ -331,8 +351,8 @@ Parsed query
      N0)
 
 ❌ Before symbolic values checked against after
-  Matching:    3
-  Mismatched:  2
+  Matching:    4
+  Mismatched:  1
   Unused:      0
   Unreachable: 0
   Removable:   0
@@ -356,37 +376,34 @@ Parsed query
 (Eq N0:(ReadLSB w32 0x0 foo_1)
      N0)
 
-🔔 Before `brains` (decl src ln 4) assn asm ln 19, prod ln 4.16, live ln 6, gen 0 coordinates don't match after assn asm ln 22, prod ln 8.12, live ln 6, gen 1
 Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 22, prod ln 8.12, live ln 6, gen 1
+  assn asm ln 20, prod ln 7.12, live ln 8, gen 1
+  %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12
+  (Shl w32 (ReadLSB w32 0x0 foo_1)
+          0x1)
+and
+  assn asm ln 27, prod ln 7.12, live ln 8, gen 1
+  %mul = mul nsw i32 %3, 2, l7 c12
+  (Mul w32 0x2
+          (ReadLSB w32 0x0 foo_1))
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (Shl w32 (ReadLSB w32 0x0 foo_1)
+              0x1)
+     (Mul w32 0x2
+              (ReadLSB w32 0x0 foo_1))))
+Parsed query
+(Eq (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+              0x1)
+     (Mul w32 0x2 N0))
+
+Checking equivalence of `brains` (decl src ln 4) from
+  assn asm ln 22, prod ln 8.12, live ln 9, gen 2
   %add = or i32 %mul, 1, l8 c12
   (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
                   0x1)
          0x1)
-and
-  assn asm ln 19, prod ln 4.16, live ln 6, gen 0
-  %1 = load volatile i32, i32* %foo, l4 c16
-  (ReadLSB w32 0x0 foo_1)
-Query to parse
-array foo_1[4] : w32 -> w8 = symbolic
-array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
-                      0x1)
-             0x1)
-     (ReadLSB w32 0x0 foo_1)))
-Parsed query
-(Eq (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-                      0x1)
-             0x1)
-     N0)
-❌ Before `brains` (decl src ln 4) assn asm ln 19, prod ln 4.16, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 22, prod ln 8.12, live ln 6, gen 1
-
-🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 20, prod ln 7.12, live ln 8, gen 2
-Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 20, prod ln 7.12, live ln 8, gen 2
-  %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12
-  (Shl w32 (ReadLSB w32 0x0 foo_1)
-          0x1)
 and
   assn asm ln 30, prod ln 8.12, live ln 9, gen 2
   %add = add nsw i32 %4, 1, l8 c12
@@ -396,16 +413,17 @@ and
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Shl w32 (ReadLSB w32 0x0 foo_1)
-              0x1)
+(query [] (Eq (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
+                      0x1)
+             0x1)
      (Add w32 0x1
               (Mul w32 0x2
                        (ReadLSB w32 0x0 foo_1)))))
 Parsed query
-(Eq (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-              0x1)
+(Eq (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
+                      0x1)
+             0x1)
      (Add w32 0x1 (Mul w32 0x2 N0)))
-❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 20, prod ln 7.12, live ln 8, gen 2
 
 🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 24, prod ln 6.7, live ln 12, gen 3
 Checking equivalence of `brains` (decl src ln 4) from
@@ -473,8 +491,8 @@ Parsed query
      N0)
 
 ❌ After symbolic values checked against before
-  Matching:    3
-  Mismatched:  3
+  Matching:    5
+  Mismatched:  1
   Unused:      0
   Unreachable: 0
   Removable:   0
