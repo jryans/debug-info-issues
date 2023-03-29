@@ -262,8 +262,8 @@ Store to `cheese` (decl src ln 6), asm ln 26
 Before variable `a` (decl src ln 7)
 Store to `a` (decl src ln 7), asm ln 59
   const i32 0
-❌ Store to `a` (decl src ln 7): missing live line, using decl ln
-  Added assignment asm ln 59, prod ln 16.7, live ln 7, gen 0
+❌ Store to `a` (decl src ln 7): missing live ln, using produced ln + 1
+  Added assignment asm ln 59, prod ln 16.7, live ln 17, gen 0
 Store to `a` (decl src ln 7), asm ln 55
   %div = sdiv i32 %13, 3, l14 c7, asm ln 54
   Added assignment asm ln 55, prod ln 14.7, live ln 15, gen 0
@@ -291,7 +291,7 @@ Computing generations: `cheese` (decl src ln 6)
 Computing generations: `a` (decl src ln 7)
   asm ln 31, prod ln 7.17, live ln 8, gen 0
   asm ln 35, prod ln 8.5, live ln 10, gen 1
-  asm ln 59, prod ln 16.7, live ln 7, gen 2
+  asm ln 59, prod ln 16.7, live ln 17, gen 2
   asm ln 49, prod ln 12.7, live ln 13, gen 3
   asm ln 52, prod ln 13.7, live ln 14, gen 4
   asm ln 55, prod ln 14.7, live ln 15, gen 5
@@ -487,7 +487,7 @@ Computing generations: `cheese` (decl src ln 6)
 Computing generations: `a` (decl src ln 7)
   asm ln 31, prod ln 7.17, live ln 8, gen 0
   asm ln 35, prod ln 8.5, live ln 10, gen 1
-  asm ln 59, prod ln 16.7, live ln 7, gen 2
+  asm ln 59, prod ln 16.7, live ln 17, gen 2
   asm ln 49, prod ln 12.7, live ln 13, gen 3
   asm ln 52, prod ln 13.7, live ln 14, gen 4
   asm ln 55, prod ln 14.7, live ln 15, gen 5
@@ -517,7 +517,7 @@ Building live ranges: `a` (decl src ln 7)
   asm ln 35, prod ln 8.5, live ln 10, gen 1
     prod ln 8, gen 1 →
     prod ln 16, gen 2
-  asm ln 59, prod ln 16.7, live ln 7, gen 2
+  asm ln 59, prod ln 16.7, live ln 17, gen 2
     prod ln 16, gen 2 →
     prod ln 12, gen 3
 ❌ Invalid range for `a` (decl src ln 7) from prod ln 16, gen 2 to prod ln 12, gen 3
@@ -647,26 +647,15 @@ Parsed query
      (Add w32 N0 0xC))
 ❌ After `a` (decl src ln 7) assn asm ln 25, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 35, prod ln 8.5, live ln 10, gen 1
 
-🔔 After `a` (decl src ln 7) assn asm ln 25, prod ln 7.16, live ln 13, gen 0 coordinates don't match before assn asm ln 59, prod ln 16.7, live ln 7, gen 2
+🔔 After `a` (decl src ln 7) assn asm ln 35, prod ln 14.7, live ln 20, gen 3 coordinates don't match before assn asm ln 59, prod ln 16.7, live ln 17, gen 2
 Checking equivalence of `a` (decl src ln 7) from
-  assn asm ln 59, prod ln 16.7, live ln 7, gen 2
+  assn asm ln 59, prod ln 16.7, live ln 17, gen 2
   i32 0
   0x0
 and
-  assn asm ln 25, prod ln 7.16, live ln 13, gen 0
-  %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !20, l6 c16
-  (Add w32 (ReadLSB w32 0x0 foo_2)
-          0xC)
-Query to parse
-array foo_2[4] : w32 -> w8 = symbolic
-(query [] (Eq 0x0
-     (Add w32 (ReadLSB w32 0x0 foo_2)
-              0xC)))
-Parsed query
-(Eq 0x0
-     (Add w32 (ReadLSB w32 0x0 foo_2)
-              0xC))
-❌ After `a` (decl src ln 7) assn asm ln 25, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 59, prod ln 16.7, live ln 7, gen 2
+  assn asm ln 35, prod ln 14.7, live ln 20, gen 3
+  %a.0 = phi i32 [ %div, %if.then ], [ 0, %entry ]
+  0x0
 
 🔔 After `a` (decl src ln 7) assn asm ln 28, prod ln 13.7, live ln 14, gen 1 coordinates don't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 3
 Checking equivalence of `a` (decl src ln 7) from
@@ -863,8 +852,8 @@ Parsed query
      N0)
 
 ❌ Before symbolic values checked against after
-  Matching:    4
-  Mismatched:  7
+  Matching:    5
+  Mismatched:  6
   Unused:      0
   Unreachable: 0
   Removable:   0
