@@ -1,7 +1,7 @@
 # Description
 
 * Version
-  * First tested 14.0.0, `InstCombine` appears responsible
+  * First tested 14.0.0
   * Occurs on main as well (7de0804ea3290e5e43ce38567b4056a34ccad551)
 * Flags: `-fno-discard-value-names -fno-inline -g -O1`
 
