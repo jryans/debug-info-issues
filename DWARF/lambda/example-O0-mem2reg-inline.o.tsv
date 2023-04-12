@@ -1,0 +1,41 @@
+Name	Cov (B)     	Scope (B)   	CB / SB     	Cov (L)     	Scope (L)   	CL / SL     
+
+std::__1::ba,this        @0x0:0x66ac	          29	         128	     0.22656	           2	           4	     0.50000
+std::__1::ba,std::__1::ctype<char> const& std::__1::use_facet<std::__1::ctype<char> >(std::__1::locale const&),__l         @0x0:0x66ca	          18	          18	     1.00000	           1	           1	     1.00000
+std::__1::ba,std::__1::ctype<char>::widen(char) const,this        @0x0:0x66e9	          19	          19	     1.00000	           1	           1	     1.00000
+std::__1::ba,std::__1::ctype<char>::widen(char) const,__c         @0x0:0x66f1	          19	          19	     1.00000	           1	           1	     1.00000
+lambdaNoCap(,m           @0x0:0x624c	          37	          78	     0.47436	           4	           7	     0.57143
+lambdaNoCap(,n           @0x0:0x6255	          60	          78	     0.76923	           5	           7	     0.71429
+lambdaNoCap(,lambdaNoCap()::$_0::operator()(int, int) const,a           @0x0:0x6272	           2	           2	     1.00000	           1	           1	     1.00000
+lambdaNoCap(,lambdaNoCap()::$_0::operator()(int, int) const,b           @0x0:0x6279	           2	           2	     1.00000	           1	           1	     1.00000
+lambdaNoCap(,std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x6296	           5	          11	     0.45455	           1	           1	     1.00000
+lambdaNoCap(,std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x62b4	           5	           5	     1.00000	           1	           1	     1.00000
+std::__1::ba,__os        @0x0:0x465c	         100	         148	     0.67568	           5	           7	     0.71429
+std::__1::ba,std::__1::basic_ios<char, std::__1::char_traits<char> >::widen(char) const,this        @0x0:0x4681	           5	          88	     0.05682	           1	           3	     0.33333
+std::__1::ba,std::__1::basic_ios<char, std::__1::char_traits<char> >::widen(char) const,__c         @0x0:0x468a	          88	          88	     1.00000	           3	           3	     1.00000
+std::__1::ba,std::__1::basic_ios<char, std::__1::char_traits<char> >::widen(char) const,std::__1::ctype<char> const& std::__1::use_facet<std::__1::ctype<char> >(std::__1::locale const&),__l         @0x0:0x46a5	          18	          18	     1.00000	           1	           1	     1.00000
+std::__1::ba,std::__1::basic_ios<char, std::__1::char_traits<char> >::widen(char) const,std::__1::ctype<char>::widen(char) const,this        @0x0:0x46c4	          19	          19	     1.00000	           1	           1	     1.00000
+std::__1::ba,std::__1::basic_ios<char, std::__1::char_traits<char> >::widen(char) const,std::__1::ctype<char>::widen(char) const,__c         @0x0:0x46cc	          19	          19	     1.00000	           1	           1	     1.00000
+main        ,lambdaNoCap(),m           @0x0:0x65a5	          37	          64	     0.57812	           4	           5	     0.80000
+main        ,lambdaNoCap(),n           @0x0:0x65ae	          54	          64	     0.84375	           4	           5	     0.80000
+main        ,lambdaNoCap(),lambdaNoCap()::$_0::operator()(int, int) const,a           @0x0:0x65cb	           2	           2	     1.00000	           1	           1	     1.00000
+main        ,lambdaNoCap(),lambdaNoCap()::$_0::operator()(int, int) const,b           @0x0:0x65d2	           2	           2	     1.00000	           1	           1	     1.00000
+main        ,lambdaNoCap(),std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x65ef	           5	          11	     0.45455	           1	           1	     1.00000
+main        ,lambdaNoCap(),std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x660d	           5	           5	     1.00000	           1	           1	     1.00000
+main        ,lambdaRefCapMutable(),m           @0x0:0x662a	         101	         101	     1.00000	           8	           8	     1.00000
+main        ,lambdaRefCapMutable(),n           @0x0:0x6632	          83	         101	     0.82178	           6	           8	     0.75000
+main        ,lambdaRefCapMutable(),lambdaRefCapMutable()::$_1::operator()(int),a           @0x0:0x664f	          15	          17	     0.88235	           1	           1	     1.00000
+main        ,lambdaRefCapMutable(),std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x666d	           5	          11	     0.45455	           1	           1	     1.00000
+main        ,lambdaRefCapMutable(),std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x668b	           5	           5	     1.00000	           1	           1	     1.00000
+lambdaRefCap,m           @0x0:0x64a8	         115	         115	     1.00000	          10	          10	     1.00000
+lambdaRefCap,n           @0x0:0x64b0	          89	         115	     0.77391	           7	          10	     0.70000
+lambdaRefCap,lambdaRefCapMutable()::$_1::operator()(int),a           @0x0:0x64cd	          15	          17	     0.88235	           1	           1	     1.00000
+lambdaRefCap,std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x64eb	           5	          11	     0.45455	           1	           1	     1.00000
+lambdaRefCap,std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(std::__1::basic_ostream<char, std::__1::char_traits<char> >& (*)(std::__1::basic_ostream<char, std::__1::char_traits<char> >&)),this        @0x0:0x6509	           5	           5	     1.00000	           1	           1	     1.00000
+std::__1::ct,__l         @0x0:0x46fa	          18	          18	     1.00000	           2	           2	     1.00000
+std::__1::ba,this        @0x0:0x63bf	           8	           8	     1.00000	           1	           1	     1.00000
+std::__1::ba,__pf        @0x0:0x63c8	           8	           8	     1.00000	           1	           1	     1.00000
+
+params	         469	         746	     0.62869	          37	          45	     0.82222
+vars	         576	         716	     0.80447	          48	          60	     0.80000
+all	        1045	        1462	     0.71477	          85	         105	     0.80952
