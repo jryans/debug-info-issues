@@ -8,6 +8,7 @@ const process = require("process");
 console.log("# Reproducing Table 3: “Details of existing issues explored”...\n");
 
 const dirs = [
+  "LLVM/reassociate-stale-value",
 ];
 
 const total = dirs.length;
