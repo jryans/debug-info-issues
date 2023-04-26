@@ -1,0 +1,8 @@
+{
+  "id": 38110,
+  "summary": "Unreachable line stepped onto after speculating",
+  "issueDetectable": true,
+  "issueDetector": "❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 24, prod ln 6.7, live ln 11, gen 3",
+  "fixVerifiable": true,
+  "fixVerifier": "❌ After `brains` (decl src ln 4) assn asm ln 17, prod ln 4.16, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 27, prod ln 7.12, live ln 8, gen 1"
+}
