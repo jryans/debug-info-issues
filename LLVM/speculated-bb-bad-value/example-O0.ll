@@ -1,6 +1,4 @@
-; ~/Projects/LLVM/llvm/build-release-clang-lldb-7.0.0/bin/clang -g example.c -S -emit-llvm -Xclang -disable-O0-optnone -o example-O0.ll
-
-; ModuleID = 'example.c'
+; ModuleID = 'example.c' ~/Projects/LLVM/llvm/build-release-clang-lldb-7.0.0/bin/clang -g example.c -S -emit-llvm -Xclang -disable-O0-optnone -o example-O0.ll
 source_filename = "example.c"
 target datalayout = "e-m:o-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-apple-macosx10.17.0"

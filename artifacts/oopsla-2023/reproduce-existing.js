@@ -10,6 +10,7 @@ console.log("# Reproducing Table 3: “Details of existing issues explored”...
 const dirs = [
   "LLVM/reassociate-stale-value",
   "LLVM/simplifycfg-select-unreachable-line-1",
+  "LLVM/speculated-bb-bad-value",
 ];
 
 const total = dirs.length;
