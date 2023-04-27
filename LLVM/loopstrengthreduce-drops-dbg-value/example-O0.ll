@@ -1,7 +1,4 @@
-; From Compiler Explorer's x86-64 clang 11.0.0 with `-fno-discard-value-names
-; -Xclang -disable-O0-optnone`
-; https://godbolt.org/z/K7sao9Ec5
-; ModuleID = '/app/example.c'
+; ModuleID = '/app/example.c' https://godbolt.org/z/K7sao9Ec5
 source_filename = "/app/example.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"

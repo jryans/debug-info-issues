@@ -1,7 +1,4 @@
-; From Compiler Explorer's x86-64 clang 12.0.0 with `-fno-discard-value-names
-; -O1 -mllvm -print-after=codegenprepare -mllvm -print-module-scope`
-; https://godbolt.org/z/Tand1fafz
-; ModuleID = '<source>'
+; ModuleID = '<source>' https://godbolt.org/z/Tand1fafz
 source_filename = "<source>"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"

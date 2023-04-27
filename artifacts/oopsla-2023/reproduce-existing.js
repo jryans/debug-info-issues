@@ -11,6 +11,7 @@ const dirs = [
   "LLVM/reassociate-stale-value",
   "LLVM/simplifycfg-select-unreachable-line-1",
   "LLVM/speculated-bb-bad-value",
+  "LLVM/loopstrengthreduce-drops-dbg-value",
 ];
 
 const total = dirs.length;
