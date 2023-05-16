@@ -1,0 +1,7 @@
+{
+  "id": 38366,
+  "summary": "Vectorized loop presents constant-valued iterator to debugger",
+  "issueDetectable": true,
+  "issueDetector": "❌ After `i` (decl src ln 12) assn asm ln 19, prod ln 12.12, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 47, prod ln 12.31, live ln 13, gen 1",
+  "fixVerifiable": false
+}
