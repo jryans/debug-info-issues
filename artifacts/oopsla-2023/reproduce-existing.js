@@ -13,6 +13,7 @@ const dirs = [
   "LLVM/speculated-bb-bad-value",
   "LLVM/loopstrengthreduce-drops-dbg-value",
   "LLVM/loopvectorize-constant-value",
+  "LLVM/lcssa-return-value",
 ];
 
 const total = dirs.length;

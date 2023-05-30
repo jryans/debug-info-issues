@@ -1,0 +1,8 @@
+{
+  "id": 38367,
+  "summary": "Return value unprintable in func with vectorized loop",
+  "issueDetectable": true,
+  "issueDetector": "❌ After live ranges for `sum` (decl src ln 15) not found",
+  "fixVerifiable": true,
+  "fixVerifier": "Value produced for `sum` (decl src ln 15), asm ln 650"
+}
