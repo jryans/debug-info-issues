@@ -1,4 +1,4 @@
-++ dirname ./build.sh
+^D++ dirname ./build.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -78,7 +78,7 @@
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
 + mkdir -p klee-out-O2-fixed
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
-++ dirname ./check-issue.sh
+^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -189,24 +189,24 @@ Computing generations: `beards` (decl src ln 4)
   asm ln 24, prod ln 8.12, live ln 9, gen 2
 
 After variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 13
+Store to `foo` (decl src ln 2), asm ln 12
   const i32 0
-  Added assignment asm ln 13, prod ln 2.16, live ln 5, gen 0
+  Added assignment asm ln 12, prod ln 2.16, live ln 5, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 14
-Value produced for `beards` (decl src ln 4), asm ln 14
+@dbg.value mapping for `beards` (decl src ln 4), asm ln 13
+Value produced for `beards` (decl src ln 4), asm ln 13
   const i32 0
-  Added assignment asm ln 14, prod ln 4.7, live ln 5, gen 0
+  Added assignment asm ln 13, prod ln 4.7, live ln 5, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 18
-Value produced for `beards` (decl src ln 4), asm ln 18
-  %. = select i1 %cmp, i32 8, i32 4, l6 c5, asm ln 17
-  Added assignment asm ln 18, prod ln 6.7, live ln 10, gen 0
+@dbg.value mapping for `beards` (decl src ln 4), asm ln 17
+Value produced for `beards` (decl src ln 4), asm ln 17
+  %. = select i1 %cmp, i32 8, i32 4, l6 c5, asm ln 16
+  Added assignment asm ln 17, prod ln 6.7, live ln 10, gen 0
 Computing generations: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 5, gen 0
+  asm ln 12, prod ln 2.16, live ln 5, gen 0
 Computing generations: `beards` (decl src ln 4)
-  asm ln 14, prod ln 4.7, live ln 5, gen 0
-  asm ln 18, prod ln 6.7, live ln 10, gen 1
+  asm ln 13, prod ln 4.7, live ln 5, gen 0
+  asm ln 17, prod ln 6.7, live ln 10, gen 1
 
 ✅ 2 before variables found, 2 after variables found, 0 mismatched
 
@@ -217,31 +217,31 @@ Computing generations: `beards` (decl src ln 4)
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `foo`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   i32 8
-  0x8
+  (w32 0x8)
 Collected value for `beards`
   i32 4
-  0x4
+  (w32 0x4)
 
 #### After values
 
 Collected value for `foo`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   %. = select i1 %cmp, i32 8, i32 4, l6 c5
-  (Select w32 (Eq 0x4
-                 (ReadLSB w32 0x0 foo))
-             0x8
-             0x4)
+  (Select w32 (Eq (w32 0x4)
+                 (ReadLSB w32 (w32 0x0) foo))
+             (w32 0x8)
+             (w32 0x4))
 
 ### Assignments
 
@@ -271,19 +271,19 @@ Building live ranges: `beards` (decl src ln 4)
     live ln ∞, gen ∞
 
 Computing generations: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 5, gen 0
+  asm ln 12, prod ln 2.16, live ln 5, gen 0
 Computing generations: `beards` (decl src ln 4)
-  asm ln 14, prod ln 4.7, live ln 5, gen 0
-  asm ln 18, prod ln 6.7, live ln 10, gen 1
+  asm ln 13, prod ln 4.7, live ln 5, gen 0
+  asm ln 17, prod ln 6.7, live ln 10, gen 1
 Building live ranges: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 5, gen 0
+  asm ln 12, prod ln 2.16, live ln 5, gen 0
     live ln 5, gen 0 →
     live ln ∞, gen ∞
 Building live ranges: `beards` (decl src ln 4)
-  asm ln 14, prod ln 4.7, live ln 5, gen 0
+  asm ln 13, prod ln 4.7, live ln 5, gen 0
     live ln 5, gen 0 →
     live ln 10, gen 1
-  asm ln 18, prod ln 6.7, live ln 10, gen 1
+  asm ln 17, prod ln 6.7, live ln 10, gen 1
     live ln 10, gen 1 →
     live ln ∞, gen ∞
 
@@ -300,43 +300,43 @@ Building live ranges: `beards` (decl src ln 4)
 Checking equivalence of `beards` (decl src ln 4) from
   assn asm ln 14, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
+🔔 After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
   assn asm ln 20, prod ln 6.12, live ln 7, gen 1
   i32 8
-  0x8
+  (w32 0x8)
 and
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
-❌ After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
+  (w32 0x0)
+❌ After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
 
-🔔 After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
+🔔 After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
 Checking equivalence of `beards` (decl src ln 4) from
   assn asm ln 24, prod ln 8.12, live ln 9, gen 2
   i32 4
-  0x4
+  (w32 0x4)
 and
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
-❌ After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
+  (w32 0x0)
+❌ After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
 
-🔔 After `foo` (decl src ln 2) assn asm ln 13, prod ln 2.16, live ln 5, gen 0 coordinates don't match before assn asm ln 12, prod ln 2.16, live ln 4, gen 0
+🔔 After `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 5, gen 0 coordinates don't match before assn asm ln 12, prod ln 2.16, live ln 4, gen 0
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 12, prod ln 2.16, live ln 4, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 13, prod ln 2.16, live ln 5, gen 0
+  assn asm ln 12, prod ln 2.16, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
 ❌ Before symbolic values checked against after
   Matching:    2
@@ -348,50 +348,50 @@ and
 #### Check after against before
 
 Checking equivalence of `beards` (decl src ln 4) from
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
   assn asm ln 14, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 18, prod ln 6.7, live ln 10, gen 1
+🔔 Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 17, prod ln 6.7, live ln 10, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
-  assn asm ln 18, prod ln 6.7, live ln 10, gen 1
+  assn asm ln 17, prod ln 6.7, live ln 10, gen 1
   %. = select i1 %cmp, i32 8, i32 4, l6 c5
-  (Select w32 (Eq 0x4
-                 (ReadLSB w32 0x0 foo))
-             0x8
-             0x4)
+  (Select w32 (Eq (w32 0x4)
+                 (ReadLSB w32 (w32 0x0) foo))
+             (w32 0x8)
+             (w32 0x4))
 and
   assn asm ln 24, prod ln 8.12, live ln 9, gen 2
   i32 4
-  0x4
+  (w32 0x4)
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
-(query [] (Eq (Select w32 (Eq 0x4
-                     (ReadLSB w32 0x0 foo))
-                 0x8
-                 0x4)
-     0x4))
+(query [] (Eq (Select w32 (Eq (w32 0x4)
+                     (ReadLSB w32 (w32 0x0) foo))
+                 (w32 0x8)
+                 (w32 0x4))
+     (w32 0x4)))
 Parsed query
-(Eq (Select w32 (Eq 0x4
-                     (ReadLSB w32 0x0 foo))
-                 0x8
-                 0x4)
-     0x4)
-❌ Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 18, prod ln 6.7, live ln 10, gen 1
+(Eq (Select w32 (Eq (w32 0x4)
+                     (ReadLSB w32 (w32 0x0) foo))
+                 (w32 0x8)
+                 (w32 0x4))
+     (w32 0x4))
+❌ Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 17, prod ln 6.7, live ln 10, gen 1
 
-🔔 Before `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 4, gen 0 coordinates don't match after assn asm ln 13, prod ln 2.16, live ln 5, gen 0
+🔔 Before `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 4, gen 0 coordinates don't match after assn asm ln 12, prod ln 2.16, live ln 5, gen 0
 Checking equivalence of `foo` (decl src ln 2) from
-  assn asm ln 13, prod ln 2.16, live ln 5, gen 0
+  assn asm ln 12, prod ln 2.16, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
   assn asm ln 12, prod ln 2.16, live ln 4, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
 ❌ After symbolic values checked against before
   Matching:    2
@@ -403,7 +403,7 @@ and
 ## Summary
 
 ❌ Some consistency checks failed
-++ dirname ./check-fix.sh
+^D++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -514,24 +514,24 @@ Computing generations: `beards` (decl src ln 4)
   asm ln 24, prod ln 8.12, live ln 9, gen 2
 
 After variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 13
+Store to `foo` (decl src ln 2), asm ln 12
   const i32 0
-  Added assignment asm ln 13, prod ln 2.16, live ln 5, gen 0
+  Added assignment asm ln 12, prod ln 2.16, live ln 5, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 14
-Value produced for `beards` (decl src ln 4), asm ln 14
+@dbg.value mapping for `beards` (decl src ln 4), asm ln 13
+Value produced for `beards` (decl src ln 4), asm ln 13
   const i32 0
-  Added assignment asm ln 14, prod ln 4.7, live ln 5, gen 0
+  Added assignment asm ln 13, prod ln 4.7, live ln 5, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 18
-Value produced for `beards` (decl src ln 4), asm ln 18
-  %. = select i1 %cmp, i32 8, i32 4, asm ln 17
-  Added assignment asm ln 18, prod ln 4.7, live ln 10, gen 0
+@dbg.value mapping for `beards` (decl src ln 4), asm ln 17
+Value produced for `beards` (decl src ln 4), asm ln 17
+  %. = select i1 %cmp, i32 8, i32 4, asm ln 16
+  Added assignment asm ln 17, prod ln 4.7, live ln 10, gen 0
 Computing generations: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 5, gen 0
+  asm ln 12, prod ln 2.16, live ln 5, gen 0
 Computing generations: `beards` (decl src ln 4)
-  asm ln 14, prod ln 4.7, live ln 5, gen 0
-  asm ln 18, prod ln 4.7, live ln 10, gen 1
+  asm ln 13, prod ln 4.7, live ln 5, gen 0
+  asm ln 17, prod ln 4.7, live ln 10, gen 1
 
 ✅ 2 before variables found, 2 after variables found, 0 mismatched
 
@@ -542,31 +542,31 @@ Computing generations: `beards` (decl src ln 4)
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `foo`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   i32 8
-  0x8
+  (w32 0x8)
 Collected value for `beards`
   i32 4
-  0x4
+  (w32 0x4)
 
 #### After values
 
 Collected value for `foo`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `beards`
   %. = select i1 %cmp, i32 8, i32 4
-  (Select w32 (Eq 0x4
-                 (ReadLSB w32 0x0 foo))
-             0x8
-             0x4)
+  (Select w32 (Eq (w32 0x4)
+                 (ReadLSB w32 (w32 0x0) foo))
+             (w32 0x8)
+             (w32 0x4))
 
 ### Assignments
 
@@ -596,19 +596,19 @@ Building live ranges: `beards` (decl src ln 4)
     live ln ∞, gen ∞
 
 Computing generations: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 5, gen 0
+  asm ln 12, prod ln 2.16, live ln 5, gen 0
 Computing generations: `beards` (decl src ln 4)
-  asm ln 14, prod ln 4.7, live ln 5, gen 0
-  asm ln 18, prod ln 4.7, live ln 10, gen 1
+  asm ln 13, prod ln 4.7, live ln 5, gen 0
+  asm ln 17, prod ln 4.7, live ln 10, gen 1
 Building live ranges: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 5, gen 0
+  asm ln 12, prod ln 2.16, live ln 5, gen 0
     live ln 5, gen 0 →
     live ln ∞, gen ∞
 Building live ranges: `beards` (decl src ln 4)
-  asm ln 14, prod ln 4.7, live ln 5, gen 0
+  asm ln 13, prod ln 4.7, live ln 5, gen 0
     live ln 5, gen 0 →
     live ln 10, gen 1
-  asm ln 18, prod ln 4.7, live ln 10, gen 1
+  asm ln 17, prod ln 4.7, live ln 10, gen 1
     live ln 10, gen 1 →
     live ln ∞, gen ∞
 
@@ -625,43 +625,43 @@ Building live ranges: `beards` (decl src ln 4)
 Checking equivalence of `beards` (decl src ln 4) from
   assn asm ln 14, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
+🔔 After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
   assn asm ln 20, prod ln 6.12, live ln 7, gen 1
   i32 8
-  0x8
+  (w32 0x8)
 and
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
-❌ After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
+  (w32 0x0)
+❌ After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
 
-🔔 After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
+🔔 After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
 Checking equivalence of `beards` (decl src ln 4) from
   assn asm ln 24, prod ln 8.12, live ln 9, gen 2
   i32 4
-  0x4
+  (w32 0x4)
 and
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
-❌ After `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
+  (w32 0x0)
+❌ After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 24, prod ln 8.12, live ln 9, gen 2
 
-🔔 After `foo` (decl src ln 2) assn asm ln 13, prod ln 2.16, live ln 5, gen 0 coordinates don't match before assn asm ln 12, prod ln 2.16, live ln 4, gen 0
+🔔 After `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 5, gen 0 coordinates don't match before assn asm ln 12, prod ln 2.16, live ln 4, gen 0
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 12, prod ln 2.16, live ln 4, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 13, prod ln 2.16, live ln 5, gen 0
+  assn asm ln 12, prod ln 2.16, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
 ❌ Before symbolic values checked against after
   Matching:    2
@@ -673,50 +673,50 @@ and
 #### Check after against before
 
 Checking equivalence of `beards` (decl src ln 4) from
-  assn asm ln 14, prod ln 4.7, live ln 5, gen 0
+  assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
   assn asm ln 14, prod ln 4.7, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 18, prod ln 4.7, live ln 10, gen 1
+🔔 Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 17, prod ln 4.7, live ln 10, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
-  assn asm ln 18, prod ln 4.7, live ln 10, gen 1
+  assn asm ln 17, prod ln 4.7, live ln 10, gen 1
   %. = select i1 %cmp, i32 8, i32 4
-  (Select w32 (Eq 0x4
-                 (ReadLSB w32 0x0 foo))
-             0x8
-             0x4)
+  (Select w32 (Eq (w32 0x4)
+                 (ReadLSB w32 (w32 0x0) foo))
+             (w32 0x8)
+             (w32 0x4))
 and
   assn asm ln 24, prod ln 8.12, live ln 9, gen 2
   i32 4
-  0x4
+  (w32 0x4)
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
-(query [] (Eq (Select w32 (Eq 0x4
-                     (ReadLSB w32 0x0 foo))
-                 0x8
-                 0x4)
-     0x4))
+(query [] (Eq (Select w32 (Eq (w32 0x4)
+                     (ReadLSB w32 (w32 0x0) foo))
+                 (w32 0x8)
+                 (w32 0x4))
+     (w32 0x4)))
 Parsed query
-(Eq (Select w32 (Eq 0x4
-                     (ReadLSB w32 0x0 foo))
-                 0x8
-                 0x4)
-     0x4)
-❌ Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 18, prod ln 4.7, live ln 10, gen 1
+(Eq (Select w32 (Eq (w32 0x4)
+                     (ReadLSB w32 (w32 0x0) foo))
+                 (w32 0x8)
+                 (w32 0x4))
+     (w32 0x4))
+❌ Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 17, prod ln 4.7, live ln 10, gen 1
 
-🔔 Before `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 4, gen 0 coordinates don't match after assn asm ln 13, prod ln 2.16, live ln 5, gen 0
+🔔 Before `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 4, gen 0 coordinates don't match after assn asm ln 12, prod ln 2.16, live ln 5, gen 0
 Checking equivalence of `foo` (decl src ln 2) from
-  assn asm ln 13, prod ln 2.16, live ln 5, gen 0
+  assn asm ln 12, prod ln 2.16, live ln 5, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
   assn asm ln 12, prod ln 2.16, live ln 4, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
 ❌ After symbolic values checked against before
   Matching:    2

@@ -1,0 +1,8 @@
+{
+  "id": 38535,
+  "summary": "Unreachable line stepped onto",
+  "issueDetectable": true,
+  "issueDetector": "Added assignment asm ln 17, prod ln 6.7, live ln 10, gen 0",
+  "fixVerifiable": true,
+  "fixVerifier": "Added assignment asm ln 17, prod ln 4.7, live ln 10, gen 0"
+}
