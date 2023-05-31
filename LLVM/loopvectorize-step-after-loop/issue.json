@@ -1,0 +1,8 @@
+{
+  "id": 38372,
+  "summary": "Vectorized code line numbers step through loop even after completion",
+  "issueDetectable": true,
+  "issueDetector": "FIXME JRS",
+  "fixVerifiable": true,
+  "fixVerifier": "FIXME JRS"
+}
