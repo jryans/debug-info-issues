@@ -1,0 +1,8 @@
+{
+  "id": 38591,
+  "summary": "Regression: Unreachable line stepped onto after SimplifyCFG",
+  "issueDetectable": true,
+  "issueDetector": "FIXME JRS",
+  "fixVerifiable": true,
+  "fixVerifier": "FIXME JRS"
+}
