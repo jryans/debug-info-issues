@@ -1,0 +1,7 @@
+{
+  "id": 38687,
+  "summary": "Misleading value for local variable at the return statement",
+  "issueDetectable": true,
+  "issueDetector": "❌ After `birds` (decl src ln 5) assn asm ln 14, prod ln 5.7, live ln 7, gen 0 symbolic value doesn't match before assn asm ln 24, prod ln 9.11, live ln 10, gen 1",
+  "fixVerifiable": false
+}

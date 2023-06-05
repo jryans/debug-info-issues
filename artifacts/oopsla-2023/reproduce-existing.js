@@ -15,6 +15,7 @@ const dirs = [
   "LLVM/loopvectorize-constant-value",
   "LLVM/lcssa-return-value",
   "LLVM/simplifycfg-select-unreachable-line-2",
+  "LLVM/simplifycfg-removes-unused-value",
 ];
 
 const total = dirs.length;
