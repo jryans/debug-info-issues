@@ -160,44 +160,44 @@ Computing generations: `more` (decl src ln 1)
 #### Before values
 
 Collected value for `bar`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Collected value for `more`
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Collected value for `redundant`
   %1 = load i32, i32* %0, l2 c19
-  (ReadLSB w32 0x0 bar.deref)
+  (ReadLSB w32 (w32 0x0) bar.deref)
 Collected value for `loaded`
   %3 = load i32, i32* %2, l3 c16
-  (ReadLSB w32 0x0 bar.deref)
+  (ReadLSB w32 (w32 0x0) bar.deref)
 Collected value for `arg`
   %and = and i32 %6, %add, l4 c7
-  (And w32 (ReadLSB w32 0x0 arg)
-          (Add w32 (ReadLSB w32 0x0 more)
-                   (ReadLSB w32 0x0 bar.deref)))
+  (And w32 (ReadLSB w32 (w32 0x0) arg)
+          (Add w32 (ReadLSB w32 (w32 0x0) more)
+                   (ReadLSB w32 (w32 0x0) bar.deref)))
 
 #### After values
 
 Collected value for `bar`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Collected value for `more`
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Collected value for `arg`
   i32 undef
-  0x0
+  (w32 0x0)
 
 ### Assignments
 
@@ -279,18 +279,18 @@ Building live ranges: `more` (decl src ln 1)
 Checking equivalence of `arg` (decl src ln 1) from
   assn asm ln 16, prod ln 1.0, live ln 2, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 and
   assn asm ln 10, prod ln 1.0, live ln 6, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Query to parse
 array arg[4] : w32 -> w8 = symbolic
 array arg[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 arg)
-     (ReadLSB w32 0x0 arg)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) arg)
+     (ReadLSB w32 (w32 0x0) arg)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 arg)
+(Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
 
 ❌ After live range for `arg` (decl src ln 1) at asm ln 33, prod ln 4.7, live ln 6, gen 1 not found
@@ -299,11 +299,11 @@ Parsed query
 Checking equivalence of `bar` (decl src ln 1) from
   assn asm ln 14, prod ln 1.0, live ln 2, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 and
   assn asm ln 9, prod ln 1.0, live ln 6, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 
 ❌ After live range for `loaded` (decl src ln 3) not found
 
@@ -311,18 +311,18 @@ and
 Checking equivalence of `more` (decl src ln 1) from
   assn asm ln 18, prod ln 1.0, live ln 2, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 and
   assn asm ln 11, prod ln 1.0, live ln 6, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Query to parse
 array more[4] : w32 -> w8 = symbolic
 array more[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 more)
-     (ReadLSB w32 0x0 more)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) more)
+     (ReadLSB w32 (w32 0x0) more)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 more)
+(Eq N0:(ReadLSB w32 (w32 0x0) more)
      N0)
 
 🔔 After live ranges for (removable) `redundant` (decl src ln 2) not found
@@ -340,18 +340,18 @@ Parsed query
 Checking equivalence of `arg` (decl src ln 1) from
   assn asm ln 10, prod ln 1.0, live ln 6, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 and
   assn asm ln 16, prod ln 1.0, live ln 2, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Query to parse
 array arg[4] : w32 -> w8 = symbolic
 array arg[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 arg)
-     (ReadLSB w32 0x0 arg)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) arg)
+     (ReadLSB w32 (w32 0x0) arg)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 arg)
+(Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
 
 Variable intrinsic with undef input
@@ -361,28 +361,28 @@ Variable intrinsic with undef input
 Checking equivalence of `bar` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 6, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 and
   assn asm ln 14, prod ln 1.0, live ln 2, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 
 🔔 Before `more` (decl src ln 1) assn asm ln 18, prod ln 1.0, live ln 2, gen 0 coordinates don't match after assn asm ln 11, prod ln 1.0, live ln 6, gen 0
 Checking equivalence of `more` (decl src ln 1) from
   assn asm ln 11, prod ln 1.0, live ln 6, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 and
   assn asm ln 18, prod ln 1.0, live ln 2, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Query to parse
 array more[4] : w32 -> w8 = symbolic
 array more[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 more)
-     (ReadLSB w32 0x0 more)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) more)
+     (ReadLSB w32 (w32 0x0) more)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 more)
+(Eq N0:(ReadLSB w32 (w32 0x0) more)
      N0)
 
 ❌ After symbolic values checked against before

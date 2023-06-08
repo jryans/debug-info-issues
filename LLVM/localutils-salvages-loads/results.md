@@ -74,10 +74,15 @@
 +++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
 + mkdir -p klee-out-O0
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O0.o --filetype obj example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt -S -o example-O0-mem2reg.ll --mem2reg example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O0-mem2reg.o --filetype obj example-O0-mem2reg.ll
 + mkdir -p klee-out-O2
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O2.o --filetype obj example-O2.ll
 + mkdir -p klee-out-O2-fixed
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
++ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O2-fixed.o --filetype obj example-O2-fixed.ll
 ++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
@@ -250,54 +255,54 @@ Computing generations: `loaded` (decl src ln 3)
 #### Before values
 
 Collected value for `bar`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Collected value for `more`
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Collected value for `redundant`
   %1 = load i32, i32* %0, l2 c19
-  (ReadLSB w32 0x0 bar.deref)
+  (ReadLSB w32 (w32 0x0) bar.deref)
 Collected value for `loaded`
   %3 = load i32, i32* %2, l3 c16
-  (ReadLSB w32 0x0 bar.deref)
+  (ReadLSB w32 (w32 0x0) bar.deref)
 Collected value for `arg`
   %and = and i32 %6, %add, l4 c7
-  (And w32 (ReadLSB w32 0x0 arg)
-          (Add w32 (ReadLSB w32 0x0 more)
-                   (ReadLSB w32 0x0 bar.deref)))
+  (And w32 (ReadLSB w32 (w32 0x0) arg)
+          (Add w32 (ReadLSB w32 (w32 0x0) more)
+                   (ReadLSB w32 (w32 0x0) bar.deref)))
 
 #### After values
 
 Collected value for `bar`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Collected value for `more`
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Collected value for `redundant`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `loaded`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 undef
-  0x0
+  (w32 0x0)
 
 ### Assignments
 
@@ -391,18 +396,18 @@ Building live ranges: `loaded` (decl src ln 3)
 Checking equivalence of `arg` (decl src ln 1) from
   assn asm ln 16, prod ln 1.0, live ln 2, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 and
   assn asm ln 10, prod ln 1.23, live ln 6, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Query to parse
 array arg[4] : w32 -> w8 = symbolic
 array arg[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 arg)
-     (ReadLSB w32 0x0 arg)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) arg)
+     (ReadLSB w32 (w32 0x0) arg)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 arg)
+(Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
 
 ❌ After live range for `arg` (decl src ln 1) at asm ln 33, prod ln 4.7, live ln 6, gen 1 not found
@@ -411,14 +416,14 @@ Parsed query
 Checking equivalence of `bar` (decl src ln 1) from
   assn asm ln 14, prod ln 1.0, live ln 2, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 and
   assn asm ln 9, prod ln 1.14, live ln 6, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 
 🔔 After `loaded` (decl src ln 3) assn asm ln 13, prod ln 3.7, live ln 6, gen 0 coordinates don't match before assn asm ln 27, prod ln 3.16, live ln 4, gen 0
-Pushed initial value onto stack: 0x859449D3931F90B3
+Pushed initial value onto stack: (w64 0x859449D3931F90B3)
 Current opcode: 6
 Unexpected expression opcode
 UNREACHABLE executed at /Users/jryans/Projects/klee/tools/check-debug-info/Variable.cpp:347!
@@ -426,19 +431,20 @@ PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backt
 Stack dump:
 0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
 Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x00000001066a1577 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 39
-1  check-debug-info         0x00000001066a03b8 llvm::sys::RunSignalHandlers() + 248
-2  check-debug-info         0x00000001066a1bc0 SignalHandler(int) + 288
-3  libsystem_platform.dylib 0x00007ff819786c1d _sigtramp + 29
-4  libsystem_platform.dylib 0x00007ff7bb32fe10 _sigtramp + 18446744072127943184
-5  libsystem_c.dylib        0x00007ff8196a5ca5 abort + 123
-6  check-debug-info         0x00000001065ed5a3 llvm::llvm_unreachable_internal(char const*, char const*, unsigned int) + 467
-7  check-debug-info         0x0000000104c1769e Assignment::evaluate() + 7198
-8  check-debug-info         0x0000000104bd8d34 checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 2164
-9  check-debug-info         0x0000000104bdb5de checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 6814
-10 check-debug-info         0x0000000104bdc91e main + 1742
-11 dyld                     0x00007ff819429310 start + 2432
-./check-issue.sh: line 6: 15794 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_BC} ${CHECK_OPTS}
+0  check-debug-info         0x00000001064fee9d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
+1  check-debug-info         0x00000001064ff41b PrintStackTraceSignalHandler(void*) + 27
+2  check-debug-info         0x00000001064fd263 llvm::sys::RunSignalHandlers() + 115
+3  check-debug-info         0x0000000106500e1f SignalHandler(int) + 223
+4  libsystem_platform.dylib 0x00007ff80fa635ed _sigtramp + 29
+5  libsystem_platform.dylib 000000000000000000 _sigtramp + 18446603370318383664
+6  libsystem_c.dylib        0x00007ff80f95cb45 abort + 123
+7  check-debug-info         0x00000001063cb7c0 llvm::install_out_of_memory_new_handler() + 0
+8  check-debug-info         0x000000010382e6cb Assignment::evaluate() + 6907
+9  check-debug-info         0x00000001037f2ed4 checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 2164
+10 check-debug-info         0x00000001037f5707 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 6695
+11 check-debug-info         0x00000001037f6a08 main + 1768
+12 dyld                     0x00007ff80f6dc41f start + 1903
+./check-issue.sh: line 6: 30722 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_BC} ${CHECK_OPTS}
 ++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
@@ -601,44 +607,44 @@ Computing generations: `more` (decl src ln 1)
 #### Before values
 
 Collected value for `bar`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Collected value for `more`
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Collected value for `redundant`
   %1 = load i32, i32* %0, l2 c19
-  (ReadLSB w32 0x0 bar.deref)
+  (ReadLSB w32 (w32 0x0) bar.deref)
 Collected value for `loaded`
   %3 = load i32, i32* %2, l3 c16
-  (ReadLSB w32 0x0 bar.deref)
+  (ReadLSB w32 (w32 0x0) bar.deref)
 Collected value for `arg`
   %and = and i32 %6, %add, l4 c7
-  (And w32 (ReadLSB w32 0x0 arg)
-          (Add w32 (ReadLSB w32 0x0 more)
-                   (ReadLSB w32 0x0 bar.deref)))
+  (And w32 (ReadLSB w32 (w32 0x0) arg)
+          (Add w32 (ReadLSB w32 (w32 0x0) more)
+                   (ReadLSB w32 (w32 0x0) bar.deref)))
 
 #### After values
 
 Collected value for `bar`
-  Concrete pointer resolves to bar.deref, offset 0x0
-  Replaced concrete pointer with hash 0x859449D3931F90B3
+  Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 Collected value for `arg`
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Collected value for `more`
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Collected value for `arg`
   i32 undef
-  0x0
+  (w32 0x0)
 
 ### Assignments
 
@@ -720,18 +726,18 @@ Building live ranges: `more` (decl src ln 1)
 Checking equivalence of `arg` (decl src ln 1) from
   assn asm ln 16, prod ln 1.0, live ln 2, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 and
   assn asm ln 10, prod ln 1.0, live ln 6, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Query to parse
 array arg[4] : w32 -> w8 = symbolic
 array arg[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 arg)
-     (ReadLSB w32 0x0 arg)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) arg)
+     (ReadLSB w32 (w32 0x0) arg)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 arg)
+(Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
 
 ❌ After live range for `arg` (decl src ln 1) at asm ln 33, prod ln 4.7, live ln 6, gen 1 not found
@@ -740,11 +746,11 @@ Parsed query
 Checking equivalence of `bar` (decl src ln 1) from
   assn asm ln 14, prod ln 1.0, live ln 2, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 and
   assn asm ln 9, prod ln 1.0, live ln 6, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 
 ❌ After live range for `loaded` (decl src ln 3) not found
 
@@ -752,18 +758,18 @@ and
 Checking equivalence of `more` (decl src ln 1) from
   assn asm ln 18, prod ln 1.0, live ln 2, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 and
   assn asm ln 11, prod ln 1.0, live ln 6, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Query to parse
 array more[4] : w32 -> w8 = symbolic
 array more[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 more)
-     (ReadLSB w32 0x0 more)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) more)
+     (ReadLSB w32 (w32 0x0) more)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 more)
+(Eq N0:(ReadLSB w32 (w32 0x0) more)
      N0)
 
 🔔 After live ranges for (removable) `redundant` (decl src ln 2) not found
@@ -781,18 +787,18 @@ Parsed query
 Checking equivalence of `arg` (decl src ln 1) from
   assn asm ln 10, prod ln 1.0, live ln 6, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 and
   assn asm ln 16, prod ln 1.0, live ln 2, gen 0
   i32 %arg
-  (ReadLSB w32 0x0 arg)
+  (ReadLSB w32 (w32 0x0) arg)
 Query to parse
 array arg[4] : w32 -> w8 = symbolic
 array arg[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 arg)
-     (ReadLSB w32 0x0 arg)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) arg)
+     (ReadLSB w32 (w32 0x0) arg)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 arg)
+(Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
 
 Variable intrinsic with undef input
@@ -802,28 +808,28 @@ Variable intrinsic with undef input
 Checking equivalence of `bar` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 6, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 and
   assn asm ln 14, prod ln 1.0, live ln 2, gen 0
   i32* %bar
-  0x859449D3931F90B3
+  (w64 0x859449D3931F90B3)
 
 🔔 Before `more` (decl src ln 1) assn asm ln 18, prod ln 1.0, live ln 2, gen 0 coordinates don't match after assn asm ln 11, prod ln 1.0, live ln 6, gen 0
 Checking equivalence of `more` (decl src ln 1) from
   assn asm ln 11, prod ln 1.0, live ln 6, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 and
   assn asm ln 18, prod ln 1.0, live ln 2, gen 0
   i32 %more
-  (ReadLSB w32 0x0 more)
+  (ReadLSB w32 (w32 0x0) more)
 Query to parse
 array more[4] : w32 -> w8 = symbolic
 array more[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 more)
-     (ReadLSB w32 0x0 more)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) more)
+     (ReadLSB w32 (w32 0x0) more)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 more)
+(Eq N0:(ReadLSB w32 (w32 0x0) more)
      N0)
 
 ❌ After symbolic values checked against before
