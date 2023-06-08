@@ -1,6 +1,7 @@
 void example(unsigned n, unsigned size, unsigned *data) {
   int i = 0;
 #pragma clang loop vectorize(disable)
+#pragma clang loop unroll(disable)
   while (i < size) {
     int comp = (4 * i) + n;
     data[i] = comp;
