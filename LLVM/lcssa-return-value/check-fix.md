@@ -96,30 +96,30 @@ warning: Linking two modules of different target triples: 'memset64_Debug+Assert
 Before variable `foo` (decl src ln 6)
 Before variable `bar` (decl src ln 7)
 Before variable `i` (decl src ln 12)
-Store to `i` (decl src ln 12), asm ln 44
+Store to declared address of `i` (decl src ln 12), asm ln 44
   %inc = add nsw i32 %9, 1, l12 c31, asm ln 43
-🔔 Store to `i` (decl src ln 12): live ln too early, using produced ln + 1
+🔔 Store to declared address of `i` (decl src ln 12): live ln too early, using produced ln + 1
   Added assignment asm ln 44, prod ln 12.31, live ln 13, gen 0
-Store to `i` (decl src ln 12), asm ln 23
+Store to declared address of `i` (decl src ln 12), asm ln 23
   const i32 0
-🔔 Store to `i` (decl src ln 12): live ln too early, using produced ln + 1
+🔔 Store to declared address of `i` (decl src ln 12): live ln too early, using produced ln + 1
   Added assignment asm ln 23, prod ln 12.12, live ln 13, gen 0
 Before variable `sum` (decl src ln 15)
-Store to `sum` (decl src ln 15), asm ln 66
+Store to declared address of `sum` (decl src ln 15), asm ln 66
   %add9 = add i32 %13, %12, l17 c9, asm ln 65
-🔔 Store to `sum` (decl src ln 15): live ln too early, using produced ln + 1
+🔔 Store to declared address of `sum` (decl src ln 15): live ln too early, using produced ln + 1
   Added assignment asm ln 66, prod ln 17.9, live ln 18, gen 0
-Store to `sum` (decl src ln 15), asm ln 49
+Store to declared address of `sum` (decl src ln 15), asm ln 49
   const i32 0
   Added assignment asm ln 49, prod ln 15.16, live ln 16, gen 0
 Before variable `j` (decl src ln 16)
-Store to `j` (decl src ln 16), asm ln 69
+Store to declared address of `j` (decl src ln 16), asm ln 69
   %inc11 = add nsw i32 %14, 1, l16 c31, asm ln 68
-🔔 Store to `j` (decl src ln 16): live ln too early, using produced ln + 1
+🔔 Store to declared address of `j` (decl src ln 16): live ln too early, using produced ln + 1
   Added assignment asm ln 69, prod ln 16.31, live ln 17, gen 0
-Store to `j` (decl src ln 16), asm ln 51
+Store to declared address of `j` (decl src ln 16), asm ln 51
   const i32 0
-🔔 Store to `j` (decl src ln 16): live ln too early, using produced ln + 1
+🔔 Store to declared address of `j` (decl src ln 16): live ln too early, using produced ln + 1
   Added assignment asm ln 51, prod ln 16.12, live ln 17, gen 0
 Computing generations: `i` (decl src ln 12)
   asm ln 23, prod ln 12.12, live ln 13, gen 0
@@ -134,13 +134,11 @@ Computing generations: `j` (decl src ln 16)
 After variable `foo` (decl src ln 6)
 After variable `bar` (decl src ln 7)
 After variable `i` (decl src ln 12)
-@dbg.value mapping for `i` (decl src ln 12), asm ln 17
 Value produced for `i` (decl src ln 12), asm ln 17
   const i32 0
 🔔 Value produced for `i` (decl src ln 12): live ln too early, using produced ln + 1
   Added assignment asm ln 17, prod ln 12.12, live ln 13, gen 0
 After variable `sum` (decl src ln 15)
-@dbg.value mapping for `sum` (decl src ln 15), asm ln 650
 Value produced for `sum` (decl src ln 15), asm ln 650
   %bin.rdx50.i0 = add i32 %bin.rdx48.i0, %bin.rdx48.i1, l17 c9, asm ln 649
   Added assignment asm ln 650, prod ln 17.16, live ln 19, gen 0

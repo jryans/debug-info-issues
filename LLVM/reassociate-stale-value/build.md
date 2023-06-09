@@ -1,4 +1,4 @@
-++ dirname ./build.sh
+^D++ dirname ./build.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux

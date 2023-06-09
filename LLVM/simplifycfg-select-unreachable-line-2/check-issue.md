@@ -86,19 +86,19 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 ### Variables
 
 Before variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 12
+Store to declared address of `foo` (decl src ln 2), asm ln 12
   const i32 0
   Added assignment asm ln 12, prod ln 2.16, live ln 4, gen 0
 Before variable `beards` (decl src ln 4)
-Store to `beards` (decl src ln 4), asm ln 24
+Store to declared address of `beards` (decl src ln 4), asm ln 24
   const i32 4
-🔔 Store to `beards` (decl src ln 4): missing live ln, using produced ln + 1
+🔔 Store to declared address of `beards` (decl src ln 4): missing live ln, using produced ln + 1
   Added assignment asm ln 24, prod ln 8.12, live ln 9, gen 0
-Store to `beards` (decl src ln 4), asm ln 20
+Store to declared address of `beards` (decl src ln 4), asm ln 20
   const i32 8
-🔔 Store to `beards` (decl src ln 4): live ln too early, using produced ln + 1
+🔔 Store to declared address of `beards` (decl src ln 4): live ln too early, using produced ln + 1
   Added assignment asm ln 20, prod ln 6.12, live ln 7, gen 0
-Store to `beards` (decl src ln 4), asm ln 14
+Store to declared address of `beards` (decl src ln 4), asm ln 14
   const i32 0
   Added assignment asm ln 14, prod ln 4.7, live ln 5, gen 0
 Computing generations: `foo` (decl src ln 2)
@@ -109,16 +109,14 @@ Computing generations: `beards` (decl src ln 4)
   asm ln 24, prod ln 8.12, live ln 9, gen 2
 
 After variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 12
+Store to declared address of `foo` (decl src ln 2), asm ln 12
   const i32 0
   Added assignment asm ln 12, prod ln 2.16, live ln 5, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 13
 Value produced for `beards` (decl src ln 4), asm ln 13
   const i32 0
   Added assignment asm ln 13, prod ln 4.7, live ln 5, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 17
 Value produced for `beards` (decl src ln 4), asm ln 17
   %. = select i1 %cmp, i32 8, i32 4, l6 c5, asm ln 16
   Added assignment asm ln 17, prod ln 6.7, live ln 10, gen 0

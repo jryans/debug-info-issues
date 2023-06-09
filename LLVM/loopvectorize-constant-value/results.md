@@ -159,6 +159,14 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 
 ## Function `example`
 
+warning: Linking two modules of different data layouts: 'memset64_Debug+Asserts.bc' is 'e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128' whereas 'klee-out-O0/final.bc' is 'e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128'
+
+warning: Linking two modules of different target triples: 'memset64_Debug+Asserts.bc' is 'x86_64-apple-macosx13.0.0' whereas 'klee-out-O0/final.bc' is 'x86_64-unknown-linux-gnu'
+
+warning: Linking two modules of different data layouts: 'memset64_Debug+Asserts.bc' is 'e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128' whereas 'klee-out-O2/final.bc' is 'e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128'
+
+warning: Linking two modules of different target triples: 'memset64_Debug+Asserts.bc' is 'x86_64-apple-macosx13.0.0' whereas 'klee-out-O2/final.bc' is 'x86_64-unknown-linux-gnu'
+
 ✅ Before and after function names match
 
 ### Variables
@@ -166,58 +174,55 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 Before variable `foo` (decl src ln 6)
 Before variable `bar` (decl src ln 7)
 Before variable `i` (decl src ln 12)
-Store to `i` (decl src ln 12), asm ln 47
-  %inc = add nsw i32 %7, 1, l12 c31, asm ln 46
-🔔 Store to `i` (decl src ln 12): live ln too early, using produced ln + 1
-  Added assignment asm ln 47, prod ln 12.31, live ln 13, gen 0
-Store to `i` (decl src ln 12), asm ln 23
+Store to declared address of `i` (decl src ln 12), asm ln 44
+  %inc = add nsw i32 %9, 1, l12 c31, asm ln 43
+🔔 Store to declared address of `i` (decl src ln 12): live ln too early, using produced ln + 1
+  Added assignment asm ln 44, prod ln 12.31, live ln 13, gen 0
+Store to declared address of `i` (decl src ln 12), asm ln 23
   const i32 0
-🔔 Store to `i` (decl src ln 12): live ln too early, using produced ln + 1
+🔔 Store to declared address of `i` (decl src ln 12): live ln too early, using produced ln + 1
   Added assignment asm ln 23, prod ln 12.12, live ln 13, gen 0
 Before variable `sum` (decl src ln 15)
-Store to `sum` (decl src ln 15), asm ln 68
-  %add9 = add i32 %11, %10, l17 c9, asm ln 67
-🔔 Store to `sum` (decl src ln 15): live ln too early, using produced ln + 1
-  Added assignment asm ln 68, prod ln 17.9, live ln 18, gen 0
-Store to `sum` (decl src ln 15), asm ln 52
+Store to declared address of `sum` (decl src ln 15), asm ln 65
+  %add9 = add i32 %13, %12, l17 c9, asm ln 64
+🔔 Store to declared address of `sum` (decl src ln 15): live ln too early, using produced ln + 1
+  Added assignment asm ln 65, prod ln 17.9, live ln 18, gen 0
+Store to declared address of `sum` (decl src ln 15), asm ln 49
   const i32 0
-  Added assignment asm ln 52, prod ln 15.16, live ln 16, gen 0
+  Added assignment asm ln 49, prod ln 15.16, live ln 16, gen 0
 Before variable `j` (decl src ln 16)
-Store to `j` (decl src ln 16), asm ln 74
-  %inc11 = add nsw i32 %12, 1, l16 c27, asm ln 73
-🔔 Store to `j` (decl src ln 16): live ln too early, using produced ln + 1
-  Added assignment asm ln 74, prod ln 16.27, live ln 17, gen 0
+Store to declared address of `j` (decl src ln 16), asm ln 68
+  %inc11 = add nsw i32 %14, 1, l16 c27, asm ln 67
+🔔 Store to declared address of `j` (decl src ln 16): live ln too early, using produced ln + 1
+  Added assignment asm ln 68, prod ln 16.27, live ln 17, gen 0
 Computing generations: `i` (decl src ln 12)
   asm ln 23, prod ln 12.12, live ln 13, gen 0
-  asm ln 47, prod ln 12.31, live ln 13, gen 1
+  asm ln 44, prod ln 12.31, live ln 13, gen 1
 Computing generations: `sum` (decl src ln 15)
-  asm ln 52, prod ln 15.16, live ln 16, gen 0
-  asm ln 68, prod ln 17.9, live ln 18, gen 1
+  asm ln 49, prod ln 15.16, live ln 16, gen 0
+  asm ln 65, prod ln 17.9, live ln 18, gen 1
 Computing generations: `j` (decl src ln 16)
-  asm ln 74, prod ln 16.27, live ln 17, gen 0
+  asm ln 68, prod ln 16.27, live ln 17, gen 0
 
 After variable `foo` (decl src ln 6)
 After variable `bar` (decl src ln 7)
 After variable `i` (decl src ln 12)
-@dbg.value mapping for `i` (decl src ln 12), asm ln 19
-Value produced for `i` (decl src ln 12), asm ln 19
+Value produced for `i` (decl src ln 12), asm ln 17
   const i32 0
 🔔 Value produced for `i` (decl src ln 12): live ln too early, using produced ln + 1
-  Added assignment asm ln 19, prod ln 12.12, live ln 13, gen 0
+  Added assignment asm ln 17, prod ln 12.12, live ln 13, gen 0
 After variable `sum` (decl src ln 15)
-@dbg.value mapping for `sum` (decl src ln 15), asm ln 66
-Value produced for `sum` (decl src ln 15), asm ln 66
+Value produced for `sum` (decl src ln 15), asm ln 124
   const i32 0
-  Added assignment asm ln 66, prod ln 15.16, live ln 19, gen 0
+  Added assignment asm ln 124, prod ln 15.16, live ln 19, gen 0
 After variable `sum` (decl src ln 15)
-@dbg.value mapping for `sum` (decl src ln 15), asm ln 67
-Value produced for `sum` (decl src ln 15), asm ln 67
+Value produced for `sum` (decl src ln 15), asm ln 125
   const i32 0
   Producers match last assignment, skipping
 Computing generations: `i` (decl src ln 12)
-  asm ln 19, prod ln 12.12, live ln 13, gen 0
+  asm ln 17, prod ln 12.12, live ln 13, gen 0
 Computing generations: `sum` (decl src ln 15)
-  asm ln 66, prod ln 15.16, live ln 19, gen 0
+  asm ln 124, prod ln 15.16, live ln 19, gen 0
 
 🔔 5 before variables found, 4 after variables found, 1 mismatched
 
@@ -225,19 +230,15 @@ Computing generations: `sum` (decl src ln 15)
 
 #### Before values
 
-warning: Linking two modules of different data layouts: 'memset64_Debug+Asserts.bc' is 'e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128' whereas 'klee-out-O0/final.bc' is 'e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128'
-
-warning: Linking two modules of different target triples: 'memset64_Debug+Asserts.bc' is 'x86_64-apple-macosx13.0.0' whereas 'klee-out-O0/final.bc' is 'x86_64-unknown-linux-gnu'
-
 Collected value for `i`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `i`
   %inc = add nsw i32 %9, 1, l12 c31
-  0x1
+  (w32 0x1)
 Collected value for `sum`
   i32 0
-  0x0
+  (w32 0x0)
 [0;1;31mKLEE: ERROR: example.c:17: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
@@ -245,16 +246,12 @@ Collected value for `sum`
 
 #### After values
 
-warning: Linking two modules of different data layouts: 'memset64_Debug+Asserts.bc' is 'e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128' whereas 'klee-out-O2/final.bc' is 'e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128'
-
-warning: Linking two modules of different target triples: 'memset64_Debug+Asserts.bc' is 'x86_64-apple-macosx13.0.0' whereas 'klee-out-O2/final.bc' is 'x86_64-unknown-linux-gnu'
-
 Collected value for `i`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `sum`
   i32 0
-  0x0
+  (w32 0x0)
 
 ### Assignments
 
@@ -264,41 +261,41 @@ Filtering redundant before assignments: `sum` (decl src ln 15)
 
 Computing generations: `i` (decl src ln 12)
   asm ln 23, prod ln 12.12, live ln 13, gen 0
-  asm ln 47, prod ln 12.31, live ln 13, gen 1
+  asm ln 44, prod ln 12.31, live ln 13, gen 1
 Computing generations: `sum` (decl src ln 15)
-  asm ln 52, prod ln 15.16, live ln 16, gen 0
-  asm ln 68, prod ln 17.9, live ln 18, gen 1
+  asm ln 49, prod ln 15.16, live ln 16, gen 0
+  asm ln 65, prod ln 17.9, live ln 18, gen 1
 Computing generations: `j` (decl src ln 16)
-  asm ln 74, prod ln 16.27, live ln 17, gen 0
+  asm ln 68, prod ln 16.27, live ln 17, gen 0
 Building live ranges: `i` (decl src ln 12)
   asm ln 23, prod ln 12.12, live ln 13, gen 0
     live ln 13, gen 0 →
     live ln 13, gen 1
-  asm ln 47, prod ln 12.31, live ln 13, gen 1
+  asm ln 44, prod ln 12.31, live ln 13, gen 1
     live ln 13, gen 1 →
     live ln ∞, gen ∞
 Building live ranges: `sum` (decl src ln 15)
-  asm ln 52, prod ln 15.16, live ln 16, gen 0
+  asm ln 49, prod ln 15.16, live ln 16, gen 0
     live ln 16, gen 0 →
     live ln 18, gen 1
-  asm ln 68, prod ln 17.9, live ln 18, gen 1
+  asm ln 65, prod ln 17.9, live ln 18, gen 1
     live ln 18, gen 1 →
     live ln ∞, gen ∞
 Building live ranges: `j` (decl src ln 16)
-  asm ln 74, prod ln 16.27, live ln 17, gen 0
+  asm ln 68, prod ln 16.27, live ln 17, gen 0
     live ln 17, gen 0 →
     live ln ∞, gen ∞
 
 Computing generations: `i` (decl src ln 12)
-  asm ln 19, prod ln 12.12, live ln 13, gen 0
+  asm ln 17, prod ln 12.12, live ln 13, gen 0
 Computing generations: `sum` (decl src ln 15)
-  asm ln 66, prod ln 15.16, live ln 19, gen 0
+  asm ln 124, prod ln 15.16, live ln 19, gen 0
 Building live ranges: `i` (decl src ln 12)
-  asm ln 19, prod ln 12.12, live ln 13, gen 0
+  asm ln 17, prod ln 12.12, live ln 13, gen 0
     live ln 13, gen 0 →
     live ln ∞, gen ∞
 Building live ranges: `sum` (decl src ln 15)
-  asm ln 66, prod ln 15.16, live ln 19, gen 0
+  asm ln 124, prod ln 15.16, live ln 19, gen 0
     live ln 19, gen 0 →
     live ln ∞, gen ∞
 
@@ -318,38 +315,38 @@ Building live ranges: `sum` (decl src ln 15)
 Checking equivalence of `i` (decl src ln 12) from
   assn asm ln 23, prod ln 12.12, live ln 13, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 19, prod ln 12.12, live ln 13, gen 0
+  assn asm ln 17, prod ln 12.12, live ln 13, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 After `i` (decl src ln 12) assn asm ln 19, prod ln 12.12, live ln 13, gen 0 coordinates don't match before assn asm ln 47, prod ln 12.31, live ln 13, gen 1
+🔔 After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 coordinates don't match before assn asm ln 44, prod ln 12.31, live ln 13, gen 1
 Checking equivalence of `i` (decl src ln 12) from
-  assn asm ln 47, prod ln 12.31, live ln 13, gen 1
+  assn asm ln 44, prod ln 12.31, live ln 13, gen 1
   %inc = add nsw i32 %9, 1, l12 c31
-  0x1
+  (w32 0x1)
 and
-  assn asm ln 19, prod ln 12.12, live ln 13, gen 0
+  assn asm ln 17, prod ln 12.12, live ln 13, gen 0
   i32 0
-  0x0
-❌ After `i` (decl src ln 12) assn asm ln 19, prod ln 12.12, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 47, prod ln 12.31, live ln 13, gen 1
+  (w32 0x0)
+❌ After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 44, prod ln 12.31, live ln 13, gen 1
 
 ❌ After live range for `j` (decl src ln 16) not found
 
-🔔 After `sum` (decl src ln 15) assn asm ln 66, prod ln 15.16, live ln 19, gen 0 coordinates don't match before assn asm ln 52, prod ln 15.16, live ln 16, gen 0
+🔔 After `sum` (decl src ln 15) assn asm ln 124, prod ln 15.16, live ln 19, gen 0 coordinates don't match before assn asm ln 49, prod ln 15.16, live ln 16, gen 0
 Checking equivalence of `sum` (decl src ln 15) from
-  assn asm ln 52, prod ln 15.16, live ln 16, gen 0
+  assn asm ln 49, prod ln 15.16, live ln 16, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 66, prod ln 15.16, live ln 19, gen 0
+  assn asm ln 124, prod ln 15.16, live ln 19, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 After `sum` (decl src ln 15) assn asm ln 66, prod ln 15.16, live ln 19, gen 0 coordinates don't match before assn asm ln 68, prod ln 17.9, live ln 18, gen 1
+🔔 After `sum` (decl src ln 15) assn asm ln 124, prod ln 15.16, live ln 19, gen 0 coordinates don't match before assn asm ln 65, prod ln 17.9, live ln 18, gen 1
 Expected 1 symbolic value(s), got 0
-❌ Before `sum` (decl src ln 15) assn asm ln 68, prod ln 17.9, live ln 18, gen 1 has no symbolic value from %add9 = add i32 %13, %12, l17 c9
+❌ Before `sum` (decl src ln 15) assn asm ln 65, prod ln 17.9, live ln 18, gen 1 has no symbolic value from %add9 = add i32 %13, %12, l17 c9
 
 ❌ Before symbolic values checked against after
   Matching:    2
@@ -361,17 +358,17 @@ Expected 1 symbolic value(s), got 0
 #### Check after against before
 
 Checking equivalence of `i` (decl src ln 12) from
-  assn asm ln 19, prod ln 12.12, live ln 13, gen 0
+  assn asm ln 17, prod ln 12.12, live ln 13, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
   assn asm ln 23, prod ln 12.12, live ln 13, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
-🔔 Before `sum` (decl src ln 15) assn asm ln 68, prod ln 17.9, live ln 18, gen 1 coordinates don't match after assn asm ln 66, prod ln 15.16, live ln 19, gen 0
+🔔 Before `sum` (decl src ln 15) assn asm ln 65, prod ln 17.9, live ln 18, gen 1 coordinates don't match after assn asm ln 124, prod ln 15.16, live ln 19, gen 0
 Expected 1 symbolic value(s), got 0
-❌ Before `sum` (decl src ln 15) assn asm ln 68, prod ln 17.9, live ln 18, gen 1 has no symbolic value from %add9 = add i32 %13, %12, l17 c9
+❌ Before `sum` (decl src ln 15) assn asm ln 65, prod ln 17.9, live ln 18, gen 1 has no symbolic value from %add9 = add i32 %13, %12, l17 c9
 
 ❌ After symbolic values checked against before
   Matching:    1

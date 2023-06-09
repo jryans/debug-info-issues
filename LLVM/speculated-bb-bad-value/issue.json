@@ -2,7 +2,7 @@
   "id": 38111,
   "summary": "Speculated BB presents illegal variable value to debugger",
   "issueDetectable": true,
-  "issueDetector": "❌ After `result` (decl src ln 6) assn asm ln 20, prod ln 6.15, live ln 7, gen 1 symbolic value doesn't match before assn asm ln 38, prod ln 10.20, live ln 11, gen 2",
+  "issueDetector": "❌ After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 symbolic value doesn't match before assn asm ln 38, prod ln 10.20, live ln 11, gen 2",
   "fixVerifiable": true,
-  "fixVerifier": "❌ After `result` (decl src ln 6) assn asm ln 18, prod ln 6.7, live ln 7, gen 0 symbolic value doesn't match before assn asm ln 32, prod ln 8.20, live ln 9, gen 1"
+  "fixVerifier": "❌ After `result` (decl src ln 6) assn asm ln 17, prod ln 6.7, live ln 7, gen 0 symbolic value doesn't match before assn asm ln 32, prod ln 8.20, live ln 9, gen 1"
 }

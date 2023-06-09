@@ -2,7 +2,7 @@
   "id": 38101,
   "summary": "Stale debug variable value in optimised code",
   "issueDetectable": true,
-  "issueDetector": "❌ After `a` (decl src ln 7) assn asm ln 25, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 31, prod ln 7.17, live ln 8, gen 0",
+  "issueDetector": "❌ After `a` (decl src ln 7) assn asm ln 24, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 31, prod ln 7.17, live ln 8, gen 0",
   "fixVerifiable": true,
   "fixVerifier": "After variable intrinsic with undef input, asm ln 20, ignoring undefined variable"
 }

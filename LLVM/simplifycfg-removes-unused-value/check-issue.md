@@ -86,30 +86,30 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 ### Variables
 
 Before variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 13
+Store to declared address of `foo` (decl src ln 2), asm ln 13
   const i32 4
   Added assignment asm ln 13, prod ln 2.16, live ln 4, gen 0
 Before variable `beards` (decl src ln 4)
-Store to `beards` (decl src ln 4), asm ln 28
+Store to declared address of `beards` (decl src ln 4), asm ln 28
   const i32 4
   Added assignment asm ln 28, prod ln 11.12, live ln 12, gen 0
-Store to `beards` (decl src ln 4), asm ln 23
+Store to declared address of `beards` (decl src ln 4), asm ln 23
   const i32 8
   Added assignment asm ln 23, prod ln 8.12, live ln 9, gen 0
-Store to `beards` (decl src ln 4), asm ln 15
+Store to declared address of `beards` (decl src ln 4), asm ln 15
   const i32 0
   Added assignment asm ln 15, prod ln 4.7, live ln 5, gen 0
 Before variable `birds` (decl src ln 5)
-Store to `birds` (decl src ln 5), asm ln 29
+Store to declared address of `birds` (decl src ln 5), asm ln 29
   const i32 6
-🔔 Store to `birds` (decl src ln 5): missing live ln, using produced ln + 1
+🔔 Store to declared address of `birds` (decl src ln 5): missing live ln, using produced ln + 1
   @dbg.declare without read users, removable
   Added assignment asm ln 29, prod ln 12.11, live ln 13, gen 0
-Store to `birds` (decl src ln 5), asm ln 24
+Store to declared address of `birds` (decl src ln 5), asm ln 24
   const i32 3
   @dbg.declare without read users, removable
   Added assignment asm ln 24, prod ln 9.11, live ln 10, gen 0
-Store to `birds` (decl src ln 5), asm ln 17
+Store to declared address of `birds` (decl src ln 5), asm ln 17
   const i32 0
   @dbg.declare without read users, removable
   Added assignment asm ln 17, prod ln 5.7, live ln 7, gen 0
@@ -125,21 +125,18 @@ Computing generations: `birds` (decl src ln 5)
   asm ln 29, prod ln 12.11, live ln 13, gen 2
 
 After variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 12
+Store to declared address of `foo` (decl src ln 2), asm ln 12
   const i32 4
   Added assignment asm ln 12, prod ln 2.16, live ln 7, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 13
 Value produced for `beards` (decl src ln 4), asm ln 13
   const i32 0
   Added assignment asm ln 13, prod ln 4.7, live ln 7, gen 0
 After variable `birds` (decl src ln 5)
-@dbg.value mapping for `birds` (decl src ln 5), asm ln 14
 Value produced for `birds` (decl src ln 5), asm ln 14
   const i32 0
   Added assignment asm ln 14, prod ln 5.7, live ln 7, gen 0
 After variable `beards` (decl src ln 4)
-@dbg.value mapping for `beards` (decl src ln 4), asm ln 18
 Value produced for `beards` (decl src ln 4), asm ln 18
   %. = select i1 %cmp, i32 8, i32 4, l10 c3, asm ln 17
   Added assignment asm ln 18, prod ln 10.7, live ln 15, gen 0

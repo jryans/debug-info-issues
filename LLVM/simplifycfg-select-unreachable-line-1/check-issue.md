@@ -1,4 +1,4 @@
-++ dirname ./check-issue.sh
+^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -86,21 +86,21 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 ### Variables
 
 Before variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 13
+Store to declared address of `foo` (decl src ln 2), asm ln 13
   const i32 0
   Added assignment asm ln 13, prod ln 2.16, live ln 3, gen 0
 Before variable `read1` (decl src ln 3)
-Store to `read1` (decl src ln 3), asm ln 16
+Store to declared address of `read1` (decl src ln 3), asm ln 16
   %0 = load volatile i32, i32* %foo, l3 c15, asm ln 15
   Added assignment asm ln 16, prod ln 3.15, live ln 4, gen 0
 Before variable `brains` (decl src ln 4)
-Store to `brains` (decl src ln 4), asm ln 30
+Store to declared address of `brains` (decl src ln 4), asm ln 30
   %add = add nsw i32 %4, 1, l8 c12, asm ln 29
   Added assignment asm ln 30, prod ln 8.12, live ln 9, gen 0
-Store to `brains` (decl src ln 4), asm ln 27
+Store to declared address of `brains` (decl src ln 4), asm ln 27
   %mul = mul nsw i32 %3, 2, l7 c12, asm ln 26
   Added assignment asm ln 27, prod ln 7.12, live ln 8, gen 0
-Store to `brains` (decl src ln 4), asm ln 19
+Store to declared address of `brains` (decl src ln 4), asm ln 19
   %1 = load volatile i32, i32* %foo, l4 c16, asm ln 18
   Added assignment asm ln 19, prod ln 4.16, live ln 6, gen 0
 Computing generations: `foo` (decl src ln 2)
@@ -113,44 +113,39 @@ Computing generations: `brains` (decl src ln 4)
   asm ln 30, prod ln 8.12, live ln 9, gen 2
 
 After variable `foo` (decl src ln 2)
-Store to `foo` (decl src ln 2), asm ln 13
+Store to declared address of `foo` (decl src ln 2), asm ln 12
   const i32 0
-  Added assignment asm ln 13, prod ln 2.16, live ln 3, gen 0
+  Added assignment asm ln 12, prod ln 2.16, live ln 3, gen 0
 After variable `read1` (decl src ln 3)
-@dbg.value mapping for `read1` (decl src ln 3), asm ln 15
-Value produced for `read1` (decl src ln 3), asm ln 15
-  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !18, l3 c15, asm ln 14
-  Added assignment asm ln 15, prod ln 3.15, live ln 4, gen 0
+Value produced for `read1` (decl src ln 3), asm ln 14
+  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !18, l3 c15, asm ln 13
+  Added assignment asm ln 14, prod ln 3.15, live ln 4, gen 0
 After variable `brains` (decl src ln 4)
-@dbg.value mapping for `brains` (decl src ln 4), asm ln 17
-Value produced for `brains` (decl src ln 4), asm ln 17
-  %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !18, l4 c16, asm ln 16
-  Added assignment asm ln 17, prod ln 4.16, live ln 6, gen 0
+Value produced for `brains` (decl src ln 4), asm ln 16
+  %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !18, l4 c16, asm ln 15
+  Added assignment asm ln 16, prod ln 4.16, live ln 6, gen 0
 After variable `brains` (decl src ln 4)
-@dbg.value mapping for `brains` (decl src ln 4), asm ln 20
-Value produced for `brains` (decl src ln 4), asm ln 20
-  %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12, asm ln 19
-  Added assignment asm ln 20, prod ln 7.12, live ln 8, gen 0
+Value produced for `brains` (decl src ln 4), asm ln 19
+  %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12, asm ln 18
+  Added assignment asm ln 19, prod ln 7.12, live ln 8, gen 0
 After variable `brains` (decl src ln 4)
-@dbg.value mapping for `brains` (decl src ln 4), asm ln 22
-Value produced for `brains` (decl src ln 4), asm ln 22
-  %add = or i32 %mul, 1, l8 c12, asm ln 21
+Value produced for `brains` (decl src ln 4), asm ln 21
+  %add = or i32 %mul, 1, l8 c12, asm ln 20
 🔔 Value produced for `brains` (decl src ln 4): live ln too early, using produced ln + 1
-  Added assignment asm ln 22, prod ln 8.12, live ln 9, gen 0
+  Added assignment asm ln 21, prod ln 8.12, live ln 9, gen 0
 After variable `brains` (decl src ln 4)
-@dbg.value mapping for `brains` (decl src ln 4), asm ln 24
-Value produced for `brains` (decl src ln 4), asm ln 24
-  %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7, asm ln 23
-  Added assignment asm ln 24, prod ln 6.7, live ln 11, gen 0
+Value produced for `brains` (decl src ln 4), asm ln 23
+  %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7, asm ln 22
+  Added assignment asm ln 23, prod ln 6.7, live ln 11, gen 0
 Computing generations: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 3, gen 0
+  asm ln 12, prod ln 2.16, live ln 3, gen 0
 Computing generations: `read1` (decl src ln 3)
-  asm ln 15, prod ln 3.15, live ln 4, gen 0
+  asm ln 14, prod ln 3.15, live ln 4, gen 0
 Computing generations: `brains` (decl src ln 4)
-  asm ln 17, prod ln 4.16, live ln 6, gen 0
-  asm ln 20, prod ln 7.12, live ln 8, gen 1
-  asm ln 22, prod ln 8.12, live ln 9, gen 2
-  asm ln 24, prod ln 6.7, live ln 11, gen 3
+  asm ln 16, prod ln 4.16, live ln 6, gen 0
+  asm ln 19, prod ln 7.12, live ln 8, gen 1
+  asm ln 21, prod ln 8.12, live ln 9, gen 2
+  asm ln 23, prod ln 6.7, live ln 11, gen 3
 
 ✅ 3 before variables found, 3 after variables found, 0 mismatched
 
@@ -161,50 +156,50 @@ Computing generations: `brains` (decl src ln 4)
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `foo`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `read1`
   %0 = load volatile i32, i32* %foo, l3 c15
-  (ReadLSB w32 0x0 foo)
+  (ReadLSB w32 (w32 0x0) foo)
 Collected value for `brains`
   %1 = load volatile i32, i32* %foo, l4 c16
-  (ReadLSB w32 0x0 foo_1)
+  (ReadLSB w32 (w32 0x0) foo_1)
 Collected value for `brains`
   %mul = mul nsw i32 %3, 2, l7 c12
-  (Mul w32 0x2
-          (ReadLSB w32 0x0 foo_1))
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) foo_1))
 Collected value for `brains`
   %add = add nsw i32 %4, 1, l8 c12
-  (Add w32 0x1
-          (Mul w32 0x2
-                   (ReadLSB w32 0x0 foo_1)))
+  (Add w32 (w32 0x1)
+          (Mul w32 (w32 0x2)
+                   (ReadLSB w32 (w32 0x0) foo_1)))
 
 #### After values
 
 Collected value for `foo`
   i32 0
-  0x0
+  (w32 0x0)
 Collected value for `read1`
   %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !18, l3 c15
-  (ReadLSB w32 0x0 foo)
+  (ReadLSB w32 (w32 0x0) foo)
 Collected value for `brains`
   %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !18, l4 c16
-  (ReadLSB w32 0x0 foo_1)
+  (ReadLSB w32 (w32 0x0) foo_1)
 Collected value for `brains`
   %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12
-  (Shl w32 (ReadLSB w32 0x0 foo_1)
-          0x1)
+  (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+          (w32 0x1))
 Collected value for `brains`
   %add = or i32 %mul, 1, l8 c12
-  (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
-                  0x1)
-         0x1)
+  (Or w32 (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+                  (w32 0x1))
+         (w32 0x1))
 Collected value for `brains`
   %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
-  (Select w32 (Slt 0x3
-                  (ReadLSB w32 0x0 foo))
-             (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-                              0x1)
-                     0x1)
+  (Select w32 (Slt (w32 0x3)
+                  (ReadLSB w32 (w32 0x0) foo))
+             (Or w32 (Shl w32 N0:(ReadLSB w32 (w32 0x0) foo_1)
+                              (w32 0x1))
+                     (w32 0x1))
              N0)
 
 ### Assignments
@@ -241,33 +236,33 @@ Building live ranges: `brains` (decl src ln 4)
     live ln ∞, gen ∞
 
 Computing generations: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 3, gen 0
+  asm ln 12, prod ln 2.16, live ln 3, gen 0
 Computing generations: `read1` (decl src ln 3)
-  asm ln 15, prod ln 3.15, live ln 4, gen 0
+  asm ln 14, prod ln 3.15, live ln 4, gen 0
 Computing generations: `brains` (decl src ln 4)
-  asm ln 17, prod ln 4.16, live ln 6, gen 0
-  asm ln 20, prod ln 7.12, live ln 8, gen 1
-  asm ln 22, prod ln 8.12, live ln 9, gen 2
-  asm ln 24, prod ln 6.7, live ln 11, gen 3
+  asm ln 16, prod ln 4.16, live ln 6, gen 0
+  asm ln 19, prod ln 7.12, live ln 8, gen 1
+  asm ln 21, prod ln 8.12, live ln 9, gen 2
+  asm ln 23, prod ln 6.7, live ln 11, gen 3
 Building live ranges: `foo` (decl src ln 2)
-  asm ln 13, prod ln 2.16, live ln 3, gen 0
+  asm ln 12, prod ln 2.16, live ln 3, gen 0
     live ln 3, gen 0 →
     live ln ∞, gen ∞
 Building live ranges: `read1` (decl src ln 3)
-  asm ln 15, prod ln 3.15, live ln 4, gen 0
+  asm ln 14, prod ln 3.15, live ln 4, gen 0
     live ln 4, gen 0 →
     live ln ∞, gen ∞
 Building live ranges: `brains` (decl src ln 4)
-  asm ln 17, prod ln 4.16, live ln 6, gen 0
+  asm ln 16, prod ln 4.16, live ln 6, gen 0
     live ln 6, gen 0 →
     live ln 8, gen 1
-  asm ln 20, prod ln 7.12, live ln 8, gen 1
+  asm ln 19, prod ln 7.12, live ln 8, gen 1
     live ln 8, gen 1 →
     live ln 9, gen 2
-  asm ln 22, prod ln 8.12, live ln 9, gen 2
+  asm ln 21, prod ln 8.12, live ln 9, gen 2
     live ln 9, gen 2 →
     live ln 11, gen 3
-  asm ln 24, prod ln 6.7, live ln 11, gen 3
+  asm ln 23, prod ln 6.7, live ln 11, gen 3
     live ln 11, gen 3 →
     live ln ∞, gen ∞
 
@@ -283,93 +278,93 @@ Building live ranges: `brains` (decl src ln 4)
 Checking equivalence of `brains` (decl src ln 4) from
   assn asm ln 19, prod ln 4.16, live ln 6, gen 0
   %1 = load volatile i32, i32* %foo, l4 c16
-  (ReadLSB w32 0x0 foo_1)
+  (ReadLSB w32 (w32 0x0) foo_1)
 and
-  assn asm ln 17, prod ln 4.16, live ln 6, gen 0
+  assn asm ln 16, prod ln 4.16, live ln 6, gen 0
   %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !18, l4 c16
-  (ReadLSB w32 0x0 foo_1)
+  (ReadLSB w32 (w32 0x0) foo_1)
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 foo_1)
-     (ReadLSB w32 0x0 foo_1)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo_1)
+     (ReadLSB w32 (w32 0x0) foo_1)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 foo_1)
+(Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
      N0)
 
 Checking equivalence of `brains` (decl src ln 4) from
   assn asm ln 27, prod ln 7.12, live ln 8, gen 1
   %mul = mul nsw i32 %3, 2, l7 c12
-  (Mul w32 0x2
-          (ReadLSB w32 0x0 foo_1))
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) foo_1))
 and
-  assn asm ln 20, prod ln 7.12, live ln 8, gen 1
+  assn asm ln 19, prod ln 7.12, live ln 8, gen 1
   %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12
-  (Shl w32 (ReadLSB w32 0x0 foo_1)
-          0x1)
+  (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+          (w32 0x1))
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Mul w32 0x2
-              (ReadLSB w32 0x0 foo_1))
-     (Shl w32 (ReadLSB w32 0x0 foo_1)
-              0x1)))
+(query [] (Eq (Mul w32 (w32 0x2)
+              (ReadLSB w32 (w32 0x0) foo_1))
+     (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+              (w32 0x1))))
 Parsed query
-(Eq (Mul w32 0x2
-              N0:(ReadLSB w32 0x0 foo_1))
-     (Shl w32 N0 0x1))
+(Eq (Mul w32 (w32 0x2)
+              N0:(ReadLSB w32 (w32 0x0) foo_1))
+     (Shl w32 N0 (w32 0x1)))
 
 Checking equivalence of `brains` (decl src ln 4) from
   assn asm ln 30, prod ln 8.12, live ln 9, gen 2
   %add = add nsw i32 %4, 1, l8 c12
-  (Add w32 0x1
-          (Mul w32 0x2
-                   (ReadLSB w32 0x0 foo_1)))
+  (Add w32 (w32 0x1)
+          (Mul w32 (w32 0x2)
+                   (ReadLSB w32 (w32 0x0) foo_1)))
 and
-  assn asm ln 22, prod ln 8.12, live ln 9, gen 2
+  assn asm ln 21, prod ln 8.12, live ln 9, gen 2
   %add = or i32 %mul, 1, l8 c12
-  (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
-                  0x1)
-         0x1)
+  (Or w32 (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+                  (w32 0x1))
+         (w32 0x1))
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Add w32 0x1
-              (Mul w32 0x2
-                       (ReadLSB w32 0x0 foo_1)))
-     (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
-                      0x1)
-             0x1)))
+(query [] (Eq (Add w32 (w32 0x1)
+              (Mul w32 (w32 0x2)
+                       (ReadLSB w32 (w32 0x0) foo_1)))
+     (Or w32 (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+                      (w32 0x1))
+             (w32 0x1))))
 Parsed query
-(Eq (Add w32 0x1
-              (Mul w32 0x2
-                       N0:(ReadLSB w32 0x0 foo_1)))
-     (Or w32 (Shl w32 N0 0x1) 0x1))
+(Eq (Add w32 (w32 0x1)
+              (Mul w32 (w32 0x2)
+                       N0:(ReadLSB w32 (w32 0x0) foo_1)))
+     (Or w32 (Shl w32 N0 (w32 0x1)) (w32 0x1)))
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 13, prod ln 2.16, live ln 3, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
-  assn asm ln 13, prod ln 2.16, live ln 3, gen 0
+  assn asm ln 12, prod ln 2.16, live ln 3, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
 Checking equivalence of `read1` (decl src ln 3) from
   assn asm ln 16, prod ln 3.15, live ln 4, gen 0
   %0 = load volatile i32, i32* %foo, l3 c15
-  (ReadLSB w32 0x0 foo)
+  (ReadLSB w32 (w32 0x0) foo)
 and
-  assn asm ln 15, prod ln 3.15, live ln 4, gen 0
+  assn asm ln 14, prod ln 3.15, live ln 4, gen 0
   %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !18, l3 c15
-  (ReadLSB w32 0x0 foo)
+  (ReadLSB w32 (w32 0x0) foo)
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 foo)
-     (ReadLSB w32 0x0 foo)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo)
+     (ReadLSB w32 (w32 0x0) foo)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 foo)
+(Eq N0:(ReadLSB w32 (w32 0x0) foo)
      N0)
 
 ✅ Before symbolic values checked against after
@@ -382,134 +377,134 @@ Parsed query
 #### Check after against before
 
 Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 17, prod ln 4.16, live ln 6, gen 0
+  assn asm ln 16, prod ln 4.16, live ln 6, gen 0
   %foo.0.foo.0.5 = load volatile i32, i32* %foo, !tbaa !18, l4 c16
-  (ReadLSB w32 0x0 foo_1)
+  (ReadLSB w32 (w32 0x0) foo_1)
 and
   assn asm ln 19, prod ln 4.16, live ln 6, gen 0
   %1 = load volatile i32, i32* %foo, l4 c16
-  (ReadLSB w32 0x0 foo_1)
+  (ReadLSB w32 (w32 0x0) foo_1)
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 foo_1)
-     (ReadLSB w32 0x0 foo_1)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo_1)
+     (ReadLSB w32 (w32 0x0) foo_1)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 foo_1)
+(Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
      N0)
 
 Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 20, prod ln 7.12, live ln 8, gen 1
+  assn asm ln 19, prod ln 7.12, live ln 8, gen 1
   %mul = shl nsw i32 %foo.0.foo.0.5, 1, l7 c12
-  (Shl w32 (ReadLSB w32 0x0 foo_1)
-          0x1)
+  (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+          (w32 0x1))
 and
   assn asm ln 27, prod ln 7.12, live ln 8, gen 1
   %mul = mul nsw i32 %3, 2, l7 c12
-  (Mul w32 0x2
-          (ReadLSB w32 0x0 foo_1))
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) foo_1))
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Shl w32 (ReadLSB w32 0x0 foo_1)
-              0x1)
-     (Mul w32 0x2
-              (ReadLSB w32 0x0 foo_1))))
+(query [] (Eq (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+              (w32 0x1))
+     (Mul w32 (w32 0x2)
+              (ReadLSB w32 (w32 0x0) foo_1))))
 Parsed query
-(Eq (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-              0x1)
-     (Mul w32 0x2 N0))
+(Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) foo_1)
+              (w32 0x1))
+     (Mul w32 (w32 0x2) N0))
 
 Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 22, prod ln 8.12, live ln 9, gen 2
+  assn asm ln 21, prod ln 8.12, live ln 9, gen 2
   %add = or i32 %mul, 1, l8 c12
-  (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
-                  0x1)
-         0x1)
+  (Or w32 (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+                  (w32 0x1))
+         (w32 0x1))
 and
   assn asm ln 30, prod ln 8.12, live ln 9, gen 2
   %add = add nsw i32 %4, 1, l8 c12
-  (Add w32 0x1
-          (Mul w32 0x2
-                   (ReadLSB w32 0x0 foo_1)))
+  (Add w32 (w32 0x1)
+          (Mul w32 (w32 0x2)
+                   (ReadLSB w32 (w32 0x0) foo_1)))
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Or w32 (Shl w32 (ReadLSB w32 0x0 foo_1)
-                      0x1)
-             0x1)
-     (Add w32 0x1
-              (Mul w32 0x2
-                       (ReadLSB w32 0x0 foo_1)))))
+(query [] (Eq (Or w32 (Shl w32 (ReadLSB w32 (w32 0x0) foo_1)
+                      (w32 0x1))
+             (w32 0x1))
+     (Add w32 (w32 0x1)
+              (Mul w32 (w32 0x2)
+                       (ReadLSB w32 (w32 0x0) foo_1)))))
 Parsed query
-(Eq (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-                      0x1)
-             0x1)
-     (Add w32 0x1 (Mul w32 0x2 N0)))
+(Eq (Or w32 (Shl w32 N0:(ReadLSB w32 (w32 0x0) foo_1)
+                      (w32 0x1))
+             (w32 0x1))
+     (Add w32 (w32 0x1) (Mul w32 (w32 0x2) N0)))
 
-🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 24, prod ln 6.7, live ln 11, gen 3
+🔔 Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 23, prod ln 6.7, live ln 11, gen 3
 Checking equivalence of `brains` (decl src ln 4) from
-  assn asm ln 24, prod ln 6.7, live ln 11, gen 3
+  assn asm ln 23, prod ln 6.7, live ln 11, gen 3
   %brains.0 = select i1 %cmp, i32 %add, i32 %foo.0.foo.0.5, l6 c7
-  (Select w32 (Slt 0x3
-                  (ReadLSB w32 0x0 foo))
-             (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-                              0x1)
-                     0x1)
+  (Select w32 (Slt (w32 0x3)
+                  (ReadLSB w32 (w32 0x0) foo))
+             (Or w32 (Shl w32 N0:(ReadLSB w32 (w32 0x0) foo_1)
+                              (w32 0x1))
+                     (w32 0x1))
              N0)
 and
   assn asm ln 30, prod ln 8.12, live ln 9, gen 2
   %add = add nsw i32 %4, 1, l8 c12
-  (Add w32 0x1
-          (Mul w32 0x2
-                   (ReadLSB w32 0x0 foo_1)))
+  (Add w32 (w32 0x1)
+          (Mul w32 (w32 0x2)
+                   (ReadLSB w32 (w32 0x0) foo_1)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
-(query [] (Eq (Select w32 (Slt 0x3
-                      (ReadLSB w32 0x0 foo))
-                 (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-                                  0x1)
-                         0x1)
+(query [] (Eq (Select w32 (Slt (w32 0x3)
+                      (ReadLSB w32 (w32 0x0) foo))
+                 (Or w32 (Shl w32 N0:(ReadLSB w32 (w32 0x0) foo_1)
+                                  (w32 0x1))
+                         (w32 0x1))
                  N0)
-     (Add w32 0x1
-              (Mul w32 0x2
-                       (ReadLSB w32 0x0 foo_1)))))
+     (Add w32 (w32 0x1)
+              (Mul w32 (w32 0x2)
+                       (ReadLSB w32 (w32 0x0) foo_1)))))
 Parsed query
-(Eq (Select w32 (Slt 0x3
-                      (ReadLSB w32 0x0 foo))
-                 (Or w32 (Shl w32 N0:(ReadLSB w32 0x0 foo_1)
-                                  0x1)
-                         0x1)
+(Eq (Select w32 (Slt (w32 0x3)
+                      (ReadLSB w32 (w32 0x0) foo))
+                 (Or w32 (Shl w32 N0:(ReadLSB w32 (w32 0x0) foo_1)
+                                  (w32 0x1))
+                         (w32 0x1))
                  N0)
-     (Add w32 0x1 (Mul w32 0x2 N0)))
-❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 24, prod ln 6.7, live ln 11, gen 3
+     (Add w32 (w32 0x1) (Mul w32 (w32 0x2) N0)))
+❌ Before `brains` (decl src ln 4) assn asm ln 30, prod ln 8.12, live ln 9, gen 2 symbolic value doesn't match after assn asm ln 23, prod ln 6.7, live ln 11, gen 3
 
 Checking equivalence of `foo` (decl src ln 2) from
-  assn asm ln 13, prod ln 2.16, live ln 3, gen 0
+  assn asm ln 12, prod ln 2.16, live ln 3, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 and
   assn asm ln 13, prod ln 2.16, live ln 3, gen 0
   i32 0
-  0x0
+  (w32 0x0)
 
 Checking equivalence of `read1` (decl src ln 3) from
-  assn asm ln 15, prod ln 3.15, live ln 4, gen 0
+  assn asm ln 14, prod ln 3.15, live ln 4, gen 0
   %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !18, l3 c15
-  (ReadLSB w32 0x0 foo)
+  (ReadLSB w32 (w32 0x0) foo)
 and
   assn asm ln 16, prod ln 3.15, live ln 4, gen 0
   %0 = load volatile i32, i32* %foo, l3 c15
-  (ReadLSB w32 0x0 foo)
+  (ReadLSB w32 (w32 0x0) foo)
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 foo)
-     (ReadLSB w32 0x0 foo)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo)
+     (ReadLSB w32 (w32 0x0) foo)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 foo)
+(Eq N0:(ReadLSB w32 (w32 0x0) foo)
      N0)
 
 ❌ After symbolic values checked against before

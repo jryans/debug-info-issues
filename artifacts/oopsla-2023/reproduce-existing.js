@@ -33,6 +33,7 @@ for (const dir of dirs) {
   const issue = JSON.parse(fs.readFileSync(issuePath));
   console.log(`## Issue ${issue.id}: ${issue.summary}\n`);
 
+  console.log(`Directory: ${dir}`);
   console.log(`Issue detectable: ${issue.issueDetectable}`);
   if (issue.issueDetectable) issuesDetectable++;
   console.log(`Fix verifiable: ${issue.fixVerifiable}`);

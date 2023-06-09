@@ -86,52 +86,46 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 ### Variables
 
 Before variable `blah` (decl src ln 1)
-Store to `blah` (decl src ln 1), asm ln 12
+Store to declared address of `blah` (decl src ln 1), asm ln 12
   arg 0
   Added assignment asm ln 12, prod ln 1.0, live ln 3, gen 0
 Before variable `bob` (decl src ln 2)
-Store to `bob` (decl src ln 2), asm ln 41
-  %inc = add nsw i32 %4, 1, l3 c37, asm ln 40
-🔔 Store to `bob` (decl src ln 2): live ln too early, using produced ln + 1
-  Added assignment asm ln 41, prod ln 3.37, live ln 4, gen 0
-Store to `bob` (decl src ln 2), asm ln 16
+Store to declared address of `bob` (decl src ln 2), asm ln 38
+  %inc = add nsw i32 %4, 1, l3 c37, asm ln 37
+🔔 Store to declared address of `bob` (decl src ln 2): live ln too early, using produced ln + 1
+  Added assignment asm ln 38, prod ln 3.37, live ln 4, gen 0
+Store to declared address of `bob` (decl src ln 2), asm ln 16
   %0 = load i32, i32* %blah.addr, l3 c14, asm ln 15
-🔔 Store to `bob` (decl src ln 2): live ln too early, using produced ln + 1
+🔔 Store to declared address of `bob` (decl src ln 2): live ln too early, using produced ln + 1
   Added assignment asm ln 16, prod ln 3.14, live ln 4, gen 0
 Computing generations: `blah` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 3, gen 0
 Computing generations: `bob` (decl src ln 2)
   asm ln 16, prod ln 3.14, live ln 4, gen 0
-  asm ln 41, prod ln 3.37, live ln 4, gen 1
+  asm ln 38, prod ln 3.37, live ln 4, gen 1
 
 After variable `blah` (decl src ln 1)
-@dbg.value mapping for `blah` (decl src ln 1), asm ln 9
 Value produced for `blah` (decl src ln 1), asm ln 9
   arg 0
   Added assignment asm ln 9, prod ln 1.0, live ln 3, gen 0
 After variable `bob` (decl src ln 2)
-@dbg.value mapping for `bob` (decl src ln 2), asm ln 10
 Value produced for `bob` (decl src ln 2), asm ln 10
   arg 0
   Added assignment asm ln 10, prod ln 2.0, live ln 3, gen 0
 After variable `bob` (decl src ln 2)
-@dbg.value mapping for `bob` (decl src ln 2), asm ln 15
 Value produced for `bob` (decl src ln 2), asm ln 15
   const i32 undef
 🔔 Value produced for `bob` (decl src ln 2): missing produced ln, using decl ln
   Added assignment asm ln 15, prod ln 2.0, live ln 3, gen 0
 After variable `bob` (decl src ln 2)
-@dbg.value mapping for `bob` (decl src ln 2), asm ln 16
 Value produced for `bob` (decl src ln 2), asm ln 16
   const i32 undef
   Producers match last assignment, skipping
 After variable `bob` (decl src ln 2)
-@dbg.value mapping for `bob` (decl src ln 2), asm ln 24
 Value produced for `bob` (decl src ln 2), asm ln 24
   const i32 undef
   Producers match last assignment, skipping
 After variable `bob` (decl src ln 2)
-@dbg.value mapping for `bob` (decl src ln 2), asm ln 26
 Value produced for `bob` (decl src ln 2), asm ln 26
   const i32 undef
   Producers match last assignment, skipping
@@ -149,26 +143,26 @@ Computing generations: `bob` (decl src ln 2)
 
 Collected value for `blah`
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Collected value for `bob`
   %0 = load i32, i32* %blah.addr, l3 c14
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Collected value for `bob`
   %inc = add nsw i32 %4, 1, l3 c37
-  (Add w32 0x1
-          (ReadLSB w32 0x0 blah))
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) blah))
 
 #### After values
 
 Collected value for `blah`
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Collected value for `bob`
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Collected value for `bob`
   i32 undef
-  0x0
+  (w32 0x0)
 
 ### Assignments
 
@@ -180,7 +174,7 @@ Computing generations: `blah` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 3, gen 0
 Computing generations: `bob` (decl src ln 2)
   asm ln 16, prod ln 3.14, live ln 4, gen 0
-  asm ln 41, prod ln 3.37, live ln 4, gen 1
+  asm ln 38, prod ln 3.37, live ln 4, gen 1
 Building live ranges: `blah` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 3, gen 0
     live ln 3, gen 0 →
@@ -189,7 +183,7 @@ Building live ranges: `bob` (decl src ln 2)
   asm ln 16, prod ln 3.14, live ln 4, gen 0
     live ln 4, gen 0 →
     live ln 4, gen 1
-  asm ln 41, prod ln 3.37, live ln 4, gen 1
+  asm ln 38, prod ln 3.37, live ln 4, gen 1
     live ln 4, gen 1 →
     live ln ∞, gen ∞
 
@@ -220,23 +214,23 @@ Building live ranges: `bob` (decl src ln 2)
 Checking equivalence of `blah` (decl src ln 1) from
   assn asm ln 12, prod ln 1.0, live ln 3, gen 0
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 and
   assn asm ln 9, prod ln 1.0, live ln 3, gen 0
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Query to parse
 array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 blah)
-     (ReadLSB w32 0x0 blah)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) blah)
+     (ReadLSB w32 (w32 0x0) blah)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 blah)
+(Eq N0:(ReadLSB w32 (w32 0x0) blah)
      N0)
 
 ❌ After live range for `bob` (decl src ln 2) at asm ln 16, prod ln 3.14, live ln 4, gen 0 not found
 
-❌ After live range for `bob` (decl src ln 2) at asm ln 41, prod ln 3.37, live ln 4, gen 1 not found
+❌ After live range for `bob` (decl src ln 2) at asm ln 38, prod ln 3.37, live ln 4, gen 1 not found
 
 ❌ Before symbolic values checked against after
   Matching:    1
@@ -250,36 +244,36 @@ Parsed query
 Checking equivalence of `blah` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 3, gen 0
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 and
   assn asm ln 12, prod ln 1.0, live ln 3, gen 0
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Query to parse
 array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 blah)
-     (ReadLSB w32 0x0 blah)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) blah)
+     (ReadLSB w32 (w32 0x0) blah)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 blah)
+(Eq N0:(ReadLSB w32 (w32 0x0) blah)
      N0)
 
 🔔 Before `bob` (decl src ln 2) assn asm ln 16, prod ln 3.14, live ln 4, gen 0 coordinates don't match after assn asm ln 10, prod ln 2.0, live ln 3, gen 0
 Checking equivalence of `bob` (decl src ln 2) from
   assn asm ln 10, prod ln 2.0, live ln 3, gen 0
   i32 %blah
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 and
   assn asm ln 16, prod ln 3.14, live ln 4, gen 0
   %0 = load i32, i32* %blah.addr, l3 c14
-  (ReadLSB w32 0x0 blah)
+  (ReadLSB w32 (w32 0x0) blah)
 Query to parse
 array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 0x0 blah)
-     (ReadLSB w32 0x0 blah)))
+(query [] (Eq (ReadLSB w32 (w32 0x0) blah)
+     (ReadLSB w32 (w32 0x0) blah)))
 Parsed query
-(Eq N0:(ReadLSB w32 0x0 blah)
+(Eq N0:(ReadLSB w32 (w32 0x0) blah)
      N0)
 
 🔔 Before `bob` (decl src ln 2) assn asm ln 16, prod ln 3.14, live ln 4, gen 0 coordinates don't match after assn asm ln 15, prod ln 2.0, live ln 3, gen 1
