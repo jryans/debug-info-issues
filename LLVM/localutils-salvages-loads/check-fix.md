@@ -86,27 +86,27 @@ Checking klee-out-O0/final.bc and klee-out-O2-fixed/final.bc for debug info cons
 ### Variables
 
 Before variable `bar` (decl src ln 1)
-Store to `bar` (decl src ln 1), asm ln 14
+Store to declared address of `bar` (decl src ln 1), asm ln 14
   arg 0
   Added assignment asm ln 14, prod ln 1.0, live ln 2, gen 0
 Before variable `arg` (decl src ln 1)
-Store to `arg` (decl src ln 1), asm ln 33
+Store to declared address of `arg` (decl src ln 1), asm ln 33
   %and = and i32 %6, %add, l4 c7, asm ln 32
   Added assignment asm ln 33, prod ln 4.7, live ln 6, gen 0
-Store to `arg` (decl src ln 1), asm ln 16
+Store to declared address of `arg` (decl src ln 1), asm ln 16
   arg 1
   Added assignment asm ln 16, prod ln 1.0, live ln 2, gen 0
 Before variable `more` (decl src ln 1)
-Store to `more` (decl src ln 1), asm ln 18
+Store to declared address of `more` (decl src ln 1), asm ln 18
   arg 2
   Added assignment asm ln 18, prod ln 1.0, live ln 2, gen 0
 Before variable `redundant` (decl src ln 2)
-Store to `redundant` (decl src ln 2), asm ln 23
+Store to declared address of `redundant` (decl src ln 2), asm ln 23
   %1 = load i32, i32* %0, l2 c19, asm ln 22
   @dbg.declare without read users, removable
   Added assignment asm ln 23, prod ln 2.19, live ln 3, gen 0
 Before variable `loaded` (decl src ln 3)
-Store to `loaded` (decl src ln 3), asm ln 27
+Store to declared address of `loaded` (decl src ln 3), asm ln 27
   %3 = load i32, i32* %2, l3 c16, asm ln 26
   Added assignment asm ln 27, prod ln 3.16, live ln 4, gen 0
 Computing generations: `bar` (decl src ln 1)
@@ -122,17 +122,14 @@ Computing generations: `loaded` (decl src ln 3)
   asm ln 27, prod ln 3.16, live ln 4, gen 0
 
 After variable `bar` (decl src ln 1)
-@dbg.value mapping for `bar` (decl src ln 1), asm ln 9
 Value produced for `bar` (decl src ln 1), asm ln 9
   arg 0
   Added assignment asm ln 9, prod ln 1.0, live ln 6, gen 0
 After variable `arg` (decl src ln 1)
-@dbg.value mapping for `arg` (decl src ln 1), asm ln 10
 Value produced for `arg` (decl src ln 1), asm ln 10
   arg 1
   Added assignment asm ln 10, prod ln 1.0, live ln 6, gen 0
 After variable `more` (decl src ln 1)
-@dbg.value mapping for `more` (decl src ln 1), asm ln 11
 Value produced for `more` (decl src ln 1), asm ln 11
   arg 2
   Added assignment asm ln 11, prod ln 1.0, live ln 6, gen 0
@@ -140,7 +137,6 @@ After variable `redundant` (decl src ln 2)
 After variable intrinsic with undef input, asm ln 12, ignoring undefined variable
   @dbg.value(i32 undef, !17)
 After variable `arg` (decl src ln 1)
-@dbg.value mapping for `arg` (decl src ln 1), asm ln 13
 Value produced for `arg` (decl src ln 1), asm ln 13
   const i32 undef
 🔔 Value produced for `arg` (decl src ln 1): missing produced ln, using decl ln
@@ -161,6 +157,11 @@ Computing generations: `more` (decl src ln 1)
 
 Collected value for `bar`
   Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Created deref expr (Concat w64 (w8 0x0)
+             (Concat w56 (w8 0x0)
+                         (Concat w48 (w8 0x0)
+                                     (Concat w40 (w8 0x1)
+                                                 (ReadLSB w32 (w32 0x0) bar.deref)))))
   Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
   (w64 0x859449D3931F90B3)
@@ -186,6 +187,11 @@ Collected value for `arg`
 
 Collected value for `bar`
   Concrete pointer resolves to bar.deref, offset (w64 0x0)
+  Created deref expr (Concat w64 (w8 0x0)
+             (Concat w56 (w8 0x0)
+                         (Concat w48 (w8 0x0)
+                                     (Concat w40 (w8 0x1)
+                                                 (ReadLSB w32 (w32 0x0) bar.deref)))))
   Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
   (w64 0x859449D3931F90B3)
