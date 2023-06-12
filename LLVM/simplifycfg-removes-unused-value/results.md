@@ -359,6 +359,7 @@ and
   assn asm ln 13, prod ln 4.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 7, gen 0 symbolic value matches before assn asm ln 15, prod ln 4.7, live ln 5, gen 0
 
 🔔 After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 7, gen 0 coordinates don't match before assn asm ln 23, prod ln 8.12, live ln 9, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
@@ -390,6 +391,7 @@ and
   assn asm ln 14, prod ln 5.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ After `birds` (decl src ln 5) assn asm ln 14, prod ln 5.7, live ln 7, gen 0 symbolic value matches before assn asm ln 17, prod ln 5.7, live ln 7, gen 0
 
 🔔 After `birds` (decl src ln 5) assn asm ln 14, prod ln 5.7, live ln 7, gen 0 coordinates don't match before assn asm ln 24, prod ln 9.11, live ln 10, gen 1
 Checking equivalence of `birds` (decl src ln 5) from
@@ -422,6 +424,7 @@ and
   assn asm ln 12, prod ln 2.16, live ln 7, gen 0
   i32 4
   (w32 0x4)
+✅ After `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 7, gen 0 symbolic value matches before assn asm ln 13, prod ln 2.16, live ln 4, gen 0
 
 ❌ Before symbolic values checked against after
   Matching:    3
@@ -441,6 +444,7 @@ and
   assn asm ln 15, prod ln 4.7, live ln 5, gen 0
   i32 0
   (w32 0x0)
+✅ Before `beards` (decl src ln 4) assn asm ln 15, prod ln 4.7, live ln 5, gen 0 symbolic value matches after assn asm ln 13, prod ln 4.7, live ln 7, gen 0
 
 🔔 Before `beards` (decl src ln 4) assn asm ln 28, prod ln 11.12, live ln 12, gen 2 coordinates don't match after assn asm ln 18, prod ln 10.7, live ln 15, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
@@ -477,6 +481,7 @@ and
   assn asm ln 17, prod ln 5.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ Before `birds` (decl src ln 5) assn asm ln 17, prod ln 5.7, live ln 7, gen 0 symbolic value matches after assn asm ln 14, prod ln 5.7, live ln 7, gen 0
 
 🔔 Before `foo` (decl src ln 2) assn asm ln 13, prod ln 2.16, live ln 4, gen 0 coordinates don't match after assn asm ln 12, prod ln 2.16, live ln 7, gen 0
 Checking equivalence of `foo` (decl src ln 2) from
@@ -487,6 +492,7 @@ and
   assn asm ln 13, prod ln 2.16, live ln 4, gen 0
   i32 4
   (w32 0x4)
+✅ Before `foo` (decl src ln 2) assn asm ln 13, prod ln 2.16, live ln 4, gen 0 symbolic value matches after assn asm ln 12, prod ln 2.16, live ln 7, gen 0
 
 ❌ After symbolic values checked against before
   Matching:    3

@@ -242,6 +242,7 @@ and
   assn asm ln 17, prod ln 12.12, live ln 13, gen 0
   i32 0
   (w32 0x0)
+✅ After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 symbolic value matches before assn asm ln 23, prod ln 12.12, live ln 13, gen 0
 
 🔔 After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 coordinates don't match before assn asm ln 44, prod ln 12.31, live ln 13, gen 1
 Checking equivalence of `i` (decl src ln 12) from
@@ -265,6 +266,7 @@ and
   assn asm ln 124, prod ln 15.16, live ln 19, gen 0
   i32 0
   (w32 0x0)
+✅ After `sum` (decl src ln 15) assn asm ln 124, prod ln 15.16, live ln 19, gen 0 symbolic value matches before assn asm ln 49, prod ln 15.16, live ln 16, gen 0
 
 🔔 After `sum` (decl src ln 15) assn asm ln 124, prod ln 15.16, live ln 19, gen 0 coordinates don't match before assn asm ln 65, prod ln 17.9, live ln 18, gen 1
 Expected 1 symbolic value(s), got 0
@@ -287,6 +289,7 @@ and
   assn asm ln 23, prod ln 12.12, live ln 13, gen 0
   i32 0
   (w32 0x0)
+✅ Before `i` (decl src ln 12) assn asm ln 23, prod ln 12.12, live ln 13, gen 0 symbolic value matches after assn asm ln 17, prod ln 12.12, live ln 13, gen 0
 
 🔔 Before `sum` (decl src ln 15) assn asm ln 65, prod ln 17.9, live ln 18, gen 1 coordinates don't match after assn asm ln 124, prod ln 15.16, live ln 19, gen 0
 Expected 1 symbolic value(s), got 0

@@ -356,6 +356,7 @@ array arg[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
+✅ After `arg` (decl src ln 1) assn asm ln 10, prod ln 1.23, live ln 6, gen 0 symbolic value matches before assn asm ln 16, prod ln 1.0, live ln 2, gen 0
 
 ❌ After live range for `arg` (decl src ln 1) at asm ln 33, prod ln 4.7, live ln 6, gen 1 not found
 
@@ -368,6 +369,7 @@ and
   assn asm ln 9, prod ln 1.14, live ln 6, gen 0
   i32* %bar
   (w64 0x859449D3931F90B3)
+✅ After `bar` (decl src ln 1) assn asm ln 9, prod ln 1.14, live ln 6, gen 0 symbolic value matches before assn asm ln 14, prod ln 1.0, live ln 2, gen 0
 
 🔔 After `loaded` (decl src ln 3) assn asm ln 13, prod ln 3.7, live ln 6, gen 0 coordinates don't match before assn asm ln 27, prod ln 3.16, live ln 4, gen 0
 Pushed initial value onto stack: (w64 0x859449D3931F90B3)
@@ -389,6 +391,7 @@ array bar.deref[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) bar.deref)
      N0)
+✅ After `loaded` (decl src ln 3) assn asm ln 13, prod ln 3.7, live ln 6, gen 0 symbolic value matches before assn asm ln 27, prod ln 3.16, live ln 4, gen 0
 
 🔔 After `more` (decl src ln 1) assn asm ln 11, prod ln 1.32, live ln 6, gen 0 coordinates don't match before assn asm ln 18, prod ln 1.0, live ln 2, gen 0
 Checking equivalence of `more` (decl src ln 1) from
@@ -407,6 +410,7 @@ array more[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) more)
      N0)
+✅ After `more` (decl src ln 1) assn asm ln 11, prod ln 1.32, live ln 6, gen 0 symbolic value matches before assn asm ln 18, prod ln 1.0, live ln 2, gen 0
 
 🔔 After `redundant` (decl src ln 2) assn asm ln 12, prod ln 2.7, live ln 6, gen 0 coordinates don't match before assn asm ln 23, prod ln 2.19, live ln 3, gen 0
 Pushed initial value onto stack: (w64 0x859449D3931F90B3)
@@ -428,6 +432,7 @@ array bar.deref[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) bar.deref)
      N0)
+✅ After `redundant` (decl src ln 2) assn asm ln 12, prod ln 2.7, live ln 6, gen 0 symbolic value matches before assn asm ln 23, prod ln 2.19, live ln 3, gen 0
 
 ❌ Before symbolic values checked against after
   Matching:    5
@@ -455,6 +460,7 @@ array arg[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) arg)
      N0)
+✅ Before `arg` (decl src ln 1) assn asm ln 16, prod ln 1.0, live ln 2, gen 0 symbolic value matches after assn asm ln 10, prod ln 1.23, live ln 6, gen 0
 
 Variable intrinsic with undef input
 ❌ After `arg` (decl src ln 1) assn asm ln 14, prod ln 1.23, live ln 6, gen 1 has no symbolic value from i32 undef
@@ -468,6 +474,7 @@ and
   assn asm ln 14, prod ln 1.0, live ln 2, gen 0
   i32* %bar
   (w64 0x859449D3931F90B3)
+✅ Before `bar` (decl src ln 1) assn asm ln 14, prod ln 1.0, live ln 2, gen 0 symbolic value matches after assn asm ln 9, prod ln 1.14, live ln 6, gen 0
 
 🔔 Before `loaded` (decl src ln 3) assn asm ln 27, prod ln 3.16, live ln 4, gen 0 coordinates don't match after assn asm ln 13, prod ln 3.7, live ln 6, gen 0
 Checking equivalence of `loaded` (decl src ln 3) from
@@ -486,6 +493,7 @@ array bar.deref[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) bar.deref)
      N0)
+✅ Before `loaded` (decl src ln 3) assn asm ln 27, prod ln 3.16, live ln 4, gen 0 symbolic value matches after assn asm ln 13, prod ln 3.7, live ln 6, gen 0
 
 🔔 Before `loaded` (decl src ln 3) assn asm ln 27, prod ln 3.16, live ln 4, gen 0 coordinates don't match after assn asm ln 15, prod ln 6.8, live ln 8, gen 1
 Checking equivalence of `loaded` (decl src ln 3) from
@@ -522,6 +530,7 @@ array more[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) more)
      N0)
+✅ Before `more` (decl src ln 1) assn asm ln 18, prod ln 1.0, live ln 2, gen 0 symbolic value matches after assn asm ln 11, prod ln 1.32, live ln 6, gen 0
 
 🔔 Before `redundant` (decl src ln 2) assn asm ln 23, prod ln 2.19, live ln 3, gen 0 coordinates don't match after assn asm ln 12, prod ln 2.7, live ln 6, gen 0
 Checking equivalence of `redundant` (decl src ln 2) from
@@ -540,6 +549,7 @@ array bar.deref[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) bar.deref)
      N0)
+✅ Before `redundant` (decl src ln 2) assn asm ln 23, prod ln 2.19, live ln 3, gen 0 symbolic value matches after assn asm ln 12, prod ln 2.7, live ln 6, gen 0
 
 🔔 Before `redundant` (decl src ln 2) assn asm ln 23, prod ln 2.19, live ln 3, gen 0 coordinates don't match after assn asm ln 15, prod ln 6.8, live ln 8, gen 1
 Checking equivalence of `redundant` (decl src ln 2) from

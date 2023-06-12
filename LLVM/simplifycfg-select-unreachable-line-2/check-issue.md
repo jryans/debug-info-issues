@@ -223,6 +223,7 @@ and
   assn asm ln 13, prod ln 4.7, live ln 5, gen 0
   i32 0
   (w32 0x0)
+✅ After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 symbolic value matches before assn asm ln 14, prod ln 4.7, live ln 5, gen 0
 
 🔔 After `beards` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, gen 0 coordinates don't match before assn asm ln 20, prod ln 6.12, live ln 7, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
@@ -255,6 +256,7 @@ and
   assn asm ln 12, prod ln 2.16, live ln 5, gen 0
   i32 0
   (w32 0x0)
+✅ After `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 5, gen 0 symbolic value matches before assn asm ln 12, prod ln 2.16, live ln 4, gen 0
 
 ❌ Before symbolic values checked against after
   Matching:    2
@@ -273,6 +275,7 @@ and
   assn asm ln 14, prod ln 4.7, live ln 5, gen 0
   i32 0
   (w32 0x0)
+✅ Before `beards` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, gen 0 symbolic value matches after assn asm ln 13, prod ln 4.7, live ln 5, gen 0
 
 🔔 Before `beards` (decl src ln 4) assn asm ln 24, prod ln 8.12, live ln 9, gen 2 coordinates don't match after assn asm ln 17, prod ln 6.7, live ln 10, gen 1
 Checking equivalence of `beards` (decl src ln 4) from
@@ -310,6 +313,7 @@ and
   assn asm ln 12, prod ln 2.16, live ln 4, gen 0
   i32 0
   (w32 0x0)
+✅ Before `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 4, gen 0 symbolic value matches after assn asm ln 12, prod ln 2.16, live ln 5, gen 0
 
 ❌ After symbolic values checked against before
   Matching:    2

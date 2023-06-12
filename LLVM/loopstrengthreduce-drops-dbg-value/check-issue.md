@@ -227,6 +227,7 @@ array blah[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) blah)
      N0)
+✅ After `blah` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 3, gen 0 symbolic value matches before assn asm ln 12, prod ln 1.0, live ln 3, gen 0
 
 ❌ After live range for `bob` (decl src ln 2) at asm ln 16, prod ln 3.14, live ln 4, gen 0 not found
 
@@ -257,6 +258,7 @@ array blah[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) blah)
      N0)
+✅ Before `blah` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 3, gen 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 3, gen 0
 
 🔔 Before `bob` (decl src ln 2) assn asm ln 16, prod ln 3.14, live ln 4, gen 0 coordinates don't match after assn asm ln 10, prod ln 2.0, live ln 3, gen 0
 Checking equivalence of `bob` (decl src ln 2) from
@@ -275,6 +277,7 @@ array blah[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) blah)
      N0)
+✅ Before `bob` (decl src ln 2) assn asm ln 16, prod ln 3.14, live ln 4, gen 0 symbolic value matches after assn asm ln 10, prod ln 2.0, live ln 3, gen 0
 
 🔔 Before `bob` (decl src ln 2) assn asm ln 16, prod ln 3.14, live ln 4, gen 0 coordinates don't match after assn asm ln 15, prod ln 2.0, live ln 3, gen 1
 Variable intrinsic with undef input

@@ -383,6 +383,7 @@ and
   assn asm ln 12, prod ln 2.16, live ln 3, gen 0
   i32 4
   (w32 0x4)
+✅ After `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 3, gen 0 symbolic value matches before assn asm ln 16, prod ln 2.16, live ln 3, gen 0
 
 Checking equivalence of `read` (decl src ln 3) from
   assn asm ln 19, prod ln 3.14, live ln 4, gen 0
@@ -400,6 +401,7 @@ array foo[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo)
      N0)
+✅ After `read` (decl src ln 3) assn asm ln 14, prod ln 3.14, live ln 4, gen 0 symbolic value matches before assn asm ln 19, prod ln 3.14, live ln 4, gen 0
 
 🔔 After `read1` (decl src ln 4) assn asm ln 16, prod ln 4.15, live ln 7, gen 0 coordinates don't match before assn asm ln 22, prod ln 4.15, live ln 6, gen 0
 Checking equivalence of `read1` (decl src ln 4) from
@@ -418,6 +420,7 @@ array foo_1[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
      N0)
+✅ After `read1` (decl src ln 4) assn asm ln 16, prod ln 4.15, live ln 7, gen 0 symbolic value matches before assn asm ln 22, prod ln 4.15, live ln 6, gen 0
 
 Checking equivalence of `result` (decl src ln 6) from
   assn asm ln 24, prod ln 6.7, live ln 7, gen 0
@@ -427,6 +430,7 @@ and
   assn asm ln 17, prod ln 6.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ After `result` (decl src ln 6) assn asm ln 17, prod ln 6.7, live ln 7, gen 0 symbolic value matches before assn asm ln 24, prod ln 6.7, live ln 7, gen 0
 
 🔔 After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 coordinates don't match before assn asm ln 32, prod ln 8.20, live ln 9, gen 1
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_1)
@@ -455,6 +459,7 @@ Parsed query
 (Eq (Add w32 (w32 0x2)
               N0:(ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 N0 (Extract w32 0 (w64 0x2))))
+✅ After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 symbolic value matches before assn asm ln 32, prod ln 8.20, live ln 9, gen 1
 
 🔔 After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 coordinates don't match before assn asm ln 38, prod ln 10.20, live ln 11, gen 2
 Checking equivalence of `result` (decl src ln 6) from
@@ -497,6 +502,7 @@ and
   assn asm ln 16, prod ln 2.16, live ln 3, gen 0
   i32 4
   (w32 0x4)
+✅ Before `foo` (decl src ln 2) assn asm ln 16, prod ln 2.16, live ln 3, gen 0 symbolic value matches after assn asm ln 12, prod ln 2.16, live ln 3, gen 0
 
 Checking equivalence of `read` (decl src ln 3) from
   assn asm ln 14, prod ln 3.14, live ln 4, gen 0
@@ -514,6 +520,7 @@ array foo[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo)
      N0)
+✅ Before `read` (decl src ln 3) assn asm ln 19, prod ln 3.14, live ln 4, gen 0 symbolic value matches after assn asm ln 14, prod ln 3.14, live ln 4, gen 0
 
 🔔 Before `read1` (decl src ln 4) assn asm ln 22, prod ln 4.15, live ln 6, gen 0 coordinates don't match after assn asm ln 16, prod ln 4.15, live ln 7, gen 0
 Checking equivalence of `read1` (decl src ln 4) from
@@ -532,6 +539,7 @@ array foo_1[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
      N0)
+✅ Before `read1` (decl src ln 4) assn asm ln 22, prod ln 4.15, live ln 6, gen 0 symbolic value matches after assn asm ln 16, prod ln 4.15, live ln 7, gen 0
 
 Checking equivalence of `result` (decl src ln 6) from
   assn asm ln 17, prod ln 6.7, live ln 7, gen 0
@@ -541,6 +549,7 @@ and
   assn asm ln 24, prod ln 6.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ Before `result` (decl src ln 6) assn asm ln 24, prod ln 6.7, live ln 7, gen 0 symbolic value matches after assn asm ln 17, prod ln 6.7, live ln 7, gen 0
 
 🔔 Before `result` (decl src ln 6) assn asm ln 24, prod ln 6.7, live ln 7, gen 0 coordinates don't match after assn asm ln 19, prod ln 6.15, live ln 7, gen 1
 Checking equivalence of `result` (decl src ln 6) from
@@ -893,6 +902,7 @@ and
   assn asm ln 12, prod ln 2.16, live ln 3, gen 0
   i32 4
   (w32 0x4)
+✅ After `foo` (decl src ln 2) assn asm ln 12, prod ln 2.16, live ln 3, gen 0 symbolic value matches before assn asm ln 16, prod ln 2.16, live ln 3, gen 0
 
 Checking equivalence of `read` (decl src ln 3) from
   assn asm ln 19, prod ln 3.14, live ln 4, gen 0
@@ -910,6 +920,7 @@ array foo[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo)
      N0)
+✅ After `read` (decl src ln 3) assn asm ln 14, prod ln 3.14, live ln 4, gen 0 symbolic value matches before assn asm ln 19, prod ln 3.14, live ln 4, gen 0
 
 🔔 After `read1` (decl src ln 4) assn asm ln 16, prod ln 4.15, live ln 7, gen 0 coordinates don't match before assn asm ln 22, prod ln 4.15, live ln 6, gen 0
 Checking equivalence of `read1` (decl src ln 4) from
@@ -928,6 +939,7 @@ array foo_1[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
      N0)
+✅ After `read1` (decl src ln 4) assn asm ln 16, prod ln 4.15, live ln 7, gen 0 symbolic value matches before assn asm ln 22, prod ln 4.15, live ln 6, gen 0
 
 Checking equivalence of `result` (decl src ln 6) from
   assn asm ln 24, prod ln 6.7, live ln 7, gen 0
@@ -937,6 +949,7 @@ and
   assn asm ln 17, prod ln 6.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ After `result` (decl src ln 6) assn asm ln 17, prod ln 6.7, live ln 7, gen 0 symbolic value matches before assn asm ln 24, prod ln 6.7, live ln 7, gen 0
 
 🔔 After `result` (decl src ln 6) assn asm ln 17, prod ln 6.7, live ln 7, gen 0 coordinates don't match before assn asm ln 32, prod ln 8.20, live ln 9, gen 1
 Checking equivalence of `result` (decl src ln 6) from
@@ -997,6 +1010,7 @@ and
   assn asm ln 16, prod ln 2.16, live ln 3, gen 0
   i32 4
   (w32 0x4)
+✅ Before `foo` (decl src ln 2) assn asm ln 16, prod ln 2.16, live ln 3, gen 0 symbolic value matches after assn asm ln 12, prod ln 2.16, live ln 3, gen 0
 
 Checking equivalence of `read` (decl src ln 3) from
   assn asm ln 14, prod ln 3.14, live ln 4, gen 0
@@ -1014,6 +1028,7 @@ array foo[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo)
      N0)
+✅ Before `read` (decl src ln 3) assn asm ln 19, prod ln 3.14, live ln 4, gen 0 symbolic value matches after assn asm ln 14, prod ln 3.14, live ln 4, gen 0
 
 🔔 Before `read1` (decl src ln 4) assn asm ln 22, prod ln 4.15, live ln 6, gen 0 coordinates don't match after assn asm ln 16, prod ln 4.15, live ln 7, gen 0
 Checking equivalence of `read1` (decl src ln 4) from
@@ -1032,6 +1047,7 @@ array foo_1[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
      N0)
+✅ Before `read1` (decl src ln 4) assn asm ln 22, prod ln 4.15, live ln 6, gen 0 symbolic value matches after assn asm ln 16, prod ln 4.15, live ln 7, gen 0
 
 Checking equivalence of `result` (decl src ln 6) from
   assn asm ln 17, prod ln 6.7, live ln 7, gen 0
@@ -1041,6 +1057,7 @@ and
   assn asm ln 24, prod ln 6.7, live ln 7, gen 0
   i32 0
   (w32 0x0)
+✅ Before `result` (decl src ln 6) assn asm ln 24, prod ln 6.7, live ln 7, gen 0 symbolic value matches after assn asm ln 17, prod ln 6.7, live ln 7, gen 0
 
 🔔 Before `result` (decl src ln 6) assn asm ln 38, prod ln 10.20, live ln 11, gen 2 coordinates don't match after assn asm ln 21, prod ln 7.7, live ln 13, gen 1
 Checking equivalence of `result` (decl src ln 6) from

@@ -248,6 +248,7 @@ and
   assn asm ln 17, prod ln 12.12, live ln 13, gen 0
   i32 0
   (w32 0x0)
+✅ After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 symbolic value matches before assn asm ln 23, prod ln 12.12, live ln 13, gen 0
 
 🔔 After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 coordinates don't match before assn asm ln 44, prod ln 12.31, live ln 13, gen 1
 Checking equivalence of `i` (decl src ln 12) from
@@ -285,6 +286,7 @@ and
   assn asm ln 23, prod ln 12.12, live ln 13, gen 0
   i32 0
   (w32 0x0)
+✅ Before `i` (decl src ln 12) assn asm ln 23, prod ln 12.12, live ln 13, gen 0 symbolic value matches after assn asm ln 17, prod ln 12.12, live ln 13, gen 0
 
 ✅ After symbolic values checked against before
   Matching:    1
