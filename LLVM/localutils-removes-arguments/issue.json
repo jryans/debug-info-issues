@@ -1,0 +1,8 @@
+{
+  "id": 39991,
+  "summary": "Salvaging accidentally deletes unused arguments",
+  "issueDetectable": true,
+  "issueDetector": "🔔 After live ranges for (removable) `shoe` (decl src ln 7) not found",
+  "fixVerifiable": true,
+  "fixVerifier": "✅ After `shoe` (decl src ln 7) assn asm ln 12, prod ln 7.0, live ln 9, gen 0 symbolic value matches before assn asm ln 23, prod ln 7.19, live ln 8, gen 0"
+}
