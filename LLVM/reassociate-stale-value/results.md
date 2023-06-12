@@ -509,9 +509,9 @@ Building live ranges: `a` (decl src ln 7)
 🔔 After `a` (decl src ln 7) assn asm ln 24, prod ln 7.16, live ln 13, gen 0 coordinates don't match before assn asm ln 31, prod ln 7.17, live ln 8, gen 0
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_2)
 plus_uconst: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Result: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 31, prod ln 7.17, live ln 8, gen 0
   %add = add nsw i32 %3, %4, l7 c17
@@ -521,7 +521,7 @@ and
   assn asm ln 24, prod ln 7.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !20, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
@@ -529,12 +529,12 @@ array foo_2[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo)
               (ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))))
+              (Extract w32 0 (w64 0xC)))))
 Parsed query
 (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo)
               (ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC)))
+              (Extract w32 0 (w64 0xC))))
 ❌ After `a` (decl src ln 7) assn asm ln 24, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 31, prod ln 7.17, live ln 8, gen 0
 
 🔔 After `a` (decl src ln 7) assn asm ln 24, prod ln 7.16, live ln 13, gen 0 coordinates don't match before assn asm ln 35, prod ln 8.5, live ln 10, gen 1
@@ -548,7 +548,7 @@ and
   assn asm ln 24, prod ln 7.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !20, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
@@ -558,12 +558,12 @@ array foo_2[4] : w32 -> w8 = symbolic
                        (ReadLSB w32 (w32 0x0) foo_1))
               (ReadLSB w32 (w32 0x0) foo_2))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))))
+              (Extract w32 0 (w64 0xC)))))
 Parsed query
 (Eq (Add w32 (Add w32 (ReadLSB w32 (w32 0x0) foo)
                        (ReadLSB w32 (w32 0x0) foo_1))
               N0:(ReadLSB w32 (w32 0x0) foo_2))
-     (Add w32 N0 (w32 0xC)))
+     (Add w32 N0 (Extract w32 0 (w64 0xC))))
 ❌ After `a` (decl src ln 7) assn asm ln 24, prod ln 7.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 35, prod ln 8.5, live ln 10, gen 1
 
 🔔 After `a` (decl src ln 7) assn asm ln 24, prod ln 7.16, live ln 13, gen 0 coordinates don't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 2
@@ -579,7 +579,7 @@ and
   assn asm ln 24, prod ln 7.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !20, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
@@ -591,14 +591,14 @@ array foo_2[4] : w32 -> w8 = symbolic
                                 (ReadLSB w32 (w32 0x0) foo_2))
                        N0))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))))
+              (Extract w32 0 (w64 0xC)))))
 Parsed query
 (Eq (Add w32 (w32 0xC)
               (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 (w32 0x0) foo)
                                             (ReadLSB w32 (w32 0x0) foo_1))
                                 N1:(ReadLSB w32 (w32 0x0) foo_2))
                        N0))
-     (Add w32 N1 (w32 0xC)))
+     (Add w32 N1 (Extract w32 0 (w64 0xC))))
 
 🔔 After `a` (decl src ln 7) assn asm ln 27, prod ln 13.7, live ln 14, gen 1 coordinates don't match before assn asm ln 52, prod ln 13.7, live ln 14, gen 3
 Checking equivalence of `a` (decl src ln 7) from
@@ -809,7 +809,7 @@ Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 24, prod ln 7.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !20, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 and
   assn asm ln 35, prod ln 8.5, live ln 10, gen 1
   %add1 = add nsw i32 %6, %5, l8 c5
@@ -822,13 +822,13 @@ array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_2[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))
+              (Extract w32 0 (w64 0xC)))
      (Add w32 (Add w32 (ReadLSB w32 (w32 0x0) foo)
                        (ReadLSB w32 (w32 0x0) foo_1))
               (ReadLSB w32 (w32 0x0) foo_2))))
 Parsed query
 (Eq (Add w32 N0:(ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))
+              (Extract w32 0 (w64 0xC)))
      (Add w32 (Add w32 (ReadLSB w32 (w32 0x0) foo)
                        (ReadLSB w32 (w32 0x0) foo_1))
               N0))
@@ -1448,9 +1448,9 @@ Building live ranges: `a` (decl src ln 7)
 🔔 After `a` (decl src ln 7) assn asm ln 28, prod ln 6.16, live ln 13, gen 0 coordinates don't match before assn asm ln 31, prod ln 7.17, live ln 8, gen 0
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_2)
 plus_uconst: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Result: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 31, prod ln 7.17, live ln 8, gen 0
   %add = add nsw i32 %3, %4, l7 c17
@@ -1460,7 +1460,7 @@ and
   assn asm ln 28, prod ln 6.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !21, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
@@ -1468,12 +1468,12 @@ array foo_2[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo)
               (ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))))
+              (Extract w32 0 (w64 0xC)))))
 Parsed query
 (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo)
               (ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC)))
+              (Extract w32 0 (w64 0xC))))
 ❌ After `a` (decl src ln 7) assn asm ln 28, prod ln 6.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 31, prod ln 7.17, live ln 8, gen 0
 
 🔔 After `a` (decl src ln 7) assn asm ln 28, prod ln 6.16, live ln 13, gen 0 coordinates don't match before assn asm ln 35, prod ln 8.5, live ln 10, gen 1
@@ -1487,7 +1487,7 @@ and
   assn asm ln 28, prod ln 6.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !21, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
@@ -1497,12 +1497,12 @@ array foo_2[4] : w32 -> w8 = symbolic
                        (ReadLSB w32 (w32 0x0) foo_1))
               (ReadLSB w32 (w32 0x0) foo_2))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))))
+              (Extract w32 0 (w64 0xC)))))
 Parsed query
 (Eq (Add w32 (Add w32 (ReadLSB w32 (w32 0x0) foo)
                        (ReadLSB w32 (w32 0x0) foo_1))
               N0:(ReadLSB w32 (w32 0x0) foo_2))
-     (Add w32 N0 (w32 0xC)))
+     (Add w32 N0 (Extract w32 0 (w64 0xC))))
 ❌ After `a` (decl src ln 7) assn asm ln 28, prod ln 6.16, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 35, prod ln 8.5, live ln 10, gen 1
 
 🔔 After `a` (decl src ln 7) assn asm ln 28, prod ln 6.16, live ln 13, gen 0 coordinates don't match before assn asm ln 49, prod ln 12.7, live ln 13, gen 2
@@ -1518,7 +1518,7 @@ and
   assn asm ln 28, prod ln 6.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !21, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 Query to parse
 array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
@@ -1530,14 +1530,14 @@ array foo_2[4] : w32 -> w8 = symbolic
                                 (ReadLSB w32 (w32 0x0) foo_2))
                        N0))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))))
+              (Extract w32 0 (w64 0xC)))))
 Parsed query
 (Eq (Add w32 (w32 0xC)
               (Sub w32 (Add w32 N0:(Add w32 (ReadLSB w32 (w32 0x0) foo)
                                             (ReadLSB w32 (w32 0x0) foo_1))
                                 N1:(ReadLSB w32 (w32 0x0) foo_2))
                        N0))
-     (Add w32 N1 (w32 0xC)))
+     (Add w32 N1 (Extract w32 0 (w64 0xC))))
 
 🔔 After `a` (decl src ln 7) assn asm ln 31, prod ln 13.7, live ln 14, gen 1 coordinates don't match before assn asm ln 52, prod ln 13.7, live ln 14, gen 3
 Checking equivalence of `a` (decl src ln 7) from
@@ -1748,7 +1748,7 @@ Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 28, prod ln 6.16, live ln 13, gen 0
   %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !21, l6 c16
   (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-          (w32 0xC))
+          (Extract w32 0 (w64 0xC)))
 and
   assn asm ln 35, prod ln 8.5, live ln 10, gen 1
   %add1 = add nsw i32 %6, %5, l8 c5
@@ -1761,13 +1761,13 @@ array foo[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_2[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))
+              (Extract w32 0 (w64 0xC)))
      (Add w32 (Add w32 (ReadLSB w32 (w32 0x0) foo)
                        (ReadLSB w32 (w32 0x0) foo_1))
               (ReadLSB w32 (w32 0x0) foo_2))))
 Parsed query
 (Eq (Add w32 N0:(ReadLSB w32 (w32 0x0) foo_2)
-              (w32 0xC))
+              (Extract w32 0 (w64 0xC)))
      (Add w32 (Add w32 (ReadLSB w32 (w32 0x0) foo)
                        (ReadLSB w32 (w32 0x0) foo_1))
               N0))

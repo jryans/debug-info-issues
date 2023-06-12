@@ -572,16 +572,16 @@ Pushed initial value onto stack: (Add w32 (w32 0xFFFFFFFF)
           (ReadLSB w32 (w32 0x0) blah))
 plus_uconst: (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x1))
+          (Extract w32 0 (w64 0x1)))
 Result: (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x1))
+          (Extract w32 0 (w64 0x1)))
 Checking equivalence of `bob` (decl src ln 2) from
   assn asm ln 24, prod ln 3.24, live ln 4, gen 1
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x1))
+          (Extract w32 0 (w64 0x1)))
 and
   assn asm ln 10, prod ln 2.0, live ln 3, gen 0
   i32 %blah
@@ -591,12 +591,12 @@ array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (Add w32 (w32 0xFFFFFFFF)
                        N0:(ReadLSB w32 (w32 0x0) blah))
-              (w32 0x1))
+              (Extract w32 0 (w64 0x1)))
      N0))
 Parsed query
 (Eq (Add w32 (Add w32 (w32 0xFFFFFFFF)
                        N0:(ReadLSB w32 (w32 0x0) blah))
-              (w32 0x1))
+              (Extract w32 0 (w64 0x1)))
      N0)
 Removing: asm ln 24, prod ln 3.24, live ln 4, gen 1
 
@@ -604,22 +604,22 @@ Pushed initial value onto stack: (Add w32 (w32 0xFFFFFFFF)
           (ReadLSB w32 (w32 0x0) blah))
 plus_uconst: (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x1))
+          (Extract w32 0 (w64 0x1)))
 plus_uconst: (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Result: (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Checking equivalence of `bob` (decl src ln 2) from
   assn asm ln 26, prod ln 3.24, live ln 4, gen 2
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 and
   assn asm ln 10, prod ln 2.0, live ln 3, gen 0
   i32 %blah
@@ -629,91 +629,93 @@ array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                 N0:(ReadLSB w32 (w32 0x0) blah))
-                       (w32 0x1))
-              (w32 0x1))
+                       N1:(Extract w32 0 (w64 0x1)))
+              N1)
      N0))
 Parsed query
 (Eq (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                 N0:(ReadLSB w32 (w32 0x0) blah))
-                       (w32 0x1))
-              (w32 0x1))
+                       N1:(Extract w32 0 (w64 0x1)))
+              N1)
      N0)
 
 Pushed initial value onto stack: (Add w32 (w32 0xFFFFFFFF)
           (ReadLSB w32 (w32 0x0) blah))
 plus_uconst: (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 Result: (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 Checking equivalence of `bob` (decl src ln 2) from
   assn asm ln 15, prod ln 3.24, live ln 4, gen 3
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 and
   assn asm ln 26, prod ln 3.24, live ln 4, gen 2
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Query to parse
 array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 N0:(Add w32 (w32 0xFFFFFFFF)
                           (ReadLSB w32 (w32 0x0) blah))
-              (w32 0x2))
-     (Add w32 (Add w32 N0 (w32 0x1)) (w32 0x1))))
+              (Extract w32 0 (w64 0x2)))
+     (Add w32 (Add w32 N0 N1:(Extract w32 0 (w64 0x1)))
+              N1)))
 Parsed query
 (Eq (Add w32 N0:(Add w32 (w32 0xFFFFFFFF)
                           (ReadLSB w32 (w32 0x0) blah))
-              (w32 0x2))
-     (Add w32 (Add w32 N0 (w32 0x1)) (w32 0x1)))
+              (Extract w32 0 (w64 0x2)))
+     (Add w32 (Add w32 N0 N1:(Extract w32 0 (w64 0x1)))
+              N1))
 Removing: asm ln 15, prod ln 3.24, live ln 4, gen 3
 
 Pushed initial value onto stack: (Add w32 (w32 0xFFFFFFFF)
           (ReadLSB w32 (w32 0x0) blah))
 plus_uconst: (Add w32 (Add w32 (w32 0xFFFFFFFF)
                    (ReadLSB w32 (w32 0x0) blah))
-          (w32 0x1))
+          (Extract w32 0 (w64 0x1)))
 plus_uconst: (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Result: (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Checking equivalence of `bob` (decl src ln 2) from
   assn asm ln 16, prod ln 3.24, live ln 4, gen 4
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 and
   assn asm ln 26, prod ln 3.24, live ln 4, gen 2
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Query to parse
 array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
 (query [] (Eq N0:(Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                    (ReadLSB w32 (w32 0x0) blah))
-                          (w32 0x1))
-                 (w32 0x1))
+                          N1:(Extract w32 0 (w64 0x1)))
+                 N1)
      N0))
 Parsed query
 (Eq N0:(Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                    (ReadLSB w32 (w32 0x0) blah))
-                          (w32 0x1))
-                 (w32 0x1))
+                          N1:(Extract w32 0 (w64 0x1)))
+                 N1)
      N0)
 Removing: asm ln 16, prod ln 3.24, live ln 4, gen 4
 
@@ -805,8 +807,8 @@ and
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 Query to parse
 array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
@@ -814,13 +816,13 @@ array blah[4] : w32 -> w8 = symbolic
               (ReadLSB w32 (w32 0x0) blah))
      (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                 (ReadLSB w32 (w32 0x0) blah))
-                       (w32 0x1))
-              (w32 0x1))))
+                       N0:(Extract w32 0 (w64 0x1)))
+              N0)))
 Parsed query
 (Eq (Add w32 (w32 0x1)
               N0:(ReadLSB w32 (w32 0x0) blah))
-     (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF) N0) (w32 0x1))
-              (w32 0x1)))
+     (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF) N0) N1:(Extract w32 0 (w64 0x1)))
+              N1))
 
 ✅ Before symbolic values checked against after
   Matching:    3
@@ -871,8 +873,8 @@ Checking equivalence of `bob` (decl src ln 2) from
   %lsr.iv = phi i32 [ %0, %entry ], [ %lsr.iv.next, %for.cond ]
   (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                             (ReadLSB w32 (w32 0x0) blah))
-                   (w32 0x1))
-          (w32 0x1))
+                   N0:(Extract w32 0 (w64 0x1)))
+          N0)
 and
   assn asm ln 38, prod ln 3.37, live ln 4, gen 1
   %inc = add nsw i32 %4, 1, l3 c37
@@ -883,15 +885,15 @@ array blah[4] : w32 -> w8 = symbolic
 array blah[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                 (ReadLSB w32 (w32 0x0) blah))
-                       (w32 0x1))
-              (w32 0x1))
+                       N0:(Extract w32 0 (w64 0x1)))
+              N0)
      (Add w32 (w32 0x1)
               (ReadLSB w32 (w32 0x0) blah))))
 Parsed query
 (Eq (Add w32 (Add w32 (Add w32 (w32 0xFFFFFFFF)
                                 N0:(ReadLSB w32 (w32 0x0) blah))
-                       (w32 0x1))
-              (w32 0x1))
+                       N1:(Extract w32 0 (w64 0x1)))
+              N1)
      (Add w32 (w32 0x1) N0))
 
 ✅ After symbolic values checked against before

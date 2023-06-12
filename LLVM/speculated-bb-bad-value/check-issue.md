@@ -349,9 +349,9 @@ and
 🔔 After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 coordinates don't match before assn asm ln 32, prod ln 8.20, live ln 9, gen 1
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_1)
 plus_uconst: (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 Result: (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 Checking equivalence of `result` (decl src ln 6) from
   assn asm ln 32, prod ln 8.20, live ln 9, gen 1
   %add = add nsw i32 %3, 2, l8 c20
@@ -361,18 +361,18 @@ and
   assn asm ln 19, prod ln 6.15, live ln 7, gen 1
   %foo.0.foo.0.4 = load volatile i32, i32* %foo, !tbaa !19, l4 c15
   (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (w32 0x2)
               (ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-              (w32 0x2))))
+              (Extract w32 0 (w64 0x2)))))
 Parsed query
 (Eq (Add w32 (w32 0x2)
               N0:(ReadLSB w32 (w32 0x0) foo_1))
-     (Add w32 N0 (w32 0x2)))
+     (Add w32 N0 (Extract w32 0 (w64 0x2))))
 
 🔔 After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 coordinates don't match before assn asm ln 38, prod ln 10.20, live ln 11, gen 2
 Checking equivalence of `result` (decl src ln 6) from
@@ -384,18 +384,18 @@ and
   assn asm ln 19, prod ln 6.15, live ln 7, gen 1
   %foo.0.foo.0.4 = load volatile i32, i32* %foo, !tbaa !19, l4 c15
   (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 array foo_1[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (w32 0xFFFFFFFE)
               (ReadLSB w32 (w32 0x0) foo_1))
      (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-              (w32 0x2))))
+              (Extract w32 0 (w64 0x2)))))
 Parsed query
 (Eq (Add w32 (w32 0xFFFFFFFE)
               N0:(ReadLSB w32 (w32 0x0) foo_1))
-     (Add w32 N0 (w32 0x2)))
+     (Add w32 N0 (Extract w32 0 (w64 0x2))))
 ❌ After `result` (decl src ln 6) assn asm ln 19, prod ln 6.15, live ln 7, gen 1 symbolic value doesn't match before assn asm ln 38, prod ln 10.20, live ln 11, gen 2
 
 ❌ Before symbolic values checked against after
@@ -465,7 +465,7 @@ Checking equivalence of `result` (decl src ln 6) from
   assn asm ln 19, prod ln 6.15, live ln 7, gen 1
   %foo.0.foo.0.4 = load volatile i32, i32* %foo, !tbaa !19, l4 c15
   (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-          (w32 0x2))
+          (Extract w32 0 (w64 0x2)))
 and
   assn asm ln 24, prod ln 6.7, live ln 7, gen 0
   i32 0
@@ -473,11 +473,11 @@ and
 Query to parse
 array foo_1[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-              (w32 0x2))
+              (Extract w32 0 (w64 0x2)))
      (w32 0x0)))
 Parsed query
 (Eq (Add w32 (ReadLSB w32 (w32 0x0) foo_1)
-              (w32 0x2))
+              (Extract w32 0 (w64 0x2)))
      (w32 0x0))
 ❌ Before `result` (decl src ln 6) assn asm ln 24, prod ln 6.7, live ln 7, gen 0 symbolic value doesn't match after assn asm ln 19, prod ln 6.15, live ln 7, gen 1
 
