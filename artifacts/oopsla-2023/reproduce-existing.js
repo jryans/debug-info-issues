@@ -17,7 +17,7 @@ const dirs = [
   "LLVM/simplifycfg-select-unreachable-line-2",
   "LLVM/simplifycfg-removes-unused-value",
   "LLVM/localutils-salvages-loads",
-  "LLVM/localutils-removes-arguments",
+  "LLVM/earlycse-removes-arguments",
 ];
 
 const total = dirs.length;
