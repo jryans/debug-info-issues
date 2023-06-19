@@ -90,11 +90,16 @@ warning: Linking two modules of different target triples: 'memcpy64_Debug+Assert
 ### Variables
 
 Before variable `eyelids` (decl src ln 8)
+Store to declared address of `eyelids` (decl src ln 8), asm ln 17
+  arg 0
+  Added assignment asm ln 17, prod ln 8.0, live ln 9, gen 0
 Before variable `bar` (decl src ln 10)
 Store to declared address of `bar` (decl src ln 10), asm ln 26
   %add = add nsw i32 %1, %2, l10 c23, asm ln 25
   @dbg.declare without read users, removable
   Added assignment asm ln 26, prod ln 10.23, live ln 11, gen 0
+Computing generations: `eyelids` (decl src ln 8)
+  asm ln 17, prod ln 8.0, live ln 9, gen 0
 Computing generations: `bar` (decl src ln 10)
   asm ln 26, prod ln 10.23, live ln 11, gen 0
 
@@ -114,6 +119,9 @@ Computing generations: `eyelids` (decl src ln 8)
 
 #### Before values
 
+Collected value for `eyelids`
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
 Collected value for `bar`
   %add = add nsw i32 %1, %2, l10 c23
   (Add w32 (ReadLSB w32 (w32 0x0) eyelids.coerce)
@@ -127,8 +135,14 @@ Collected value for `eyelids`
 
 ### Assignments
 
+Computing generations: `eyelids` (decl src ln 8)
+  asm ln 17, prod ln 8.0, live ln 9, gen 0
 Computing generations: `bar` (decl src ln 10)
   asm ln 26, prod ln 10.23, live ln 11, gen 0
+Building live ranges: `eyelids` (decl src ln 8)
+  asm ln 17, prod ln 8.0, live ln 9, gen 0
+    live ln 9, gen 0 →
+    live ln ∞, gen ∞
 Building live ranges: `bar` (decl src ln 10)
   asm ln 26, prod ln 10.23, live ln 11, gen 0
     live ln 11, gen 0 →
@@ -141,12 +155,11 @@ Building live ranges: `eyelids` (decl src ln 8)
     live ln 9, gen 0 →
     live ln ∞, gen ∞
 
-🔔 Before live ranges for `eyelids` (decl src ln 8) not found (variable likely undefined)
 🔔 After live ranges for (removable) `bar` (decl src ln 10) not found
 ✅ Before live range coverage
-  Covered:   0
+  Covered:   1
   Uncovered: 0
-  Undefined: 1
+  Undefined: 0
   Unused:    0
   Removable: 1
 
@@ -154,24 +167,25 @@ Building live ranges: `eyelids` (decl src ln 8)
 
 🔔 After live ranges for (removable) `bar` (decl src ln 10) not found
 
-✅ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   1
-
-#### Check after against before
-
-❌ Before live range for `eyelids` (decl src ln 8) not found
-
-❌ After symbolic values checked against before
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-## Summary
-
-❌ Some consistency checks failed
+Pushed initial value onto stack: (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Current opcode: 4096
+Unexpected expression opcode
+UNREACHABLE executed at /Users/jryans/Projects/klee/tools/check-debug-info/Variable.cpp:371!
+PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  check-debug-info         0x000000010f977b0d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
+1  check-debug-info         0x000000010f97808b PrintStackTraceSignalHandler(void*) + 27
+2  check-debug-info         0x000000010f975ed3 llvm::sys::RunSignalHandlers() + 115
+3  check-debug-info         0x000000010f979a8f SignalHandler(int) + 223
+4  libsystem_platform.dylib 0x00007ff80fa635ed _sigtramp + 29
+5  check-debug-info         0x000000010cc7b5ad unsigned long const& std::__1::min[abi:v15006]<unsigned long>(unsigned long const&, unsigned long const&) + 29
+6  libsystem_c.dylib        0x00007ff80f95cb45 abort + 123
+7  check-debug-info         0x000000010f844430 llvm::install_out_of_memory_new_handler() + 0
+8  check-debug-info         0x000000010cca8212 Assignment::evaluate() + 7362
+9  check-debug-info         0x000000010cc6b094 checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 2164
+10 check-debug-info         0x000000010cc6da07 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 6695
+11 check-debug-info         0x000000010cc6ed08 main + 1768
+12 dyld                     0x00007ff80f6dc41f start + 1903
+./check-issue.sh: line 6: 82907 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_BC} ${CHECK_OPTS}
