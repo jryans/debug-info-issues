@@ -18,6 +18,7 @@ const dirs = [
   "LLVM/simplifycfg-removes-unused-value",
   "LLVM/localutils-salvages-loads",
   "LLVM/earlycse-removes-arguments",
+  "LLVM/simplifycfg-drops-value",
 ];
 
 const total = dirs.length;
