@@ -19,6 +19,7 @@ const dirs = [
   "LLVM/localutils-salvages-loads",
   "LLVM/earlycse-removes-arguments",
   "LLVM/simplifycfg-drops-value",
+  "LLVM/instcombine-incorrect-unused-value",
 ];
 
 const total = dirs.length;

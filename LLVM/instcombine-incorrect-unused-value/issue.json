@@ -1,0 +1,8 @@
+{
+  "id": 43238,
+  "summary": "InstCombine leaves incorrect debug value when removing code",
+  "issueDetectable": true,
+  "issueDetector": "❌ After `l_1240` (decl src ln 3) assn asm ln 15, prod ln 3.0, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 23, prod ln 4.12, live ln 5, gen 1",
+  "fixVerifiable": true,
+  "fixVerifier": "❌ After `l_1240` (decl src ln 3) assn asm ln 17, prod ln 3.0, live ln 5, gen 1 has no symbolic value from i32 undef"
+}
