@@ -1,4 +1,4 @@
-++ dirname ./check-issue.sh
+^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -218,7 +218,7 @@ Computing generations: `k` (decl src ln 2)
 
 Collected value for `k`
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1154A4730)
+  (Add w64 (w64 0x1116FC730)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
@@ -230,7 +230,7 @@ Collected value for `k`
 
 Collected value for `k`
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1154A40D0)
+  (Add w64 (w64 0x1116FC0D0)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
@@ -266,29 +266,29 @@ Building live ranges: `k` (decl src ln 2)
 Checking equivalence of `k` (decl src ln 2) from
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1154A4730)
+  (Add w64 (w64 0x1116FC730)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 and
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1154A40D0)
+  (Add w64 (w64 0x1116FC0D0)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 Query to parse
 array b[8] : w32 -> w8 = symbolic
 array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x1154A4730)
+(query [] (Eq (Add w64 (w64 0x1116FC730)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1154A40D0)
+     (Add w64 (w64 0x1116FC0D0)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))))
 Parsed query
-(Eq (Add w64 (w64 0x1154A4730)
+(Eq (Add w64 (w64 0x1116FC730)
               N0:(Mul w64 (w64 0x8)
                           (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1154A40D0) N0))
+     (Add w64 (w64 0x1116FC0D0) N0))
 ❌ After `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 18, prod ln 5.3, live ln 6, gen 0
 
 ❌ Before symbolic values checked against after
@@ -303,29 +303,29 @@ Parsed query
 Checking equivalence of `k` (decl src ln 2) from
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1154A40D0)
+  (Add w64 (w64 0x1116FC0D0)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 and
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1154A4730)
+  (Add w64 (w64 0x1116FC730)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 Query to parse
 array b[8] : w32 -> w8 = symbolic
 array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x1154A40D0)
+(query [] (Eq (Add w64 (w64 0x1116FC0D0)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1154A4730)
+     (Add w64 (w64 0x1116FC730)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))))
 Parsed query
-(Eq (Add w64 (w64 0x1154A40D0)
+(Eq (Add w64 (w64 0x1116FC0D0)
               N0:(Mul w64 (w64 0x8)
                           (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1154A4730) N0))
+     (Add w64 (w64 0x1116FC730) N0))
 ❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 18, prod ln 5.3, live ln 6, gen 0
 
 ❌ After symbolic values checked against before

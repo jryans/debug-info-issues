@@ -20,6 +20,7 @@ const dirs = [
   "LLVM/earlycse-removes-arguments",
   "LLVM/simplifycfg-drops-value",
   "LLVM/instcombine-incorrect-unused-value",
+  "LLVM/instcombine-shrinks-location-range",
 ];
 
 const total = dirs.length;
