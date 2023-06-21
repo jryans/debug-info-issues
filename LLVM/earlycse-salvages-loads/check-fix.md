@@ -266,9 +266,12 @@ Building live ranges: `more` (decl src ln 1)
     live ln 6, gen 0 →
     live ln ∞, gen ∞
 
+After frag: [0, 64)
 ❌ Live ranges for `bar` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
+After frag: [0, 32)
 🔔 After live range for `arg` (decl src ln 1) terminates early
 ❌ Live ranges for `arg` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
+After frag: [0, 32)
 ❌ Live ranges for `more` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
 🔔 After live ranges for (removable) `redundant` (decl src ln 2) not found
 ❌ After live ranges for `loaded` (decl src ln 3) not found

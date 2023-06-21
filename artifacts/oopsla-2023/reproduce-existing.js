@@ -16,7 +16,7 @@ const dirs = [
   "LLVM/lcssa-return-value",
   "LLVM/simplifycfg-select-unreachable-line-2",
   "LLVM/simplifycfg-removes-unused-value",
-  "LLVM/localutils-salvages-loads",
+  "LLVM/earlycse-salvages-loads",
   "LLVM/earlycse-removes-arguments",
   "LLVM/simplifycfg-drops-value",
   "LLVM/instcombine-incorrect-unused-value",
