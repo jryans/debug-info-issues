@@ -1,4 +1,4 @@
-; ModuleID = '/app/example.ll' https://godbolt.org/z/71ec8fGab
+; ModuleID = '/app/example.ll' https://godbolt.org/z/q3fWzxc43
 source_filename = "/app/example.ll"
 
 ; Function Attrs: nounwind readnone speculatable
@@ -41,7 +41,7 @@ attributes #0 = { nounwind readnone speculatable }
 !6 = distinct !DISubprogram(name: "foo", scope: !1, file: !1, line: 2, type: !7, scopeLine: 3, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !10)
 !7 = !DISubroutineType(types: !8)
 !8 = !{!9, !9}
-!9 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
+!9 = !DIBasicType(name: "int", size: 64, encoding: DW_ATE_signed)
 !10 = !{}
 !11 = !DILocalVariable(name: "h", scope: !6, file: !1, line: 4, type: !9)
 !12 = !DILocation(line: 5, column: 3, scope: !6)

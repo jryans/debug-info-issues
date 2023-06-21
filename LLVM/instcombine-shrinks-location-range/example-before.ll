@@ -66,7 +66,7 @@ sink2:
 !7 = distinct !DISubprogram(name: "foo", scope: !1, file: !1, line: 2, type: !8, isLocal: false, isDefinition: true, scopeLine: 3, flags: DIFlagPrototyped, isOptimized: false, unit: !0, retainedNodes: !2)
 !8 = !DISubroutineType(types: !9)
 !9 = !{!10, !10}
-!10 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
+!10 = !DIBasicType(name: "int", size: 64, encoding: DW_ATE_signed)
 !11 = !DILocalVariable(name: "j", scope: !7, file: !1, line: 2, type: !10)
 !12 = !DIExpression()
 !15 = !DILocation(line: 5, column: 3, scope: !7)
