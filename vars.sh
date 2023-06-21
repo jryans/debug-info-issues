@@ -62,5 +62,9 @@ O1_FIXED_BC="klee-out-O1-fixed/final.bc"
 O2_BC="klee-out-O2/final.bc"
 O2_FIXED_BC="klee-out-O2-fixed/final.bc"
 
+BEFORE_BC="klee-out-before/final.bc"
+AFTER_BC="klee-out-after/final.bc"
+AFTER_FIXED_BC="klee-out-after-fixed/final.bc"
+
 CHECK=$(klee debug check-debug-info)
 CHECK_OPTS="--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace"
