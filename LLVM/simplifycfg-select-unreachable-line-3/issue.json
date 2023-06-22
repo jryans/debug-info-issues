@@ -2,7 +2,7 @@
   "id": 38591,
   "summary": "Regression: Unreachable line stepped onto after SimplifyCFG",
   "issueDetectable": true,
-  "issueDetector": "FIXME JRS",
+  "issueDetector": "🔔 After live ranges for (removable) `delta` (decl src ln 10) not found",
   "fixVerifiable": true,
-  "fixVerifier": "FIXME JRS"
+  "fixVerifier": "✅ After `delta` (decl src ln 10) assn asm ln 11, prod ln 10.7, live ln 11, gen 0 symbolic value matches before assn asm ln 15, prod ln 10.7, live ln 11, gen 0"
 }

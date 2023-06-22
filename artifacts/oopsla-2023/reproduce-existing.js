@@ -21,6 +21,7 @@ const dirs = [
   "LLVM/simplifycfg-drops-value",
   "LLVM/instcombine-incorrect-unused-value",
   "LLVM/instcombine-shrinks-location-range",
+  "LLVM/simplifycfg-select-unreachable-line-3",
 ];
 
 const total = dirs.length;

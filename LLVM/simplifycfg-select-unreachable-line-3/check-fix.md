@@ -1,4 +1,4 @@
-++ dirname ./check-fix.sh
+^D++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux

@@ -1,4 +1,4 @@
-++ dirname ./build.sh
+^D++ dirname ./build.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -90,7 +90,7 @@ i32 (i64)* @echo
 warning: ignoring invalid debug info in example-O2.ll
 + mkdir -p klee-out-O2-fixed
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
-++ dirname ./check-issue.sh
+^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -309,7 +309,7 @@ Building live ranges: `golf` (decl src ln 17)
 ## Summary
 
 ❌ Some consistency checks failed
-++ dirname ./check-fix.sh
+^D++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
