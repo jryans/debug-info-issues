@@ -1,4 +1,4 @@
-; ModuleID = '/app/example.c' https://godbolt.org/z/4173bz7K5
+; ModuleID = '/app/example.c'
 source_filename = "/app/example.c"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
@@ -20,22 +20,14 @@ define dso_local i32 @echo(i64 %foxtrot.coerce) local_unnamed_addr #0 !dbg !20 {
 entry:
   %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32
   call void @llvm.dbg.value(metadata i32 %foxtrot.sroa.0.0.extract.trunc, metadata !32, metadata !DIExpression(DW_OP_LLVM_fragment, 0, 32)), !dbg !36
-  store i32 %foxtrot.sroa.0.0.extract.trunc, i32* @alpha, align 4, !dbg !37, !tbaa !38
-  %tobool = icmp eq i32 %foxtrot.sroa.0.0.extract.trunc, 0, !dbg !42
-  br i1 %tobool, label %if.end, label %return, !dbg !43
-
-if.end:                                           ; preds = %entry
-  %foxtrot.sroa.2.0.extract.shift = lshr i64 %foxtrot.coerce, 32
-  %foxtrot.sroa.2.0.extract.trunc = trunc i64 %foxtrot.sroa.2.0.extract.shift to i32
-  call void @llvm.dbg.value(metadata i32 %foxtrot.sroa.2.0.extract.trunc, metadata !32, metadata !DIExpression(DW_OP_LLVM_fragment, 32, 32)), !dbg !36
-  store i32 %foxtrot.sroa.2.0.extract.trunc, i32* @alpha, align 4, !dbg !44, !tbaa !38
-  call void @llvm.dbg.value(metadata i32 0, metadata !16, metadata !DIExpression()) #3, !dbg !45
-  br label %return, !dbg !47
-
-return:                                           ; preds = %entry, %if.end
-  %call.i = tail call i32 @bravo() #3, !dbg !48
-  %retval.0 = sub nsw i32 0, %call.i, !dbg !48
-  ret i32 %retval.0, !dbg !49
+  %tobool = icmp eq i32 %foxtrot.sroa.0.0.extract.trunc, 0, !dbg !37
+  %foxtrot.sroa.2.0.extract.shift = lshr i64 %foxtrot.coerce, 32, !dbg !38
+  %foxtrot.sroa.2.0.extract.trunc = trunc i64 %foxtrot.sroa.2.0.extract.shift to i32, !dbg !38
+  %storemerge = select i1 %tobool, i32 %foxtrot.sroa.2.0.extract.trunc, i32 %foxtrot.sroa.0.0.extract.trunc, !dbg !38
+  store i32 %storemerge, i32* @alpha, align 4, !dbg !39, !tbaa !40
+  %call.i = tail call i32 @bravo() #3, !dbg !39
+  %retval.0 = sub nsw i32 0, %call.i, !dbg !39
+  ret i32 %retval.0, !dbg !44
 }
 
 ; Function Attrs: nounwind readnone speculatable
@@ -87,16 +79,11 @@ attributes #3 = { nounwind }
 !34 = distinct !DILexicalBlock(scope: !35, file: !6, line: 16, column: 14)
 !35 = distinct !DILexicalBlock(scope: !20, file: !6, line: 16, column: 7)
 !36 = !DILocation(line: 14, column: 22, scope: !20)
-!37 = !DILocation(line: 15, column: 9, scope: !20)
-!38 = !{!39, !39, i64 0}
-!39 = !{!"int", !40, i64 0}
-!40 = !{!"omnipotent char", !41, i64 0}
-!41 = !{!"Simple C/C++ TBAA"}
-!42 = !DILocation(line: 16, column: 7, scope: !35)
-!43 = !DILocation(line: 16, column: 7, scope: !20)
-!44 = !DILocation(line: 20, column: 9, scope: !20)
-!45 = !DILocation(line: 10, column: 7, scope: !12, inlinedAt: !46)
-!46 = distinct !DILocation(line: 21, column: 11, scope: !20)
-!47 = !DILocation(line: 21, column: 3, scope: !20)
-!48 = !DILocation(line: 0, scope: !20)
-!49 = !DILocation(line: 22, column: 1, scope: !20)
+!37 = !DILocation(line: 16, column: 7, scope: !35)
+!38 = !DILocation(line: 16, column: 7, scope: !20)
+!39 = !DILocation(line: 0, scope: !20)
+!40 = !{!41, !41, i64 0}
+!41 = !{!"int", !42, i64 0}
+!42 = !{!"omnipotent char", !43, i64 0}
+!43 = !{!"Simple C/C++ TBAA"}
+!44 = !DILocation(line: 22, column: 1, scope: !20)

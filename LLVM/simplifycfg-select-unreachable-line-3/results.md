@@ -66,6 +66,9 @@
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -76,6 +79,15 @@
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
 + mkdir -p klee-out-O2
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
+mismatched subprogram between llvm.dbg.value variable and !dbg attachment
+  call void @llvm.dbg.value(metadata i32 0, metadata !16, metadata !DIExpression()) #3, !dbg !38
+label %entry
+i32 (i64)* @echo
+!16 = !DILocalVariable(name: "delta", scope: !12, file: !3, line: 10, type: !6)
+!12 = distinct !DISubprogram(name: "charlie", scope: !3, file: !3, line: 9, type: !13, scopeLine: 9, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !2, retainedNodes: !15)
+!38 = !DILocation(line: 16, column: 7, scope: !20)
+!20 = distinct !DISubprogram(name: "echo", scope: !3, file: !3, line: 14, type: !21, scopeLine: 14, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !2, retainedNodes: !31)
+warning: ignoring invalid debug info in example-O2.ll
 + mkdir -p klee-out-O2-fixed
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
 ++ dirname ./check-issue.sh
@@ -146,6 +158,9 @@
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -166,22 +181,14 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 ### Variables
 
 Before variable `delta` (decl src ln 10)
-Store to `delta` (decl src ln 10), asm ln 15
+Store to declared address of `delta` (decl src ln 10), asm ln 15
   const i32 0
   @dbg.declare without read users, removable
   Added assignment asm ln 15, prod ln 10.7, live ln 11, gen 0
 Computing generations: `delta` (decl src ln 10)
   asm ln 15, prod ln 10.7, live ln 11, gen 0
 
-After variable `delta` (decl src ln 10)
-@dbg.value mapping for `delta` (decl src ln 10), asm ln 11
-Value produced for `delta` (decl src ln 10), asm ln 11
-  const i32 0
-  Added assignment asm ln 11, prod ln 10.7, live ln 11, gen 0
-Computing generations: `delta` (decl src ln 10)
-  asm ln 11, prod ln 10.7, live ln 11, gen 0
-
-✅ 1 before variables found, 1 after variables found, 0 mismatched
+🔔 1 before variables found, 0 after variables found, 1 mismatched
 
 ### Symbolic values
 
@@ -194,9 +201,6 @@ Computing generations: `delta` (decl src ln 10)
 
 #### After values
 
-Collected value for `delta`
-  i32 0
-  (w32 0x0)
 
 ### Assignments
 
@@ -207,51 +211,30 @@ Building live ranges: `delta` (decl src ln 10)
     live ln 11, gen 0 →
     live ln ∞, gen ∞
 
-Computing generations: `delta` (decl src ln 10)
-  asm ln 11, prod ln 10.7, live ln 11, gen 0
-Building live ranges: `delta` (decl src ln 10)
-  asm ln 11, prod ln 10.7, live ln 11, gen 0
-    live ln 11, gen 0 →
-    live ln ∞, gen ∞
 
+🔔 After live ranges for (removable) `delta` (decl src ln 10) not found
 ✅ Before live range coverage
-  Covered:   1
+  Covered:   0
   Uncovered: 0
   Undefined: 0
   Unused:    0
-  Removable: 0
+  Removable: 1
 
 #### Check before against after
 
-Checking equivalence of `delta` (decl src ln 10) from
-  assn asm ln 15, prod ln 10.7, live ln 11, gen 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 11, prod ln 10.7, live ln 11, gen 0
-  i32 0
-  (w32 0x0)
+🔔 After live ranges for (removable) `delta` (decl src ln 10) not found
 
 ✅ Before symbolic values checked against after
-  Matching:    1
+  Matching:    0
   Mismatched:  0
   Unused:      0
   Unreachable: 0
-  Removable:   0
+  Removable:   1
 
 #### Check after against before
 
-Checking equivalence of `delta` (decl src ln 10) from
-  assn asm ln 11, prod ln 10.7, live ln 11, gen 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 15, prod ln 10.7, live ln 11, gen 0
-  i32 0
-  (w32 0x0)
-
 ✅ After symbolic values checked against before
-  Matching:    1
+  Matching:    0
   Mismatched:  0
   Unused:      0
   Unreachable: 0
@@ -265,34 +248,13 @@ and
 
 Before variable `foxtrot` (decl src ln 14)
 Before variable `golf` (decl src ln 17)
-Store to `golf` (decl src ln 17), asm ln 46
+Store to declared address of `golf` (decl src ln 17), asm ln 46
   %call = call i32 @bravo(), l17 c16, asm ln 45
   Added assignment asm ln 46, prod ln 17.16, live ln 18, gen 0
 Computing generations: `golf` (decl src ln 17)
   asm ln 46, prod ln 17.16, live ln 18, gen 0
 
-After variable `foxtrot` (decl src ln 14)
-@dbg.value mapping for `foxtrot` (decl src ln 14), asm ln 22
-Value produced for `foxtrot` (decl src ln 14), asm ln 22
-  %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32, asm ln 21
-  Added assignment asm ln 22, prod ln 14.22, live ln 15, gen 0
-After variable `foxtrot` (decl src ln 14)
-@dbg.value mapping for `foxtrot` (decl src ln 14), asm ln 30
-Value produced for `foxtrot` (decl src ln 14), asm ln 30
-  %foxtrot.sroa.2.0.extract.trunc = trunc i64 %foxtrot.sroa.2.0.extract.shift to i32, asm ln 29
-  Added assignment asm ln 30, prod ln 14.22, live ln 20, gen 0
-After variable `delta` (decl src ln 10)
-@dbg.value mapping for `delta` (decl src ln 10), asm ln 32
-Value produced for `delta` (decl src ln 10), asm ln 32
-  const i32 0
-  Added assignment asm ln 32, prod ln 10.7, live ln 21, gen 0
-Computing generations: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 15, gen 0
-  asm ln 30, prod ln 14.22, live ln 20, gen 1
-Computing generations: `delta` (decl src ln 10)
-  asm ln 32, prod ln 10.7, live ln 21, gen 0
-
-🔔 2 before variables found, 2 after variables found, 1 mismatched
+🔔 2 before variables found, 0 after variables found, 2 mismatched
 
 ### Symbolic values
 
@@ -304,20 +266,8 @@ Collected value for `golf`
 
 #### After values
 
-Collected value for `foxtrot`
-  %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32
-  (ReadLSB w32 (w32 0x0) foxtrot.coerce)
-Collected value for `foxtrot`
-  %foxtrot.sroa.2.0.extract.trunc = trunc i64 %foxtrot.sroa.2.0.extract.shift to i32
-  (Extract w32 0 (LShr w64 (ReadLSB w64 (w32 0x0) foxtrot.coerce)
-                          (w64 0x20)))
-Collected value for `delta`
-  i32 0
-  (w32 0x0)
 
 ### Assignments
-
-Filtering redundant after assignments: `foxtrot` (decl src ln 14)
 
 Computing generations: `golf` (decl src ln 17)
   asm ln 46, prod ln 17.16, live ln 18, gen 0
@@ -326,22 +276,6 @@ Building live ranges: `golf` (decl src ln 17)
     live ln 18, gen 0 →
     live ln ∞, gen ∞
 
-Computing generations: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 15, gen 0
-  asm ln 30, prod ln 14.22, live ln 20, gen 1
-Computing generations: `delta` (decl src ln 10)
-  asm ln 32, prod ln 10.7, live ln 21, gen 0
-Building live ranges: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 15, gen 0
-    live ln 15, gen 0 →
-    live ln 20, gen 1
-  asm ln 30, prod ln 14.22, live ln 20, gen 1
-    live ln 20, gen 1 →
-    live ln ∞, gen ∞
-Building live ranges: `delta` (decl src ln 10)
-  asm ln 32, prod ln 10.7, live ln 21, gen 0
-    live ln 21, gen 0 →
-    live ln ∞, gen ∞
 
 🔔 Before live ranges for `foxtrot` (decl src ln 14) not found (variable likely undefined)
 ❌ After live ranges for `golf` (decl src ln 17) not found
@@ -365,15 +299,9 @@ Building live ranges: `delta` (decl src ln 10)
 
 #### Check after against before
 
-❌ Before live range for `delta` (decl src ln 10) not found
-
-❌ Before live range for `foxtrot` (decl src ln 14) not found
-
-❌ Before live range for `foxtrot` (decl src ln 14) not found
-
-❌ After symbolic values checked against before
+✅ After symbolic values checked against before
   Matching:    0
-  Mismatched:  3
+  Mismatched:  0
   Unused:      0
   Unreachable: 0
   Removable:   0
@@ -449,6 +377,9 @@ Building live ranges: `delta` (decl src ln 10)
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -469,7 +400,7 @@ Checking klee-out-O0/final.bc and klee-out-O2-fixed/final.bc for debug info cons
 ### Variables
 
 Before variable `delta` (decl src ln 10)
-Store to `delta` (decl src ln 10), asm ln 15
+Store to declared address of `delta` (decl src ln 10), asm ln 15
   const i32 0
   @dbg.declare without read users, removable
   Added assignment asm ln 15, prod ln 10.7, live ln 11, gen 0
@@ -477,7 +408,6 @@ Computing generations: `delta` (decl src ln 10)
   asm ln 15, prod ln 10.7, live ln 11, gen 0
 
 After variable `delta` (decl src ln 10)
-@dbg.value mapping for `delta` (decl src ln 10), asm ln 11
 Value produced for `delta` (decl src ln 10), asm ln 11
   const i32 0
   Added assignment asm ln 11, prod ln 10.7, live ln 11, gen 0
@@ -534,6 +464,7 @@ and
   assn asm ln 11, prod ln 10.7, live ln 11, gen 0
   i32 0
   (w32 0x0)
+✅ After `delta` (decl src ln 10) assn asm ln 11, prod ln 10.7, live ln 11, gen 0 symbolic value matches before assn asm ln 15, prod ln 10.7, live ln 11, gen 0
 
 ✅ Before symbolic values checked against after
   Matching:    1
@@ -552,6 +483,7 @@ and
   assn asm ln 15, prod ln 10.7, live ln 11, gen 0
   i32 0
   (w32 0x0)
+✅ Before `delta` (decl src ln 10) assn asm ln 15, prod ln 10.7, live ln 11, gen 0 symbolic value matches after assn asm ln 11, prod ln 10.7, live ln 11, gen 0
 
 ✅ After symbolic values checked against before
   Matching:    1
@@ -568,34 +500,20 @@ and
 
 Before variable `foxtrot` (decl src ln 14)
 Before variable `golf` (decl src ln 17)
-Store to `golf` (decl src ln 17), asm ln 46
+Store to declared address of `golf` (decl src ln 17), asm ln 46
   %call = call i32 @bravo(), l17 c16, asm ln 45
   Added assignment asm ln 46, prod ln 17.16, live ln 18, gen 0
 Computing generations: `golf` (decl src ln 17)
   asm ln 46, prod ln 17.16, live ln 18, gen 0
 
 After variable `foxtrot` (decl src ln 14)
-@dbg.value mapping for `foxtrot` (decl src ln 14), asm ln 22
 Value produced for `foxtrot` (decl src ln 14), asm ln 22
   %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32, asm ln 21
-  Added assignment asm ln 22, prod ln 14.22, live ln 15, gen 0
-After variable `foxtrot` (decl src ln 14)
-@dbg.value mapping for `foxtrot` (decl src ln 14), asm ln 30
-Value produced for `foxtrot` (decl src ln 14), asm ln 30
-  %foxtrot.sroa.2.0.extract.trunc = trunc i64 %foxtrot.sroa.2.0.extract.shift to i32, asm ln 29
-  Added assignment asm ln 30, prod ln 14.22, live ln 20, gen 0
-After variable `delta` (decl src ln 10)
-@dbg.value mapping for `delta` (decl src ln 10), asm ln 32
-Value produced for `delta` (decl src ln 10), asm ln 32
-  const i32 0
-  Added assignment asm ln 32, prod ln 10.7, live ln 21, gen 0
+  Added assignment asm ln 22, prod ln 14.22, live ln 16, gen 0
 Computing generations: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 15, gen 0
-  asm ln 30, prod ln 14.22, live ln 20, gen 1
-Computing generations: `delta` (decl src ln 10)
-  asm ln 32, prod ln 10.7, live ln 21, gen 0
+  asm ln 22, prod ln 14.22, live ln 16, gen 0
 
-🔔 2 before variables found, 2 after variables found, 1 mismatched
+🔔 2 before variables found, 1 after variables found, 1 mismatched
 
 ### Symbolic values
 
@@ -611,17 +529,8 @@ Computing generations: `delta` (decl src ln 10)
 Collected value for `foxtrot`
   %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32
   (ReadLSB w32 (w32 0x0) foxtrot.coerce)
-Collected value for `foxtrot`
-  %foxtrot.sroa.2.0.extract.trunc = trunc i64 %foxtrot.sroa.2.0.extract.shift to i32
-  (Extract w32 0 (LShr w64 (ReadLSB w64 (w32 0x0) foxtrot.coerce)
-                          (w64 0x20)))
-Collected value for `delta`
-  i32 0
-  (w32 0x0)
 
 ### Assignments
-
-Filtering redundant after assignments: `foxtrot` (decl src ln 14)
 
 Computing generations: `golf` (decl src ln 17)
   asm ln 46, prod ln 17.16, live ln 18, gen 0
@@ -631,20 +540,10 @@ Building live ranges: `golf` (decl src ln 17)
     live ln ∞, gen ∞
 
 Computing generations: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 15, gen 0
-  asm ln 30, prod ln 14.22, live ln 20, gen 1
-Computing generations: `delta` (decl src ln 10)
-  asm ln 32, prod ln 10.7, live ln 21, gen 0
+  asm ln 22, prod ln 14.22, live ln 16, gen 0
 Building live ranges: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 15, gen 0
-    live ln 15, gen 0 →
-    live ln 20, gen 1
-  asm ln 30, prod ln 14.22, live ln 20, gen 1
-    live ln 20, gen 1 →
-    live ln ∞, gen ∞
-Building live ranges: `delta` (decl src ln 10)
-  asm ln 32, prod ln 10.7, live ln 21, gen 0
-    live ln 21, gen 0 →
+  asm ln 22, prod ln 14.22, live ln 16, gen 0
+    live ln 16, gen 0 →
     live ln ∞, gen ∞
 
 🔔 Before live ranges for `foxtrot` (decl src ln 14) not found (variable likely undefined)
@@ -669,15 +568,11 @@ Building live ranges: `delta` (decl src ln 10)
 
 #### Check after against before
 
-❌ Before live range for `delta` (decl src ln 10) not found
-
-❌ Before live range for `foxtrot` (decl src ln 14) not found
-
 ❌ Before live range for `foxtrot` (decl src ln 14) not found
 
 ❌ After symbolic values checked against before
   Matching:    0
-  Mismatched:  3
+  Mismatched:  1
   Unused:      0
   Unreachable: 0
   Removable:   0

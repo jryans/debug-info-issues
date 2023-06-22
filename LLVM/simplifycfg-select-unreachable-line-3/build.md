@@ -66,6 +66,9 @@
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -76,5 +79,14 @@
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
 + mkdir -p klee-out-O2
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
+mismatched subprogram between llvm.dbg.value variable and !dbg attachment
+  call void @llvm.dbg.value(metadata i32 0, metadata !16, metadata !DIExpression()) #3, !dbg !38
+label %entry
+i32 (i64)* @echo
+!16 = !DILocalVariable(name: "delta", scope: !12, file: !3, line: 10, type: !6)
+!12 = distinct !DISubprogram(name: "charlie", scope: !3, file: !3, line: 9, type: !13, scopeLine: 9, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !2, retainedNodes: !15)
+!38 = !DILocation(line: 16, column: 7, scope: !20)
+!20 = distinct !DISubprogram(name: "echo", scope: !3, file: !3, line: 14, type: !21, scopeLine: 14, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !2, retainedNodes: !31)
+warning: ignoring invalid debug info in example-O2.ll
 + mkdir -p klee-out-O2-fixed
 + /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
