@@ -28,6 +28,7 @@ CLANG_TIDY_OPTS="--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fi
 CLANG=$(llvm release-clang-lldb-13.0.0 clang)
 LLVM_AS=$(llvm release-clang-lldb-13.0.0 llvm-as)
 # TODO: Rename these removing `OPTS` suffix...?
+# TODO: Might be able to use `--sysroot` to cover both `-isysroot` and `-syslibroot`
 CC_SYSROOT_OPTS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 # Modified by some files to add further compilation flags
 CC_COMMON_OPTS="${CC_SYSROOT_OPTS} -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone"
