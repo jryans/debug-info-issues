@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Must use absolute paths, this will be run from a temp directory
 source "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/Csmith/vars.sh"
