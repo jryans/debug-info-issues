@@ -189,12 +189,12 @@ Computing generations: `bar` (decl src ln 10)
 After variable `eyelids` (decl src ln 8)
 Value produced for `eyelids` (decl src ln 8), asm ln 11
   arg 0
-  Added assignment asm ln 11, prod ln 8.0, live ln 9, gen 0
+  Added assignment asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
 After variable `bar` (decl src ln 10)
 After variable intrinsic with undef input, asm ln 13, ignoring undefined variable
   @dbg.value(i32 undef, !21)
 Computing generations: `eyelids` (decl src ln 8)
-  asm ln 11, prod ln 8.0, live ln 9, gen 0
+  asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
 
 ✅ 2 before variables found, 2 after variables found, 0 mismatched
 
@@ -232,16 +232,18 @@ Building live ranges: `bar` (decl src ln 10)
     live ln ∞, gen ∞
 
 Computing generations: `eyelids` (decl src ln 8)
-  asm ln 11, prod ln 8.0, live ln 9, gen 0
+  asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
 Building live ranges: `eyelids` (decl src ln 8)
-  asm ln 11, prod ln 8.0, live ln 9, gen 0
+  asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
     live ln 9, gen 0 →
     live ln ∞, gen ∞
 
+After frag: [0, 32)
+❌ Fragments for `eyelids` (decl src ln 8) not fully covered: 64 != 32
 🔔 After live ranges for (removable) `bar` (decl src ln 10) not found
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
+❌ Before live range coverage
+  Covered:   0
+  Uncovered: 1
   Undefined: 0
   Unused:    0
   Removable: 1
@@ -251,27 +253,62 @@ Building live ranges: `eyelids` (decl src ln 8)
 🔔 After live ranges for (removable) `bar` (decl src ln 10) not found
 
 Pushed initial value onto stack: (ReadLSB w64 (w32 0x0) eyelids.coerce)
-Current opcode: 4096
-Unexpected expression opcode
-UNREACHABLE executed at /Users/jryans/Projects/klee/tools/check-debug-info/Variable.cpp:371!
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010f977b0d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010f97808b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x000000010f975ed3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010f979a8f SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff80fa635ed _sigtramp + 29
-5  check-debug-info         0x000000010cc7b5ad unsigned long const& std::__1::min[abi:v15006]<unsigned long>(unsigned long const&, unsigned long const&) + 29
-6  libsystem_c.dylib        0x00007ff80f95cb45 abort + 123
-7  check-debug-info         0x000000010f844430 llvm::install_out_of_memory_new_handler() + 0
-8  check-debug-info         0x000000010cca8212 Assignment::evaluate() + 7362
-9  check-debug-info         0x000000010cc6b094 checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 2164
-10 check-debug-info         0x000000010cc6da07 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 6695
-11 check-debug-info         0x000000010cc6ed08 main + 1768
-12 dyld                     0x00007ff80f6dc41f start + 1903
-./check-issue.sh: line 6: 82907 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_BC} ${CHECK_OPTS}
+Result: (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Checking equivalence of `eyelids` (decl src ln 8) from
+  assn asm ln 17, prod ln 8.0, live ln 9, gen 0
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+and
+  assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Query to parse
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 (w32 0x0) eyelids.coerce)
+     (ReadLSB w64 (w32 0x0) eyelids.coerce)))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) eyelids.coerce)
+     N0)
+✅ After `eyelids` (decl src ln 8) assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32) symbolic value matches before assn asm ln 17, prod ln 8.0, live ln 9, gen 0
+
+✅ Before symbolic values checked against after
+  Matching:    1
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   1
+
+#### Check after against before
+
+Checking equivalence of `eyelids` (decl src ln 8) from
+  assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+and
+  assn asm ln 17, prod ln 8.0, live ln 9, gen 0
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Query to parse
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 (w32 0x0) eyelids.coerce)
+     (ReadLSB w64 (w32 0x0) eyelids.coerce)))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) eyelids.coerce)
+     N0)
+✅ Before `eyelids` (decl src ln 8) assn asm ln 17, prod ln 8.0, live ln 9, gen 0 symbolic value matches after assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+
+✅ After symbolic values checked against before
+  Matching:    1
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Summary
+
+❌ Some consistency checks failed
 ++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
@@ -380,18 +417,18 @@ Computing generations: `bar` (decl src ln 10)
 After variable `eyelids` (decl src ln 8)
 Value produced for `eyelids` (decl src ln 8), asm ln 11
   arg 0
-  Added assignment asm ln 11, prod ln 8.0, live ln 9, gen 0
+  Added assignment asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
 After variable `eyelids` (decl src ln 8)
 Value produced for `eyelids` (decl src ln 8), asm ln 12
   const i32 undef
 🔔 Value produced for `eyelids` (decl src ln 8): missing produced ln, using decl ln
-  Added assignment asm ln 12, prod ln 8.0, live ln 9, gen 0
+  Added assignment asm ln 12, prod ln 8.0, live ln 9, gen 0, frag [32, 64)
 After variable `bar` (decl src ln 10)
 After variable intrinsic with undef input, asm ln 14, ignoring undefined variable
   @dbg.value(i32 undef, !22)
 Computing generations: `eyelids` (decl src ln 8)
-  asm ln 11, prod ln 8.0, live ln 9, gen 0
-  asm ln 12, prod ln 8.0, live ln 9, gen 1
+  asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+  asm ln 12, prod ln 8.0, live ln 9, gen 1, frag [32, 64)
 
 ✅ 2 before variables found, 2 after variables found, 0 mismatched
 
@@ -435,18 +472,19 @@ Building live ranges: `bar` (decl src ln 10)
     live ln ∞, gen ∞
 
 Computing generations: `eyelids` (decl src ln 8)
-  asm ln 11, prod ln 8.0, live ln 9, gen 0
-  asm ln 12, prod ln 8.0, live ln 9, gen 1
+  asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+  asm ln 12, prod ln 8.0, live ln 9, gen 1, frag [32, 64)
 Building live ranges: `eyelids` (decl src ln 8)
-  asm ln 11, prod ln 8.0, live ln 9, gen 0
+  asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
     live ln 9, gen 0 →
     live ln 9, gen 1
 
-🔔 After live range for `eyelids` (decl src ln 8) terminates early
+After frag: [0, 32)
+❌ Fragments for `eyelids` (decl src ln 8) not fully covered: 64 != 32
 🔔 After live ranges for (removable) `bar` (decl src ln 10) not found
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
+❌ Before live range coverage
+  Covered:   0
+  Uncovered: 1
   Undefined: 0
   Unused:    0
   Removable: 1
@@ -456,24 +494,63 @@ Building live ranges: `eyelids` (decl src ln 8)
 🔔 After live ranges for (removable) `bar` (decl src ln 10) not found
 
 Pushed initial value onto stack: (ReadLSB w64 (w32 0x0) eyelids.coerce)
-Current opcode: 4096
-Unexpected expression opcode
-UNREACHABLE executed at /Users/jryans/Projects/klee/tools/check-debug-info/Variable.cpp:371!
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010c2dbb0d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010c2dc08b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x000000010c2d9ed3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010c2dda8f SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff80fa635ed _sigtramp + 29
-5  check-debug-info         0x00000001095df5ad unsigned long const& std::__1::min[abi:v15006]<unsigned long>(unsigned long const&, unsigned long const&) + 29
-6  libsystem_c.dylib        0x00007ff80f95cb45 abort + 123
-7  check-debug-info         0x000000010c1a8430 llvm::install_out_of_memory_new_handler() + 0
-8  check-debug-info         0x000000010960c212 Assignment::evaluate() + 7362
-9  check-debug-info         0x00000001095cf094 checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::IntervalMap<Location, Assignment*, 8u, llvm::IntervalMapHalfOpenInfo<Location> > > > >&, bool, bool) + 2164
-10 check-debug-info         0x00000001095d1a07 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 6695
-11 check-debug-info         0x00000001095d2d08 main + 1768
-12 dyld                     0x00007ff80f6dc41f start + 1903
-./check-fix.sh: line 6: 82933 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_FIXED_BC} ${CHECK_OPTS}
+Result: (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Checking equivalence of `eyelids` (decl src ln 8) from
+  assn asm ln 17, prod ln 8.0, live ln 9, gen 0
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+and
+  assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Query to parse
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 (w32 0x0) eyelids.coerce)
+     (ReadLSB w64 (w32 0x0) eyelids.coerce)))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) eyelids.coerce)
+     N0)
+✅ After `eyelids` (decl src ln 8) assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32) symbolic value matches before assn asm ln 17, prod ln 8.0, live ln 9, gen 0
+
+✅ Before symbolic values checked against after
+  Matching:    1
+  Mismatched:  0
+  Unused:      0
+  Unreachable: 0
+  Removable:   1
+
+#### Check after against before
+
+Checking equivalence of `eyelids` (decl src ln 8) from
+  assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+and
+  assn asm ln 17, prod ln 8.0, live ln 9, gen 0
+  i64 %eyelids.coerce
+  (ReadLSB w64 (w32 0x0) eyelids.coerce)
+Query to parse
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+array eyelids.coerce[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 (w32 0x0) eyelids.coerce)
+     (ReadLSB w64 (w32 0x0) eyelids.coerce)))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) eyelids.coerce)
+     N0)
+✅ Before `eyelids` (decl src ln 8) assn asm ln 17, prod ln 8.0, live ln 9, gen 0 symbolic value matches after assn asm ln 11, prod ln 8.0, live ln 9, gen 0, frag [0, 32)
+
+🔔 Before `eyelids` (decl src ln 8) assn asm ln 17, prod ln 8.0, live ln 9, gen 0 coordinates don't match after assn asm ln 12, prod ln 8.0, live ln 9, gen 1, frag [32, 64)
+Variable intrinsic with undef input
+❌ After `eyelids` (decl src ln 8) assn asm ln 12, prod ln 8.0, live ln 9, gen 1, frag [32, 64) has no symbolic value from i32 undef
+
+❌ After symbolic values checked against before
+  Matching:    1
+  Mismatched:  1
+  Unused:      0
+  Unreachable: 0
+  Removable:   0
+
+## Summary
+
+❌ Some consistency checks failed
