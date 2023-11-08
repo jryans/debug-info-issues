@@ -5,3 +5,5 @@ klee-out*
 example-O?
 *.tmp
 *.o
+*.i
+*.dbgcov
