@@ -3,7 +3,7 @@ set -eux
 llvm() {
   local build=$1
   local program=$2
-  echo "$HOME/Projects/LLVM/llvm/build-$build/bin/$program"
+  echo "$HOME/Projects/LLVM/llvm/builds/$build/bin/$program"
 }
 
 klee() {
