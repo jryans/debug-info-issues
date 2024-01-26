@@ -1,7 +1,7 @@
-; ModuleID = '<source>' https://godbolt.org/z/Ye6zMceWb
-source_filename = "<source>"
-target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
-target triple = "x86_64-unknown-linux-gnu"
+; ModuleID = 'example.c' https://godbolt.org/z/Ye6zMceWb
+source_filename = "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/loopstrengthreduce-drops-dbg-value/example.c"
+target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-apple-macosx13.0.0"
 
 ; Function Attrs: norecurse nounwind readnone uwtable
 define dso_local i32 @foo(i32 %blah) local_unnamed_addr #0 !dbg !7 {
@@ -42,14 +42,14 @@ attributes #1 = { nounwind readnone speculatable willreturn }
 !llvm.ident = !{!6}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "clang version 11.0.0 (https://github.com/llvm/llvm-project.git 176249bd6732a8044d457092ed932768724a6f06)", isOptimized: true, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, splitDebugInlining: false, nameTableKind: None)
-!1 = !DIFile(filename: "<source>", directory: "/app")
+!1 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/loopstrengthreduce-drops-dbg-value")
 !2 = !{}
 !3 = !{i32 7, !"Dwarf Version", i32 4}
 !4 = !{i32 2, !"Debug Info Version", i32 3}
 !5 = !{i32 1, !"wchar_size", i32 4}
 !6 = !{!"clang version 11.0.0 (https://github.com/llvm/llvm-project.git 176249bd6732a8044d457092ed932768724a6f06)"}
 !7 = distinct !DISubprogram(name: "foo", scope: !8, file: !8, line: 1, type: !9, scopeLine: 1, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !12)
-!8 = !DIFile(filename: "example.c", directory: "/app")
+!8 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/loopstrengthreduce-drops-dbg-value")
 !9 = !DISubroutineType(types: !10)
 !10 = !{!11, !11}
 !11 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)

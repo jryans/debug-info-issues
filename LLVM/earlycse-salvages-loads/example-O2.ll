@@ -1,9 +1,7 @@
-; https://godbolt.org/z/qYj8dExve
-
-; ModuleID = '/app/example.c'
-source_filename = "/app/example.c"
-target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
-target triple = "x86_64-unknown-linux-gnu"
+; ModuleID = 'example.c' https://godbolt.org/z/qYj8dExve
+source_filename = "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/earlycse-salvages-loads/example.c"
+target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-apple-macosx13.0.0"
 
 ; Function Attrs: noinline norecurse nounwind uwtable writeonly
 define dso_local i32 @foo(i32* nocapture %bar, i32 %arg, i32 returned %more) local_unnamed_addr #0 !dbg !7 {
@@ -29,14 +27,14 @@ attributes #1 = { nounwind readnone speculatable }
 !llvm.ident = !{!6}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "clang version 8.0.0 (tags/RELEASE_800/final 356655)", isOptimized: true, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, nameTableKind: None)
-!1 = !DIFile(filename: "/app/example.c", directory: "/app")
+!1 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/earlycse-salvages-loads")
 !2 = !{}
 !3 = !{i32 2, !"Dwarf Version", i32 4}
 !4 = !{i32 2, !"Debug Info Version", i32 3}
 !5 = !{i32 1, !"wchar_size", i32 4}
 !6 = !{!"clang version 8.0.0 (tags/RELEASE_800/final 356655)"}
 !7 = distinct !DISubprogram(name: "foo", scope: !8, file: !8, line: 1, type: !9, scopeLine: 1, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !13)
-!8 = !DIFile(filename: "example.c", directory: "/app")
+!8 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/earlycse-salvages-loads")
 !9 = !DISubroutineType(types: !10)
 !10 = !{!11, !12, !11, !11}
 !11 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
