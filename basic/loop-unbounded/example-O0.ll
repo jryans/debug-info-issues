@@ -3,8 +3,6 @@ source_filename = "example.c"
 target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-apple-macosx13.0.0"
 
-@.str = private unnamed_addr constant [2 x i8] c"n\00", align 1
-
 ; Function Attrs: noinline nounwind ssp uwtable
 define i32 @example(i32 %n) #0 !dbg !11 {
 entry:
@@ -54,38 +52,14 @@ for.end:                                          ; preds = %for.cond
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
 
-; Function Attrs: noinline nounwind ssp uwtable
-define i32 @main() #0 !dbg !47 {
-entry:
-  %retval = alloca i32, align 4
-  %n = alloca i64, align 8
-  %result = alloca i64, align 8
-  store i32 0, i32* %retval, align 4
-  call void @llvm.dbg.declare(metadata i64* %n, metadata !51, metadata !DIExpression()), !dbg !53
-  %0 = bitcast i64* %n to i8*, !dbg !54
-  call void @klee_make_symbolic(i8* %0, i64 8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !55
-  call void @llvm.dbg.declare(metadata i64* %result, metadata !56, metadata !DIExpression()), !dbg !57
-  %1 = load i64, i64* %n, align 8, !dbg !58
-  %conv = trunc i64 %1 to i32, !dbg !58
-  %call = call i32 @example(i32 %conv), !dbg !59
-  %conv1 = sext i32 %call to i64, !dbg !59
-  store i64 %conv1, i64* %result, align 8, !dbg !57
-  %2 = load i64, i64* %result, align 8, !dbg !60
-  %conv2 = trunc i64 %2 to i32, !dbg !60
-  ret i32 %conv2, !dbg !61
-}
-
-declare void @klee_make_symbolic(i8*, i64, i8*) #2
-
 attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
-attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 
 !llvm.module.flags = !{!0, !1, !2, !3, !4, !5, !6}
 !llvm.dbg.cu = !{!7}
 !llvm.ident = !{!10}
 
-!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 13, i32 1]}
+!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 14, i32 2]}
 !1 = !{i32 7, !"Dwarf Version", i32 4}
 !2 = !{i32 2, !"Debug Info Version", i32 3}
 !3 = !{i32 1, !"wchar_size", i32 4}
@@ -132,18 +106,3 @@ attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !44 = !{!"llvm.loop.mustprogress"}
 !45 = !DILocation(line: 7, column: 10, scope: !11)
 !46 = !DILocation(line: 7, column: 3, scope: !11)
-!47 = distinct !DISubprogram(name: "main", scope: !48, file: !48, line: 5, type: !49, scopeLine: 5, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
-!48 = !DIFile(filename: "./../main.h", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/loop-unbounded")
-!49 = !DISubroutineType(types: !50)
-!50 = !{!14}
-!51 = !DILocalVariable(name: "n", scope: !47, file: !48, line: 6, type: !52)
-!52 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
-!53 = !DILocation(line: 6, column: 17, scope: !47)
-!54 = !DILocation(line: 8, column: 22, scope: !47)
-!55 = !DILocation(line: 8, column: 3, scope: !47)
-!56 = !DILocalVariable(name: "result", scope: !47, file: !48, line: 10, type: !52)
-!57 = !DILocation(line: 10, column: 17, scope: !47)
-!58 = !DILocation(line: 10, column: 34, scope: !47)
-!59 = !DILocation(line: 10, column: 26, scope: !47)
-!60 = !DILocation(line: 11, column: 10, scope: !47)
-!61 = !DILocation(line: 11, column: 3, scope: !47)

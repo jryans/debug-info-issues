@@ -6,5 +6,3 @@ int example(int n) {
   }
   return y;
 }
-
-#include "../main.h"

@@ -15,20 +15,20 @@
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -40,16 +40,16 @@
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -76,9 +76,9 @@
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
 + mkdir -p klee-out-O0
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
 + mkdir -p klee-out-O2
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
 mismatched subprogram between llvm.dbg.value variable and !dbg attachment
   call void @llvm.dbg.value(metadata i32 0, metadata !16, metadata !DIExpression()) #3, !dbg !38
 label %entry
@@ -89,7 +89,7 @@ i32 (i64)* @echo
 !20 = distinct !DISubprogram(name: "echo", scope: !3, file: !3, line: 14, type: !21, scopeLine: 14, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !2, retainedNodes: !31)
 warning: ignoring invalid debug info in example-O2.ll
 + mkdir -p klee-out-O2-fixed
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
 ^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
@@ -107,20 +107,20 @@ warning: ignoring invalid debug info in example-O2.ll
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -132,16 +132,16 @@ warning: ignoring invalid debug info in example-O2.ll
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -326,20 +326,20 @@ Building live ranges: `golf` (decl src ln 17)
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -351,16 +351,16 @@ Building live ranges: `golf` (decl src ln 17)
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module

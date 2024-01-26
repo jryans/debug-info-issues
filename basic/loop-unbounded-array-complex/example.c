@@ -8,5 +8,3 @@ int example(int n) {
   }
   return data[n % 4];
 }
-
-#include "../main.h"

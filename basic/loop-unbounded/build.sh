@@ -13,12 +13,12 @@ ${FILTER_DOT} example-O0.dot
 # IndVarSimplifyPass removes loop debug values with Clang 13.0.0
 # Limit below stops just before this
 mkdir -p klee-out-O1-partial-good
-${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=47 -o example-O1-partial-good.ll
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=39 -o example-O1-partial-good.ll
 ${LLVM_AS} -o klee-out-O1-partial-good/final.bc example-O1-partial-good.ll
 
 # This advances one more pass to include the bad IndVarSimplifyPass
 mkdir -p klee-out-O1-partial-bad
-${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=48 -o example-O1-partial-bad.ll
+${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -mllvm -opt-bisect-limit=40 -o example-O1-partial-bad.ll
 ${LLVM_AS} -o klee-out-O1-partial-bad/final.bc example-O1-partial-bad.ll
 
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O1_OPTS} -o example-O1.ll

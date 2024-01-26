@@ -15,20 +15,20 @@
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -40,16 +40,16 @@
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -66,6 +66,9 @@
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -73,16 +76,16 @@
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
 + mkdir -p klee-out-O0
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O0.o --filetype obj example-O0.ll
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt -S -o example-O0-mem2reg.ll --mem2reg example-O0.ll
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O0-mem2reg.o --filetype obj example-O0-mem2reg.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc -O0 -o example-O0.o --filetype obj example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt -S -o example-O0-mem2reg.ll --mem2reg example-O0.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc -O0 -o example-O0-mem2reg.o --filetype obj example-O0-mem2reg.ll
 + mkdir -p klee-out-O2
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O2.o --filetype obj example-O2.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2/final.bc example-O2.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc -O0 -o example-O2.o --filetype obj example-O2.ll
 + mkdir -p klee-out-O2-fixed
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc -O0 -o example-O2-fixed.o --filetype obj example-O2-fixed.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc -O0 -o example-O2-fixed.o --filetype obj example-O2-fixed.ll
 ^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
@@ -100,20 +103,20 @@
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -125,16 +128,16 @@
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -151,6 +154,9 @@
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -258,11 +264,7 @@ Computing generations: `loaded` (decl src ln 3)
 
 Collected value for `bar`
   Concrete pointer resolves to bar.deref, offset (w64 0x0)
-  Created deref expr (Concat w64 (w8 0x0)
-             (Concat w56 (w8 0x0)
-                         (Concat w48 (w8 0x0)
-                                     (Concat w40 (w8 0x1)
-                                                 (ReadLSB w32 (w32 0x0) bar.deref)))))
+  Created deref expr (ReadLSB w64 (w32 0x0) bar.deref)
   Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
   (w64 0x859449D3931F90B3)
@@ -288,11 +290,7 @@ Collected value for `arg`
 
 Collected value for `bar`
   Concrete pointer resolves to bar.deref, offset (w64 0x0)
-  Created deref expr (Concat w64 (w8 0x0)
-             (Concat w56 (w8 0x0)
-                         (Concat w48 (w8 0x0)
-                                     (Concat w40 (w8 0x1)
-                                                 (ReadLSB w32 (w32 0x0) bar.deref)))))
+  Created deref expr (ReadLSB w64 (w32 0x0) bar.deref)
   Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
   (w64 0x859449D3931F90B3)
@@ -409,18 +407,11 @@ Building live ranges: `loaded` (decl src ln 3)
     live ln 8, gen 1 →
     live ln ∞, gen ∞
 
-After frag: [0, 64)
 ❌ Live ranges for `bar` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
-After frag: [0, 32)
 🔔 After live range for `arg` (decl src ln 1) terminates early
 ❌ Live ranges for `arg` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
-After frag: [0, 32)
 ❌ Live ranges for `more` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
-After frag: [0, 32)
-After frag: [0, 32)
 ❌ Live ranges for `redundant` (decl src ln 2) not fully covered: live ln 3, gen 0 < live ln 6, gen 0
-After frag: [0, 32)
-After frag: [0, 32)
 ❌ Live ranges for `loaded` (decl src ln 3) not fully covered: live ln 4, gen 0 < live ln 6, gen 0
 ❌ Before live range coverage
   Covered:   0
@@ -476,8 +467,8 @@ and
   i32* %bar
   (ReadLSB w32 (w32 0x0) bar.deref)
 Query to parse
-array bar.deref[4] : w32 -> w8 = symbolic
-array bar.deref[4] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 (w32 0x0) bar.deref)
      (ReadLSB w32 (w32 0x0) bar.deref)))
 Parsed query
@@ -517,8 +508,8 @@ and
   i32* %bar
   (ReadLSB w32 (w32 0x0) bar.deref)
 Query to parse
-array bar.deref[4] : w32 -> w8 = symbolic
-array bar.deref[4] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 (w32 0x0) bar.deref)
      (ReadLSB w32 (w32 0x0) bar.deref)))
 Parsed query
@@ -578,8 +569,8 @@ and
   %3 = load i32, i32* %2, l3 c16
   (ReadLSB w32 (w32 0x0) bar.deref)
 Query to parse
-array bar.deref[4] : w32 -> w8 = symbolic
-array bar.deref[4] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 (w32 0x0) bar.deref)
      (ReadLSB w32 (w32 0x0) bar.deref)))
 Parsed query
@@ -597,7 +588,7 @@ and
   %3 = load i32, i32* %2, l3 c16
   (ReadLSB w32 (w32 0x0) bar.deref)
 Query to parse
-array bar.deref[4] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
 (query [] (Eq (w32 0x0)
      (ReadLSB w32 (w32 0x0) bar.deref)))
 Parsed query
@@ -634,8 +625,8 @@ and
   %1 = load i32, i32* %0, l2 c19
   (ReadLSB w32 (w32 0x0) bar.deref)
 Query to parse
-array bar.deref[4] : w32 -> w8 = symbolic
-array bar.deref[4] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 (w32 0x0) bar.deref)
      (ReadLSB w32 (w32 0x0) bar.deref)))
 Parsed query
@@ -653,7 +644,7 @@ and
   %1 = load i32, i32* %0, l2 c19
   (ReadLSB w32 (w32 0x0) bar.deref)
 Query to parse
-array bar.deref[4] : w32 -> w8 = symbolic
+array bar.deref[8] : w32 -> w8 = symbolic
 (query [] (Eq (w32 0x0)
      (ReadLSB w32 (w32 0x0) bar.deref)))
 Parsed query
@@ -688,20 +679,20 @@ Parsed query
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -713,16 +704,16 @@ Parsed query
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -739,6 +730,9 @@ Parsed query
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -808,7 +802,7 @@ Value produced for `more` (decl src ln 1), asm ln 11
   Added assignment asm ln 11, prod ln 1.0, live ln 6, gen 0
 After variable `redundant` (decl src ln 2)
 After variable intrinsic with undef input, asm ln 12, ignoring undefined variable
-  @dbg.value(i32 undef, !17)
+  @dbg.value(i32 undef, !16)
 After variable `arg` (decl src ln 1)
 Value produced for `arg` (decl src ln 1), asm ln 13
   const i32 undef
@@ -830,11 +824,7 @@ Computing generations: `more` (decl src ln 1)
 
 Collected value for `bar`
   Concrete pointer resolves to bar.deref, offset (w64 0x0)
-  Created deref expr (Concat w64 (w8 0x0)
-             (Concat w56 (w8 0x0)
-                         (Concat w48 (w8 0x0)
-                                     (Concat w40 (w8 0x1)
-                                                 (ReadLSB w32 (w32 0x0) bar.deref)))))
+  Created deref expr (ReadLSB w64 (w32 0x0) bar.deref)
   Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
   (w64 0x859449D3931F90B3)
@@ -860,11 +850,7 @@ Collected value for `arg`
 
 Collected value for `bar`
   Concrete pointer resolves to bar.deref, offset (w64 0x0)
-  Created deref expr (Concat w64 (w8 0x0)
-             (Concat w56 (w8 0x0)
-                         (Concat w48 (w8 0x0)
-                                     (Concat w40 (w8 0x1)
-                                                 (ReadLSB w32 (w32 0x0) bar.deref)))))
+  Created deref expr (ReadLSB w64 (w32 0x0) bar.deref)
   Replaced concrete pointer with hash (w64 0x859449D3931F90B3)
   i32* %bar
   (w64 0x859449D3931F90B3)
@@ -939,12 +925,9 @@ Building live ranges: `more` (decl src ln 1)
     live ln 6, gen 0 →
     live ln ∞, gen ∞
 
-After frag: [0, 64)
 ❌ Live ranges for `bar` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
-After frag: [0, 32)
 🔔 After live range for `arg` (decl src ln 1) terminates early
 ❌ Live ranges for `arg` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
-After frag: [0, 32)
 ❌ Live ranges for `more` (decl src ln 1) not fully covered: live ln 2, gen 0 < live ln 6, gen 0
 🔔 After live ranges for (removable) `redundant` (decl src ln 2) not found
 ❌ After live ranges for `loaded` (decl src ln 3) not found

@@ -15,20 +15,20 @@
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -40,16 +40,16 @@
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -66,6 +66,9 @@
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
 +++ O2_BC=klee-out-O2/final.bc
 +++ O2_FIXED_BC=klee-out-O2-fixed/final.bc
++++ BEFORE_BC=klee-out-before/final.bc
++++ AFTER_BC=klee-out-after/final.bc
++++ AFTER_FIXED_BC=klee-out-after-fixed/final.bc
 ++++ klee debug check-debug-info
 ++++ local build=debug
 ++++ local program=check-debug-info
@@ -86,6 +89,9 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 ### Variables
 
 Before variable `nose` (decl src ln 6)
+Store to declared address of `nose` (decl src ln 6), asm ln 16
+  arg 0
+  Added assignment asm ln 16, prod ln 6.0, live ln 7, gen 0
 Before variable `more` (decl src ln 6)
 Store to declared address of `more` (decl src ln 6), asm ln 30
   %add = add nsw i32 %3, 1, l9 c8, asm ln 29
@@ -103,6 +109,8 @@ Store to declared address of `boot` (decl src ln 8), asm ln 27
   %2 = load i32, i32* %b, l8 c19, asm ln 26
   @dbg.declare without read users, removable
   Added assignment asm ln 27, prod ln 8.19, live ln 9, gen 0
+Computing generations: `nose` (decl src ln 6)
+  asm ln 16, prod ln 6.0, live ln 7, gen 0
 Computing generations: `more` (decl src ln 6)
   asm ln 18, prod ln 6.0, live ln 7, gen 0
   asm ln 30, prod ln 9.8, live ln 10, gen 1
@@ -141,6 +149,9 @@ Computing generations: `more` (decl src ln 6)
 
 #### Before values
 
+Collected value for `nose`
+  i64 %nose.coerce
+  (ReadLSB w64 (w32 0x0) nose.coerce)
 Collected value for `more`
   i32 %more
   (ReadLSB w32 (w32 0x0) more)
@@ -171,6 +182,8 @@ Filtering redundant before assignments: `more` (decl src ln 6)
 
 Filtering redundant after assignments: `more` (decl src ln 6)
 
+Computing generations: `nose` (decl src ln 6)
+  asm ln 16, prod ln 6.0, live ln 7, gen 0
 Computing generations: `more` (decl src ln 6)
   asm ln 18, prod ln 6.0, live ln 7, gen 0
   asm ln 30, prod ln 9.8, live ln 10, gen 1
@@ -178,6 +191,10 @@ Computing generations: `shoe` (decl src ln 7)
   asm ln 23, prod ln 7.19, live ln 8, gen 0
 Computing generations: `boot` (decl src ln 8)
   asm ln 27, prod ln 8.19, live ln 9, gen 0
+Building live ranges: `nose` (decl src ln 6)
+  asm ln 16, prod ln 6.0, live ln 7, gen 0
+    live ln 7, gen 0 →
+    live ln ∞, gen ∞
 Building live ranges: `more` (decl src ln 6)
   asm ln 18, prod ln 6.0, live ln 7, gen 0
     live ln 7, gen 0 →
@@ -205,14 +222,14 @@ Building live ranges: `more` (decl src ln 6)
     live ln 10, gen 1 →
     live ln ∞, gen ∞
 
-🔔 Before live ranges for `nose` (decl src ln 6) not found (variable likely undefined)
+❌ After live ranges for `nose` (decl src ln 6) not found
 ❌ Live ranges for `more` (decl src ln 6) not fully covered: live ln 7, gen 0 < live ln 9, gen 0
 🔔 After live ranges for (removable) `shoe` (decl src ln 7) not found
 🔔 After live ranges for (removable) `boot` (decl src ln 8) not found
 ❌ Before live range coverage
   Covered:   0
-  Uncovered: 1
-  Undefined: 1
+  Uncovered: 2
+  Undefined: 0
   Unused:    0
   Removable: 2
 
@@ -262,11 +279,13 @@ Parsed query
      N0)
 ✅ After `more` (decl src ln 6) assn asm ln 15, prod ln 9.8, live ln 10, gen 1 symbolic value matches before assn asm ln 30, prod ln 9.8, live ln 10, gen 1
 
+❌ After live range for `nose` (decl src ln 6) not found
+
 🔔 After live ranges for (removable) `shoe` (decl src ln 7) not found
 
-✅ Before symbolic values checked against after
+❌ Before symbolic values checked against after
   Matching:    2
-  Mismatched:  0
+  Mismatched:  1
   Unused:      0
   Unreachable: 0
   Removable:   2

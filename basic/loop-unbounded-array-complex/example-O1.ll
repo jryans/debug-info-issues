@@ -4,7 +4,6 @@ target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16
 target triple = "x86_64-apple-macosx13.0.0"
 
 @__const.example.data = private unnamed_addr constant [4 x i32] [i32 0, i32 1, i32 2, i32 3], align 16
-@.str = private unnamed_addr constant [2 x i8] c"n\00", align 1
 
 ; Function Attrs: nofree noinline nosync nounwind readnone ssp uwtable
 define i32 @example(i32 %n) local_unnamed_addr #0 !dbg !11 {
@@ -12,7 +11,7 @@ entry:
   %data = alloca [4 x i32], align 16
   call void @llvm.dbg.value(metadata i32 %n, metadata !16, metadata !DIExpression()), !dbg !29
   %0 = bitcast [4 x i32]* %data to i8*, !dbg !30
-  call void @llvm.lifetime.start.p0i8(i64 16, i8* nonnull %0) #7, !dbg !30
+  call void @llvm.lifetime.start.p0i8(i64 16, i8* nonnull %0) #5, !dbg !30
   call void @llvm.dbg.declare(metadata [4 x i32]* %data, metadata !17, metadata !DIExpression()), !dbg !31
   call void @llvm.memcpy.p0i8.p0i8.i64(i8* noundef nonnull align 16 dereferenceable(16) %0, i8* noundef nonnull align 16 dereferenceable(16) bitcast ([4 x i32]* @__const.example.data to i8*), i64 16, i1 false), !dbg !31
   call void @llvm.dbg.value(metadata i32 0, metadata !21, metadata !DIExpression()), !dbg !32
@@ -24,7 +23,7 @@ for.cond.cleanup:                                 ; preds = %for.body, %entry
   %idxprom5 = sext i32 %rem4 to i64, !dbg !36
   %arrayidx6 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom5, !dbg !36
   %1 = load i32, i32* %arrayidx6, align 4, !dbg !36, !tbaa !37
-  call void @llvm.lifetime.end.p0i8(i64 16, i8* nonnull %0) #7, !dbg !41
+  call void @llvm.lifetime.end.p0i8(i64 16, i8* nonnull %0) #5, !dbg !41
   ret i32 %1, !dbg !42
 
 for.body:                                         ; preds = %entry, %for.body
@@ -58,42 +57,21 @@ declare void @llvm.memcpy.p0i8.p0i8.i64(i8* noalias nocapture writeonly, i8* noa
 ; Function Attrs: argmemonly mustprogress nofree nosync nounwind willreturn
 declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #2
 
-; Function Attrs: noinline nounwind ssp uwtable
-define i32 @main() local_unnamed_addr #4 !dbg !53 {
-entry:
-  %n = alloca i64, align 8
-  %0 = bitcast i64* %n to i8*, !dbg !61
-  call void @llvm.lifetime.start.p0i8(i64 8, i8* nonnull %0) #7, !dbg !61
-  call void @llvm.dbg.value(metadata i64* %n, metadata !58, metadata !DIExpression(DW_OP_deref)), !dbg !62
-  call void @klee_make_symbolic(i8* nonnull %0, i64 8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)) #7, !dbg !63
-  %1 = load i64, i64* %n, align 8, !dbg !64, !tbaa !65
-  call void @llvm.dbg.value(metadata i64 %1, metadata !58, metadata !DIExpression()), !dbg !62
-  %conv = trunc i64 %1 to i32, !dbg !64
-  %call = call i32 @example(i32 %conv), !dbg !67
-  call void @llvm.dbg.value(metadata i32 %call, metadata !60, metadata !DIExpression(DW_OP_LLVM_convert, 32, DW_ATE_signed, DW_OP_LLVM_convert, 64, DW_ATE_signed, DW_OP_stack_value)), !dbg !62
-  call void @llvm.lifetime.end.p0i8(i64 8, i8* nonnull %0) #7, !dbg !68
-  ret i32 %call, !dbg !69
-}
-
-declare !dbg !70 void @klee_make_symbolic(i8*, i64, i8*) local_unnamed_addr #5
-
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
-declare void @llvm.dbg.value(metadata, metadata, metadata) #6
+declare void @llvm.dbg.value(metadata, metadata, metadata) #4
 
 attributes #0 = { nofree noinline nosync nounwind readnone ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { mustprogress nofree nosync nounwind readnone speculatable willreturn }
 attributes #2 = { argmemonly mustprogress nofree nosync nounwind willreturn }
 attributes #3 = { argmemonly mustprogress nofree nounwind willreturn }
-attributes #4 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
-attributes #5 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
-attributes #6 = { nofree nosync nounwind readnone speculatable willreturn }
-attributes #7 = { nounwind }
+attributes #4 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #5 = { nounwind }
 
 !llvm.module.flags = !{!0, !1, !2, !3, !4, !5, !6}
 !llvm.dbg.cu = !{!7}
 !llvm.ident = !{!10}
 
-!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 13, i32 1]}
+!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 14, i32 2]}
 !1 = !{i32 7, !"Dwarf Version", i32 4}
 !2 = !{i32 2, !"Debug Info Version", i32 3}
 !3 = !{i32 1, !"wchar_size", i32 4}
@@ -146,28 +124,3 @@ attributes #7 = { nounwind }
 !50 = !DILocation(line: 8, column: 3, scope: !22)
 !51 = !{!"llvm.loop.mustprogress"}
 !52 = !{!"llvm.loop.unroll.disable"}
-!53 = distinct !DISubprogram(name: "main", scope: !54, file: !54, line: 5, type: !55, scopeLine: 5, flags: DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !57)
-!54 = !DIFile(filename: "./../main.h", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/loop-unbounded-array-complex")
-!55 = !DISubroutineType(types: !56)
-!56 = !{!14}
-!57 = !{!58, !60}
-!58 = !DILocalVariable(name: "n", scope: !53, file: !54, line: 6, type: !59)
-!59 = !DIBasicType(name: "long unsigned int", size: 64, encoding: DW_ATE_unsigned)
-!60 = !DILocalVariable(name: "result", scope: !53, file: !54, line: 10, type: !59)
-!61 = !DILocation(line: 6, column: 3, scope: !53)
-!62 = !DILocation(line: 0, scope: !53)
-!63 = !DILocation(line: 8, column: 3, scope: !53)
-!64 = !DILocation(line: 10, column: 34, scope: !53)
-!65 = !{!66, !66, i64 0}
-!66 = !{!"long", !39, i64 0}
-!67 = !DILocation(line: 10, column: 26, scope: !53)
-!68 = !DILocation(line: 12, column: 1, scope: !53)
-!69 = !DILocation(line: 11, column: 3, scope: !53)
-!70 = !DISubprogram(name: "klee_make_symbolic", scope: !71, file: !71, line: 37, type: !72, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !9)
-!71 = !DIFile(filename: "klee/include/klee/klee.h", directory: "/Users/jryans/Projects")
-!72 = !DISubroutineType(types: !73)
-!73 = !{null, !74, !59, !75}
-!74 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: null, size: 64)
-!75 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !76, size: 64)
-!76 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !77)
-!77 = !DIBasicType(name: "char", size: 8, encoding: DW_ATE_signed_char)

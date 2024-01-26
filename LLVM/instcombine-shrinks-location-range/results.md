@@ -15,20 +15,20 @@
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -40,16 +40,16 @@
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -76,11 +76,11 @@
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
 + mkdir -p klee-out-before
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-before/final.bc example-before.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-before/final.bc example-before.ll
 + mkdir -p klee-out-after
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-after/final.bc example-after.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-after/final.bc example-after.ll
 + mkdir -p klee-out-after-fixed
-+ /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-after-fixed/final.bc example-after-fixed.ll
++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-after-fixed/final.bc example-after-fixed.ll
 ^D++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
@@ -98,20 +98,20 @@
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -123,16 +123,16 @@
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -301,7 +301,7 @@ Computing generations: `k` (decl src ln 2)
 
 Collected value for `k`
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1116FC730)
+  (Add w64 (w64 0x10DBF2680)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
@@ -313,7 +313,7 @@ Collected value for `k`
 
 Collected value for `k`
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1116FC0D0)
+  (Add w64 (w64 0x10DBF29D0)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
@@ -349,29 +349,29 @@ Building live ranges: `k` (decl src ln 2)
 Checking equivalence of `k` (decl src ln 2) from
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1116FC730)
+  (Add w64 (w64 0x10DBF2680)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 and
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1116FC0D0)
+  (Add w64 (w64 0x10DBF29D0)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 Query to parse
 array b[8] : w32 -> w8 = symbolic
 array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x1116FC730)
+(query [] (Eq (Add w64 (w64 0x10DBF2680)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1116FC0D0)
+     (Add w64 (w64 0x10DBF29D0)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))))
 Parsed query
-(Eq (Add w64 (w64 0x1116FC730)
+(Eq (Add w64 (w64 0x10DBF2680)
               N0:(Mul w64 (w64 0x8)
                           (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1116FC0D0) N0))
+     (Add w64 (w64 0x10DBF29D0) N0))
 ❌ After `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 18, prod ln 5.3, live ln 6, gen 0
 
 ❌ Before symbolic values checked against after
@@ -386,29 +386,29 @@ Parsed query
 Checking equivalence of `k` (decl src ln 2) from
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1116FC0D0)
+  (Add w64 (w64 0x10DBF29D0)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 and
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x1116FC730)
+  (Add w64 (w64 0x10DBF2680)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 Query to parse
 array b[8] : w32 -> w8 = symbolic
 array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x1116FC0D0)
+(query [] (Eq (Add w64 (w64 0x10DBF29D0)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1116FC730)
+     (Add w64 (w64 0x10DBF2680)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))))
 Parsed query
-(Eq (Add w64 (w64 0x1116FC0D0)
+(Eq (Add w64 (w64 0x10DBF29D0)
               N0:(Mul w64 (w64 0x8)
                           (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x1116FC730) N0))
+     (Add w64 (w64 0x10DBF2680) N0))
 ❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 18, prod ln 5.3, live ln 6, gen 0
 
 ❌ After symbolic values checked against before
@@ -438,20 +438,20 @@ Parsed query
 ++++ llvm release-clang-lldb-13.0.0 clang-tidy
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang-tidy
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
-+++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang-tidy
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
++++ CLANG_TIDY=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang-tidy
 +++ DIAGNOSTICS_FILE=diagnostics.yaml
 +++ CLANG_TIDY_OPTS='--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=diagnostics.yaml'
 ++++ llvm release-clang-lldb-13.0.0 clang
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=clang
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
-+++ CLANG=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/clang
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
++++ CLANG=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang
 ++++ llvm release-clang-lldb-13.0.0 llvm-as
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llvm-as
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
-+++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llvm-as
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
++++ LLVM_AS=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as
 +++ CC_SYSROOT_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_COMMON_OPTS='-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone'
 +++ CC_IR_OPTS='-S -emit-llvm'
@@ -463,16 +463,16 @@ Parsed query
 ++++ llvm release-clang-lldb-13.0.0 opt
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=opt
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
-+++ OPT=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/opt
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
++++ OPT=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/opt
 +++ OPT_CFG_OPTS='--passes=dot-cfg-only --disable-output'
 ++++ dirname ./../../vars.sh
 +++ FILTER_DOT=./../../tools/filter-dot.js
 ++++ llvm release-clang-lldb-13.0.0 llc
 ++++ local build=release-clang-lldb-13.0.0
 ++++ local program=llc
-++++ echo /Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
-+++ LLC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-13.0.0/bin/llc
+++++ echo /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
++++ LLC=/Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llc
 ++++ klee debug print-module
 ++++ local build=debug
 ++++ local program=print-module
@@ -684,7 +684,7 @@ Computing generations: `k` (decl src ln 2)
 
 Collected value for `k`
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x110DD8690)
+  (Add w64 (w64 0x11676A710)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
@@ -696,7 +696,7 @@ Collected value for `k`
 
 Collected value for `k`
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x110DD81B0)
+  (Add w64 (w64 0x11676A970)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
@@ -732,29 +732,29 @@ Building live ranges: `k` (decl src ln 2)
 Checking equivalence of `k` (decl src ln 2) from
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x110DD8690)
+  (Add w64 (w64 0x11676A710)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 and
   assn asm ln 20, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x110DD81B0)
+  (Add w64 (w64 0x11676A970)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 Query to parse
 array b[8] : w32 -> w8 = symbolic
 array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x110DD8690)
+(query [] (Eq (Add w64 (w64 0x11676A710)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x110DD81B0)
+     (Add w64 (w64 0x11676A970)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))))
 Parsed query
-(Eq (Add w64 (w64 0x110DD8690)
+(Eq (Add w64 (w64 0x11676A710)
               N0:(Mul w64 (w64 0x8)
                           (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x110DD81B0) N0))
+     (Add w64 (w64 0x11676A970) N0))
 ❌ After `k` (decl src ln 2) assn asm ln 20, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 18, prod ln 5.3, live ln 6, gen 0
 
 ❌ Before symbolic values checked against after
@@ -769,29 +769,29 @@ Parsed query
 Checking equivalence of `k` (decl src ln 2) from
   assn asm ln 20, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x110DD81B0)
+  (Add w64 (w64 0x11676A970)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 and
   assn asm ln 18, prod ln 5.3, live ln 6, gen 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x110DD8690)
+  (Add w64 (w64 0x11676A710)
           (Mul w64 (w64 0x8)
                    (ReadLSB w64 (w32 0x0) b)))
 Query to parse
 array b[8] : w32 -> w8 = symbolic
 array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x110DD81B0)
+(query [] (Eq (Add w64 (w64 0x11676A970)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x110DD8690)
+     (Add w64 (w64 0x11676A710)
               (Mul w64 (w64 0x8)
                        (ReadLSB w64 (w32 0x0) b)))))
 Parsed query
-(Eq (Add w64 (w64 0x110DD81B0)
+(Eq (Add w64 (w64 0x11676A970)
               N0:(Mul w64 (w64 0x8)
                           (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x110DD8690) N0))
+     (Add w64 (w64 0x11676A710) N0))
 ❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 20, prod ln 5.3, live ln 6, gen 0
 
 ❌ After symbolic values checked against before
