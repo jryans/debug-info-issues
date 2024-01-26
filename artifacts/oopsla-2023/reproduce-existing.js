@@ -17,11 +17,14 @@ const dirs = [
   "LLVM/simplifycfg-select-unreachable-line-2",
   "LLVM/simplifycfg-removes-unused-value",
   "LLVM/earlycse-salvages-loads",
-  "LLVM/earlycse-removes-arguments",
+  // TODO: Needs DW_OP_LLVM_fragment
+  // "LLVM/earlycse-removes-arguments",
   "LLVM/simplifycfg-drops-value",
   "LLVM/instcombine-incorrect-unused-value",
   "LLVM/instcombine-shrinks-location-range",
   "LLVM/simplifycfg-select-unreachable-line-3",
+  // TODO: Needs DW_OP_LLVM_fragment
+  // "LLVM/instcombine-drops-fragment",
 ];
 
 const total = dirs.length;
