@@ -3,5 +3,3 @@ int example(int n) {
   int y = x + 4 + n;
   return y;
 }
-
-#include "../main.h"
