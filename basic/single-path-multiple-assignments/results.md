@@ -291,7 +291,7 @@ Value produced for `y` (decl src ln 3), asm ln 12
 After variable `x` (decl src ln 2)
 Value produced for `x` (decl src ln 2), asm ln 13
   %mul = shl i32 %n, 3, l2 c13, asm ln 10
-  Producers match last assignment, skipping
+  Added assignment asm ln 13, prod ln 2.13, live ln 5, enc None
 After variable `y` (decl src ln 3)
 Value produced for `y` (decl src ln 3), asm ln 15
   %mul3 = add i32 %mul, 8, l5 c9, asm ln 14
@@ -348,6 +348,10 @@ Collected value for `y`
 Collected value for `y`
   i32 %n
   (ReadLSB w32 (w32 0x0) n)
+Collected value for `x`
+  %mul = shl i32 %n, 3, l2 c13
+  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+          (w32 0x3))
 Collected value for `y`
   %mul3 = add i32 %mul, 8, l5 c9
   (Add w32 (w32 0x8)
@@ -358,9 +362,138 @@ Collected value for `y`
 
 Filtering redundant before assignments: `x` (decl src ln 2)
 
+Checking equivalence of `x` (decl src ln 2) from
+  assn asm ln 17, prod ln 2.13, live ln 3, enc 0
+  %mul = mul nsw i32 %0, 2, l2 c13
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) n))
+and
+  assn asm ln 27, prod ln 4.9, live ln 5, enc 1
+  %add2 = add nsw i32 %3, %4, l4 c9
+  (Add w32 (w32 0x4)
+          (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                     N0:(ReadLSB w32 (w32 0x0) n))
+                            N0)
+                   N0))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(Mul w32 (w32 0x2)
+                 N1:(ReadLSB w32 (w32 0x0) n))
+     (Add w32 (w32 0x4)
+              (Add w32 (Add w32 N0 N1) N1))))
+Parsed query
+(Eq N0:(Mul w32 (w32 0x2)
+                 N1:(ReadLSB w32 (w32 0x0) n))
+     (Add w32 (w32 0x4)
+              (Add w32 (Add w32 N0 N1) N1)))
+
 Filtering redundant before assignments: `y` (decl src ln 3)
 
+Checking equivalence of `y` (decl src ln 3) from
+  assn asm ln 23, prod ln 3.17, live ln 4, enc 0
+  %add1 = add nsw i32 %add, %2, l3 c17
+  (Add w32 (w32 0x4)
+          (Add w32 (Mul w32 (w32 0x2)
+                            N0:(ReadLSB w32 (w32 0x0) n))
+                   N0))
+and
+  assn asm ln 30, prod ln 5.9, live ln 6, enc 1
+  %mul3 = mul nsw i32 %5, 2, l5 c9
+  (Mul w32 (w32 0x2)
+          (Add w32 (w32 0x4)
+                   (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                              N0:(ReadLSB w32 (w32 0x0) n))
+                                     N0)
+                            N0)))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (w32 0x4)
+              N0:(Add w32 (Mul w32 (w32 0x2)
+                                   N1:(ReadLSB w32 (w32 0x0) n))
+                          N1))
+     (Mul w32 (w32 0x2)
+              (Add w32 (w32 0x4) (Add w32 N0 N1)))))
+Parsed query
+(Eq (Add w32 (w32 0x4)
+              N0:(Add w32 (Mul w32 (w32 0x2)
+                                   N1:(ReadLSB w32 (w32 0x0) n))
+                          N1))
+     (Mul w32 (w32 0x2)
+              (Add w32 (w32 0x4) (Add w32 N0 N1))))
+
+Filtering redundant after assignments: `x` (decl src ln 2)
+
+Pushed initial value onto stack: (Shl w32 (ReadLSB w32 (w32 0x0) n)
+          (w32 0x3))
+plus_uconst: (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                   (w32 0x3))
+          (Extract w32 0 (w64 0x4)))
+Result: (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                   (w32 0x3))
+          (Extract w32 0 (w64 0x4)))
+Checking equivalence of `x` (decl src ln 2) from
+  assn asm ln 13, prod ln 2.13, live ln 5, enc 1
+  %mul = shl i32 %n, 3, l2 c13
+  (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                   (w32 0x3))
+          (Extract w32 0 (w64 0x4)))
+and
+  assn asm ln 11, prod ln 2.13, live ln 5, enc 0
+  %mul = shl i32 %n, 3, l2 c13
+  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+          (w32 0x3))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 N0:(Shl w32 (ReadLSB w32 (w32 0x0) n)
+                          (w32 0x3))
+              (Extract w32 0 (w64 0x4)))
+     N0))
+Parsed query
+(Eq (Add w32 N0:(Shl w32 (ReadLSB w32 (w32 0x0) n)
+                          (w32 0x3))
+              (Extract w32 0 (w64 0x4)))
+     N0)
+
 Filtering redundant after assignments: `y` (decl src ln 3)
+
+LLVM_arg: (Shl w32 (ReadLSB w32 (w32 0x0) n)
+          (w32 0x3))
+plus_uconst: (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                   (w32 0x3))
+          (Extract w32 0 (w64 0x4)))
+LLVM_arg: (ReadLSB w32 (w32 0x0) n)
+plus: (Add w32 N0:(ReadLSB w32 (w32 0x0) n)
+          (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
+Result: (Add w32 N0:(ReadLSB w32 (w32 0x0) n)
+          (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
+Checking equivalence of `y` (decl src ln 3) from
+  assn asm ln 15, prod ln 5.9, live ln 6, enc 1
+  %mul3 = add i32 %mul, 8, l5 c9
+  (Add w32 (w32 0x8)
+          (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                   (w32 0x3)))
+and
+  assn asm ln 12, prod ln 3.13, live ln 5, enc 0
+  [ %mul = shl i32 %n, 3, l2 c13, i32 %n ]
+  (Add w32 N0:(ReadLSB w32 (w32 0x0) n)
+          (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (w32 0x8)
+              N0:(Shl w32 N1:(ReadLSB w32 (w32 0x0) n)
+                          (w32 0x3)))
+     (Add w32 N1
+              (Add w32 N0 (Extract w32 0 (w64 0x4))))))
+Parsed query
+(Eq (Add w32 (w32 0x8)
+              N0:(Shl w32 N1:(ReadLSB w32 (w32 0x0) n)
+                          (w32 0x3)))
+     (Add w32 N1
+              (Add w32 N0 (Extract w32 0 (w64 0x4)))))
 
 Collating encountered assignments: `n` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 2, enc 0
@@ -375,6 +508,7 @@ Collating encountered assignments: `n` (decl src ln 1)
   asm ln 9, prod ln 1.0, live ln 2, enc 0
 Collating encountered assignments: `x` (decl src ln 2)
   asm ln 11, prod ln 2.13, live ln 5, enc 0
+  asm ln 13, prod ln 2.13, live ln 5, enc 1
 Collating encountered assignments: `y` (decl src ln 3)
   asm ln 12, prod ln 3.13, live ln 5, enc 0
   asm ln 15, prod ln 5.9, live ln 6, enc 1
@@ -423,18 +557,40 @@ Parsed query
      (Shl w32 N0 (w32 0x3)))
 ❌ After `x` (decl src ln 2) assn asm ln 11, prod ln 2.13, live ln 5, enc 0 symbolic value doesn't match before assn asm ln 17, prod ln 2.13, live ln 3, enc 0
 
-❌ After encountered assn for `x` (decl src ln 2) at asm ln 27, prod ln 4.9, live ln 5, enc 1 not found
-
-LLVM_arg: (Shl w32 (ReadLSB w32 (w32 0x0) n)
-          (w32 0x3))
-plus_uconst: (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+Checking equivalence of `x` (decl src ln 2) from
+  assn asm ln 27, prod ln 4.9, live ln 5, enc 1
+  %add2 = add nsw i32 %3, %4, l4 c9
+  (Add w32 (w32 0x4)
+          (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                     N0:(ReadLSB w32 (w32 0x0) n))
+                            N0)
+                   N0))
+and
+  assn asm ln 13, prod ln 2.13, live ln 5, enc 1
+  %mul = shl i32 %n, 3, l2 c13
+  (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
                    (w32 0x3))
           (Extract w32 0 (w64 0x4)))
-LLVM_arg: (ReadLSB w32 (w32 0x0) n)
-plus: (Add w32 N0:(ReadLSB w32 (w32 0x0) n)
-          (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
-Result: (Add w32 N0:(ReadLSB w32 (w32 0x0) n)
-          (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (w32 0x4)
+              (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                         N0:(ReadLSB w32 (w32 0x0) n))
+                                N0)
+                       N0))
+     (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                       (w32 0x3))
+              (Extract w32 0 (w64 0x4)))))
+Parsed query
+(Eq (Add w32 (w32 0x4)
+              (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                         N0:(ReadLSB w32 (w32 0x0) n))
+                                N0)
+                       N0))
+     (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
+❌ After `x` (decl src ln 2) assn asm ln 13, prod ln 2.13, live ln 5, enc 1 symbolic value doesn't match before assn asm ln 27, prod ln 4.9, live ln 5, enc 1
+
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 23, prod ln 3.17, live ln 4, enc 0
   %add1 = add nsw i32 %add, %2, l3 c17
@@ -552,6 +708,40 @@ Parsed query
      (Mul w32 (w32 0x2) N0))
 ❌ Before `x` (decl src ln 2) assn asm ln 17, prod ln 2.13, live ln 3, enc 0 symbolic value doesn't match after assn asm ln 11, prod ln 2.13, live ln 5, enc 0
 
+Checking equivalence of `x` (decl src ln 2) from
+  assn asm ln 13, prod ln 2.13, live ln 5, enc 1
+  %mul = shl i32 %n, 3, l2 c13
+  (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                   (w32 0x3))
+          (Extract w32 0 (w64 0x4)))
+and
+  assn asm ln 27, prod ln 4.9, live ln 5, enc 1
+  %add2 = add nsw i32 %3, %4, l4 c9
+  (Add w32 (w32 0x4)
+          (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                     N0:(ReadLSB w32 (w32 0x0) n))
+                            N0)
+                   N0))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (Shl w32 (ReadLSB w32 (w32 0x0) n)
+                       (w32 0x3))
+              (Extract w32 0 (w64 0x4)))
+     (Add w32 (w32 0x4)
+              (Add w32 (Add w32 (Mul w32 (w32 0x2)
+                                         N0:(ReadLSB w32 (w32 0x0) n))
+                                N0)
+                       N0))))
+Parsed query
+(Eq (Add w32 (Shl w32 N0:(ReadLSB w32 (w32 0x0) n)
+                       (w32 0x3))
+              (Extract w32 0 (w64 0x4)))
+     (Add w32 (w32 0x4)
+              (Add w32 (Add w32 (Mul w32 (w32 0x2) N0) N0)
+                       N0)))
+❌ Before `x` (decl src ln 2) assn asm ln 27, prod ln 4.9, live ln 5, enc 1 symbolic value doesn't match after assn asm ln 13, prod ln 2.13, live ln 5, enc 1
+
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 12, prod ln 3.13, live ln 5, enc 0
   [ %mul = shl i32 %n, 3, l2 c13, i32 %n ]
@@ -619,7 +809,7 @@ Parsed query
 
 ❌ After symbolic values checked against before
   Matching:    2
-  Mismatched:  2
+  Mismatched:  3
   Unused:      0
   Unreachable: 0
   Removable:   0
