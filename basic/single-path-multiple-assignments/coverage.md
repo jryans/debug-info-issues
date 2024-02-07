@@ -5,7 +5,4 @@ This example tests support for:
 * Multi-argument dbg.value expressions
 * Multiple assignments with same source coordinates
 
-Results appear to be correct as of:
-
-* Tool: 4ee615c7
-* Issues: 9d5d602
+Results appear to be correct as of tool 4ee615c7
