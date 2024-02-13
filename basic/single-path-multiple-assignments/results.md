@@ -33,6 +33,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -112,6 +113,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -204,6 +206,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -514,7 +517,7 @@ Collating encountered assignments: `y` (decl src ln 3)
   asm ln 15, prod ln 5.9, live ln 6, enc 1
 
 
-#### Check before against after
+#### Check before using after as reference
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 12, prod ln 1.0, live ln 2, enc 0
@@ -534,6 +537,7 @@ Parsed query
      N0)
 ✅ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 12, prod ln 1.0, live ln 2, enc 0
 
+❌ After `x` (decl src ln 2) assn asm ln 11, prod ln 2.13, live ln 5, enc 0 coordinates don't match before assn asm ln 17, prod ln 2.13, live ln 3, enc 0
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 17, prod ln 2.13, live ln 3, enc 0
   %mul = mul nsw i32 %0, 2, l2 c13
@@ -591,6 +595,7 @@ Parsed query
      (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
 ❌ After `x` (decl src ln 2) assn asm ln 13, prod ln 2.13, live ln 5, enc 1 symbolic value doesn't match before assn asm ln 27, prod ln 4.9, live ln 5, enc 1
 
+❌ After `y` (decl src ln 3) assn asm ln 12, prod ln 3.13, live ln 5, enc 0 coordinates don't match before assn asm ln 23, prod ln 3.17, live ln 4, enc 0
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 23, prod ln 3.17, live ln 4, enc 0
   %add1 = add nsw i32 %add, %2, l3 c17
@@ -658,14 +663,20 @@ Parsed query
      (Add w32 (w32 0x8) (Shl w32 N0 (w32 0x3))))
 ✅ After `y` (decl src ln 3) assn asm ln 15, prod ln 5.9, live ln 6, enc 1 symbolic value matches before assn asm ln 30, prod ln 5.9, live ln 6, enc 1
 
-❌ Before symbolic values checked against after
-  Matching:    2
-  Mismatched:  3
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ Before symbolic values checked using after as reference
+  Assignments:       5
+  Matching Coords:   3
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  3
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
-#### Check after against before
+#### Check after using before as reference
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 2, enc 0
@@ -685,6 +696,7 @@ Parsed query
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 2, enc 0
 
+❌ Before `x` (decl src ln 2) assn asm ln 17, prod ln 2.13, live ln 3, enc 0 coordinates don't match after assn asm ln 11, prod ln 2.13, live ln 5, enc 0
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 11, prod ln 2.13, live ln 5, enc 0
   %mul = shl i32 %n, 3, l2 c13
@@ -742,6 +754,7 @@ Parsed query
                        N0)))
 ❌ Before `x` (decl src ln 2) assn asm ln 27, prod ln 4.9, live ln 5, enc 1 symbolic value doesn't match after assn asm ln 13, prod ln 2.13, live ln 5, enc 1
 
+❌ Before `y` (decl src ln 3) assn asm ln 23, prod ln 3.17, live ln 4, enc 0 coordinates don't match after assn asm ln 12, prod ln 3.13, live ln 5, enc 0
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 12, prod ln 3.13, live ln 5, enc 0
   [ %mul = shl i32 %n, 3, l2 c13, i32 %n ]
@@ -807,12 +820,18 @@ Parsed query
                                 N0))))
 ✅ Before `y` (decl src ln 3) assn asm ln 30, prod ln 5.9, live ln 6, enc 1 symbolic value matches after assn asm ln 15, prod ln 5.9, live ln 6, enc 1
 
-❌ After symbolic values checked against before
-  Matching:    2
-  Mismatched:  3
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After symbolic values checked using before as reference
+  Assignments:       5
+  Matching Coords:   3
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  3
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ## Summary
 

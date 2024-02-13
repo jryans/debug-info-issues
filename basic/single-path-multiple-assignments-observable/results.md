@@ -33,6 +33,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -112,6 +113,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -204,6 +206,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -510,7 +513,7 @@ Collating encountered assignments: `y` (decl src ln 5)
   asm ln 20, prod ln 7.9, live ln 8, enc 1
 
 
-#### Check before against after
+#### Check before using after as reference
 
 Checking equivalence of `n` (decl src ln 3) from
   assn asm ln 12, prod ln 3.0, live ln 4, enc 0
@@ -667,14 +670,20 @@ Parsed query
               (w32 0x1)))
 ✅ After `y` (decl src ln 5) assn asm ln 20, prod ln 7.9, live ln 8, enc 1 symbolic value matches before assn asm ln 34, prod ln 7.9, live ln 8, enc 1
 
-✅ Before symbolic values checked against after
-  Matching:    5
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ Before symbolic values checked using after as reference
+  Assignments:       5
+  Matching Coords:   5
+  Matching Value:    5
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
-#### Check after against before
+#### Check after using before as reference
 
 Checking equivalence of `n` (decl src ln 3) from
   assn asm ln 9, prod ln 3.0, live ln 4, enc 0
@@ -828,12 +837,18 @@ Parsed query
                                 N0))))
 ✅ Before `y` (decl src ln 5) assn asm ln 34, prod ln 7.9, live ln 8, enc 1 symbolic value matches after assn asm ln 20, prod ln 7.9, live ln 8, enc 1
 
-✅ After symbolic values checked against before
-  Matching:    5
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ After symbolic values checked using before as reference
+  Assignments:       5
+  Matching Coords:   5
+  Matching Value:    5
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ## Summary
 
