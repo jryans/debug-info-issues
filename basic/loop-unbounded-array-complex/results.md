@@ -365,7 +365,8 @@ Collected value for `b`
 Collected value for `i`
   %inc = add nsw i32 %10, 1, l3 c27
   (w32 0x1)
-
+[0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
+[0m
 ❌ Unable to execute all before program states
 
 #### After values

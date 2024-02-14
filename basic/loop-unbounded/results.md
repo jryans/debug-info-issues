@@ -553,6 +553,9 @@ Collected value for `y`
 Collected value for `i`
   %inc = add i32 %6, 1, l4 c36
   (w32 0x1)
+[0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
+[0m
+❌ Unable to execute all before program states
 
 #### After values
 

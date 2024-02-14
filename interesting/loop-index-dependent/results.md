@@ -33,6 +33,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -72,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -112,6 +113,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -151,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -204,6 +206,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -243,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -348,6 +351,9 @@ Collected value for `r`
 Collected value for `i`
   %inc = add nsw i32 %4, 1, l5 c27
   (w32 0x1)
+Collected value for `r`
+  %call = call i32 @modify(i32 %2), l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
 
 #### After values
 
@@ -379,16 +385,45 @@ Collected value for `i`
   %lsr.iv = phi i32 [ 1, %entry ], [ %lsr.iv.next, %for.inc ]
   Block: 1
   (w32 0x1)
+Collected value for `r`
+  %call = call i32 @modify(i32 1) #3, l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
 
 ### Assignments
 
 Filtering redundant before assignments: `r` (decl src ln 4)
 
-Expected 1 symbolic value(s), got 0
-🔔 Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc None has no symbolic value (likely unreachable) from %call = call i32 @modify(i32 %2), l7 c11
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+  %call = call i32 @modify(i32 %2), l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+and
+  assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+  %add = add nsw i32 %3, 4, l9 c9
+  (w32 0x4)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x4)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x4))
 
-Expected 1 symbolic value(s), got 0
-🔔 Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc None has no symbolic value (likely unreachable) from %call = call i32 @modify(i32 %2), l7 c11
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+  %call = call i32 @modify(i32 %2), l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (w32 0x0)
+     (ReadLSB w32 (w32 0x0) modify.return)))
+Parsed query
+(Eq (w32 0x0)
+     (ReadLSB w32 (w32 0x0) modify.return))
 
 Filtering redundant before assignments: `i` (decl src ln 5)
 
@@ -403,11 +438,37 @@ and
 
 Filtering redundant after assignments: `r` (decl src ln 4)
 
-Expected 1 symbolic value(s), got 0
-🔔 After `r` (decl src ln 4) assn asm ln 27, prod ln 7.11, live ln 8, enc None has no symbolic value (likely unreachable) from %call = call i32 @modify(i32 1) #3, l7 c11
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 27, prod ln 7.11, live ln 8, enc 4
+  %call = call i32 @modify(i32 1) #3, l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+and
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x0)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x0))
 
-Expected 1 symbolic value(s), got 0
-🔔 After `r` (decl src ln 4) assn asm ln 27, prod ln 7.11, live ln 8, enc None has no symbolic value (likely unreachable) from %call = call i32 @modify(i32 1) #3, l7 c11
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
+and
+  assn asm ln 27, prod ln 7.11, live ln 8, enc 4
+  %call = call i32 @modify(i32 1) #3, l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (w32 0x4)
+     (ReadLSB w32 (w32 0x0) modify.return)))
+Parsed query
+(Eq (w32 0x4)
+     (ReadLSB w32 (w32 0x0) modify.return))
 
 Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 21, prod ln 4.0, live ln 6, enc 1
@@ -488,9 +549,9 @@ Parsed query
 Collating encountered assignments: `n` (decl src ln 3)
   asm ln 12, prod ln 3.0, live ln 4, enc 0
 Collating encountered assignments: `r` (decl src ln 4)
-❌ Assignment asm ln 33, prod ln 7.11, live ln 8, enc None for `r` (decl src ln 4) was not encountered during execution
   asm ln 15, prod ln 4.7, live ln 5, enc 0
   asm ln 39, prod ln 9.9, live ln 10, enc 1
+  asm ln 33, prod ln 7.11, live ln 8, enc 2
 Collating encountered assignments: `i` (decl src ln 5)
   asm ln 17, prod ln 5.12, live ln 6, enc 0
   asm ln 45, prod ln 5.27, live ln 6, enc 1
@@ -498,17 +559,17 @@ Collating encountered assignments: `i` (decl src ln 5)
 Collating encountered assignments: `n` (decl src ln 3)
   asm ln 9, prod ln 3.0, live ln 5, enc 0
 Collating encountered assignments: `r` (decl src ln 4)
-❌ Assignment asm ln 27, prod ln 7.11, live ln 8, enc None for `r` (decl src ln 4) was not encountered during execution
   asm ln 10, prod ln 4.0, live ln 5, enc 0
   asm ln 21, prod ln 4.0, live ln 6, enc 1
   asm ln 32, prod ln 9.9, live ln 10, enc 2
   asm ln 37, prod ln 9.11, live ln 10, enc 3
+  asm ln 27, prod ln 7.11, live ln 8, enc 4
 Collating encountered assignments: `i` (decl src ln 5)
   asm ln 11, prod ln 5.0, live ln 6, enc 0
   asm ln 38, prod ln 5.21, live ln 6, enc 1
 
 
-#### Check before against after
+#### Check before using after as reference
 
 Checking equivalence of `i` (decl src ln 5) from
   assn asm ln 17, prod ln 5.12, live ln 6, enc 0
@@ -539,6 +600,21 @@ Parsed query
               (SDiv w32 (Sub w32 (w32 0x1) N0) (Extract w32 0 (w64 0xFFFFFFFFFFFFFFFF)))))
 ✅ After `i` (decl src ln 5) assn asm ln 38, prod ln 5.21, live ln 6, enc 1 symbolic value matches before assn asm ln 45, prod ln 5.27, live ln 6, enc 1
 
+✅ Before `i` assns checked using after as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+❌ After `n` (decl src ln 3) assn asm ln 9, prod ln 3.0, live ln 5, enc 0 coordinates don't match before assn asm ln 12, prod ln 3.0, live ln 4, enc 0
 Checking equivalence of `n` (decl src ln 3) from
   assn asm ln 12, prod ln 3.0, live ln 4, enc 0
   i32 %n
@@ -557,24 +633,208 @@ Parsed query
      N0)
 ✅ After `n` (decl src ln 3) assn asm ln 9, prod ln 3.0, live ln 5, enc 0 symbolic value matches before assn asm ln 12, prod ln 3.0, live ln 4, enc 0
 
-Assertion failed: (hasVal), function getValue, file Optional.h, line 196.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010f33bb5d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010f33c05b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x000000010f33a0f3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010f33d2ff SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff80b7de5ed _sigtramp + 29
-5  check-debug-info         0x000000010c5ec8b1 std::__1::__libcpp_deallocate[abi:v160006](void*, unsigned long, unsigned long) + 33
-6  libsystem_c.dylib        0x00007ff80b6d7b45 abort + 123
-7  libsystem_c.dylib        0x00007ff80b6d6e5e err + 0
-8  check-debug-info         0x000000010c5efa15 llvm::optional_detail::OptionalStorage<unsigned int, true>::getValue() & + 69
-9  check-debug-info         0x000000010c5ef9c5 llvm::Optional<unsigned int>::getValue() & + 21
-10 check-debug-info         0x000000010c5e43e5 llvm::Optional<unsigned int>::operator*() & + 21
-11 check-debug-info         0x000000010c5e4e04 checkValues(llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u> const&, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, bool, bool) + 1124
-12 check-debug-info         0x000000010c5e7184 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 4852
-13 check-debug-info         0x000000010c5e8258 main + 1768
-14 dyld                     0x00007ff80b45741f start + 1903
-./check.sh: line 6: 82416 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS}
+❌ Before `n` assns checked using after as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+✅ After `r` (decl src ln 4) assn asm ln 10, prod ln 4.0, live ln 5, enc 0 symbolic value matches before assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+
+❌ After `r` (decl src ln 4) assn asm ln 21, prod ln 4.0, live ln 6, enc 1 coordinates don't match before assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+  %add = add nsw i32 %3, 4, l9 c9
+  (w32 0x4)
+and
+  assn asm ln 21, prod ln 4.0, live ln 6, enc 1
+  %r.07 = phi i32 [ 0, %entry ], [ %r.1, %for.inc ]
+  (w32 0x0)
+❌ After `r` (decl src ln 4) assn asm ln 21, prod ln 4.0, live ln 6, enc 1 symbolic value doesn't match before assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+
+❌ After `r` (decl src ln 4) assn asm ln 32, prod ln 9.9, live ln 10, enc 2 coordinates don't match before assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+  %call = call i32 @modify(i32 %2), l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+and
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x4)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x4))
+❌ After `r` (decl src ln 4) assn asm ln 32, prod ln 9.9, live ln 10, enc 2 symbolic value doesn't match before assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+
+❌ Before `r` assns checked using after as reference
+Variable:            r
+  Assignments:       3
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  2
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+#### Check after using before as reference
+
+Checking equivalence of `i` (decl src ln 5) from
+  assn asm ln 11, prod ln 5.0, live ln 6, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 17, prod ln 5.12, live ln 6, enc 0
+  i32 0
+  (w32 0x0)
+✅ Before `i` (decl src ln 5) assn asm ln 17, prod ln 5.12, live ln 6, enc 0 symbolic value matches after assn asm ln 11, prod ln 5.0, live ln 6, enc 0
+
+Checking equivalence of `i` (decl src ln 5) from
+  assn asm ln 38, prod ln 5.21, live ln 6, enc 1
+  %lsr.iv = phi i32 [ 1, %entry ], [ %lsr.iv.next, %for.inc ]
+  (Add w32 N0:(Extract w32 0 (w64 0x1))
+          (SDiv w32 (Sub w32 (w32 0x1) N0) (Extract w32 0 (w64 0xFFFFFFFFFFFFFFFF))))
+and
+  assn asm ln 45, prod ln 5.27, live ln 6, enc 1
+  %inc = add nsw i32 %4, 1, l5 c27
+  (w32 0x1)
+Query to parse
+(query [] (Eq (Add w32 N0:(Extract w32 0 (w64 0x1))
+              (SDiv w32 (Sub w32 (w32 0x1) N0) (Extract w32 0 (w64 0xFFFFFFFFFFFFFFFF))))
+     (w32 0x1)))
+Parsed query
+(Eq (Add w32 N0:(Extract w32 0 (w64 0x1))
+              (SDiv w32 (Sub w32 (w32 0x1) N0) (Extract w32 0 (w64 0xFFFFFFFFFFFFFFFF))))
+     (w32 0x1))
+✅ Before `i` (decl src ln 5) assn asm ln 45, prod ln 5.27, live ln 6, enc 1 symbolic value matches after assn asm ln 38, prod ln 5.21, live ln 6, enc 1
+
+✅ After `i` assns checked using before as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+❌ Before `n` (decl src ln 3) assn asm ln 12, prod ln 3.0, live ln 4, enc 0 coordinates don't match after assn asm ln 9, prod ln 3.0, live ln 5, enc 0
+Checking equivalence of `n` (decl src ln 3) from
+  assn asm ln 9, prod ln 3.0, live ln 5, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+and
+  assn asm ln 12, prod ln 3.0, live ln 4, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) n)
+     (ReadLSB w32 (w32 0x0) n)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0)
+✅ Before `n` (decl src ln 3) assn asm ln 12, prod ln 3.0, live ln 4, enc 0 symbolic value matches after assn asm ln 9, prod ln 3.0, live ln 5, enc 0
+
+❌ After `n` assns checked using before as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+✅ Before `r` (decl src ln 4) assn asm ln 15, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+
+❌ Before `r` (decl src ln 4) assn asm ln 39, prod ln 9.9, live ln 10, enc 1 coordinates don't match after assn asm ln 21, prod ln 4.0, live ln 6, enc 1
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 21, prod ln 4.0, live ln 6, enc 1
+  %r.07 = phi i32 [ 0, %entry ], [ %r.1, %for.inc ]
+  (w32 0x0)
+and
+  assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+  %add = add nsw i32 %3, 4, l9 c9
+  (w32 0x4)
+❌ Before `r` (decl src ln 4) assn asm ln 39, prod ln 9.9, live ln 10, enc 1 symbolic value doesn't match after assn asm ln 21, prod ln 4.0, live ln 6, enc 1
+
+❌ Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc 2 coordinates don't match after assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
+and
+  assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+  %call = call i32 @modify(i32 %2), l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (w32 0x4)
+     (ReadLSB w32 (w32 0x0) modify.return)))
+Parsed query
+(Eq (w32 0x4)
+     (ReadLSB w32 (w32 0x0) modify.return))
+❌ Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc 2 symbolic value doesn't match after assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+
+❌ Before encountered assn for `r` (decl src ln 4) at asm ln 37, prod ln 9.11, live ln 10, enc 3 not found
+
+❌ Before encountered assn for `r` (decl src ln 4) at asm ln 27, prod ln 7.11, live ln 8, enc 4 not found
+
+❌ After `r` assns checked using before as reference
+Variable:            r
+  Assignments:       5
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  2
+  Missing:           2
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+## Summary
+
+❌ Some consistency checks failed

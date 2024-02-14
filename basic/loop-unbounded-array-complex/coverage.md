@@ -6,3 +6,7 @@ This example tests support for:
 * State explosion with unbounded loops
 * Assume value expression constants have width of source variable
 * Treat `memcpy` and friends as alternative stores
+
+Results appear to be INCORRECT as of tool a013f43d:
+
+* Loop causes state explosion

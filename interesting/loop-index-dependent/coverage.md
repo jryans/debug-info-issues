@@ -1,8 +1,8 @@
 This example tests support for:
 
 * Reaching all basic blocks during execution
+* Additional encounter triggered by phi nodes
 
-Results appear to be INCORRECT as of tool 4ee615c7:
+Results appear to be INCORRECT as of tool a013f43d:
 
-* Only visit basic block once feature means we never find other paths
-* Coverage and complete execution features fail to detect this error
+* Phi node encounters need special support
