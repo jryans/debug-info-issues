@@ -765,6 +765,20 @@ and
 
 ❌ After encountered assn for `i` (decl src ln 4) at asm ln 41, prod ln 4.36, live ln 5, enc 1 not found
 
+❌ Before `i` assns checked using after as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 ❌ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 4, enc 0 coordinates don't match before assn asm ln 13, prod ln 1.0, live ln 2, enc 0
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 13, prod ln 1.0, live ln 2, enc 0
@@ -783,6 +797,20 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) n)
      N0)
 ✅ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 4, enc 0 symbolic value matches before assn asm ln 13, prod ln 1.0, live ln 2, enc 0
+
+❌ Before `n` assns checked using after as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ❌ After `x` (decl src ln 2) assn asm ln 10, prod ln 2.0, live ln 4, enc 0 coordinates don't match before assn asm ln 18, prod ln 2.13, live ln 3, enc 0
 Checking equivalence of `x` (decl src ln 2) from
@@ -808,6 +836,20 @@ Parsed query
      (Shl w32 N0 (Extract w32 0 (w64 0x1))))
 ✅ After `x` (decl src ln 2) assn asm ln 10, prod ln 2.0, live ln 4, enc 0 symbolic value matches before assn asm ln 18, prod ln 2.13, live ln 3, enc 0
 
+❌ Before `x` assns checked using after as reference
+Variable:            x
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 20, prod ln 3.7, live ln 4, enc 0
   i32 0
@@ -820,14 +862,15 @@ and
 
 ❌ After encountered assn for `y` (decl src ln 3) at asm ln 38, prod ln 5.7, live ln 6, enc 1 not found
 
-❌ Before symbolic values checked using after as reference
-  Assignments:       6
-  Matching Coords:   2
-  Matching Value:    4
+❌ Before `y` assns checked using after as reference
+Variable:            y
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    1
 Errors:
-  Mismatched Coords: 2
+  Mismatched Coords: 0
   Mismatched Value:  0
-  Missing:           2
+  Missing:           1
 Warnings:
   Unused:            0
   Unreachable:       0
@@ -849,6 +892,20 @@ and
 
 ❌ Before encountered assn for `i` (decl src ln 4) at asm ln 31, prod ln 4.0, live ln 5, enc 3 not found
 
+❌ After `i` assns checked using before as reference
+Variable:            i
+  Assignments:       3
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           2
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 ❌ Before `n` (decl src ln 1) assn asm ln 13, prod ln 1.0, live ln 2, enc 0 coordinates don't match after assn asm ln 9, prod ln 1.0, live ln 4, enc 0
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 4, enc 0
@@ -867,6 +924,20 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) n)
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 13, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 4, enc 0
+
+❌ After `n` assns checked using before as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ❌ Before `x` (decl src ln 2) assn asm ln 18, prod ln 2.13, live ln 3, enc 0 coordinates don't match after assn asm ln 10, prod ln 2.0, live ln 4, enc 0
 Checking equivalence of `x` (decl src ln 2) from
@@ -892,6 +963,20 @@ Parsed query
      (Mul w32 (w32 0x2) N0))
 ✅ Before `x` (decl src ln 2) assn asm ln 18, prod ln 2.13, live ln 3, enc 0 symbolic value matches after assn asm ln 10, prod ln 2.0, live ln 4, enc 0
 
+❌ After `x` assns checked using before as reference
+Variable:            x
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 11, prod ln 3.0, live ln 4, enc 0
   i32 0
@@ -906,14 +991,15 @@ and
 
 ❌ Before encountered assn for `y` (decl src ln 3) at asm ln 30, prod ln 3.0, live ln 4, enc 3 not found
 
-❌ After symbolic values checked using before as reference
-  Assignments:       8
-  Matching Coords:   2
-  Matching Value:    4
+❌ After `y` assns checked using before as reference
+Variable:            y
+  Assignments:       3
+  Matching Coords:   1
+  Matching Value:    1
 Errors:
-  Mismatched Coords: 2
+  Mismatched Coords: 0
   Mismatched Value:  0
-  Missing:           4
+  Missing:           2
 Warnings:
   Unused:            0
   Unreachable:       0

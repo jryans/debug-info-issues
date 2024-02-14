@@ -537,6 +537,20 @@ Parsed query
      N0)
 ✅ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 12, prod ln 1.0, live ln 2, enc 0
 
+✅ Before `n` assns checked using after as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 ❌ After `x` (decl src ln 2) assn asm ln 11, prod ln 2.13, live ln 5, enc 0 coordinates don't match before assn asm ln 17, prod ln 2.13, live ln 3, enc 0
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 17, prod ln 2.13, live ln 3, enc 0
@@ -594,6 +608,20 @@ Parsed query
                        N0))
      (Add w32 (Shl w32 N0 (w32 0x3)) (Extract w32 0 (w64 0x4))))
 ❌ After `x` (decl src ln 2) assn asm ln 13, prod ln 2.13, live ln 5, enc 1 symbolic value doesn't match before assn asm ln 27, prod ln 4.9, live ln 5, enc 1
+
+❌ Before `x` assns checked using after as reference
+Variable:            x
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    0
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  2
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ❌ After `y` (decl src ln 3) assn asm ln 12, prod ln 3.13, live ln 5, enc 0 coordinates don't match before assn asm ln 23, prod ln 3.17, live ln 4, enc 0
 Checking equivalence of `y` (decl src ln 3) from
@@ -663,13 +691,14 @@ Parsed query
      (Add w32 (w32 0x8) (Shl w32 N0 (w32 0x3))))
 ✅ After `y` (decl src ln 3) assn asm ln 15, prod ln 5.9, live ln 6, enc 1 symbolic value matches before assn asm ln 30, prod ln 5.9, live ln 6, enc 1
 
-❌ Before symbolic values checked using after as reference
-  Assignments:       5
-  Matching Coords:   3
-  Matching Value:    2
+❌ Before `y` assns checked using after as reference
+Variable:            y
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    1
 Errors:
-  Mismatched Coords: 2
-  Mismatched Value:  3
+  Mismatched Coords: 1
+  Mismatched Value:  1
   Missing:           0
 Warnings:
   Unused:            0
@@ -695,6 +724,20 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) n)
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 2, enc 0
+
+✅ After `n` assns checked using before as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ❌ Before `x` (decl src ln 2) assn asm ln 17, prod ln 2.13, live ln 3, enc 0 coordinates don't match after assn asm ln 11, prod ln 2.13, live ln 5, enc 0
 Checking equivalence of `x` (decl src ln 2) from
@@ -753,6 +796,20 @@ Parsed query
               (Add w32 (Add w32 (Mul w32 (w32 0x2) N0) N0)
                        N0)))
 ❌ Before `x` (decl src ln 2) assn asm ln 27, prod ln 4.9, live ln 5, enc 1 symbolic value doesn't match after assn asm ln 13, prod ln 2.13, live ln 5, enc 1
+
+❌ After `x` assns checked using before as reference
+Variable:            x
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    0
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  2
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ❌ Before `y` (decl src ln 3) assn asm ln 23, prod ln 3.17, live ln 4, enc 0 coordinates don't match after assn asm ln 12, prod ln 3.13, live ln 5, enc 0
 Checking equivalence of `y` (decl src ln 3) from
@@ -820,13 +877,14 @@ Parsed query
                                 N0))))
 ✅ Before `y` (decl src ln 3) assn asm ln 30, prod ln 5.9, live ln 6, enc 1 symbolic value matches after assn asm ln 15, prod ln 5.9, live ln 6, enc 1
 
-❌ After symbolic values checked using before as reference
-  Assignments:       5
-  Matching Coords:   3
-  Matching Value:    2
+❌ After `y` assns checked using before as reference
+Variable:            y
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    1
 Errors:
-  Mismatched Coords: 2
-  Mismatched Value:  3
+  Mismatched Coords: 1
+  Mismatched Value:  1
   Missing:           0
 Warnings:
   Unused:            0

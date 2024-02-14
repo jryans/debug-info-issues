@@ -486,6 +486,20 @@ Collating encountered assignments: `b` (decl src ln 6)
 
 🔔 After encountered assns for (removable) `a` (decl src ln 5) not found
 
+✅ Before `a` assns checked using after as reference
+Variable:            a
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    0
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         1
+
 Checking equivalence of `b` (decl src ln 6) from
   assn asm ln 47, prod ln 6.15, live ln 7, enc 0
   %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
@@ -495,6 +509,34 @@ and
   %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
   (w64 0xDBBE71147BA862F4)
 ✅ After `b` (decl src ln 6) assn asm ln 40, prod ln 6.15, live ln 7, enc 0 symbolic value matches before assn asm ln 47, prod ln 6.15, live ln 7, enc 0
+
+✅ Before `b` assns checked using after as reference
+Variable:            b
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+✅ Before `data` assns checked using after as reference
+Variable:            data
+  Assignments:       0
+  Matching Coords:   0
+  Matching Value:    0
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `i` (decl src ln 3) from
   assn asm ln 23, prod ln 3.12, live ln 4, enc 0
@@ -525,6 +567,20 @@ Parsed query
               (Sub w32 (w32 0x2) (Extract w32 0 (w64 0x2)))))
 ✅ After `i` (decl src ln 3) assn asm ln 44, prod ln 3.21, live ln 4, enc 1 symbolic value matches before assn asm ln 55, prod ln 3.27, live ln 4, enc 1
 
+✅ Before `i` assns checked using after as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 ❌ After `i2` (decl src ln 4) assn asm ln 36, prod ln 4.22, live ln 6, enc 0 coordinates don't match before assn asm ln 37, prod ln 4.22, live ln 5, enc 0
 Checking equivalence of `i2` (decl src ln 4) from
   assn asm ln 37, prod ln 4.22, live ln 5, enc 0
@@ -535,6 +591,20 @@ and
   %rem = and i32 %lsr.iv, 3, l4 c22
   (w32 0x2)
 ✅ After `i2` (decl src ln 4) assn asm ln 36, prod ln 4.22, live ln 6, enc 0 symbolic value matches before assn asm ln 37, prod ln 4.22, live ln 5, enc 0
+
+❌ Before `i2` assns checked using after as reference
+Variable:            i2
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 17, prod ln 1.0, live ln 2, enc 0
@@ -554,20 +624,35 @@ Parsed query
      N0)
 ✅ After `n` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 17, prod ln 1.0, live ln 2, enc 0
 
-❌ Before symbolic values checked using after as reference
-  Assignments:       6
-  Matching Coords:   4
-  Matching Value:    5
+✅ Before `n` assns checked using after as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
 Errors:
-  Mismatched Coords: 1
+  Mismatched Coords: 0
   Mismatched Value:  0
   Missing:           0
 Warnings:
   Unused:            0
   Unreachable:       0
-  Removable:         1
+  Removable:         0
 
 #### Check after using before as reference
+
+✅ After `a` assns checked using before as reference
+Variable:            a
+  Assignments:       0
+  Matching Coords:   0
+  Matching Value:    0
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `b` (decl src ln 6) from
   assn asm ln 40, prod ln 6.15, live ln 7, enc 0
@@ -578,6 +663,34 @@ and
   %arrayidx2 = getelementptr inbounds [4 x i32], [4 x i32]* %data, i64 0, i64 %idxprom1, l6 c15
   (w64 0xDBBE71147BA862F4)
 ✅ Before `b` (decl src ln 6) assn asm ln 47, prod ln 6.15, live ln 7, enc 0 symbolic value matches after assn asm ln 40, prod ln 6.15, live ln 7, enc 0
+
+✅ After `b` assns checked using before as reference
+Variable:            b
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+✅ After `data` assns checked using before as reference
+Variable:            data
+  Assignments:       0
+  Matching Coords:   0
+  Matching Value:    0
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `i` (decl src ln 3) from
   assn asm ln 16, prod ln 3.0, live ln 4, enc 0
@@ -608,6 +721,20 @@ Parsed query
      (w32 0x1))
 ✅ Before `i` (decl src ln 3) assn asm ln 55, prod ln 3.27, live ln 4, enc 1 symbolic value matches after assn asm ln 44, prod ln 3.21, live ln 4, enc 1
 
+✅ After `i` assns checked using before as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 ❌ Before `i2` (decl src ln 4) assn asm ln 37, prod ln 4.22, live ln 5, enc 0 coordinates don't match after assn asm ln 36, prod ln 4.22, live ln 6, enc 0
 Checking equivalence of `i2` (decl src ln 4) from
   assn asm ln 36, prod ln 4.22, live ln 6, enc 0
@@ -618,6 +745,20 @@ and
   %rem = srem i32 %add, 4, l4 c22
   (w32 0x2)
 ✅ Before `i2` (decl src ln 4) assn asm ln 37, prod ln 4.22, live ln 5, enc 0 symbolic value matches after assn asm ln 36, prod ln 4.22, live ln 6, enc 0
+
+❌ After `i2` assns checked using before as reference
+Variable:            i2
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 12, prod ln 1.0, live ln 2, enc 0
@@ -637,12 +778,13 @@ Parsed query
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 17, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 12, prod ln 1.0, live ln 2, enc 0
 
-❌ After symbolic values checked using before as reference
-  Assignments:       5
-  Matching Coords:   4
-  Matching Value:    5
+✅ After `n` assns checked using before as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
 Errors:
-  Mismatched Coords: 1
+  Mismatched Coords: 0
   Mismatched Value:  0
   Missing:           0
 Warnings:
