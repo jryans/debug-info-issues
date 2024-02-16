@@ -608,6 +608,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -641,6 +642,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -694,6 +696,7 @@ Variable:            r
 Errors:
   Mismatched Coords: 2
   Mismatched Value:  2
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -739,6 +742,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -772,6 +776,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -829,6 +834,7 @@ Variable:            r
 Errors:
   Mismatched Coords: 2
   Mismatched Value:  2
+  Not Encountered:   0
   Missing:           2
 Warnings:
   Unused:            0
