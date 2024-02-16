@@ -340,7 +340,7 @@ Collected value for `i`
   (w32 0x1)
 [0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
 [0m
-❌ Unable to execute all before program states
+🔔 Unable to execute all before program states
 
 🔔 Unable to execute all before instructions
 
@@ -371,7 +371,7 @@ Collected value for `i`
   %inc = add nuw nsw i32 %i.09, 1, l5 c27
   (w32 0x1)
 
-❌ Unable to execute all after program states
+🔔 Unable to execute all after program states
 
 🔔 Unable to execute all after instructions
 
