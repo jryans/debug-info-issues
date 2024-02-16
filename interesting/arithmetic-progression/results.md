@@ -33,6 +33,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -72,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -112,6 +113,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -151,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -204,6 +206,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -243,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -330,6 +333,9 @@ Collected value for `r`
 Collected value for `i`
   %inc = add nsw i32 %4, 1, l3 c27
   (w32 0x1)
+[0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
+[0m
+🔔 Unable to execute all before program states
 
 #### After values
 
@@ -357,25 +363,25 @@ Collected value for `r`
 Filtering redundant before assignments: `r` (decl src ln 2)
 
 Checking equivalence of `r` (decl src ln 2) from
-  assn asm ln 15, prod ln 2.7, live ln 3, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 30, prod ln 4.7, live ln 5, enc 1
   %add = add nsw i32 %3, %2, l4 c7
   (w32 0x0)
-🔔 Removing: asm ln 15, prod ln 2.7, live ln 3, enc 0
+and
+  assn asm ln 15, prod ln 2.7, live ln 3, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 30, prod ln 4.7, live ln 5, enc 1
 
 Filtering redundant before assignments: `i` (decl src ln 3)
 
 Checking equivalence of `i` (decl src ln 3) from
-  assn asm ln 17, prod ln 3.12, live ln 4, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 33, prod ln 3.27, live ln 4, enc 1
   %inc = add nsw i32 %4, 1, l3 c27
   (w32 0x1)
+and
+  assn asm ln 17, prod ln 3.12, live ln 4, enc 0
+  i32 0
+  (w32 0x0)
 
 Filtering redundant after assignments: `r` (decl src ln 2)
 
@@ -394,7 +400,7 @@ Variable intrinsic with undef input
 Collating encountered assignments: `n` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 2, enc 0
 Collating encountered assignments: `r` (decl src ln 2)
-  asm ln 30, prod ln 4.7, live ln 5, enc 0
+  asm ln 15, prod ln 2.7, live ln 3, enc 0
 Collating encountered assignments: `i` (decl src ln 3)
   asm ln 17, prod ln 3.12, live ln 4, enc 0
   asm ln 33, prod ln 3.27, live ln 4, enc 1
@@ -407,7 +413,7 @@ Collating encountered assignments: `i` (decl src ln 3)
   asm ln 11, prod ln 3.0, live ln 4, enc 0
 
 
-#### Check before against after
+#### Check before using after as reference
 
 Checking equivalence of `i` (decl src ln 3) from
   assn asm ln 17, prod ln 3.12, live ln 4, enc 0
@@ -421,6 +427,22 @@ and
 
 ❌ After encountered assn for `i` (decl src ln 3) at asm ln 33, prod ln 3.27, live ln 4, enc 1 not found
 
+❌ Before `i` assns checked using after as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+❌ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 3, enc 0 coordinates don't match before assn asm ln 12, prod ln 1.0, live ln 2, enc 0
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 12, prod ln 1.0, live ln 2, enc 0
   i32 %n
@@ -439,24 +461,47 @@ Parsed query
      N0)
 ✅ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 3, enc 0 symbolic value matches before assn asm ln 12, prod ln 1.0, live ln 2, enc 0
 
+❌ Before `n` assns checked using after as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `r` (decl src ln 2) from
-  assn asm ln 30, prod ln 4.7, live ln 5, enc 0
-  %add = add nsw i32 %3, %2, l4 c7
+  assn asm ln 15, prod ln 2.7, live ln 3, enc 0
+  i32 0
   (w32 0x0)
 and
   assn asm ln 10, prod ln 2.0, live ln 3, enc 0
   i32 0
   (w32 0x0)
-✅ After `r` (decl src ln 2) assn asm ln 10, prod ln 2.0, live ln 3, enc 0 symbolic value matches before assn asm ln 30, prod ln 4.7, live ln 5, enc 0
+✅ After `r` (decl src ln 2) assn asm ln 10, prod ln 2.0, live ln 3, enc 0 symbolic value matches before assn asm ln 15, prod ln 2.7, live ln 3, enc 0
 
-❌ Before symbolic values checked against after
-  Matching:    3
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ Before `r` assns checked using after as reference
+Variable:            r
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
-#### Check after against before
+#### Check after using before as reference
 
 Checking equivalence of `i` (decl src ln 3) from
   assn asm ln 11, prod ln 3.0, live ln 4, enc 0
@@ -471,6 +516,22 @@ and
 Variable intrinsic with undef input
 ❌ After `i` (decl src ln 3) assn asm ln 24, prod ln 3.0, live ln 4, enc 1 has no symbolic value from i32 undef
 
+❌ After `i` assns checked using before as reference
+Variable:            i
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+❌ Before `n` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 2, enc 0 coordinates don't match after assn asm ln 9, prod ln 1.0, live ln 3, enc 0
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 3, enc 0
   i32 %n
@@ -489,26 +550,49 @@ Parsed query
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 3, enc 0
 
+❌ After `n` assns checked using before as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `r` (decl src ln 2) from
   assn asm ln 10, prod ln 2.0, live ln 3, enc 0
   i32 0
   (w32 0x0)
 and
-  assn asm ln 30, prod ln 4.7, live ln 5, enc 0
-  %add = add nsw i32 %3, %2, l4 c7
+  assn asm ln 15, prod ln 2.7, live ln 3, enc 0
+  i32 0
   (w32 0x0)
-✅ Before `r` (decl src ln 2) assn asm ln 30, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 10, prod ln 2.0, live ln 3, enc 0
+✅ Before `r` (decl src ln 2) assn asm ln 15, prod ln 2.7, live ln 3, enc 0 symbolic value matches after assn asm ln 10, prod ln 2.0, live ln 3, enc 0
 
 ❌ Before encountered assn for `r` (decl src ln 2) at asm ln 25, prod ln 2.0, live ln 3, enc 1 not found
 
 ❌ Before encountered assn for `r` (decl src ln 2) at asm ln 26, prod ln 2.0, live ln 3, enc 2 not found
 
-❌ After symbolic values checked against before
-  Matching:    3
-  Mismatched:  3
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `r` assns checked using before as reference
+Variable:            r
+  Assignments:       3
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           2
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ## Summary
 

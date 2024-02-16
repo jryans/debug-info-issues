@@ -385,33 +385,50 @@ Expected 1 symbolic value(s), got 0
 Filtering redundant before assignments: `i` (decl src ln 5)
 
 Checking equivalence of `i` (decl src ln 5) from
-  assn asm ln 17, prod ln 5.12, live ln 6, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 40, prod ln 5.27, live ln 6, enc 1
   %inc = add nsw i32 %4, 1, l5 c27
   (w32 0x1)
+and
+  assn asm ln 17, prod ln 5.12, live ln 6, enc 0
+  i32 0
+  (w32 0x0)
 
 Filtering redundant after assignments: `r` (decl src ln 4)
 
 Expected 1 symbolic value(s), got 0
 ❌ After `r` (decl src ln 4) assn asm ln 29, prod ln 7.11, live ln 8, enc None has no symbolic value from %call = call i32 @modify(i32 64) #3, l7 c11
 
-Expected 1 symbolic value(s), got 0
-❌ After `r` (decl src ln 4) assn asm ln 29, prod ln 7.11, live ln 8, enc None has no symbolic value from %call = call i32 @modify(i32 64) #3, l7 c11
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 23, prod ln 4.0, live ln 6, enc 1
+  %r.08 = phi i32 [ %r.1, %for.inc ], [ 0, %entry ]
+  (w32 0x0)
+and
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 23, prod ln 4.0, live ln 6, enc 1
 
 Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 34, prod ln 7.11, live ln 8, enc 2
   %r.1 = phi i32 [ %call, %if.then ], [ %r.08, %for.body ]
   (w32 0x0)
 and
-  assn asm ln 23, prod ln 4.0, live ln 6, enc 1
-  %r.08 = phi i32 [ %r.1, %for.inc ], [ 0, %entry ]
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
   (w32 0x0)
 🔔 Removing: asm ln 34, prod ln 7.11, live ln 8, enc 2
 
 Filtering redundant after assignments: `i` (decl src ln 5)
+
+Checking equivalence of `i` (decl src ln 5) from
+  assn asm ln 22, prod ln 5.27, live ln 6, enc 1
+  %i.09 = phi i32 [ %inc, %for.inc ], [ 0, %entry ]
+  (w32 0x0)
+and
+  assn asm ln 11, prod ln 5.0, live ln 6, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 22, prod ln 5.27, live ln 6, enc 1
 
 Checking equivalence of `i` (decl src ln 5) from
   assn asm ln 36, prod ln 5.27, live ln 6, enc 2
@@ -421,15 +438,6 @@ and
   assn asm ln 11, prod ln 5.0, live ln 6, enc 0
   i32 0
   (w32 0x0)
-
-Checking equivalence of `i` (decl src ln 5) from
-  assn asm ln 22, prod ln 5.27, live ln 6, enc 1
-  %i.09 = phi i32 [ %inc, %for.inc ], [ 0, %entry ]
-  (w32 0x0)
-and
-  assn asm ln 36, prod ln 5.27, live ln 6, enc 2
-  %inc = add nuw nsw i32 %i.09, 1, l5 c27
-  (w32 0x1)
 
 Collating encountered assignments: `n` (decl src ln 3)
   asm ln 12, prod ln 3.0, live ln 4, enc 0
@@ -445,11 +453,9 @@ Collating encountered assignments: `n` (decl src ln 3)
 Collating encountered assignments: `r` (decl src ln 4)
 ❌ Assignment asm ln 29, prod ln 7.11, live ln 8, enc None for `r` (decl src ln 4) was not encountered during execution
   asm ln 10, prod ln 4.0, live ln 5, enc 0
-  asm ln 23, prod ln 4.0, live ln 6, enc 1
 Collating encountered assignments: `i` (decl src ln 5)
   asm ln 11, prod ln 5.0, live ln 6, enc 0
-  asm ln 22, prod ln 5.27, live ln 6, enc 1
-  asm ln 36, prod ln 5.27, live ln 6, enc 2
+  asm ln 36, prod ln 5.27, live ln 6, enc 1
 
 
 #### Check before using after as reference
@@ -469,19 +475,19 @@ Checking equivalence of `i` (decl src ln 5) from
   %inc = add nsw i32 %4, 1, l5 c27
   (w32 0x1)
 and
-  assn asm ln 22, prod ln 5.27, live ln 6, enc 1
-  %i.09 = phi i32 [ %inc, %for.inc ], [ 0, %entry ]
-  (w32 0x0)
-❌ After `i` (decl src ln 5) assn asm ln 22, prod ln 5.27, live ln 6, enc 1 symbolic value doesn't match before assn asm ln 40, prod ln 5.27, live ln 6, enc 1
+  assn asm ln 36, prod ln 5.27, live ln 6, enc 1
+  %inc = add nuw nsw i32 %i.09, 1, l5 c27
+  (w32 0x1)
+✅ After `i` (decl src ln 5) assn asm ln 36, prod ln 5.27, live ln 6, enc 1 symbolic value matches before assn asm ln 40, prod ln 5.27, live ln 6, enc 1
 
-❌ Before `i` assns checked using after as reference
+✅ Before `i` assns checked using after as reference
 Variable:            i
   Assignments:       2
   Matching Coords:   2
-  Matching Value:    1
+  Matching Value:    2
 Errors:
   Mismatched Coords: 0
-  Mismatched Value:  1
+  Mismatched Value:  0
   Not Encountered:   0
   Missing:           0
 Warnings:
@@ -563,27 +569,25 @@ and
 ✅ Before `i` (decl src ln 5) assn asm ln 17, prod ln 5.12, live ln 6, enc 0 symbolic value matches after assn asm ln 11, prod ln 5.0, live ln 6, enc 0
 
 Checking equivalence of `i` (decl src ln 5) from
-  assn asm ln 22, prod ln 5.27, live ln 6, enc 1
-  %i.09 = phi i32 [ %inc, %for.inc ], [ 0, %entry ]
-  (w32 0x0)
+  assn asm ln 36, prod ln 5.27, live ln 6, enc 1
+  %inc = add nuw nsw i32 %i.09, 1, l5 c27
+  (w32 0x1)
 and
   assn asm ln 40, prod ln 5.27, live ln 6, enc 1
   %inc = add nsw i32 %4, 1, l5 c27
   (w32 0x1)
-❌ Before `i` (decl src ln 5) assn asm ln 40, prod ln 5.27, live ln 6, enc 1 symbolic value doesn't match after assn asm ln 22, prod ln 5.27, live ln 6, enc 1
+✅ Before `i` (decl src ln 5) assn asm ln 40, prod ln 5.27, live ln 6, enc 1 symbolic value matches after assn asm ln 36, prod ln 5.27, live ln 6, enc 1
 
-❌ Before encountered assn for `i` (decl src ln 5) at asm ln 36, prod ln 5.27, live ln 6, enc 2 not found
-
-❌ After `i` assns checked using before as reference
+✅ After `i` assns checked using before as reference
 Variable:            i
-  Assignments:       3
+  Assignments:       2
   Matching Coords:   2
-  Matching Value:    1
+  Matching Value:    2
 Errors:
   Mismatched Coords: 0
-  Mismatched Value:  1
+  Mismatched Value:  0
   Not Encountered:   0
-  Missing:           1
+  Missing:           0
 Warnings:
   Unused:            0
   Unreachable:       0
@@ -635,18 +639,16 @@ and
   (w32 0x0)
 ✅ Before `r` (decl src ln 4) assn asm ln 15, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 10, prod ln 4.0, live ln 5, enc 0
 
-❌ Before encountered assn for `r` (decl src ln 4) at asm ln 23, prod ln 4.0, live ln 6, enc 1 not found
-
 ❌ After `r` assns checked using before as reference
 Variable:            r
-  Assignments:       3
+  Assignments:       2
   Matching Coords:   1
   Matching Value:    1
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
   Not Encountered:   1
-  Missing:           1
+  Missing:           0
 Warnings:
   Unused:            0
   Unreachable:       0

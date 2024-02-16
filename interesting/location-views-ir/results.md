@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -246,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -332,38 +332,38 @@ Collected value for `x`
 Filtering redundant before assignments: `x` (decl src ln 4)
 
 Checking equivalence of `x` (decl src ln 4) from
-  assn asm ln 17, prod ln 6.4, live ln 7, enc 2
-  %inc1 = add nsw i32 %1, 1, l6 c4
-  (w32 0x3)
-and
-  assn asm ln 20, prod ln 7.7, live ln 8, enc 3
-  %call = call i32 @modify(i32 %2), l7 c7
-  (ReadLSB w32 (w32 0x0) modify.return)
-Query to parse
-array modify.return[4] : w32 -> w8 = symbolic
-(query [] (Eq (w32 0x3)
-     (ReadLSB w32 (w32 0x0) modify.return)))
-Parsed query
-(Eq (w32 0x3)
-     (ReadLSB w32 (w32 0x0) modify.return))
-
-Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 14, prod ln 5.4, live ln 6, enc 1
   %inc = add nsw i32 %0, 1, l5 c4
   (w32 0x2)
 and
-  assn asm ln 17, prod ln 6.4, live ln 7, enc 2
-  %inc1 = add nsw i32 %1, 1, l6 c4
-  (w32 0x3)
-
-Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 11, prod ln 4.7, live ln 5, enc 0
   i32 1
   (w32 0x1)
+
+Checking equivalence of `x` (decl src ln 4) from
+  assn asm ln 17, prod ln 6.4, live ln 7, enc 2
+  %inc1 = add nsw i32 %1, 1, l6 c4
+  (w32 0x3)
 and
   assn asm ln 14, prod ln 5.4, live ln 6, enc 1
   %inc = add nsw i32 %0, 1, l5 c4
   (w32 0x2)
+
+Checking equivalence of `x` (decl src ln 4) from
+  assn asm ln 20, prod ln 7.7, live ln 8, enc 3
+  %call = call i32 @modify(i32 %2), l7 c7
+  (ReadLSB w32 (w32 0x0) modify.return)
+and
+  assn asm ln 17, prod ln 6.4, live ln 7, enc 2
+  %inc1 = add nsw i32 %1, 1, l6 c4
+  (w32 0x3)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x3)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x3))
 
 Filtering redundant after assignments: `x` (decl src ln 4)
 
@@ -414,8 +414,9 @@ Collating encountered assignments: `x` (decl src ln 4)
   asm ln 13, prod ln 7.7, live ln 8, enc 3
 
 
-#### Check before against after
+#### Check before using after as reference
 
+❌ After `x` (decl src ln 4) assn asm ln 9, prod ln 4.0, live ln 7, enc 0 coordinates don't match before assn asm ln 11, prod ln 4.7, live ln 5, enc 0
 Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 11, prod ln 4.7, live ln 5, enc 0
   i32 1
@@ -426,6 +427,7 @@ and
   (w32 0x1)
 ✅ After `x` (decl src ln 4) assn asm ln 9, prod ln 4.0, live ln 7, enc 0 symbolic value matches before assn asm ln 11, prod ln 4.7, live ln 5, enc 0
 
+❌ After `x` (decl src ln 4) assn asm ln 10, prod ln 4.0, live ln 7, enc 1 coordinates don't match before assn asm ln 14, prod ln 5.4, live ln 6, enc 1
 Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 14, prod ln 5.4, live ln 6, enc 1
   %inc = add nsw i32 %0, 1, l5 c4
@@ -464,15 +466,24 @@ Parsed query
      N0)
 ✅ After `x` (decl src ln 4) assn asm ln 13, prod ln 7.7, live ln 8, enc 3 symbolic value matches before assn asm ln 20, prod ln 7.7, live ln 8, enc 3
 
-✅ Before symbolic values checked against after
-  Matching:    4
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ Before `x` assns checked using after as reference
+Variable:            x
+  Assignments:       4
+  Matching Coords:   2
+  Matching Value:    4
+Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
-#### Check after against before
+#### Check after using before as reference
 
+❌ Before `x` (decl src ln 4) assn asm ln 11, prod ln 4.7, live ln 5, enc 0 coordinates don't match after assn asm ln 9, prod ln 4.0, live ln 7, enc 0
 Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 9, prod ln 4.0, live ln 7, enc 0
   i32 1
@@ -483,6 +494,7 @@ and
   (w32 0x1)
 ✅ Before `x` (decl src ln 4) assn asm ln 11, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 9, prod ln 4.0, live ln 7, enc 0
 
+❌ Before `x` (decl src ln 4) assn asm ln 14, prod ln 5.4, live ln 6, enc 1 coordinates don't match after assn asm ln 10, prod ln 4.0, live ln 7, enc 1
 Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 10, prod ln 4.0, live ln 7, enc 1
   i32 2
@@ -521,13 +533,21 @@ Parsed query
      N0)
 ✅ Before `x` (decl src ln 4) assn asm ln 20, prod ln 7.7, live ln 8, enc 3 symbolic value matches after assn asm ln 13, prod ln 7.7, live ln 8, enc 3
 
-✅ After symbolic values checked against before
-  Matching:    4
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `x` assns checked using before as reference
+Variable:            x
+  Assignments:       4
+  Matching Coords:   2
+  Matching Value:    4
+Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ## Summary
 
-🎉 All consistency checks passed
+❌ Some consistency checks failed

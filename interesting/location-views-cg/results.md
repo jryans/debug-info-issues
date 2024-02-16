@@ -33,6 +33,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -72,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -112,6 +113,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -151,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -204,6 +206,7 @@
 ++++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 ++++ CC_O0_OPTS=
 ++++ CC_O1_OPTS=-O1
+++++ CC_O2_OPTS=-O2
 ++++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++++ llvm release-clang-lldb-13.0.0 opt
@@ -243,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -398,61 +401,63 @@ Collected value for `y`
 Filtering redundant before assignments: `x` (decl src ln 2)
 
 Checking equivalence of `x` (decl src ln 2) from
-  assn asm ln 27, prod ln 2.13, live ln 3, enc 0
-  %add = add nsw i32 %0, %1, l2 c13
-  (Add w32 (ReadLSB w32 (w32 0x0) a)
-          (ReadLSB w32 (w32 0x0) b))
-and
   assn asm ln 36, prod ln 4.5, live ln 5, enc 1
   %sub = sub nsw i32 %5, %4, l4 c5
   (Sub w32 (Add w32 (ReadLSB w32 (w32 0x0) a)
                    (ReadLSB w32 (w32 0x0) b))
           (Mul w32 (ReadLSB w32 (w32 0x0) c)
                    (ReadLSB w32 (w32 0x0) d)))
+and
+  assn asm ln 27, prod ln 2.13, live ln 3, enc 0
+  %add = add nsw i32 %0, %1, l2 c13
+  (Add w32 (ReadLSB w32 (w32 0x0) a)
+          (ReadLSB w32 (w32 0x0) b))
 Query to parse
-array a[4] : w32 -> w8 = symbolic
-array b[4] : w32 -> w8 = symbolic
 array a[4] : w32 -> w8 = symbolic
 array b[4] : w32 -> w8 = symbolic
 array c[4] : w32 -> w8 = symbolic
 array d[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(Add w32 (ReadLSB w32 (w32 0x0) a)
-                 (ReadLSB w32 (w32 0x0) b))
-     (Sub w32 N0
+array a[4] : w32 -> w8 = symbolic
+array b[4] : w32 -> w8 = symbolic
+(query [] (Eq (Sub w32 N0:(Add w32 (ReadLSB w32 (w32 0x0) a)
+                          (ReadLSB w32 (w32 0x0) b))
               (Mul w32 (ReadLSB w32 (w32 0x0) c)
-                       (ReadLSB w32 (w32 0x0) d)))))
+                       (ReadLSB w32 (w32 0x0) d)))
+     N0))
 Parsed query
-(Eq N0:(Add w32 (ReadLSB w32 (w32 0x0) a)
-                 (ReadLSB w32 (w32 0x0) b))
-     (Sub w32 N0
+(Eq (Sub w32 N0:(Add w32 (ReadLSB w32 (w32 0x0) a)
+                          (ReadLSB w32 (w32 0x0) b))
               (Mul w32 (ReadLSB w32 (w32 0x0) c)
-                       (ReadLSB w32 (w32 0x0) d))))
+                       (ReadLSB w32 (w32 0x0) d)))
+     N0)
 
 Filtering redundant before assignments: `y` (decl src ln 3)
 
 Checking equivalence of `y` (decl src ln 3) from
-  assn asm ln 32, prod ln 3.13, live ln 4, enc 0
-  %mul = mul nsw i32 %2, %3, l3 c13
-  (Mul w32 (ReadLSB w32 (w32 0x0) c)
-          (ReadLSB w32 (w32 0x0) d))
-and
   assn asm ln 40, prod ln 5.5, live ln 6, enc 1
   %add1 = add nsw i32 %7, %6, l5 c5
   (Add w32 N0:(Mul w32 (ReadLSB w32 (w32 0x0) c)
                       (ReadLSB w32 (w32 0x0) d))
           N0)
+and
+  assn asm ln 32, prod ln 3.13, live ln 4, enc 0
+  %mul = mul nsw i32 %2, %3, l3 c13
+  (Mul w32 (ReadLSB w32 (w32 0x0) c)
+          (ReadLSB w32 (w32 0x0) d))
 Query to parse
 array c[4] : w32 -> w8 = symbolic
 array d[4] : w32 -> w8 = symbolic
 array c[4] : w32 -> w8 = symbolic
 array d[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(Mul w32 (ReadLSB w32 (w32 0x0) c)
-                 (ReadLSB w32 (w32 0x0) d))
-     (Add w32 N0 N0)))
+(query [] (Eq (Add w32 N0:(Mul w32 (ReadLSB w32 (w32 0x0) c)
+                          (ReadLSB w32 (w32 0x0) d))
+              N0)
+     N0))
 Parsed query
-(Eq N0:(Mul w32 (ReadLSB w32 (w32 0x0) c)
-                 (ReadLSB w32 (w32 0x0) d))
-     (Add w32 N0 N0))
+(Eq (Add w32 N0:(Mul w32 (ReadLSB w32 (w32 0x0) c)
+                          (ReadLSB w32 (w32 0x0) d))
+              N0)
+     N0)
 
 Filtering redundant after assignments: `x` (decl src ln 2)
 
@@ -546,7 +551,7 @@ Collating encountered assignments: `y` (decl src ln 3)
   asm ln 20, prod ln 5.5, live ln 6, enc 1
 
 
-#### Check before against after
+#### Check before using after as reference
 
 Checking equivalence of `a` (decl src ln 1) from
   assn asm ln 15, prod ln 1.0, live ln 2, enc 0
@@ -566,6 +571,21 @@ Parsed query
      N0)
 ✅ After `a` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 15, prod ln 1.0, live ln 2, enc 0
 
+✅ Before `a` assns checked using after as reference
+Variable:            a
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `b` (decl src ln 1) from
   assn asm ln 17, prod ln 1.0, live ln 2, enc 0
   i32 %b
@@ -583,6 +603,21 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) b)
      N0)
 ✅ After `b` (decl src ln 1) assn asm ln 10, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 17, prod ln 1.0, live ln 2, enc 0
+
+✅ Before `b` assns checked using after as reference
+Variable:            b
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `c` (decl src ln 1) from
   assn asm ln 19, prod ln 1.0, live ln 2, enc 0
@@ -602,6 +637,21 @@ Parsed query
      N0)
 ✅ After `c` (decl src ln 1) assn asm ln 11, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 19, prod ln 1.0, live ln 2, enc 0
 
+✅ Before `c` assns checked using after as reference
+Variable:            c
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `d` (decl src ln 1) from
   assn asm ln 21, prod ln 1.0, live ln 2, enc 0
   i32 %d
@@ -619,6 +669,21 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) d)
      N0)
 ✅ After `d` (decl src ln 1) assn asm ln 12, prod ln 1.0, live ln 2, enc 0 symbolic value matches before assn asm ln 21, prod ln 1.0, live ln 2, enc 0
+
+✅ Before `d` assns checked using after as reference
+Variable:            d
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 27, prod ln 2.13, live ln 3, enc 0
@@ -684,6 +749,21 @@ Parsed query
      (Sub w32 (Add w32 N1 N0) (Mul w32 N3 N2)))
 ✅ After `x` (decl src ln 2) assn asm ln 18, prod ln 4.5, live ln 5, enc 1 symbolic value matches before assn asm ln 36, prod ln 4.5, live ln 5, enc 1
 
+✅ Before `x` assns checked using after as reference
+Variable:            x
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 32, prod ln 3.13, live ln 4, enc 0
   %mul = mul nsw i32 %2, %3, l3 c13
@@ -739,14 +819,22 @@ Parsed query
      (Shl w32 (Mul w32 N2 N1) (w32 0x1)))
 ✅ After `y` (decl src ln 3) assn asm ln 20, prod ln 5.5, live ln 6, enc 1 symbolic value matches before assn asm ln 40, prod ln 5.5, live ln 6, enc 1
 
-✅ Before symbolic values checked against after
-  Matching:    8
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ Before `y` assns checked using after as reference
+Variable:            y
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
-#### Check after against before
+#### Check after using before as reference
 
 Checking equivalence of `a` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 2, enc 0
@@ -766,6 +854,21 @@ Parsed query
      N0)
 ✅ Before `a` (decl src ln 1) assn asm ln 15, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 2, enc 0
 
+✅ After `a` assns checked using before as reference
+Variable:            a
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `b` (decl src ln 1) from
   assn asm ln 10, prod ln 1.0, live ln 2, enc 0
   i32 %b
@@ -783,6 +886,21 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) b)
      N0)
 ✅ Before `b` (decl src ln 1) assn asm ln 17, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 10, prod ln 1.0, live ln 2, enc 0
+
+✅ After `b` assns checked using before as reference
+Variable:            b
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `c` (decl src ln 1) from
   assn asm ln 11, prod ln 1.0, live ln 2, enc 0
@@ -802,6 +920,21 @@ Parsed query
      N0)
 ✅ Before `c` (decl src ln 1) assn asm ln 19, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 11, prod ln 1.0, live ln 2, enc 0
 
+✅ After `c` assns checked using before as reference
+Variable:            c
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `d` (decl src ln 1) from
   assn asm ln 12, prod ln 1.0, live ln 2, enc 0
   i32 %d
@@ -819,6 +952,21 @@ Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) d)
      N0)
 ✅ Before `d` (decl src ln 1) assn asm ln 21, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 12, prod ln 1.0, live ln 2, enc 0
+
+✅ After `d` assns checked using before as reference
+Variable:            d
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 14, prod ln 2.13, live ln 3, enc 0
@@ -884,6 +1032,21 @@ Parsed query
      (Sub w32 (Add w32 N1 N0) (Mul w32 N3 N2)))
 ✅ Before `x` (decl src ln 2) assn asm ln 36, prod ln 4.5, live ln 5, enc 1 symbolic value matches after assn asm ln 18, prod ln 4.5, live ln 5, enc 1
 
+✅ After `x` assns checked using before as reference
+Variable:            x
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 16, prod ln 3.13, live ln 4, enc 0
   %mul = mul nsw i32 %d, %c, l3 c13
@@ -939,12 +1102,20 @@ Parsed query
      (Add w32 N2:(Mul w32 N1 N0) N2))
 ✅ Before `y` (decl src ln 3) assn asm ln 40, prod ln 5.5, live ln 6, enc 1 symbolic value matches after assn asm ln 20, prod ln 5.5, live ln 6, enc 1
 
-✅ After symbolic values checked against before
-  Matching:    8
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ After `y` assns checked using before as reference
+Variable:            y
+  Assignments:       2
+  Matching Coords:   2
+  Matching Value:    2
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
 
 ## Summary
 
