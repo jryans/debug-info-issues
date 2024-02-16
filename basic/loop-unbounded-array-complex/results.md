@@ -367,7 +367,7 @@ Collected value for `i`
   (w32 0x1)
 [0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
 [0m
-❌ Unable to execute all before program states
+🔔 Unable to execute all before program states
 
 #### After values
 
@@ -397,20 +397,20 @@ Collected value for `i`
   Block: 0
   (w32 0x2)
 
-❌ Unable to execute all after program states
+🔔 Unable to execute all after program states
 
 ### Assignments
 
 Filtering redundant before assignments: `i` (decl src ln 3)
 
 Checking equivalence of `i` (decl src ln 3) from
-  assn asm ln 23, prod ln 3.12, live ln 4, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 55, prod ln 3.27, live ln 4, enc 1
   %inc = add nsw i32 %10, 1, l3 c27
   (w32 0x1)
+and
+  assn asm ln 23, prod ln 3.12, live ln 4, enc 0
+  i32 0
+  (w32 0x0)
 
 Filtering redundant after assignments: `i` (decl src ln 3)
 
@@ -495,6 +495,7 @@ Variable:            a
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -519,6 +520,7 @@ Variable:            b
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -533,6 +535,7 @@ Variable:            data
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -576,6 +579,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -601,6 +605,7 @@ Variable:            i2
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -633,6 +638,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -649,6 +655,7 @@ Variable:            a
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -673,6 +680,7 @@ Variable:            b
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -687,6 +695,7 @@ Variable:            data
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -730,6 +739,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -755,6 +765,7 @@ Variable:            i2
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -787,6 +798,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0

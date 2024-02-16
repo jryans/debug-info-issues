@@ -555,7 +555,7 @@ Collected value for `i`
   (w32 0x1)
 [0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
 [0m
-❌ Unable to execute all before program states
+🔔 Unable to execute all before program states
 
 #### After values
 
@@ -602,40 +602,40 @@ Collected value for `i`
 Filtering redundant before assignments: `y` (decl src ln 3)
 
 Checking equivalence of `y` (decl src ln 3) from
-  assn asm ln 20, prod ln 3.7, live ln 4, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 38, prod ln 5.7, live ln 6, enc 1
   %add2 = add nsw i32 %5, %add1, l5 c7
   (Add w32 (w32 0x4)
           (Add w32 (Mul w32 (w32 0x2)
                             N0:(ReadLSB w32 (w32 0x0) n))
                    N0))
+and
+  assn asm ln 20, prod ln 3.7, live ln 4, enc 0
+  i32 0
+  (w32 0x0)
 Query to parse
 array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (w32 0x0)
-     (Add w32 (w32 0x4)
+(query [] (Eq (Add w32 (w32 0x4)
               (Add w32 (Mul w32 (w32 0x2)
                                 N0:(ReadLSB w32 (w32 0x0) n))
-                       N0))))
+                       N0))
+     (w32 0x0)))
 Parsed query
-(Eq (w32 0x0)
-     (Add w32 (w32 0x4)
+(Eq (Add w32 (w32 0x4)
               (Add w32 (Mul w32 (w32 0x2)
                                 N0:(ReadLSB w32 (w32 0x0) n))
-                       N0)))
+                       N0))
+     (w32 0x0))
 
 Filtering redundant before assignments: `i` (decl src ln 4)
 
 Checking equivalence of `i` (decl src ln 4) from
-  assn asm ln 22, prod ln 4.21, live ln 5, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 41, prod ln 4.36, live ln 5, enc 1
   %inc = add i32 %6, 1, l4 c36
   (w32 0x1)
+and
+  assn asm ln 22, prod ln 4.21, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
 
 Filtering redundant after assignments: `x` (decl src ln 2)
 
@@ -776,6 +776,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           1
 Warnings:
   Unused:            0
@@ -809,6 +810,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -847,6 +849,7 @@ Variable:            x
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -873,6 +876,7 @@ Variable:            y
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           1
 Warnings:
   Unused:            0
@@ -903,6 +907,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           2
 Warnings:
   Unused:            0
@@ -936,6 +941,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -974,6 +980,7 @@ Variable:            x
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -1002,6 +1009,7 @@ Variable:            y
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           2
 Warnings:
   Unused:            0

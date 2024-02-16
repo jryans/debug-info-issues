@@ -372,11 +372,6 @@ Collected value for `y`
 Filtering redundant before assignments: `x` (decl src ln 4)
 
 Checking equivalence of `x` (decl src ln 4) from
-  assn asm ln 17, prod ln 4.13, live ln 5, enc 0
-  %mul = mul nsw i32 %0, 2, l4 c13
-  (Mul w32 (w32 0x2)
-          (ReadLSB w32 (w32 0x0) n))
-and
   assn asm ln 31, prod ln 6.9, live ln 7, enc 1
   %add2 = add nsw i32 %5, %6, l6 c9
   (Add w32 (w32 0x4)
@@ -384,29 +379,31 @@ and
                                      N0:(ReadLSB w32 (w32 0x0) n))
                             N0)
                    N0))
+and
+  assn asm ln 17, prod ln 4.13, live ln 5, enc 0
+  %mul = mul nsw i32 %0, 2, l4 c13
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) n))
 Query to parse
 array n[4] : w32 -> w8 = symbolic
 array n[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(Mul w32 (w32 0x2)
-                 N1:(ReadLSB w32 (w32 0x0) n))
-     (Add w32 (w32 0x4)
-              (Add w32 (Add w32 N0 N1) N1))))
+(query [] (Eq (Add w32 (w32 0x4)
+              (Add w32 (Add w32 N0:(Mul w32 (w32 0x2)
+                                            N1:(ReadLSB w32 (w32 0x0) n))
+                                N1)
+                       N1))
+     N0))
 Parsed query
-(Eq N0:(Mul w32 (w32 0x2)
-                 N1:(ReadLSB w32 (w32 0x0) n))
-     (Add w32 (w32 0x4)
-              (Add w32 (Add w32 N0 N1) N1)))
+(Eq (Add w32 (w32 0x4)
+              (Add w32 (Add w32 N0:(Mul w32 (w32 0x2)
+                                            N1:(ReadLSB w32 (w32 0x0) n))
+                                N1)
+                       N1))
+     N0)
 
 Filtering redundant before assignments: `y` (decl src ln 5)
 
 Checking equivalence of `y` (decl src ln 5) from
-  assn asm ln 25, prod ln 5.17, live ln 6, enc 0
-  %add1 = add nsw i32 %add, %3, l5 c17
-  (Add w32 (w32 0x4)
-          (Add w32 (Mul w32 (w32 0x2)
-                            N0:(ReadLSB w32 (w32 0x0) n))
-                   N0))
-and
   assn asm ln 34, prod ln 7.9, live ln 8, enc 1
   %mul3 = mul nsw i32 %7, 2, l7 c9
   (Mul w32 (w32 0x2)
@@ -415,22 +412,31 @@ and
                                               N0:(ReadLSB w32 (w32 0x0) n))
                                      N0)
                             N0)))
+and
+  assn asm ln 25, prod ln 5.17, live ln 6, enc 0
+  %add1 = add nsw i32 %add, %3, l5 c17
+  (Add w32 (w32 0x4)
+          (Add w32 (Mul w32 (w32 0x2)
+                            N0:(ReadLSB w32 (w32 0x0) n))
+                   N0))
 Query to parse
 array n[4] : w32 -> w8 = symbolic
 array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (Add w32 (w32 0x4)
-              N0:(Add w32 (Mul w32 (w32 0x2)
-                                   N1:(ReadLSB w32 (w32 0x0) n))
-                          N1))
-     (Mul w32 (w32 0x2)
-              (Add w32 (w32 0x4) (Add w32 N0 N1)))))
+(query [] (Eq (Mul w32 (w32 0x2)
+              (Add w32 (w32 0x4)
+                       (Add w32 N0:(Add w32 (Mul w32 (w32 0x2)
+                                                     N1:(ReadLSB w32 (w32 0x0) n))
+                                            N1)
+                                N1)))
+     (Add w32 (w32 0x4) N0)))
 Parsed query
-(Eq (Add w32 (w32 0x4)
-              N0:(Add w32 (Mul w32 (w32 0x2)
-                                   N1:(ReadLSB w32 (w32 0x0) n))
-                          N1))
-     (Mul w32 (w32 0x2)
-              (Add w32 (w32 0x4) (Add w32 N0 N1))))
+(Eq (Mul w32 (w32 0x2)
+              (Add w32 (w32 0x4)
+                       (Add w32 N0:(Add w32 (Mul w32 (w32 0x2)
+                                                     N1:(ReadLSB w32 (w32 0x0) n))
+                                            N1)
+                                N1)))
+     (Add w32 (w32 0x4) N0))
 
 Filtering redundant after assignments: `x` (decl src ln 4)
 
@@ -541,6 +547,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -616,6 +623,7 @@ Variable:            x
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -706,6 +714,7 @@ Variable:            y
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -740,6 +749,7 @@ Variable:            n
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -814,6 +824,7 @@ Variable:            x
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -902,6 +913,7 @@ Variable:            y
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
