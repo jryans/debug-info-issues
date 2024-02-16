@@ -342,6 +342,8 @@ Collected value for `i`
 [0m
 ❌ Unable to execute all before program states
 
+🔔 Unable to execute all before instructions
+
 #### After values
 
 Collected value for `n`
@@ -370,6 +372,8 @@ Collected value for `i`
   (w32 0x1)
 
 ❌ Unable to execute all after program states
+
+🔔 Unable to execute all after instructions
 
 ### Assignments
 
@@ -478,6 +482,7 @@ Variable:            i
 Errors:
   Mismatched Coords: 0
   Mismatched Value:  1
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
@@ -511,30 +516,142 @@ Variable:            n
 Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+  Not Encountered:   0
   Missing:           0
 Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
 
-Assertion failed: (hasVal), function getValue, file Optional.h, line 196.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010935693d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x0000000109356e3b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x0000000109354ed3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x00000001093580df SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff80b7de5ed _sigtramp + 29
-5  check-debug-info         0x0000000106608991 std::__1::__libcpp_deallocate[abi:v160006](void*, unsigned long, unsigned long) + 33
-6  libsystem_c.dylib        0x00007ff80b6d7b45 abort + 123
-7  libsystem_c.dylib        0x00007ff80b6d6e5e err + 0
-8  check-debug-info         0x000000010660b5b5 llvm::optional_detail::OptionalStorage<unsigned int, true>::getValue() & + 69
-9  check-debug-info         0x000000010660b565 llvm::Optional<unsigned int>::getValue() & + 21
-10 check-debug-info         0x00000001065ff955 llvm::Optional<unsigned int>::operator*() & + 21
-11 check-debug-info         0x0000000106600544 checkAssignments(llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, bool, bool, llvm::StringRef, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, bool, bool, llvm::StringRef, llvm::Optional<std::__1::unique_ptr<llvm::raw_fd_ostream, std::__1::default_delete<llvm::raw_fd_ostream> > >&) + 1684
-12 check-debug-info         0x0000000106602fb2 checkFunction(llvm::LLVMContext&, llvm::StringRef, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 5234
-13 check-debug-info         0x00000001066040de main + 1742
-14 dyld                     0x00007ff80b45741f start + 1903
-./check.sh: line 6: 82954 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS} "$@"
+❌ Before assn asm ln 34, prod ln 7.11, live ln 8, enc None for `r` (decl src ln 4) was not encountered during execution
+
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+✅ After `r` (decl src ln 4) assn asm ln 10, prod ln 4.0, live ln 5, enc 0 symbolic value matches before assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+
+❌ Before `r` assns checked using after as reference
+Variable:            r
+  Assignments:       2
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   1
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+#### Check after using before as reference
+
+Checking equivalence of `i` (decl src ln 5) from
+  assn asm ln 11, prod ln 5.0, live ln 6, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 17, prod ln 5.12, live ln 6, enc 0
+  i32 0
+  (w32 0x0)
+✅ Before `i` (decl src ln 5) assn asm ln 17, prod ln 5.12, live ln 6, enc 0 symbolic value matches after assn asm ln 11, prod ln 5.0, live ln 6, enc 0
+
+Checking equivalence of `i` (decl src ln 5) from
+  assn asm ln 22, prod ln 5.27, live ln 6, enc 1
+  %i.09 = phi i32 [ %inc, %for.inc ], [ 0, %entry ]
+  (w32 0x0)
+and
+  assn asm ln 40, prod ln 5.27, live ln 6, enc 1
+  %inc = add nsw i32 %4, 1, l5 c27
+  (w32 0x1)
+❌ Before `i` (decl src ln 5) assn asm ln 40, prod ln 5.27, live ln 6, enc 1 symbolic value doesn't match after assn asm ln 22, prod ln 5.27, live ln 6, enc 1
+
+❌ Before encountered assn for `i` (decl src ln 5) at asm ln 36, prod ln 5.27, live ln 6, enc 2 not found
+
+❌ After `i` assns checked using before as reference
+Variable:            i
+  Assignments:       3
+  Matching Coords:   2
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  1
+  Not Encountered:   0
+  Missing:           1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+❌ Before `n` (decl src ln 3) assn asm ln 12, prod ln 3.0, live ln 4, enc 0 coordinates don't match after assn asm ln 9, prod ln 3.0, live ln 5, enc 0
+Checking equivalence of `n` (decl src ln 3) from
+  assn asm ln 9, prod ln 3.0, live ln 5, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+and
+  assn asm ln 12, prod ln 3.0, live ln 4, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) n)
+     (ReadLSB w32 (w32 0x0) n)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0)
+✅ Before `n` (decl src ln 3) assn asm ln 12, prod ln 3.0, live ln 4, enc 0 symbolic value matches after assn asm ln 9, prod ln 3.0, live ln 5, enc 0
+
+❌ After `n` assns checked using before as reference
+Variable:            n
+  Assignments:       1
+  Matching Coords:   0
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+❌ After assn asm ln 29, prod ln 7.11, live ln 8, enc None for `r` (decl src ln 4) was not encountered during execution
+
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+✅ Before `r` (decl src ln 4) assn asm ln 15, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+
+❌ Before encountered assn for `r` (decl src ln 4) at asm ln 23, prod ln 4.0, live ln 6, enc 1 not found
+
+❌ After `r` assns checked using before as reference
+Variable:            r
+  Assignments:       3
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   1
+  Missing:           1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+## Summary
+
+❌ Some consistency checks failed
