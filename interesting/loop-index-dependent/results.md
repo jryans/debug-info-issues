@@ -394,6 +394,15 @@ Collected value for `r`
 Filtering redundant before assignments: `r` (decl src ln 4)
 
 Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+  %add = add nsw i32 %3, 4, l9 c9
+  (w32 0x4)
+and
+  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+
+Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 33, prod ln 7.11, live ln 8, enc 2
   %call = call i32 @modify(i32 %2), l7 c11
   (ReadLSB w32 (w32 0x0) modify.return)
@@ -409,84 +418,63 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) modify.return)
      (w32 0x4))
 
-Checking equivalence of `r` (decl src ln 4) from
-  assn asm ln 15, prod ln 4.7, live ln 5, enc 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 33, prod ln 7.11, live ln 8, enc 2
-  %call = call i32 @modify(i32 %2), l7 c11
-  (ReadLSB w32 (w32 0x0) modify.return)
-Query to parse
-array modify.return[4] : w32 -> w8 = symbolic
-(query [] (Eq (w32 0x0)
-     (ReadLSB w32 (w32 0x0) modify.return)))
-Parsed query
-(Eq (w32 0x0)
-     (ReadLSB w32 (w32 0x0) modify.return))
-
 Filtering redundant before assignments: `i` (decl src ln 5)
 
 Checking equivalence of `i` (decl src ln 5) from
-  assn asm ln 17, prod ln 5.12, live ln 6, enc 0
-  i32 0
-  (w32 0x0)
-and
   assn asm ln 45, prod ln 5.27, live ln 6, enc 1
   %inc = add nsw i32 %4, 1, l5 c27
   (w32 0x1)
-
-Filtering redundant after assignments: `r` (decl src ln 4)
-
-Checking equivalence of `r` (decl src ln 4) from
-  assn asm ln 27, prod ln 7.11, live ln 8, enc 4
-  %call = call i32 @modify(i32 1) #3, l7 c11
-  (ReadLSB w32 (w32 0x0) modify.return)
 and
-  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  assn asm ln 17, prod ln 5.12, live ln 6, enc 0
   i32 0
   (w32 0x0)
-Query to parse
-array modify.return[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
-     (w32 0x0)))
-Parsed query
-(Eq (ReadLSB w32 (w32 0x0) modify.return)
-     (w32 0x0))
 
-Checking equivalence of `r` (decl src ln 4) from
-  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
-  %add = add nsw i32 %r.07, 4, l9 c9
-  (w32 0x4)
-and
-  assn asm ln 27, prod ln 7.11, live ln 8, enc 4
-  %call = call i32 @modify(i32 1) #3, l7 c11
-  (ReadLSB w32 (w32 0x0) modify.return)
-Query to parse
-array modify.return[4] : w32 -> w8 = symbolic
-(query [] (Eq (w32 0x4)
-     (ReadLSB w32 (w32 0x0) modify.return)))
-Parsed query
-(Eq (w32 0x4)
-     (ReadLSB w32 (w32 0x0) modify.return))
+Filtering redundant after assignments: `r` (decl src ln 4)
 
 Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 21, prod ln 4.0, live ln 6, enc 1
   %r.07 = phi i32 [ 0, %entry ], [ %r.1, %for.inc ]
   (w32 0x0)
 and
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 21, prod ln 4.0, live ln 6, enc 1
+
+Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 32, prod ln 9.9, live ln 10, enc 2
   %add = add nsw i32 %r.07, 4, l9 c9
   (w32 0x4)
+and
+  assn asm ln 10, prod ln 4.0, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
 
 Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 37, prod ln 9.11, live ln 10, enc 3
   %r.1 = phi i32 [ %call, %if.then ], [ %add, %if.else ]
   (w32 0x4)
 and
-  assn asm ln 21, prod ln 4.0, live ln 6, enc 1
-  %r.07 = phi i32 [ 0, %entry ], [ %r.1, %for.inc ]
-  (w32 0x0)
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
+🔔 Removing: asm ln 37, prod ln 9.11, live ln 10, enc 3
+
+Checking equivalence of `r` (decl src ln 4) from
+  assn asm ln 27, prod ln 7.11, live ln 8, enc 4
+  %call = call i32 @modify(i32 1) #3, l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
+and
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
+Query to parse
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x4)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify.return)
+     (w32 0x4))
 
 Filtering redundant after assignments: `i` (decl src ln 5)
 
@@ -560,10 +548,8 @@ Collating encountered assignments: `n` (decl src ln 3)
   asm ln 9, prod ln 3.0, live ln 5, enc 0
 Collating encountered assignments: `r` (decl src ln 4)
   asm ln 10, prod ln 4.0, live ln 5, enc 0
-  asm ln 21, prod ln 4.0, live ln 6, enc 1
-  asm ln 32, prod ln 9.9, live ln 10, enc 2
-  asm ln 37, prod ln 9.11, live ln 10, enc 3
-  asm ln 27, prod ln 7.11, live ln 8, enc 4
+  asm ln 32, prod ln 9.9, live ln 10, enc 1
+  asm ln 27, prod ln 7.11, live ln 8, enc 2
 Collating encountered assignments: `i` (decl src ln 5)
   asm ln 11, prod ln 5.0, live ln 6, enc 0
   asm ln 38, prod ln 5.21, live ln 6, enc 1
@@ -659,43 +645,42 @@ and
   (w32 0x0)
 ✅ After `r` (decl src ln 4) assn asm ln 10, prod ln 4.0, live ln 5, enc 0 symbolic value matches before assn asm ln 15, prod ln 4.7, live ln 5, enc 0
 
-❌ After `r` (decl src ln 4) assn asm ln 21, prod ln 4.0, live ln 6, enc 1 coordinates don't match before assn asm ln 39, prod ln 9.9, live ln 10, enc 1
 Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 39, prod ln 9.9, live ln 10, enc 1
   %add = add nsw i32 %3, 4, l9 c9
   (w32 0x4)
 and
-  assn asm ln 21, prod ln 4.0, live ln 6, enc 1
-  %r.07 = phi i32 [ 0, %entry ], [ %r.1, %for.inc ]
-  (w32 0x0)
-❌ After `r` (decl src ln 4) assn asm ln 21, prod ln 4.0, live ln 6, enc 1 symbolic value doesn't match before assn asm ln 39, prod ln 9.9, live ln 10, enc 1
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 1
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
+✅ After `r` (decl src ln 4) assn asm ln 32, prod ln 9.9, live ln 10, enc 1 symbolic value matches before assn asm ln 39, prod ln 9.9, live ln 10, enc 1
 
-❌ After `r` (decl src ln 4) assn asm ln 32, prod ln 9.9, live ln 10, enc 2 coordinates don't match before assn asm ln 33, prod ln 7.11, live ln 8, enc 2
 Checking equivalence of `r` (decl src ln 4) from
   assn asm ln 33, prod ln 7.11, live ln 8, enc 2
   %call = call i32 @modify(i32 %2), l7 c11
   (ReadLSB w32 (w32 0x0) modify.return)
 and
-  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
-  %add = add nsw i32 %r.07, 4, l9 c9
-  (w32 0x4)
+  assn asm ln 27, prod ln 7.11, live ln 8, enc 2
+  %call = call i32 @modify(i32 1) #3, l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
 Query to parse
 array modify.return[4] : w32 -> w8 = symbolic
+array modify.return[4] : w32 -> w8 = symbolic
 (query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
-     (w32 0x4)))
+     (ReadLSB w32 (w32 0x0) modify.return)))
 Parsed query
-(Eq (ReadLSB w32 (w32 0x0) modify.return)
-     (w32 0x4))
-❌ After `r` (decl src ln 4) assn asm ln 32, prod ln 9.9, live ln 10, enc 2 symbolic value doesn't match before assn asm ln 33, prod ln 7.11, live ln 8, enc 2
+(Eq N0:(ReadLSB w32 (w32 0x0) modify.return)
+     N0)
+✅ After `r` (decl src ln 4) assn asm ln 27, prod ln 7.11, live ln 8, enc 2 symbolic value matches before assn asm ln 33, prod ln 7.11, live ln 8, enc 2
 
-❌ Before `r` assns checked using after as reference
+✅ Before `r` assns checked using after as reference
 Variable:            r
   Assignments:       3
-  Matching Coords:   1
-  Matching Value:    1
+  Matching Coords:   3
+  Matching Value:    3
 Errors:
-  Mismatched Coords: 2
-  Mismatched Value:  2
+  Mismatched Coords: 0
+  Mismatched Value:  0
   Not Encountered:   0
   Missing:           0
 Warnings:
@@ -793,49 +778,44 @@ and
   (w32 0x0)
 ✅ Before `r` (decl src ln 4) assn asm ln 15, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 10, prod ln 4.0, live ln 5, enc 0
 
-❌ Before `r` (decl src ln 4) assn asm ln 39, prod ln 9.9, live ln 10, enc 1 coordinates don't match after assn asm ln 21, prod ln 4.0, live ln 6, enc 1
 Checking equivalence of `r` (decl src ln 4) from
-  assn asm ln 21, prod ln 4.0, live ln 6, enc 1
-  %r.07 = phi i32 [ 0, %entry ], [ %r.1, %for.inc ]
-  (w32 0x0)
+  assn asm ln 32, prod ln 9.9, live ln 10, enc 1
+  %add = add nsw i32 %r.07, 4, l9 c9
+  (w32 0x4)
 and
   assn asm ln 39, prod ln 9.9, live ln 10, enc 1
   %add = add nsw i32 %3, 4, l9 c9
   (w32 0x4)
-❌ Before `r` (decl src ln 4) assn asm ln 39, prod ln 9.9, live ln 10, enc 1 symbolic value doesn't match after assn asm ln 21, prod ln 4.0, live ln 6, enc 1
+✅ Before `r` (decl src ln 4) assn asm ln 39, prod ln 9.9, live ln 10, enc 1 symbolic value matches after assn asm ln 32, prod ln 9.9, live ln 10, enc 1
 
-❌ Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc 2 coordinates don't match after assn asm ln 32, prod ln 9.9, live ln 10, enc 2
 Checking equivalence of `r` (decl src ln 4) from
-  assn asm ln 32, prod ln 9.9, live ln 10, enc 2
-  %add = add nsw i32 %r.07, 4, l9 c9
-  (w32 0x4)
+  assn asm ln 27, prod ln 7.11, live ln 8, enc 2
+  %call = call i32 @modify(i32 1) #3, l7 c11
+  (ReadLSB w32 (w32 0x0) modify.return)
 and
   assn asm ln 33, prod ln 7.11, live ln 8, enc 2
   %call = call i32 @modify(i32 %2), l7 c11
   (ReadLSB w32 (w32 0x0) modify.return)
 Query to parse
 array modify.return[4] : w32 -> w8 = symbolic
-(query [] (Eq (w32 0x4)
+array modify.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify.return)
      (ReadLSB w32 (w32 0x0) modify.return)))
 Parsed query
-(Eq (w32 0x4)
-     (ReadLSB w32 (w32 0x0) modify.return))
-❌ Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc 2 symbolic value doesn't match after assn asm ln 32, prod ln 9.9, live ln 10, enc 2
+(Eq N0:(ReadLSB w32 (w32 0x0) modify.return)
+     N0)
+✅ Before `r` (decl src ln 4) assn asm ln 33, prod ln 7.11, live ln 8, enc 2 symbolic value matches after assn asm ln 27, prod ln 7.11, live ln 8, enc 2
 
-❌ Before encountered assn for `r` (decl src ln 4) at asm ln 37, prod ln 9.11, live ln 10, enc 3 not found
-
-❌ Before encountered assn for `r` (decl src ln 4) at asm ln 27, prod ln 7.11, live ln 8, enc 4 not found
-
-❌ After `r` assns checked using before as reference
+✅ After `r` assns checked using before as reference
 Variable:            r
-  Assignments:       5
-  Matching Coords:   1
-  Matching Value:    1
+  Assignments:       3
+  Matching Coords:   3
+  Matching Value:    3
 Errors:
-  Mismatched Coords: 2
-  Mismatched Value:  2
+  Mismatched Coords: 0
+  Mismatched Value:  0
   Not Encountered:   0
-  Missing:           2
+  Missing:           0
 Warnings:
   Unused:            0
   Unreachable:       0
