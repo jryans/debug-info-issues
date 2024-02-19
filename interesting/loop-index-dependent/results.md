@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -246,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -534,23 +534,23 @@ Parsed query
               (SDiv w32 (Sub w32 (w32 0x1) N0) (Extract w32 0 (w64 0xFFFFFFFFFFFFFFFF))))
      (w32 0x0))
 
-Collating encountered assignments: `n` (decl src ln 3)
+Collating encountered before assignments: `n` (decl src ln 3)
   asm ln 12, prod ln 3.0, live ln 4, enc 0
-Collating encountered assignments: `r` (decl src ln 4)
+Collating encountered before assignments: `r` (decl src ln 4)
   asm ln 15, prod ln 4.7, live ln 5, enc 0
   asm ln 39, prod ln 9.9, live ln 10, enc 1
   asm ln 33, prod ln 7.11, live ln 8, enc 2
-Collating encountered assignments: `i` (decl src ln 5)
+Collating encountered before assignments: `i` (decl src ln 5)
   asm ln 17, prod ln 5.12, live ln 6, enc 0
   asm ln 45, prod ln 5.27, live ln 6, enc 1
 
-Collating encountered assignments: `n` (decl src ln 3)
+Collating encountered after assignments: `n` (decl src ln 3)
   asm ln 9, prod ln 3.0, live ln 5, enc 0
-Collating encountered assignments: `r` (decl src ln 4)
+Collating encountered after assignments: `r` (decl src ln 4)
   asm ln 10, prod ln 4.0, live ln 5, enc 0
   asm ln 32, prod ln 9.9, live ln 10, enc 1
   asm ln 27, prod ln 7.11, live ln 8, enc 2
-Collating encountered assignments: `i` (decl src ln 5)
+Collating encountered after assignments: `i` (decl src ln 5)
   asm ln 11, prod ln 5.0, live ln 6, enc 0
   asm ln 38, prod ln 5.21, live ln 6, enc 1
 

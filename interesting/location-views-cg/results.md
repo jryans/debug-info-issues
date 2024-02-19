@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -246,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --tsv
+++++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -520,33 +520,33 @@ Parsed query
               (w32 0x1))
      N0)
 
-Collating encountered assignments: `a` (decl src ln 1)
+Collating encountered before assignments: `a` (decl src ln 1)
   asm ln 15, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `b` (decl src ln 1)
+Collating encountered before assignments: `b` (decl src ln 1)
   asm ln 17, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `c` (decl src ln 1)
+Collating encountered before assignments: `c` (decl src ln 1)
   asm ln 19, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `d` (decl src ln 1)
+Collating encountered before assignments: `d` (decl src ln 1)
   asm ln 21, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `x` (decl src ln 2)
+Collating encountered before assignments: `x` (decl src ln 2)
   asm ln 27, prod ln 2.13, live ln 3, enc 0
   asm ln 36, prod ln 4.5, live ln 5, enc 1
-Collating encountered assignments: `y` (decl src ln 3)
+Collating encountered before assignments: `y` (decl src ln 3)
   asm ln 32, prod ln 3.13, live ln 4, enc 0
   asm ln 40, prod ln 5.5, live ln 6, enc 1
 
-Collating encountered assignments: `a` (decl src ln 1)
+Collating encountered after assignments: `a` (decl src ln 1)
   asm ln 9, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `b` (decl src ln 1)
+Collating encountered after assignments: `b` (decl src ln 1)
   asm ln 10, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `c` (decl src ln 1)
+Collating encountered after assignments: `c` (decl src ln 1)
   asm ln 11, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `d` (decl src ln 1)
+Collating encountered after assignments: `d` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 2, enc 0
-Collating encountered assignments: `x` (decl src ln 2)
+Collating encountered after assignments: `x` (decl src ln 2)
   asm ln 14, prod ln 2.13, live ln 3, enc 0
   asm ln 18, prod ln 4.5, live ln 5, enc 1
-Collating encountered assignments: `y` (decl src ln 3)
+Collating encountered after assignments: `y` (decl src ln 3)
   asm ln 16, prod ln 3.13, live ln 4, enc 0
   asm ln 20, prod ln 5.5, live ln 6, enc 1
 
