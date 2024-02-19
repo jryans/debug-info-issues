@@ -5,3 +5,4 @@ This example tests support for:
 Results appear to be INCORRECT as of tool 4ee615c7:
 
 * Select feature above not yet implemented
+* Location info for select requires additional residualisation

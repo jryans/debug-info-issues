@@ -1,0 +1,24 @@
+array n[4] : w32 -> w8 = symbolic
+
+(query
+ []
+ (Eq
+  (Select w32 (Eq (w32 0x0)
+                     N0:(ReadLSB w32 (w32 0x0) n))
+                 (w32 0xFFFFFFFF)
+                 (Add w32 (w32 0x1) N0))
+  (Add w32 (w32 0xFFFFFFFF)
+              (ReadLSB w32 (w32 0x0) n))
+  )
+ []
+ [n])
+
+(query
+ []
+ (Eq
+  (w32 0xFFFFFFFF)
+  (Add w32 (w32 0xFFFFFFFF)
+              (ReadLSB w32 (w32 0x0) n))
+  )
+ []
+ [n])
