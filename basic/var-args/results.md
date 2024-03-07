@@ -318,7 +318,7 @@ Collected value for `prefix`
   (w64 0x3E8C4480EDC2A01A)
 Collected value for `prefix`
   Concrete pointer resolves to prefix.addr, offset (w64 0x0)
-  Created deref expr (w64 0x10B2FFB40)
+  Created deref expr <concrete pointer>
   Replaced concrete pointer with hash (w64 0x71DE96ACD106AB95)
   %prefix.addr = alloca i8*
   (w64 0x71DE96ACD106AB95)
@@ -350,12 +350,12 @@ and
 🔔 Removing: asm ln 15, prod ln 9.0, live ln 11, enc 1
 
 Pushed initial value onto stack: (w64 0x71DE96ACD106AB95)
-deref: (w64 0x10B2FFB40)
-Result: (w64 0x10B2FFB40)
+deref: (w64 0x10AF9DB40)
+Result: (w64 0x10AF9DB40)
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x10B2FFB40)
+  (w64 0x10AF9DB40)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
@@ -368,7 +368,7 @@ Checking equivalence of `prefix` (decl src ln 9) from
 and
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x10B2FFB40)
+  (w64 0x10AF9DB40)
 
 Collating encountered before assignments: `prefix` (decl src ln 9)
   asm ln 14, prod ln 9.0, live ln 11, enc 0

@@ -327,7 +327,7 @@ Collected value for `i`
   (w32 0x0)
 Collected value for `p`
   Concrete pointer resolves to commands, offset (w64 0x0)
-  Created deref expr (w64 0x1104CE200)
+  Created deref expr <concrete pointer>
   Replaced concrete pointer with hash (w64 0xBB8485E41BDF13D5)
   %add.ptr = getelementptr inbounds %struct.cmd_struct, %struct.cmd_struct* getelementptr inbounds ([4 x %struct.cmd_struct], [4 x %struct.cmd_struct]* @commands, i64 0, i64 0), i64 %idx.ext, l20 c37
   (w64 0xBB8485E41BDF13D5)
@@ -356,7 +356,7 @@ Collected value for `p`
   (w64 0x0)
 Collected value for `p`
   Concrete pointer resolves to commands, offset (w64 0x0)
-  Created deref expr (w64 0x1104CE1F0)
+  Created deref expr <concrete pointer>
   Replaced concrete pointer with hash (w64 0xBB8485E41BDF13D5)
   @commands = global [4 x %struct.cmd_struct.0] [%struct.cmd_struct.0 { i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str, i32 0, i32 0), i32 (i32, i8**, i8*)* null, i32 0 }, %struct.cmd_struct.0 { i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.1, i32 0, i32 0), i32 (i32, i8**, i8*)* null, i32 0 }, %struct.cmd_struct.0 { i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.2, i32 0, i32 0), i32 (i32, i8**, i8*)* null, i32 0 }, %struct.cmd_struct.0 { i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.3, i32 0, i32 0), i32 (i32, i8**, i8*)* null, i32 0 }], align 16, !dbg !0
   (w64 0xBB8485E41BDF13D5)
