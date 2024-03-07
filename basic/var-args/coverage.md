@@ -6,3 +6,4 @@ This example tests support for:
 Results appear to be INCORRECT as of tool 96cffc10:
 
 * Pointer comparisons seem to be incorrect
+* Pointers within pointers need stable values as well
