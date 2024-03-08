@@ -4,7 +4,4 @@ This example tests support for:
 * Tracking the value of a pointer whose own address is also taken
 * Gather address loads as value events (in addition to stores)
 
-Results appear to be INCORRECT as of tool 96cffc10:
-
-* Pointer comparisons seem to be incorrect
-* Pointers within pointers need stable values as well
+Results appear to be correct as of tool 61352718
