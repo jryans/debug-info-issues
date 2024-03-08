@@ -304,18 +304,21 @@ Value produced for `prefix` (decl src ln 9), asm ln 23
 #### Before values
 
 Collected value for `prefix`
+  Assignment asm ln 14, prod ln 9.0, live ln 11, enc 0
   Concrete pointer resolves to prefix.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
   Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
   i8* %prefix
   (w64 0x3E8C4480EDC2A01A)
 Collected value for `prefix`
+  Assignment asm ln 16, prod ln 11.19, live ln 12, enc 1
   Concrete pointer resolves to prefix.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
   Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
   %0 = load i8*, i8** %prefix.addr, l11 c19
   (w64 0x3E8C4480EDC2A01A)
 Collected value for `prefix`
+  Assignment asm ln 22, prod ln 12.3, live ln 13, enc 2
   Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
   Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
@@ -331,30 +334,35 @@ Collected value for `prefix`
 #### After values
 
 Collected value for `prefix`
+  Assignment asm ln 14, prod ln 9.0, live ln 11, enc 0
   Concrete pointer resolves to prefix.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
   Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
   i8* %prefix
   (w64 0x3E8C4480EDC2A01A)
 Collected value for `prefix`
+  Assignment asm ln 15, prod ln 9.0, live ln 11, enc 1
   Concrete pointer resolves to prefix.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
   Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
   i8* %prefix
   (w64 0x3E8C4480EDC2A01A)
 Collected value for `prefix`
+  Assignment asm ln 16, prod ln 9.0, live ln 11, enc 2
   Concrete pointer resolves to prefix.addr, offset (w64 0x0)
   Created deref expr <concrete pointer>
   Replaced concrete pointer with hash (w64 0x71DE96ACD106AB95)
   %prefix.addr = alloca i8*
   (w64 0x71DE96ACD106AB95)
 Collected value for `prefix`
+  Assignment asm ln 22, prod ln 12.3, live ln 13, enc 3
   Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
   Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
 Collected value for `prefix`
+  Assignment asm ln 23, prod ln 12.3, live ln 13, enc 4
   Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
   Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
@@ -405,12 +413,12 @@ and
 🔔 Removing: asm ln 15, prod ln 9.0, live ln 11, enc 1
 
 Pushed initial value onto stack: (w64 0x71DE96ACD106AB95)
-deref: (w64 0x117AD7A60)
-Result: (w64 0x117AD7A60)
+deref: (w64 0x1130C5A60)
+Result: (w64 0x1130C5A60)
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x117AD7A60)
+  (w64 0x1130C5A60)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
@@ -423,7 +431,7 @@ Checking equivalence of `prefix` (decl src ln 9) from
 and
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x117AD7A60)
+  (w64 0x1130C5A60)
 
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 23, prod ln 12.3, live ln 13, enc 4
@@ -464,7 +472,7 @@ Checking equivalence of `prefix` (decl src ln 9) from
 and
   assn asm ln 16, prod ln 9.0, live ln 11, enc 1
   %prefix.addr = alloca i8*
-  (w64 0x117AD7A60)
+  (w64 0x1130C5A60)
 ❌ After `prefix` (decl src ln 9) assn asm ln 16, prod ln 9.0, live ln 11, enc 1 symbolic value doesn't match before assn asm ln 22, prod ln 12.3, live ln 13, enc 1
 
 ❌ Before `prefix` assns checked using after as reference
@@ -498,7 +506,7 @@ and
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 9.0, live ln 11, enc 1
   %prefix.addr = alloca i8*
-  (w64 0x117AD7A60)
+  (w64 0x1130C5A60)
 and
   assn asm ln 22, prod ln 12.3, live ln 13, enc 1
   %1 = load i8*, i8** %prefix.addr, l12 c3
