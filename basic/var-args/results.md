@@ -258,42 +258,44 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `prefix` (decl src ln 9)
+#### Before variables
+
 Load from declared address of `prefix` (decl src ln 9), asm ln 22
   %1 = load i8*, i8** %prefix.addr, l12 c3, asm ln 22
-🔔 Load from declared address of `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 22, prod ln 12.3, live ln 13, enc None
 Load from declared address of `prefix` (decl src ln 9), asm ln 16
   %0 = load i8*, i8** %prefix.addr, l11 c19, asm ln 16
-🔔 Load from declared address of `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 16, prod ln 11.19, live ln 12, enc None
 Store to declared address of `prefix` (decl src ln 9), asm ln 14
   arg 0
   Added assignment asm ln 14, prod ln 9.0, live ln 11, enc None
 
-After variable `prefix` (decl src ln 9)
+#### After variables
+
 Value produced for `prefix` (decl src ln 9), asm ln 14
   arg 0
   Added assignment asm ln 14, prod ln 9.0, live ln 11, enc None
-After variable `prefix` (decl src ln 9)
 Value produced for `prefix` (decl src ln 9), asm ln 16
   %prefix.addr = alloca i8*, asm ln 13
-🔔 Value produced for `prefix` (decl src ln 9): missing produced ln, using decl ln
+  🔔 Missing produced ln, using decl ln
   Added assignment asm ln 16, prod ln 9.0, live ln 11, enc None
 Load from deref'd address of `prefix` (decl src ln 9), asm ln 22
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3, asm ln 22
-🔔 Load from deref'd address of `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 22, prod ln 12.3, live ln 13, enc None
 Store to deref'd address of `prefix` (decl src ln 9), asm ln 15
   arg 0
   Added assignment asm ln 15, prod ln 9.0, live ln 11, enc None
-After variable `prefix` (decl src ln 9)
 Value produced for `prefix` (decl src ln 9), asm ln 23
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3, asm ln 22
-🔔 Value produced for `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 23, prod ln 12.3, live ln 13, enc None
+
+#### Summary
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -367,6 +369,8 @@ Collected value for `prefix`
 
 ### Assignments
 
+#### Collation
+
 Filtering redundant before assignments: `prefix` (decl src ln 9)
 
 Checking equivalence of `prefix` (decl src ln 9) from
@@ -401,12 +405,12 @@ and
 🔔 Removing: asm ln 15, prod ln 9.0, live ln 11, enc 1
 
 Pushed initial value onto stack: (w64 0x71DE96ACD106AB95)
-deref: (w64 0x111E4FA60)
-Result: (w64 0x111E4FA60)
+deref: (w64 0x117AD7A60)
+Result: (w64 0x117AD7A60)
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x111E4FA60)
+  (w64 0x117AD7A60)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
@@ -419,7 +423,7 @@ Checking equivalence of `prefix` (decl src ln 9) from
 and
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x111E4FA60)
+  (w64 0x117AD7A60)
 
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 23, prod ln 12.3, live ln 13, enc 4
@@ -460,7 +464,7 @@ Checking equivalence of `prefix` (decl src ln 9) from
 and
   assn asm ln 16, prod ln 9.0, live ln 11, enc 1
   %prefix.addr = alloca i8*
-  (w64 0x111E4FA60)
+  (w64 0x117AD7A60)
 ❌ After `prefix` (decl src ln 9) assn asm ln 16, prod ln 9.0, live ln 11, enc 1 symbolic value doesn't match before assn asm ln 22, prod ln 12.3, live ln 13, enc 1
 
 ❌ Before `prefix` assns checked using after as reference
@@ -494,7 +498,7 @@ and
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 9.0, live ln 11, enc 1
   %prefix.addr = alloca i8*
-  (w64 0x111E4FA60)
+  (w64 0x117AD7A60)
 and
   assn asm ln 22, prod ln 12.3, live ln 13, enc 1
   %1 = load i8*, i8** %prefix.addr, l12 c3
