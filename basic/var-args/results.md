@@ -261,6 +261,14 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 ### Variables
 
 Before variable `prefix` (decl src ln 9)
+Load from declared address of `prefix` (decl src ln 9), asm ln 22
+  %1 = load i8*, i8** %prefix.addr, l12 c3, asm ln 22
+🔔 Load from declared address of `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  Added assignment asm ln 22, prod ln 12.3, live ln 13, enc None
+Load from declared address of `prefix` (decl src ln 9), asm ln 16
+  %0 = load i8*, i8** %prefix.addr, l11 c19, asm ln 16
+🔔 Load from declared address of `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  Added assignment asm ln 16, prod ln 11.19, live ln 12, enc None
 Store to declared address of `prefix` (decl src ln 9), asm ln 14
   arg 0
   Added assignment asm ln 14, prod ln 9.0, live ln 11, enc None
@@ -274,6 +282,10 @@ Value produced for `prefix` (decl src ln 9), asm ln 16
   %prefix.addr = alloca i8*, asm ln 13
 🔔 Value produced for `prefix` (decl src ln 9): missing produced ln, using decl ln
   Added assignment asm ln 16, prod ln 9.0, live ln 11, enc None
+Load from deref'd address of `prefix` (decl src ln 9), asm ln 22
+  %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3, asm ln 22
+🔔 Load from deref'd address of `prefix` (decl src ln 9): live ln too early, using produced ln + 1
+  Added assignment asm ln 22, prod ln 12.3, live ln 13, enc None
 Store to deref'd address of `prefix` (decl src ln 9), asm ln 15
   arg 0
   Added assignment asm ln 15, prod ln 9.0, live ln 11, enc None
@@ -295,6 +307,18 @@ Collected value for `prefix`
   Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
   i8* %prefix
   (w64 0x3E8C4480EDC2A01A)
+Collected value for `prefix`
+  Concrete pointer resolves to prefix.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
+  Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
+  %0 = load i8*, i8** %prefix.addr, l11 c19
+  (w64 0x3E8C4480EDC2A01A)
+Collected value for `prefix`
+  Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
+  Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
+  %1 = load i8*, i8** %prefix.addr, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
 [0;1;31mKLEE: ERROR: example.c:12: reached "unreachable" instruction
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
@@ -328,6 +352,12 @@ Collected value for `prefix`
   Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
+Collected value for `prefix`
+  Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
+  Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
+  %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
 [0;1;31mKLEE: ERROR: example.c:12: reached "unreachable" instruction
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
@@ -336,6 +366,27 @@ Collected value for `prefix`
 🔔 Unable to execute all after instructions
 
 ### Assignments
+
+Filtering redundant before assignments: `prefix` (decl src ln 9)
+
+Checking equivalence of `prefix` (decl src ln 9) from
+  assn asm ln 16, prod ln 11.19, live ln 12, enc 1
+  %0 = load i8*, i8** %prefix.addr, l11 c19
+  (w64 0x3E8C4480EDC2A01A)
+and
+  assn asm ln 14, prod ln 9.0, live ln 11, enc 0
+  i8* %prefix
+  (w64 0x3E8C4480EDC2A01A)
+🔔 Removing: asm ln 16, prod ln 11.19, live ln 12, enc 1
+
+Checking equivalence of `prefix` (decl src ln 9) from
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 2
+  %1 = load i8*, i8** %prefix.addr, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
+and
+  assn asm ln 14, prod ln 9.0, live ln 11, enc 0
+  i8* %prefix
+  (w64 0x3E8C4480EDC2A01A)
 
 Filtering redundant after assignments: `prefix` (decl src ln 9)
 
@@ -350,33 +401,44 @@ and
 🔔 Removing: asm ln 15, prod ln 9.0, live ln 11, enc 1
 
 Pushed initial value onto stack: (w64 0x71DE96ACD106AB95)
-deref: (w64 0x10AF9DB40)
-Result: (w64 0x10AF9DB40)
+deref: (w64 0x111E4FA60)
+Result: (w64 0x111E4FA60)
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x10AF9DB40)
+  (w64 0x111E4FA60)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
   (w64 0x3E8C4480EDC2A01A)
 
 Checking equivalence of `prefix` (decl src ln 9) from
-  assn asm ln 23, prod ln 12.3, live ln 13, enc 3
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 3
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
 and
   assn asm ln 16, prod ln 9.0, live ln 11, enc 2
   %prefix.addr = alloca i8*
-  (w64 0x10AF9DB40)
+  (w64 0x111E4FA60)
+
+Checking equivalence of `prefix` (decl src ln 9) from
+  assn asm ln 23, prod ln 12.3, live ln 13, enc 4
+  %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
+and
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 3
+  %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
+🔔 Removing: asm ln 23, prod ln 12.3, live ln 13, enc 4
 
 Collating encountered before assignments: `prefix` (decl src ln 9)
   asm ln 14, prod ln 9.0, live ln 11, enc 0
+  asm ln 22, prod ln 12.3, live ln 13, enc 1
 
 Collating encountered after assignments: `prefix` (decl src ln 9)
   asm ln 14, prod ln 9.0, live ln 11, enc 0
   asm ln 16, prod ln 9.0, live ln 11, enc 1
-  asm ln 23, prod ln 12.3, live ln 13, enc 2
+  asm ln 22, prod ln 12.3, live ln 13, enc 2
 
 #### Check before using after as reference
 
@@ -390,14 +452,25 @@ and
   (w64 0x3E8C4480EDC2A01A)
 ✅ After `prefix` (decl src ln 9) assn asm ln 14, prod ln 9.0, live ln 11, enc 0 symbolic value matches before assn asm ln 14, prod ln 9.0, live ln 11, enc 0
 
-✅ Before `prefix` assns checked using after as reference
+❌ After `prefix` (decl src ln 9) assn asm ln 16, prod ln 9.0, live ln 11, enc 1 coordinates don't match before assn asm ln 22, prod ln 12.3, live ln 13, enc 1
+Checking equivalence of `prefix` (decl src ln 9) from
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 1
+  %1 = load i8*, i8** %prefix.addr, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
+and
+  assn asm ln 16, prod ln 9.0, live ln 11, enc 1
+  %prefix.addr = alloca i8*
+  (w64 0x111E4FA60)
+❌ After `prefix` (decl src ln 9) assn asm ln 16, prod ln 9.0, live ln 11, enc 1 symbolic value doesn't match before assn asm ln 22, prod ln 12.3, live ln 13, enc 1
+
+❌ Before `prefix` assns checked using after as reference
 Variable:            prefix
-  Assignments:       1
+  Assignments:       2
   Matching Coords:   1
   Matching Value:    1
 Errors:
-  Mismatched Coords: 0
-  Mismatched Value:  0
+  Mismatched Coords: 1
+  Mismatched Value:  1
   Not Encountered:   0
   Missing:           0
 Warnings:
@@ -417,9 +490,18 @@ and
   (w64 0x3E8C4480EDC2A01A)
 ✅ Before `prefix` (decl src ln 9) assn asm ln 14, prod ln 9.0, live ln 11, enc 0 symbolic value matches after assn asm ln 14, prod ln 9.0, live ln 11, enc 0
 
-❌ Before encountered assn for `prefix` (decl src ln 9) at asm ln 16, prod ln 9.0, live ln 11, enc 1 not found
+❌ Before `prefix` (decl src ln 9) assn asm ln 22, prod ln 12.3, live ln 13, enc 1 coordinates don't match after assn asm ln 16, prod ln 9.0, live ln 11, enc 1
+Checking equivalence of `prefix` (decl src ln 9) from
+  assn asm ln 16, prod ln 9.0, live ln 11, enc 1
+  %prefix.addr = alloca i8*
+  (w64 0x111E4FA60)
+and
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 1
+  %1 = load i8*, i8** %prefix.addr, l12 c3
+  (w64 0x455DD1BD2C0CCCD8)
+❌ Before `prefix` (decl src ln 9) assn asm ln 22, prod ln 12.3, live ln 13, enc 1 symbolic value doesn't match after assn asm ln 16, prod ln 9.0, live ln 11, enc 1
 
-❌ Before encountered assn for `prefix` (decl src ln 9) at asm ln 23, prod ln 12.3, live ln 13, enc 2 not found
+❌ Before encountered assn for `prefix` (decl src ln 9) at asm ln 22, prod ln 12.3, live ln 13, enc 2 not found
 
 ❌ After `prefix` assns checked using before as reference
 Variable:            prefix
@@ -427,10 +509,10 @@ Variable:            prefix
   Matching Coords:   1
   Matching Value:    1
 Errors:
-  Mismatched Coords: 0
-  Mismatched Value:  0
+  Mismatched Coords: 1
+  Mismatched Value:  1
   Not Encountered:   0
-  Missing:           2
+  Missing:           1
 Warnings:
   Unused:            0
   Unreachable:       0
