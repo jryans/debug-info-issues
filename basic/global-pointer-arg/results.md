@@ -272,25 +272,24 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 #### Before values
 
-Assertion failed: (state.addressSpace.resolveOne(address, op) && "Concrete pointer not bound to MemoryObject"), function executeCall, file Executor.cpp, line 1862.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x0000000108a473dd llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x0000000108a478db PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x0000000108a45973 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x0000000108a48b7f SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
-5  check-debug-info         0x0000000105d88ec5 klee::ref<klee::UpdateNode>::~ref() + 21
-6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
-7  libsystem_c.dylib        0x00007ff800aa9d1c err + 0
-8  check-debug-info         0x0000000105d62406 klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 2038
-9  check-debug-info         0x0000000105d6b22a klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8698
-10 check-debug-info         0x0000000105d76fc4 klee::Executor::run(klee::ExecutionState&) + 1860
-11 check-debug-info         0x0000000105d7befd klee::Executor::runFunction(llvm::Function*) + 205
-12 check-debug-info         0x0000000105d228ce ValuesCollector::collect(llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>*) + 222
-13 check-debug-info         0x0000000105cf1ae8 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 2808
-14 check-debug-info         0x0000000105cf371e main + 2350
-15 dyld                     0x00007ff8007f9366 start + 1942
-./check.sh: line 6: 62840 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS} "$@"
+Created global memory object for `__stderrp`
+Created global memory object for `.str`
+
+#### After values
+
+Created global memory object for `__stderrp`
+Created global memory object for `.str`
+
+### Assignments
+
+#### Collation
+
+
+
+#### Check before using after as reference
+
+#### Check after using before as reference
+
+## Summary
+
+🎉 All consistency checks passed
