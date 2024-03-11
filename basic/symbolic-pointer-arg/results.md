@@ -316,25 +316,187 @@ Collected value for `argv`
   Replaced concrete pointer with hash (w64 0x339B17540BD60D2)
   %1 = load i8**, i8*** %argv.addr, l8 c27
   (w64 0x339B17540BD60D2)
-Assertion failed: (address && "Pointer argument has symbolic address"), function executeCall, file Executor.cpp, line 1856.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010e0993bd llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010e0998bb PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x000000010e097953 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010e09ab5f SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
-5  check-debug-info         0x000000010b3daea5 klee::ref<klee::UpdateNode>::~ref() + 21
-6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
-7  libsystem_c.dylib        0x00007ff800aa9d1c err + 0
-8  check-debug-info         0x000000010b3b42e5 klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 1829
-9  check-debug-info         0x000000010b3bd20a klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8698
-10 check-debug-info         0x000000010b3c8fa4 klee::Executor::run(klee::ExecutionState&) + 1860
-11 check-debug-info         0x000000010b3cdedd klee::Executor::runFunction(llvm::Function*) + 205
-12 check-debug-info         0x000000010b37487e ValuesCollector::collect(llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>*) + 222
-13 check-debug-info         0x000000010b343a98 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&) + 2808
-14 check-debug-info         0x000000010b3456ce main + 2350
-15 dyld                     0x00007ff8007f9366 start + 1942
-./check.sh: line 6: 92821 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS} "$@"
+
+#### After values
+
+Collected value for `argc`
+  Assignment asm ln 11, prod ln 6.0, live ln 8, enc 0
+  i32 %argc
+  (ReadLSB w32 (w32 0x0) argc)
+Collected value for `argv`
+  Assignment asm ln 12, prod ln 6.0, live ln 8, enc 0
+  Concrete pointer resolves to argv.deref, offset (w64 0x0)
+  Created deref expr <concrete pointer>
+  Replaced concrete pointer with hash (w64 0x339B17540BD60D2)
+  i8** %argv
+  (w64 0x339B17540BD60D2)
+
+### Assignments
+
+#### Collation
+
+Filtering redundant before assignments: `argc` (decl src ln 6)
+
+Checking equivalence of `argc` (decl src ln 6) from
+  assn asm ln 18, prod ln 8.7, live ln 9, enc 1
+  %0 = load i32, i32* %argc.addr, l8 c7
+  (ReadLSB w32 (w32 0x0) argc)
+and
+  assn asm ln 14, prod ln 6.0, live ln 8, enc 0
+  i32 %argc
+  (ReadLSB w32 (w32 0x0) argc)
+Query to parse
+array argc[4] : w32 -> w8 = symbolic
+array argc[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) argc)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) argc)
+     N0)
+🔔 Removing: asm ln 18, prod ln 8.7, live ln 9, enc 1
+
+Filtering redundant before assignments: `argv` (decl src ln 6)
+
+Checking equivalence of `argv` (decl src ln 6) from
+  assn asm ln 23, prod ln 8.27, live ln 9, enc 1
+  %1 = load i8**, i8*** %argv.addr, l8 c27
+  (w64 0x339B17540BD60D2)
+and
+  assn asm ln 16, prod ln 6.0, live ln 8, enc 0
+  i8** %argv
+  (w64 0x339B17540BD60D2)
+🔔 Removing: asm ln 23, prod ln 8.27, live ln 9, enc 1
+
+Collating encountered before assignments: `argc` (decl src ln 6)
+  asm ln 14, prod ln 6.0, live ln 8, enc 0
+Collating encountered before assignments: `argv` (decl src ln 6)
+  asm ln 16, prod ln 6.0, live ln 8, enc 0
+
+Collating encountered after assignments: `argc` (decl src ln 6)
+  asm ln 11, prod ln 6.0, live ln 8, enc 0
+Collating encountered after assignments: `argv` (decl src ln 6)
+  asm ln 12, prod ln 6.0, live ln 8, enc 0
+
+#### Check before using after as reference
+
+Checking equivalence of `argc` (decl src ln 6) from
+  assn asm ln 14, prod ln 6.0, live ln 8, enc 0
+  i32 %argc
+  (ReadLSB w32 (w32 0x0) argc)
+and
+  assn asm ln 11, prod ln 6.0, live ln 8, enc 0
+  i32 %argc
+  (ReadLSB w32 (w32 0x0) argc)
+Query to parse
+array argc[4] : w32 -> w8 = symbolic
+array argc[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) argc)
+     (ReadLSB w32 (w32 0x0) argc)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) argc)
+     N0)
+✅ After `argc` (decl src ln 6) assn asm ln 11, prod ln 6.0, live ln 8, enc 0 symbolic value matches before assn asm ln 14, prod ln 6.0, live ln 8, enc 0
+
+✅ Before `argc` assns checked using after as reference
+Variable:            argc
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+Checking equivalence of `argv` (decl src ln 6) from
+  assn asm ln 16, prod ln 6.0, live ln 8, enc 0
+  i8** %argv
+  (w64 0x339B17540BD60D2)
+and
+  assn asm ln 12, prod ln 6.0, live ln 8, enc 0
+  i8** %argv
+  (w64 0x339B17540BD60D2)
+✅ After `argv` (decl src ln 6) assn asm ln 12, prod ln 6.0, live ln 8, enc 0 symbolic value matches before assn asm ln 16, prod ln 6.0, live ln 8, enc 0
+
+✅ Before `argv` assns checked using after as reference
+Variable:            argv
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+#### Check after using before as reference
+
+Checking equivalence of `argc` (decl src ln 6) from
+  assn asm ln 11, prod ln 6.0, live ln 8, enc 0
+  i32 %argc
+  (ReadLSB w32 (w32 0x0) argc)
+and
+  assn asm ln 14, prod ln 6.0, live ln 8, enc 0
+  i32 %argc
+  (ReadLSB w32 (w32 0x0) argc)
+Query to parse
+array argc[4] : w32 -> w8 = symbolic
+array argc[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) argc)
+     (ReadLSB w32 (w32 0x0) argc)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) argc)
+     N0)
+✅ Before `argc` (decl src ln 6) assn asm ln 14, prod ln 6.0, live ln 8, enc 0 symbolic value matches after assn asm ln 11, prod ln 6.0, live ln 8, enc 0
+
+✅ After `argc` assns checked using before as reference
+Variable:            argc
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+Checking equivalence of `argv` (decl src ln 6) from
+  assn asm ln 12, prod ln 6.0, live ln 8, enc 0
+  i8** %argv
+  (w64 0x339B17540BD60D2)
+and
+  assn asm ln 16, prod ln 6.0, live ln 8, enc 0
+  i8** %argv
+  (w64 0x339B17540BD60D2)
+✅ Before `argv` (decl src ln 6) assn asm ln 16, prod ln 6.0, live ln 8, enc 0 symbolic value matches after assn asm ln 12, prod ln 6.0, live ln 8, enc 0
+
+✅ After `argv` assns checked using before as reference
+Variable:            argv
+  Assignments:       1
+  Matching Coords:   1
+  Matching Value:    1
+Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+  Not Encountered:   0
+  Missing:           0
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+
+## Summary
+
+🎉 All consistency checks passed
