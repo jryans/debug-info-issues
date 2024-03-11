@@ -1,7 +1,7 @@
 ; ModuleID = 'example.c'
 source_filename = "example.c"
 target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
-target triple = "x86_64-apple-macosx13.0.0"
+target triple = "x86_64-apple-macosx14.0.0"
 
 @.str = private unnamed_addr constant [5 x i8] c"git-\00", align 1
 @.str.1 = private unnamed_addr constant [10 x i8] c"example.c\00", align 1
