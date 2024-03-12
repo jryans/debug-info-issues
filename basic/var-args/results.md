@@ -323,10 +323,6 @@ Collected value for `prefix`
 [0;1;31mKLEE: ERROR: example.c:12: reached "unreachable" instruction
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
-🔔 Unable to execute all before instructions
-
-🔔 Unable to execute all before program states
-
 #### After values
 
 Collected value for `prefix`
@@ -360,10 +356,6 @@ Collected value for `prefix`
 [0;1;31mKLEE: ERROR: example.c:12: reached "unreachable" instruction
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
-🔔 Unable to execute all after instructions
-
-🔔 Unable to execute all after program states
-
 ### Assignments
 
 #### Collation
@@ -465,8 +457,8 @@ Warnings:
   Unreachable:       0
   Removable:         0
 Execution:
-  Function Covered:  false
-  Complete:          false
+  Function Covered:  true
+  Complete:          true
   Within Time Limit: true
   Within Fork Limit: true
 
@@ -507,8 +499,8 @@ Warnings:
   Unreachable:       0
   Removable:         0
 Execution:
-  Function Covered:  false
-  Complete:          false
+  Function Covered:  true
+  Complete:          true
   Within Time Limit: true
   Within Fork Limit: true
 
