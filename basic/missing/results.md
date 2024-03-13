@@ -293,7 +293,7 @@ Store to declared address of `y` (decl src ln 3), asm ln 23
 
 #### Summary
 
-🔔 3 before variables found, 0 after variables found, 3 mismatched
+❌ 3 before variables found, 0 after variables found, 3 mismatched
 
 ### Symbolic values
 
@@ -467,4 +467,4 @@ Execution:
   Within Time Limit:         0 (   nan%)
   Within Fork Limit:         0 (   nan%)
 
-🎉 All consistency checks passed
+❌ Some consistency checks failed
