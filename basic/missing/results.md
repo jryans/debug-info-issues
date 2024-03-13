@@ -302,60 +302,169 @@ Store to declared address of `y` (decl src ln 3), asm ln 23
 Collected value for `n`
   Assignment asm ln 12, prod ln 1.0, live ln 2, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `n`
   Assignment asm ln 15, prod ln 2.11, live ln 3, enc 1
   %0 = load i32, i32* %n.addr, l2 c11
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `x`
   Assignment asm ln 17, prod ln 2.13, live ln 3, enc 0
   %mul = mul nsw i32 %0, 2, l2 c13
   (Mul w32 (w32 0x2)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Collected value for `x`
   Assignment asm ln 19, prod ln 3.11, live ln 4, enc 1
   %1 = load i32, i32* %x, l3 c11
   (Mul w32 (w32 0x2)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Collected value for `n`
   Assignment asm ln 21, prod ln 3.19, live ln 4, enc 2
   %2 = load i32, i32* %n.addr, l3 c19
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `y`
   Assignment asm ln 23, prod ln 3.17, live ln 4, enc 0
   %add1 = add nsw i32 %add, %2, l3 c17
   (Add w32 (w32 0x4)
           (Add w32 (Mul w32 (w32 0x2)
-                            N0:(ReadLSB w32 (w32 0x0) n))
+                            N0:(ReadLSB w32 (w32 0x0) example.n))
                    N0))
 Collected value for `y`
   Assignment asm ln 24, prod ln 4.10, live ln 5, enc 1
   %3 = load i32, i32* %y, l4 c10
   (Add w32 (w32 0x4)
           (Add w32 (Mul w32 (w32 0x2)
-                            N0:(ReadLSB w32 (w32 0x0) n))
+                            N0:(ReadLSB w32 (w32 0x0) example.n))
                    N0))
 
 #### After values
 
-Assertion failed: (!valueName.str().empty() && "Unexpected empty symbolic value name"), function buildSymbolicValue, file Executor.cpp, line 4771.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010381911d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010381961b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x00000001038176b3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010381a8bf SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
-5  libsystem_platform.dylib 000000000000000000 _sigtramp + 18446603370568663104
-6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
-7  libsystem_c.dylib        0x00007ff800aa9d1c err + 0
-8  check-debug-info         0x0000000100b37258 klee::Executor::buildSymbolicValue(klee::ExecutionState&, llvm::Value const*, llvm::Type*, llvm::Twine const&, unsigned int) + 872
-9  check-debug-info         0x0000000100b4d285 klee::Executor::enterIndependentFunction(klee::ExecutionState&, klee::KFunction*) + 341
-10 check-debug-info         0x0000000100b4de39 klee::Executor::runFunction(llvm::Function*) + 137
-11 check-debug-info         0x0000000100af460c ValuesCollector::collect(llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>*) + 252
-12 check-debug-info         0x0000000100ac27b7 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, AssignmentStats&) + 3159
-13 check-debug-info         0x0000000100ac41d8 main + 2376
-14 dyld                     0x00007ff8007f9366 start + 1942
-./check.sh: line 6: 76607 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS} "$@"
+
+### Assignments
+
+#### Collation
+
+Filtering redundant before assignments: `n` (decl src ln 1)
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 15, prod ln 2.11, live ln 3, enc 1
+  %0 = load i32, i32* %n.addr, l2 c11
+  (ReadLSB w32 (w32 0x0) example.n)
+and
+  assn asm ln 12, prod ln 1.0, live ln 2, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example.n)
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0)
+🔔 Removing: asm ln 15, prod ln 2.11, live ln 3, enc 1
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 21, prod ln 3.19, live ln 4, enc 2
+  %2 = load i32, i32* %n.addr, l3 c19
+  (ReadLSB w32 (w32 0x0) example.n)
+and
+  assn asm ln 12, prod ln 1.0, live ln 2, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example.n)
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0)
+🔔 Removing: asm ln 21, prod ln 3.19, live ln 4, enc 2
+
+Filtering redundant before assignments: `x` (decl src ln 2)
+
+Checking equivalence of `x` (decl src ln 2) from
+  assn asm ln 19, prod ln 3.11, live ln 4, enc 1
+  %1 = load i32, i32* %x, l3 c11
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) example.n))
+and
+  assn asm ln 17, prod ln 2.13, live ln 3, enc 0
+  %mul = mul nsw i32 %0, 2, l2 c13
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) example.n))
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(Mul w32 (w32 0x2)
+                 (ReadLSB w32 (w32 0x0) example.n))
+     N0))
+Parsed query
+(Eq N0:(Mul w32 (w32 0x2)
+                 (ReadLSB w32 (w32 0x0) example.n))
+     N0)
+🔔 Removing: asm ln 19, prod ln 3.11, live ln 4, enc 1
+
+Filtering redundant before assignments: `y` (decl src ln 3)
+
+Checking equivalence of `y` (decl src ln 3) from
+  assn asm ln 24, prod ln 4.10, live ln 5, enc 1
+  %3 = load i32, i32* %y, l4 c10
+  (Add w32 (w32 0x4)
+          (Add w32 (Mul w32 (w32 0x2)
+                            N0:(ReadLSB w32 (w32 0x0) example.n))
+                   N0))
+and
+  assn asm ln 23, prod ln 3.17, live ln 4, enc 0
+  %add1 = add nsw i32 %add, %2, l3 c17
+  (Add w32 (w32 0x4)
+          (Add w32 (Mul w32 (w32 0x2)
+                            N0:(ReadLSB w32 (w32 0x0) example.n))
+                   N0))
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(Add w32 (w32 0x4)
+                 (Add w32 (Mul w32 (w32 0x2)
+                                   N1:(ReadLSB w32 (w32 0x0) example.n))
+                          N1))
+     N0))
+Parsed query
+(Eq N0:(Add w32 (w32 0x4)
+                 (Add w32 (Mul w32 (w32 0x2)
+                                   N1:(ReadLSB w32 (w32 0x0) example.n))
+                          N1))
+     N0)
+🔔 Removing: asm ln 24, prod ln 4.10, live ln 5, enc 1
+
+Collating encountered before assignments: `n` (decl src ln 1)
+  asm ln 12, prod ln 1.0, live ln 2, enc 0
+Collating encountered before assignments: `x` (decl src ln 2)
+  asm ln 17, prod ln 2.13, live ln 3, enc 0
+Collating encountered before assignments: `y` (decl src ln 3)
+  asm ln 23, prod ln 3.17, live ln 4, enc 0
+
+
+#### Check after using before as reference
+
+## Summary
+
+Assignments:                 0
+  Matching Coords:           0 (   nan%)
+  Matching Value:            0 (   nan%)
+Errors:
+  Mismatched Coords:         0 (   nan%)
+  Mismatched Value:          0 (   nan%)
+  Not Encountered:           0 (   nan%)
+  Missing:                   0 (   nan%)
+Warnings:
+  Unused:                    0 (   nan%)
+  Unreachable:               0 (   nan%)
+  Removable:                 0 (   nan%)
+Execution:
+  Function Covered:          0 (   nan%)
+  Complete:                  0 (   nan%)
+  Within Time Limit:         0 (   nan%)
+  Within Fork Limit:         0 (   nan%)
+
+🎉 All consistency checks passed
