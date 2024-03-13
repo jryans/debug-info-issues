@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -246,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -258,29 +258,47 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `n` (decl src ln 1)
+#### Before variables
+
+Load from declared address of `n` (decl src ln 1), asm ln 25
+  %2 = load i32, i32* %n.addr, l6 c9, asm ln 25
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 25, prod ln 6.9, live ln 7, enc None
+Load from declared address of `n` (decl src ln 1), asm ln 19
+  %1 = load i32, i32* %n.addr, l4 c9, asm ln 19
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 19, prod ln 4.9, live ln 5, enc None
+Load from declared address of `n` (decl src ln 1), asm ln 14
+  %0 = load i32, i32* %n.addr, l3 c7, asm ln 14
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 14, prod ln 3.7, live ln 4, enc None
 Store to declared address of `n` (decl src ln 1), asm ln 11
   arg 0
   Added assignment asm ln 11, prod ln 1.0, live ln 3, enc None
-Before variable `r` (decl src ln 2)
+Load from declared address of `r` (decl src ln 2), asm ln 31
+  %3 = load i32, i32* %r, l8 c10, asm ln 31
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 31, prod ln 8.10, live ln 9, enc None
 Store to declared address of `r` (decl src ln 2), asm ln 27
   %sub = sub nsw i32 %2, 1, l6 c11, asm ln 26
-🔔 Store to declared address of `r` (decl src ln 2): missing live ln, using produced ln + 1
+  🔔 Missing live ln, using produced ln + 1
   Added assignment asm ln 27, prod ln 6.11, live ln 7, enc None
 Store to declared address of `r` (decl src ln 2), asm ln 21
   %add = add nsw i32 %1, 1, l4 c11, asm ln 20
   Added assignment asm ln 21, prod ln 4.11, live ln 5, enc None
 
-After variable `n` (decl src ln 1)
+#### After variables
+
 Value produced for `n` (decl src ln 1), asm ln 9
   arg 0
   Added assignment asm ln 9, prod ln 1.0, live ln 3, enc None
-After variable `r` (decl src ln 2)
 Value produced for `r` (decl src ln 2), asm ln 13
   %r.0 = select i1 %tobool.not, i32 -1, i32 %add, l3 c7, asm ln 12
   Added assignment asm ln 13, prod ln 3.7, live ln 8, enc None
+
+#### Summary
 
 ✅ 2 before variables found, 2 after variables found, 0 mismatched
 
@@ -289,23 +307,45 @@ Value produced for `r` (decl src ln 2), asm ln 13
 #### Before values
 
 Collected value for `n`
+  Assignment asm ln 11, prod ln 1.0, live ln 3, enc 0
   i32 %n
   (ReadLSB w32 (w32 0x0) n)
+Collected value for `n`
+  Assignment asm ln 14, prod ln 3.7, live ln 4, enc 1
+  %0 = load i32, i32* %n.addr, l3 c7
+  (ReadLSB w32 (w32 0x0) n)
+Collected value for `n`
+  Assignment asm ln 19, prod ln 4.9, live ln 5, enc 2
+  %1 = load i32, i32* %n.addr, l4 c9
+  (ReadLSB w32 (w32 0x0) n)
+Collected value for `n`
+  Assignment asm ln 25, prod ln 6.9, live ln 7, enc 3
+  %2 = load i32, i32* %n.addr, l6 c9
+  (ReadLSB w32 (w32 0x0) n)
 Collected value for `r`
+  Assignment asm ln 27, prod ln 6.11, live ln 7, enc 0
   %sub = sub nsw i32 %2, 1, l6 c11
   (Add w32 (w32 0xFFFFFFFF)
           (ReadLSB w32 (w32 0x0) n))
 Collected value for `r`
+  Assignment asm ln 21, prod ln 4.11, live ln 5, enc 1
   %add = add nsw i32 %1, 1, l4 c11
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) n))
+Collected value for `r`
+  Assignment asm ln 31, prod ln 8.10, live ln 9, enc 2
+  %3 = load i32, i32* %r, l8 c10
   (Add w32 (w32 0x1)
           (ReadLSB w32 (w32 0x0) n))
 
 #### After values
 
 Collected value for `n`
+  Assignment asm ln 9, prod ln 1.0, live ln 3, enc 0
   i32 %n
   (ReadLSB w32 (w32 0x0) n)
 Collected value for `r`
+  Assignment asm ln 13, prod ln 3.7, live ln 8, enc 0
   %r.0 = select i1 %tobool.not, i32 -1, i32 %add, l3 c7
   (Select w32 (Eq (w32 0x0)
                  N0:(ReadLSB w32 (w32 0x0) n))
@@ -313,6 +353,64 @@ Collected value for `r`
              (Add w32 (w32 0x1) N0))
 
 ### Assignments
+
+#### Collation
+
+Filtering redundant before assignments: `n` (decl src ln 1)
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 14, prod ln 3.7, live ln 4, enc 1
+  %0 = load i32, i32* %n.addr, l3 c7
+  (ReadLSB w32 (w32 0x0) n)
+and
+  assn asm ln 11, prod ln 1.0, live ln 3, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0)
+🔔 Removing: asm ln 14, prod ln 3.7, live ln 4, enc 1
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 19, prod ln 4.9, live ln 5, enc 2
+  %1 = load i32, i32* %n.addr, l4 c9
+  (ReadLSB w32 (w32 0x0) n)
+and
+  assn asm ln 11, prod ln 1.0, live ln 3, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0)
+🔔 Removing: asm ln 19, prod ln 4.9, live ln 5, enc 2
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 25, prod ln 6.9, live ln 7, enc 3
+  %2 = load i32, i32* %n.addr, l6 c9
+  (ReadLSB w32 (w32 0x0) n)
+and
+  assn asm ln 11, prod ln 1.0, live ln 3, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) n)
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) n)
+     N0)
+🔔 Removing: asm ln 25, prod ln 6.9, live ln 7, enc 3
 
 Filtering redundant before assignments: `r` (decl src ln 2)
 
@@ -336,6 +434,28 @@ Parsed query
 (Eq (Add w32 (w32 0x1)
               N0:(ReadLSB w32 (w32 0x0) n))
      (Add w32 (w32 0xFFFFFFFF) N0))
+
+Checking equivalence of `r` (decl src ln 2) from
+  assn asm ln 31, prod ln 8.10, live ln 9, enc 2
+  %3 = load i32, i32* %r, l8 c10
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) n))
+and
+  assn asm ln 21, prod ln 4.11, live ln 5, enc 1
+  %add = add nsw i32 %1, 1, l4 c11
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) n))
+Query to parse
+array n[4] : w32 -> w8 = symbolic
+array n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(Add w32 (w32 0x1)
+                 (ReadLSB w32 (w32 0x0) n))
+     N0))
+Parsed query
+(Eq N0:(Add w32 (w32 0x1)
+                 (ReadLSB w32 (w32 0x0) n))
+     N0)
+🔔 Removing: asm ln 31, prod ln 8.10, live ln 9, enc 2
 
 Collating encountered before assignments: `n` (decl src ln 1)
   asm ln 11, prod ln 1.0, live ln 3, enc 0
@@ -382,6 +502,11 @@ Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ❌ After `r` (decl src ln 2) assn asm ln 13, prod ln 3.7, live ln 8, enc 0 coordinates don't match before assn asm ln 27, prod ln 6.11, live ln 7, enc 0
 Checking equivalence of `r` (decl src ln 2) from
@@ -427,6 +552,11 @@ Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 #### Check after using before as reference
 
@@ -462,6 +592,11 @@ Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ❌ Before `r` (decl src ln 2) assn asm ln 27, prod ln 6.11, live ln 7, enc 0 coordinates don't match after assn asm ln 13, prod ln 3.7, live ln 8, enc 0
 Checking equivalence of `r` (decl src ln 2) from
@@ -507,7 +642,30 @@ Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
+
+Assignments:                 5
+  Matching Coords:           2 ( 40.00%)
+  Matching Value:            2 ( 40.00%)
+Errors:
+  Mismatched Coords:         2 ( 40.00%)
+  Mismatched Value:          2 ( 40.00%)
+  Not Encountered:           0 (  0.00%)
+  Missing:                   1 ( 20.00%)
+Warnings:
+  Unused:                    0 (  0.00%)
+  Unreachable:               0 (  0.00%)
+  Removable:                 0 (  0.00%)
+Execution:
+  Function Covered:          5 (100.00%)
+  Complete:                  5 (100.00%)
+  Within Time Limit:         5 (100.00%)
+  Within Fork Limit:         5 (100.00%)
 
 ❌ Some consistency checks failed
