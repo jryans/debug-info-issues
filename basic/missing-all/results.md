@@ -447,24 +447,101 @@ Collating encountered before assignments: `y` (decl src ln 3)
 
 #### Check after using before as reference
 
+❌ Before encountered assns for `n` (decl src ln 1) not found in after
+Assignments:         n
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Not Encountered:   0
+  Not Found in Ref:  0
+  Not Found in Test: 1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+❌ Before encountered assns for `x` (decl src ln 2) not found in after
+Assignments:         x
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Not Encountered:   0
+  Not Found in Ref:  0
+  Not Found in Test: 1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+❌ Before encountered assns for `y` (decl src ln 3) not found in after
+Assignments:         y
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Not Encountered:   0
+  Not Found in Ref:  0
+  Not Found in Test: 1
+Warnings:
+  Unused:            0
+  Unreachable:       0
+  Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
 ## Summary
 
-Assignments:                 0
-  Matching Coords:           0 (   nan%)
-  Matching Value:            0 (   nan%)
-Errors:
-  Mismatched Coords:         0 (   nan%)
-  Mismatched Value:          0 (   nan%)
-  Not Encountered:           0 (   nan%)
-  Missing:                   0 (   nan%)
+Assignments:
+  Reference:                 3
+  Test:                      0 (  0.00%)
+Matching:
+  Matching Coords:           0 (  0.00%)
+  Matching Value:            0 (  0.00%)
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00%)
+  Mismatched Value:          0 (  0.00%)
+Availability Errors:
+  Not Encountered:           0 (  0.00%)
+  Not Found in Ref:          0 (  0.00%)
+  Not Found in Test:         3 (100.00%)
 Warnings:
-  Unused:                    0 (   nan%)
-  Unreachable:               0 (   nan%)
-  Removable:                 0 (   nan%)
+  Unused:                    0 (  0.00%)
+  Unreachable:               0 (  0.00%)
+  Removable:                 0 (  0.00%)
 Execution:
-  Function Covered:          0 (   nan%)
-  Complete:                  0 (   nan%)
-  Within Time Limit:         0 (   nan%)
-  Within Fork Limit:         0 (   nan%)
+  Function Covered:          0 (  0.00%)
+  Complete:                  0 (  0.00%)
+  Within Time Limit:         0 (  0.00%)
+  Within Fork Limit:         0 (  0.00%)
 
 ❌ Some consistency checks failed
