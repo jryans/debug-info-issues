@@ -831,18 +831,21 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
   Within Fork Limit: true
+
+❌ Before encountered assn for `x` (decl src ln 4) at asm ln 31, prod ln 6.9, live ln 7, enc 1 not found in after
 
 Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 11, prod ln 4.13, live ln 5, enc 0
@@ -867,7 +870,7 @@ Parsed query
      (Mul w32 (w32 0x2) N0))
 ✅ Before `x` (decl src ln 4) assn asm ln 17, prod ln 4.13, live ln 5, enc 0 symbolic value matches after assn asm ln 11, prod ln 4.13, live ln 5, enc 0
 
-✅ After `x` assns checked using before as reference
+❌ After `x` assns checked using before as reference
 Assignments:         x
   Reference:         2
   Test:              1
@@ -878,13 +881,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -976,13 +980,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -993,25 +998,26 @@ Execution:
 
 Assignments:
   Reference:                 5
-  Test:                      4 ( 80.00%)
+  Test:                      4 ( 80.00% of ref )
 Matching:
-  Matching Coords:           4 ( 80.00%)
-  Matching Value:            4 ( 80.00%)
+  Matching Coords:           4 ( 80.00% of ref )
+  Matching Value:            4 ( 80.00% of ref )
 Consistency Errors:
-  Mismatched Coords:         0 (  0.00%)
-  Mismatched Value:          0 (  0.00%)
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
 Availability Errors:
-  Not Encountered:           0 (  0.00%)
-  Not Found in Ref:          0 (  0.00%)
-  Not Found in Test:         0 (  0.00%)
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           1 ( 20.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
 Warnings:
-  Unused:                    0 (  0.00%)
-  Unreachable:               0 (  0.00%)
-  Removable:                 0 (  0.00%)
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
 Execution:
-  Function Covered:          4 ( 80.00%)
-  Complete:                  4 ( 80.00%)
-  Within Time Limit:         4 ( 80.00%)
-  Within Fork Limit:         4 ( 80.00%)
+  Function Covered:          4 (100.00% of test)
+  Complete:                  4 (100.00% of test)
+  Within Time Limit:         4 (100.00% of test)
+  Within Fork Limit:         4 (100.00% of test)
 
-🎉 All consistency checks passed
+❌ Some consistency checks failed

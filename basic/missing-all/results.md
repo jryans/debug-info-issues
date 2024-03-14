@@ -458,13 +458,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 1
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -482,13 +483,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 1
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -506,13 +508,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 1
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -523,25 +526,26 @@ Execution:
 
 Assignments:
   Reference:                 3
-  Test:                      0 (  0.00%)
+  Test:                      0 (  0.00% of ref )
 Matching:
-  Matching Coords:           0 (  0.00%)
-  Matching Value:            0 (  0.00%)
+  Matching Coords:           0 (  0.00% of ref )
+  Matching Value:            0 (  0.00% of ref )
 Consistency Errors:
-  Mismatched Coords:         0 (  0.00%)
-  Mismatched Value:          0 (  0.00%)
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
 Availability Errors:
-  Not Encountered:           0 (  0.00%)
-  Not Found in Ref:          0 (  0.00%)
-  Not Found in Test:         3 (100.00%)
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           3 (100.00% of ref )
+  Test Not Encount.:         0 (   nan% of test)
+  Test Not in Ref:           0 (   nan% of test)
 Warnings:
-  Unused:                    0 (  0.00%)
-  Unreachable:               0 (  0.00%)
-  Removable:                 0 (  0.00%)
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
 Execution:
-  Function Covered:          0 (  0.00%)
-  Complete:                  0 (  0.00%)
-  Within Time Limit:         0 (  0.00%)
-  Within Fork Limit:         0 (  0.00%)
+  Function Covered:          0 (   nan% of test)
+  Complete:                  0 (   nan% of test)
+  Within Time Limit:         0 (   nan% of test)
+  Within Fork Limit:         0 (   nan% of test)
 
 ❌ Some consistency checks failed

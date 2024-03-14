@@ -685,7 +685,9 @@ Collating encountered after assignments: `b` (decl src ln 6)
 
 #### Check after using before as reference
 
-✅ After `a` assns checked using before as reference
+❌ Before encountered assn for `a` (decl src ln 5) at asm ln 42, prod ln 5.15, live ln 6, enc 0 not found in after
+
+❌ After `a` assns checked using before as reference
 Assignments:         a
   Reference:         1
   Test:              0
@@ -696,13 +698,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -730,20 +733,20 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
   Within Time Limit: true
   Within Fork Limit: false
 
-❌ After assns for `data` (decl src ln 2) not found in before
 ✅ After `data` assns checked using before as reference
 Assignments:         data
   Reference:         0
@@ -755,13 +758,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -808,13 +812,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -843,13 +848,14 @@ Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -885,13 +891,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -1506,13 +1513,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -1540,13 +1548,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -1605,13 +1614,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -1649,13 +1659,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -1683,13 +1694,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          false
@@ -1700,25 +1712,26 @@ Execution:
 
 Assignments:
   Reference:                14
-  Test:                     13 ( 92.86%)
+  Test:                     13 ( 92.86% of ref )
 Matching:
-  Matching Coords:          12 ( 85.71%)
-  Matching Value:           13 ( 92.86%)
+  Matching Coords:          12 ( 85.71% of ref )
+  Matching Value:           13 ( 92.86% of ref )
 Consistency Errors:
-  Mismatched Coords:         1 (  7.14%)
-  Mismatched Value:          0 (  0.00%)
+  Mismatched Coords:         1 (  7.14% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
 Availability Errors:
-  Not Encountered:           0 (  0.00%)
-  Not Found in Ref:          0 (  0.00%)
-  Not Found in Test:         0 (  0.00%)
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           1 (  7.14% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
 Warnings:
-  Unused:                    0 (  0.00%)
-  Unreachable:               0 (  0.00%)
-  Removable:                 0 (  0.00%)
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
 Execution:
-  Function Covered:         13 ( 92.86%)
-  Complete:                  0 (  0.00%)
-  Within Time Limit:        13 ( 92.86%)
-  Within Fork Limit:         0 (  0.00%)
+  Function Covered:         13 (100.00% of test)
+  Complete:                  0 (  0.00% of test)
+  Within Time Limit:        13 (100.00% of test)
+  Within Fork Limit:         0 (  0.00% of test)
 
 ❌ Some consistency checks failed

@@ -950,6 +950,8 @@ Collating encountered after assignments: `i` (decl src ln 4)
 
 #### Check after using before as reference
 
+❌ Before encountered assn for `i` (decl src ln 4) at asm ln 41, prod ln 4.36, live ln 5, enc 1 not found in after
+
 Checking equivalence of `i` (decl src ln 4) from
   assn asm ln 12, prod ln 4.0, live ln 5, enc 0
   i32 0
@@ -975,13 +977,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  2
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   2
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -1018,13 +1021,14 @@ Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -1066,18 +1070,21 @@ Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
   Within Fork Limit: true
+
+❌ Before encountered assn for `y` (decl src ln 3) at asm ln 38, prod ln 5.7, live ln 6, enc 1 not found in after
 
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 11, prod ln 3.0, live ln 4, enc 0
@@ -1104,13 +1111,14 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  2
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   2
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -1121,25 +1129,26 @@ Execution:
 
 Assignments:
   Reference:                 6
-  Test:                      8 (133.33%)
+  Test:                      8 (133.33% of ref )
 Matching:
-  Matching Coords:           2 ( 33.33%)
-  Matching Value:            4 ( 66.67%)
+  Matching Coords:           2 ( 33.33% of ref )
+  Matching Value:            4 ( 66.67% of ref )
 Consistency Errors:
-  Mismatched Coords:         2 ( 33.33%)
-  Mismatched Value:          0 (  0.00%)
+  Mismatched Coords:         2 ( 33.33% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
 Availability Errors:
-  Not Encountered:           0 (  0.00%)
-  Not Found in Ref:          4 ( 66.67%)
-  Not Found in Test:         0 (  0.00%)
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           2 ( 33.33% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           4 ( 50.00% of test)
 Warnings:
-  Unused:                    0 (  0.00%)
-  Unreachable:               0 (  0.00%)
-  Removable:                 0 (  0.00%)
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
 Execution:
-  Function Covered:          8 (133.33%)
-  Complete:                  8 (133.33%)
-  Within Time Limit:         8 (133.33%)
-  Within Fork Limit:         8 (133.33%)
+  Function Covered:          8 (100.00% of test)
+  Complete:                  8 (100.00% of test)
+  Within Time Limit:         8 (100.00% of test)
+  Within Fork Limit:         8 (100.00% of test)
 
 ❌ Some consistency checks failed

@@ -499,18 +499,21 @@ Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
   Within Fork Limit: true
+
+❌ Before encountered assn for `r` (decl src ln 2) at asm ln 21, prod ln 4.11, live ln 5, enc 1 not found in after
 
 ❌ Before `r` (decl src ln 2) assn asm ln 27, prod ln 6.11, live ln 7, enc 0 coordinates don't match after assn asm ln 13, prod ln 3.7, live ln 8, enc 0
 Checking equivalence of `r` (decl src ln 2) from
@@ -553,13 +556,14 @@ Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  1
 Availability Errors:
-  Not Encountered:   0
-  Not Found in Ref:  0
-  Not Found in Test: 0
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
+  Unreachable:       0
 Execution:
   Function Covered:  true
   Complete:          true
@@ -570,25 +574,26 @@ Execution:
 
 Assignments:
   Reference:                 3
-  Test:                      2 ( 66.67%)
+  Test:                      2 ( 66.67% of ref )
 Matching:
-  Matching Coords:           1 ( 33.33%)
-  Matching Value:            1 ( 33.33%)
+  Matching Coords:           1 ( 33.33% of ref )
+  Matching Value:            1 ( 33.33% of ref )
 Consistency Errors:
-  Mismatched Coords:         1 ( 33.33%)
-  Mismatched Value:          1 ( 33.33%)
+  Mismatched Coords:         1 ( 33.33% of ref )
+  Mismatched Value:          1 ( 33.33% of ref )
 Availability Errors:
-  Not Encountered:           0 (  0.00%)
-  Not Found in Ref:          0 (  0.00%)
-  Not Found in Test:         0 (  0.00%)
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           1 ( 33.33% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
 Warnings:
-  Unused:                    0 (  0.00%)
-  Unreachable:               0 (  0.00%)
-  Removable:                 0 (  0.00%)
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
 Execution:
-  Function Covered:          2 ( 66.67%)
-  Complete:                  2 ( 66.67%)
-  Within Time Limit:         2 ( 66.67%)
-  Within Fork Limit:         2 ( 66.67%)
+  Function Covered:          2 (100.00% of test)
+  Complete:                  2 (100.00% of test)
+  Within Time Limit:         2 (100.00% of test)
+  Within Fork Limit:         2 (100.00% of test)
 
 ❌ Some consistency checks failed
