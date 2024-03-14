@@ -309,46 +309,46 @@ Value produced for `r` (decl src ln 2), asm ln 13
 Collected value for `n`
   Assignment asm ln 11, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `n`
   Assignment asm ln 14, prod ln 3.7, live ln 4, enc 1
   %0 = load i32, i32* %n.addr, l3 c7
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `n`
   Assignment asm ln 19, prod ln 4.9, live ln 5, enc 2
   %1 = load i32, i32* %n.addr, l4 c9
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `n`
   Assignment asm ln 25, prod ln 6.9, live ln 7, enc 3
   %2 = load i32, i32* %n.addr, l6 c9
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `r`
   Assignment asm ln 27, prod ln 6.11, live ln 7, enc 0
   %sub = sub nsw i32 %2, 1, l6 c11
   (Add w32 (w32 0xFFFFFFFF)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Collected value for `r`
   Assignment asm ln 21, prod ln 4.11, live ln 5, enc 1
   %add = add nsw i32 %1, 1, l4 c11
   (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Collected value for `r`
   Assignment asm ln 31, prod ln 8.10, live ln 9, enc 2
   %3 = load i32, i32* %r, l8 c10
   (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 
 #### After values
 
 Collected value for `n`
   Assignment asm ln 9, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `r`
   Assignment asm ln 13, prod ln 3.7, live ln 8, enc 0
   %r.0 = select i1 %tobool.not, i32 -1, i32 %add, l3 c7
   (Select w32 (Eq (w32 0x0)
-                 N0:(ReadLSB w32 (w32 0x0) n))
+                 N0:(ReadLSB w32 (w32 0x0) example.n))
              (w32 0xFFFFFFFF)
              (Add w32 (w32 0x1) N0))
 
@@ -361,54 +361,54 @@ Filtering redundant before assignments: `n` (decl src ln 1)
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 14, prod ln 3.7, live ln 4, enc 1
   %0 = load i32, i32* %n.addr, l3 c7
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 and
   assn asm ln 11, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(ReadLSB w32 (w32 0x0) n)
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0))
 Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0)
 🔔 Removing: asm ln 14, prod ln 3.7, live ln 4, enc 1
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 19, prod ln 4.9, live ln 5, enc 2
   %1 = load i32, i32* %n.addr, l4 c9
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 and
   assn asm ln 11, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(ReadLSB w32 (w32 0x0) n)
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0))
 Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0)
 🔔 Removing: asm ln 19, prod ln 4.9, live ln 5, enc 2
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 25, prod ln 6.9, live ln 7, enc 3
   %2 = load i32, i32* %n.addr, l6 c9
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 and
   assn asm ln 11, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(ReadLSB w32 (w32 0x0) n)
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0))
 Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0)
 🔔 Removing: asm ln 25, prod ln 6.9, live ln 7, enc 3
 
@@ -418,42 +418,42 @@ Checking equivalence of `r` (decl src ln 2) from
   assn asm ln 21, prod ln 4.11, live ln 5, enc 1
   %add = add nsw i32 %1, 1, l4 c11
   (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 and
   assn asm ln 27, prod ln 6.11, live ln 7, enc 0
   %sub = sub nsw i32 %2, 1, l6 c11
   (Add w32 (w32 0xFFFFFFFF)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (w32 0x1)
-              N0:(ReadLSB w32 (w32 0x0) n))
+              N0:(ReadLSB w32 (w32 0x0) example.n))
      (Add w32 (w32 0xFFFFFFFF) N0)))
 Parsed query
 (Eq (Add w32 (w32 0x1)
-              N0:(ReadLSB w32 (w32 0x0) n))
+              N0:(ReadLSB w32 (w32 0x0) example.n))
      (Add w32 (w32 0xFFFFFFFF) N0))
 
 Checking equivalence of `r` (decl src ln 2) from
   assn asm ln 31, prod ln 8.10, live ln 9, enc 2
   %3 = load i32, i32* %r, l8 c10
   (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 and
   assn asm ln 21, prod ln 4.11, live ln 5, enc 1
   %add = add nsw i32 %1, 1, l4 c11
   (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
 (query [] (Eq N0:(Add w32 (w32 0x1)
-                 (ReadLSB w32 (w32 0x0) n))
+                 (ReadLSB w32 (w32 0x0) example.n))
      N0))
 Parsed query
 (Eq N0:(Add w32 (w32 0x1)
-                 (ReadLSB w32 (w32 0x0) n))
+                 (ReadLSB w32 (w32 0x0) example.n))
      N0)
 🔔 Removing: asm ln 31, prod ln 8.10, live ln 9, enc 2
 
@@ -468,126 +468,40 @@ Collating encountered after assignments: `n` (decl src ln 1)
 Collating encountered after assignments: `r` (decl src ln 2)
   asm ln 13, prod ln 3.7, live ln 8, enc 0
 
-#### Check before using after as reference
-
-Checking equivalence of `n` (decl src ln 1) from
-  assn asm ln 11, prod ln 1.0, live ln 3, enc 0
-  i32 %n
-  (ReadLSB w32 (w32 0x0) n)
-and
-  assn asm ln 9, prod ln 1.0, live ln 3, enc 0
-  i32 %n
-  (ReadLSB w32 (w32 0x0) n)
-Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 (w32 0x0) n)
-     (ReadLSB w32 (w32 0x0) n)))
-Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
-     N0)
-✅ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 3, enc 0 symbolic value matches before assn asm ln 11, prod ln 1.0, live ln 3, enc 0
-
-✅ Before `n` assns checked using after as reference
-Variable:            n
-  Assignments:       1
-  Matching Coords:   1
-  Matching Value:    1
-Errors:
-  Mismatched Coords: 0
-  Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           0
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-Execution:
-  Function Covered:  true
-  Complete:          true
-  Within Time Limit: true
-  Within Fork Limit: true
-
-❌ After `r` (decl src ln 2) assn asm ln 13, prod ln 3.7, live ln 8, enc 0 coordinates don't match before assn asm ln 27, prod ln 6.11, live ln 7, enc 0
-Checking equivalence of `r` (decl src ln 2) from
-  assn asm ln 27, prod ln 6.11, live ln 7, enc 0
-  %sub = sub nsw i32 %2, 1, l6 c11
-  (Add w32 (w32 0xFFFFFFFF)
-          (ReadLSB w32 (w32 0x0) n))
-and
-  assn asm ln 13, prod ln 3.7, live ln 8, enc 0
-  %r.0 = select i1 %tobool.not, i32 -1, i32 %add, l3 c7
-  (Select w32 (Eq (w32 0x0)
-                 N0:(ReadLSB w32 (w32 0x0) n))
-             (w32 0xFFFFFFFF)
-             (Add w32 (w32 0x1) N0))
-Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (Add w32 (w32 0xFFFFFFFF)
-              (ReadLSB w32 (w32 0x0) n))
-     (Select w32 (Eq (w32 0x0)
-                     N0:(ReadLSB w32 (w32 0x0) n))
-                 (w32 0xFFFFFFFF)
-                 (Add w32 (w32 0x1) N0))))
-Parsed query
-(Eq (Add w32 (w32 0xFFFFFFFF)
-              N0:(ReadLSB w32 (w32 0x0) n))
-     (Select w32 (Eq (w32 0x0) N0) (w32 0xFFFFFFFF) (Add w32 (w32 0x1) N0)))
-❌ After `r` (decl src ln 2) assn asm ln 13, prod ln 3.7, live ln 8, enc 0 symbolic value doesn't match before assn asm ln 27, prod ln 6.11, live ln 7, enc 0
-
-❌ After encountered assn for `r` (decl src ln 2) at asm ln 21, prod ln 4.11, live ln 5, enc 1 not found
-
-❌ Before `r` assns checked using after as reference
-Variable:            r
-  Assignments:       2
-  Matching Coords:   0
-  Matching Value:    0
-Errors:
-  Mismatched Coords: 1
-  Mismatched Value:  1
-  Not Encountered:   0
-  Missing:           1
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-Execution:
-  Function Covered:  true
-  Complete:          true
-  Within Time Limit: true
-  Within Fork Limit: true
-
 #### Check after using before as reference
 
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 and
   assn asm ln 11, prod ln 1.0, live ln 3, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 (w32 0x0) n)
-     (ReadLSB w32 (w32 0x0) n)))
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) example.n)
+     (ReadLSB w32 (w32 0x0) example.n)))
 Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 11, prod ln 1.0, live ln 3, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 3, enc 0
 
 ✅ After `n` assns checked using before as reference
-Variable:            n
-  Assignments:       1
+Assignments:         n
+  Reference:         1
+  Test:              1
+Matching:
   Matching Coords:   1
   Matching Value:    1
-Errors:
+Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+Availability Errors:
   Not Encountered:   0
-  Missing:           0
+  Not Found in Ref:  0
+  Not Found in Test: 0
 Warnings:
   Unused:            0
   Unreachable:       0
@@ -603,41 +517,45 @@ Checking equivalence of `r` (decl src ln 2) from
   assn asm ln 13, prod ln 3.7, live ln 8, enc 0
   %r.0 = select i1 %tobool.not, i32 -1, i32 %add, l3 c7
   (Select w32 (Eq (w32 0x0)
-                 N0:(ReadLSB w32 (w32 0x0) n))
+                 N0:(ReadLSB w32 (w32 0x0) example.n))
              (w32 0xFFFFFFFF)
              (Add w32 (w32 0x1) N0))
 and
   assn asm ln 27, prod ln 6.11, live ln 7, enc 0
   %sub = sub nsw i32 %2, 1, l6 c11
   (Add w32 (w32 0xFFFFFFFF)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
 (query [] (Eq (Select w32 (Eq (w32 0x0)
-                     N0:(ReadLSB w32 (w32 0x0) n))
+                     N0:(ReadLSB w32 (w32 0x0) example.n))
                  (w32 0xFFFFFFFF)
                  (Add w32 (w32 0x1) N0))
      (Add w32 (w32 0xFFFFFFFF)
-              (ReadLSB w32 (w32 0x0) n))))
+              (ReadLSB w32 (w32 0x0) example.n))))
 Parsed query
 (Eq (Select w32 (Eq (w32 0x0)
-                     N0:(ReadLSB w32 (w32 0x0) n))
+                     N0:(ReadLSB w32 (w32 0x0) example.n))
                  (w32 0xFFFFFFFF)
                  (Add w32 (w32 0x1) N0))
      (Add w32 (w32 0xFFFFFFFF) N0))
 ❌ Before `r` (decl src ln 2) assn asm ln 27, prod ln 6.11, live ln 7, enc 0 symbolic value doesn't match after assn asm ln 13, prod ln 3.7, live ln 8, enc 0
 
 ❌ After `r` assns checked using before as reference
-Variable:            r
-  Assignments:       1
+Assignments:         r
+  Reference:         2
+  Test:              1
+Matching:
   Matching Coords:   0
   Matching Value:    0
-Errors:
+Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  1
+Availability Errors:
   Not Encountered:   0
-  Missing:           0
+  Not Found in Ref:  0
+  Not Found in Test: 0
 Warnings:
   Unused:            0
   Unreachable:       0
@@ -650,22 +568,27 @@ Execution:
 
 ## Summary
 
-Assignments:                 5
-  Matching Coords:           2 ( 40.00%)
-  Matching Value:            2 ( 40.00%)
-Errors:
-  Mismatched Coords:         2 ( 40.00%)
-  Mismatched Value:          2 ( 40.00%)
+Assignments:
+  Reference:                 3
+  Test:                      2 ( 66.67%)
+Matching:
+  Matching Coords:           1 ( 33.33%)
+  Matching Value:            1 ( 33.33%)
+Consistency Errors:
+  Mismatched Coords:         1 ( 33.33%)
+  Mismatched Value:          1 ( 33.33%)
+Availability Errors:
   Not Encountered:           0 (  0.00%)
-  Missing:                   1 ( 20.00%)
+  Not Found in Ref:          0 (  0.00%)
+  Not Found in Test:         0 (  0.00%)
 Warnings:
   Unused:                    0 (  0.00%)
   Unreachable:               0 (  0.00%)
   Removable:                 0 (  0.00%)
 Execution:
-  Function Covered:          5 (100.00%)
-  Complete:                  5 (100.00%)
-  Within Time Limit:         5 (100.00%)
-  Within Fork Limit:         5 (100.00%)
+  Function Covered:          2 ( 66.67%)
+  Complete:                  2 ( 66.67%)
+  Within Time Limit:         2 ( 66.67%)
+  Within Fork Limit:         2 ( 66.67%)
 
 ❌ Some consistency checks failed

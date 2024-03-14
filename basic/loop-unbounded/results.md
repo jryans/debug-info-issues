@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -426,8 +426,8 @@ Writing '.example.dot'...
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --max-forks=4 --tsv
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -438,92 +438,114 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `n` (decl src ln 1)
+#### Before variables
+
+Load from declared address of `n` (decl src ln 1), asm ln 34
+  %4 = load i32, i32* %n.addr, l5 c18, asm ln 34
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 34, prod ln 5.18, live ln 6, enc None
+Load from declared address of `n` (decl src ln 1), asm ln 27
+  %2 = load i32, i32* %n.addr, l4 c32, asm ln 27
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 27, prod ln 4.32, live ln 5, enc None
+Load from declared address of `n` (decl src ln 1), asm ln 16
+  %0 = load i32, i32* %n.addr, l2 c11, asm ln 16
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 16, prod ln 2.11, live ln 3, enc None
 Store to declared address of `n` (decl src ln 1), asm ln 13
   arg 0
   Added assignment asm ln 13, prod ln 1.0, live ln 2, enc None
-Before variable `x` (decl src ln 2)
+Load from declared address of `x` (decl src ln 2), asm ln 32
+  %3 = load i32, i32* %x, l5 c10, asm ln 32
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 32, prod ln 5.10, live ln 6, enc None
 Store to declared address of `x` (decl src ln 2), asm ln 18
   %mul = mul nsw i32 %0, 2, l2 c13, asm ln 17
   Added assignment asm ln 18, prod ln 2.13, live ln 3, enc None
-Before variable `y` (decl src ln 3)
+Load from declared address of `y` (decl src ln 3), asm ln 45
+  %7 = load i32, i32* %y, l7 c10, asm ln 45
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 45, prod ln 7.10, live ln 8, enc None
 Store to declared address of `y` (decl src ln 3), asm ln 38
   %add2 = add nsw i32 %5, %add1, l5 c7, asm ln 37
-🔔 Store to declared address of `y` (decl src ln 3): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 38, prod ln 5.7, live ln 6, enc None
+Load from declared address of `y` (decl src ln 3), asm ln 36
+  %5 = load i32, i32* %y, l5 c7, asm ln 36
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 36, prod ln 5.7, live ln 6, enc None
 Store to declared address of `y` (decl src ln 3), asm ln 20
   const i32 0
   Added assignment asm ln 20, prod ln 3.7, live ln 4, enc None
-Before variable `i` (decl src ln 4)
 Store to declared address of `i` (decl src ln 4), asm ln 41
   %inc = add i32 %6, 1, l4 c36, asm ln 40
-🔔 Store to declared address of `i` (decl src ln 4): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 41, prod ln 4.36, live ln 5, enc None
+Load from declared address of `i` (decl src ln 4), asm ln 39
+  %6 = load i32, i32* %i, l4 c36, asm ln 39
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 39, prod ln 4.36, live ln 5, enc None
+Load from declared address of `i` (decl src ln 4), asm ln 26
+  %1 = load i32, i32* %i, l4 c28, asm ln 26
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 26, prod ln 4.28, live ln 5, enc None
 Store to declared address of `i` (decl src ln 4), asm ln 22
   const i32 0
-🔔 Store to declared address of `i` (decl src ln 4): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 22, prod ln 4.21, live ln 5, enc None
 
-After variable `n` (decl src ln 1)
+#### After variables
+
 Value produced for `n` (decl src ln 1), asm ln 9
   arg 0
   Added assignment asm ln 9, prod ln 1.0, live ln 4, enc None
-After variable `x` (decl src ln 2)
 Value produced for `x` (decl src ln 2), asm ln 10
   arg 0
   Added assignment asm ln 10, prod ln 2.0, live ln 4, enc None
-After variable `y` (decl src ln 3)
 Value produced for `y` (decl src ln 3), asm ln 11
   const i32 0
   Added assignment asm ln 11, prod ln 3.0, live ln 4, enc None
-After variable `i` (decl src ln 4)
 Value produced for `i` (decl src ln 4), asm ln 12
   const i32 0
-🔔 Value produced for `i` (decl src ln 4): live ln too early, using produced ln + 1
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 12, prod ln 4.0, live ln 5, enc None
-After variable `i` (decl src ln 4)
 Value produced for `i` (decl src ln 4), asm ln 13
   const i32 0
-🔔 Value produced for `i` (decl src ln 4): missing produced ln, using decl ln
-🔔 Value produced for `i` (decl src ln 4): live ln too early, using produced ln + 1
+  🔔 Missing produced ln, using decl ln
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 13, prod ln 4.0, live ln 5, enc None
-After variable `y` (decl src ln 3)
 Value produced for `y` (decl src ln 3), asm ln 14
   const i32 0
-🔔 Value produced for `y` (decl src ln 3): missing produced ln, using decl ln
+  🔔 Missing produced ln, using decl ln
   Added assignment asm ln 14, prod ln 3.0, live ln 4, enc None
-After variable `x` (decl src ln 2)
 Value produced for `x` (decl src ln 2), asm ln 19
   arg 0
   Added assignment asm ln 19, prod ln 2.0, live ln 4, enc None
-After variable `x` (decl src ln 2)
 Value produced for `x` (decl src ln 2), asm ln 23
   %mul = shl nsw i32 %n, 1, l2 c13, asm ln 22
   Added assignment asm ln 23, prod ln 2.13, live ln 4, enc None
-After variable `i` (decl src ln 4)
 Value produced for `i` (decl src ln 4), asm ln 28
   const i32 undef
-🔔 Value produced for `i` (decl src ln 4): missing produced ln, using decl ln
-🔔 Value produced for `i` (decl src ln 4): live ln too early, using produced ln + 1
+  🔔 Missing produced ln, using decl ln
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 28, prod ln 4.0, live ln 5, enc None
-After variable `y` (decl src ln 3)
 Value produced for `y` (decl src ln 3), asm ln 29
   const i32 undef
-🔔 Value produced for `y` (decl src ln 3): missing produced ln, using decl ln
+  🔔 Missing produced ln, using decl ln
   Added assignment asm ln 29, prod ln 3.0, live ln 4, enc None
-After variable `y` (decl src ln 3)
 Value produced for `y` (decl src ln 3), asm ln 30
   const i32 undef
-🔔 Value produced for `y` (decl src ln 3): missing produced ln, using decl ln
+  🔔 Missing produced ln, using decl ln
   Added assignment asm ln 30, prod ln 3.0, live ln 4, enc None
-After variable `i` (decl src ln 4)
 Value produced for `i` (decl src ln 4), asm ln 31
   const i32 undef
-🔔 Value produced for `i` (decl src ln 4): missing produced ln, using decl ln
-🔔 Value produced for `i` (decl src ln 4): live ln too early, using produced ln + 1
+  🔔 Missing produced ln, using decl ln
+  🔔 Live ln too early, using produced ln + 1
   Added assignment asm ln 31, prod ln 4.0, live ln 5, enc None
+
+#### Summary
 
 ✅ 4 before variables found, 4 after variables found, 0 mismatched
 
@@ -532,25 +554,64 @@ Value produced for `i` (decl src ln 4), asm ln 31
 #### Before values
 
 Collected value for `n`
+  Assignment asm ln 13, prod ln 1.0, live ln 2, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
+Collected value for `n`
+  Assignment asm ln 16, prod ln 2.11, live ln 3, enc 1
+  %0 = load i32, i32* %n.addr, l2 c11
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `x`
+  Assignment asm ln 18, prod ln 2.13, live ln 3, enc 0
   %mul = mul nsw i32 %0, 2, l2 c13
   (Mul w32 (w32 0x2)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Collected value for `y`
+  Assignment asm ln 20, prod ln 3.7, live ln 4, enc 0
   i32 0
   (w32 0x0)
 Collected value for `i`
+  Assignment asm ln 22, prod ln 4.21, live ln 5, enc 0
   i32 0
   (w32 0x0)
+Collected value for `i`
+  Assignment asm ln 26, prod ln 4.28, live ln 5, enc 1
+  %1 = load i32, i32* %i, l4 c28
+  (w32 0x0)
+Collected value for `n`
+  Assignment asm ln 27, prod ln 4.32, live ln 5, enc 2
+  %2 = load i32, i32* %n.addr, l4 c32
+  (ReadLSB w32 (w32 0x0) example.n)
+Collected value for `x`
+  Assignment asm ln 32, prod ln 5.10, live ln 6, enc 1
+  %3 = load i32, i32* %x, l5 c10
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) example.n))
 Collected value for `y`
+  Assignment asm ln 45, prod ln 7.10, live ln 8, enc 1
+  %7 = load i32, i32* %y, l7 c10
+  (w32 0x0)
+Collected value for `n`
+  Assignment asm ln 34, prod ln 5.18, live ln 6, enc 3
+  %4 = load i32, i32* %n.addr, l5 c18
+  (ReadLSB w32 (w32 0x0) example.n)
+Collected value for `y`
+  Assignment asm ln 36, prod ln 5.7, live ln 6, enc 2
+  %5 = load i32, i32* %y, l5 c7
+  (w32 0x0)
+Collected value for `y`
+  Assignment asm ln 38, prod ln 5.7, live ln 6, enc 3
   %add2 = add nsw i32 %5, %add1, l5 c7
   (Add w32 (w32 0x4)
           (Add w32 (Mul w32 (w32 0x2)
-                            N0:(ReadLSB w32 (w32 0x0) n))
+                            N0:(ReadLSB w32 (w32 0x0) example.n))
                    N0))
 Collected value for `i`
+  Assignment asm ln 39, prod ln 4.36, live ln 5, enc 2
+  %6 = load i32, i32* %i, l4 c36
+  (w32 0x0)
+Collected value for `i`
+  Assignment asm ln 41, prod ln 4.36, live ln 5, enc 3
   %inc = add i32 %6, 1, l4 c36
   (w32 0x1)
 [0;1;35mKLEE: WARNING ONCE: skipping fork (max-forks reached)
@@ -560,76 +621,210 @@ Collected value for `i`
 #### After values
 
 Collected value for `n`
+  Assignment asm ln 9, prod ln 1.0, live ln 4, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `x`
+  Assignment asm ln 10, prod ln 2.0, live ln 4, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `y`
+  Assignment asm ln 11, prod ln 3.0, live ln 4, enc 0
   i32 0
   (w32 0x0)
 Collected value for `i`
+  Assignment asm ln 12, prod ln 4.0, live ln 5, enc 0
   i32 0
   (w32 0x0)
 Collected value for `i`
+  Assignment asm ln 13, prod ln 4.0, live ln 5, enc 1
   i32 0
   (w32 0x0)
 Collected value for `y`
+  Assignment asm ln 14, prod ln 3.0, live ln 4, enc 1
   i32 0
   (w32 0x0)
 Collected value for `x`
+  Assignment asm ln 19, prod ln 2.0, live ln 4, enc 1
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Collected value for `x`
+  Assignment asm ln 23, prod ln 2.13, live ln 4, enc 2
   %mul = shl nsw i32 %n, 1, l2 c13
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+  (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (w32 0x1))
 Collected value for `i`
+  Assignment asm ln 28, prod ln 4.0, live ln 5, enc 2
   i32 undef
   (w32 0x0)
 Collected value for `y`
+  Assignment asm ln 29, prod ln 3.0, live ln 4, enc 2
   i32 undef
   (w32 0x0)
 Collected value for `y`
+  Assignment asm ln 30, prod ln 3.0, live ln 4, enc 3
   i32 undef
   (w32 0x0)
 Collected value for `i`
+  Assignment asm ln 31, prod ln 4.0, live ln 5, enc 3
   i32 undef
   (w32 0x0)
 
 ### Assignments
 
+#### Collation
+
+Filtering redundant before assignments: `n` (decl src ln 1)
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 16, prod ln 2.11, live ln 3, enc 1
+  %0 = load i32, i32* %n.addr, l2 c11
+  (ReadLSB w32 (w32 0x0) example.n)
+and
+  assn asm ln 13, prod ln 1.0, live ln 2, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example.n)
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0)
+🔔 Removing: asm ln 16, prod ln 2.11, live ln 3, enc 1
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 27, prod ln 4.32, live ln 5, enc 2
+  %2 = load i32, i32* %n.addr, l4 c32
+  (ReadLSB w32 (w32 0x0) example.n)
+and
+  assn asm ln 13, prod ln 1.0, live ln 2, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example.n)
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0)
+🔔 Removing: asm ln 27, prod ln 4.32, live ln 5, enc 2
+
+Checking equivalence of `n` (decl src ln 1) from
+  assn asm ln 34, prod ln 5.18, live ln 6, enc 3
+  %4 = load i32, i32* %n.addr, l5 c18
+  (ReadLSB w32 (w32 0x0) example.n)
+and
+  assn asm ln 13, prod ln 1.0, live ln 2, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example.n)
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
+     N0)
+🔔 Removing: asm ln 34, prod ln 5.18, live ln 6, enc 3
+
+Filtering redundant before assignments: `x` (decl src ln 2)
+
+Checking equivalence of `x` (decl src ln 2) from
+  assn asm ln 32, prod ln 5.10, live ln 6, enc 1
+  %3 = load i32, i32* %x, l5 c10
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) example.n))
+and
+  assn asm ln 18, prod ln 2.13, live ln 3, enc 0
+  %mul = mul nsw i32 %0, 2, l2 c13
+  (Mul w32 (w32 0x2)
+          (ReadLSB w32 (w32 0x0) example.n))
+Query to parse
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(Mul w32 (w32 0x2)
+                 (ReadLSB w32 (w32 0x0) example.n))
+     N0))
+Parsed query
+(Eq N0:(Mul w32 (w32 0x2)
+                 (ReadLSB w32 (w32 0x0) example.n))
+     N0)
+🔔 Removing: asm ln 32, prod ln 5.10, live ln 6, enc 1
+
 Filtering redundant before assignments: `y` (decl src ln 3)
 
 Checking equivalence of `y` (decl src ln 3) from
-  assn asm ln 38, prod ln 5.7, live ln 6, enc 1
+  assn asm ln 45, prod ln 7.10, live ln 8, enc 1
+  %7 = load i32, i32* %y, l7 c10
+  (w32 0x0)
+and
+  assn asm ln 20, prod ln 3.7, live ln 4, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 45, prod ln 7.10, live ln 8, enc 1
+
+Checking equivalence of `y` (decl src ln 3) from
+  assn asm ln 36, prod ln 5.7, live ln 6, enc 2
+  %5 = load i32, i32* %y, l5 c7
+  (w32 0x0)
+and
+  assn asm ln 20, prod ln 3.7, live ln 4, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 36, prod ln 5.7, live ln 6, enc 2
+
+Checking equivalence of `y` (decl src ln 3) from
+  assn asm ln 38, prod ln 5.7, live ln 6, enc 3
   %add2 = add nsw i32 %5, %add1, l5 c7
   (Add w32 (w32 0x4)
           (Add w32 (Mul w32 (w32 0x2)
-                            N0:(ReadLSB w32 (w32 0x0) n))
+                            N0:(ReadLSB w32 (w32 0x0) example.n))
                    N0))
 and
   assn asm ln 20, prod ln 3.7, live ln 4, enc 0
   i32 0
   (w32 0x0)
 Query to parse
-array n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (w32 0x4)
               (Add w32 (Mul w32 (w32 0x2)
-                                N0:(ReadLSB w32 (w32 0x0) n))
+                                N0:(ReadLSB w32 (w32 0x0) example.n))
                        N0))
      (w32 0x0)))
 Parsed query
 (Eq (Add w32 (w32 0x4)
               (Add w32 (Mul w32 (w32 0x2)
-                                N0:(ReadLSB w32 (w32 0x0) n))
+                                N0:(ReadLSB w32 (w32 0x0) example.n))
                        N0))
      (w32 0x0))
 
 Filtering redundant before assignments: `i` (decl src ln 4)
 
 Checking equivalence of `i` (decl src ln 4) from
-  assn asm ln 41, prod ln 4.36, live ln 5, enc 1
+  assn asm ln 26, prod ln 4.28, live ln 5, enc 1
+  %1 = load i32, i32* %i, l4 c28
+  (w32 0x0)
+and
+  assn asm ln 22, prod ln 4.21, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 26, prod ln 4.28, live ln 5, enc 1
+
+Checking equivalence of `i` (decl src ln 4) from
+  assn asm ln 39, prod ln 4.36, live ln 5, enc 2
+  %6 = load i32, i32* %i, l4 c36
+  (w32 0x0)
+and
+  assn asm ln 22, prod ln 4.21, live ln 5, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 39, prod ln 4.36, live ln 5, enc 2
+
+Checking equivalence of `i` (decl src ln 4) from
+  assn asm ln 41, prod ln 4.36, live ln 5, enc 3
   %inc = add i32 %6, 1, l4 c36
   (w32 0x1)
 and
@@ -639,36 +834,36 @@ and
 
 Filtering redundant after assignments: `x` (decl src ln 2)
 
-Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) n)
+Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) example.n)
 constu/s: (w64 0x1)
-shl: (Shl w32 (ReadLSB w32 (w32 0x0) n)
+shl: (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
-Result: (Shl w32 (ReadLSB w32 (w32 0x0) n)
+Result: (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
-Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) n)
+Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) example.n)
 constu/s: (w64 0x1)
-shl: (Shl w32 (ReadLSB w32 (w32 0x0) n)
+shl: (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
-Result: (Shl w32 (ReadLSB w32 (w32 0x0) n)
+Result: (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 19, prod ln 2.0, live ln 4, enc 1
   i32 %n
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+  (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
 and
   assn asm ln 10, prod ln 2.0, live ln 4, enc 0
   i32 %n
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+  (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(Shl w32 (ReadLSB w32 (w32 0x0) n)
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(Shl w32 (ReadLSB w32 (w32 0x0) example.n)
                  (Extract w32 0 (w64 0x1)))
      N0))
 Parsed query
-(Eq N0:(Shl w32 (ReadLSB w32 (w32 0x0) n)
+(Eq N0:(Shl w32 (ReadLSB w32 (w32 0x0) example.n)
                  (Extract w32 0 (w64 0x1)))
      N0)
 🔔 Removing: asm ln 19, prod ln 2.0, live ln 4, enc 1
@@ -676,21 +871,21 @@ Parsed query
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 23, prod ln 2.13, live ln 4, enc 2
   %mul = shl nsw i32 %n, 1, l2 c13
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+  (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (w32 0x1))
 and
   assn asm ln 10, prod ln 2.0, live ln 4, enc 0
   i32 %n
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+  (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) n)
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) example.n)
               (w32 0x1))
      (Shl w32 N0 (Extract w32 0 (w64 0x1)))))
 Parsed query
-(Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) n)
+(Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) example.n)
               (w32 0x1))
      (Shl w32 N0 (Extract w32 0 (w64 0x1))))
 🔔 Removing: asm ln 23, prod ln 2.13, live ln 4, enc 2
@@ -753,135 +948,6 @@ Collating encountered after assignments: `y` (decl src ln 3)
 Collating encountered after assignments: `i` (decl src ln 4)
   asm ln 12, prod ln 4.0, live ln 5, enc 0
 
-#### Check before using after as reference
-
-Checking equivalence of `i` (decl src ln 4) from
-  assn asm ln 22, prod ln 4.21, live ln 5, enc 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 12, prod ln 4.0, live ln 5, enc 0
-  i32 0
-  (w32 0x0)
-✅ After `i` (decl src ln 4) assn asm ln 12, prod ln 4.0, live ln 5, enc 0 symbolic value matches before assn asm ln 22, prod ln 4.21, live ln 5, enc 0
-
-❌ After encountered assn for `i` (decl src ln 4) at asm ln 41, prod ln 4.36, live ln 5, enc 1 not found
-
-❌ Before `i` assns checked using after as reference
-Variable:            i
-  Assignments:       2
-  Matching Coords:   1
-  Matching Value:    1
-Errors:
-  Mismatched Coords: 0
-  Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           1
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-
-❌ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 4, enc 0 coordinates don't match before assn asm ln 13, prod ln 1.0, live ln 2, enc 0
-Checking equivalence of `n` (decl src ln 1) from
-  assn asm ln 13, prod ln 1.0, live ln 2, enc 0
-  i32 %n
-  (ReadLSB w32 (w32 0x0) n)
-and
-  assn asm ln 9, prod ln 1.0, live ln 4, enc 0
-  i32 %n
-  (ReadLSB w32 (w32 0x0) n)
-Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 (w32 0x0) n)
-     (ReadLSB w32 (w32 0x0) n)))
-Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
-     N0)
-✅ After `n` (decl src ln 1) assn asm ln 9, prod ln 1.0, live ln 4, enc 0 symbolic value matches before assn asm ln 13, prod ln 1.0, live ln 2, enc 0
-
-❌ Before `n` assns checked using after as reference
-Variable:            n
-  Assignments:       1
-  Matching Coords:   0
-  Matching Value:    1
-Errors:
-  Mismatched Coords: 1
-  Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           0
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-
-❌ After `x` (decl src ln 2) assn asm ln 10, prod ln 2.0, live ln 4, enc 0 coordinates don't match before assn asm ln 18, prod ln 2.13, live ln 3, enc 0
-Checking equivalence of `x` (decl src ln 2) from
-  assn asm ln 18, prod ln 2.13, live ln 3, enc 0
-  %mul = mul nsw i32 %0, 2, l2 c13
-  (Mul w32 (w32 0x2)
-          (ReadLSB w32 (w32 0x0) n))
-and
-  assn asm ln 10, prod ln 2.0, live ln 4, enc 0
-  i32 %n
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
-          (Extract w32 0 (w64 0x1)))
-Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (Mul w32 (w32 0x2)
-              (ReadLSB w32 (w32 0x0) n))
-     (Shl w32 (ReadLSB w32 (w32 0x0) n)
-              (Extract w32 0 (w64 0x1)))))
-Parsed query
-(Eq (Mul w32 (w32 0x2)
-              N0:(ReadLSB w32 (w32 0x0) n))
-     (Shl w32 N0 (Extract w32 0 (w64 0x1))))
-✅ After `x` (decl src ln 2) assn asm ln 10, prod ln 2.0, live ln 4, enc 0 symbolic value matches before assn asm ln 18, prod ln 2.13, live ln 3, enc 0
-
-❌ Before `x` assns checked using after as reference
-Variable:            x
-  Assignments:       1
-  Matching Coords:   0
-  Matching Value:    1
-Errors:
-  Mismatched Coords: 1
-  Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           0
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-
-Checking equivalence of `y` (decl src ln 3) from
-  assn asm ln 20, prod ln 3.7, live ln 4, enc 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 11, prod ln 3.0, live ln 4, enc 0
-  i32 0
-  (w32 0x0)
-✅ After `y` (decl src ln 3) assn asm ln 11, prod ln 3.0, live ln 4, enc 0 symbolic value matches before assn asm ln 20, prod ln 3.7, live ln 4, enc 0
-
-❌ After encountered assn for `y` (decl src ln 3) at asm ln 38, prod ln 5.7, live ln 6, enc 1 not found
-
-❌ Before `y` assns checked using after as reference
-Variable:            y
-  Assignments:       2
-  Matching Coords:   1
-  Matching Value:    1
-Errors:
-  Mismatched Coords: 0
-  Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           1
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-
 #### Check after using before as reference
 
 Checking equivalence of `i` (decl src ln 4) from
@@ -894,97 +960,124 @@ and
   (w32 0x0)
 ✅ Before `i` (decl src ln 4) assn asm ln 22, prod ln 4.21, live ln 5, enc 0 symbolic value matches after assn asm ln 12, prod ln 4.0, live ln 5, enc 0
 
-❌ Before encountered assn for `i` (decl src ln 4) at asm ln 28, prod ln 4.0, live ln 5, enc 2 not found
+❌ After encountered assn for `i` (decl src ln 4) at asm ln 28, prod ln 4.0, live ln 5, enc 2 not found in before
 
-❌ Before encountered assn for `i` (decl src ln 4) at asm ln 31, prod ln 4.0, live ln 5, enc 3 not found
+❌ After encountered assn for `i` (decl src ln 4) at asm ln 31, prod ln 4.0, live ln 5, enc 3 not found in before
 
 ❌ After `i` assns checked using before as reference
-Variable:            i
-  Assignments:       3
+Assignments:         i
+  Reference:         2
+  Test:              3
+Matching:
   Matching Coords:   1
   Matching Value:    1
-Errors:
+Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+Availability Errors:
   Not Encountered:   0
-  Missing:           2
+  Not Found in Ref:  2
+  Not Found in Test: 0
 Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ❌ Before `n` (decl src ln 1) assn asm ln 13, prod ln 1.0, live ln 2, enc 0 coordinates don't match after assn asm ln 9, prod ln 1.0, live ln 4, enc 0
 Checking equivalence of `n` (decl src ln 1) from
   assn asm ln 9, prod ln 1.0, live ln 4, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 and
   assn asm ln 13, prod ln 1.0, live ln 2, enc 0
   i32 %n
-  (ReadLSB w32 (w32 0x0) n)
+  (ReadLSB w32 (w32 0x0) example.n)
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (ReadLSB w32 (w32 0x0) n)
-     (ReadLSB w32 (w32 0x0) n)))
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) example.n)
+     (ReadLSB w32 (w32 0x0) example.n)))
 Parsed query
-(Eq N0:(ReadLSB w32 (w32 0x0) n)
+(Eq N0:(ReadLSB w32 (w32 0x0) example.n)
      N0)
 ✅ Before `n` (decl src ln 1) assn asm ln 13, prod ln 1.0, live ln 2, enc 0 symbolic value matches after assn asm ln 9, prod ln 1.0, live ln 4, enc 0
 
 ❌ After `n` assns checked using before as reference
-Variable:            n
-  Assignments:       1
+Assignments:         n
+  Reference:         1
+  Test:              1
+Matching:
   Matching Coords:   0
   Matching Value:    1
-Errors:
+Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+Availability Errors:
   Not Encountered:   0
-  Missing:           0
+  Not Found in Ref:  0
+  Not Found in Test: 0
 Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ❌ Before `x` (decl src ln 2) assn asm ln 18, prod ln 2.13, live ln 3, enc 0 coordinates don't match after assn asm ln 10, prod ln 2.0, live ln 4, enc 0
 Checking equivalence of `x` (decl src ln 2) from
   assn asm ln 10, prod ln 2.0, live ln 4, enc 0
   i32 %n
-  (Shl w32 (ReadLSB w32 (w32 0x0) n)
+  (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
           (Extract w32 0 (w64 0x1)))
 and
   assn asm ln 18, prod ln 2.13, live ln 3, enc 0
   %mul = mul nsw i32 %0, 2, l2 c13
   (Mul w32 (w32 0x2)
-          (ReadLSB w32 (w32 0x0) n))
+          (ReadLSB w32 (w32 0x0) example.n))
 Query to parse
-array n[4] : w32 -> w8 = symbolic
-array n[4] : w32 -> w8 = symbolic
-(query [] (Eq (Shl w32 (ReadLSB w32 (w32 0x0) n)
+array example.n[4] : w32 -> w8 = symbolic
+array example.n[4] : w32 -> w8 = symbolic
+(query [] (Eq (Shl w32 (ReadLSB w32 (w32 0x0) example.n)
               (Extract w32 0 (w64 0x1)))
      (Mul w32 (w32 0x2)
-              (ReadLSB w32 (w32 0x0) n))))
+              (ReadLSB w32 (w32 0x0) example.n))))
 Parsed query
-(Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) n)
+(Eq (Shl w32 N0:(ReadLSB w32 (w32 0x0) example.n)
               (Extract w32 0 (w64 0x1)))
      (Mul w32 (w32 0x2) N0))
 ✅ Before `x` (decl src ln 2) assn asm ln 18, prod ln 2.13, live ln 3, enc 0 symbolic value matches after assn asm ln 10, prod ln 2.0, live ln 4, enc 0
 
 ❌ After `x` assns checked using before as reference
-Variable:            x
-  Assignments:       1
+Assignments:         x
+  Reference:         1
+  Test:              1
+Matching:
   Matching Coords:   0
   Matching Value:    1
-Errors:
+Consistency Errors:
   Mismatched Coords: 1
   Mismatched Value:  0
+Availability Errors:
   Not Encountered:   0
-  Missing:           0
+  Not Found in Ref:  0
+  Not Found in Test: 0
 Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 Checking equivalence of `y` (decl src ln 3) from
   assn asm ln 11, prod ln 3.0, live ln 4, enc 0
@@ -996,25 +1089,57 @@ and
   (w32 0x0)
 ✅ Before `y` (decl src ln 3) assn asm ln 20, prod ln 3.7, live ln 4, enc 0 symbolic value matches after assn asm ln 11, prod ln 3.0, live ln 4, enc 0
 
-❌ Before encountered assn for `y` (decl src ln 3) at asm ln 29, prod ln 3.0, live ln 4, enc 2 not found
+❌ After encountered assn for `y` (decl src ln 3) at asm ln 29, prod ln 3.0, live ln 4, enc 2 not found in before
 
-❌ Before encountered assn for `y` (decl src ln 3) at asm ln 30, prod ln 3.0, live ln 4, enc 3 not found
+❌ After encountered assn for `y` (decl src ln 3) at asm ln 30, prod ln 3.0, live ln 4, enc 3 not found in before
 
 ❌ After `y` assns checked using before as reference
-Variable:            y
-  Assignments:       3
+Assignments:         y
+  Reference:         2
+  Test:              3
+Matching:
   Matching Coords:   1
   Matching Value:    1
-Errors:
+Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
+Availability Errors:
   Not Encountered:   0
-  Missing:           2
+  Not Found in Ref:  2
+  Not Found in Test: 0
 Warnings:
   Unused:            0
   Unreachable:       0
   Removable:         0
+Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
+
+Assignments:
+  Reference:                 6
+  Test:                      8 (133.33%)
+Matching:
+  Matching Coords:           2 ( 33.33%)
+  Matching Value:            4 ( 66.67%)
+Consistency Errors:
+  Mismatched Coords:         2 ( 33.33%)
+  Mismatched Value:          0 (  0.00%)
+Availability Errors:
+  Not Encountered:           0 (  0.00%)
+  Not Found in Ref:          4 ( 66.67%)
+  Not Found in Test:         0 (  0.00%)
+Warnings:
+  Unused:                    0 (  0.00%)
+  Unreachable:               0 (  0.00%)
+  Removable:                 0 (  0.00%)
+Execution:
+  Function Covered:          8 (133.33%)
+  Complete:                  8 (133.33%)
+  Within Time Limit:         8 (133.33%)
+  Within Fork Limit:         8 (133.33%)
 
 ❌ Some consistency checks failed
