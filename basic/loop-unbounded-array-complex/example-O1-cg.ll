@@ -1,7 +1,7 @@
 ; ModuleID = 'example.c'
 source_filename = "example.c"
 target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
-target triple = "x86_64-apple-macosx13.0.0"
+target triple = "x86_64-apple-macosx14.0.0"
 
 @__const.example.data = private unnamed_addr constant [4 x i32] [i32 0, i32 1, i32 2, i32 3], align 16
 
