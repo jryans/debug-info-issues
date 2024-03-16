@@ -985,7 +985,12 @@ Warnings:
   Unused:            0
   Removable:         0
   Unreachable:       0
-Execution:
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
@@ -1029,7 +1034,12 @@ Warnings:
   Unused:            0
   Removable:         0
   Unreachable:       0
-Execution:
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
@@ -1078,7 +1088,12 @@ Warnings:
   Unused:            0
   Removable:         0
   Unreachable:       0
-Execution:
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
@@ -1119,7 +1134,12 @@ Warnings:
   Unused:            0
   Removable:         0
   Unreachable:       0
-Execution:
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
@@ -1145,7 +1165,12 @@ Warnings:
   Unused:                    0 (  0.00% of ref )
   Removable:                 0 (  0.00% of ref )
   Unreachable:               0 (  0.00% of ref )
-Execution:
+Reference Execution:
+  Function Covered:          6 (100.00% of ref )
+  Complete:                  0 (  0.00% of ref )
+  Within Time Limit:         6 (100.00% of ref )
+  Within Fork Limit:         0 (  0.00% of ref )
+Test Execution:
   Function Covered:          8 (100.00% of test)
   Complete:                  8 (100.00% of test)
   Within Time Limit:         8 (100.00% of test)
