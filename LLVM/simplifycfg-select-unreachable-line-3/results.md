@@ -1,4 +1,4 @@
-^D++ dirname ./build.sh
+++ dirname ./build.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -35,6 +35,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -74,7 +75,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
 + mkdir -p klee-out-O0
 + /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
 + mkdir -p klee-out-O2
@@ -90,7 +91,7 @@ i32 (i64)* @echo
 warning: ignoring invalid debug info in example-O2.ll
 + mkdir -p klee-out-O2-fixed
 + /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O2-fixed/final.bc example-O2-fixed.ll
-^D++ dirname ./check-issue.sh
+++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -127,6 +128,7 @@ warning: ignoring invalid debug info in example-O2.ll
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -166,8 +168,8 @@ warning: ignoring invalid debug info in example-O2.ll
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-+ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistency…
 
 ## Functions
@@ -178,17 +180,20 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `delta` (decl src ln 10)
+#### Before variables
+
 Store to declared address of `delta` (decl src ln 10), asm ln 15
   const i32 0
   @dbg.declare without read users, removable
-  Added assignment asm ln 15, prod ln 10.7, live ln 11, gen 0
-Computing generations: `delta` (decl src ln 10)
-  asm ln 15, prod ln 10.7, live ln 11, gen 0
+  Added assignment asm ln 15, prod ln 10.7, live ln 11, enc None
 
-🔔 1 before variables found, 0 after variables found, 1 mismatched
+#### After variables
+
+#### Summary
+
+❌ 1 before variables found, 0 after variables found, 1 mismatched
 
 ### Symbolic values
 
@@ -196,6 +201,7 @@ Computing generations: `delta` (decl src ln 10)
 
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `delta`
+  Assignment asm ln 15, prod ln 10.7, live ln 11, enc 0
   i32 0
   (w32 0x0)
 
@@ -204,64 +210,77 @@ Computing generations: `delta` (decl src ln 10)
 
 ### Assignments
 
-Computing generations: `delta` (decl src ln 10)
-  asm ln 15, prod ln 10.7, live ln 11, gen 0
-Building live ranges: `delta` (decl src ln 10)
-  asm ln 15, prod ln 10.7, live ln 11, gen 0
-    live ln 11, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
+
+Collating encountered before assignments: `delta` (decl src ln 10)
+  asm ln 15, prod ln 10.7, live ln 11, enc 0
 
 
-🔔 After live ranges for (removable) `delta` (decl src ln 10) not found
-✅ Before live range coverage
-  Covered:   0
-  Uncovered: 0
-  Undefined: 0
-  Unused:    0
-  Removable: 1
+#### Check after using before as reference
 
-#### Check before against after
-
-🔔 After live ranges for (removable) `delta` (decl src ln 10) not found
-
-✅ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   1
-
-#### Check after against before
-
-✅ After symbolic values checked against before
-  Matching:    0
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+🔔 Before encountered assns for (removable) `delta` (decl src ln 10) not found in after
+Assignments:         delta
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         1
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Function `echo`
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `foxtrot` (decl src ln 14)
-Before variable `golf` (decl src ln 17)
+#### Before variables
+
+Load from declared address of `golf` (decl src ln 17), asm ln 47
+  %3 = load i32, i32* %golf, l18 c13, asm ln 47
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 47, prod ln 18.13, live ln 19, enc None
 Store to declared address of `golf` (decl src ln 17), asm ln 46
   %call = call i32 @bravo(), l17 c16, asm ln 45
-  Added assignment asm ln 46, prod ln 17.16, live ln 18, gen 0
-Computing generations: `golf` (decl src ln 17)
-  asm ln 46, prod ln 17.16, live ln 18, gen 0
+  Added assignment asm ln 46, prod ln 17.16, live ln 18, enc None
 
-🔔 2 before variables found, 0 after variables found, 2 mismatched
+#### After variables
+
+#### Summary
+
+❌ 2 before variables found, 0 after variables found, 2 mismatched
 
 ### Symbolic values
 
 #### Before values
 
 Collected value for `golf`
+  Assignment asm ln 46, prod ln 17.16, live ln 18, enc 0
   %call = call i32 @bravo(), l17 c16
+  (ReadLSB w32 (w32 0x0) bravo.return)
+Collected value for `golf`
+  Assignment asm ln 47, prod ln 18.13, live ln 19, enc 1
+  %3 = load i32, i32* %golf, l18 c13
   (ReadLSB w32 (w32 0x0) bravo.return)
 
 #### After values
@@ -269,47 +288,127 @@ Collected value for `golf`
 
 ### Assignments
 
-Computing generations: `golf` (decl src ln 17)
-  asm ln 46, prod ln 17.16, live ln 18, gen 0
-Building live ranges: `golf` (decl src ln 17)
-  asm ln 46, prod ln 17.16, live ln 18, gen 0
-    live ln 18, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
+
+Filtering before assignments: `golf` (decl src ln 17)
+
+Checking equivalence of `golf` (decl src ln 17) from
+  assn asm ln 47, prod ln 18.13, live ln 19, enc 1
+  %3 = load i32, i32* %golf, l18 c13
+  (ReadLSB w32 (w32 0x0) bravo.return)
+and
+  assn asm ln 46, prod ln 17.16, live ln 18, enc 0
+  %call = call i32 @bravo(), l17 c16
+  (ReadLSB w32 (w32 0x0) bravo.return)
+Query to parse
+array bravo.return[4] : w32 -> w8 = symbolic
+array bravo.return[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) bravo.return)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) bravo.return)
+     N0)
+🔔 Removing: asm ln 47, prod ln 18.13, live ln 19, enc 1
+
+Collating encountered before assignments: `golf` (decl src ln 17)
+  asm ln 46, prod ln 17.16, live ln 18, enc 0
 
 
-🔔 Before live ranges for `foxtrot` (decl src ln 14) not found (variable likely undefined)
-❌ After live ranges for `golf` (decl src ln 17) not found
-❌ Before live range coverage
-  Covered:   0
-  Uncovered: 1
-  Undefined: 1
-  Unused:    0
-  Removable: 0
+#### Check after using before as reference
 
-#### Check before against after
+🔔 Before encountered assns for (removable) `foxtrot` (decl src ln 14) not found in after
+Assignments:         foxtrot
+  Reference:         0
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
-❌ After live range for `golf` (decl src ln 17) not found
-
-❌ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-#### Check after against before
-
-✅ After symbolic values checked against before
-  Matching:    0
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ Before encountered assns for `golf` (decl src ln 17) not found in after
+Assignments:         golf
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
 
+Assignments:
+  Reference:                 2
+  Test:                      0 (  0.00% of ref )
+Matching:
+  Matching Coords:           0 (  0.00% of ref )
+  Matching Value:            0 (  0.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           1 ( 50.00% of ref )
+  Test Not Encount.:         0 (   nan% of test)
+  Test Not in Ref:           0 (   nan% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 1 ( 50.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          0 (  0.00% of ref )
+  Complete:                  0 (  0.00% of ref )
+  Within Time Limit:         0 (  0.00% of ref )
+  Within Fork Limit:         0 (  0.00% of ref )
+Test Execution:
+  Function Covered:          0 (   nan% of test)
+  Complete:                  0 (   nan% of test)
+  Within Time Limit:         0 (   nan% of test)
+  Within Fork Limit:         0 (   nan% of test)
+
 ❌ Some consistency checks failed
-^D++ dirname ./check-fix.sh
+++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -346,6 +445,7 @@ Building live ranges: `golf` (decl src ln 17)
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -385,8 +485,8 @@ Building live ranges: `golf` (decl src ln 17)
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-+ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O2-fixed/final.bc for debug info consistency…
 
 ## Functions
@@ -397,22 +497,22 @@ Checking klee-out-O0/final.bc and klee-out-O2-fixed/final.bc for debug info cons
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `delta` (decl src ln 10)
+#### Before variables
+
 Store to declared address of `delta` (decl src ln 10), asm ln 15
   const i32 0
   @dbg.declare without read users, removable
-  Added assignment asm ln 15, prod ln 10.7, live ln 11, gen 0
-Computing generations: `delta` (decl src ln 10)
-  asm ln 15, prod ln 10.7, live ln 11, gen 0
+  Added assignment asm ln 15, prod ln 10.7, live ln 11, enc None
 
-After variable `delta` (decl src ln 10)
+#### After variables
+
 Value produced for `delta` (decl src ln 10), asm ln 11
   const i32 0
-  Added assignment asm ln 11, prod ln 10.7, live ln 11, gen 0
-Computing generations: `delta` (decl src ln 10)
-  asm ln 11, prod ln 10.7, live ln 11, gen 0
+  Added assignment asm ln 11, prod ln 10.7, live ln 11, enc None
+
+#### Summary
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -422,98 +522,94 @@ Computing generations: `delta` (decl src ln 10)
 
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `delta`
+  Assignment asm ln 15, prod ln 10.7, live ln 11, enc 0
   i32 0
   (w32 0x0)
 
 #### After values
 
 Collected value for `delta`
+  Assignment asm ln 11, prod ln 10.7, live ln 11, enc 0
   i32 0
   (w32 0x0)
 
 ### Assignments
 
-Computing generations: `delta` (decl src ln 10)
-  asm ln 15, prod ln 10.7, live ln 11, gen 0
-Building live ranges: `delta` (decl src ln 10)
-  asm ln 15, prod ln 10.7, live ln 11, gen 0
-    live ln 11, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
 
-Computing generations: `delta` (decl src ln 10)
-  asm ln 11, prod ln 10.7, live ln 11, gen 0
-Building live ranges: `delta` (decl src ln 10)
-  asm ln 11, prod ln 10.7, live ln 11, gen 0
-    live ln 11, gen 0 →
-    live ln ∞, gen ∞
+Collating encountered before assignments: `delta` (decl src ln 10)
+  asm ln 15, prod ln 10.7, live ln 11, enc 0
 
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
-  Undefined: 0
-  Unused:    0
-  Removable: 0
+Collating encountered after assignments: `delta` (decl src ln 10)
+  asm ln 11, prod ln 10.7, live ln 11, enc 0
 
-#### Check before against after
+#### Check after using before as reference
 
 Checking equivalence of `delta` (decl src ln 10) from
-  assn asm ln 15, prod ln 10.7, live ln 11, gen 0
+  assn asm ln 11, prod ln 10.7, live ln 11, enc 0
   i32 0
   (w32 0x0)
 and
-  assn asm ln 11, prod ln 10.7, live ln 11, gen 0
+  assn asm ln 15, prod ln 10.7, live ln 11, enc 0
   i32 0
   (w32 0x0)
-✅ After `delta` (decl src ln 10) assn asm ln 11, prod ln 10.7, live ln 11, gen 0 symbolic value matches before assn asm ln 15, prod ln 10.7, live ln 11, gen 0
+✅ Before `delta` (decl src ln 10) assn asm ln 15, prod ln 10.7, live ln 11, enc 0 symbolic value matches after assn asm ln 11, prod ln 10.7, live ln 11, enc 0
 
-✅ Before symbolic values checked against after
-  Matching:    1
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-#### Check after against before
-
-Checking equivalence of `delta` (decl src ln 10) from
-  assn asm ln 11, prod ln 10.7, live ln 11, gen 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 15, prod ln 10.7, live ln 11, gen 0
-  i32 0
-  (w32 0x0)
-✅ Before `delta` (decl src ln 10) assn asm ln 15, prod ln 10.7, live ln 11, gen 0 symbolic value matches after assn asm ln 11, prod ln 10.7, live ln 11, gen 0
-
-✅ After symbolic values checked against before
-  Matching:    1
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ After `delta` assns checked using before as reference
+Assignments:         delta
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Function `echo`
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `foxtrot` (decl src ln 14)
-Before variable `golf` (decl src ln 17)
+#### Before variables
+
+Load from declared address of `golf` (decl src ln 17), asm ln 47
+  %3 = load i32, i32* %golf, l18 c13, asm ln 47
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 47, prod ln 18.13, live ln 19, enc None
 Store to declared address of `golf` (decl src ln 17), asm ln 46
   %call = call i32 @bravo(), l17 c16, asm ln 45
-  Added assignment asm ln 46, prod ln 17.16, live ln 18, gen 0
-Computing generations: `golf` (decl src ln 17)
-  asm ln 46, prod ln 17.16, live ln 18, gen 0
+  Added assignment asm ln 46, prod ln 17.16, live ln 18, enc None
 
-After variable `foxtrot` (decl src ln 14)
+#### After variables
+
 Value produced for `foxtrot` (decl src ln 14), asm ln 22
   %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32, asm ln 21
-  Added assignment asm ln 22, prod ln 14.22, live ln 16, gen 0
-Computing generations: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 16, gen 0
+  Added assignment asm ln 22, prod ln 14.22, live ln 16, enc None
 
-🔔 2 before variables found, 1 after variables found, 1 mismatched
+#### Summary
+
+❌ 2 before variables found, 1 after variables found, 1 mismatched
 
 ### Symbolic values
 
@@ -521,62 +617,144 @@ Computing generations: `foxtrot` (decl src ln 14)
 
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `golf`
+  Assignment asm ln 46, prod ln 17.16, live ln 18, enc 0
   %call = call i32 @bravo(), l17 c16
+  (ReadLSB w32 (w32 0x0) bravo.return)
+Collected value for `golf`
+  Assignment asm ln 47, prod ln 18.13, live ln 19, enc 1
+  %3 = load i32, i32* %golf, l18 c13
   (ReadLSB w32 (w32 0x0) bravo.return)
 
 #### After values
 
 Collected value for `foxtrot`
+  Assignment asm ln 22, prod ln 14.22, live ln 16, enc 0
   %foxtrot.sroa.0.0.extract.trunc = trunc i64 %foxtrot.coerce to i32
-  (ReadLSB w32 (w32 0x0) foxtrot.coerce)
+  (ReadLSB w32 (w32 0x0) echo.foxtrot.coerce)
 
 ### Assignments
 
-Computing generations: `golf` (decl src ln 17)
-  asm ln 46, prod ln 17.16, live ln 18, gen 0
-Building live ranges: `golf` (decl src ln 17)
-  asm ln 46, prod ln 17.16, live ln 18, gen 0
-    live ln 18, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
 
-Computing generations: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 16, gen 0
-Building live ranges: `foxtrot` (decl src ln 14)
-  asm ln 22, prod ln 14.22, live ln 16, gen 0
-    live ln 16, gen 0 →
-    live ln ∞, gen ∞
+Filtering before assignments: `golf` (decl src ln 17)
 
-🔔 Before live ranges for `foxtrot` (decl src ln 14) not found (variable likely undefined)
-❌ After live ranges for `golf` (decl src ln 17) not found
-❌ Before live range coverage
-  Covered:   0
-  Uncovered: 1
-  Undefined: 1
-  Unused:    0
-  Removable: 0
+Checking equivalence of `golf` (decl src ln 17) from
+  assn asm ln 47, prod ln 18.13, live ln 19, enc 1
+  %3 = load i32, i32* %golf, l18 c13
+  (ReadLSB w32 (w32 0x0) bravo.return)
+and
+  assn asm ln 46, prod ln 17.16, live ln 18, enc 0
+  %call = call i32 @bravo(), l17 c16
+  (ReadLSB w32 (w32 0x0) bravo.return)
+Query to parse
+array bravo.return[4] : w32 -> w8 = symbolic
+array bravo.return[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) bravo.return)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) bravo.return)
+     N0)
+🔔 Removing: asm ln 47, prod ln 18.13, live ln 19, enc 1
 
-#### Check before against after
+Collating encountered before assignments: `golf` (decl src ln 17)
+  asm ln 46, prod ln 17.16, live ln 18, enc 0
 
-❌ After live range for `golf` (decl src ln 17) not found
+Collating encountered after assignments: `foxtrot` (decl src ln 14)
+  asm ln 22, prod ln 14.22, live ln 16, enc 0
 
-❌ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+#### Check after using before as reference
 
-#### Check after against before
+❌ Before encountered assns for `golf` (decl src ln 17) not found in after
+Assignments:         golf
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
-❌ Before live range for `foxtrot` (decl src ln 14) not found
+❌ After encountered assn for `foxtrot` (decl src ln 14) at asm ln 22, prod ln 14.22, live ln 16, enc 0 not found in before
 
-❌ After symbolic values checked against before
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `foxtrot` assns checked using before as reference
+Assignments:         foxtrot
+  Reference:         0
+  Test:              1
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   1
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
+
+Assignments:
+  Reference:                 2
+  Test:                      2 (100.00% of ref )
+Matching:
+  Matching Coords:           1 ( 50.00% of ref )
+  Matching Value:            1 ( 50.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           1 ( 50.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           1 ( 50.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          1 ( 50.00% of ref )
+  Complete:                  1 ( 50.00% of ref )
+  Within Time Limit:         1 ( 50.00% of ref )
+  Within Fork Limit:         1 ( 50.00% of ref )
+Test Execution:
+  Function Covered:          2 (100.00% of test)
+  Complete:                  2 (100.00% of test)
+  Within Time Limit:         2 (100.00% of test)
+  Within Fork Limit:         2 (100.00% of test)
 
 ❌ Some consistency checks failed
