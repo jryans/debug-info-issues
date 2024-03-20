@@ -541,21 +541,829 @@ Test Execution:
   Within Time Limit: true
   Within Fork Limit: true
 
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x0000000110d6fe2d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x0000000110d7032b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x0000000110d6e3c3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x0000000110d715cf SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
-5  libsystem_platform.dylib 0x00000001164998e0 _sigtramp + 18446603375237552416
-6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
-7  check-debug-info         0x000000010e034921 std::__1::__throw_out_of_range[abi:v160006](char const*) + 17
-8  check-debug-info         0x000000010e01424f std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > >::at(Variable const&) const + 63
-9  check-debug-info         0x000000010e01269f checkAssignments(llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, ExecutionValidity const&, llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, ExecutionValidity const&, llvm::StringRef, llvm::Optional<std::__1::unique_ptr<llvm::raw_fd_ostream, std::__1::default_delete<llvm::raw_fd_ostream> > >&, AssignmentStats&) + 6895
-10 check-debug-info         0x000000010e015610 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, AssignmentStats&) + 4784
-11 check-debug-info         0x000000010e0167d8 main + 2376
-12 dyld                     0x00007ff8007f9366 start + 1942
-./check-issue.sh: line 6: 18901 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_BC} ${CHECK_OPTS}
+❌ After encountered assn for `foo` (decl src ln 6) at asm ln 125, prod ln 17.12, live ln 18, enc 0 not found in before
+
+❌ After `foo` assns checked using before as reference
+Assignments:         foo
+  Reference:         0
+  Test:              1
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   1
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+❌ Before encountered assn for `i` (decl src ln 12) at asm ln 44, prod ln 12.31, live ln 13, enc 1 not found in after
+
+Checking equivalence of `i` (decl src ln 12) from
+  assn asm ln 17, prod ln 12.12, live ln 13, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 23, prod ln 12.12, live ln 13, enc 0
+  i32 0
+  (w32 0x0)
+✅ Before `i` (decl src ln 12) assn asm ln 23, prod ln 12.12, live ln 13, enc 0 symbolic value matches after assn asm ln 17, prod ln 12.12, live ln 13, enc 0
+
+❌ After `i` assns checked using before as reference
+Assignments:         i
+  Reference:         2
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+❌ Before encountered assn for `sum` (decl src ln 15) at asm ln 49, prod ln 15.16, live ln 16, enc 0 not found in after
+
+❌ Before encountered assn for `sum` (decl src ln 15) at asm ln 66, prod ln 17.9, live ln 18, enc 1 not found in after
+
+❌ Before encountered assn for `sum` (decl src ln 15) at asm ln 73, prod ln 19.10, live ln 20, enc 2 not found in after
+
+❌ After `sum` assns checked using before as reference
+Assignments:         sum
+  Reference:         3
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   3
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+## Function `memset`
+
+✅ Before and after function names match
+
+### Variable events
+
+#### Before variables
+
+Load from declared address of `dst` (decl src ln 12), asm ln 118
+  %4 = load i8*, i8** %dst.addr, l16 c10, asm ln 118
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 118, prod ln 16.10, live ln 17, enc None
+Load from declared address of `dst` (decl src ln 12), asm ln 97
+  %0 = load i8*, i8** %dst.addr, l13 c13, asm ln 97
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 97, prod ln 13.13, live ln 14, enc None
+Store to declared address of `dst` (decl src ln 12), asm ln 90
+  arg 0
+  Added assignment asm ln 90, prod ln 12.0, live ln 13, enc None
+Load from declared address of `s` (decl src ln 12), asm ln 109
+  %2 = load i32, i32* %s.addr, l15 c12, asm ln 109
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 109, prod ln 15.12, live ln 16, enc None
+Store to declared address of `s` (decl src ln 12), asm ln 92
+  arg 1
+  Added assignment asm ln 92, prod ln 12.0, live ln 13, enc None
+Store to declared address of `count` (decl src ln 12), asm ln 104
+  %dec = add i64 %1, -1, l14 c15, asm ln 103
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 104, prod ln 14.15, live ln 15, enc None
+Load from declared address of `count` (decl src ln 12), asm ln 102
+  %1 = load i64, i64* %count.addr, l14 c15, asm ln 102
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 102, prod ln 14.15, live ln 15, enc None
+Store to declared address of `count` (decl src ln 12), asm ln 94
+  arg 2
+  Added assignment asm ln 94, prod ln 12.0, live ln 13, enc None
+Store to declared address of `a` (decl src ln 13), asm ln 113
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7, asm ln 112
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 113, prod ln 15.7, live ln 16, enc None
+Load from declared address of `a` (decl src ln 13), asm ln 111
+  %3 = load i8*, i8** %a, l15 c7, asm ln 111
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 111, prod ln 15.7, live ln 16, enc None
+Store to declared address of `a` (decl src ln 13), asm ln 98
+  %0 = load i8*, i8** %dst.addr, l13 c13, asm ln 97
+  Added assignment asm ln 98, prod ln 13.13, live ln 14, enc None
+
+#### After variables
+
+Load from declared address of `dst` (decl src ln 12), asm ln 704
+  %4 = load i8*, i8** %dst.addr, l16 c10, asm ln 704
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 704, prod ln 16.10, live ln 17, enc None
+Load from declared address of `dst` (decl src ln 12), asm ln 683
+  %0 = load i8*, i8** %dst.addr, l13 c13, asm ln 683
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 683, prod ln 13.13, live ln 14, enc None
+Store to declared address of `dst` (decl src ln 12), asm ln 676
+  arg 0
+  Added assignment asm ln 676, prod ln 12.0, live ln 13, enc None
+Load from declared address of `s` (decl src ln 12), asm ln 695
+  %2 = load i32, i32* %s.addr, l15 c12, asm ln 695
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 695, prod ln 15.12, live ln 16, enc None
+Store to declared address of `s` (decl src ln 12), asm ln 678
+  arg 1
+  Added assignment asm ln 678, prod ln 12.0, live ln 13, enc None
+Store to declared address of `count` (decl src ln 12), asm ln 690
+  %dec = add i64 %1, -1, l14 c15, asm ln 689
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 690, prod ln 14.15, live ln 15, enc None
+Load from declared address of `count` (decl src ln 12), asm ln 688
+  %1 = load i64, i64* %count.addr, l14 c15, asm ln 688
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 688, prod ln 14.15, live ln 15, enc None
+Store to declared address of `count` (decl src ln 12), asm ln 680
+  arg 2
+  Added assignment asm ln 680, prod ln 12.0, live ln 13, enc None
+Store to declared address of `a` (decl src ln 13), asm ln 699
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7, asm ln 698
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 699, prod ln 15.7, live ln 16, enc None
+Load from declared address of `a` (decl src ln 13), asm ln 697
+  %3 = load i8*, i8** %a, l15 c7, asm ln 697
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 697, prod ln 15.7, live ln 16, enc None
+Store to declared address of `a` (decl src ln 13), asm ln 684
+  %0 = load i8*, i8** %dst.addr, l13 c13, asm ln 683
+  Added assignment asm ln 684, prod ln 13.13, live ln 14, enc None
+
+#### Summary
+
+✅ 4 before variables found, 4 after variables found, 0 mismatched
+
+### Symbolic values
+
+#### Before values
+
+[0;35mKLEE: WARNING: Unable to load source file `runtime/Freestanding/memset.c`
+[0mCollected value for `dst`
+  Assignment asm ln 90, prod ln 12.0, live ln 13, enc 0
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `s`
+  Assignment asm ln 92, prod ln 12.0, live ln 13, enc 0
+  i32 %s
+  (ReadLSB w32 (w32 0x0) memset.s)
+Collected value for `count`
+  Assignment asm ln 94, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Collected value for `dst`
+  Assignment asm ln 97, prod ln 13.13, live ln 14, enc 1
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `a`
+  Assignment asm ln 98, prod ln 13.13, live ln 14, enc 0
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `count`
+  Assignment asm ln 102, prod ln 14.15, live ln 15, enc 1
+  %1 = load i64, i64* %count.addr, l14 c15
+  (ReadLSB w64 (w32 0x0) memset.count)
+Collected value for `count`
+  Assignment asm ln 104, prod ln 14.15, live ln 15, enc 2
+  %dec = add i64 %1, -1, l14 c15
+  (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+          (ReadLSB w64 (w32 0x0) memset.count))
+Collected value for `s`
+  Assignment asm ln 109, prod ln 15.12, live ln 16, enc 1
+  %2 = load i32, i32* %s.addr, l15 c12
+  (ReadLSB w32 (w32 0x0) memset.s)
+Collected value for `dst`
+  Assignment asm ln 118, prod ln 16.10, live ln 17, enc 2
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %4 = load i8*, i8** %dst.addr, l16 c10
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `a`
+  Assignment asm ln 111, prod ln 15.7, live ln 16, enc 1
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %3 = load i8*, i8** %a, l15 c7
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `a`
+  Assignment asm ln 113, prod ln 15.7, live ln 16, enc 2
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x1)
+  Created deref expr (ReadLSB w64 (w32 0x1) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x6AC9DD0D98FEBCE6)
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7
+  (w64 0x6AC9DD0D98FEBCE6)
+[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m
+🔔 Unable to execute all before program states
+
+#### After values
+
+Collected value for `dst`
+  Assignment asm ln 676, prod ln 12.0, live ln 13, enc 0
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `s`
+  Assignment asm ln 678, prod ln 12.0, live ln 13, enc 0
+  i32 %s
+  (ReadLSB w32 (w32 0x0) memset.s)
+Collected value for `count`
+  Assignment asm ln 680, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Collected value for `dst`
+  Assignment asm ln 683, prod ln 13.13, live ln 14, enc 1
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `a`
+  Assignment asm ln 684, prod ln 13.13, live ln 14, enc 0
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `count`
+  Assignment asm ln 688, prod ln 14.15, live ln 15, enc 1
+  %1 = load i64, i64* %count.addr, l14 c15
+  (ReadLSB w64 (w32 0x0) memset.count)
+Collected value for `count`
+  Assignment asm ln 690, prod ln 14.15, live ln 15, enc 2
+  %dec = add i64 %1, -1, l14 c15
+  (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+          (ReadLSB w64 (w32 0x0) memset.count))
+Collected value for `s`
+  Assignment asm ln 695, prod ln 15.12, live ln 16, enc 1
+  %2 = load i32, i32* %s.addr, l15 c12
+  (ReadLSB w32 (w32 0x0) memset.s)
+Collected value for `dst`
+  Assignment asm ln 704, prod ln 16.10, live ln 17, enc 2
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %4 = load i8*, i8** %dst.addr, l16 c10
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `a`
+  Assignment asm ln 697, prod ln 15.7, live ln 16, enc 1
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x81E3D7BD4621BBAC)
+  %3 = load i8*, i8** %a, l15 c7
+  (w64 0x81E3D7BD4621BBAC)
+Collected value for `a`
+  Assignment asm ln 699, prod ln 15.7, live ln 16, enc 2
+  Concrete pointer resolves to memset.dst.deref, offset (w64 0x1)
+  Created deref expr (ReadLSB w64 (w32 0x1) memset.dst.deref)
+  Replaced concrete pointer with hash (w64 0x6AC9DD0D98FEBCE6)
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7
+  (w64 0x6AC9DD0D98FEBCE6)
+[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m
+🔔 Unable to execute all after program states
+
+### Assignments
+
+#### Collation
+
+Filtering before assignments: `dst` (decl src ln 12)
+
+Checking equivalence of `dst` (decl src ln 12) from
+  assn asm ln 97, prod ln 13.13, live ln 14, enc 1
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 90, prod ln 12.0, live ln 13, enc 0
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+🔔 Removing: asm ln 97, prod ln 13.13, live ln 14, enc 1
+
+Checking equivalence of `dst` (decl src ln 12) from
+  assn asm ln 118, prod ln 16.10, live ln 17, enc 2
+  %4 = load i8*, i8** %dst.addr, l16 c10
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 90, prod ln 12.0, live ln 13, enc 0
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+🔔 Removing: asm ln 118, prod ln 16.10, live ln 17, enc 2
+
+Filtering before assignments: `s` (decl src ln 12)
+
+Checking equivalence of `s` (decl src ln 12) from
+  assn asm ln 109, prod ln 15.12, live ln 16, enc 1
+  %2 = load i32, i32* %s.addr, l15 c12
+  (ReadLSB w32 (w32 0x0) memset.s)
+and
+  assn asm ln 92, prod ln 12.0, live ln 13, enc 0
+  i32 %s
+  (ReadLSB w32 (w32 0x0) memset.s)
+Query to parse
+array memset.s[4] : w32 -> w8 = symbolic
+array memset.s[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) memset.s)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) memset.s)
+     N0)
+🔔 Removing: asm ln 109, prod ln 15.12, live ln 16, enc 1
+
+Filtering before assignments: `count` (decl src ln 12)
+
+Checking equivalence of `count` (decl src ln 12) from
+  assn asm ln 102, prod ln 14.15, live ln 15, enc 1
+  %1 = load i64, i64* %count.addr, l14 c15
+  (ReadLSB w64 (w32 0x0) memset.count)
+and
+  assn asm ln 94, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Query to parse
+array memset.count[8] : w32 -> w8 = symbolic
+array memset.count[8] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w64 (w32 0x0) memset.count)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) memset.count)
+     N0)
+🔔 Removing: asm ln 102, prod ln 14.15, live ln 15, enc 1
+
+Checking equivalence of `count` (decl src ln 12) from
+  assn asm ln 104, prod ln 14.15, live ln 15, enc 2
+  %dec = add i64 %1, -1, l14 c15
+  (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+          (ReadLSB w64 (w32 0x0) memset.count))
+and
+  assn asm ln 94, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Query to parse
+array memset.count[8] : w32 -> w8 = symbolic
+array memset.count[8] : w32 -> w8 = symbolic
+(query [] (Eq (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+              N0:(ReadLSB w64 (w32 0x0) memset.count))
+     N0))
+Parsed query
+(Eq (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+              N0:(ReadLSB w64 (w32 0x0) memset.count))
+     N0)
+
+Filtering before assignments: `a` (decl src ln 13)
+
+Checking equivalence of `a` (decl src ln 13) from
+  assn asm ln 111, prod ln 15.7, live ln 16, enc 1
+  %3 = load i8*, i8** %a, l15 c7
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 98, prod ln 13.13, live ln 14, enc 0
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+🔔 Removing: asm ln 111, prod ln 15.7, live ln 16, enc 1
+
+Checking equivalence of `a` (decl src ln 13) from
+  assn asm ln 113, prod ln 15.7, live ln 16, enc 2
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7
+  (w64 0x6AC9DD0D98FEBCE6)
+and
+  assn asm ln 98, prod ln 13.13, live ln 14, enc 0
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+
+Filtering after assignments: `dst` (decl src ln 12)
+
+Checking equivalence of `dst` (decl src ln 12) from
+  assn asm ln 683, prod ln 13.13, live ln 14, enc 1
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 676, prod ln 12.0, live ln 13, enc 0
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+🔔 Removing: asm ln 683, prod ln 13.13, live ln 14, enc 1
+
+Checking equivalence of `dst` (decl src ln 12) from
+  assn asm ln 704, prod ln 16.10, live ln 17, enc 2
+  %4 = load i8*, i8** %dst.addr, l16 c10
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 676, prod ln 12.0, live ln 13, enc 0
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+🔔 Removing: asm ln 704, prod ln 16.10, live ln 17, enc 2
+
+Filtering after assignments: `s` (decl src ln 12)
+
+Checking equivalence of `s` (decl src ln 12) from
+  assn asm ln 695, prod ln 15.12, live ln 16, enc 1
+  %2 = load i32, i32* %s.addr, l15 c12
+  (ReadLSB w32 (w32 0x0) memset.s)
+and
+  assn asm ln 678, prod ln 12.0, live ln 13, enc 0
+  i32 %s
+  (ReadLSB w32 (w32 0x0) memset.s)
+Query to parse
+array memset.s[4] : w32 -> w8 = symbolic
+array memset.s[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) memset.s)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) memset.s)
+     N0)
+🔔 Removing: asm ln 695, prod ln 15.12, live ln 16, enc 1
+
+Filtering after assignments: `count` (decl src ln 12)
+
+Checking equivalence of `count` (decl src ln 12) from
+  assn asm ln 688, prod ln 14.15, live ln 15, enc 1
+  %1 = load i64, i64* %count.addr, l14 c15
+  (ReadLSB w64 (w32 0x0) memset.count)
+and
+  assn asm ln 680, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Query to parse
+array memset.count[8] : w32 -> w8 = symbolic
+array memset.count[8] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w64 (w32 0x0) memset.count)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) memset.count)
+     N0)
+🔔 Removing: asm ln 688, prod ln 14.15, live ln 15, enc 1
+
+Checking equivalence of `count` (decl src ln 12) from
+  assn asm ln 690, prod ln 14.15, live ln 15, enc 2
+  %dec = add i64 %1, -1, l14 c15
+  (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+          (ReadLSB w64 (w32 0x0) memset.count))
+and
+  assn asm ln 680, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Query to parse
+array memset.count[8] : w32 -> w8 = symbolic
+array memset.count[8] : w32 -> w8 = symbolic
+(query [] (Eq (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+              N0:(ReadLSB w64 (w32 0x0) memset.count))
+     N0))
+Parsed query
+(Eq (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+              N0:(ReadLSB w64 (w32 0x0) memset.count))
+     N0)
+
+Filtering after assignments: `a` (decl src ln 13)
+
+Checking equivalence of `a` (decl src ln 13) from
+  assn asm ln 697, prod ln 15.7, live ln 16, enc 1
+  %3 = load i8*, i8** %a, l15 c7
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 684, prod ln 13.13, live ln 14, enc 0
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+🔔 Removing: asm ln 697, prod ln 15.7, live ln 16, enc 1
+
+Checking equivalence of `a` (decl src ln 13) from
+  assn asm ln 699, prod ln 15.7, live ln 16, enc 2
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7
+  (w64 0x6AC9DD0D98FEBCE6)
+and
+  assn asm ln 684, prod ln 13.13, live ln 14, enc 0
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+
+Collating encountered before assignments: `dst` (decl src ln 12)
+  asm ln 90, prod ln 12.0, live ln 13, enc 0
+Collating encountered before assignments: `s` (decl src ln 12)
+  asm ln 92, prod ln 12.0, live ln 13, enc 0
+Collating encountered before assignments: `count` (decl src ln 12)
+  asm ln 94, prod ln 12.0, live ln 13, enc 0
+  asm ln 104, prod ln 14.15, live ln 15, enc 1
+Collating encountered before assignments: `a` (decl src ln 13)
+  asm ln 98, prod ln 13.13, live ln 14, enc 0
+  asm ln 113, prod ln 15.7, live ln 16, enc 1
+
+Collating encountered after assignments: `dst` (decl src ln 12)
+  asm ln 676, prod ln 12.0, live ln 13, enc 0
+Collating encountered after assignments: `s` (decl src ln 12)
+  asm ln 678, prod ln 12.0, live ln 13, enc 0
+Collating encountered after assignments: `count` (decl src ln 12)
+  asm ln 680, prod ln 12.0, live ln 13, enc 0
+  asm ln 690, prod ln 14.15, live ln 15, enc 1
+Collating encountered after assignments: `a` (decl src ln 13)
+  asm ln 684, prod ln 13.13, live ln 14, enc 0
+  asm ln 699, prod ln 15.7, live ln 16, enc 1
+
+#### Check after using before as reference
+
+Checking equivalence of `a` (decl src ln 13) from
+  assn asm ln 684, prod ln 13.13, live ln 14, enc 0
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 98, prod ln 13.13, live ln 14, enc 0
+  %0 = load i8*, i8** %dst.addr, l13 c13
+  (w64 0x81E3D7BD4621BBAC)
+✅ Before `a` (decl src ln 13) assn asm ln 98, prod ln 13.13, live ln 14, enc 0 symbolic value matches after assn asm ln 684, prod ln 13.13, live ln 14, enc 0
+
+Checking equivalence of `a` (decl src ln 13) from
+  assn asm ln 699, prod ln 15.7, live ln 16, enc 1
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7
+  (w64 0x6AC9DD0D98FEBCE6)
+and
+  assn asm ln 113, prod ln 15.7, live ln 16, enc 1
+  %incdec.ptr = getelementptr inbounds i8, i8* %3, i32 1, l15 c7
+  (w64 0x6AC9DD0D98FEBCE6)
+✅ Before `a` (decl src ln 13) assn asm ln 113, prod ln 15.7, live ln 16, enc 1 symbolic value matches after assn asm ln 699, prod ln 15.7, live ln 16, enc 1
+
+✅ After `a` assns checked using before as reference
+Assignments:         a
+  Reference:         2
+  Test:              2
+Matching:
+  Matching Coords:   2
+  Matching Value:    2
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+
+Checking equivalence of `count` (decl src ln 12) from
+  assn asm ln 680, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+and
+  assn asm ln 94, prod ln 12.0, live ln 13, enc 0
+  i64 %count
+  (ReadLSB w64 (w32 0x0) memset.count)
+Query to parse
+array memset.count[8] : w32 -> w8 = symbolic
+array memset.count[8] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w64 (w32 0x0) memset.count)
+     (ReadLSB w64 (w32 0x0) memset.count)))
+Parsed query
+(Eq N0:(ReadLSB w64 (w32 0x0) memset.count)
+     N0)
+✅ Before `count` (decl src ln 12) assn asm ln 94, prod ln 12.0, live ln 13, enc 0 symbolic value matches after assn asm ln 680, prod ln 12.0, live ln 13, enc 0
+
+Checking equivalence of `count` (decl src ln 12) from
+  assn asm ln 690, prod ln 14.15, live ln 15, enc 1
+  %dec = add i64 %1, -1, l14 c15
+  (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+          (ReadLSB w64 (w32 0x0) memset.count))
+and
+  assn asm ln 104, prod ln 14.15, live ln 15, enc 1
+  %dec = add i64 %1, -1, l14 c15
+  (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+          (ReadLSB w64 (w32 0x0) memset.count))
+Query to parse
+array memset.count[8] : w32 -> w8 = symbolic
+array memset.count[8] : w32 -> w8 = symbolic
+(query [] (Eq (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+              (ReadLSB w64 (w32 0x0) memset.count))
+     (Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+              (ReadLSB w64 (w32 0x0) memset.count))))
+Parsed query
+(Eq N0:(Add w64 (w64 0xFFFFFFFFFFFFFFFF)
+                 (ReadLSB w64 (w32 0x0) memset.count))
+     N0)
+✅ Before `count` (decl src ln 12) assn asm ln 104, prod ln 14.15, live ln 15, enc 1 symbolic value matches after assn asm ln 690, prod ln 14.15, live ln 15, enc 1
+
+✅ After `count` assns checked using before as reference
+Assignments:         count
+  Reference:         2
+  Test:              2
+Matching:
+  Matching Coords:   2
+  Matching Value:    2
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+
+Checking equivalence of `dst` (decl src ln 12) from
+  assn asm ln 676, prod ln 12.0, live ln 13, enc 0
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+and
+  assn asm ln 90, prod ln 12.0, live ln 13, enc 0
+  i8* %dst
+  (w64 0x81E3D7BD4621BBAC)
+✅ Before `dst` (decl src ln 12) assn asm ln 90, prod ln 12.0, live ln 13, enc 0 symbolic value matches after assn asm ln 676, prod ln 12.0, live ln 13, enc 0
+
+✅ After `dst` assns checked using before as reference
+Assignments:         dst
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+
+Checking equivalence of `s` (decl src ln 12) from
+  assn asm ln 678, prod ln 12.0, live ln 13, enc 0
+  i32 %s
+  (ReadLSB w32 (w32 0x0) memset.s)
+and
+  assn asm ln 92, prod ln 12.0, live ln 13, enc 0
+  i32 %s
+  (ReadLSB w32 (w32 0x0) memset.s)
+Query to parse
+array memset.s[4] : w32 -> w8 = symbolic
+array memset.s[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) memset.s)
+     (ReadLSB w32 (w32 0x0) memset.s)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) memset.s)
+     N0)
+✅ Before `s` (decl src ln 12) assn asm ln 92, prod ln 12.0, live ln 13, enc 0 symbolic value matches after assn asm ln 678, prod ln 12.0, live ln 13, enc 0
+
+✅ After `s` assns checked using before as reference
+Assignments:         s
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+Test Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: false
+
+## Summary
+
+Assignments:
+  Reference:                13
+  Test:                      8 ( 61.54% of ref )
+Matching:
+  Matching Coords:           7 ( 53.85% of ref )
+  Matching Value:            7 ( 53.85% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           6 ( 46.15% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           1 ( 12.50% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:         11 ( 84.62% of ref )
+  Complete:                  5 ( 38.46% of ref )
+  Within Time Limit:        11 ( 84.62% of ref )
+  Within Fork Limit:         5 ( 38.46% of ref )
+Test Execution:
+  Function Covered:          8 (100.00% of test)
+  Complete:                  2 ( 25.00% of test)
+  Within Time Limit:         8 (100.00% of test)
+  Within Fork Limit:         2 ( 25.00% of test)
+
+❌ Some consistency checks failed
