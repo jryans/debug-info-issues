@@ -521,7 +521,7 @@ Collected value for `a`
 
 #### Collation
 
-Filtering redundant before assignments: `foo` (decl src ln 2)
+Filtering before assignments: `foo` (decl src ln 2)
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 19, prod ln 3.15, live ln 4, enc 1
@@ -590,7 +590,7 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) foo_3)
      (ReadLSB w32 (w32 0x0) foo_2))
 
-Filtering redundant before assignments: `read1` (decl src ln 3)
+Filtering before assignments: `read1` (decl src ln 3)
 
 Checking equivalence of `read1` (decl src ln 3) from
   assn asm ln 28, prod ln 7.11, live ln 8, enc 1
@@ -628,7 +628,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 41, prod ln 11.14, live ln 12, enc 2
 
-Filtering redundant before assignments: `read2` (decl src ln 4)
+Filtering before assignments: `read2` (decl src ln 4)
 
 Checking equivalence of `read2` (decl src ln 4) from
   assn asm ln 29, prod ln 7.19, live ln 8, enc 1
@@ -666,7 +666,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 42, prod ln 11.22, live ln 12, enc 2
 
-Filtering redundant before assignments: `cheese` (decl src ln 6)
+Filtering before assignments: `cheese` (decl src ln 6)
 
 Checking equivalence of `cheese` (decl src ln 6) from
   assn asm ln 32, prod ln 8.8, live ln 9, enc 1
@@ -731,7 +731,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 45, prod ln 12.10, live ln 13, enc 3
 
-Filtering redundant before assignments: `a` (decl src ln 7)
+Filtering before assignments: `a` (decl src ln 7)
 
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 33, prod ln 8.5, live ln 9, enc 1
@@ -1041,7 +1041,7 @@ Parsed query
                (w32 0x3))
      N0)
 
-Filtering redundant after assignments: `foo` (decl src ln 2)
+Filtering after assignments: `foo` (decl src ln 2)
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 13, prod ln 3.15, live ln 4, enc 1
@@ -1110,7 +1110,7 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) foo_3)
      (ReadLSB w32 (w32 0x0) foo_2))
 
-Filtering redundant after assignments: `a` (decl src ln 7)
+Filtering after assignments: `a` (decl src ln 7)
 
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_2)
 plus_uconst: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
@@ -2118,7 +2118,7 @@ Collected value for `a`
 
 #### Collation
 
-Filtering redundant before assignments: `foo` (decl src ln 2)
+Filtering before assignments: `foo` (decl src ln 2)
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 19, prod ln 3.15, live ln 4, enc 1
@@ -2187,7 +2187,7 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) foo_3)
      (ReadLSB w32 (w32 0x0) foo_2))
 
-Filtering redundant before assignments: `read1` (decl src ln 3)
+Filtering before assignments: `read1` (decl src ln 3)
 
 Checking equivalence of `read1` (decl src ln 3) from
   assn asm ln 28, prod ln 7.11, live ln 8, enc 1
@@ -2225,7 +2225,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 41, prod ln 11.14, live ln 12, enc 2
 
-Filtering redundant before assignments: `read2` (decl src ln 4)
+Filtering before assignments: `read2` (decl src ln 4)
 
 Checking equivalence of `read2` (decl src ln 4) from
   assn asm ln 29, prod ln 7.19, live ln 8, enc 1
@@ -2263,7 +2263,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 42, prod ln 11.22, live ln 12, enc 2
 
-Filtering redundant before assignments: `cheese` (decl src ln 6)
+Filtering before assignments: `cheese` (decl src ln 6)
 
 Checking equivalence of `cheese` (decl src ln 6) from
   assn asm ln 32, prod ln 8.8, live ln 9, enc 1
@@ -2328,7 +2328,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 45, prod ln 12.10, live ln 13, enc 3
 
-Filtering redundant before assignments: `a` (decl src ln 7)
+Filtering before assignments: `a` (decl src ln 7)
 
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 33, prod ln 8.5, live ln 9, enc 1
@@ -2638,7 +2638,7 @@ Parsed query
                (w32 0x3))
      N0)
 
-Filtering redundant after assignments: `foo` (decl src ln 2)
+Filtering after assignments: `foo` (decl src ln 2)
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 13, prod ln 3.15, live ln 4, enc 1
@@ -2707,12 +2707,12 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) foo_3)
      (ReadLSB w32 (w32 0x0) foo_2))
 
-Filtering redundant after assignments: `cheese` (decl src ln 6)
+Filtering after assignments: `cheese` (decl src ln 6)
 
 Variable intrinsic with undef input
 ❌ After `cheese` (decl src ln 6) assn asm ln 27, prod ln 6.0, live ln 13, enc 1 has no symbolic value from i32 undef
 
-Filtering redundant after assignments: `a` (decl src ln 7)
+Filtering after assignments: `a` (decl src ln 7)
 
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_2)
 plus_uconst: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
@@ -3001,21 +3001,283 @@ Parsed query
 
 ❌ Before `cheese` (decl src ln 6) assn asm ln 44, prod ln 11.20, live ln 12, enc 1 coordinates don't match after assn asm ln 27, prod ln 6.0, live ln 13, enc 1
 Variable intrinsic with undef input
-Assertion failed: (testSymValue && "Test symbolic value unavailable"), function checkAssignments, file main.cpp, line 1042.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010abf6ebd llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010abf73bb PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x000000010abf5453 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010abf865f SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
-5  libsystem_platform.dylib 0x00007ff7b806f318 _sigtramp + 18446744072489775960
-6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
-7  libsystem_c.dylib        0x00007ff800aa9d1c err + 0
-8  check-debug-info         0x0000000107e9d5fe checkAssignments(llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, ExecutionValidity const&, llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, ExecutionValidity const&, llvm::StringRef, llvm::Optional<std::__1::unique_ptr<llvm::raw_fd_ostream, std::__1::default_delete<llvm::raw_fd_ostream> > >&, AssignmentStats&) + 7806
-9  check-debug-info         0x0000000107ea02d0 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, AssignmentStats&) + 4784
-10 check-debug-info         0x0000000107ea1498 main + 2376
-11 dyld                     0x00007ff8007f9366 start + 1942
-./check-fix.sh: line 6: 73671 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_FIXED_BC} ${CHECK_OPTS}
+Checking equivalence of `cheese` (decl src ln 6) from
+  assn asm ln 27, prod ln 6.0, live ln 13, enc 1
+  i32 undef
+and
+  assn asm ln 44, prod ln 11.20, live ln 12, enc 1
+  %add2 = add nsw i32 %8, %9, l11 c20
+❌ Before `cheese` (decl src ln 6) assn asm ln 44, prod ln 11.20, live ln 12, enc 1 symbolic value doesn't match after assn asm ln 27, prod ln 6.0, live ln 13, enc 1
+
+❌ After `cheese` assns checked using before as reference
+Assignments:         cheese
+  Reference:         2
+  Test:              2
+Matching:
+  Matching Coords:   0
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  1
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 12, prod ln 2.16, live ln 3, enc 0
+  i32 4
+  (w32 0x4)
+and
+  assn asm ln 17, prod ln 2.16, live ln 3, enc 0
+  i32 4
+  (w32 0x4)
+✅ Before `foo` (decl src ln 2) assn asm ln 17, prod ln 2.16, live ln 3, enc 0 symbolic value matches after assn asm ln 12, prod ln 2.16, live ln 3, enc 0
+
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 13, prod ln 3.15, live ln 4, enc 1
+  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !21, l3 c15
+  (ReadLSB w32 (w32 0x0) foo)
+and
+  assn asm ln 19, prod ln 3.15, live ln 4, enc 1
+  %0 = load volatile i32, i32* %foo, l3 c15
+  (ReadLSB w32 (w32 0x0) foo)
+Query to parse
+array foo[4] : w32 -> w8 = symbolic
+array foo[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo)
+     (ReadLSB w32 (w32 0x0) foo)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) foo)
+     N0)
+✅ Before `foo` (decl src ln 2) assn asm ln 19, prod ln 3.15, live ln 4, enc 1 symbolic value matches after assn asm ln 13, prod ln 3.15, live ln 4, enc 1
+
+❌ Before `foo` (decl src ln 2) assn asm ln 22, prod ln 4.15, live ln 5, enc 2 coordinates don't match after assn asm ln 15, prod ln 4.15, live ln 6, enc 2
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 15, prod ln 4.15, live ln 6, enc 2
+  %foo.0.foo.0.15 = load volatile i32, i32* %foo, !tbaa !21, l4 c15
+  (ReadLSB w32 (w32 0x0) foo_1)
+and
+  assn asm ln 22, prod ln 4.15, live ln 5, enc 2
+  %1 = load volatile i32, i32* %foo, l4 c15
+  (ReadLSB w32 (w32 0x0) foo_1)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo_1)
+     (ReadLSB w32 (w32 0x0) foo_1)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
+     N0)
+✅ Before `foo` (decl src ln 2) assn asm ln 22, prod ln 4.15, live ln 5, enc 2 symbolic value matches after assn asm ln 15, prod ln 4.15, live ln 6, enc 2
+
+❌ Before `foo` (decl src ln 2) assn asm ln 25, prod ln 6.16, live ln 7, enc 3 coordinates don't match after assn asm ln 17, prod ln 6.16, live ln 10, enc 3
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 17, prod ln 6.16, live ln 10, enc 3
+  %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !21, l6 c16
+  (ReadLSB w32 (w32 0x0) foo_2)
+and
+  assn asm ln 25, prod ln 6.16, live ln 7, enc 3
+  %2 = load volatile i32, i32* %foo, l6 c16
+  (ReadLSB w32 (w32 0x0) foo_2)
+Query to parse
+array foo_2[4] : w32 -> w8 = symbolic
+array foo_2[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo_2)
+     (ReadLSB w32 (w32 0x0) foo_2)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) foo_2)
+     N0)
+✅ Before `foo` (decl src ln 2) assn asm ln 25, prod ln 6.16, live ln 7, enc 3 symbolic value matches after assn asm ln 17, prod ln 6.16, live ln 10, enc 3
+
+Checking equivalence of `foo` (decl src ln 2) from
+  assn asm ln 21, prod ln 10.7, live ln 11, enc 4
+  %foo.0.foo.0.17 = load volatile i32, i32* %foo, !tbaa !21, l10 c7
+  (ReadLSB w32 (w32 0x0) foo_3)
+and
+  assn asm ln 36, prod ln 10.7, live ln 11, enc 4
+  %7 = load volatile i32, i32* %foo, l10 c7
+  (ReadLSB w32 (w32 0x0) foo_3)
+Query to parse
+array foo_3[4] : w32 -> w8 = symbolic
+array foo_3[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo_3)
+     (ReadLSB w32 (w32 0x0) foo_3)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) foo_3)
+     N0)
+✅ Before `foo` (decl src ln 2) assn asm ln 36, prod ln 10.7, live ln 11, enc 4 symbolic value matches after assn asm ln 21, prod ln 10.7, live ln 11, enc 4
+
+❌ After `foo` assns checked using before as reference
+Assignments:         foo
+  Reference:         5
+  Test:              5
+Matching:
+  Matching Coords:   3
+  Matching Value:    5
+Consistency Errors:
+  Mismatched Coords: 2
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+Checking equivalence of `read1` (decl src ln 3) from
+  assn asm ln 14, prod ln 3.15, live ln 4, enc 0
+  %foo.0.foo.0. = load volatile i32, i32* %foo, !tbaa !21, l3 c15
+  (ReadLSB w32 (w32 0x0) foo)
+and
+  assn asm ln 20, prod ln 3.15, live ln 4, enc 0
+  %0 = load volatile i32, i32* %foo, l3 c15
+  (ReadLSB w32 (w32 0x0) foo)
+Query to parse
+array foo[4] : w32 -> w8 = symbolic
+array foo[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo)
+     (ReadLSB w32 (w32 0x0) foo)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) foo)
+     N0)
+✅ Before `read1` (decl src ln 3) assn asm ln 20, prod ln 3.15, live ln 4, enc 0 symbolic value matches after assn asm ln 14, prod ln 3.15, live ln 4, enc 0
+
+✅ After `read1` assns checked using before as reference
+Assignments:         read1
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+Checking equivalence of `read2` (decl src ln 4) from
+  assn asm ln 16, prod ln 4.15, live ln 6, enc 0
+  %foo.0.foo.0.15 = load volatile i32, i32* %foo, !tbaa !21, l4 c15
+  (ReadLSB w32 (w32 0x0) foo_1)
+and
+  assn asm ln 23, prod ln 4.15, live ln 6, enc 0
+  %1 = load volatile i32, i32* %foo, l4 c15
+  (ReadLSB w32 (w32 0x0) foo_1)
+Query to parse
+array foo_1[4] : w32 -> w8 = symbolic
+array foo_1[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) foo_1)
+     (ReadLSB w32 (w32 0x0) foo_1)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) foo_1)
+     N0)
+✅ Before `read2` (decl src ln 4) assn asm ln 23, prod ln 4.15, live ln 6, enc 0 symbolic value matches after assn asm ln 16, prod ln 4.15, live ln 6, enc 0
+
+✅ After `read2` assns checked using before as reference
+Assignments:         read2
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+## Summary
+
+Assignments:
+  Reference:                16
+  Test:                     13 ( 81.25% of ref )
+Matching:
+  Matching Coords:           5 ( 31.25% of ref )
+  Matching Value:            8 ( 50.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         8 ( 50.00% of ref )
+  Mismatched Value:          5 ( 31.25% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           4 ( 25.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:         16 (100.00% of ref )
+  Complete:                 16 (100.00% of ref )
+  Within Time Limit:        16 (100.00% of ref )
+  Within Fork Limit:        16 (100.00% of ref )
+Test Execution:
+  Function Covered:         13 (100.00% of test)
+  Complete:                 13 (100.00% of test)
+  Within Time Limit:        13 (100.00% of test)
+  Within Fork Limit:        13 (100.00% of test)
+
+❌ Some consistency checks failed

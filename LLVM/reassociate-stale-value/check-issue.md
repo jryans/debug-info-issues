@@ -433,7 +433,7 @@ Collected value for `a`
 
 #### Collation
 
-Filtering redundant before assignments: `foo` (decl src ln 2)
+Filtering before assignments: `foo` (decl src ln 2)
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 19, prod ln 3.15, live ln 4, enc 1
@@ -502,7 +502,7 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) foo_3)
      (ReadLSB w32 (w32 0x0) foo_2))
 
-Filtering redundant before assignments: `read1` (decl src ln 3)
+Filtering before assignments: `read1` (decl src ln 3)
 
 Checking equivalence of `read1` (decl src ln 3) from
   assn asm ln 28, prod ln 7.11, live ln 8, enc 1
@@ -540,7 +540,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 41, prod ln 11.14, live ln 12, enc 2
 
-Filtering redundant before assignments: `read2` (decl src ln 4)
+Filtering before assignments: `read2` (decl src ln 4)
 
 Checking equivalence of `read2` (decl src ln 4) from
   assn asm ln 29, prod ln 7.19, live ln 8, enc 1
@@ -578,7 +578,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 42, prod ln 11.22, live ln 12, enc 2
 
-Filtering redundant before assignments: `cheese` (decl src ln 6)
+Filtering before assignments: `cheese` (decl src ln 6)
 
 Checking equivalence of `cheese` (decl src ln 6) from
   assn asm ln 32, prod ln 8.8, live ln 9, enc 1
@@ -643,7 +643,7 @@ Parsed query
      N0)
 🔔 Removing: asm ln 45, prod ln 12.10, live ln 13, enc 3
 
-Filtering redundant before assignments: `a` (decl src ln 7)
+Filtering before assignments: `a` (decl src ln 7)
 
 Checking equivalence of `a` (decl src ln 7) from
   assn asm ln 33, prod ln 8.5, live ln 9, enc 1
@@ -953,7 +953,7 @@ Parsed query
                (w32 0x3))
      N0)
 
-Filtering redundant after assignments: `foo` (decl src ln 2)
+Filtering after assignments: `foo` (decl src ln 2)
 
 Checking equivalence of `foo` (decl src ln 2) from
   assn asm ln 13, prod ln 3.15, live ln 4, enc 1
@@ -1022,7 +1022,7 @@ Parsed query
 (Eq (ReadLSB w32 (w32 0x0) foo_3)
      (ReadLSB w32 (w32 0x0) foo_2))
 
-Filtering redundant after assignments: `a` (decl src ln 7)
+Filtering after assignments: `a` (decl src ln 7)
 
 Pushed initial value onto stack: (ReadLSB w32 (w32 0x0) foo_2)
 plus_uconst: (Add w32 (ReadLSB w32 (w32 0x0) foo_2)
