@@ -2,6 +2,6 @@
   "id": 41226,
   "summary": "SimplifyCFG sink splitting drops variable info",
   "issueDetectable": true,
-  "issueDetector": "❌ After `local` (decl src ln 4) assn asm ln 14, prod ln 4.0, live ln 7, gen 0 symbolic value doesn't match before assn asm ln 51, prod ln 16.13, live ln 17, gen 1",
+  "issueDetector": "❌ Before encountered assn for `local` (decl src ln 4) at asm ln 51, prod ln 16.13, live ln 17, enc 1 not found in after",
   "fixVerifiable": false
 }
