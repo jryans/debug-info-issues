@@ -2,7 +2,7 @@
   "id": 38367,
   "summary": "Return value unprintable in func with vectorized loop",
   "issueDetectable": true,
-  "issueDetector": "❌ After live ranges for `sum` (decl src ln 15) not found",
+  "issueDetector": "❌ Before encountered assn for `sum` (decl src ln 15) at asm ln 49, prod ln 15.16, live ln 16, enc 0 not found in after",
   "fixVerifiable": true,
-  "fixVerifier": "Value produced for `sum` (decl src ln 15), asm ln 650"
+  "fixVerifier": "❌ Before `sum` (decl src ln 15) assn asm ln 49, prod ln 15.16, live ln 16, enc 0 symbolic value doesn't match after assn asm ln 650, prod ln 17.16, live ln 19, enc 0"
 }
