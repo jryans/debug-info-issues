@@ -48,23 +48,25 @@ for (const dir of dirs) {
 
   console.log("Reproducing…");
 
-  let error = null;
-  try {
-    childProcess.execSync(`'${path.join(dirPath, "reproduce.sh")}'`, {
-      cwd: dirPath,
-      shell: process.env.SHELL,
-      timeout: 5 * 60 * 1000, // 5 mins
-    });
-  } catch (e) {
-    error = e;
-  }
-  if (error) {
-    console.log("…failed");
-    if (issue.issueDetectable) issueDetectionFailed.push(issue);
-    if (issue.fixVerifiable) fixVerificationFailed.push(issue);
-    console.log();
-    continue;
-  }
+  // For some reason, the `script` command now fails when run within a
+  // child process like this...
+  // let error = null;
+  // try {
+  //   childProcess.execSync(`'${path.join(dirPath, "reproduce.sh")}'`, {
+  //     cwd: dirPath,
+  //     shell: process.env.SHELL,
+  //     timeout: 5 * 60 * 1000, // 5 mins
+  //   });
+  // } catch (e) {
+  //   error = e;
+  // }
+  // if (error) {
+  //   console.log("…failed");
+  //   if (issue.issueDetectable) issueDetectionFailed.push(issue);
+  //   if (issue.fixVerifiable) fixVerificationFailed.push(issue);
+  //   console.log();
+  //   continue;
+  // }
 
   console.log("…succeeded");
 
