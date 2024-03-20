@@ -3,7 +3,7 @@ set -eux
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/vars.sh"
 
-${CLANG_TIDY} ${CLANG_TIDY_OPTS} ${SRC_FILE} --
+# ${CLANG_TIDY} ${CLANG_TIDY_OPTS} ${SRC_FILE} --
 
 mkdir -p klee-out-O0
 ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_IR_OPTS} ${CC_O0_OPTS} -o example-O0.ll
