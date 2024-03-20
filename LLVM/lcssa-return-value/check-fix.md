@@ -1,4 +1,4 @@
-^D++ dirname ./check-fix.sh
+++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -35,6 +35,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -74,15 +75,13 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-+ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O2-fixed/final.bc for debug info consistency…
 
 ## Functions
 
 ✅ 1 before defined functions(s), 1 after defined functions(s)
-
-## Function `example`
 
 warning: Linking two modules of different data layouts: 'memset64_Debug+Asserts.bc' is 'e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128' whereas 'klee-out-O0/final.bc' is 'e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128'
 
@@ -92,65 +91,91 @@ warning: Linking two modules of different data layouts: 'memset64_Debug+Asserts.
 
 warning: Linking two modules of different target triples: 'memset64_Debug+Asserts.bc' is 'x86_64-apple-macosx13.0.0' whereas 'klee-out-O2-fixed/final.bc' is 'x86_64-unknown-linux-gnu'
 
+## Function `example`
+
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `foo` (decl src ln 6)
-Before variable `bar` (decl src ln 7)
-Before variable `i` (decl src ln 12)
+#### Before variables
+
 Store to declared address of `i` (decl src ln 12), asm ln 44
   %inc = add nsw i32 %9, 1, l12 c31, asm ln 43
-🔔 Store to declared address of `i` (decl src ln 12): live ln too early, using produced ln + 1
-  Added assignment asm ln 44, prod ln 12.31, live ln 13, gen 0
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 44, prod ln 12.31, live ln 13, enc None
+Load from declared address of `i` (decl src ln 12), asm ln 42
+  %9 = load i32, i32* %i, l12 c31, asm ln 42
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 42, prod ln 12.31, live ln 13, enc None
+Load from declared address of `i` (decl src ln 12), asm ln 36
+  %7 = load i32, i32* %i, l13 c9, asm ln 36
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 36, prod ln 13.9, live ln 14, enc None
+Load from declared address of `i` (decl src ln 12), asm ln 32
+  %5 = load i32, i32* %i, l13 c19, asm ln 32
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 32, prod ln 13.19, live ln 14, enc None
+Load from declared address of `i` (decl src ln 12), asm ln 27
+  %4 = load i32, i32* %i, l12 c19, asm ln 27
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 27, prod ln 12.19, live ln 13, enc None
 Store to declared address of `i` (decl src ln 12), asm ln 23
   const i32 0
-🔔 Store to declared address of `i` (decl src ln 12): live ln too early, using produced ln + 1
-  Added assignment asm ln 23, prod ln 12.12, live ln 13, gen 0
-Before variable `sum` (decl src ln 15)
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 23, prod ln 12.12, live ln 13, enc None
+Load from declared address of `sum` (decl src ln 15), asm ln 73
+  %15 = load i32, i32* %sum, l19 c10, asm ln 73
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 73, prod ln 19.10, live ln 20, enc None
 Store to declared address of `sum` (decl src ln 15), asm ln 66
   %add9 = add i32 %13, %12, l17 c9, asm ln 65
-🔔 Store to declared address of `sum` (decl src ln 15): live ln too early, using produced ln + 1
-  Added assignment asm ln 66, prod ln 17.9, live ln 18, gen 0
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 66, prod ln 17.9, live ln 18, enc None
+Load from declared address of `sum` (decl src ln 15), asm ln 64
+  %13 = load i32, i32* %sum, l17 c9, asm ln 64
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 64, prod ln 17.9, live ln 18, enc None
 Store to declared address of `sum` (decl src ln 15), asm ln 49
   const i32 0
-  Added assignment asm ln 49, prod ln 15.16, live ln 16, gen 0
-Before variable `j` (decl src ln 16)
+  Added assignment asm ln 49, prod ln 15.16, live ln 16, enc None
 Store to declared address of `j` (decl src ln 16), asm ln 69
   %inc11 = add nsw i32 %14, 1, l16 c31, asm ln 68
-🔔 Store to declared address of `j` (decl src ln 16): live ln too early, using produced ln + 1
-  Added assignment asm ln 69, prod ln 16.31, live ln 17, gen 0
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 69, prod ln 16.31, live ln 17, enc None
+Load from declared address of `j` (decl src ln 16), asm ln 67
+  %14 = load i32, i32* %j, l16 c31, asm ln 67
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 67, prod ln 16.31, live ln 17, enc None
+Load from declared address of `j` (decl src ln 16), asm ln 60
+  %11 = load i32, i32* %j, l17 c16, asm ln 60
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 60, prod ln 17.16, live ln 18, enc None
+Load from declared address of `j` (decl src ln 16), asm ln 55
+  %10 = load i32, i32* %j, l16 c19, asm ln 55
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 55, prod ln 16.19, live ln 17, enc None
 Store to declared address of `j` (decl src ln 16), asm ln 51
   const i32 0
-🔔 Store to declared address of `j` (decl src ln 16): live ln too early, using produced ln + 1
-  Added assignment asm ln 51, prod ln 16.12, live ln 17, gen 0
-Computing generations: `i` (decl src ln 12)
-  asm ln 23, prod ln 12.12, live ln 13, gen 0
-  asm ln 44, prod ln 12.31, live ln 13, gen 1
-Computing generations: `sum` (decl src ln 15)
-  asm ln 49, prod ln 15.16, live ln 16, gen 0
-  asm ln 66, prod ln 17.9, live ln 18, gen 1
-Computing generations: `j` (decl src ln 16)
-  asm ln 51, prod ln 16.12, live ln 17, gen 0
-  asm ln 69, prod ln 16.31, live ln 17, gen 1
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 51, prod ln 16.12, live ln 17, enc None
 
-After variable `foo` (decl src ln 6)
-After variable `bar` (decl src ln 7)
-After variable `i` (decl src ln 12)
+#### After variables
+
+Load from declared address of `foo` (decl src ln 6), asm ln 125
+  %wide.load46 = load <4 x i32>, <4 x i32>* %29, !tbaa !42, l17 c12, asm ln 125
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 125, prod ln 17.12, live ln 18, enc None
 Value produced for `i` (decl src ln 12), asm ln 17
   const i32 0
-🔔 Value produced for `i` (decl src ln 12): live ln too early, using produced ln + 1
-  Added assignment asm ln 17, prod ln 12.12, live ln 13, gen 0
-After variable `sum` (decl src ln 15)
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 17, prod ln 12.12, live ln 13, enc None
 Value produced for `sum` (decl src ln 15), asm ln 650
   %bin.rdx50.i0 = add i32 %bin.rdx48.i0, %bin.rdx48.i1, l17 c9, asm ln 649
-  Added assignment asm ln 650, prod ln 17.16, live ln 19, gen 0
-Computing generations: `i` (decl src ln 12)
-  asm ln 17, prod ln 12.12, live ln 13, gen 0
-Computing generations: `sum` (decl src ln 15)
-  asm ln 650, prod ln 17.16, live ln 19, gen 0
+  Added assignment asm ln 650, prod ln 17.16, live ln 19, enc None
 
-🔔 5 before variables found, 4 after variables found, 1 mismatched
+#### Summary
+
+❌ 5 before variables found, 4 after variables found, 1 mismatched
 
 ### Symbolic values
 
@@ -158,18 +183,51 @@ Computing generations: `sum` (decl src ln 15)
 
 [0;35mKLEE: WARNING: Unable to load source file `/app/example.c`
 [0mCollected value for `i`
+  Assignment asm ln 23, prod ln 12.12, live ln 13, enc 0
   i32 0
   (w32 0x0)
 Collected value for `i`
+  Assignment asm ln 27, prod ln 12.19, live ln 13, enc 1
+  %4 = load i32, i32* %i, l12 c19
+  (w32 0x0)
+Collected value for `i`
+  Assignment asm ln 32, prod ln 13.19, live ln 14, enc 2
+  %5 = load i32, i32* %i, l13 c19
+  (w32 0x0)
+Collected value for `i`
+  Assignment asm ln 36, prod ln 13.9, live ln 14, enc 3
+  %7 = load i32, i32* %i, l13 c9
+  (w32 0x0)
+Collected value for `i`
+  Assignment asm ln 42, prod ln 12.31, live ln 13, enc 4
+  %9 = load i32, i32* %i, l12 c31
+  (w32 0x0)
+Collected value for `i`
+  Assignment asm ln 44, prod ln 12.31, live ln 13, enc 5
   %inc = add nsw i32 %9, 1, l12 c31
   (w32 0x1)
 Collected value for `sum`
+  Assignment asm ln 49, prod ln 15.16, live ln 16, enc 0
   i32 0
   (w32 0x0)
 Collected value for `j`
+  Assignment asm ln 51, prod ln 16.12, live ln 17, enc 0
   i32 0
   (w32 0x0)
+Collected value for `j`
+  Assignment asm ln 55, prod ln 16.19, live ln 17, enc 1
+  %10 = load i32, i32* %j, l16 c19
+  (w32 0x0)
+Collected value for `j`
+  Assignment asm ln 60, prod ln 17.16, live ln 18, enc 2
+  %11 = load i32, i32* %j, l17 c16
+  (w32 0x0)
 Collected value for `sum`
+  Assignment asm ln 64, prod ln 17.9, live ln 18, enc 1
+  %13 = load i32, i32* %sum, l17 c9
+  (w32 0x0)
+Collected value for `sum`
+  Assignment asm ln 66, prod ln 17.9, live ln 18, enc 2
   %add9 = add i32 %13, %12, l17 c9
   (Add w32 (Concat w32 (w8 0xAB)
                       (Concat w24 (w8 0xAB)
@@ -178,17 +236,55 @@ Collected value for `sum`
                       (Concat w24 (w8 0xAB)
                                   (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))
 Collected value for `j`
+  Assignment asm ln 67, prod ln 16.31, live ln 17, enc 3
+  %14 = load i32, i32* %j, l16 c31
+  (w32 0x0)
+Collected value for `j`
+  Assignment asm ln 69, prod ln 16.31, live ln 17, enc 4
   %inc11 = add nsw i32 %14, 1, l16 c31
   (w32 0x1)
+Collected value for `sum`
+  Assignment asm ln 73, prod ln 19.10, live ln 20, enc 3
+  %15 = load i32, i32* %sum, l19 c10
+  (Add w32 (w32 0x2A2A292A)
+          (Add w32 (Concat w32 (w8 0xAB)
+                               (Concat w24 (w8 0xAB)
+                                           (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
+                   (Concat w32 (w8 0xAB)
+                               (Concat w24 (w8 0xAB)
+                                           (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
 
 #### After values
 
 Collected value for `i`
+  Assignment asm ln 17, prod ln 12.12, live ln 13, enc 0
   i32 0
   (w32 0x0)
+Collected value for `foo`
+  Assignment asm ln 125, prod ln 17.12, live ln 18, enc 0
+  %wide.load46 = load <4 x i32>, <4 x i32>* %29, !tbaa !42, l17 c12
+  (Concat w128 (w8 0x57)
+              (Concat w120 (w8 0x57)
+                           (Concat w112 (w8 0x57)
+                                        (Concat w104 (w8 0x56)
+                                                     (Concat w96 (w8 0x57)
+                                                                 (Concat w88 (w8 0x57)
+                                                                             (Concat w80 (w8 0x57)
+                                                                                         (Concat w72 (w8 0x56)
+                                                                                                     (Concat w64 (w8 0x57)
+                                                                                                                 (Concat w56 (w8 0x57)
+                                                                                                                             (Concat w48 (w8 0x57)
+                                                                                                                                         (Concat w40 (w8 0x56)
+                                                                                                                                                     (Add w32 (Concat w32 (w8 0xAB)
+                                                                                                                                                                          (Concat w24 (w8 0xAB)
+                                                                                                                                                                                      (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
+                                                                                                                                                              (Concat w32 (w8 0xAB)
+                                                                                                                                                                          (Concat w24 (w8 0xAB)
+                                                                                                                                                                                      (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))))))))))))))
 Collected value for `sum`
+  Assignment asm ln 650, prod ln 17.16, live ln 19, enc 0
   %bin.rdx50.i0 = add i32 %bin.rdx48.i0, %bin.rdx48.i1, l17 c9
-  (Add w32 (w32 0x2424239A)
+  (Add w32 (w32 0x2A2A292A)
           (Add w32 (Concat w32 (w8 0xAB)
                                (Concat w24 (w8 0xAB)
                                            (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
@@ -198,134 +294,73 @@ Collected value for `sum`
 
 ### Assignments
 
-Filtering redundant before assignments: `i` (decl src ln 12)
+#### Collation
 
-Filtering redundant before assignments: `sum` (decl src ln 15)
-
-Filtering redundant before assignments: `j` (decl src ln 16)
-
-Computing generations: `i` (decl src ln 12)
-  asm ln 23, prod ln 12.12, live ln 13, gen 0
-  asm ln 44, prod ln 12.31, live ln 13, gen 1
-Computing generations: `sum` (decl src ln 15)
-  asm ln 49, prod ln 15.16, live ln 16, gen 0
-  asm ln 66, prod ln 17.9, live ln 18, gen 1
-Computing generations: `j` (decl src ln 16)
-  asm ln 51, prod ln 16.12, live ln 17, gen 0
-  asm ln 69, prod ln 16.31, live ln 17, gen 1
-Building live ranges: `i` (decl src ln 12)
-  asm ln 23, prod ln 12.12, live ln 13, gen 0
-    live ln 13, gen 0 →
-    live ln 13, gen 1
-  asm ln 44, prod ln 12.31, live ln 13, gen 1
-    live ln 13, gen 1 →
-    live ln ∞, gen ∞
-Building live ranges: `sum` (decl src ln 15)
-  asm ln 49, prod ln 15.16, live ln 16, gen 0
-    live ln 16, gen 0 →
-    live ln 18, gen 1
-  asm ln 66, prod ln 17.9, live ln 18, gen 1
-    live ln 18, gen 1 →
-    live ln ∞, gen ∞
-Building live ranges: `j` (decl src ln 16)
-  asm ln 51, prod ln 16.12, live ln 17, gen 0
-    live ln 17, gen 0 →
-    live ln 17, gen 1
-  asm ln 69, prod ln 16.31, live ln 17, gen 1
-    live ln 17, gen 1 →
-    live ln ∞, gen ∞
-
-Computing generations: `i` (decl src ln 12)
-  asm ln 17, prod ln 12.12, live ln 13, gen 0
-Computing generations: `sum` (decl src ln 15)
-  asm ln 650, prod ln 17.16, live ln 19, gen 0
-Building live ranges: `i` (decl src ln 12)
-  asm ln 17, prod ln 12.12, live ln 13, gen 0
-    live ln 13, gen 0 →
-    live ln ∞, gen ∞
-Building live ranges: `sum` (decl src ln 15)
-  asm ln 650, prod ln 17.16, live ln 19, gen 0
-    live ln 19, gen 0 →
-    live ln ∞, gen ∞
-
-🔔 Before live ranges for `foo` (decl src ln 6) not found (variable likely undefined)
-🔔 Before live ranges for `bar` (decl src ln 7) not found (variable likely undefined)
-❌ Live ranges for `sum` (decl src ln 15) not fully covered: live ln 16, gen 0 < live ln 19, gen 0
-❌ After live ranges for `j` (decl src ln 16) not found
-❌ Before live range coverage
-  Covered:   1
-  Uncovered: 2
-  Undefined: 2
-  Unused:    0
-  Removable: 0
-
-#### Check before against after
+Filtering before assignments: `i` (decl src ln 12)
 
 Checking equivalence of `i` (decl src ln 12) from
-  assn asm ln 23, prod ln 12.12, live ln 13, gen 0
-  i32 0
+  assn asm ln 27, prod ln 12.19, live ln 13, enc 1
+  %4 = load i32, i32* %i, l12 c19
   (w32 0x0)
 and
-  assn asm ln 17, prod ln 12.12, live ln 13, gen 0
+  assn asm ln 23, prod ln 12.12, live ln 13, enc 0
   i32 0
   (w32 0x0)
-✅ After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 symbolic value matches before assn asm ln 23, prod ln 12.12, live ln 13, gen 0
+🔔 Removing: asm ln 27, prod ln 12.19, live ln 13, enc 1
 
-🔔 After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 coordinates don't match before assn asm ln 44, prod ln 12.31, live ln 13, gen 1
 Checking equivalence of `i` (decl src ln 12) from
-  assn asm ln 44, prod ln 12.31, live ln 13, gen 1
+  assn asm ln 32, prod ln 13.19, live ln 14, enc 2
+  %5 = load i32, i32* %i, l13 c19
+  (w32 0x0)
+and
+  assn asm ln 23, prod ln 12.12, live ln 13, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 32, prod ln 13.19, live ln 14, enc 2
+
+Checking equivalence of `i` (decl src ln 12) from
+  assn asm ln 36, prod ln 13.9, live ln 14, enc 3
+  %7 = load i32, i32* %i, l13 c9
+  (w32 0x0)
+and
+  assn asm ln 23, prod ln 12.12, live ln 13, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 36, prod ln 13.9, live ln 14, enc 3
+
+Checking equivalence of `i` (decl src ln 12) from
+  assn asm ln 42, prod ln 12.31, live ln 13, enc 4
+  %9 = load i32, i32* %i, l12 c31
+  (w32 0x0)
+and
+  assn asm ln 23, prod ln 12.12, live ln 13, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 42, prod ln 12.31, live ln 13, enc 4
+
+Checking equivalence of `i` (decl src ln 12) from
+  assn asm ln 44, prod ln 12.31, live ln 13, enc 5
   %inc = add nsw i32 %9, 1, l12 c31
   (w32 0x1)
 and
-  assn asm ln 17, prod ln 12.12, live ln 13, gen 0
+  assn asm ln 23, prod ln 12.12, live ln 13, enc 0
   i32 0
   (w32 0x0)
-❌ After `i` (decl src ln 12) assn asm ln 17, prod ln 12.12, live ln 13, gen 0 symbolic value doesn't match before assn asm ln 44, prod ln 12.31, live ln 13, gen 1
 
-❌ After live range for `j` (decl src ln 16) not found
+Filtering before assignments: `sum` (decl src ln 15)
 
-❌ After live range for `j` (decl src ln 16) not found
-
-🔔 After `sum` (decl src ln 15) assn asm ln 650, prod ln 17.16, live ln 19, gen 0 coordinates don't match before assn asm ln 49, prod ln 15.16, live ln 16, gen 0
 Checking equivalence of `sum` (decl src ln 15) from
-  assn asm ln 49, prod ln 15.16, live ln 16, gen 0
-  i32 0
+  assn asm ln 64, prod ln 17.9, live ln 18, enc 1
+  %13 = load i32, i32* %sum, l17 c9
   (w32 0x0)
 and
-  assn asm ln 650, prod ln 17.16, live ln 19, gen 0
-  %bin.rdx50.i0 = add i32 %bin.rdx48.i0, %bin.rdx48.i1, l17 c9
-  (Add w32 (w32 0x2424239A)
-          (Add w32 (Concat w32 (w8 0xAB)
-                               (Concat w24 (w8 0xAB)
-                                           (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                   (Concat w32 (w8 0xAB)
-                               (Concat w24 (w8 0xAB)
-                                           (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
-Query to parse
-array memset.dst.deref[1] : w32 -> w8 = symbolic
-array memset.dst.deref_1[1] : w32 -> w8 = symbolic
-(query [] (Eq (w32 0x0)
-     (Add w32 (w32 0x2424239A)
-              (Add w32 (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                       (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))))
-Parsed query
-(Eq (w32 0x0)
-     (Add w32 (w32 0x2424239A)
-              (Add w32 (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                       (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))))
-❌ After `sum` (decl src ln 15) assn asm ln 650, prod ln 17.16, live ln 19, gen 0 symbolic value doesn't match before assn asm ln 49, prod ln 15.16, live ln 16, gen 0
+  assn asm ln 49, prod ln 15.16, live ln 16, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 64, prod ln 17.9, live ln 18, enc 1
 
-🔔 After `sum` (decl src ln 15) assn asm ln 650, prod ln 17.16, live ln 19, gen 0 coordinates don't match before assn asm ln 66, prod ln 17.9, live ln 18, gen 1
 Checking equivalence of `sum` (decl src ln 15) from
-  assn asm ln 66, prod ln 17.9, live ln 18, gen 1
+  assn asm ln 66, prod ln 17.9, live ln 18, enc 2
   %add9 = add i32 %13, %12, l17 c9
   (Add w32 (Concat w32 (w8 0xAB)
                       (Concat w24 (w8 0xAB)
@@ -334,18 +369,10 @@ Checking equivalence of `sum` (decl src ln 15) from
                       (Concat w24 (w8 0xAB)
                                   (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))
 and
-  assn asm ln 650, prod ln 17.16, live ln 19, gen 0
-  %bin.rdx50.i0 = add i32 %bin.rdx48.i0, %bin.rdx48.i1, l17 c9
-  (Add w32 (w32 0x2424239A)
-          (Add w32 (Concat w32 (w8 0xAB)
-                               (Concat w24 (w8 0xAB)
-                                           (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                   (Concat w32 (w8 0xAB)
-                               (Concat w24 (w8 0xAB)
-                                           (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
+  assn asm ln 49, prod ln 15.16, live ln 16, enc 0
+  i32 0
+  (w32 0x0)
 Query to parse
-array memset.dst.deref[1] : w32 -> w8 = symbolic
-array memset.dst.deref_1[1] : w32 -> w8 = symbolic
 array memset.dst.deref[1] : w32 -> w8 = symbolic
 array memset.dst.deref_1[1] : w32 -> w8 = symbolic
 (query [] (Eq (Add w32 (Concat w32 (w8 0xAB)
@@ -354,47 +381,20 @@ array memset.dst.deref_1[1] : w32 -> w8 = symbolic
               (Concat w32 (w8 0xAB)
                           (Concat w24 (w8 0xAB)
                                       (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))
-     (Add w32 (w32 0x2424239A)
-              (Add w32 (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                       (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))))
+     (w32 0x0)))
 Parsed query
-(Eq N0:(Add w32 (Concat w32 (w8 0xAB)
-                             (Concat w24 (w8 0xAB)
-                                         (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                 (Concat w32 (w8 0xAB)
-                             (Concat w24 (w8 0xAB)
-                                         (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))
-     (Add w32 (w32 0x2424239A) N0))
-❌ After `sum` (decl src ln 15) assn asm ln 650, prod ln 17.16, live ln 19, gen 0 symbolic value doesn't match before assn asm ln 66, prod ln 17.9, live ln 18, gen 1
+(Eq (Add w32 (Concat w32 (w8 0xAB)
+                          (Concat w24 (w8 0xAB)
+                                      (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
+              (Concat w32 (w8 0xAB)
+                          (Concat w24 (w8 0xAB)
+                                      (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))
+     (w32 0x0))
 
-❌ Before symbolic values checked against after
-  Matching:    1
-  Mismatched:  5
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-#### Check after against before
-
-Checking equivalence of `i` (decl src ln 12) from
-  assn asm ln 17, prod ln 12.12, live ln 13, gen 0
-  i32 0
-  (w32 0x0)
-and
-  assn asm ln 23, prod ln 12.12, live ln 13, gen 0
-  i32 0
-  (w32 0x0)
-✅ Before `i` (decl src ln 12) assn asm ln 23, prod ln 12.12, live ln 13, gen 0 symbolic value matches after assn asm ln 17, prod ln 12.12, live ln 13, gen 0
-
-🔔 Before `sum` (decl src ln 15) assn asm ln 66, prod ln 17.9, live ln 18, gen 1 coordinates don't match after assn asm ln 650, prod ln 17.16, live ln 19, gen 0
 Checking equivalence of `sum` (decl src ln 15) from
-  assn asm ln 650, prod ln 17.16, live ln 19, gen 0
-  %bin.rdx50.i0 = add i32 %bin.rdx48.i0, %bin.rdx48.i1, l17 c9
-  (Add w32 (w32 0x2424239A)
+  assn asm ln 73, prod ln 19.10, live ln 20, enc 3
+  %15 = load i32, i32* %sum, l19 c10
+  (Add w32 (w32 0x2A2A292A)
           (Add w32 (Concat w32 (w8 0xAB)
                                (Concat w24 (w8 0xAB)
                                            (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
@@ -402,7 +402,7 @@ Checking equivalence of `sum` (decl src ln 15) from
                                (Concat w24 (w8 0xAB)
                                            (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
 and
-  assn asm ln 66, prod ln 17.9, live ln 18, gen 1
+  assn asm ln 66, prod ln 17.9, live ln 18, enc 2
   %add9 = add i32 %13, %12, l17 c9
   (Add w32 (Concat w32 (w8 0xAB)
                       (Concat w24 (w8 0xAB)
@@ -415,21 +415,16 @@ array memset.dst.deref[1] : w32 -> w8 = symbolic
 array memset.dst.deref_1[1] : w32 -> w8 = symbolic
 array memset.dst.deref[1] : w32 -> w8 = symbolic
 array memset.dst.deref_1[1] : w32 -> w8 = symbolic
-(query [] (Eq (Add w32 (w32 0x2424239A)
-              (Add w32 (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-                       (Concat w32 (w8 0xAB)
-                                   (Concat w24 (w8 0xAB)
-                                               (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
-     (Add w32 (Concat w32 (w8 0xAB)
-                          (Concat w24 (w8 0xAB)
-                                      (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
-              (Concat w32 (w8 0xAB)
-                          (Concat w24 (w8 0xAB)
-                                      (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1)))))))
+(query [] (Eq (Add w32 (w32 0x2A2A292A)
+              N0:(Add w32 (Concat w32 (w8 0xAB)
+                                      (Concat w24 (w8 0xAB)
+                                                  (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
+                          (Concat w32 (w8 0xAB)
+                                      (Concat w24 (w8 0xAB)
+                                                  (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
+     N0))
 Parsed query
-(Eq (Add w32 (w32 0x2424239A)
+(Eq (Add w32 (w32 0x2A2A292A)
               N0:(Add w32 (Concat w32 (w8 0xAB)
                                       (Concat w24 (w8 0xAB)
                                                   (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref))))
@@ -437,15 +432,143 @@ Parsed query
                                       (Concat w24 (w8 0xAB)
                                                   (Concat w16 (w8 0xAB) (Read w8 (w32 0x0) memset.dst.deref_1))))))
      N0)
-❌ Before `sum` (decl src ln 15) assn asm ln 66, prod ln 17.9, live ln 18, gen 1 symbolic value doesn't match after assn asm ln 650, prod ln 17.16, live ln 19, gen 0
 
-❌ After symbolic values checked against before
-  Matching:    1
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+Filtering before assignments: `j` (decl src ln 16)
 
-## Summary
+Checking equivalence of `j` (decl src ln 16) from
+  assn asm ln 55, prod ln 16.19, live ln 17, enc 1
+  %10 = load i32, i32* %j, l16 c19
+  (w32 0x0)
+and
+  assn asm ln 51, prod ln 16.12, live ln 17, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 55, prod ln 16.19, live ln 17, enc 1
 
-❌ Some consistency checks failed
+Checking equivalence of `j` (decl src ln 16) from
+  assn asm ln 60, prod ln 17.16, live ln 18, enc 2
+  %11 = load i32, i32* %j, l17 c16
+  (w32 0x0)
+and
+  assn asm ln 51, prod ln 16.12, live ln 17, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 60, prod ln 17.16, live ln 18, enc 2
+
+Checking equivalence of `j` (decl src ln 16) from
+  assn asm ln 67, prod ln 16.31, live ln 17, enc 3
+  %14 = load i32, i32* %j, l16 c31
+  (w32 0x0)
+and
+  assn asm ln 51, prod ln 16.12, live ln 17, enc 0
+  i32 0
+  (w32 0x0)
+🔔 Removing: asm ln 67, prod ln 16.31, live ln 17, enc 3
+
+Checking equivalence of `j` (decl src ln 16) from
+  assn asm ln 69, prod ln 16.31, live ln 17, enc 4
+  %inc11 = add nsw i32 %14, 1, l16 c31
+  (w32 0x1)
+and
+  assn asm ln 51, prod ln 16.12, live ln 17, enc 0
+  i32 0
+  (w32 0x0)
+
+Collating encountered before assignments: `i` (decl src ln 12)
+  asm ln 23, prod ln 12.12, live ln 13, enc 0
+  asm ln 44, prod ln 12.31, live ln 13, enc 1
+Collating encountered before assignments: `sum` (decl src ln 15)
+  asm ln 49, prod ln 15.16, live ln 16, enc 0
+  asm ln 66, prod ln 17.9, live ln 18, enc 1
+  asm ln 73, prod ln 19.10, live ln 20, enc 2
+Collating encountered before assignments: `j` (decl src ln 16)
+  asm ln 51, prod ln 16.12, live ln 17, enc 0
+  asm ln 69, prod ln 16.31, live ln 17, enc 1
+
+Collating encountered after assignments: `foo` (decl src ln 6)
+  asm ln 125, prod ln 17.12, live ln 18, enc 0
+Collating encountered after assignments: `i` (decl src ln 12)
+  asm ln 17, prod ln 12.12, live ln 13, enc 0
+Collating encountered after assignments: `sum` (decl src ln 15)
+  asm ln 650, prod ln 17.16, live ln 19, enc 0
+
+#### Check after using before as reference
+
+❌ Before encountered assns for `j` (decl src ln 16) not found in after
+Assignments:         j
+  Reference:         2
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   2
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+✅ After `bar` assns checked using before as reference
+Assignments:         bar
+  Reference:         0
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
+Stack dump:
+0.      Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2-fixed/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  check-debug-info         0x00000001081b7e2d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
+1  check-debug-info         0x00000001081b832b PrintStackTraceSignalHandler(void*) + 27
+2  check-debug-info         0x00000001081b63c3 llvm::sys::RunSignalHandlers() + 115
+3  check-debug-info         0x00000001081b95cf SignalHandler(int) + 223
+4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
+5  libsystem_platform.dylib 0x000000010f0e38c0 _sigtramp + 18446603375116220672
+6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
+7  check-debug-info         0x000000010547c921 std::__1::__throw_out_of_range[abi:v160006](char const*) + 17
+8  check-debug-info         0x000000010545c24f std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > >::at(Variable const&) const + 63
+9  check-debug-info         0x000000010545a69f checkAssignments(llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, ExecutionValidity const&, llvm::StringRef, std::__1::map<Variable, llvm::SmallVector<Assignment, 1u>, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, llvm::SmallVector<Assignment, 1u> > > > const&, std::__1::map<Variable, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > >, std::__1::less<Variable>, std::__1::allocator<std::__1::pair<Variable const, std::__1::map<unsigned int, Assignment*, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<unsigned int const, Assignment*> > > > > > const&, ExecutionValidity const&, llvm::StringRef, llvm::Optional<std::__1::unique_ptr<llvm::raw_fd_ostream, std::__1::default_delete<llvm::raw_fd_ostream> > >&, AssignmentStats&) + 6895
+10 check-debug-info         0x000000010545d610 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, AssignmentStats&) + 4784
+11 check-debug-info         0x000000010545e7d8 main + 2376
+12 dyld                     0x00007ff8007f9366 start + 1942
+./check-fix.sh: line 6: 18945 Abort trap: 6           ${CHECK} ${O0_BC} ${O2_FIXED_BC} ${CHECK_OPTS}
