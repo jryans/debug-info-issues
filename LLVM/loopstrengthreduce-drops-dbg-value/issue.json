@@ -2,7 +2,7 @@
   "id": 38163,
   "summary": "Loop strength reduction preserves little debug info",
   "issueDetectable": true,
-  "issueDetector": "❌ After `bob` (decl src ln 2) assn asm ln 15, prod ln 2.0, live ln 3, gen 1 has no symbolic value from i32 undef",
+  "issueDetector": "❌ Before `bob` (decl src ln 2) assn asm ln 38, prod ln 3.37, live ln 4, enc 1 symbolic value doesn't match after assn asm ln 24, prod ln 2.0, live ln 4, enc 1",
   "fixVerifiable": true,
-  "fixVerifier": "🎉 All consistency checks passed"
+  "fixVerifier": "✅ Before `bob` (decl src ln 2) assn asm ln 38, prod ln 3.37, live ln 4, enc 1 symbolic value matches after assn asm ln 26, prod ln 3.24, live ln 4, enc 1"
 }
