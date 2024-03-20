@@ -613,6 +613,7 @@ Collating encountered before assignments: `l_1240` (decl src ln 3)
 
 Collating encountered after assignments: `l_1240` (decl src ln 3)
   asm ln 16, prod ln 3.0, live ln 5, enc 0
+  asm ln 17, prod ln 3.0, live ln 5, enc 1
 
 #### Check after using before as reference
 
@@ -648,8 +649,6 @@ Test Execution:
   Within Time Limit: true
   Within Fork Limit: true
 
-❌ Before encountered assn for `l_1240` (decl src ln 3) at asm ln 23, prod ln 4.12, live ln 5, enc 1 not found in after
-
 ❌ Before `l_1240` (decl src ln 3) assn asm ln 21, prod ln 3.16, live ln 4, enc 0 coordinates don't match after assn asm ln 16, prod ln 3.0, live ln 5, enc 0
 Checking equivalence of `l_1240` (decl src ln 3) from
   assn asm ln 16, prod ln 3.0, live ln 5, enc 0
@@ -682,7 +681,7 @@ Consistency Errors:
   Mismatched Value:  1
 Availability Errors:
   Ref Not Encount.:  0
-  Ref Not in Test:   1
+  Ref Not in Test:   0
   Test Not Encount.: 0
   Test Not in Ref:   0
 Warnings:
@@ -713,7 +712,7 @@ Consistency Errors:
   Mismatched Value:          1 ( 33.33% of ref )
 Availability Errors:
   Ref Not Encount.:          0 (  0.00% of ref )
-  Ref Not in Test:           2 ( 66.67% of ref )
+  Ref Not in Test:           1 ( 33.33% of ref )
   Test Not Encount.:         0 (  0.00% of test)
   Test Not in Ref:           0 (  0.00% of test)
 Warnings:
