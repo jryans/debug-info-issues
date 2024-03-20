@@ -1,4 +1,4 @@
-^D++ dirname ./check-issue.sh
+++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -35,6 +35,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -74,8 +75,8 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-+ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O2/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistency…
 
 ## Functions
@@ -86,147 +87,223 @@ Checking klee-out-O0/final.bc and klee-out-O2/final.bc for debug info consistenc
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `c` (decl src ln 3)
+#### Before variables
+
+Load from declared address of `c` (decl src ln 3), asm ln 24
+  %2 = load i32, i32* %c, l5 c3, asm ln 24
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 24, prod ln 5.3, live ln 6, enc None
+Load from declared address of `c` (decl src ln 3), asm ln 22
+  %1 = load i32, i32* %c, l4 c12, asm ln 22
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 22, prod ln 4.12, live ln 5, enc None
 Store to declared address of `c` (decl src ln 3), asm ln 19
   %conv = sext i8 %dec to i32, l3 c11, asm ln 18
-🔔 Store to declared address of `c` (decl src ln 3): live ln too early, using produced ln + 1
-  Added assignment asm ln 19, prod ln 3.11, live ln 4, gen 0
-Before variable `l_1240` (decl src ln 3)
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 19, prod ln 3.11, live ln 4, enc None
 Store to declared address of `l_1240` (decl src ln 3), asm ln 23
   %1 = load i32, i32* %c, l4 c12, asm ln 22
   @dbg.declare without read users, removable
-  Added assignment asm ln 23, prod ln 4.12, live ln 5, gen 0
+  Added assignment asm ln 23, prod ln 4.12, live ln 5, enc None
 Store to declared address of `l_1240` (decl src ln 3), asm ln 21
   const i32 -8
   @dbg.declare without read users, removable
-  Added assignment asm ln 21, prod ln 3.16, live ln 4, gen 0
-Computing generations: `c` (decl src ln 3)
-  asm ln 19, prod ln 3.11, live ln 4, gen 0
-Computing generations: `l_1240` (decl src ln 3)
-  asm ln 21, prod ln 3.16, live ln 4, gen 0
-  asm ln 23, prod ln 4.12, live ln 5, gen 1
+  Added assignment asm ln 21, prod ln 3.16, live ln 4, enc None
 
-After variable `l_1240` (decl src ln 3)
+#### After variables
+
 Value produced for `l_1240` (decl src ln 3), asm ln 15
   const i32 -8
-  Added assignment asm ln 15, prod ln 3.0, live ln 5, gen 0
-Computing generations: `l_1240` (decl src ln 3)
-  asm ln 15, prod ln 3.0, live ln 5, gen 0
+  Added assignment asm ln 15, prod ln 3.0, live ln 5, enc None
 
-🔔 2 before variables found, 1 after variables found, 1 mismatched
+#### Summary
+
+❌ 2 before variables found, 1 after variables found, 1 mismatched
 
 ### Symbolic values
 
 #### Before values
 
 Collected value for `c`
+  Assignment asm ln 19, prod ln 3.11, live ln 4, enc 0
   %conv = sext i8 %dec to i32, l3 c11
   (w32 0xFFFFFFFF)
 Collected value for `l_1240`
+  Assignment asm ln 21, prod ln 3.16, live ln 4, enc 0
   i32 -8
   (w32 0xFFFFFFF8)
-Collected value for `l_1240`
+Collected value for `c`
+  Assignment asm ln 22, prod ln 4.12, live ln 5, enc 1
   %1 = load i32, i32* %c, l4 c12
+  (w32 0xFFFFFFFF)
+Collected value for `l_1240`
+  Assignment asm ln 23, prod ln 4.12, live ln 5, enc 1
+  %1 = load i32, i32* %c, l4 c12
+  (w32 0xFFFFFFFF)
+Collected value for `c`
+  Assignment asm ln 24, prod ln 5.3, live ln 6, enc 2
+  %2 = load i32, i32* %c, l5 c3
   (w32 0xFFFFFFFF)
 
 #### After values
 
 Collected value for `l_1240`
+  Assignment asm ln 15, prod ln 3.0, live ln 5, enc 0
   i32 -8
   (w32 0xFFFFFFF8)
 
 ### Assignments
 
-Filtering redundant before assignments: `l_1240` (decl src ln 3)
+#### Collation
 
-Computing generations: `c` (decl src ln 3)
-  asm ln 19, prod ln 3.11, live ln 4, gen 0
-Computing generations: `l_1240` (decl src ln 3)
-  asm ln 21, prod ln 3.16, live ln 4, gen 0
-  asm ln 23, prod ln 4.12, live ln 5, gen 1
-Building live ranges: `c` (decl src ln 3)
-  asm ln 19, prod ln 3.11, live ln 4, gen 0
-    live ln 4, gen 0 →
-    live ln ∞, gen ∞
-Building live ranges: `l_1240` (decl src ln 3)
-  asm ln 21, prod ln 3.16, live ln 4, gen 0
-    live ln 4, gen 0 →
-    live ln 5, gen 1
-  asm ln 23, prod ln 4.12, live ln 5, gen 1
-    live ln 5, gen 1 →
-    live ln ∞, gen ∞
+Filtering before assignments: `c` (decl src ln 3)
 
-Computing generations: `l_1240` (decl src ln 3)
-  asm ln 15, prod ln 3.0, live ln 5, gen 0
-Building live ranges: `l_1240` (decl src ln 3)
-  asm ln 15, prod ln 3.0, live ln 5, gen 0
-    live ln 5, gen 0 →
-    live ln ∞, gen ∞
-
-❌ After live ranges for `c` (decl src ln 3) not found
-❌ Live ranges for `l_1240` (decl src ln 3) not fully covered: live ln 4, gen 0 < live ln 5, gen 0
-❌ Before live range coverage
-  Covered:   0
-  Uncovered: 2
-  Undefined: 0
-  Unused:    0
-  Removable: 0
-
-#### Check before against after
-
-❌ After live range for `c` (decl src ln 3) not found
-
-🔔 After `l_1240` (decl src ln 3) assn asm ln 15, prod ln 3.0, live ln 5, gen 0 coordinates don't match before assn asm ln 21, prod ln 3.16, live ln 4, gen 0
-Checking equivalence of `l_1240` (decl src ln 3) from
-  assn asm ln 21, prod ln 3.16, live ln 4, gen 0
-  i32 -8
-  (w32 0xFFFFFFF8)
-and
-  assn asm ln 15, prod ln 3.0, live ln 5, gen 0
-  i32 -8
-  (w32 0xFFFFFFF8)
-✅ After `l_1240` (decl src ln 3) assn asm ln 15, prod ln 3.0, live ln 5, gen 0 symbolic value matches before assn asm ln 21, prod ln 3.16, live ln 4, gen 0
-
-🔔 After `l_1240` (decl src ln 3) assn asm ln 15, prod ln 3.0, live ln 5, gen 0 coordinates don't match before assn asm ln 23, prod ln 4.12, live ln 5, gen 1
-Checking equivalence of `l_1240` (decl src ln 3) from
-  assn asm ln 23, prod ln 4.12, live ln 5, gen 1
+Checking equivalence of `c` (decl src ln 3) from
+  assn asm ln 22, prod ln 4.12, live ln 5, enc 1
   %1 = load i32, i32* %c, l4 c12
   (w32 0xFFFFFFFF)
 and
-  assn asm ln 15, prod ln 3.0, live ln 5, gen 0
+  assn asm ln 19, prod ln 3.11, live ln 4, enc 0
+  %conv = sext i8 %dec to i32, l3 c11
+  (w32 0xFFFFFFFF)
+🔔 Removing: asm ln 22, prod ln 4.12, live ln 5, enc 1
+
+Checking equivalence of `c` (decl src ln 3) from
+  assn asm ln 24, prod ln 5.3, live ln 6, enc 2
+  %2 = load i32, i32* %c, l5 c3
+  (w32 0xFFFFFFFF)
+and
+  assn asm ln 19, prod ln 3.11, live ln 4, enc 0
+  %conv = sext i8 %dec to i32, l3 c11
+  (w32 0xFFFFFFFF)
+🔔 Removing: asm ln 24, prod ln 5.3, live ln 6, enc 2
+
+Filtering before assignments: `l_1240` (decl src ln 3)
+
+Checking equivalence of `l_1240` (decl src ln 3) from
+  assn asm ln 23, prod ln 4.12, live ln 5, enc 1
+  %1 = load i32, i32* %c, l4 c12
+  (w32 0xFFFFFFFF)
+and
+  assn asm ln 21, prod ln 3.16, live ln 4, enc 0
   i32 -8
   (w32 0xFFFFFFF8)
-❌ After `l_1240` (decl src ln 3) assn asm ln 15, prod ln 3.0, live ln 5, gen 0 symbolic value doesn't match before assn asm ln 23, prod ln 4.12, live ln 5, gen 1
 
-❌ Before symbolic values checked against after
-  Matching:    1
-  Mismatched:  2
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+Collating encountered before assignments: `c` (decl src ln 3)
+  asm ln 19, prod ln 3.11, live ln 4, enc 0
+Collating encountered before assignments: `l_1240` (decl src ln 3)
+  asm ln 21, prod ln 3.16, live ln 4, enc 0
+  asm ln 23, prod ln 4.12, live ln 5, enc 1
 
-#### Check after against before
+Collating encountered after assignments: `l_1240` (decl src ln 3)
+  asm ln 15, prod ln 3.0, live ln 5, enc 0
 
-🔔 Before `l_1240` (decl src ln 3) assn asm ln 21, prod ln 3.16, live ln 4, gen 0 coordinates don't match after assn asm ln 15, prod ln 3.0, live ln 5, gen 0
+#### Check after using before as reference
+
+❌ Before encountered assns for `c` (decl src ln 3) not found in after
+Assignments:         c
+  Reference:         1
+  Test:              0
+Matching:
+  Matching Coords:   0
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+❌ Before encountered assn for `l_1240` (decl src ln 3) at asm ln 23, prod ln 4.12, live ln 5, enc 1 not found in after
+
+❌ Before `l_1240` (decl src ln 3) assn asm ln 21, prod ln 3.16, live ln 4, enc 0 coordinates don't match after assn asm ln 15, prod ln 3.0, live ln 5, enc 0
 Checking equivalence of `l_1240` (decl src ln 3) from
-  assn asm ln 15, prod ln 3.0, live ln 5, gen 0
+  assn asm ln 15, prod ln 3.0, live ln 5, enc 0
   i32 -8
   (w32 0xFFFFFFF8)
 and
-  assn asm ln 21, prod ln 3.16, live ln 4, gen 0
+  assn asm ln 21, prod ln 3.16, live ln 4, enc 0
   i32 -8
   (w32 0xFFFFFFF8)
-✅ Before `l_1240` (decl src ln 3) assn asm ln 21, prod ln 3.16, live ln 4, gen 0 symbolic value matches after assn asm ln 15, prod ln 3.0, live ln 5, gen 0
+✅ Before `l_1240` (decl src ln 3) assn asm ln 21, prod ln 3.16, live ln 4, enc 0 symbolic value matches after assn asm ln 15, prod ln 3.0, live ln 5, enc 0
 
-✅ After symbolic values checked against before
-  Matching:    1
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `l_1240` assns checked using before as reference
+Assignments:         l_1240
+  Reference:         2
+  Test:              1
+Matching:
+  Matching Coords:   0
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 1
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   1
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
+
+Assignments:
+  Reference:                 3
+  Test:                      1 ( 33.33% of ref )
+Matching:
+  Matching Coords:           0 (  0.00% of ref )
+  Matching Value:            1 ( 33.33% of ref )
+Consistency Errors:
+  Mismatched Coords:         1 ( 33.33% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           2 ( 66.67% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          2 ( 66.67% of ref )
+  Complete:                  2 ( 66.67% of ref )
+  Within Time Limit:         2 ( 66.67% of ref )
+  Within Fork Limit:         2 ( 66.67% of ref )
+Test Execution:
+  Function Covered:          1 (100.00% of test)
+  Complete:                  1 (100.00% of test)
+  Within Time Limit:         1 (100.00% of test)
+  Within Fork Limit:         1 (100.00% of test)
 
 ❌ Some consistency checks failed
