@@ -1039,7 +1039,12 @@ Parsed query
 Filtering after assignments: `cheese` (decl src ln 6)
 
 Variable intrinsic with undef input
-❌ After `cheese` (decl src ln 6) assn asm ln 27, prod ln 6.0, live ln 13, enc 1 has no symbolic value from i32 undef
+Checking equivalence of `cheese` (decl src ln 6) from
+  assn asm ln 27, prod ln 6.0, live ln 13, enc 1
+  i32 undef
+and
+  assn asm ln 18, prod ln 6.16, live ln 10, enc 0
+  %foo.0.foo.0.16 = load volatile i32, i32* %foo, !tbaa !21, l6 c16
 
 Filtering after assignments: `a` (decl src ln 7)
 

@@ -427,19 +427,42 @@ Parsed query
 Filtering after assignments: `bob` (decl src ln 2)
 
 Variable intrinsic with undef input
-❌ After `bob` (decl src ln 2) assn asm ln 24, prod ln 2.0, live ln 4, enc 1 has no symbolic value from i32 undef
+Checking equivalence of `bob` (decl src ln 2) from
+  assn asm ln 24, prod ln 2.0, live ln 4, enc 1
+  i32 undef
+and
+  assn asm ln 10, prod ln 2.0, live ln 3, enc 0
+  i32 %blah
 
 Variable intrinsic with undef input
 Variable intrinsic with undef input
-❌ After `bob` (decl src ln 2) assn asm ln 26, prod ln 2.0, live ln 4, enc 2 has no symbolic value from i32 undef
+Checking equivalence of `bob` (decl src ln 2) from
+  assn asm ln 26, prod ln 2.0, live ln 4, enc 2
+  i32 undef
+and
+  assn asm ln 24, prod ln 2.0, live ln 4, enc 1
+  i32 undef
+🔔 Removing: asm ln 26, prod ln 2.0, live ln 4, enc 2
 
 Variable intrinsic with undef input
 Variable intrinsic with undef input
-❌ After `bob` (decl src ln 2) assn asm ln 15, prod ln 2.0, live ln 3, enc 3 has no symbolic value from i32 undef
+Checking equivalence of `bob` (decl src ln 2) from
+  assn asm ln 15, prod ln 2.0, live ln 3, enc 3
+  i32 undef
+and
+  assn asm ln 24, prod ln 2.0, live ln 4, enc 1
+  i32 undef
+🔔 Removing: asm ln 15, prod ln 2.0, live ln 3, enc 3
 
 Variable intrinsic with undef input
 Variable intrinsic with undef input
-❌ After `bob` (decl src ln 2) assn asm ln 16, prod ln 2.0, live ln 3, enc 4 has no symbolic value from i32 undef
+Checking equivalence of `bob` (decl src ln 2) from
+  assn asm ln 16, prod ln 2.0, live ln 3, enc 4
+  i32 undef
+and
+  assn asm ln 24, prod ln 2.0, live ln 4, enc 1
+  i32 undef
+🔔 Removing: asm ln 16, prod ln 2.0, live ln 3, enc 4
 
 Collating encountered before assignments: `blah` (decl src ln 1)
   asm ln 12, prod ln 1.0, live ln 3, enc 0
@@ -532,16 +555,10 @@ and
   %inc = add nsw i32 %4, 1, l3 c37
 ❌ Before `bob` (decl src ln 2) assn asm ln 38, prod ln 3.37, live ln 4, enc 1 symbolic value doesn't match after assn asm ln 24, prod ln 2.0, live ln 4, enc 1
 
-❌ After encountered assn for `bob` (decl src ln 2) at asm ln 26, prod ln 2.0, live ln 4, enc 2 not found in before
-
-❌ After encountered assn for `bob` (decl src ln 2) at asm ln 15, prod ln 2.0, live ln 3, enc 3 not found in before
-
-❌ After encountered assn for `bob` (decl src ln 2) at asm ln 16, prod ln 2.0, live ln 3, enc 4 not found in before
-
 ❌ After `bob` assns checked using before as reference
 Assignments:         bob
   Reference:         2
-  Test:              5
+  Test:              2
 Matching:
   Matching Coords:   1
   Matching Value:    1
@@ -552,7 +569,7 @@ Availability Errors:
   Ref Not Encount.:  0
   Ref Not in Test:   1
   Test Not Encount.: 0
-  Test Not in Ref:   3
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
   Removable:         0
@@ -572,7 +589,7 @@ Test Execution:
 
 Assignments:
   Reference:                 3
-  Test:                      6 (200.00% of ref )
+  Test:                      3 (100.00% of ref )
 Matching:
   Matching Coords:           2 ( 66.67% of ref )
   Matching Value:            2 ( 66.67% of ref )
@@ -583,7 +600,7 @@ Availability Errors:
   Ref Not Encount.:          0 (  0.00% of ref )
   Ref Not in Test:           1 ( 33.33% of ref )
   Test Not Encount.:         0 (  0.00% of test)
-  Test Not in Ref:           3 ( 50.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
 Warnings:
   Unused:                    0 (  0.00% of ref )
   Removable:                 0 (  0.00% of ref )
@@ -594,10 +611,10 @@ Reference Execution:
   Within Time Limit:         3 (100.00% of ref )
   Within Fork Limit:         3 (100.00% of ref )
 Test Execution:
-  Function Covered:          6 (100.00% of test)
-  Complete:                  6 (100.00% of test)
-  Within Time Limit:         6 (100.00% of test)
-  Within Fork Limit:         6 (100.00% of test)
+  Function Covered:          3 (100.00% of test)
+  Complete:                  3 (100.00% of test)
+  Within Time Limit:         3 (100.00% of test)
+  Within Fork Limit:         3 (100.00% of test)
 
 ❌ Some consistency checks failed
 ++ dirname ./check-fix.sh
