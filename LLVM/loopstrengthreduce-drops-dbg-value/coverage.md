@@ -7,3 +7,4 @@ This example tests support for:
 * Value expressions with DW_OP_plus_uconst operation
 * Phi nodes flowing across basic blocks
 * Produced line info for phi inputs
+* Undef assignments
