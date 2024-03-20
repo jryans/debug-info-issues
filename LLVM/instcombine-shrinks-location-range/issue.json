@@ -2,7 +2,7 @@
   "id": 39133,
   "summary": "InstCombine pointer type-cast sinking reduces debug location ranges",
   "issueDetectable": true,
-  "issueDetector": "asm ln 10, prod ln 5.3, live ln 6, gen 0",
+  "issueDetector": "asm ln 10, prod ln 5.3, live ln 6, enc 0",
   "fixVerifiable": true,
-  "fixVerifier": "asm ln 11, prod ln 5.3, live ln 6, gen 1"
+  "fixVerifier": "asm ln 11, prod ln 5.3, live ln 6, enc 1"
 }

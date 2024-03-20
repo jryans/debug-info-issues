@@ -1,4 +1,4 @@
-^D++ dirname ./build.sh
+++ dirname ./build.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -35,6 +35,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -74,14 +75,14 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
 + mkdir -p klee-out-before
 + /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-before/final.bc example-before.ll
 + mkdir -p klee-out-after
 + /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-after/final.bc example-after.ll
 + mkdir -p klee-out-after-fixed
 + /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-after-fixed/final.bc example-after-fixed.ll
-^D++ dirname ./check-issue.sh
+++ dirname ./check-issue.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -118,6 +119,7 @@
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -157,8 +159,8 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-+ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-before/final.bc klee-out-after/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-before/final.bc klee-out-after/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-before/final.bc and klee-out-after/final.bc for debug info consistency…
 
 ## Functions
@@ -169,23 +171,23 @@ Checking klee-out-before/final.bc and klee-out-after/final.bc for debug info con
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `h` (decl src ln 4)
+#### Before variables
+
 Value produced for `h` (decl src ln 4), asm ln 10
   %gep = getelementptr i64, i64* %a, i64 1, asm ln 9
-🔔 Value produced for `h` (decl src ln 4): live ln too early, using produced ln + 1
-  Added assignment asm ln 10, prod ln 5.3, live ln 6, gen 0
-Computing generations: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 10, prod ln 5.3, live ln 6, enc None
 
-After variable `h` (decl src ln 4)
+#### After variables
+
 Value produced for `h` (decl src ln 4), asm ln 10
   %gep = getelementptr i64, i64* %a, i64 1, asm ln 9
-🔔 Value produced for `h` (decl src ln 4): live ln too early, using produced ln + 1
-  Added assignment asm ln 10, prod ln 5.3, live ln 6, gen 0
-Computing generations: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 10, prod ln 5.3, live ln 6, enc None
+
+#### Summary
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -195,103 +197,96 @@ Computing generations: `h` (decl src ln 4)
 
 [0;35mKLEE: WARNING: Unable to load source file `a.c`
 [0mCollected value for `h`
-  Concrete pointer resolves to a.deref, offset (w64 0x8)
-  Created deref expr (ReadLSB w64 (w32 0x8) a.deref)
-  Replaced concrete pointer with hash (w64 0xFCFCC8561BD370D6)
+  Assignment asm ln 10, prod ln 5.3, live ln 6, enc 0
+  Concrete pointer resolves to foo.a.deref, offset (w64 0x8)
+  Created deref expr (ReadLSB w64 (w32 0x8) foo.a.deref)
+  Replaced concrete pointer with hash (w64 0xD9C84865730624A3)
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 
 #### After values
 
 Collected value for `h`
-  Concrete pointer resolves to a.deref, offset (w64 0x8)
-  Created deref expr (ReadLSB w64 (w32 0x8) a.deref)
-  Replaced concrete pointer with hash (w64 0xFCFCC8561BD370D6)
+  Assignment asm ln 10, prod ln 5.3, live ln 6, enc 0
+  Concrete pointer resolves to foo.a.deref, offset (w64 0x8)
+  Created deref expr (ReadLSB w64 (w32 0x8) foo.a.deref)
+  Replaced concrete pointer with hash (w64 0xD9C84865730624A3)
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 
 ### Assignments
 
-Computing generations: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
 
-Computing generations: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+Collating encountered before assignments: `h` (decl src ln 4)
+  asm ln 10, prod ln 5.3, live ln 6, enc 0
 
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
-  Undefined: 0
-  Unused:    0
-  Removable: 0
+Collating encountered after assignments: `h` (decl src ln 4)
+  asm ln 10, prod ln 5.3, live ln 6, enc 0
 
-#### Check before against after
+#### Check after using before as reference
 
 Checking equivalence of `h` (decl src ln 4) from
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 10, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 and
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 10, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
-✅ After `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, gen 0 symbolic value matches before assn asm ln 10, prod ln 5.3, live ln 6, gen 0
+  (w64 0xD9C84865730624A3)
+✅ Before `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, enc 0 symbolic value matches after assn asm ln 10, prod ln 5.3, live ln 6, enc 0
 
-✅ Before symbolic values checked against after
-  Matching:    1
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-#### Check after against before
-
-Checking equivalence of `h` (decl src ln 4) from
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
-and
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
-✅ Before `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, gen 0 symbolic value matches after assn asm ln 10, prod ln 5.3, live ln 6, gen 0
-
-✅ After symbolic values checked against before
-  Matching:    1
-  Mismatched:  0
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+✅ After `h` assns checked using before as reference
+Assignments:         h
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Function `bar`
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `k` (decl src ln 2)
+#### Before variables
+
 Value produced for `k` (decl src ln 2), asm ln 18
   %gep = getelementptr i64, i64* %a, i64 %b, asm ln 17
-🔔 Value produced for `k` (decl src ln 2): missing live ln, using produced ln + 1
-  Added assignment asm ln 18, prod ln 5.3, live ln 6, gen 0
-Computing generations: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
+  🔔 Missing live ln, using produced ln + 1
+  Added assignment asm ln 18, prod ln 5.3, live ln 6, enc None
 
-After variable `k` (decl src ln 2)
+#### After variables
+
 Value produced for `k` (decl src ln 2), asm ln 18
   %gep = getelementptr i64, i64* %a, i64 %b, asm ln 17
-🔔 Value produced for `k` (decl src ln 2): missing live ln, using produced ln + 1
-  Added assignment asm ln 18, prod ln 5.3, live ln 6, gen 0
-Computing generations: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
+  🔔 Missing live ln, using produced ln + 1
+  Added assignment asm ln 18, prod ln 5.3, live ln 6, enc None
+
+#### Summary
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -300,128 +295,139 @@ Computing generations: `k` (decl src ln 2)
 #### Before values
 
 Collected value for `k`
+  Assignment asm ln 18, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x10DBF2680)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x1178544E0)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
-❌ Unable to execute all before program states
+🔔 Unable to execute all before program states
 
 #### After values
 
 Collected value for `k`
+  Assignment asm ln 18, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x10DBF29D0)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x117854130)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
-❌ Unable to execute all after program states
+🔔 Unable to execute all after program states
 
 ### Assignments
 
-Computing generations: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
 
-Computing generations: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+Collating encountered before assignments: `k` (decl src ln 2)
+  asm ln 18, prod ln 5.3, live ln 6, enc 0
 
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
-  Undefined: 0
-  Unused:    0
-  Removable: 0
+Collating encountered after assignments: `k` (decl src ln 2)
+  asm ln 18, prod ln 5.3, live ln 6, enc 0
 
-#### Check before against after
+#### Check after using before as reference
 
 Checking equivalence of `k` (decl src ln 2) from
-  assn asm ln 18, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 18, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x10DBF2680)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x117854130)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 and
-  assn asm ln 18, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 18, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x10DBF29D0)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x1178544E0)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 Query to parse
-array b[8] : w32 -> w8 = symbolic
-array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x10DBF2680)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x10DBF29D0)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))))
+array bar.b[8] : w32 -> w8 = symbolic
+array bar.b[8] : w32 -> w8 = symbolic
+(query [] (Eq (Add w64 (w64 0x117854130)
+              (Add w64 N0:(Mul w64 (w64 0x8)
+                                   (ReadLSB w64 (w32 0x0) bar.b))
+                       N0))
+     (Add w64 (w64 0x1178544E0)
+              (Add w64 N1:(Mul w64 (w64 0x8)
+                                   (ReadLSB w64 (w32 0x0) bar.b))
+                       N1))))
 Parsed query
-(Eq (Add w64 (w64 0x10DBF2680)
-              N0:(Mul w64 (w64 0x8)
-                          (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x10DBF29D0) N0))
-❌ After `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 18, prod ln 5.3, live ln 6, gen 0
+(Eq (Add w64 (w64 0x117854130)
+              N0:(Add w64 N1:(Mul w64 (w64 0x8)
+                                      (ReadLSB w64 (w32 0x0) bar.b))
+                          N1))
+     (Add w64 (w64 0x1178544E0) N0))
+❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, enc 0 symbolic value doesn't match after assn asm ln 18, prod ln 5.3, live ln 6, enc 0
 
-❌ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-#### Check after against before
-
-Checking equivalence of `k` (decl src ln 2) from
-  assn asm ln 18, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x10DBF29D0)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
-and
-  assn asm ln 18, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x10DBF2680)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
-Query to parse
-array b[8] : w32 -> w8 = symbolic
-array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x10DBF29D0)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x10DBF2680)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))))
-Parsed query
-(Eq (Add w64 (w64 0x10DBF29D0)
-              N0:(Mul w64 (w64 0x8)
-                          (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x10DBF2680) N0))
-❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 18, prod ln 5.3, live ln 6, gen 0
-
-❌ After symbolic values checked against before
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `k` assns checked using before as reference
+Assignments:         k
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  1
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
 
+Assignments:
+  Reference:                 2
+  Test:                      2 (100.00% of ref )
+Matching:
+  Matching Coords:           2 (100.00% of ref )
+  Matching Value:            1 ( 50.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          1 ( 50.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           0 (  0.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          2 (100.00% of ref )
+  Complete:                  1 ( 50.00% of ref )
+  Within Time Limit:         2 (100.00% of ref )
+  Within Fork Limit:         2 (100.00% of ref )
+Test Execution:
+  Function Covered:          2 (100.00% of test)
+  Complete:                  1 ( 50.00% of test)
+  Within Time Limit:         2 (100.00% of test)
+  Within Fork Limit:         2 (100.00% of test)
+
 ❌ Some consistency checks failed
-^D++ dirname ./check-fix.sh
+++ dirname ./check-fix.sh
 + SCRIPT_DIR=.
 + source ./../vars.sh
 ++ set -eux
@@ -458,6 +464,7 @@ Parsed query
 +++ CC_CG_IR_OPTS='-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope'
 +++ CC_O0_OPTS=
 +++ CC_O1_OPTS=-O1
++++ CC_O2_OPTS=-O2
 +++ CC_LINK_SYSROOT_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 +++ CC_LINK_OPTS='-Xlinker -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
 ++++ llvm release-clang-lldb-13.0.0 opt
@@ -497,8 +504,8 @@ Parsed query
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace'
-+ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-before/final.bc klee-out-after-fixed/final.bc --debug-only=check-debug-info,independent-function,values-collector,variable --debug-execution-trace
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-before/final.bc klee-out-after-fixed/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
 Checking klee-out-before/final.bc and klee-out-after-fixed/final.bc for debug info consistency…
 
 ## Functions
@@ -509,29 +516,27 @@ Checking klee-out-before/final.bc and klee-out-after-fixed/final.bc for debug in
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `h` (decl src ln 4)
+#### Before variables
+
 Value produced for `h` (decl src ln 4), asm ln 10
   %gep = getelementptr i64, i64* %a, i64 1, asm ln 9
-🔔 Value produced for `h` (decl src ln 4): live ln too early, using produced ln + 1
-  Added assignment asm ln 10, prod ln 5.3, live ln 6, gen 0
-Computing generations: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 10, prod ln 5.3, live ln 6, enc None
 
-After variable `h` (decl src ln 4)
+#### After variables
+
 Value produced for `h` (decl src ln 4), asm ln 9
   arg 0
-🔔 Value produced for `h` (decl src ln 4): live ln too early, using produced ln + 1
-  Added assignment asm ln 9, prod ln 5.3, live ln 6, gen 0
-After variable `h` (decl src ln 4)
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 9, prod ln 5.3, live ln 6, enc None
 Value produced for `h` (decl src ln 4), asm ln 11
   %gep = getelementptr i64, i64* %a, i64 1, asm ln 10
-🔔 Value produced for `h` (decl src ln 4): live ln too early, using produced ln + 1
-  Added assignment asm ln 11, prod ln 5.3, live ln 6, gen 0
-Computing generations: `h` (decl src ln 4)
-  asm ln 9, prod ln 5.3, live ln 6, gen 0
-  asm ln 11, prod ln 5.3, live ln 6, gen 1
+  🔔 Live ln too early, using produced ln + 1
+  Added assignment asm ln 11, prod ln 5.3, live ln 6, enc None
+
+#### Summary
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -541,140 +546,130 @@ Computing generations: `h` (decl src ln 4)
 
 [0;35mKLEE: WARNING: Unable to load source file `a.c`
 [0mCollected value for `h`
-  Concrete pointer resolves to a.deref, offset (w64 0x8)
-  Created deref expr (ReadLSB w64 (w32 0x8) a.deref)
-  Replaced concrete pointer with hash (w64 0xFCFCC8561BD370D6)
+  Assignment asm ln 10, prod ln 5.3, live ln 6, enc 0
+  Concrete pointer resolves to foo.a.deref, offset (w64 0x8)
+  Created deref expr (ReadLSB w64 (w32 0x8) foo.a.deref)
+  Replaced concrete pointer with hash (w64 0xD9C84865730624A3)
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 
 #### After values
 
 Collected value for `h`
-  Concrete pointer resolves to a.deref, offset (w64 0x0)
-  Created deref expr (ReadLSB w64 (w32 0x0) a.deref)
-  Replaced concrete pointer with hash (w64 0x977FECA2A8C97DE7)
+  Assignment asm ln 9, prod ln 5.3, live ln 6, enc 0
+  Concrete pointer resolves to foo.a.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) foo.a.deref)
+  Replaced concrete pointer with hash (w64 0x7FBA662CD90C074)
   i64* %a
-  (w64 0x977FECA2A8C97DE7)
+  (w64 0x7FBA662CD90C074)
 Collected value for `h`
-  Concrete pointer resolves to a.deref, offset (w64 0x8)
-  Created deref expr (ReadLSB w64 (w32 0x8) a.deref)
-  Replaced concrete pointer with hash (w64 0xFCFCC8561BD370D6)
+  Assignment asm ln 11, prod ln 5.3, live ln 6, enc 1
+  Concrete pointer resolves to foo.a.deref, offset (w64 0x8)
+  Created deref expr (ReadLSB w64 (w32 0x8) foo.a.deref)
+  Replaced concrete pointer with hash (w64 0xD9C84865730624A3)
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 
 ### Assignments
 
-Filtering redundant after assignments: `h` (decl src ln 4)
+#### Collation
 
-Computing generations: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `h` (decl src ln 4)
-  asm ln 10, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+Filtering after assignments: `h` (decl src ln 4)
 
-Computing generations: `h` (decl src ln 4)
-  asm ln 9, prod ln 5.3, live ln 6, gen 0
-  asm ln 11, prod ln 5.3, live ln 6, gen 1
-Building live ranges: `h` (decl src ln 4)
-  asm ln 9, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln 6, gen 1
-  asm ln 11, prod ln 5.3, live ln 6, gen 1
-    live ln 6, gen 1 →
-    live ln ∞, gen ∞
-
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
-  Undefined: 0
-  Unused:    0
-  Removable: 0
-
-#### Check before against after
-
-Pushed initial value onto stack: (w64 0x977FECA2A8C97DE7)
-plus_uconst: (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8))
-Result: (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8))
+Pushed initial value onto stack: (w64 0x7FBA662CD90C074)
+plus_uconst: (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8))
+Result: (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8))
 Checking equivalence of `h` (decl src ln 4) from
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 11, prod ln 5.3, live ln 6, enc 1
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 and
-  assn asm ln 9, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 9, prod ln 5.3, live ln 6, enc 0
   i64* %a
-  (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8))
+  (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8))
 Query to parse
-(query [] (Eq (w64 0xFCFCC8561BD370D6) (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8))))
+(query [] (Eq (w64 0xD9C84865730624A3) (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8))))
 Parsed query
-(Eq (w64 0xFCFCC8561BD370D6) (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8)))
-❌ After `h` (decl src ln 4) assn asm ln 9, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 10, prod ln 5.3, live ln 6, gen 0
+(Eq (w64 0xD9C84865730624A3) (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8)))
 
-❌ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+Collating encountered before assignments: `h` (decl src ln 4)
+  asm ln 10, prod ln 5.3, live ln 6, enc 0
 
-#### Check after against before
+Collating encountered after assignments: `h` (decl src ln 4)
+  asm ln 9, prod ln 5.3, live ln 6, enc 0
+  asm ln 11, prod ln 5.3, live ln 6, enc 1
+
+#### Check after using before as reference
 
 Checking equivalence of `h` (decl src ln 4) from
-  assn asm ln 9, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 9, prod ln 5.3, live ln 6, enc 0
   i64* %a
-  (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8))
+  (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8))
 and
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 10, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
+  (w64 0xD9C84865730624A3)
 Query to parse
-(query [] (Eq (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8)) (w64 0xFCFCC8561BD370D6)))
+(query [] (Eq (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8)) (w64 0xD9C84865730624A3)))
 Parsed query
-(Eq (Add w64 (w64 0x977FECA2A8C97DE7) (w64 0x8)) (w64 0xFCFCC8561BD370D6))
-❌ Before `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 9, prod ln 5.3, live ln 6, gen 0
+(Eq (Add w64 (w64 0x7FBA662CD90C074) (w64 0x8)) (w64 0xD9C84865730624A3))
+❌ Before `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, enc 0 symbolic value doesn't match after assn asm ln 9, prod ln 5.3, live ln 6, enc 0
 
-🔔 Before `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, gen 0 coordinates don't match after assn asm ln 11, prod ln 5.3, live ln 6, gen 1
-Checking equivalence of `h` (decl src ln 4) from
-  assn asm ln 11, prod ln 5.3, live ln 6, gen 1
-  %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
-and
-  assn asm ln 10, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 1
-  (w64 0xFCFCC8561BD370D6)
-✅ Before `h` (decl src ln 4) assn asm ln 10, prod ln 5.3, live ln 6, gen 0 symbolic value matches after assn asm ln 11, prod ln 5.3, live ln 6, gen 1
+❌ After encountered assn for `h` (decl src ln 4) at asm ln 11, prod ln 5.3, live ln 6, enc 1 not found in before
 
-❌ After symbolic values checked against before
-  Matching:    1
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `h` assns checked using before as reference
+Assignments:         h
+  Reference:         1
+  Test:              2
+Matching:
+  Matching Coords:   1
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  1
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   1
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Function `bar`
 
 ✅ Before and after function names match
 
-### Variables
+### Variable events
 
-Before variable `k` (decl src ln 2)
+#### Before variables
+
 Value produced for `k` (decl src ln 2), asm ln 18
   %gep = getelementptr i64, i64* %a, i64 %b, asm ln 17
-🔔 Value produced for `k` (decl src ln 2): missing live ln, using produced ln + 1
-  Added assignment asm ln 18, prod ln 5.3, live ln 6, gen 0
-Computing generations: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
+  🔔 Missing live ln, using produced ln + 1
+  Added assignment asm ln 18, prod ln 5.3, live ln 6, enc None
 
-After variable `k` (decl src ln 2)
+#### After variables
+
 After variable intrinsic with undef input, asm ln 18, ignoring undefined variable
   @dbg.value(i64* undef, !16), l5 c3
-After variable `k` (decl src ln 2)
 Value produced for `k` (decl src ln 2), asm ln 20
   %gep = getelementptr i64, i64* %a, i64 %b, asm ln 19
-🔔 Value produced for `k` (decl src ln 2): missing live ln, using produced ln + 1
-  Added assignment asm ln 20, prod ln 5.3, live ln 6, gen 0
-Computing generations: `k` (decl src ln 2)
-  asm ln 20, prod ln 5.3, live ln 6, gen 0
+  🔔 Missing live ln, using produced ln + 1
+  Added assignment asm ln 20, prod ln 5.3, live ln 6, enc None
+
+#### Summary
 
 ✅ 1 before variables found, 1 after variables found, 0 mismatched
 
@@ -683,124 +678,135 @@ Computing generations: `k` (decl src ln 2)
 #### Before values
 
 Collected value for `k`
+  Assignment asm ln 18, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x11676A710)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x117CF44D0)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
-❌ Unable to execute all before program states
+🔔 Unable to execute all before program states
 
 #### After values
 
 Collected value for `k`
+  Assignment asm ln 20, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x11676A970)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x117CF4380)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 [0;1;31mKLEE: ERROR: a.c:2: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m
-❌ Unable to execute all after program states
+🔔 Unable to execute all after program states
 
 ### Assignments
 
-Computing generations: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `k` (decl src ln 2)
-  asm ln 18, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+#### Collation
 
-Computing generations: `k` (decl src ln 2)
-  asm ln 20, prod ln 5.3, live ln 6, gen 0
-Building live ranges: `k` (decl src ln 2)
-  asm ln 20, prod ln 5.3, live ln 6, gen 0
-    live ln 6, gen 0 →
-    live ln ∞, gen ∞
+Collating encountered before assignments: `k` (decl src ln 2)
+  asm ln 18, prod ln 5.3, live ln 6, enc 0
 
-✅ Before live range coverage
-  Covered:   1
-  Uncovered: 0
-  Undefined: 0
-  Unused:    0
-  Removable: 0
+Collating encountered after assignments: `k` (decl src ln 2)
+  asm ln 20, prod ln 5.3, live ln 6, enc 0
 
-#### Check before against after
+#### Check after using before as reference
 
 Checking equivalence of `k` (decl src ln 2) from
-  assn asm ln 18, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 20, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x11676A710)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x117CF4380)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 and
-  assn asm ln 20, prod ln 5.3, live ln 6, gen 0
+  assn asm ln 18, prod ln 5.3, live ln 6, enc 0
   %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x11676A970)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
+  (Add w64 (w64 0x117CF44D0)
+          (Add w64 N0:(Mul w64 (w64 0x8)
+                               (ReadLSB w64 (w32 0x0) bar.b))
+                   N0))
 Query to parse
-array b[8] : w32 -> w8 = symbolic
-array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x11676A710)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x11676A970)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))))
+array bar.b[8] : w32 -> w8 = symbolic
+array bar.b[8] : w32 -> w8 = symbolic
+(query [] (Eq (Add w64 (w64 0x117CF4380)
+              (Add w64 N0:(Mul w64 (w64 0x8)
+                                   (ReadLSB w64 (w32 0x0) bar.b))
+                       N0))
+     (Add w64 (w64 0x117CF44D0)
+              (Add w64 N1:(Mul w64 (w64 0x8)
+                                   (ReadLSB w64 (w32 0x0) bar.b))
+                       N1))))
 Parsed query
-(Eq (Add w64 (w64 0x11676A710)
-              N0:(Mul w64 (w64 0x8)
-                          (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x11676A970) N0))
-❌ After `k` (decl src ln 2) assn asm ln 20, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match before assn asm ln 18, prod ln 5.3, live ln 6, gen 0
+(Eq (Add w64 (w64 0x117CF4380)
+              N0:(Add w64 N1:(Mul w64 (w64 0x8)
+                                      (ReadLSB w64 (w32 0x0) bar.b))
+                          N1))
+     (Add w64 (w64 0x117CF44D0) N0))
+❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, enc 0 symbolic value doesn't match after assn asm ln 20, prod ln 5.3, live ln 6, enc 0
 
-❌ Before symbolic values checked against after
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
-
-#### Check after against before
-
-Checking equivalence of `k` (decl src ln 2) from
-  assn asm ln 20, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x11676A970)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
-and
-  assn asm ln 18, prod ln 5.3, live ln 6, gen 0
-  %gep = getelementptr i64, i64* %a, i64 %b
-  (Add w64 (w64 0x11676A710)
-          (Mul w64 (w64 0x8)
-                   (ReadLSB w64 (w32 0x0) b)))
-Query to parse
-array b[8] : w32 -> w8 = symbolic
-array b[8] : w32 -> w8 = symbolic
-(query [] (Eq (Add w64 (w64 0x11676A970)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x11676A710)
-              (Mul w64 (w64 0x8)
-                       (ReadLSB w64 (w32 0x0) b)))))
-Parsed query
-(Eq (Add w64 (w64 0x11676A970)
-              N0:(Mul w64 (w64 0x8)
-                          (ReadLSB w64 (w32 0x0) b)))
-     (Add w64 (w64 0x11676A710) N0))
-❌ Before `k` (decl src ln 2) assn asm ln 18, prod ln 5.3, live ln 6, gen 0 symbolic value doesn't match after assn asm ln 20, prod ln 5.3, live ln 6, gen 0
-
-❌ After symbolic values checked against before
-  Matching:    0
-  Mismatched:  1
-  Unused:      0
-  Unreachable: 0
-  Removable:   0
+❌ After `k` assns checked using before as reference
+Assignments:         k
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    0
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  1
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          false
+  Within Time Limit: true
+  Within Fork Limit: true
 
 ## Summary
+
+Assignments:
+  Reference:                 2
+  Test:                      3 (150.00% of ref )
+Matching:
+  Matching Coords:           2 (100.00% of ref )
+  Matching Value:            0 (  0.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          2 (100.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           0 (  0.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           1 ( 33.33% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          2 (100.00% of ref )
+  Complete:                  1 ( 50.00% of ref )
+  Within Time Limit:         2 (100.00% of ref )
+  Within Fork Limit:         2 (100.00% of ref )
+Test Execution:
+  Function Covered:          3 (100.00% of test)
+  Complete:                  2 ( 66.67% of test)
+  Within Time Limit:         3 (100.00% of test)
+  Within Fork Limit:         3 (100.00% of test)
 
 ❌ Some consistency checks failed
