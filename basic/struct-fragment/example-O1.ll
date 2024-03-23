@@ -3,24 +3,30 @@ source_filename = "example.c"
 target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-apple-macosx14.0.0"
 
-; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn
-define i32 @example_struct(i32 returned %n) local_unnamed_addr #0 !dbg !11 {
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @example(i32 %n) local_unnamed_addr #0 !dbg !11 {
 entry:
-  call void @llvm.dbg.declare(metadata [12 x i8]* undef, metadata !17, metadata !DIExpression(DW_OP_LLVM_fragment, 32, 96)), !dbg !23
-  call void @llvm.dbg.value(metadata i32 %n, metadata !16, metadata !DIExpression()), !dbg !24
-  call void @llvm.dbg.value(metadata i32 %n, metadata !17, metadata !DIExpression(DW_OP_LLVM_fragment, 0, 32)), !dbg !24
-  ret i32 %n, !dbg !25
+  call void @llvm.dbg.value(metadata i32 %n, metadata !16, metadata !DIExpression()), !dbg !22
+  call void @llvm.dbg.value(metadata i32 %n, metadata !17, metadata !DIExpression(DW_OP_LLVM_fragment, 0, 32)), !dbg !22
+  %add = add nsw i32 %n, 1, !dbg !23
+  call void @llvm.dbg.value(metadata i32 %add, metadata !17, metadata !DIExpression(DW_OP_LLVM_fragment, 32, 32)), !dbg !22
+  call void @read(i32 %n) #3, !dbg !24
+  call void @read(i32 %add) #3, !dbg !25
+  %mul = shl nsw i32 %n, 1, !dbg !26
+  call void @llvm.dbg.value(metadata i32 %mul, metadata !17, metadata !DIExpression(DW_OP_LLVM_fragment, 0, 32)), !dbg !22
+  call void @llvm.dbg.value(metadata i32 %mul, metadata !17, metadata !DIExpression(DW_OP_plus_uconst, 1, DW_OP_stack_value, DW_OP_LLVM_fragment, 32, 32)), !dbg !22
+  ret i32 %mul, !dbg !27
 }
 
-; Function Attrs: mustprogress nofree nosync nounwind readnone speculatable willreturn
-declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
+declare !dbg !28 void @read(i32) local_unnamed_addr #1
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #2
 
-attributes #0 = { mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
-attributes #1 = { mustprogress nofree nosync nounwind readnone speculatable willreturn }
+attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
+attributes #1 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #2 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #3 = { nounwind }
 
 !llvm.module.flags = !{!0, !1, !2, !3, !4, !5, !6}
 !llvm.dbg.cu = !{!7}
@@ -37,18 +43,23 @@ attributes #2 = { nofree nosync nounwind readnone speculatable willreturn }
 !8 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/struct-fragment")
 !9 = !{}
 !10 = !{!"clang version 13.0.0 (git@github.com:llvm/llvm-project.git d7b669b3a30345cfcdb2fde2af6f48aa4b94845d)"}
-!11 = distinct !DISubprogram(name: "example_struct", scope: !8, file: !8, line: 6, type: !12, scopeLine: 7, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !15)
+!11 = distinct !DISubprogram(name: "example", scope: !8, file: !8, line: 8, type: !12, scopeLine: 8, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !15)
 !12 = !DISubroutineType(types: !13)
 !13 = !{!14, !14}
 !14 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
 !15 = !{!16, !17}
-!16 = !DILocalVariable(name: "n", arg: 1, scope: !11, file: !8, line: 6, type: !14)
-!17 = !DILocalVariable(name: "s", scope: !11, file: !8, line: 8, type: !18)
-!18 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "S", file: !8, line: 1, size: 128, elements: !19)
+!16 = !DILocalVariable(name: "n", arg: 1, scope: !11, file: !8, line: 8, type: !14)
+!17 = !DILocalVariable(name: "s", scope: !11, file: !8, line: 9, type: !18)
+!18 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "S", file: !8, line: 1, size: 64, elements: !19)
 !19 = !{!20, !21}
-!20 = !DIDerivedType(tag: DW_TAG_member, name: "id", scope: !18, file: !8, line: 2, baseType: !14, size: 32)
-!21 = !DIDerivedType(tag: DW_TAG_member, name: "next", scope: !18, file: !8, line: 3, baseType: !22, size: 64, offset: 64)
-!22 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !18, size: 64)
-!23 = !DILocation(line: 8, column: 12, scope: !11)
-!24 = !DILocation(line: 0, scope: !11)
-!25 = !DILocation(line: 10, column: 3, scope: !11)
+!20 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !18, file: !8, line: 2, baseType: !14, size: 32)
+!21 = !DIDerivedType(tag: DW_TAG_member, name: "b", scope: !18, file: !8, line: 3, baseType: !14, size: 32, offset: 32)
+!22 = !DILocation(line: 0, scope: !11)
+!23 = !DILocation(line: 9, column: 23, scope: !11)
+!24 = !DILocation(line: 10, column: 3, scope: !11)
+!25 = !DILocation(line: 10, column: 14, scope: !11)
+!26 = !DILocation(line: 11, column: 11, scope: !11)
+!27 = !DILocation(line: 13, column: 3, scope: !11)
+!28 = !DISubprogram(name: "read", scope: !8, file: !8, line: 6, type: !29, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !9)
+!29 = !DISubroutineType(types: !30)
+!30 = !{null, !14}
