@@ -2,9 +2,8 @@ This example tests support for:
 
 * Struct containing type recursive pointer in function calls
 * Exploring pointer-state-dependent paths
-* Aggregate values via `dbg.declare`
+* Aggregate values via `dbg.declare` and `getelementptr`
 
-Results appear to be INCORRECT as of tool f39dc7a8:
+Results appear to be ALMOST CORRECT as of tool d1e091a5:
 
 * Only subset of state-dependent paths visited
-* Missing aggregate values via `dbg.declare`
