@@ -69,4 +69,4 @@ AFTER_BC="klee-out-after/final.bc"
 AFTER_FIXED_BC="klee-out-after-fixed/final.bc"
 
 CHECK=$(klee debug check-debug-info)
-CHECK_OPTS="--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv"
+CHECK_OPTS="--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv"
