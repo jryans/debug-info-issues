@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -246,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -264,49 +264,55 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 Store to declared address of `n` (decl src ln 3), asm ln 11
   arg 0
+  store i32 %n, i32* %n.addr, asm ln 11
   @dbg.declare without read users, removable
   Added assignment asm ln 11, prod ln 3.0, live ln 4, enc None
 Load from declared address of `x` (decl src ln 4), asm ln 19
   %1 = load i32, i32* %x, l7 c10, asm ln 19
-  🔔 Live ln too early, using produced ln + 1
+  %1 = load i32, i32* %x, l7 c10, asm ln 19
   Added assignment asm ln 19, prod ln 7.10, live ln 8, enc None
 Store to declared address of `x` (decl src ln 4), asm ln 18
   %inc = add nsw i32 %0, 1, l6 c4, asm ln 17
+  store i32 %inc, i32* %x, l6 c4, asm ln 18
   Added assignment asm ln 18, prod ln 6.4, live ln 7, enc None
 Load from declared address of `x` (decl src ln 4), asm ln 16
   %0 = load i32, i32* %x, l6 c4, asm ln 16
-  🔔 Live ln too early, using produced ln + 1
+  %0 = load i32, i32* %x, l6 c4, asm ln 16
   Added assignment asm ln 16, prod ln 6.4, live ln 7, enc None
 Store to declared address of `x` (decl src ln 4), asm ln 14
   const i32 0
+  store i32 0, i32* %x, l4 c7, asm ln 14
   Added assignment asm ln 14, prod ln 4.7, live ln 5, enc None
 
 #### After variables
 
 Value produced for `n` (decl src ln 3), asm ln 10
   arg 0
+  @dbg.value(i32 %n, !16), asm ln 10
   Added assignment asm ln 10, prod ln 3.0, live ln 4, enc None
 Value produced for `x` (decl src ln 4), asm ln 12
   const i32 0
-  🔔 Live ln too early, using produced ln + 1
+  @dbg.value(i32 0, !17), asm ln 12
   Added assignment asm ln 12, prod ln 4.0, live ln 5, enc None
 Store to deref'd address of `x` (decl src ln 4), asm ln 20
   %inc = add nsw i32 %1, 1, l6 c4, asm ln 18
+  store i32 %inc, i32* %x, !tbaa !21, l6 c4, asm ln 20
   Added assignment asm ln 20, prod ln 6.4, live ln 7, enc None
 Load from deref'd address of `x` (decl src ln 4), asm ln 16
   %1 = load i32, i32* %x, !tbaa !21, l6 c4, asm ln 16
-  🔔 Live ln too early, using produced ln + 1
+  %1 = load i32, i32* %x, !tbaa !21, l6 c4, asm ln 16
   Added assignment asm ln 16, prod ln 6.4, live ln 7, enc None
 Store to deref'd address of `x` (decl src ln 4), asm ln 13
   const i32 0
+  store i32 0, i32* %x, !tbaa !21, l4 c7, asm ln 13
   Added assignment asm ln 13, prod ln 4.7, live ln 5, enc None
 Value produced for `x` (decl src ln 4), asm ln 17
   %1 = load i32, i32* %x, !tbaa !21, l6 c4, asm ln 16
-  🔔 Live ln too early, using produced ln + 1
+  @dbg.value(i32 %1, !17), asm ln 17
   Added assignment asm ln 17, prod ln 6.4, live ln 7, enc None
 Value produced for `x` (decl src ln 4), asm ln 19
   %inc = add nsw i32 %1, 1, l6 c4, asm ln 18
-  🔔 Live ln too early, using produced ln + 1
+  @dbg.value(i32 %inc, !17), asm ln 19
   Added assignment asm ln 19, prod ln 6.4, live ln 7, enc None
 
 #### Summary
@@ -635,7 +641,7 @@ Test Execution:
   Within Time Limit: true
   Within Fork Limit: true
 
-## Summary
+### Summary
 
 Assignments:
   Reference:                 4

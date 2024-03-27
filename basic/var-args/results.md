@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -246,8 +246,8 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv'
-++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --tsv
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
+++ /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv
 Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistency…
 
 ## Functions
@@ -301,18 +301,18 @@ Value produced for `prefix` (decl src ln 9), asm ln 23
 
 Collected value for `prefix`
   Assignment asm ln 14, prod ln 9.0, live ln 11, enc 0
-  Concrete pointer resolves to prefix.deref, offset (w64 0x0)
-  Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
-  Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
+  Concrete pointer resolves to bug_va.prefix.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) bug_va.prefix.deref)
+  Replaced concrete pointer with hash (w64 0xC92D9D3F5F5D1E51)
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 Collected value for `prefix`
   Assignment asm ln 16, prod ln 11.19, live ln 12, enc 1
-  Concrete pointer resolves to prefix.deref, offset (w64 0x0)
-  Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
-  Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
+  Concrete pointer resolves to bug_va.prefix.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) bug_va.prefix.deref)
+  Replaced concrete pointer with hash (w64 0xC92D9D3F5F5D1E51)
   %0 = load i8*, i8** %prefix.addr, l11 c19
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 Collected value for `prefix`
   Assignment asm ln 22, prod ln 12.3, live ln 13, enc 2
   Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
@@ -327,27 +327,20 @@ Collected value for `prefix`
 
 Collected value for `prefix`
   Assignment asm ln 14, prod ln 9.0, live ln 11, enc 0
-  Concrete pointer resolves to prefix.deref, offset (w64 0x0)
-  Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
-  Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
+  Concrete pointer resolves to bug_va.prefix.deref, offset (w64 0x0)
+  Created deref expr (ReadLSB w64 (w32 0x0) bug_va.prefix.deref)
+  Replaced concrete pointer with hash (w64 0xC92D9D3F5F5D1E51)
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 Collected value for `prefix`
-  Assignment asm ln 15, prod ln 9.0, live ln 11, enc 1
-  Concrete pointer resolves to prefix.deref, offset (w64 0x0)
-  Created deref expr (ReadLSB w64 (w32 0x0) prefix.deref)
-  Replaced concrete pointer with hash (w64 0x3E8C4480EDC2A01A)
-  i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
-Collected value for `prefix`
-  Assignment asm ln 22, prod ln 12.3, live ln 13, enc 2
+  Assignment asm ln 22, prod ln 12.3, live ln 13, enc 1
   Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
   Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
 Collected value for `prefix`
-  Assignment asm ln 23, prod ln 12.3, live ln 13, enc 3
+  Assignment asm ln 23, prod ln 12.3, live ln 13, enc 2
   Concrete pointer resolves to skip_prefix.arg2.deref.deref, offset (w64 0x0)
   Created deref expr (ReadLSB w64 (w32 0x0) skip_prefix.arg2.deref.deref)
   Replaced concrete pointer with hash (w64 0x455DD1BD2C0CCCD8)
@@ -358,18 +351,20 @@ Collected value for `prefix`
 [0m
 ### Assignments
 
+#### Variables with single memory location
+
 #### Collation
 
-Filtering redundant before assignments: `prefix` (decl src ln 9)
+Filtering before assignments: `prefix` (decl src ln 9)
 
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 16, prod ln 11.19, live ln 12, enc 1
   %0 = load i8*, i8** %prefix.addr, l11 c19
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 🔔 Removing: asm ln 16, prod ln 11.19, live ln 12, enc 1
 
 Checking equivalence of `prefix` (decl src ln 9) from
@@ -379,38 +374,30 @@ Checking equivalence of `prefix` (decl src ln 9) from
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 
-Filtering redundant after assignments: `prefix` (decl src ln 9)
+Filtering after assignments: `prefix` (decl src ln 9)
 
-Checking equivalence of `prefix` (decl src ln 9) from
-  assn asm ln 15, prod ln 9.0, live ln 11, enc 1
-  i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
-and
-  assn asm ln 14, prod ln 9.0, live ln 11, enc 0
-  i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
-🔔 Removing: asm ln 15, prod ln 9.0, live ln 11, enc 1
+🔔 After `prefix` (decl src ln 9) assn asm ln 15, prod ln 9.0, live ln 11, enc None not debug meaningful, removing
 
 Checking equivalence of `prefix` (decl src ln 9) from
-  assn asm ln 22, prod ln 12.3, live ln 13, enc 2
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 1
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 
 Checking equivalence of `prefix` (decl src ln 9) from
-  assn asm ln 23, prod ln 12.3, live ln 13, enc 3
+  assn asm ln 23, prod ln 12.3, live ln 13, enc 2
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
 and
-  assn asm ln 22, prod ln 12.3, live ln 13, enc 2
+  assn asm ln 22, prod ln 12.3, live ln 13, enc 1
   %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
   (w64 0x455DD1BD2C0CCCD8)
-🔔 Removing: asm ln 23, prod ln 12.3, live ln 13, enc 3
+🔔 Removing: asm ln 23, prod ln 12.3, live ln 13, enc 2
 
 Collating encountered before assignments: `prefix` (decl src ln 9)
   asm ln 14, prod ln 9.0, live ln 11, enc 0
@@ -420,58 +407,16 @@ Collating encountered after assignments: `prefix` (decl src ln 9)
   asm ln 14, prod ln 9.0, live ln 11, enc 0
   asm ln 22, prod ln 12.3, live ln 13, enc 1
 
-#### Check before using after as reference
-
-Checking equivalence of `prefix` (decl src ln 9) from
-  assn asm ln 14, prod ln 9.0, live ln 11, enc 0
-  i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
-and
-  assn asm ln 14, prod ln 9.0, live ln 11, enc 0
-  i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
-✅ After `prefix` (decl src ln 9) assn asm ln 14, prod ln 9.0, live ln 11, enc 0 symbolic value matches before assn asm ln 14, prod ln 9.0, live ln 11, enc 0
-
-Checking equivalence of `prefix` (decl src ln 9) from
-  assn asm ln 22, prod ln 12.3, live ln 13, enc 1
-  %1 = load i8*, i8** %prefix.addr, l12 c3
-  (w64 0x455DD1BD2C0CCCD8)
-and
-  assn asm ln 22, prod ln 12.3, live ln 13, enc 1
-  %0 = load i8*, i8** %prefix.addr, !tbaa !20, l12 c3
-  (w64 0x455DD1BD2C0CCCD8)
-✅ After `prefix` (decl src ln 9) assn asm ln 22, prod ln 12.3, live ln 13, enc 1 symbolic value matches before assn asm ln 22, prod ln 12.3, live ln 13, enc 1
-
-✅ Before `prefix` assns checked using after as reference
-Variable:            prefix
-  Assignments:       2
-  Matching Coords:   2
-  Matching Value:    2
-Errors:
-  Mismatched Coords: 0
-  Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           0
-Warnings:
-  Unused:            0
-  Unreachable:       0
-  Removable:         0
-Execution:
-  Function Covered:  true
-  Complete:          true
-  Within Time Limit: true
-  Within Fork Limit: true
-
 #### Check after using before as reference
 
 Checking equivalence of `prefix` (decl src ln 9) from
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 and
   assn asm ln 14, prod ln 9.0, live ln 11, enc 0
   i8* %prefix
-  (w64 0x3E8C4480EDC2A01A)
+  (w64 0xC92D9D3F5F5D1E51)
 ✅ Before `prefix` (decl src ln 9) assn asm ln 14, prod ln 9.0, live ln 11, enc 0 symbolic value matches after assn asm ln 14, prod ln 9.0, live ln 11, enc 0
 
 Checking equivalence of `prefix` (decl src ln 9) from
@@ -485,25 +430,64 @@ and
 ✅ Before `prefix` (decl src ln 9) assn asm ln 22, prod ln 12.3, live ln 13, enc 1 symbolic value matches after assn asm ln 22, prod ln 12.3, live ln 13, enc 1
 
 ✅ After `prefix` assns checked using before as reference
-Variable:            prefix
-  Assignments:       2
+Assignments:         prefix
+  Reference:         2
+  Test:              2
+Matching:
   Matching Coords:   2
   Matching Value:    2
-Errors:
+Consistency Errors:
   Mismatched Coords: 0
   Mismatched Value:  0
-  Not Encountered:   0
-  Missing:           0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
 Warnings:
   Unused:            0
-  Unreachable:       0
   Removable:         0
-Execution:
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
   Function Covered:  true
   Complete:          true
   Within Time Limit: true
   Within Fork Limit: true
 
-## Summary
+### Summary
+
+Assignments:
+  Reference:                 2
+  Test:                      2 (100.00% of ref )
+Matching:
+  Matching Coords:           2 (100.00% of ref )
+  Matching Value:            2 (100.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           0 (  0.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          2 (100.00% of ref )
+  Complete:                  2 (100.00% of ref )
+  Within Time Limit:         2 (100.00% of ref )
+  Within Fork Limit:         2 (100.00% of ref )
+Test Execution:
+  Function Covered:          2 (100.00% of test)
+  Complete:                  2 (100.00% of test)
+  Within Time Limit:         2 (100.00% of test)
+  Within Fork Limit:         2 (100.00% of test)
 
 🎉 All consistency checks passed
