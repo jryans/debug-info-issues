@@ -267,18 +267,14 @@ Store to declared address of `n` (decl src ln 3), asm ln 11
   store i32 %n, i32* %n.addr, asm ln 11
   @dbg.declare without read users, removable
   Added assignment asm ln 11, prod ln 3.0, live ln 4, enc None
-Load from declared address of `x` (decl src ln 4), asm ln 19
-  %1 = load i32, i32* %x, l7 c10, asm ln 19
-  %1 = load i32, i32* %x, l7 c10, asm ln 19
-  Added assignment asm ln 19, prod ln 7.10, live ln 8, enc None
 Store to declared address of `x` (decl src ln 4), asm ln 18
   %inc = add nsw i32 %0, 1, l6 c4, asm ln 17
   store i32 %inc, i32* %x, l6 c4, asm ln 18
   Added assignment asm ln 18, prod ln 6.4, live ln 7, enc None
-Load from declared address of `x` (decl src ln 4), asm ln 16
-  %0 = load i32, i32* %x, l6 c4, asm ln 16
-  %0 = load i32, i32* %x, l6 c4, asm ln 16
-  Added assignment asm ln 16, prod ln 6.4, live ln 7, enc None
+Call arg using declared address of `x` (decl src ln 4), asm ln 15
+  %x = alloca i32, asm ln 10
+  call void @modify(i32* %x), l5 c3, asm ln 15
+  Added assignment asm ln 15, prod ln 5.3, live ln 6, enc None
 Store to declared address of `x` (decl src ln 4), asm ln 14
   const i32 0
   store i32 0, i32* %x, l4 c7, asm ln 14
@@ -298,10 +294,10 @@ Store to deref'd address of `x` (decl src ln 4), asm ln 20
   %inc = add nsw i32 %1, 1, l6 c4, asm ln 18
   store i32 %inc, i32* %x, !tbaa !21, l6 c4, asm ln 20
   Added assignment asm ln 20, prod ln 6.4, live ln 7, enc None
-Load from deref'd address of `x` (decl src ln 4), asm ln 16
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4, asm ln 16
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4, asm ln 16
-  Added assignment asm ln 16, prod ln 6.4, live ln 7, enc None
+Call arg using deref'd address of `x` (decl src ln 4), asm ln 15
+  %x = alloca i32, asm ln 9
+  call void @modify(i32* nonnull %x) #4, l5 c3, asm ln 15
+  Added assignment asm ln 15, prod ln 5.3, live ln 6, enc None
 Store to deref'd address of `x` (decl src ln 4), asm ln 13
   const i32 0
   store i32 0, i32* %x, !tbaa !21, l4 c7, asm ln 13
@@ -332,17 +328,12 @@ Collected value for `x`
   i32 0
   (w32 0x0)
 Collected value for `x`
-  Assignment asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %0 = load i32, i32* %x, l6 c4
+  Assignment asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 Collected value for `x`
   Assignment asm ln 18, prod ln 6.4, live ln 7, enc 2
   %inc = add nsw i32 %0, 1, l6 c4
-  (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) modify.arg0.deref))
-Collected value for `x`
-  Assignment asm ln 19, prod ln 7.10, live ln 8, enc 3
-  %1 = load i32, i32* %x, l7 c10
   (Add w32 (w32 0x1)
           (ReadLSB w32 (w32 0x0) modify.arg0.deref))
 
@@ -357,8 +348,8 @@ Collected value for `x`
   i32 0
   (w32 0x0)
 Collected value for `x`
-  Assignment asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4
+  Assignment asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 Collected value for `x`
   Assignment asm ln 17, prod ln 6.4, live ln 7, enc 2
@@ -379,8 +370,8 @@ Collected value for `x`
 Filtering before assignments: `x` (decl src ln 4)
 
 Checking equivalence of `x` (decl src ln 4) from
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %0 = load i32, i32* %x, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 and
   assn asm ln 14, prod ln 4.7, live ln 5, enc 0
@@ -400,8 +391,8 @@ Checking equivalence of `x` (decl src ln 4) from
   (Add w32 (w32 0x1)
           (ReadLSB w32 (w32 0x0) modify.arg0.deref))
 and
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %0 = load i32, i32* %x, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 Query to parse
 array modify.arg0.deref[4] : w32 -> w8 = symbolic
@@ -414,28 +405,6 @@ Parsed query
               N0:(ReadLSB w32 (w32 0x0) modify.arg0.deref))
      N0)
 
-Checking equivalence of `x` (decl src ln 4) from
-  assn asm ln 19, prod ln 7.10, live ln 8, enc 3
-  %1 = load i32, i32* %x, l7 c10
-  (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) modify.arg0.deref))
-and
-  assn asm ln 18, prod ln 6.4, live ln 7, enc 2
-  %inc = add nsw i32 %0, 1, l6 c4
-  (Add w32 (w32 0x1)
-          (ReadLSB w32 (w32 0x0) modify.arg0.deref))
-Query to parse
-array modify.arg0.deref[4] : w32 -> w8 = symbolic
-array modify.arg0.deref[4] : w32 -> w8 = symbolic
-(query [] (Eq N0:(Add w32 (w32 0x1)
-                 (ReadLSB w32 (w32 0x0) modify.arg0.deref))
-     N0))
-Parsed query
-(Eq N0:(Add w32 (w32 0x1)
-                 (ReadLSB w32 (w32 0x0) modify.arg0.deref))
-     N0)
-🔔 Removing: asm ln 19, prod ln 7.10, live ln 8, enc 3
-
 Filtering after assignments: `x` (decl src ln 4)
 
 🔔 After `x` (decl src ln 4) assn asm ln 20, prod ln 6.4, live ln 7, enc None not debug meaningful, removing
@@ -443,8 +412,8 @@ Filtering after assignments: `x` (decl src ln 4)
 🔔 After `x` (decl src ln 4) assn asm ln 13, prod ln 4.7, live ln 5, enc None not debug meaningful, removing
 
 Checking equivalence of `x` (decl src ln 4) from
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 and
   assn asm ln 12, prod ln 4.0, live ln 5, enc 0
@@ -463,8 +432,8 @@ Checking equivalence of `x` (decl src ln 4) from
   %1 = load i32, i32* %x, !tbaa !21, l6 c4
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 and
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 Query to parse
 array modify.arg0.deref[4] : w32 -> w8 = symbolic
@@ -482,8 +451,8 @@ Checking equivalence of `x` (decl src ln 4) from
   (Add w32 (w32 0x1)
           (ReadLSB w32 (w32 0x0) modify.arg0.deref))
 and
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 Query to parse
 array modify.arg0.deref[4] : w32 -> w8 = symbolic
@@ -500,14 +469,14 @@ Collating encountered before assignments: `n` (decl src ln 3)
   asm ln 11, prod ln 3.0, live ln 4, enc 0
 Collating encountered before assignments: `x` (decl src ln 4)
   asm ln 14, prod ln 4.7, live ln 5, enc 0
-  asm ln 16, prod ln 6.4, live ln 7, enc 1
+  asm ln 15, prod ln 5.3, live ln 6, enc 1
   asm ln 18, prod ln 6.4, live ln 7, enc 2
 
 Collating encountered after assignments: `n` (decl src ln 3)
   asm ln 10, prod ln 3.0, live ln 4, enc 0
 Collating encountered after assignments: `x` (decl src ln 4)
   asm ln 12, prod ln 4.0, live ln 5, enc 0
-  asm ln 16, prod ln 6.4, live ln 7, enc 1
+  asm ln 15, prod ln 5.3, live ln 6, enc 1
   asm ln 19, prod ln 6.4, live ln 7, enc 2
 
 #### Check after using before as reference
@@ -571,12 +540,12 @@ and
 ✅ Before `x` (decl src ln 4) assn asm ln 14, prod ln 4.7, live ln 5, enc 0 symbolic value matches after assn asm ln 12, prod ln 4.0, live ln 5, enc 0
 
 Checking equivalence of `x` (decl src ln 4) from
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %1 = load i32, i32* %x, !tbaa !21, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 and
-  assn asm ln 16, prod ln 6.4, live ln 7, enc 1
-  %0 = load i32, i32* %x, l6 c4
+  assn asm ln 15, prod ln 5.3, live ln 6, enc 1
+  %x = alloca i32
   (ReadLSB w32 (w32 0x0) modify.arg0.deref)
 Query to parse
 array modify.arg0.deref[4] : w32 -> w8 = symbolic
@@ -586,7 +555,7 @@ array modify.arg0.deref[4] : w32 -> w8 = symbolic
 Parsed query
 (Eq N0:(ReadLSB w32 (w32 0x0) modify.arg0.deref)
      N0)
-✅ Before `x` (decl src ln 4) assn asm ln 16, prod ln 6.4, live ln 7, enc 1 symbolic value matches after assn asm ln 16, prod ln 6.4, live ln 7, enc 1
+✅ Before `x` (decl src ln 4) assn asm ln 15, prod ln 5.3, live ln 6, enc 1 symbolic value matches after assn asm ln 15, prod ln 5.3, live ln 6, enc 1
 
 Checking equivalence of `x` (decl src ln 4) from
   assn asm ln 19, prod ln 6.4, live ln 7, enc 2

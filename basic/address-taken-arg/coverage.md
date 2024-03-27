@@ -4,4 +4,4 @@ This example tests support for:
 * Symbolic variables for address-taken locals post-call
 * Gather post-call value of address-taken locals
 
-Results appear to be CORRECT as of tool e8c2b16c
+Results appear to be correct during post-call value recording change
