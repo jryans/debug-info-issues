@@ -258,7 +258,7 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 ✅ Before and after function names match
 
-### Variable events
+### Variable assignments
 
 #### Before variables
 
@@ -645,7 +645,7 @@ Test Execution:
 
 ✅ Before and after function names match
 
-### Variable events
+### Variable assignments
 
 #### Before variables
 
