@@ -252,7 +252,7 @@ Checking klee-out-O0/final.bc and klee-out-O1/final.bc for debug info consistenc
 
 ## Functions
 
-✅ 1 before defined functions(s), 1 after defined functions(s)
+✅ 2 before defined functions(s), 2 after defined functions(s)
 
 ## Function `example`
 
@@ -641,4 +641,108 @@ Test Execution:
   Within Time Limit:         4 (100.00% of test)
   Within Fork Limit:         4 (100.00% of test)
 
-🎉 All consistency checks passed
+## Function `example_return`
+
+✅ Before and after function names match
+
+### Variable events
+
+#### Before variables
+
+Store to declared address of `n` (decl src ln 12), asm ln 34
+  arg 0
+  store i32 %n, i32* %n.addr, asm ln 34
+  @dbg.declare without read users, removable
+  Added assignment asm ln 34, prod ln 12.0, live ln 13, enc None
+Store to declared address of `x` (decl src ln 13), asm ln 43
+  %inc = add nsw i32 %0, 1, l15 c4, asm ln 42
+  store i32 %inc, i32* %x, l15 c4, asm ln 43
+  Added assignment asm ln 43, prod ln 15.4, live ln 16, enc None
+Call arg using declared address of `x` (decl src ln 13), asm ln 39
+  %x = alloca i32, asm ln 32
+  %call = call i32 @modify_return(i32* %x), l14 c11, asm ln 39
+  Added assignment asm ln 39, prod ln 14.11, live ln 15, enc None
+Store to declared address of `x` (decl src ln 13), asm ln 37
+  const i32 0
+  store i32 0, i32* %x, l13 c7, asm ln 37
+  Added assignment asm ln 37, prod ln 13.7, live ln 14, enc None
+Store to declared address of `y` (decl src ln 14), asm ln 40
+  %call = call i32 @modify_return(i32* %x), l14 c11, asm ln 39
+  store i32 %call, i32* %y, l14 c7, asm ln 40
+  Added assignment asm ln 40, prod ln 14.11, live ln 15, enc None
+
+#### After variables
+
+Value produced for `n` (decl src ln 12), asm ln 36
+  arg 0
+  @dbg.value(i32 %n, !34), asm ln 36
+  Added assignment asm ln 36, prod ln 12.0, live ln 13, enc None
+Value produced for `x` (decl src ln 13), asm ln 38
+  const i32 0
+  @dbg.value(i32 0, !35), asm ln 38
+  Added assignment asm ln 38, prod ln 13.0, live ln 14, enc None
+Store to deref'd address of `x` (decl src ln 13), asm ln 47
+  %inc = add nsw i32 %1, 1, l15 c4, asm ln 45
+  store i32 %inc, i32* %x, !tbaa !22, l15 c4, asm ln 47
+  Added assignment asm ln 47, prod ln 15.4, live ln 16, enc None
+Call arg using deref'd address of `x` (decl src ln 13), asm ln 41
+  %x = alloca i32, asm ln 35
+  %call = call i32 @modify_return(i32* nonnull %x) #4, l14 c11, asm ln 41
+  Added assignment asm ln 41, prod ln 14.11, live ln 15, enc None
+Store to deref'd address of `x` (decl src ln 13), asm ln 39
+  const i32 0
+  store i32 0, i32* %x, !tbaa !22, l13 c7, asm ln 39
+  Added assignment asm ln 39, prod ln 13.7, live ln 14, enc None
+Value produced for `y` (decl src ln 14), asm ln 42
+  %call = call i32 @modify_return(i32* nonnull %x) #4, l14 c11, asm ln 41
+  @dbg.value(i32 %call, !36), asm ln 42
+  Added assignment asm ln 42, prod ln 14.11, live ln 15, enc None
+Value produced for `x` (decl src ln 13), asm ln 44
+  %1 = load i32, i32* %x, !tbaa !22, l15 c4, asm ln 43
+  @dbg.value(i32 %1, !35), asm ln 44
+  Added assignment asm ln 44, prod ln 15.4, live ln 16, enc None
+Value produced for `x` (decl src ln 13), asm ln 46
+  %inc = add nsw i32 %1, 1, l15 c4, asm ln 45
+  @dbg.value(i32 %inc, !35), asm ln 46
+  Added assignment asm ln 46, prod ln 15.4, live ln 16, enc None
+
+#### Summary
+
+✅ 3 before variables found, 3 after variables found, 0 mismatched
+
+### Symbolic values
+
+#### Before values
+
+Collected value for `n`
+  Assignment asm ln 34, prod ln 12.0, live ln 13, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example_return.n)
+Collected value for `x`
+  Assignment asm ln 37, prod ln 13.7, live ln 14, enc 0
+  i32 0
+  (w32 0x0)
+Assertion failed: (assignment->isUseEvent() == isUseEvent && "Unexpected assignment use / definition state"), function recordValue, file ValuesCollector.cpp, line 148.
+PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  check-debug-info         0x000000010fc8fc1d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
+1  check-debug-info         0x000000010fc9011b PrintStackTraceSignalHandler(void*) + 27
+2  check-debug-info         0x000000010fc8e1b3 llvm::sys::RunSignalHandlers() + 115
+3  check-debug-info         0x000000010fc913bf SignalHandler(int) + 223
+4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
+5  check-debug-info         0x000000010faae405 std::__1::pair<klee::Expr const*, klee::Expr const*>::pair[abi:v160006]<klee::Expr const*, klee::Expr const*, (void*)0>(klee::Expr const*&&, klee::Expr const*&&) + 37
+6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
+7  libsystem_c.dylib        0x00007ff800aa9d1c err + 0
+8  check-debug-info         0x000000010cf6c630 VCHandler::recordValue(klee::ExecutionState&, klee::ExecutionEvent&, llvm::Instruction const*, llvm::Value const*, klee::ref<klee::Expr>) + 560
+9  check-debug-info         0x000000010cf6ceb7 VCHandler::visitModifiedCallArgument(klee::ExecutionState&, klee::ExecutionEvent&, klee::KInstruction*, llvm::Value const*, klee::ref<klee::Expr>) + 135
+10 check-debug-info         0x000000010cfaf90b klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 3099
+11 check-debug-info         0x000000010cfb8664 klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8708
+12 check-debug-info         0x000000010cfc4494 klee::Executor::run(klee::ExecutionState&) + 1860
+13 check-debug-info         0x000000010cfc967d klee::Executor::runFunction(llvm::Function*) + 205
+14 check-debug-info         0x000000010cf6e87c ValuesCollector::collect(llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>*) + 252
+15 check-debug-info         0x000000010cf35434 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, AssignmentStats&) + 2916
+16 check-debug-info         0x000000010cf36fc8 main + 2952
+17 dyld                     0x00007ff8007f9366 start + 1942
+./check.sh: line 6: 44186 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS} "$@"

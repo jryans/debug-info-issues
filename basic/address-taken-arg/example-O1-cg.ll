@@ -31,6 +31,30 @@ declare !dbg !29 void @modify(i32*) local_unnamed_addr #2
 ; Function Attrs: argmemonly mustprogress nofree nosync nounwind willreturn
 declare void @llvm.lifetime.end.p0i8(i64 immarg, i8* nocapture) #1
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @example_return(i32 %n) local_unnamed_addr #0 !dbg !33 {
+entry:
+  %x = alloca i32, align 4
+  call void @llvm.dbg.value(metadata i32 %n, metadata !35, metadata !DIExpression()), !dbg !38
+  %0 = bitcast i32* %x to i8*, !dbg !39
+  call void @llvm.lifetime.start.p0i8(i64 4, i8* nonnull %0) #4, !dbg !39
+  call void @llvm.dbg.value(metadata i32 0, metadata !36, metadata !DIExpression()), !dbg !38
+  store i32 0, i32* %x, align 4, !dbg !40, !tbaa !21
+  call void @llvm.dbg.value(metadata i32* %x, metadata !36, metadata !DIExpression(DW_OP_deref)), !dbg !38
+  %call = call i32 @modify_return(i32* nonnull %x) #4, !dbg !41
+  call void @llvm.dbg.value(metadata i32 %call, metadata !37, metadata !DIExpression()), !dbg !38
+  %1 = load i32, i32* %x, align 4, !dbg !42, !tbaa !21
+  call void @llvm.dbg.value(metadata i32 %1, metadata !36, metadata !DIExpression()), !dbg !38
+  %inc = add nsw i32 %1, 1, !dbg !42
+  call void @llvm.dbg.value(metadata i32 %inc, metadata !36, metadata !DIExpression()), !dbg !38
+  store i32 %inc, i32* %x, align 4, !dbg !42, !tbaa !21
+  %add = add nsw i32 %inc, %call, !dbg !43
+  call void @llvm.lifetime.end.p0i8(i64 4, i8* nonnull %0) #4, !dbg !44
+  ret i32 %add, !dbg !45
+}
+
+declare !dbg !46 i32 @modify_return(i32*) local_unnamed_addr #2
+
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #3
 
@@ -77,3 +101,19 @@ attributes #4 = { nounwind }
 !30 = !DISubroutineType(types: !31)
 !31 = !{null, !32}
 !32 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !14, size: 64)
+!33 = distinct !DISubprogram(name: "example_return", scope: !8, file: !8, line: 12, type: !12, scopeLine: 12, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !34)
+!34 = !{!35, !36, !37}
+!35 = !DILocalVariable(name: "n", arg: 1, scope: !33, file: !8, line: 12, type: !14)
+!36 = !DILocalVariable(name: "x", scope: !33, file: !8, line: 13, type: !14)
+!37 = !DILocalVariable(name: "y", scope: !33, file: !8, line: 14, type: !14)
+!38 = !DILocation(line: 0, scope: !33)
+!39 = !DILocation(line: 13, column: 3, scope: !33)
+!40 = !DILocation(line: 13, column: 7, scope: !33)
+!41 = !DILocation(line: 14, column: 11, scope: !33)
+!42 = !DILocation(line: 15, column: 4, scope: !33)
+!43 = !DILocation(line: 16, column: 12, scope: !33)
+!44 = !DILocation(line: 17, column: 1, scope: !33)
+!45 = !DILocation(line: 16, column: 3, scope: !33)
+!46 = !DISubprogram(name: "modify_return", scope: !8, file: !8, line: 10, type: !47, flags: DIFlagPrototyped, spFlags: DISPFlagOptimized, retainedNodes: !9)
+!47 = !DISubroutineType(types: !48)
+!48 = !{!14, !32}

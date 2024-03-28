@@ -25,6 +25,30 @@ declare void @llvm.dbg.declare(metadata, metadata, metadata) #1
 
 declare void @modify(i32*) #2
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @example_return(i32 %n) #0 !dbg !23 {
+entry:
+  %n.addr = alloca i32, align 4
+  %x = alloca i32, align 4
+  %y = alloca i32, align 4
+  store i32 %n, i32* %n.addr, align 4
+  call void @llvm.dbg.declare(metadata i32* %n.addr, metadata !24, metadata !DIExpression()), !dbg !25
+  call void @llvm.dbg.declare(metadata i32* %x, metadata !26, metadata !DIExpression()), !dbg !27
+  store i32 0, i32* %x, align 4, !dbg !27
+  call void @llvm.dbg.declare(metadata i32* %y, metadata !28, metadata !DIExpression()), !dbg !29
+  %call = call i32 @modify_return(i32* %x), !dbg !30
+  store i32 %call, i32* %y, align 4, !dbg !29
+  %0 = load i32, i32* %x, align 4, !dbg !31
+  %inc = add nsw i32 %0, 1, !dbg !31
+  store i32 %inc, i32* %x, align 4, !dbg !31
+  %1 = load i32, i32* %x, align 4, !dbg !32
+  %2 = load i32, i32* %y, align 4, !dbg !33
+  %add = add nsw i32 %1, %2, !dbg !34
+  ret i32 %add, !dbg !35
+}
+
+declare i32 @modify_return(i32*) #2
+
 attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
@@ -56,3 +80,16 @@ attributes #2 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !20 = !DILocation(line: 6, column: 4, scope: !11)
 !21 = !DILocation(line: 7, column: 10, scope: !11)
 !22 = !DILocation(line: 7, column: 3, scope: !11)
+!23 = distinct !DISubprogram(name: "example_return", scope: !8, file: !8, line: 12, type: !12, scopeLine: 12, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!24 = !DILocalVariable(name: "n", arg: 1, scope: !23, file: !8, line: 12, type: !14)
+!25 = !DILocation(line: 12, column: 24, scope: !23)
+!26 = !DILocalVariable(name: "x", scope: !23, file: !8, line: 13, type: !14)
+!27 = !DILocation(line: 13, column: 7, scope: !23)
+!28 = !DILocalVariable(name: "y", scope: !23, file: !8, line: 14, type: !14)
+!29 = !DILocation(line: 14, column: 7, scope: !23)
+!30 = !DILocation(line: 14, column: 11, scope: !23)
+!31 = !DILocation(line: 15, column: 4, scope: !23)
+!32 = !DILocation(line: 16, column: 10, scope: !23)
+!33 = !DILocation(line: 16, column: 14, scope: !23)
+!34 = !DILocation(line: 16, column: 12, scope: !23)
+!35 = !DILocation(line: 16, column: 3, scope: !23)
