@@ -722,27 +722,409 @@ Collected value for `x`
   Assignment asm ln 37, prod ln 13.7, live ln 14, enc 0
   i32 0
   (w32 0x0)
-Assertion failed: (assignment->isUseEvent() == isUseEvent && "Unexpected assignment use / definition state"), function recordValue, file ValuesCollector.cpp, line 148.
-PLEASE submit a bug report to https://bugs.llvm.org/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: /Users/jryans/Projects/klee/build-debug/bin/check-debug-info klee-out-O0/final.bc klee-out-O1/final.bc --debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv
-Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
-0  check-debug-info         0x000000010fc8fc1d llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 61
-1  check-debug-info         0x000000010fc9011b PrintStackTraceSignalHandler(void*) + 27
-2  check-debug-info         0x000000010fc8e1b3 llvm::sys::RunSignalHandlers() + 115
-3  check-debug-info         0x000000010fc913bf SignalHandler(int) + 223
-4  libsystem_platform.dylib 0x00007ff800bb3fdd _sigtramp + 29
-5  check-debug-info         0x000000010faae405 std::__1::pair<klee::Expr const*, klee::Expr const*>::pair[abi:v160006]<klee::Expr const*, klee::Expr const*, (void*)0>(klee::Expr const*&&, klee::Expr const*&&) + 37
-6  libsystem_c.dylib        0x00007ff800aaaa39 abort + 126
-7  libsystem_c.dylib        0x00007ff800aa9d1c err + 0
-8  check-debug-info         0x000000010cf6c630 VCHandler::recordValue(klee::ExecutionState&, klee::ExecutionEvent&, llvm::Instruction const*, llvm::Value const*, klee::ref<klee::Expr>) + 560
-9  check-debug-info         0x000000010cf6ceb7 VCHandler::visitModifiedCallArgument(klee::ExecutionState&, klee::ExecutionEvent&, klee::KInstruction*, llvm::Value const*, klee::ref<klee::Expr>) + 135
-10 check-debug-info         0x000000010cfaf90b klee::Executor::executeCall(klee::ExecutionState&, klee::KInstruction*, llvm::Function*, std::__1::vector<klee::ref<klee::Expr>, std::__1::allocator<klee::ref<klee::Expr> > >&) + 3099
-11 check-debug-info         0x000000010cfb8664 klee::Executor::executeInstruction(klee::ExecutionState&, klee::KInstruction*) + 8708
-12 check-debug-info         0x000000010cfc4494 klee::Executor::run(klee::ExecutionState&) + 1860
-13 check-debug-info         0x000000010cfc967d klee::Executor::runFunction(llvm::Function*) + 205
-14 check-debug-info         0x000000010cf6e87c ValuesCollector::collect(llvm::StringRef, llvm::StringRef, llvm::SmallVector<std::__1::pair<Variable, Assignment*>, 1u>*) + 252
-15 check-debug-info         0x000000010cf35434 checkFunction(llvm::SmallVector<ValuesCollector, 2u>&, llvm::StringRef, std::__1::vector<clang::tooling::Diagnostic, std::__1::allocator<clang::tooling::Diagnostic> > const&, AssignmentStats&) + 2916
-16 check-debug-info         0x000000010cf36fc8 main + 2952
-17 dyld                     0x00007ff8007f9366 start + 1942
-./check.sh: line 6: 44186 Abort trap: 6           ${CHECK} ${O0_BC} ${O1_BC} ${CHECK_OPTS} "$@"
+Collected value for `x`
+  Assignment asm ln 39, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Collected value for `y`
+  Assignment asm ln 40, prod ln 14.11, live ln 15, enc 0
+  %call = call i32 @modify_return(i32* %x), l14 c11
+  (ReadLSB w32 (w32 0x0) modify_return.return)
+Collected value for `x`
+  Assignment asm ln 43, prod ln 15.4, live ln 16, enc 2
+  %inc = add nsw i32 %0, 1, l15 c4
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+
+#### After values
+
+Collected value for `n`
+  Assignment asm ln 36, prod ln 12.0, live ln 13, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example_return.n)
+Collected value for `x`
+  Assignment asm ln 38, prod ln 13.0, live ln 14, enc 0
+  i32 0
+  (w32 0x0)
+Collected value for `x`
+  Assignment asm ln 41, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Collected value for `y`
+  Assignment asm ln 42, prod ln 14.11, live ln 15, enc 0
+  %call = call i32 @modify_return(i32* nonnull %x) #4, l14 c11
+  (ReadLSB w32 (w32 0x0) modify_return.return)
+Collected value for `x`
+  Assignment asm ln 44, prod ln 15.4, live ln 16, enc 2
+  %1 = load i32, i32* %x, !tbaa !22, l15 c4
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Collected value for `x`
+  Assignment asm ln 46, prod ln 15.4, live ln 16, enc 3
+  %inc = add nsw i32 %1, 1, l15 c4
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+
+### Assignments
+
+#### Variables with single memory location
+
+#### Collation
+
+Filtering before assignments: `x` (decl src ln 13)
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 39, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+and
+  assn asm ln 37, prod ln 13.7, live ln 14, enc 0
+  i32 0
+  (w32 0x0)
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     (w32 0x0)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     (w32 0x0))
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 43, prod ln 15.4, live ln 16, enc 2
+  %inc = add nsw i32 %0, 1, l15 c4
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+and
+  assn asm ln 39, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (w32 0x1)
+              N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+     N0))
+Parsed query
+(Eq (Add w32 (w32 0x1)
+              N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+     N0)
+
+Filtering after assignments: `x` (decl src ln 13)
+
+🔔 After `x` (decl src ln 13) assn asm ln 47, prod ln 15.4, live ln 16, enc None not debug meaningful, removing
+
+🔔 After `x` (decl src ln 13) assn asm ln 39, prod ln 13.7, live ln 14, enc None not debug meaningful, removing
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 41, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+and
+  assn asm ln 38, prod ln 13.0, live ln 14, enc 0
+  i32 0
+  (w32 0x0)
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     (w32 0x0)))
+Parsed query
+(Eq (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     (w32 0x0))
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 44, prod ln 15.4, live ln 16, enc 2
+  %1 = load i32, i32* %x, !tbaa !22, l15 c4
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+and
+  assn asm ln 41, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     N0))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     N0)
+🔔 Removing: asm ln 44, prod ln 15.4, live ln 16, enc 2
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 46, prod ln 15.4, live ln 16, enc 3
+  %inc = add nsw i32 %1, 1, l15 c4
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+and
+  assn asm ln 41, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (w32 0x1)
+              N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+     N0))
+Parsed query
+(Eq (Add w32 (w32 0x1)
+              N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+     N0)
+
+Collating encountered before assignments: `n` (decl src ln 12)
+  asm ln 34, prod ln 12.0, live ln 13, enc 0
+Collating encountered before assignments: `x` (decl src ln 13)
+  asm ln 37, prod ln 13.7, live ln 14, enc 0
+  asm ln 39, prod ln 14.11, live ln 15, enc 1
+  asm ln 43, prod ln 15.4, live ln 16, enc 2
+Collating encountered before assignments: `y` (decl src ln 14)
+  asm ln 40, prod ln 14.11, live ln 15, enc 0
+
+Collating encountered after assignments: `n` (decl src ln 12)
+  asm ln 36, prod ln 12.0, live ln 13, enc 0
+Collating encountered after assignments: `x` (decl src ln 13)
+  asm ln 38, prod ln 13.0, live ln 14, enc 0
+  asm ln 41, prod ln 14.11, live ln 15, enc 1
+  asm ln 46, prod ln 15.4, live ln 16, enc 2
+Collating encountered after assignments: `y` (decl src ln 14)
+  asm ln 42, prod ln 14.11, live ln 15, enc 0
+
+#### Check after using before as reference
+
+Checking equivalence of `n` (decl src ln 12) from
+  assn asm ln 36, prod ln 12.0, live ln 13, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example_return.n)
+and
+  assn asm ln 34, prod ln 12.0, live ln 13, enc 0
+  i32 %n
+  (ReadLSB w32 (w32 0x0) example_return.n)
+Query to parse
+array example_return.n[4] : w32 -> w8 = symbolic
+array example_return.n[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) example_return.n)
+     (ReadLSB w32 (w32 0x0) example_return.n)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) example_return.n)
+     N0)
+✅ Before `n` (decl src ln 12) assn asm ln 34, prod ln 12.0, live ln 13, enc 0 symbolic value matches after assn asm ln 36, prod ln 12.0, live ln 13, enc 0
+
+✅ After `n` assns checked using before as reference
+Assignments:         n
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 38, prod ln 13.0, live ln 14, enc 0
+  i32 0
+  (w32 0x0)
+and
+  assn asm ln 37, prod ln 13.7, live ln 14, enc 0
+  i32 0
+  (w32 0x0)
+✅ Before `x` (decl src ln 13) assn asm ln 37, prod ln 13.7, live ln 14, enc 0 symbolic value matches after assn asm ln 38, prod ln 13.0, live ln 14, enc 0
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 41, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+and
+  assn asm ln 39, prod ln 14.11, live ln 15, enc 1
+  %x = alloca i32
+  (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     (ReadLSB w32 (w32 0x0) modify_return.arg0.deref)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) modify_return.arg0.deref)
+     N0)
+✅ Before `x` (decl src ln 13) assn asm ln 39, prod ln 14.11, live ln 15, enc 1 symbolic value matches after assn asm ln 41, prod ln 14.11, live ln 15, enc 1
+
+Checking equivalence of `x` (decl src ln 13) from
+  assn asm ln 46, prod ln 15.4, live ln 16, enc 2
+  %inc = add nsw i32 %1, 1, l15 c4
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+and
+  assn asm ln 43, prod ln 15.4, live ln 16, enc 2
+  %inc = add nsw i32 %0, 1, l15 c4
+  (Add w32 (w32 0x1)
+          (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+Query to parse
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+array modify_return.arg0.deref[4] : w32 -> w8 = symbolic
+(query [] (Eq (Add w32 (w32 0x1)
+              (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+     (Add w32 (w32 0x1)
+              (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))))
+Parsed query
+(Eq N0:(Add w32 (w32 0x1)
+                 (ReadLSB w32 (w32 0x0) modify_return.arg0.deref))
+     N0)
+✅ Before `x` (decl src ln 13) assn asm ln 43, prod ln 15.4, live ln 16, enc 2 symbolic value matches after assn asm ln 46, prod ln 15.4, live ln 16, enc 2
+
+✅ After `x` assns checked using before as reference
+Assignments:         x
+  Reference:         3
+  Test:              3
+Matching:
+  Matching Coords:   3
+  Matching Value:    3
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+Checking equivalence of `y` (decl src ln 14) from
+  assn asm ln 42, prod ln 14.11, live ln 15, enc 0
+  %call = call i32 @modify_return(i32* nonnull %x) #4, l14 c11
+  (ReadLSB w32 (w32 0x0) modify_return.return)
+and
+  assn asm ln 40, prod ln 14.11, live ln 15, enc 0
+  %call = call i32 @modify_return(i32* %x), l14 c11
+  (ReadLSB w32 (w32 0x0) modify_return.return)
+Query to parse
+array modify_return.return[4] : w32 -> w8 = symbolic
+array modify_return.return[4] : w32 -> w8 = symbolic
+(query [] (Eq (ReadLSB w32 (w32 0x0) modify_return.return)
+     (ReadLSB w32 (w32 0x0) modify_return.return)))
+Parsed query
+(Eq N0:(ReadLSB w32 (w32 0x0) modify_return.return)
+     N0)
+✅ Before `y` (decl src ln 14) assn asm ln 40, prod ln 14.11, live ln 15, enc 0 symbolic value matches after assn asm ln 42, prod ln 14.11, live ln 15, enc 0
+
+✅ After `y` assns checked using before as reference
+Assignments:         y
+  Reference:         1
+  Test:              1
+Matching:
+  Matching Coords:   1
+  Matching Value:    1
+Consistency Errors:
+  Mismatched Coords: 0
+  Mismatched Value:  0
+Availability Errors:
+  Ref Not Encount.:  0
+  Ref Not in Test:   0
+  Test Not Encount.: 0
+  Test Not in Ref:   0
+Warnings:
+  Unused:            0
+  Removable:         0
+  Unreachable:       0
+Reference Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+Test Execution:
+  Function Covered:  true
+  Complete:          true
+  Within Time Limit: true
+  Within Fork Limit: true
+
+### Summary
+
+Assignments:
+  Reference:                 5
+  Test:                      5 (100.00% of ref )
+Matching:
+  Matching Coords:           5 (100.00% of ref )
+  Matching Value:            5 (100.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           0 (  0.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          5 (100.00% of ref )
+  Complete:                  5 (100.00% of ref )
+  Within Time Limit:         5 (100.00% of ref )
+  Within Fork Limit:         5 (100.00% of ref )
+Test Execution:
+  Function Covered:          5 (100.00% of test)
+  Complete:                  5 (100.00% of test)
+  Within Time Limit:         5 (100.00% of test)
+  Within Fork Limit:         5 (100.00% of test)
+
+## Summary
+
+Assignments:
+  Reference:                 9
+  Test:                      9 (100.00% of ref )
+Matching:
+  Matching Coords:           9 (100.00% of ref )
+  Matching Value:            9 (100.00% of ref )
+Consistency Errors:
+  Mismatched Coords:         0 (  0.00% of ref )
+  Mismatched Value:          0 (  0.00% of ref )
+Availability Errors:
+  Ref Not Encount.:          0 (  0.00% of ref )
+  Ref Not in Test:           0 (  0.00% of ref )
+  Test Not Encount.:         0 (  0.00% of test)
+  Test Not in Ref:           0 (  0.00% of test)
+Warnings:
+  Unused:                    0 (  0.00% of ref )
+  Removable:                 0 (  0.00% of ref )
+  Unreachable:               0 (  0.00% of ref )
+Reference Execution:
+  Function Covered:          9 (100.00% of ref )
+  Complete:                  9 (100.00% of ref )
+  Within Time Limit:         9 (100.00% of ref )
+  Within Fork Limit:         9 (100.00% of ref )
+Test Execution:
+  Function Covered:          9 (100.00% of test)
+  Complete:                  9 (100.00% of test)
+  Within Time Limit:         9 (100.00% of test)
+  Within Fork Limit:         9 (100.00% of test)
+
+🎉 All consistency checks passed
