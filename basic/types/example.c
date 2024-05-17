@@ -38,7 +38,7 @@ int ex106PointerSingleElementInstances(int *a, int *b) {
 
 int ex107PointerMultipleElementValues(int *a) {
   // Currently fails, max of 2 elements assumed
-  return a[0] + a[1] + a[2] + a[3];
+  return a[0] + a[3];
 }
 
 int ex108PointerFunction(int (*a)()) {
@@ -55,7 +55,7 @@ int ex201StructFieldInt(struct s201 s) {
 }
 
 struct s202 {
-  struct inner {
+  struct {
     int a;
   } inner;
 };
@@ -109,7 +109,7 @@ struct s207 {
 };
 int ex207StructFieldPointerMultipleElementValues(struct s207 s) {
   // Currently fails, max of 2 elements assumed
-  return s.a[0] + s.a[1] + s.a[2] + s.a[3];
+  return s.a[0] + s.a[3];
 }
 
 struct s208 {
