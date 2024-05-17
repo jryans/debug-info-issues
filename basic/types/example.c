@@ -4,22 +4,24 @@
 
 // Scalars
 
-int ex001Int(int a) {
+int ex101Int(int a) {
   return a;
 }
 
-struct s002 {
+struct s102 {
   int a;
 };
-int ex002Struct(struct s002 s) {
+int ex102Struct(struct s102 s) {
   return s.a;
 }
 
-int ex003PointerSingleElementValue(int *a) {
+// Array cases are not possible as a scalar function argument in C
+
+int ex105PointerSingleElementValue(int *a) {
   return *a;
 }
 
-int ex004PointerSingleElementInstances(int *a, int *b) {
+int ex106PointerSingleElementInstances(int *a, int *b) {
   if (a == NULL || b == NULL) {
     // Currently fails, case unimplemented
     return 1; // null
@@ -34,60 +36,60 @@ int ex004PointerSingleElementInstances(int *a, int *b) {
   assert(false);
 }
 
-int ex005PointerMultipleElementValues(int *a) {
+int ex107PointerMultipleElementValues(int *a) {
   // Currently fails, max of 2 elements assumed
   return a[0] + a[1] + a[2] + a[3];
 }
 
-int ex006PointerFunction(int (*a)()) {
+int ex108PointerFunction(int (*a)()) {
   return a();
 }
 
 // Struct field of type...
 
-struct s007 {
+struct s201 {
   int a;
 };
-int ex007StructFieldInt(struct s007 s) {
+int ex201StructFieldInt(struct s201 s) {
   return s.a;
 }
 
-struct s008 {
+struct s202 {
   struct inner {
     int a;
   } inner;
 };
-int ex008StructFieldStruct(struct s008 s) {
+int ex202StructFieldStruct(struct s202 s) {
   return s.inner.a;
 }
 
-struct s009 {
+struct s203 {
   int a[4];
 };
-int ex009StructFieldArrayFixedLength(struct s009 s) {
+int ex203StructFieldArrayFixedLength(struct s203 s) {
   return s.a[0] + s.a[3];
 }
 
-struct s010 {
+struct s204 {
   int placeholder;
   int a[];
 };
-int ex010StructFieldArrayVariableLength(struct s010 s) {
+int ex204StructFieldArrayVariableLength(struct s204 s) {
   return s.a[0] + s.a[3];
 }
 
-struct s011 {
+struct s205 {
   int *a;
 };
-int ex011StructFieldPointerSingleElementValue(struct s011 s) {
+int ex205StructFieldPointerSingleElementValue(struct s205 s) {
   return *s.a;
 }
 
-struct s012 {
+struct s206 {
   int *a;
   int *b;
 };
-int ex012StructFieldPointerSingleElementInstances(struct s012 s) {
+int ex206StructFieldPointerSingleElementInstances(struct s206 s) {
   if (s.a == NULL || s.b == NULL) {
     // Currently fails, case unimplemented
     return 1; // null
@@ -102,17 +104,17 @@ int ex012StructFieldPointerSingleElementInstances(struct s012 s) {
   assert(false);
 }
 
-struct s013 {
+struct s207 {
   int *a;
 };
-int ex013StructFieldPointerMultipleElementValues(struct s013 s) {
+int ex207StructFieldPointerMultipleElementValues(struct s207 s) {
   // Currently fails, max of 2 elements assumed
   return s.a[0] + s.a[1] + s.a[2] + s.a[3];
 }
 
-struct s014 {
+struct s208 {
   int (*a)();
 };
-int ex014StructFieldPointerFunction(struct s014 s) {
+int ex208StructFieldPointerFunction(struct s208 s) {
   return s.a();
 }

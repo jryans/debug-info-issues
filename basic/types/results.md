@@ -247,7 +247,7 @@
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
-++ rm -rf ./klee-out-O0/ex001Int ./klee-out-O0/ex002Struct ./klee-out-O0/ex003PointerSingleElementValue ./klee-out-O0/ex004PointerSingleElementInstances ./klee-out-O0/ex005PointerMultipleElementValues ./klee-out-O0/ex006PointerFunction ./klee-out-O0/ex007StructFieldInt ./klee-out-O0/ex008StructFieldStruct ./klee-out-O0/ex009StructFieldArrayFixedLength ./klee-out-O0/ex010StructFieldArrayVariableLength ./klee-out-O0/ex011StructFieldPointerSingleElementValue ./klee-out-O0/ex012PointerSingleElementInstances ./klee-out-O0/ex013PointerMultipleElementValues ./klee-out-O0/ex014StructFieldPointerFunction
+++ rm -rf ./klee-out-O0/ex101Int ./klee-out-O0/ex102Struct ./klee-out-O0/ex103PointerSingleElementValue ./klee-out-O0/ex104PointerSingleElementInstances ./klee-out-O0/ex105PointerMultipleElementValues ./klee-out-O0/ex106PointerFunction ./klee-out-O0/ex201StructFieldInt ./klee-out-O0/ex202StructFieldStruct ./klee-out-O0/ex203StructFieldArrayFixedLength ./klee-out-O0/ex204StructFieldArrayVariableLength ./klee-out-O0/ex205StructFieldPointerSingleElementValue ./klee-out-O0/ex206StructFieldPointerSingleElementInstances ./klee-out-O0/ex207StructFieldPointerMultipleElementValues ./klee-out-O0/ex208StructFieldPointerFunction
 ++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests'
 ++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --max-forks=4 --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests klee-out-O0/final.bc
 [0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.4.0'
@@ -273,7 +273,7 @@ KLEE: done: total instructions = 21
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;31mKLEE: ERROR: example.c:39: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 13
@@ -300,7 +300,7 @@ KLEE: done: total instructions = 15
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;31mKLEE: ERROR: example.c:76: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:78: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 7
@@ -317,7 +317,7 @@ KLEE: done: total instructions = 26
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;31mKLEE: ERROR: example.c:110: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:112: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 17
@@ -330,118 +330,118 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0m++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex001Int ']'
-++ ./check-coverage.js ./klee-out-O0/ex001Int
-./klee-out-O0/ex001Int
-Coverage for ex001Int
+++ '[' -d ./klee-out-O0/ex101Int ']'
+++ ./check-coverage.js ./klee-out-O0/ex101Int
+./klee-out-O0/ex101Int
+Coverage for ex101Int
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex002Struct ']'
-++ ./check-coverage.js ./klee-out-O0/ex002Struct
-./klee-out-O0/ex002Struct
-Coverage for ex002Struct
+++ '[' -d ./klee-out-O0/ex102Struct ']'
+++ ./check-coverage.js ./klee-out-O0/ex102Struct
+./klee-out-O0/ex102Struct
+Coverage for ex102Struct
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex003PointerSingleElementValue ']'
-++ ./check-coverage.js ./klee-out-O0/ex003PointerSingleElementValue
-./klee-out-O0/ex003PointerSingleElementValue
-Coverage for ex003PointerSingleElementValue
+++ '[' -d ./klee-out-O0/ex105PointerSingleElementValue ']'
+++ ./check-coverage.js ./klee-out-O0/ex105PointerSingleElementValue
+./klee-out-O0/ex105PointerSingleElementValue
+Coverage for ex105PointerSingleElementValue
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex004PointerSingleElementInstances ']'
-++ ./check-coverage.js ./klee-out-O0/ex004PointerSingleElementInstances
-./klee-out-O0/ex004PointerSingleElementInstances
-Coverage for ex004PointerSingleElementInstances
-Asm line 76, src line 25 not covered
-Asm line 77, src line 25 not covered
-Asm line 90, src line 30 not covered
-Asm line 91, src line 30 not covered
-Asm line 92, src line 30 not covered
-Asm line 93, src line 30 not covered
-Asm line 96, src line 32 not covered
-Asm line 97, src line 32 not covered
-Asm line 100, src line 34 not covered
-Asm line 101, src line 34 not covered
+++ '[' -d ./klee-out-O0/ex106PointerSingleElementInstances ']'
+++ ./check-coverage.js ./klee-out-O0/ex106PointerSingleElementInstances
+./klee-out-O0/ex106PointerSingleElementInstances
+Coverage for ex106PointerSingleElementInstances
+Asm line 76, src line 27 not covered
+Asm line 77, src line 27 not covered
+Asm line 90, src line 32 not covered
+Asm line 91, src line 32 not covered
+Asm line 92, src line 32 not covered
+Asm line 93, src line 32 not covered
+Asm line 96, src line 34 not covered
+Asm line 97, src line 34 not covered
+Asm line 100, src line 36 not covered
+Asm line 101, src line 36 not covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex005PointerMultipleElementValues ']'
-++ ./check-coverage.js ./klee-out-O0/ex005PointerMultipleElementValues
-./klee-out-O0/ex005PointerMultipleElementValues
-Coverage for ex005PointerMultipleElementValues
-Asm line 127, src line 39 not covered
-Asm line 128, src line 39 not covered
-Asm line 129, src line 39 not covered
-Asm line 130, src line 39 not covered
-Asm line 131, src line 39 not covered
-Asm line 132, src line 39 not covered
+++ '[' -d ./klee-out-O0/ex107PointerMultipleElementValues ']'
+++ ./check-coverage.js ./klee-out-O0/ex107PointerMultipleElementValues
+./klee-out-O0/ex107PointerMultipleElementValues
+Coverage for ex107PointerMultipleElementValues
+Asm line 127, src line 41 not covered
+Asm line 128, src line 41 not covered
+Asm line 129, src line 41 not covered
+Asm line 130, src line 41 not covered
+Asm line 131, src line 41 not covered
+Asm line 132, src line 41 not covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex006PointerFunction ']'
-++ ./check-coverage.js ./klee-out-O0/ex006PointerFunction
-./klee-out-O0/ex006PointerFunction
-Coverage for ex006PointerFunction
+++ '[' -d ./klee-out-O0/ex108PointerFunction ']'
+++ ./check-coverage.js ./klee-out-O0/ex108PointerFunction
+./klee-out-O0/ex108PointerFunction
+Coverage for ex108PointerFunction
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex007StructFieldInt ']'
-++ ./check-coverage.js ./klee-out-O0/ex007StructFieldInt
-./klee-out-O0/ex007StructFieldInt
-Coverage for ex007StructFieldInt
+++ '[' -d ./klee-out-O0/ex201StructFieldInt ']'
+++ ./check-coverage.js ./klee-out-O0/ex201StructFieldInt
+./klee-out-O0/ex201StructFieldInt
+Coverage for ex201StructFieldInt
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex008StructFieldStruct ']'
-++ ./check-coverage.js ./klee-out-O0/ex008StructFieldStruct
-./klee-out-O0/ex008StructFieldStruct
-Coverage for ex008StructFieldStruct
+++ '[' -d ./klee-out-O0/ex202StructFieldStruct ']'
+++ ./check-coverage.js ./klee-out-O0/ex202StructFieldStruct
+./klee-out-O0/ex202StructFieldStruct
+Coverage for ex202StructFieldStruct
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex009StructFieldArrayFixedLength ']'
-++ ./check-coverage.js ./klee-out-O0/ex009StructFieldArrayFixedLength
-./klee-out-O0/ex009StructFieldArrayFixedLength
-Coverage for ex009StructFieldArrayFixedLength
+++ '[' -d ./klee-out-O0/ex203StructFieldArrayFixedLength ']'
+++ ./check-coverage.js ./klee-out-O0/ex203StructFieldArrayFixedLength
+./klee-out-O0/ex203StructFieldArrayFixedLength
+Coverage for ex203StructFieldArrayFixedLength
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex010StructFieldArrayVariableLength ']'
-++ ./check-coverage.js ./klee-out-O0/ex010StructFieldArrayVariableLength
-./klee-out-O0/ex010StructFieldArrayVariableLength
-Coverage for ex010StructFieldArrayVariableLength
-Asm line 202, src line 76 not covered
-Asm line 203, src line 76 not covered
+++ '[' -d ./klee-out-O0/ex204StructFieldArrayVariableLength ']'
+++ ./check-coverage.js ./klee-out-O0/ex204StructFieldArrayVariableLength
+./klee-out-O0/ex204StructFieldArrayVariableLength
+Coverage for ex204StructFieldArrayVariableLength
+Asm line 202, src line 78 not covered
+Asm line 203, src line 78 not covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex011StructFieldPointerSingleElementValue ']'
-++ ./check-coverage.js ./klee-out-O0/ex011StructFieldPointerSingleElementValue
-./klee-out-O0/ex011StructFieldPointerSingleElementValue
-Coverage for ex011StructFieldPointerSingleElementValue
+++ '[' -d ./klee-out-O0/ex205StructFieldPointerSingleElementValue ']'
+++ ./check-coverage.js ./klee-out-O0/ex205StructFieldPointerSingleElementValue
+./klee-out-O0/ex205StructFieldPointerSingleElementValue
+Coverage for ex205StructFieldPointerSingleElementValue
 All lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex012StructFieldPointerSingleElementInstances ']'
-++ ./check-coverage.js ./klee-out-O0/ex012StructFieldPointerSingleElementInstances
-./klee-out-O0/ex012StructFieldPointerSingleElementInstances
-Coverage for ex012StructFieldPointerSingleElementInstances
-Asm line 242, src line 93 not covered
-Asm line 243, src line 93 not covered
-Asm line 258, src line 98 not covered
-Asm line 259, src line 98 not covered
-Asm line 260, src line 98 not covered
-Asm line 261, src line 98 not covered
-Asm line 262, src line 98 not covered
-Asm line 263, src line 98 not covered
-Asm line 266, src line 100 not covered
-Asm line 267, src line 100 not covered
-Asm line 270, src line 102 not covered
-Asm line 271, src line 102 not covered
+++ '[' -d ./klee-out-O0/ex206StructFieldPointerSingleElementInstances ']'
+++ ./check-coverage.js ./klee-out-O0/ex206StructFieldPointerSingleElementInstances
+./klee-out-O0/ex206StructFieldPointerSingleElementInstances
+Coverage for ex206StructFieldPointerSingleElementInstances
+Asm line 242, src line 95 not covered
+Asm line 243, src line 95 not covered
+Asm line 258, src line 100 not covered
+Asm line 259, src line 100 not covered
+Asm line 260, src line 100 not covered
+Asm line 261, src line 100 not covered
+Asm line 262, src line 100 not covered
+Asm line 263, src line 100 not covered
+Asm line 266, src line 102 not covered
+Asm line 267, src line 102 not covered
+Asm line 270, src line 104 not covered
+Asm line 271, src line 104 not covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex013StructFieldPointerMultipleElementValues ']'
-++ ./check-coverage.js ./klee-out-O0/ex013StructFieldPointerMultipleElementValues
-./klee-out-O0/ex013StructFieldPointerMultipleElementValues
-Coverage for ex013StructFieldPointerMultipleElementValues
-Asm line 298, src line 110 not covered
-Asm line 299, src line 110 not covered
-Asm line 300, src line 110 not covered
-Asm line 301, src line 110 not covered
-Asm line 302, src line 110 not covered
-Asm line 303, src line 110 not covered
-Asm line 304, src line 110 not covered
+++ '[' -d ./klee-out-O0/ex207StructFieldPointerMultipleElementValues ']'
+++ ./check-coverage.js ./klee-out-O0/ex207StructFieldPointerMultipleElementValues
+./klee-out-O0/ex207StructFieldPointerMultipleElementValues
+Coverage for ex207StructFieldPointerMultipleElementValues
+Asm line 298, src line 112 not covered
+Asm line 299, src line 112 not covered
+Asm line 300, src line 112 not covered
+Asm line 301, src line 112 not covered
+Asm line 302, src line 112 not covered
+Asm line 303, src line 112 not covered
+Asm line 304, src line 112 not covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex014StructFieldPointerFunction ']'
-++ ./check-coverage.js ./klee-out-O0/ex014StructFieldPointerFunction
-./klee-out-O0/ex014StructFieldPointerFunction
-Coverage for ex014StructFieldPointerFunction
+++ '[' -d ./klee-out-O0/ex208StructFieldPointerFunction ']'
+++ ./check-coverage.js ./klee-out-O0/ex208StructFieldPointerFunction
+./klee-out-O0/ex208StructFieldPointerFunction
+Coverage for ex208StructFieldPointerFunction
 All lines covered
