@@ -253,78 +253,92 @@
 [0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.4.0'
 This may cause unexpected crashes or assertion violations.
 [0mKLEE: output directory is "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/types/klee-out-O0"
-[0m[0;1;32m
+[0mKLEE: Running `ex101Int` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 5
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex102Struct` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 7
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex105PointerSingleElementValue` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 6
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex106PointerSingleElementInstances` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 21
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;31mKLEE: ERROR: example.c:41: memory error: out of bound pointer
+[0mKLEE: Running `ex107PointerMultipleElementValues` in independent function mode
+[0;1;31mKLEE: ERROR: example.c:41: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 9
 KLEE: done: completed paths = 0
 KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex108PointerFunction` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 6
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex201StructFieldInt` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 7
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex202StructFieldStruct` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 9
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex203StructFieldArrayFixedLength` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 15
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;31mKLEE: ERROR: example.c:78: memory error: out of bound pointer
+[0mKLEE: Running `ex204StructFieldArrayVariableLength` in independent function mode
+[0;1;31mKLEE: ERROR: example.c:78: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 7
 KLEE: done: completed paths = 0
 KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex205StructFieldPointerSingleElementValue` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex206StructFieldPointerSingleElementInstances` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 26
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
-[0m[0;1;31mKLEE: ERROR: example.c:112: memory error: out of bound pointer
+[0mKLEE: Running `ex207StructFieldPointerMultipleElementValues` in independent function mode
+[0;1;31mKLEE: ERROR: example.c:112: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 12
 KLEE: done: completed paths = 0
 KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
-[0m[0;1;32m
+[0mKLEE: Running `ex208StructFieldPointerFunction` in independent function mode
+[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
