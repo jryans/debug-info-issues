@@ -55,8 +55,8 @@ filter_cg_ir() {
 
 PRINT_MODULE=$(klee debug print-module)
 
-KLEE=$(klee release klee)
-KLEE_COMMON_OPTS="--output-module --use-query-log=all:kquery,solver:kquery --debug-execution-trace --max-forks=4"
+KLEE=$(klee debug klee)
+KLEE_COMMON_OPTS="--debug-execution-trace --output-source --max-forks=4 --search=random-path"
 
 O0_BC="klee-out-O0/final.bc"
 O1_BC="klee-out-O1/final.bc"
@@ -69,4 +69,4 @@ AFTER_BC="klee-out-after/final.bc"
 AFTER_FIXED_BC="klee-out-after-fixed/final.bc"
 
 CHECK=$(klee debug check-debug-info)
-CHECK_OPTS="--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv"
+CHECK_OPTS="--debug-only=check-debug-info,values-collector,variable ${KLEE_COMMON_OPTS} --tsv"
