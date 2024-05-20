@@ -206,9 +206,6 @@ int ex402PointerToStruct(struct s402 *s) {
 
 // Array cases are not possible as a pointer function argument in C
 
-// All cases below currently fail
-// Double pointer exceeds max symbolic value depth
-
 int ex405PointerToPointerSingleElementValue(int **a) {
   return **a;
 }
