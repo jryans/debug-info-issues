@@ -118,3 +118,75 @@ struct s208 {
 int ex208StructFieldPointerFunction(struct s208 s) {
   return s.a();
 }
+
+// Array with element type...
+
+struct s301 {
+  int a[4];
+};
+int ex301ArrayElemInt(struct s301 s) {
+  return s.a[0] + s.a[3];
+}
+
+struct s302 {
+  struct {
+    int a;
+  } inner[4];
+};
+int ex302ArrayElemStruct(struct s302 s) {
+  return s.inner[0].a + s.inner[3].a;
+}
+
+struct s303 {
+  int a[4][4];
+};
+int ex303ArrayElemArrayFixedLength(struct s303 s) {
+  return s.a[0][0] + s.a[3][3];
+}
+
+// Array of variable-length arrays is not possible in C
+
+struct s305 {
+  int *a[3];
+};
+// Execution incomplete, too many forks due to symbolic addresses
+int ex305ArrayElemPointerSingleElementValue(struct s305 s) {
+  return *s.a[0];
+}
+
+struct s306 {
+  int *a[4];
+};
+// Currently whole function passes because these pointers are symbolic
+// Once they are concretised, the cases below will fail
+int ex306ArrayElemPointerSingleElementInstances(struct s306 s) {
+  if (s.a[0] == NULL || s.a[3] == NULL) {
+    // Currently fails, case unimplemented
+    return 1; // null
+  }
+  if (s.a[0] != s.a[3]) {
+    return 2; // new instance
+  }
+  if (s.a[0] == s.a[3]) {
+    // Currently fails, case unimplemented
+    return 3; // existing instance
+  }
+  assert(false);
+}
+
+struct s307 {
+  int *a[4];
+};
+// Execution incomplete, too many forks due to symbolic addresses
+int ex307ArrayElemPointerMultipleElementValues(struct s307 s) {
+  // Currently fails, max of 2 elements assumed
+  return *s.a[0] + *s.a[3];
+}
+
+struct s308 {
+  int (*a[4])();
+};
+// Execution incomplete, too many forks due to symbolic function pointers
+int ex308ArrayElemPointerFunction(struct s308 s) {
+  return s.a[0]() + s.a[3]();
+}
