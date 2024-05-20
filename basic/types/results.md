@@ -348,19 +348,19 @@ KLEE: done: generated tests = 0
 ++ ./check-coverage.js ./klee-out-O0/ex101Int
 ./klee-out-O0/ex101Int
 Coverage for ex101Int
-All lines covered
+5 / 5 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex102Struct ']'
 ++ ./check-coverage.js ./klee-out-O0/ex102Struct
 ./klee-out-O0/ex102Struct
 Coverage for ex102Struct
-All lines covered
+7 / 7 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex105PointerSingleElementValue ']'
 ++ ./check-coverage.js ./klee-out-O0/ex105PointerSingleElementValue
 ./klee-out-O0/ex105PointerSingleElementValue
 Coverage for ex105PointerSingleElementValue
-All lines covered
+6 / 6 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex106PointerSingleElementInstances ']'
 ++ ./check-coverage.js ./klee-out-O0/ex106PointerSingleElementInstances
@@ -376,6 +376,7 @@ Asm line 96, src line 34 not covered
 Asm line 97, src line 34 not covered
 Asm line 100, src line 36 not covered
 Asm line 101, src line 36 not covered
+21 / 31 (67.74193548387096%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex107PointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex107PointerMultipleElementValues
@@ -383,30 +384,31 @@ Asm line 101, src line 36 not covered
 Coverage for ex107PointerMultipleElementValues
 Asm line 123, src line 41 not covered
 Asm line 124, src line 41 not covered
+9 / 11 (81.81818181818183%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex108PointerFunction ']'
 ++ ./check-coverage.js ./klee-out-O0/ex108PointerFunction
 ./klee-out-O0/ex108PointerFunction
 Coverage for ex108PointerFunction
-All lines covered
+6 / 6 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex201StructFieldInt ']'
 ++ ./check-coverage.js ./klee-out-O0/ex201StructFieldInt
 ./klee-out-O0/ex201StructFieldInt
 Coverage for ex201StructFieldInt
-All lines covered
+7 / 7 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex202StructFieldStruct ']'
 ++ ./check-coverage.js ./klee-out-O0/ex202StructFieldStruct
 ./klee-out-O0/ex202StructFieldStruct
 Coverage for ex202StructFieldStruct
-All lines covered
+9 / 9 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex203StructFieldArrayFixedLength ']'
 ++ ./check-coverage.js ./klee-out-O0/ex203StructFieldArrayFixedLength
 ./klee-out-O0/ex203StructFieldArrayFixedLength
 Coverage for ex203StructFieldArrayFixedLength
-All lines covered
+15 / 15 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex204StructFieldArrayVariableLength ']'
 ++ ./check-coverage.js ./klee-out-O0/ex204StructFieldArrayVariableLength
@@ -414,12 +416,13 @@ All lines covered
 Coverage for ex204StructFieldArrayVariableLength
 Asm line 194, src line 78 not covered
 Asm line 195, src line 78 not covered
+7 / 9 (77.77777777777779%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex205StructFieldPointerSingleElementValue ']'
 ++ ./check-coverage.js ./klee-out-O0/ex205StructFieldPointerSingleElementValue
 ./klee-out-O0/ex205StructFieldPointerSingleElementValue
 Coverage for ex205StructFieldPointerSingleElementValue
-All lines covered
+8 / 8 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex206StructFieldPointerSingleElementInstances ']'
 ++ ./check-coverage.js ./klee-out-O0/ex206StructFieldPointerSingleElementInstances
@@ -437,6 +440,7 @@ Asm line 258, src line 102 not covered
 Asm line 259, src line 102 not covered
 Asm line 262, src line 104 not covered
 Asm line 263, src line 104 not covered
+26 / 38 (68.42105263157895%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex207StructFieldPointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex207StructFieldPointerMultipleElementValues
@@ -444,9 +448,10 @@ Asm line 263, src line 104 not covered
 Coverage for ex207StructFieldPointerMultipleElementValues
 Asm line 285, src line 112 not covered
 Asm line 286, src line 112 not covered
+12 / 14 (85.71428571428571%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex208StructFieldPointerFunction ']'
 ++ ./check-coverage.js ./klee-out-O0/ex208StructFieldPointerFunction
 ./klee-out-O0/ex208StructFieldPointerFunction
 Coverage for ex208StructFieldPointerFunction
-All lines covered
+8 / 8 (100%) asm lines covered

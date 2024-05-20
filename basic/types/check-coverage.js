@@ -16,8 +16,11 @@ const stats = fs.readFileSync(path.join(dirPath, "run.istats"), "utf8");
 const lines = stats.split("\n");
 
 console.log(`Coverage for ${section}`);
+
 let sectionFound = false;
-let coverageSummary = true;
+let sectionLines = 0;
+let sectionLinesCovered = 0;
+
 for (const line of lines) {
   if (sectionFound) {
     // End of section
@@ -27,8 +30,10 @@ for (const line of lines) {
     // Examine cells of interest
     const [asmLine, srcLine, coveredStr] = line.split(" ");
     const covered = coveredStr == "1";
-    coverageSummary &= covered;
-    if (!covered) {
+    sectionLines++;
+    if (covered) {
+      sectionLinesCovered++;
+    } else {
       console.log(`Asm line ${asmLine}, src line ${srcLine} not covered`);
     }
   }
@@ -38,10 +43,9 @@ for (const line of lines) {
   }
 }
 
-if (!sectionFound) {
+if (!sectionFound || !sectionLines) {
   console.log("No coverage data found!");
 }
 
-if (coverageSummary) {
-  console.log("All lines covered")
-}
+const percent = sectionLinesCovered / sectionLines * 100;
+console.log(`${sectionLinesCovered} / ${sectionLines} (${percent}%) asm lines covered`)
