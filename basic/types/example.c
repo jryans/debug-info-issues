@@ -190,3 +190,49 @@ struct s308 {
 int ex308ArrayElemPointerFunction(struct s308 s) {
   return s.a[0]() + s.a[3]();
 }
+
+// Pointer to...
+
+int ex401PointerToInt(int *a) {
+  return *a;
+}
+
+struct s402 {
+  int a;
+};
+int ex402PointerToStruct(struct s402 *s) {
+  return s->a;
+}
+
+// Array cases are not possible as a pointer function argument in C
+
+// All cases below currently fail
+// Double pointer exceeds max symbolic value depth
+
+int ex405PointerToPointerSingleElementValue(int **a) {
+  return **a;
+}
+
+int ex406PointerToPointerSingleElementInstances(int **a, int **b) {
+  if (*a == NULL || *b == NULL) {
+    // Currently fails, case unimplemented
+    return 1; // null
+  }
+  if (*a != *b) {
+    return 2; // new instance
+  }
+  if (*a == *b) {
+    // Currently fails, case unimplemented
+    return 3; // existing instance
+  }
+  assert(false);
+}
+
+int ex407PointerToPointerMultipleElementValues(int **a) {
+  // Currently fails, max of 2 elements assumed
+  return (*a)[0] + (*a)[3];
+}
+
+int ex408PointerToPointerFunction(int (**a)()) {
+  return (*a)();
+}
