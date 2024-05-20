@@ -17,6 +17,11 @@ const lines = stats.split("\n");
 
 console.log(`Coverage for ${section}`);
 
+const warningsSize = fs.statSync(path.join(dirPath, "warnings.txt")).size;
+if (warningsSize) {
+  console.log("Warnings present, coverage may be invalid!");
+}
+
 let sectionFound = false;
 let sectionLines = 0;
 let sectionLinesCovered = 0;
