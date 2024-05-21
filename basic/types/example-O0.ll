@@ -22,6 +22,10 @@ target triple = "x86_64-apple-macosx14.0.0"
 %struct.s307 = type { [4 x i32*] }
 %struct.s308 = type { [4 x i32 (...)*] }
 %struct.s402 = type { i32 }
+%struct.s501 = type { %struct.anon.1 }
+%struct.anon.1 = type { [4 x i32*] }
+%struct.s502 = type { [4 x %struct.anon.2] }
+%struct.anon.2 = type { i32* }
 
 ; Function Attrs: noinline nounwind ssp uwtable
 define i32 @ex101Int(i32 %a) #0 !dbg !13 {
@@ -537,6 +541,30 @@ entry:
   ret i32 %call, !dbg !409
 }
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @ex501StructWithArrayOfPointers(%struct.s501* byval(%struct.s501) align 8 %s) #0 !dbg !410 {
+entry:
+  call void @llvm.dbg.declare(metadata %struct.s501* %s, metadata !419, metadata !DIExpression()), !dbg !420
+  %inner = getelementptr inbounds %struct.s501, %struct.s501* %s, i32 0, i32 0, !dbg !421
+  %a = getelementptr inbounds %struct.anon.1, %struct.anon.1* %inner, i32 0, i32 0, !dbg !422
+  %arrayidx = getelementptr inbounds [4 x i32*], [4 x i32*]* %a, i64 0, i64 0, !dbg !423
+  %0 = load i32*, i32** %arrayidx, align 8, !dbg !423
+  %1 = load i32, i32* %0, align 4, !dbg !424
+  ret i32 %1, !dbg !425
+}
+
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @ex502ArrayOfStructsWithPointer(%struct.s502* byval(%struct.s502) align 8 %s) #0 !dbg !426 {
+entry:
+  call void @llvm.dbg.declare(metadata %struct.s502* %s, metadata !436, metadata !DIExpression()), !dbg !437
+  %inner = getelementptr inbounds %struct.s502, %struct.s502* %s, i32 0, i32 0, !dbg !438
+  %arrayidx = getelementptr inbounds [4 x %struct.anon.2], [4 x %struct.anon.2]* %inner, i64 0, i64 0, !dbg !439
+  %a = getelementptr inbounds %struct.anon.2, %struct.anon.2* %arrayidx, i32 0, i32 0, !dbg !440
+  %0 = load i32*, i32** %a, align 8, !dbg !440
+  %1 = load i32, i32* %0, align 4, !dbg !441
+  ret i32 %1, !dbg !442
+}
+
 attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 
@@ -954,3 +982,36 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !407 = !DILocation(line: 222, column: 11, scope: !400)
 !408 = !DILocation(line: 222, column: 10, scope: !400)
 !409 = !DILocation(line: 222, column: 3, scope: !400)
+!410 = distinct !DISubprogram(name: "ex501StructWithArrayOfPointers", scope: !8, file: !8, line: 233, type: !411, scopeLine: 233, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!411 = !DISubroutineType(types: !412)
+!412 = !{!16, !413}
+!413 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s501", file: !8, line: 227, size: 256, elements: !414)
+!414 = !{!415}
+!415 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !413, file: !8, line: 230, baseType: !416, size: 256)
+!416 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !413, file: !8, line: 228, size: 256, elements: !417)
+!417 = !{!418}
+!418 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !416, file: !8, line: 229, baseType: !262, size: 256)
+!419 = !DILocalVariable(name: "s", arg: 1, scope: !410, file: !8, line: 233, type: !413)
+!420 = !DILocation(line: 233, column: 48, scope: !410)
+!421 = !DILocation(line: 234, column: 13, scope: !410)
+!422 = !DILocation(line: 234, column: 19, scope: !410)
+!423 = !DILocation(line: 234, column: 11, scope: !410)
+!424 = !DILocation(line: 234, column: 10, scope: !410)
+!425 = !DILocation(line: 234, column: 3, scope: !410)
+!426 = distinct !DISubprogram(name: "ex502ArrayOfStructsWithPointer", scope: !8, file: !8, line: 243, type: !427, scopeLine: 243, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!427 = !DISubroutineType(types: !428)
+!428 = !{!16, !429}
+!429 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s502", file: !8, line: 237, size: 256, elements: !430)
+!430 = !{!431}
+!431 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !429, file: !8, line: 240, baseType: !432, size: 256)
+!432 = !DICompositeType(tag: DW_TAG_array_type, baseType: !433, size: 256, elements: !114)
+!433 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !429, file: !8, line: 238, size: 64, elements: !434)
+!434 = !{!435}
+!435 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !433, file: !8, line: 239, baseType: !34, size: 64)
+!436 = !DILocalVariable(name: "s", arg: 1, scope: !426, file: !8, line: 243, type: !429)
+!437 = !DILocation(line: 243, column: 48, scope: !426)
+!438 = !DILocation(line: 244, column: 13, scope: !426)
+!439 = !DILocation(line: 244, column: 11, scope: !426)
+!440 = !DILocation(line: 244, column: 22, scope: !426)
+!441 = !DILocation(line: 244, column: 10, scope: !426)
+!442 = !DILocation(line: 244, column: 3, scope: !426)

@@ -221,3 +221,25 @@ int ex407PointerToPointerMultipleElementValues(int **a) {
 int ex408PointerToPointerFunction(int (**a)()) {
   return (*a)();
 }
+
+// Nested pointers
+
+struct s501 {
+  struct {
+    int *a[4];
+  } inner;
+};
+// Execution complete, but symbolic addresses were used
+int ex501StructWithArrayOfPointers(struct s501 s) {
+  return *s.inner.a[0];
+}
+
+struct s502 {
+  struct {
+    int *a;
+  } inner[4];
+};
+// Execution complete, but symbolic addresses were used
+int ex502ArrayOfStructsWithPointer(struct s502 s) {
+  return *s.inner[0].a;
+}
