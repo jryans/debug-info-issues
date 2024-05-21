@@ -141,7 +141,7 @@ int ex303ArrayElemArrayFixedLength(struct s303 s) {
 // Array of variable-length arrays is not possible in C
 
 struct s305 {
-  int *a[3];
+  int *a[4];
 };
 // Execution incomplete, too many forks due to symbolic addresses
 int ex305ArrayElemPointerSingleElementValue(struct s305 s) {
