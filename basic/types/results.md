@@ -502,6 +502,7 @@ Asm line 119, src line 38 not covered
 ++ ./check-coverage.js ./klee-out-O0/ex108PointerFunction
 ./klee-out-O0/ex108PointerFunction
 Coverage for ex108PointerFunction
+Symbolic resolution found, coverage may be invalid!
 6 / 6 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex201StructFieldInt ']'
@@ -558,6 +559,7 @@ Asm line 269, src line 106 not covered
 ++ ./check-coverage.js ./klee-out-O0/ex208StructFieldPointerFunction
 ./klee-out-O0/ex208StructFieldPointerFunction
 Coverage for ex208StructFieldPointerFunction
+Symbolic resolution found, coverage may be invalid!
 8 / 8 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex301ArrayElemInt ']'
@@ -582,6 +584,7 @@ Coverage for ex303ArrayElemArrayFixedLength
 ++ ./check-coverage.js ./klee-out-O0/ex305ArrayElemPointerSingleElementValue
 ./klee-out-O0/ex305ArrayElemPointerSingleElementValue
 Coverage for ex305ArrayElemPointerSingleElementValue
+Symbolic resolution found, coverage may be invalid!
 6 / 6 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex306ArrayElemPointerSingleElementInstances ']'
@@ -595,6 +598,7 @@ Coverage for ex306ArrayElemPointerSingleElementInstances
 ./klee-out-O0/ex307ArrayElemPointerMultipleElementValues
 Coverage for ex307ArrayElemPointerMultipleElementValues
 Warnings present, coverage may be invalid!
+Symbolic resolution found, coverage may be invalid!
 11 / 11 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex308ArrayElemPointerFunction ']'
@@ -602,6 +606,7 @@ Warnings present, coverage may be invalid!
 ./klee-out-O0/ex308ArrayElemPointerFunction
 Coverage for ex308ArrayElemPointerFunction
 Warnings present, coverage may be invalid!
+Symbolic resolution found, coverage may be invalid!
 Asm line 427, src line 182 not covered
 Asm line 428, src line 182 not covered
 9 / 11 (81.81818181818183%) asm lines covered
@@ -646,16 +651,19 @@ Asm line 527, src line 218 not covered
 ++ ./check-coverage.js ./klee-out-O0/ex408PointerToPointerFunction
 ./klee-out-O0/ex408PointerToPointerFunction
 Coverage for ex408PointerToPointerFunction
+Symbolic resolution found, coverage may be invalid!
 7 / 7 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex501StructWithArrayOfPointers ']'
 ++ ./check-coverage.js ./klee-out-O0/ex501StructWithArrayOfPointers
 ./klee-out-O0/ex501StructWithArrayOfPointers
 Coverage for ex501StructWithArrayOfPointers
+Symbolic resolution found, coverage may be invalid!
 7 / 7 (100%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex502ArrayOfStructsWithPointer ']'
 ++ ./check-coverage.js ./klee-out-O0/ex502ArrayOfStructsWithPointer
 ./klee-out-O0/ex502ArrayOfStructsWithPointer
 Coverage for ex502ArrayOfStructsWithPointer
+Symbolic resolution found, coverage may be invalid!
 7 / 7 (100%) asm lines covered
