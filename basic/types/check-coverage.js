@@ -12,15 +12,15 @@ if (!dirPath) {
 
 const section = path.basename(dirPath);
 
-const stats = fs.readFileSync(path.join(dirPath, "run.istats"), "utf8");
-const lines = stats.split("\n");
-
 console.log(`Coverage for ${section}`);
 
 const warningsSize = fs.statSync(path.join(dirPath, "warnings.txt")).size;
 if (warningsSize) {
   console.log("Warnings present, coverage may be invalid!");
 }
+
+const stats = fs.readFileSync(path.join(dirPath, "run.istats"), "utf8");
+const lines = stats.split("\n");
 
 let sectionFound = false;
 let sectionLines = 0;
