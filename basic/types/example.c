@@ -10,6 +10,7 @@ int ex101Int(int a) {
 
 struct s102 {
   int a;
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex102Struct(struct s102 s) {
   return s.a;
@@ -46,6 +47,7 @@ int ex108PointerFunction(int (*a)()) {
 
 struct s201 {
   int a;
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex201StructFieldInt(struct s201 s) {
   return s.a;
@@ -55,6 +57,7 @@ struct s202 {
   struct {
     int a;
   } inner;
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex202StructFieldStruct(struct s202 s) {
   return s.inner.a;
@@ -62,6 +65,7 @@ int ex202StructFieldStruct(struct s202 s) {
 
 struct s203 {
   int a[4];
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex203StructFieldArrayFixedLength(struct s203 s) {
   return s.a[0] + s.a[3];
@@ -77,6 +81,7 @@ int ex204StructFieldArrayVariableLength(struct s204 s) {
 
 struct s205 {
   int *a;
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex205StructFieldPointerSingleElementValue(struct s205 s) {
   return *s.a;
@@ -85,6 +90,7 @@ int ex205StructFieldPointerSingleElementValue(struct s205 s) {
 struct s206 {
   int *a;
   int *b;
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex206StructFieldPointerSingleElementInstances(struct s206 s) {
   if (s.a == NULL || s.b == NULL) {
@@ -100,6 +106,7 @@ int ex206StructFieldPointerSingleElementInstances(struct s206 s) {
 
 struct s207 {
   int *a;
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex207StructFieldPointerMultipleElementValues(struct s207 s) {
   // Currently fails, max of 2 elements assumed
@@ -108,6 +115,7 @@ int ex207StructFieldPointerMultipleElementValues(struct s207 s) {
 
 struct s208 {
   int (*a)();
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex208StructFieldPointerFunction(struct s208 s) {
   return s.a();
@@ -117,6 +125,7 @@ int ex208StructFieldPointerFunction(struct s208 s) {
 
 struct s301 {
   int a[4];
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex301ArrayElemInt(struct s301 s) {
   return s.a[0] + s.a[3];
@@ -126,6 +135,7 @@ struct s302 {
   struct {
     int a;
   } inner[4];
+  int _[2][2]; // Force struct in LLVM IR
 };
 int ex302ArrayElemStruct(struct s302 s) {
   return s.inner[0].a + s.inner[3].a;
