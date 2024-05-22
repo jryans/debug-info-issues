@@ -4,7 +4,7 @@ SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
 
 # Remove old runs in case function names have changed
-rm -rf ./klee-out-O0/ex*
+find ./klee-out-O0 -type d -name 'ex*' | xargs rm -rf
 
 KLEE_COVERAGE_OPTS="--independent-functions --output-dir=klee-out-O0 --write-no-tests"
 ${KLEE} ${KLEE_COMMON_OPTS} ${KLEE_COVERAGE_OPTS} "$@" ${O0_BC}
