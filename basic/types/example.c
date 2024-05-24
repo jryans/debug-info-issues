@@ -40,6 +40,7 @@ int ex107PointerMultipleElementValues(int *a) {
 }
 
 int ex108PointerFunction(int (*a)()) {
+  // Triggers symbolic resolution, unclear if expected / desired
   return a();
 }
 
@@ -118,6 +119,7 @@ struct s208 {
   int _[2][2]; // Force struct in LLVM IR
 };
 int ex208StructFieldPointerFunction(struct s208 s) {
+  // Triggers symbolic resolution, unclear if expected / desired
   return s.a();
 }
 
@@ -189,6 +191,7 @@ struct s308 {
 };
 // Execution incomplete, too many forks due to symbolic function pointers
 int ex308ArrayElemPointerFunction(struct s308 s) {
+  // Triggers symbolic resolution, unclear if expected / desired
   return s.a[0]() + s.a[3]();
 }
 
@@ -229,6 +232,7 @@ int ex407PointerToPointerMultipleElementValues(int **a) {
 }
 
 int ex408PointerToPointerFunction(int (**a)()) {
+  // Triggers symbolic resolution, unclear if expected / desired
   return (*a)();
 }
 

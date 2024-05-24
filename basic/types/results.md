@@ -309,7 +309,7 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex204StructFieldArrayVariableLength` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:79: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:80: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 7
@@ -329,7 +329,7 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex207StructFieldPointerMultipleElementValues` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:113: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:114: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 9
@@ -361,7 +361,7 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex305ArrayElemPointerSingleElementValue` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:158: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:160: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
@@ -375,9 +375,9 @@ KLEE: done: completed paths = 4
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex307ArrayElemPointerMultipleElementValues` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:184: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:186: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
-[0m[0;1;31mKLEE: ERROR: example.c:184: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:186: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 23
@@ -385,14 +385,14 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex308ArrayElemPointerFunction` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:192: invalid function pointer
+[0;1;31mKLEE: ERROR: example.c:195: invalid function pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;1;31mKLEE: ERROR: example.c:192: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:195: invalid function pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
@@ -429,7 +429,7 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex407PointerToPointerMultipleElementValues` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:228: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:231: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 11
@@ -443,7 +443,7 @@ KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex501StructWithArrayOfPointers` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:244: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:248: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 9
@@ -451,7 +451,7 @@ KLEE: done: completed paths = 3
 KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex502ArrayOfStructsWithPointer` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:254: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:258: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 9
@@ -522,8 +522,8 @@ Coverage for ex203StructFieldArrayFixedLength
 ++ ./check-coverage.js ./klee-out-O0/ex204StructFieldArrayVariableLength
 ./klee-out-O0/ex204StructFieldArrayVariableLength
 Coverage for ex204StructFieldArrayVariableLength
-Asm line 173, src line 79 not covered
-Asm line 174, src line 79 not covered
+Asm line 173, src line 80 not covered
+Asm line 174, src line 80 not covered
 7 / 9 (77.77777777777779%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex205StructFieldPointerSingleElementValue ']'
@@ -536,18 +536,18 @@ Coverage for ex205StructFieldPointerSingleElementValue
 ++ ./check-coverage.js ./klee-out-O0/ex206StructFieldPointerSingleElementInstances
 ./klee-out-O0/ex206StructFieldPointerSingleElementInstances
 Coverage for ex206StructFieldPointerSingleElementInstances
-Asm line 204, src line 98 not covered
-Asm line 205, src line 98 not covered
-Asm line 220, src line 103 not covered
-Asm line 221, src line 103 not covered
+Asm line 204, src line 99 not covered
+Asm line 205, src line 99 not covered
+Asm line 220, src line 104 not covered
+Asm line 221, src line 104 not covered
 20 / 24 (83.33333333333334%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex207StructFieldPointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex207StructFieldPointerMultipleElementValues
 ./klee-out-O0/ex207StructFieldPointerMultipleElementValues
 Coverage for ex207StructFieldPointerMultipleElementValues
-Asm line 240, src line 113 not covered
-Asm line 241, src line 113 not covered
+Asm line 240, src line 114 not covered
+Asm line 241, src line 114 not covered
 9 / 11 (81.81818181818183%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex208StructFieldPointerFunction ']'
@@ -601,8 +601,8 @@ Symbolic resolution found, coverage may be invalid!
 Coverage for ex308ArrayElemPointerFunction
 Warnings present, coverage may be invalid!
 Symbolic resolution found, coverage may be invalid!
-Asm line 386, src line 192 not covered
-Asm line 387, src line 192 not covered
+Asm line 386, src line 195 not covered
+Asm line 387, src line 195 not covered
 9 / 11 (81.81818181818183%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex401PointerToInt ']'
@@ -627,18 +627,18 @@ Coverage for ex405PointerToPointerSingleElementValue
 ++ ./check-coverage.js ./klee-out-O0/ex406PointerToPointerSingleElementInstances
 ./klee-out-O0/ex406PointerToPointerSingleElementInstances
 Coverage for ex406PointerToPointerSingleElementInstances
-Asm line 447, src line 217 not covered
-Asm line 448, src line 217 not covered
-Asm line 463, src line 222 not covered
-Asm line 464, src line 222 not covered
+Asm line 447, src line 220 not covered
+Asm line 448, src line 220 not covered
+Asm line 463, src line 225 not covered
+Asm line 464, src line 225 not covered
 25 / 29 (86.20689655172413%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex407PointerToPointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex407PointerToPointerMultipleElementValues
 ./klee-out-O0/ex407PointerToPointerMultipleElementValues
 Coverage for ex407PointerToPointerMultipleElementValues
-Asm line 485, src line 228 not covered
-Asm line 486, src line 228 not covered
+Asm line 485, src line 231 not covered
+Asm line 486, src line 231 not covered
 11 / 13 (84.61538461538461%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex408PointerToPointerFunction ']'
