@@ -155,7 +155,6 @@ int ex303ArrayElemArrayFixedLength(struct s303 s) {
 struct s305 {
   int *a[4];
 };
-// Execution incomplete, too many forks due to symbolic addresses
 int ex305ArrayElemPointerSingleElementValue(struct s305 s) {
   return *s.a[0];
 }
@@ -163,8 +162,6 @@ int ex305ArrayElemPointerSingleElementValue(struct s305 s) {
 struct s306 {
   int *a[4];
 };
-// Currently whole function passes because these pointers are symbolic
-// Once they are concretised, the cases below will fail
 int ex306ArrayElemPointerSingleElementInstances(struct s306 s) {
   if (s.a[0] == NULL || s.a[3] == NULL) {
     // Currently fails, case unimplemented
@@ -180,7 +177,6 @@ int ex306ArrayElemPointerSingleElementInstances(struct s306 s) {
 struct s307 {
   int *a[4];
 };
-// Execution incomplete, too many forks due to symbolic addresses
 int ex307ArrayElemPointerMultipleElementValues(struct s307 s) {
   // Currently fails, max of 2 elements assumed
   return s.a[0][0] + s.a[0][3];
@@ -189,7 +185,6 @@ int ex307ArrayElemPointerMultipleElementValues(struct s307 s) {
 struct s308 {
   int (*a[4])();
 };
-// Execution incomplete, too many forks due to symbolic function pointers
 int ex308ArrayElemPointerFunction(struct s308 s) {
   // Triggers symbolic resolution, unclear if expected / desired
   return s.a[0]() + s.a[3]();
@@ -243,7 +238,6 @@ struct s501 {
     int *a[4];
   } inner;
 };
-// Execution complete, but symbolic addresses were used
 int ex501StructWithArrayOfPointers(struct s501 s) {
   return *s.inner.a[0];
 }
@@ -253,7 +247,6 @@ struct s502 {
     int *a;
   } inner[4];
 };
-// Execution complete, but symbolic addresses were used
 int ex502ArrayOfStructsWithPointer(struct s502 s) {
   return *s.inner[0].a;
 }
