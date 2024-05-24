@@ -181,7 +181,7 @@ struct s307 {
 // Execution incomplete, too many forks due to symbolic addresses
 int ex307ArrayElemPointerMultipleElementValues(struct s307 s) {
   // Currently fails, max of 2 elements assumed
-  return *s.a[0] + *s.a[3];
+  return s.a[0][0] + s.a[0][3];
 }
 
 struct s308 {
