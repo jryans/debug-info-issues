@@ -436,6 +436,20 @@ KLEE: done: total instructions = 7
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
+[0mKLEE: Running `ex503PointerArithmetic` in independent function mode
+[0;1;31mKLEE: ERROR: example.c:256: memory error: out of bound pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;32m
+KLEE: done: total instructions = 6
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 0
+[0mKLEE: Running `ex504PointerCast` in independent function mode
+[0;1;32m
+KLEE: done: total instructions = 7
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 0
+KLEE: done: generated tests = 0
 [0m++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex101Int ']'
 ++ ./check-coverage.js ./klee-out-O0/ex101Int
@@ -637,4 +651,17 @@ Coverage for ex501StructWithArrayOfPointers
 ++ ./check-coverage.js ./klee-out-O0/ex502ArrayOfStructsWithPointer
 ./klee-out-O0/ex502ArrayOfStructsWithPointer
 Coverage for ex502ArrayOfStructsWithPointer
+7 / 7 (100%) asm lines covered
+++ for i in './klee-out-O0/ex*'
+++ '[' -d ./klee-out-O0/ex503PointerArithmetic ']'
+++ ./check-coverage.js ./klee-out-O0/ex503PointerArithmetic
+./klee-out-O0/ex503PointerArithmetic
+Coverage for ex503PointerArithmetic
+Asm line 534, src line 256 not covered
+6 / 7 (85.71428571428571%) asm lines covered
+++ for i in './klee-out-O0/ex*'
+++ '[' -d ./klee-out-O0/ex504PointerCast ']'
+++ ./check-coverage.js ./klee-out-O0/ex504PointerCast
+./klee-out-O0/ex504PointerCast
+Coverage for ex504PointerCast
 7 / 7 (100%) asm lines covered

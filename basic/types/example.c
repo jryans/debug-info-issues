@@ -250,3 +250,12 @@ struct s502 {
 int ex502ArrayOfStructsWithPointer(struct s502 s) {
   return *s.inner[0].a;
 }
+
+int ex503PointerArithmetic(int *a) {
+  // Currently fails, max of 2 elements assumed
+  return *(a + 3);
+}
+
+int ex504PointerCast(void *a) {
+  return *(int *)a;
+}
