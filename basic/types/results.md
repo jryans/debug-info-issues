@@ -251,7 +251,7 @@
 ++ xargs rm -rf
 ++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests'
 ++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --max-forks=4 --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests klee-out-O0/final.bc
-[0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.4.0'
+[0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.5.0'
 This may cause unexpected crashes or assertion violations.
 [0mKLEE: output directory is "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/types/klee-out-O0"
 [0mKLEE: Running `ex101Int` in independent function mode
@@ -274,15 +274,17 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex106PointerSingleElementInstances` in independent function mode
 [0;1;32m
-KLEE: done: total instructions = 21
+KLEE: done: total instructions = 26
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex107PointerMultipleElementValues` in independent function mode
-[0;1;32m
-KLEE: done: total instructions = 11
-KLEE: done: completed paths = 1
-KLEE: done: partially completed paths = 0
+[0;1;31mKLEE: ERROR: example.c:39: memory error: out of bound pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;32m
+KLEE: done: total instructions = 9
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex108PointerFunction` in independent function mode
 [0;1;32m
@@ -324,7 +326,7 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex206StructFieldPointerSingleElementInstances` in independent function mode
 [0;1;32m
-KLEE: done: total instructions = 20
+KLEE: done: total instructions = 27
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
@@ -368,7 +370,7 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex306ArrayElemPointerSingleElementInstances` in independent function mode
 [0;1;32m
-KLEE: done: total instructions = 24
+KLEE: done: total instructions = 33
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
@@ -406,7 +408,7 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex406PointerToPointerSingleElementInstances` in independent function mode
 [0;1;32m
-KLEE: done: total instructions = 25
+KLEE: done: total instructions = 32
 KLEE: done: completed paths = 1
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
@@ -475,15 +477,22 @@ Coverage for ex105PointerSingleElementValue
 Coverage for ex106PointerSingleElementInstances
 Asm line 81, src line 28 not covered
 Asm line 82, src line 28 not covered
-Asm line 95, src line 33 not covered
-Asm line 96, src line 33 not covered
-21 / 25 (84%) asm lines covered
+Asm line 100, src line 33 not covered
+Asm line 101, src line 33 not covered
+Asm line 102, src line 33 not covered
+Asm line 103, src line 33 not covered
+Asm line 104, src line 33 not covered
+Asm line 105, src line 33 not covered
+Asm line 106, src line 33 not covered
+26 / 35 (74.28571428571429%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex107PointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex107PointerMultipleElementValues
 ./klee-out-O0/ex107PointerMultipleElementValues
 Coverage for ex107PointerMultipleElementValues
-11 / 11 (100%) asm lines covered
+Asm line 125, src line 39 not covered
+Asm line 126, src line 39 not covered
+9 / 11 (81.81818181818183%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex108PointerFunction ']'
 ++ ./check-coverage.js ./klee-out-O0/ex108PointerFunction
@@ -514,8 +523,8 @@ Coverage for ex203StructFieldArrayFixedLength
 ++ ./check-coverage.js ./klee-out-O0/ex204StructFieldArrayVariableLength
 ./klee-out-O0/ex204StructFieldArrayVariableLength
 Coverage for ex204StructFieldArrayVariableLength
-Asm line 173, src line 80 not covered
-Asm line 174, src line 80 not covered
+Asm line 183, src line 80 not covered
+Asm line 184, src line 80 not covered
 7 / 9 (77.77777777777779%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex205StructFieldPointerSingleElementValue ']'
@@ -528,18 +537,25 @@ Coverage for ex205StructFieldPointerSingleElementValue
 ++ ./check-coverage.js ./klee-out-O0/ex206StructFieldPointerSingleElementInstances
 ./klee-out-O0/ex206StructFieldPointerSingleElementInstances
 Coverage for ex206StructFieldPointerSingleElementInstances
-Asm line 204, src line 99 not covered
-Asm line 205, src line 99 not covered
-Asm line 220, src line 104 not covered
-Asm line 221, src line 104 not covered
-20 / 24 (83.33333333333334%) asm lines covered
+Asm line 214, src line 99 not covered
+Asm line 215, src line 99 not covered
+Asm line 237, src line 104 not covered
+Asm line 238, src line 104 not covered
+Asm line 239, src line 104 not covered
+Asm line 240, src line 104 not covered
+Asm line 241, src line 104 not covered
+Asm line 242, src line 104 not covered
+Asm line 243, src line 104 not covered
+Asm line 244, src line 104 not covered
+Asm line 245, src line 104 not covered
+27 / 38 (71.05263157894737%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex207StructFieldPointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex207StructFieldPointerMultipleElementValues
 ./klee-out-O0/ex207StructFieldPointerMultipleElementValues
 Coverage for ex207StructFieldPointerMultipleElementValues
-Asm line 240, src line 114 not covered
-Asm line 241, src line 114 not covered
+Asm line 264, src line 114 not covered
+Asm line 265, src line 114 not covered
 9 / 11 (81.81818181818183%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex208StructFieldPointerFunction ']'
@@ -577,18 +593,27 @@ Coverage for ex305ArrayElemPointerSingleElementValue
 ++ ./check-coverage.js ./klee-out-O0/ex306ArrayElemPointerSingleElementInstances
 ./klee-out-O0/ex306ArrayElemPointerSingleElementInstances
 Coverage for ex306ArrayElemPointerSingleElementInstances
-Asm line 330, src line 168 not covered
-Asm line 331, src line 168 not covered
-Asm line 348, src line 173 not covered
-Asm line 349, src line 173 not covered
-24 / 28 (85.71428571428571%) asm lines covered
+Asm line 354, src line 168 not covered
+Asm line 355, src line 168 not covered
+Asm line 381, src line 173 not covered
+Asm line 382, src line 173 not covered
+Asm line 383, src line 173 not covered
+Asm line 384, src line 173 not covered
+Asm line 385, src line 173 not covered
+Asm line 386, src line 173 not covered
+Asm line 387, src line 173 not covered
+Asm line 388, src line 173 not covered
+Asm line 389, src line 173 not covered
+Asm line 390, src line 173 not covered
+Asm line 391, src line 173 not covered
+33 / 46 (71.73913043478261%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex307ArrayElemPointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex307ArrayElemPointerMultipleElementValues
 ./klee-out-O0/ex307ArrayElemPointerMultipleElementValues
 Coverage for ex307ArrayElemPointerMultipleElementValues
-Asm line 370, src line 182 not covered
-Asm line 371, src line 182 not covered
+Asm line 412, src line 182 not covered
+Asm line 413, src line 182 not covered
 11 / 13 (84.61538461538461%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex308ArrayElemPointerFunction ']'
@@ -620,18 +645,25 @@ Coverage for ex405PointerToPointerSingleElementValue
 ++ ./check-coverage.js ./klee-out-O0/ex406PointerToPointerSingleElementInstances
 ./klee-out-O0/ex406PointerToPointerSingleElementInstances
 Coverage for ex406PointerToPointerSingleElementInstances
-Asm line 447, src line 215 not covered
-Asm line 448, src line 215 not covered
-Asm line 463, src line 220 not covered
-Asm line 464, src line 220 not covered
-25 / 29 (86.20689655172413%) asm lines covered
+Asm line 489, src line 215 not covered
+Asm line 490, src line 215 not covered
+Asm line 512, src line 220 not covered
+Asm line 513, src line 220 not covered
+Asm line 514, src line 220 not covered
+Asm line 515, src line 220 not covered
+Asm line 516, src line 220 not covered
+Asm line 517, src line 220 not covered
+Asm line 518, src line 220 not covered
+Asm line 519, src line 220 not covered
+Asm line 520, src line 220 not covered
+32 / 43 (74.4186046511628%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex407PointerToPointerMultipleElementValues ']'
 ++ ./check-coverage.js ./klee-out-O0/ex407PointerToPointerMultipleElementValues
 ./klee-out-O0/ex407PointerToPointerMultipleElementValues
 Coverage for ex407PointerToPointerMultipleElementValues
-Asm line 485, src line 226 not covered
-Asm line 486, src line 226 not covered
+Asm line 541, src line 226 not covered
+Asm line 542, src line 226 not covered
 11 / 13 (84.61538461538461%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex408PointerToPointerFunction ']'
@@ -657,7 +689,7 @@ Coverage for ex502ArrayOfStructsWithPointer
 ++ ./check-coverage.js ./klee-out-O0/ex503PointerArithmetic
 ./klee-out-O0/ex503PointerArithmetic
 Coverage for ex503PointerArithmetic
-Asm line 534, src line 256 not covered
+Asm line 590, src line 256 not covered
 6 / 7 (85.71428571428571%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex504PointerCast ']'

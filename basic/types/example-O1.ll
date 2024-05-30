@@ -54,284 +54,294 @@ entry:
   ret i32 %0, !dbg !50
 }
 
-; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn
-define i32 @ex106PointerSingleElementInstances(i32* readnone %a, i32* readnone %b) local_unnamed_addr #0 !dbg !51 {
+; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
+define i32 @ex106PointerSingleElementInstances(i32* readonly %a, i32* readonly %b) local_unnamed_addr #2 !dbg !51 {
 entry:
   call void @llvm.dbg.value(metadata i32* %a, metadata !55, metadata !DIExpression()), !dbg !57
   call void @llvm.dbg.value(metadata i32* %b, metadata !56, metadata !DIExpression()), !dbg !57
   %cmp = icmp eq i32* %a, null, !dbg !58
   %cmp1 = icmp eq i32* %b, null
   %or.cond = select i1 %cmp, i1 true, i1 %cmp1, !dbg !60
-  %cmp2.not = icmp eq i32* %a, %b, !dbg !60
-  %. = select i1 %cmp2.not, i32 3, i32 2, !dbg !60
-  %retval.0 = select i1 %or.cond, i32 1, i32 %., !dbg !60
-  ret i32 %retval.0, !dbg !61
+  br i1 %or.cond, label %return, label %if.else, !dbg !60
+
+if.else:                                          ; preds = %entry
+  %0 = load i32, i32* %a, align 4, !dbg !61, !tbaa !49
+  %1 = load i32, i32* %b, align 4, !dbg !61, !tbaa !49
+  %add5 = add nsw i32 %1, %0, !dbg !61
+  br label %return, !dbg !61
+
+return:                                           ; preds = %if.else, %entry
+  %retval.0 = phi i32 [ 0, %entry ], [ %add5, %if.else ], !dbg !63
+  ret i32 %retval.0, !dbg !64
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex107PointerMultipleElementValues(i32* nocapture readonly %a) local_unnamed_addr #2 !dbg !62 {
+define i32 @ex107PointerMultipleElementValues(i32* nocapture readonly %a) local_unnamed_addr #2 !dbg !65 {
 entry:
-  call void @llvm.dbg.value(metadata i32* %a, metadata !64, metadata !DIExpression()), !dbg !65
-  %0 = load i32, i32* %a, align 4, !dbg !66, !tbaa !49
-  %arrayidx1 = getelementptr inbounds i32, i32* %a, i64 3, !dbg !67
-  %1 = load i32, i32* %arrayidx1, align 4, !dbg !67, !tbaa !49
-  %add = add nsw i32 %1, %0, !dbg !68
-  ret i32 %add, !dbg !69
+  call void @llvm.dbg.value(metadata i32* %a, metadata !67, metadata !DIExpression()), !dbg !68
+  %0 = load i32, i32* %a, align 4, !dbg !69, !tbaa !49
+  %arrayidx1 = getelementptr inbounds i32, i32* %a, i64 3, !dbg !70
+  %1 = load i32, i32* %arrayidx1, align 4, !dbg !70, !tbaa !49
+  %add = add nsw i32 %1, %0, !dbg !71
+  ret i32 %add, !dbg !72
 }
 
 ; Function Attrs: noinline nounwind ssp uwtable
-define i32 @ex108PointerFunction(i32 (...)* nocapture %a) local_unnamed_addr #3 !dbg !70 {
+define i32 @ex108PointerFunction(i32 (...)* nocapture %a) local_unnamed_addr #3 !dbg !73 {
 entry:
-  call void @llvm.dbg.value(metadata i32 (...)* %a, metadata !77, metadata !DIExpression()), !dbg !78
-  %call = call i32 (...) %a() #5, !dbg !79
-  ret i32 %call, !dbg !80
+  call void @llvm.dbg.value(metadata i32 (...)* %a, metadata !80, metadata !DIExpression()), !dbg !81
+  %call = call i32 (...) %a() #5, !dbg !82
+  ret i32 %call, !dbg !83
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex201StructFieldInt(%struct.s201* nocapture readonly byval(%struct.s201) align 8 %s) local_unnamed_addr #2 !dbg !81 {
+define i32 @ex201StructFieldInt(%struct.s201* nocapture readonly byval(%struct.s201) align 8 %s) local_unnamed_addr #2 !dbg !84 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s201* %s, metadata !89, metadata !DIExpression()), !dbg !90
-  %a = getelementptr inbounds %struct.s201, %struct.s201* %s, i64 0, i32 0, !dbg !91
-  %0 = load i32, i32* %a, align 8, !dbg !91, !tbaa !92
-  ret i32 %0, !dbg !94
+  call void @llvm.dbg.declare(metadata %struct.s201* %s, metadata !92, metadata !DIExpression()), !dbg !93
+  %a = getelementptr inbounds %struct.s201, %struct.s201* %s, i64 0, i32 0, !dbg !94
+  %0 = load i32, i32* %a, align 8, !dbg !94, !tbaa !95
+  ret i32 %0, !dbg !97
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex202StructFieldStruct(%struct.s202* nocapture readonly byval(%struct.s202) align 8 %s) local_unnamed_addr #2 !dbg !95 {
+define i32 @ex202StructFieldStruct(%struct.s202* nocapture readonly byval(%struct.s202) align 8 %s) local_unnamed_addr #2 !dbg !98 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s202* %s, metadata !106, metadata !DIExpression()), !dbg !107
-  %a = getelementptr inbounds %struct.s202, %struct.s202* %s, i64 0, i32 0, i32 0, !dbg !108
-  %0 = load i32, i32* %a, align 8, !dbg !108, !tbaa !109
-  ret i32 %0, !dbg !112
+  call void @llvm.dbg.declare(metadata %struct.s202* %s, metadata !109, metadata !DIExpression()), !dbg !110
+  %a = getelementptr inbounds %struct.s202, %struct.s202* %s, i64 0, i32 0, i32 0, !dbg !111
+  %0 = load i32, i32* %a, align 8, !dbg !111, !tbaa !112
+  ret i32 %0, !dbg !115
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex203StructFieldArrayFixedLength(%struct.s203* nocapture readonly byval(%struct.s203) align 8 %s) local_unnamed_addr #2 !dbg !113 {
+define i32 @ex203StructFieldArrayFixedLength(%struct.s203* nocapture readonly byval(%struct.s203) align 8 %s) local_unnamed_addr #2 !dbg !116 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s203* %s, metadata !124, metadata !DIExpression()), !dbg !125
-  %arrayidx = getelementptr inbounds %struct.s203, %struct.s203* %s, i64 0, i32 0, i64 0, !dbg !126
-  %0 = load i32, i32* %arrayidx, align 8, !dbg !126, !tbaa !49
-  %arrayidx2 = getelementptr inbounds %struct.s203, %struct.s203* %s, i64 0, i32 0, i64 3, !dbg !127
-  %1 = load i32, i32* %arrayidx2, align 4, !dbg !127, !tbaa !49
-  %add = add nsw i32 %1, %0, !dbg !128
-  ret i32 %add, !dbg !129
+  call void @llvm.dbg.declare(metadata %struct.s203* %s, metadata !127, metadata !DIExpression()), !dbg !128
+  %arrayidx = getelementptr inbounds %struct.s203, %struct.s203* %s, i64 0, i32 0, i64 0, !dbg !129
+  %0 = load i32, i32* %arrayidx, align 8, !dbg !129, !tbaa !49
+  %arrayidx2 = getelementptr inbounds %struct.s203, %struct.s203* %s, i64 0, i32 0, i64 3, !dbg !130
+  %1 = load i32, i32* %arrayidx2, align 4, !dbg !130, !tbaa !49
+  %add = add nsw i32 %1, %0, !dbg !131
+  ret i32 %add, !dbg !132
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex204StructFieldArrayVariableLength(%struct.s204* nocapture readonly byval(%struct.s204) align 8 %s) local_unnamed_addr #2 !dbg !130 {
+define i32 @ex204StructFieldArrayVariableLength(%struct.s204* nocapture readonly byval(%struct.s204) align 8 %s) local_unnamed_addr #2 !dbg !133 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s204* %s, metadata !141, metadata !DIExpression()), !dbg !142
-  %arrayidx = getelementptr inbounds %struct.s204, %struct.s204* %s, i64 0, i32 1, i64 0, !dbg !143
-  %0 = load i32, i32* %arrayidx, align 4, !dbg !143, !tbaa !49
-  %arrayidx2 = getelementptr inbounds %struct.s204, %struct.s204* %s, i64 0, i32 1, i64 3, !dbg !144
-  %1 = load i32, i32* %arrayidx2, align 8, !dbg !144, !tbaa !49
-  %add = add nsw i32 %1, %0, !dbg !145
-  ret i32 %add, !dbg !146
+  call void @llvm.dbg.declare(metadata %struct.s204* %s, metadata !144, metadata !DIExpression()), !dbg !145
+  %arrayidx = getelementptr inbounds %struct.s204, %struct.s204* %s, i64 0, i32 1, i64 0, !dbg !146
+  %0 = load i32, i32* %arrayidx, align 4, !dbg !146, !tbaa !49
+  %arrayidx2 = getelementptr inbounds %struct.s204, %struct.s204* %s, i64 0, i32 1, i64 3, !dbg !147
+  %1 = load i32, i32* %arrayidx2, align 8, !dbg !147, !tbaa !49
+  %add = add nsw i32 %1, %0, !dbg !148
+  ret i32 %add, !dbg !149
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex205StructFieldPointerSingleElementValue(%struct.s205* nocapture readonly byval(%struct.s205) align 8 %s) local_unnamed_addr #2 !dbg !147 {
+define i32 @ex205StructFieldPointerSingleElementValue(%struct.s205* nocapture readonly byval(%struct.s205) align 8 %s) local_unnamed_addr #2 !dbg !150 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s205* %s, metadata !155, metadata !DIExpression()), !dbg !156
-  %a = getelementptr inbounds %struct.s205, %struct.s205* %s, i64 0, i32 0, !dbg !157
-  %0 = load i32*, i32** %a, align 8, !dbg !157, !tbaa !158
-  %1 = load i32, i32* %0, align 4, !dbg !161, !tbaa !49
-  ret i32 %1, !dbg !162
+  call void @llvm.dbg.declare(metadata %struct.s205* %s, metadata !158, metadata !DIExpression()), !dbg !159
+  %a = getelementptr inbounds %struct.s205, %struct.s205* %s, i64 0, i32 0, !dbg !160
+  %0 = load i32*, i32** %a, align 8, !dbg !160, !tbaa !161
+  %1 = load i32, i32* %0, align 4, !dbg !164, !tbaa !49
+  ret i32 %1, !dbg !165
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex206StructFieldPointerSingleElementInstances(%struct.s206* nocapture readonly byval(%struct.s206) align 8 %s) local_unnamed_addr #2 !dbg !163 {
+define i32 @ex206StructFieldPointerSingleElementInstances(%struct.s206* nocapture readonly byval(%struct.s206) align 8 %s) local_unnamed_addr #2 !dbg !166 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s206* %s, metadata !172, metadata !DIExpression()), !dbg !173
-  %a = getelementptr inbounds %struct.s206, %struct.s206* %s, i64 0, i32 0, !dbg !174
-  %0 = load i32*, i32** %a, align 8, !dbg !174, !tbaa !176
-  %cmp = icmp eq i32* %0, null, !dbg !178
-  br i1 %cmp, label %return, label %lor.lhs.false, !dbg !179
+  call void @llvm.dbg.declare(metadata %struct.s206* %s, metadata !175, metadata !DIExpression()), !dbg !176
+  %a = getelementptr inbounds %struct.s206, %struct.s206* %s, i64 0, i32 0, !dbg !177
+  %0 = load i32*, i32** %a, align 8, !dbg !177, !tbaa !179
+  %cmp = icmp eq i32* %0, null, !dbg !181
+  br i1 %cmp, label %return, label %lor.lhs.false, !dbg !182
 
 lor.lhs.false:                                    ; preds = %entry
-  %b = getelementptr inbounds %struct.s206, %struct.s206* %s, i64 0, i32 1, !dbg !180
-  %1 = load i32*, i32** %b, align 8, !dbg !180, !tbaa !181
-  %cmp1 = icmp eq i32* %1, null, !dbg !182
-  br i1 %cmp1, label %return, label %if.else, !dbg !183
+  %b = getelementptr inbounds %struct.s206, %struct.s206* %s, i64 0, i32 1, !dbg !183
+  %1 = load i32*, i32** %b, align 8, !dbg !183, !tbaa !184
+  %cmp1 = icmp eq i32* %1, null, !dbg !185
+  br i1 %cmp1, label %return, label %if.else, !dbg !186
 
 if.else:                                          ; preds = %lor.lhs.false
-  %cmp4.not = icmp eq i32* %0, %1, !dbg !184
-  %. = select i1 %cmp4.not, i32 3, i32 2, !dbg !186
-  br label %return, !dbg !186
+  %2 = load i32, i32* %0, align 4, !dbg !187, !tbaa !49
+  %3 = load i32, i32* %1, align 4, !dbg !187, !tbaa !49
+  %add11 = add nsw i32 %3, %2, !dbg !187
+  br label %return, !dbg !187
 
 return:                                           ; preds = %if.else, %entry, %lor.lhs.false
-  %retval.0 = phi i32 [ 1, %lor.lhs.false ], [ 1, %entry ], [ %., %if.else ], !dbg !187
-  ret i32 %retval.0, !dbg !188
+  %retval.0 = phi i32 [ 0, %lor.lhs.false ], [ 0, %entry ], [ %add11, %if.else ], !dbg !189
+  ret i32 %retval.0, !dbg !190
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex207StructFieldPointerMultipleElementValues(%struct.s207* nocapture readonly byval(%struct.s207) align 8 %s) local_unnamed_addr #2 !dbg !189 {
+define i32 @ex207StructFieldPointerMultipleElementValues(%struct.s207* nocapture readonly byval(%struct.s207) align 8 %s) local_unnamed_addr #2 !dbg !191 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s207* %s, metadata !197, metadata !DIExpression()), !dbg !198
-  %a = getelementptr inbounds %struct.s207, %struct.s207* %s, i64 0, i32 0, !dbg !199
-  %0 = load i32*, i32** %a, align 8, !dbg !199, !tbaa !200
-  %1 = load i32, i32* %0, align 4, !dbg !202, !tbaa !49
-  %arrayidx2 = getelementptr inbounds i32, i32* %0, i64 3, !dbg !203
-  %2 = load i32, i32* %arrayidx2, align 4, !dbg !203, !tbaa !49
-  %add = add nsw i32 %2, %1, !dbg !204
-  ret i32 %add, !dbg !205
+  call void @llvm.dbg.declare(metadata %struct.s207* %s, metadata !199, metadata !DIExpression()), !dbg !200
+  %a = getelementptr inbounds %struct.s207, %struct.s207* %s, i64 0, i32 0, !dbg !201
+  %0 = load i32*, i32** %a, align 8, !dbg !201, !tbaa !202
+  %1 = load i32, i32* %0, align 4, !dbg !204, !tbaa !49
+  %arrayidx2 = getelementptr inbounds i32, i32* %0, i64 3, !dbg !205
+  %2 = load i32, i32* %arrayidx2, align 4, !dbg !205, !tbaa !49
+  %add = add nsw i32 %2, %1, !dbg !206
+  ret i32 %add, !dbg !207
 }
 
 ; Function Attrs: noinline nounwind ssp uwtable
-define i32 @ex208StructFieldPointerFunction(%struct.s208* nocapture readonly byval(%struct.s208) align 8 %s) local_unnamed_addr #3 !dbg !206 {
+define i32 @ex208StructFieldPointerFunction(%struct.s208* nocapture readonly byval(%struct.s208) align 8 %s) local_unnamed_addr #3 !dbg !208 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s208* %s, metadata !214, metadata !DIExpression()), !dbg !215
-  %a = getelementptr inbounds %struct.s208, %struct.s208* %s, i64 0, i32 0, !dbg !216
-  %0 = load i32 (...)*, i32 (...)** %a, align 8, !dbg !216, !tbaa !217
-  %call = call i32 (...) %0() #5, !dbg !219
-  ret i32 %call, !dbg !220
+  call void @llvm.dbg.declare(metadata %struct.s208* %s, metadata !216, metadata !DIExpression()), !dbg !217
+  %a = getelementptr inbounds %struct.s208, %struct.s208* %s, i64 0, i32 0, !dbg !218
+  %0 = load i32 (...)*, i32 (...)** %a, align 8, !dbg !218, !tbaa !219
+  %call = call i32 (...) %0() #5, !dbg !221
+  ret i32 %call, !dbg !222
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex301ArrayElemInt(%struct.s301* nocapture readonly byval(%struct.s301) align 8 %s) local_unnamed_addr #2 !dbg !221 {
+define i32 @ex301ArrayElemInt(%struct.s301* nocapture readonly byval(%struct.s301) align 8 %s) local_unnamed_addr #2 !dbg !223 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s301* %s, metadata !229, metadata !DIExpression()), !dbg !230
-  %arrayidx = getelementptr inbounds %struct.s301, %struct.s301* %s, i64 0, i32 0, i64 0, !dbg !231
-  %0 = load i32, i32* %arrayidx, align 8, !dbg !231, !tbaa !49
-  %arrayidx2 = getelementptr inbounds %struct.s301, %struct.s301* %s, i64 0, i32 0, i64 3, !dbg !232
-  %1 = load i32, i32* %arrayidx2, align 4, !dbg !232, !tbaa !49
-  %add = add nsw i32 %1, %0, !dbg !233
-  ret i32 %add, !dbg !234
+  call void @llvm.dbg.declare(metadata %struct.s301* %s, metadata !231, metadata !DIExpression()), !dbg !232
+  %arrayidx = getelementptr inbounds %struct.s301, %struct.s301* %s, i64 0, i32 0, i64 0, !dbg !233
+  %0 = load i32, i32* %arrayidx, align 8, !dbg !233, !tbaa !49
+  %arrayidx2 = getelementptr inbounds %struct.s301, %struct.s301* %s, i64 0, i32 0, i64 3, !dbg !234
+  %1 = load i32, i32* %arrayidx2, align 4, !dbg !234, !tbaa !49
+  %add = add nsw i32 %1, %0, !dbg !235
+  ret i32 %add, !dbg !236
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex302ArrayElemStruct(%struct.s302* nocapture readonly byval(%struct.s302) align 8 %s) local_unnamed_addr #2 !dbg !235 {
+define i32 @ex302ArrayElemStruct(%struct.s302* nocapture readonly byval(%struct.s302) align 8 %s) local_unnamed_addr #2 !dbg !237 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s302* %s, metadata !247, metadata !DIExpression()), !dbg !248
-  %a = getelementptr inbounds %struct.s302, %struct.s302* %s, i64 0, i32 0, i64 0, i32 0, !dbg !249
-  %0 = load i32, i32* %a, align 8, !dbg !249, !tbaa !250
-  %a3 = getelementptr inbounds %struct.s302, %struct.s302* %s, i64 0, i32 0, i64 3, i32 0, !dbg !251
-  %1 = load i32, i32* %a3, align 4, !dbg !251, !tbaa !250
-  %add = add nsw i32 %1, %0, !dbg !252
-  ret i32 %add, !dbg !253
+  call void @llvm.dbg.declare(metadata %struct.s302* %s, metadata !249, metadata !DIExpression()), !dbg !250
+  %a = getelementptr inbounds %struct.s302, %struct.s302* %s, i64 0, i32 0, i64 0, i32 0, !dbg !251
+  %0 = load i32, i32* %a, align 8, !dbg !251, !tbaa !252
+  %a3 = getelementptr inbounds %struct.s302, %struct.s302* %s, i64 0, i32 0, i64 3, i32 0, !dbg !253
+  %1 = load i32, i32* %a3, align 4, !dbg !253, !tbaa !252
+  %add = add nsw i32 %1, %0, !dbg !254
+  ret i32 %add, !dbg !255
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex303ArrayElemArrayFixedLength(%struct.s303* nocapture readonly byval(%struct.s303) align 8 %s) local_unnamed_addr #2 !dbg !254 {
+define i32 @ex303ArrayElemArrayFixedLength(%struct.s303* nocapture readonly byval(%struct.s303) align 8 %s) local_unnamed_addr #2 !dbg !256 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s303* %s, metadata !263, metadata !DIExpression()), !dbg !264
-  %arrayidx1 = getelementptr inbounds %struct.s303, %struct.s303* %s, i64 0, i32 0, i64 0, i64 0, !dbg !265
-  %0 = load i32, i32* %arrayidx1, align 8, !dbg !265, !tbaa !49
-  %arrayidx4 = getelementptr inbounds %struct.s303, %struct.s303* %s, i64 0, i32 0, i64 3, i64 3, !dbg !266
-  %1 = load i32, i32* %arrayidx4, align 4, !dbg !266, !tbaa !49
-  %add = add nsw i32 %1, %0, !dbg !267
-  ret i32 %add, !dbg !268
+  call void @llvm.dbg.declare(metadata %struct.s303* %s, metadata !265, metadata !DIExpression()), !dbg !266
+  %arrayidx1 = getelementptr inbounds %struct.s303, %struct.s303* %s, i64 0, i32 0, i64 0, i64 0, !dbg !267
+  %0 = load i32, i32* %arrayidx1, align 8, !dbg !267, !tbaa !49
+  %arrayidx4 = getelementptr inbounds %struct.s303, %struct.s303* %s, i64 0, i32 0, i64 3, i64 3, !dbg !268
+  %1 = load i32, i32* %arrayidx4, align 4, !dbg !268, !tbaa !49
+  %add = add nsw i32 %1, %0, !dbg !269
+  ret i32 %add, !dbg !270
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex305ArrayElemPointerSingleElementValue(%struct.s305* nocapture readonly byval(%struct.s305) align 8 %s) local_unnamed_addr #2 !dbg !269 {
+define i32 @ex305ArrayElemPointerSingleElementValue(%struct.s305* nocapture readonly byval(%struct.s305) align 8 %s) local_unnamed_addr #2 !dbg !271 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s305* %s, metadata !277, metadata !DIExpression()), !dbg !278
-  %arrayidx = getelementptr inbounds %struct.s305, %struct.s305* %s, i64 0, i32 0, i64 0, !dbg !279
-  %0 = load i32*, i32** %arrayidx, align 8, !dbg !279, !tbaa !280
-  %1 = load i32, i32* %0, align 4, !dbg !281, !tbaa !49
-  ret i32 %1, !dbg !282
+  call void @llvm.dbg.declare(metadata %struct.s305* %s, metadata !279, metadata !DIExpression()), !dbg !280
+  %arrayidx = getelementptr inbounds %struct.s305, %struct.s305* %s, i64 0, i32 0, i64 0, !dbg !281
+  %0 = load i32*, i32** %arrayidx, align 8, !dbg !281, !tbaa !282
+  %1 = load i32, i32* %0, align 4, !dbg !283, !tbaa !49
+  ret i32 %1, !dbg !284
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex306ArrayElemPointerSingleElementInstances(%struct.s306* nocapture readonly byval(%struct.s306) align 8 %s) local_unnamed_addr #2 !dbg !283 {
+define i32 @ex306ArrayElemPointerSingleElementInstances(%struct.s306* nocapture readonly byval(%struct.s306) align 8 %s) local_unnamed_addr #2 !dbg !285 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s306* %s, metadata !290, metadata !DIExpression()), !dbg !291
-  %arrayidx = getelementptr inbounds %struct.s306, %struct.s306* %s, i64 0, i32 0, i64 0, !dbg !292
-  %0 = load i32*, i32** %arrayidx, align 8, !dbg !292, !tbaa !280
-  %cmp = icmp eq i32* %0, null, !dbg !294
-  br i1 %cmp, label %return, label %lor.lhs.false, !dbg !295
+  call void @llvm.dbg.declare(metadata %struct.s306* %s, metadata !292, metadata !DIExpression()), !dbg !293
+  %arrayidx = getelementptr inbounds %struct.s306, %struct.s306* %s, i64 0, i32 0, i64 0, !dbg !294
+  %0 = load i32*, i32** %arrayidx, align 8, !dbg !294, !tbaa !282
+  %cmp = icmp eq i32* %0, null, !dbg !296
+  br i1 %cmp, label %return, label %lor.lhs.false, !dbg !297
 
 lor.lhs.false:                                    ; preds = %entry
-  %arrayidx2 = getelementptr inbounds %struct.s306, %struct.s306* %s, i64 0, i32 0, i64 3, !dbg !296
-  %1 = load i32*, i32** %arrayidx2, align 8, !dbg !296, !tbaa !280
-  %cmp3 = icmp eq i32* %1, null, !dbg !297
-  br i1 %cmp3, label %return, label %if.else, !dbg !298
+  %arrayidx2 = getelementptr inbounds %struct.s306, %struct.s306* %s, i64 0, i32 0, i64 3, !dbg !298
+  %1 = load i32*, i32** %arrayidx2, align 8, !dbg !298, !tbaa !282
+  %cmp3 = icmp eq i32* %1, null, !dbg !299
+  br i1 %cmp3, label %return, label %if.else, !dbg !300
 
 if.else:                                          ; preds = %lor.lhs.false
-  %cmp8.not = icmp eq i32* %0, %1, !dbg !299
-  %. = select i1 %cmp8.not, i32 3, i32 2, !dbg !301
+  %2 = load i32, i32* %0, align 4, !dbg !301, !tbaa !49
+  %3 = load i32, i32* %1, align 4, !dbg !301, !tbaa !49
+  %add19 = add nsw i32 %3, %2, !dbg !301
   br label %return, !dbg !301
 
 return:                                           ; preds = %if.else, %entry, %lor.lhs.false
-  %retval.0 = phi i32 [ 1, %lor.lhs.false ], [ 1, %entry ], [ %., %if.else ], !dbg !302
-  ret i32 %retval.0, !dbg !303
+  %retval.0 = phi i32 [ 0, %lor.lhs.false ], [ 0, %entry ], [ %add19, %if.else ], !dbg !303
+  ret i32 %retval.0, !dbg !304
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex307ArrayElemPointerMultipleElementValues(%struct.s307* nocapture readonly byval(%struct.s307) align 8 %s) local_unnamed_addr #2 !dbg !304 {
+define i32 @ex307ArrayElemPointerMultipleElementValues(%struct.s307* nocapture readonly byval(%struct.s307) align 8 %s) local_unnamed_addr #2 !dbg !305 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s307* %s, metadata !311, metadata !DIExpression()), !dbg !312
-  %arrayidx = getelementptr inbounds %struct.s307, %struct.s307* %s, i64 0, i32 0, i64 0, !dbg !313
-  %0 = load i32*, i32** %arrayidx, align 8, !dbg !313, !tbaa !280
-  %1 = load i32, i32* %0, align 4, !dbg !313, !tbaa !49
-  %arrayidx4 = getelementptr inbounds i32, i32* %0, i64 3, !dbg !314
-  %2 = load i32, i32* %arrayidx4, align 4, !dbg !314, !tbaa !49
-  %add = add nsw i32 %2, %1, !dbg !315
-  ret i32 %add, !dbg !316
+  call void @llvm.dbg.declare(metadata %struct.s307* %s, metadata !312, metadata !DIExpression()), !dbg !313
+  %arrayidx = getelementptr inbounds %struct.s307, %struct.s307* %s, i64 0, i32 0, i64 0, !dbg !314
+  %0 = load i32*, i32** %arrayidx, align 8, !dbg !314, !tbaa !282
+  %1 = load i32, i32* %0, align 4, !dbg !314, !tbaa !49
+  %arrayidx4 = getelementptr inbounds i32, i32* %0, i64 3, !dbg !315
+  %2 = load i32, i32* %arrayidx4, align 4, !dbg !315, !tbaa !49
+  %add = add nsw i32 %2, %1, !dbg !316
+  ret i32 %add, !dbg !317
 }
 
 ; Function Attrs: noinline nounwind ssp uwtable
-define i32 @ex308ArrayElemPointerFunction(%struct.s308* nocapture readonly byval(%struct.s308) align 8 %s) local_unnamed_addr #3 !dbg !317 {
+define i32 @ex308ArrayElemPointerFunction(%struct.s308* nocapture readonly byval(%struct.s308) align 8 %s) local_unnamed_addr #3 !dbg !318 {
 entry:
-  call void @llvm.dbg.declare(metadata %struct.s308* %s, metadata !325, metadata !DIExpression()), !dbg !326
-  %arrayidx = getelementptr inbounds %struct.s308, %struct.s308* %s, i64 0, i32 0, i64 0, !dbg !327
-  %0 = load i32 (...)*, i32 (...)** %arrayidx, align 8, !dbg !327, !tbaa !280
-  %call = call i32 (...) %0() #5, !dbg !327
-  %arrayidx2 = getelementptr inbounds %struct.s308, %struct.s308* %s, i64 0, i32 0, i64 3, !dbg !328
-  %1 = load i32 (...)*, i32 (...)** %arrayidx2, align 8, !dbg !328, !tbaa !280
-  %call3 = call i32 (...) %1() #5, !dbg !328
-  %add = add nsw i32 %call3, %call, !dbg !329
-  ret i32 %add, !dbg !330
+  call void @llvm.dbg.declare(metadata %struct.s308* %s, metadata !326, metadata !DIExpression()), !dbg !327
+  %arrayidx = getelementptr inbounds %struct.s308, %struct.s308* %s, i64 0, i32 0, i64 0, !dbg !328
+  %0 = load i32 (...)*, i32 (...)** %arrayidx, align 8, !dbg !328, !tbaa !282
+  %call = call i32 (...) %0() #5, !dbg !328
+  %arrayidx2 = getelementptr inbounds %struct.s308, %struct.s308* %s, i64 0, i32 0, i64 3, !dbg !329
+  %1 = load i32 (...)*, i32 (...)** %arrayidx2, align 8, !dbg !329, !tbaa !282
+  %call3 = call i32 (...) %1() #5, !dbg !329
+  %add = add nsw i32 %call3, %call, !dbg !330
+  ret i32 %add, !dbg !331
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex401PointerToInt(i32* nocapture readonly %a) local_unnamed_addr #2 !dbg !331 {
+define i32 @ex401PointerToInt(i32* nocapture readonly %a) local_unnamed_addr #2 !dbg !332 {
 entry:
-  call void @llvm.dbg.value(metadata i32* %a, metadata !333, metadata !DIExpression()), !dbg !334
-  %0 = load i32, i32* %a, align 4, !dbg !335, !tbaa !49
-  ret i32 %0, !dbg !336
+  call void @llvm.dbg.value(metadata i32* %a, metadata !334, metadata !DIExpression()), !dbg !335
+  %0 = load i32, i32* %a, align 4, !dbg !336, !tbaa !49
+  ret i32 %0, !dbg !337
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex402PointerToStruct(%struct.s402* nocapture readonly %s) local_unnamed_addr #2 !dbg !337 {
+define i32 @ex402PointerToStruct(%struct.s402* nocapture readonly %s) local_unnamed_addr #2 !dbg !338 {
 entry:
-  call void @llvm.dbg.value(metadata %struct.s402* %s, metadata !345, metadata !DIExpression()), !dbg !346
-  %a = getelementptr inbounds %struct.s402, %struct.s402* %s, i64 0, i32 0, !dbg !347
-  %0 = load i32, i32* %a, align 4, !dbg !347, !tbaa !348
-  ret i32 %0, !dbg !350
+  call void @llvm.dbg.value(metadata %struct.s402* %s, metadata !346, metadata !DIExpression()), !dbg !347
+  %a = getelementptr inbounds %struct.s402, %struct.s402* %s, i64 0, i32 0, !dbg !348
+  %0 = load i32, i32* %a, align 4, !dbg !348, !tbaa !349
+  ret i32 %0, !dbg !351
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex405PointerToPointerSingleElementValue(i32** nocapture readonly %a) local_unnamed_addr #2 !dbg !351 {
+define i32 @ex405PointerToPointerSingleElementValue(i32** nocapture readonly %a) local_unnamed_addr #2 !dbg !352 {
 entry:
-  call void @llvm.dbg.value(metadata i32** %a, metadata !356, metadata !DIExpression()), !dbg !357
-  %0 = load i32*, i32** %a, align 8, !dbg !358, !tbaa !280
-  %1 = load i32, i32* %0, align 4, !dbg !359, !tbaa !49
-  ret i32 %1, !dbg !360
+  call void @llvm.dbg.value(metadata i32** %a, metadata !357, metadata !DIExpression()), !dbg !358
+  %0 = load i32*, i32** %a, align 8, !dbg !359, !tbaa !282
+  %1 = load i32, i32* %0, align 4, !dbg !360, !tbaa !49
+  ret i32 %1, !dbg !361
 }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn
-define i32 @ex406PointerToPointerSingleElementInstances(i32** nocapture readonly %a, i32** nocapture readonly %b) local_unnamed_addr #2 !dbg !361 {
+define i32 @ex406PointerToPointerSingleElementInstances(i32** nocapture readonly %a, i32** nocapture readonly %b) local_unnamed_addr #2 !dbg !362 {
 entry:
-  call void @llvm.dbg.value(metadata i32** %a, metadata !365, metadata !DIExpression()), !dbg !367
-  call void @llvm.dbg.value(metadata i32** %b, metadata !366, metadata !DIExpression()), !dbg !367
-  %0 = load i32*, i32** %a, align 8, !dbg !368, !tbaa !280
-  %cmp = icmp eq i32* %0, null, !dbg !370
-  br i1 %cmp, label %return, label %lor.lhs.false, !dbg !371
+  call void @llvm.dbg.value(metadata i32** %a, metadata !366, metadata !DIExpression()), !dbg !368
+  call void @llvm.dbg.value(metadata i32** %b, metadata !367, metadata !DIExpression()), !dbg !368
+  %0 = load i32*, i32** %a, align 8, !dbg !369, !tbaa !282
+  %cmp = icmp eq i32* %0, null, !dbg !371
+  br i1 %cmp, label %return, label %lor.lhs.false, !dbg !372
 
 lor.lhs.false:                                    ; preds = %entry
-  %1 = load i32*, i32** %b, align 8, !dbg !372, !tbaa !280
-  %cmp1 = icmp eq i32* %1, null, !dbg !373
-  br i1 %cmp1, label %return, label %if.else, !dbg !374
+  %1 = load i32*, i32** %b, align 8, !dbg !373, !tbaa !282
+  %cmp1 = icmp eq i32* %1, null, !dbg !374
+  br i1 %cmp1, label %return, label %if.else, !dbg !375
 
 if.else:                                          ; preds = %lor.lhs.false
-  %cmp2.not = icmp eq i32* %0, %1, !dbg !375
-  %. = select i1 %cmp2.not, i32 3, i32 2, !dbg !377
-  br label %return, !dbg !377
+  %2 = load i32, i32* %0, align 4, !dbg !376, !tbaa !49
+  %3 = load i32, i32* %1, align 4, !dbg !376, !tbaa !49
+  %add5 = add nsw i32 %3, %2, !dbg !376
+  br label %return, !dbg !376
 
 return:                                           ; preds = %if.else, %entry, %lor.lhs.false
-  %retval.0 = phi i32 [ 1, %lor.lhs.false ], [ 1, %entry ], [ %., %if.else ], !dbg !378
+  %retval.0 = phi i32 [ 0, %lor.lhs.false ], [ 0, %entry ], [ %add5, %if.else ], !dbg !378
   ret i32 %retval.0, !dbg !379
 }
 
@@ -339,7 +349,7 @@ return:                                           ; preds = %if.else, %entry, %l
 define i32 @ex407PointerToPointerMultipleElementValues(i32** nocapture readonly %a) local_unnamed_addr #2 !dbg !380 {
 entry:
   call void @llvm.dbg.value(metadata i32** %a, metadata !382, metadata !DIExpression()), !dbg !383
-  %0 = load i32*, i32** %a, align 8, !dbg !384, !tbaa !280
+  %0 = load i32*, i32** %a, align 8, !dbg !384, !tbaa !282
   %1 = load i32, i32* %0, align 4, !dbg !385, !tbaa !49
   %arrayidx1 = getelementptr inbounds i32, i32* %0, i64 3, !dbg !386
   %2 = load i32, i32* %arrayidx1, align 4, !dbg !386, !tbaa !49
@@ -351,7 +361,7 @@ entry:
 define i32 @ex408PointerToPointerFunction(i32 (...)** nocapture readonly %a) local_unnamed_addr #3 !dbg !389 {
 entry:
   call void @llvm.dbg.value(metadata i32 (...)** %a, metadata !394, metadata !DIExpression()), !dbg !395
-  %0 = load i32 (...)*, i32 (...)** %a, align 8, !dbg !396, !tbaa !280
+  %0 = load i32 (...)*, i32 (...)** %a, align 8, !dbg !396, !tbaa !282
   %call = call i32 (...) %0() #5, !dbg !397
   ret i32 %call, !dbg !398
 }
@@ -361,7 +371,7 @@ define i32 @ex501StructWithArrayOfPointers(%struct.s501* nocapture readonly byva
 entry:
   call void @llvm.dbg.declare(metadata %struct.s501* %s, metadata !409, metadata !DIExpression()), !dbg !410
   %arrayidx = getelementptr inbounds %struct.s501, %struct.s501* %s, i64 0, i32 0, i32 0, i64 0, !dbg !411
-  %0 = load i32*, i32** %arrayidx, align 8, !dbg !411, !tbaa !280
+  %0 = load i32*, i32** %arrayidx, align 8, !dbg !411, !tbaa !282
   %1 = load i32, i32* %0, align 4, !dbg !412, !tbaa !49
   ret i32 %1, !dbg !413
 }
@@ -469,328 +479,328 @@ attributes #5 = { nounwind }
 !58 = !DILocation(line: 26, column: 9, scope: !59)
 !59 = distinct !DILexicalBlock(scope: !51, file: !8, line: 26, column: 7)
 !60 = !DILocation(line: 26, column: 17, scope: !59)
-!61 = !DILocation(line: 35, column: 1, scope: !51)
-!62 = distinct !DISubprogram(name: "ex107PointerMultipleElementValues", scope: !8, file: !8, line: 37, type: !43, scopeLine: 37, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !63)
-!63 = !{!64}
-!64 = !DILocalVariable(name: "a", arg: 1, scope: !62, file: !8, line: 37, type: !12)
-!65 = !DILocation(line: 0, scope: !62)
-!66 = !DILocation(line: 39, column: 10, scope: !62)
-!67 = !DILocation(line: 39, column: 17, scope: !62)
-!68 = !DILocation(line: 39, column: 15, scope: !62)
-!69 = !DILocation(line: 39, column: 3, scope: !62)
-!70 = distinct !DISubprogram(name: "ex108PointerFunction", scope: !8, file: !8, line: 42, type: !71, scopeLine: 42, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !76)
-!71 = !DISubroutineType(types: !72)
-!72 = !{!13, !73}
-!73 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !74, size: 64)
+!61 = !DILocation(line: 0, scope: !62)
+!62 = distinct !DILexicalBlock(scope: !59, file: !8, line: 29, column: 14)
+!63 = !DILocation(line: 0, scope: !59)
+!64 = !DILocation(line: 35, column: 1, scope: !51)
+!65 = distinct !DISubprogram(name: "ex107PointerMultipleElementValues", scope: !8, file: !8, line: 37, type: !43, scopeLine: 37, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !66)
+!66 = !{!67}
+!67 = !DILocalVariable(name: "a", arg: 1, scope: !65, file: !8, line: 37, type: !12)
+!68 = !DILocation(line: 0, scope: !65)
+!69 = !DILocation(line: 39, column: 10, scope: !65)
+!70 = !DILocation(line: 39, column: 17, scope: !65)
+!71 = !DILocation(line: 39, column: 15, scope: !65)
+!72 = !DILocation(line: 39, column: 3, scope: !65)
+!73 = distinct !DISubprogram(name: "ex108PointerFunction", scope: !8, file: !8, line: 42, type: !74, scopeLine: 42, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !79)
 !74 = !DISubroutineType(types: !75)
-!75 = !{!13, null}
-!76 = !{!77}
-!77 = !DILocalVariable(name: "a", arg: 1, scope: !70, file: !8, line: 42, type: !73)
-!78 = !DILocation(line: 0, scope: !70)
-!79 = !DILocation(line: 44, column: 10, scope: !70)
-!80 = !DILocation(line: 44, column: 3, scope: !70)
-!81 = distinct !DISubprogram(name: "ex201StructFieldInt", scope: !8, file: !8, line: 53, type: !82, scopeLine: 53, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !88)
-!82 = !DISubroutineType(types: !83)
-!83 = !{!13, !84}
-!84 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s201", file: !8, line: 49, size: 160, elements: !85)
-!85 = !{!86, !87}
-!86 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !84, file: !8, line: 50, baseType: !13, size: 32)
-!87 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !84, file: !8, line: 51, baseType: !29, size: 128, offset: 32)
-!88 = !{!89}
-!89 = !DILocalVariable(name: "s", arg: 1, scope: !81, file: !8, line: 53, type: !84)
-!90 = !DILocation(line: 53, column: 37, scope: !81)
-!91 = !DILocation(line: 54, column: 12, scope: !81)
-!92 = !{!93, !38, i64 0}
-!93 = !{!"s201", !38, i64 0, !39, i64 4}
-!94 = !DILocation(line: 54, column: 3, scope: !81)
-!95 = distinct !DISubprogram(name: "ex202StructFieldStruct", scope: !8, file: !8, line: 63, type: !96, scopeLine: 63, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !105)
-!96 = !DISubroutineType(types: !97)
-!97 = !{!13, !98}
-!98 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s202", file: !8, line: 57, size: 160, elements: !99)
-!99 = !{!100, !104}
-!100 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !98, file: !8, line: 60, baseType: !101, size: 32)
-!101 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !98, file: !8, line: 58, size: 32, elements: !102)
-!102 = !{!103}
-!103 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !101, file: !8, line: 59, baseType: !13, size: 32)
-!104 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !98, file: !8, line: 61, baseType: !29, size: 128, offset: 32)
+!75 = !{!13, !76}
+!76 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !77, size: 64)
+!77 = !DISubroutineType(types: !78)
+!78 = !{!13, null}
+!79 = !{!80}
+!80 = !DILocalVariable(name: "a", arg: 1, scope: !73, file: !8, line: 42, type: !76)
+!81 = !DILocation(line: 0, scope: !73)
+!82 = !DILocation(line: 44, column: 10, scope: !73)
+!83 = !DILocation(line: 44, column: 3, scope: !73)
+!84 = distinct !DISubprogram(name: "ex201StructFieldInt", scope: !8, file: !8, line: 53, type: !85, scopeLine: 53, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !91)
+!85 = !DISubroutineType(types: !86)
+!86 = !{!13, !87}
+!87 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s201", file: !8, line: 49, size: 160, elements: !88)
+!88 = !{!89, !90}
+!89 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !87, file: !8, line: 50, baseType: !13, size: 32)
+!90 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !87, file: !8, line: 51, baseType: !29, size: 128, offset: 32)
+!91 = !{!92}
+!92 = !DILocalVariable(name: "s", arg: 1, scope: !84, file: !8, line: 53, type: !87)
+!93 = !DILocation(line: 53, column: 37, scope: !84)
+!94 = !DILocation(line: 54, column: 12, scope: !84)
+!95 = !{!96, !38, i64 0}
+!96 = !{!"s201", !38, i64 0, !39, i64 4}
+!97 = !DILocation(line: 54, column: 3, scope: !84)
+!98 = distinct !DISubprogram(name: "ex202StructFieldStruct", scope: !8, file: !8, line: 63, type: !99, scopeLine: 63, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !108)
+!99 = !DISubroutineType(types: !100)
+!100 = !{!13, !101}
+!101 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s202", file: !8, line: 57, size: 160, elements: !102)
+!102 = !{!103, !107}
+!103 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !101, file: !8, line: 60, baseType: !104, size: 32)
+!104 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !101, file: !8, line: 58, size: 32, elements: !105)
 !105 = !{!106}
-!106 = !DILocalVariable(name: "s", arg: 1, scope: !95, file: !8, line: 63, type: !98)
-!107 = !DILocation(line: 63, column: 40, scope: !95)
-!108 = !DILocation(line: 64, column: 18, scope: !95)
-!109 = !{!110, !38, i64 0}
-!110 = !{!"s202", !111, i64 0, !39, i64 4}
-!111 = !{!"", !38, i64 0}
-!112 = !DILocation(line: 64, column: 3, scope: !95)
-!113 = distinct !DISubprogram(name: "ex203StructFieldArrayFixedLength", scope: !8, file: !8, line: 71, type: !114, scopeLine: 71, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !123)
-!114 = !DISubroutineType(types: !115)
-!115 = !{!13, !116}
-!116 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s203", file: !8, line: 67, size: 256, elements: !117)
-!117 = !{!118, !122}
-!118 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !116, file: !8, line: 68, baseType: !119, size: 128)
-!119 = !DICompositeType(tag: DW_TAG_array_type, baseType: !13, size: 128, elements: !120)
-!120 = !{!121}
-!121 = !DISubrange(count: 4)
-!122 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !116, file: !8, line: 69, baseType: !29, size: 128, offset: 128)
+!106 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !104, file: !8, line: 59, baseType: !13, size: 32)
+!107 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !101, file: !8, line: 61, baseType: !29, size: 128, offset: 32)
+!108 = !{!109}
+!109 = !DILocalVariable(name: "s", arg: 1, scope: !98, file: !8, line: 63, type: !101)
+!110 = !DILocation(line: 63, column: 40, scope: !98)
+!111 = !DILocation(line: 64, column: 18, scope: !98)
+!112 = !{!113, !38, i64 0}
+!113 = !{!"s202", !114, i64 0, !39, i64 4}
+!114 = !{!"", !38, i64 0}
+!115 = !DILocation(line: 64, column: 3, scope: !98)
+!116 = distinct !DISubprogram(name: "ex203StructFieldArrayFixedLength", scope: !8, file: !8, line: 71, type: !117, scopeLine: 71, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !126)
+!117 = !DISubroutineType(types: !118)
+!118 = !{!13, !119}
+!119 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s203", file: !8, line: 67, size: 256, elements: !120)
+!120 = !{!121, !125}
+!121 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !119, file: !8, line: 68, baseType: !122, size: 128)
+!122 = !DICompositeType(tag: DW_TAG_array_type, baseType: !13, size: 128, elements: !123)
 !123 = !{!124}
-!124 = !DILocalVariable(name: "s", arg: 1, scope: !113, file: !8, line: 71, type: !116)
-!125 = !DILocation(line: 71, column: 50, scope: !113)
-!126 = !DILocation(line: 72, column: 10, scope: !113)
-!127 = !DILocation(line: 72, column: 19, scope: !113)
-!128 = !DILocation(line: 72, column: 17, scope: !113)
-!129 = !DILocation(line: 72, column: 3, scope: !113)
-!130 = distinct !DISubprogram(name: "ex204StructFieldArrayVariableLength", scope: !8, file: !8, line: 79, type: !131, scopeLine: 79, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !140)
-!131 = !DISubroutineType(types: !132)
-!132 = !{!13, !133}
-!133 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s204", file: !8, line: 75, size: 32, elements: !134)
-!134 = !{!135, !136}
-!135 = !DIDerivedType(tag: DW_TAG_member, name: "placeholder", scope: !133, file: !8, line: 76, baseType: !13, size: 32)
-!136 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !133, file: !8, line: 77, baseType: !137, offset: 32)
-!137 = !DICompositeType(tag: DW_TAG_array_type, baseType: !13, elements: !138)
-!138 = !{!139}
-!139 = !DISubrange(count: -1)
-!140 = !{!141}
-!141 = !DILocalVariable(name: "s", arg: 1, scope: !130, file: !8, line: 79, type: !133)
-!142 = !DILocation(line: 79, column: 53, scope: !130)
-!143 = !DILocation(line: 80, column: 10, scope: !130)
-!144 = !DILocation(line: 80, column: 19, scope: !130)
-!145 = !DILocation(line: 80, column: 17, scope: !130)
-!146 = !DILocation(line: 80, column: 3, scope: !130)
-!147 = distinct !DISubprogram(name: "ex205StructFieldPointerSingleElementValue", scope: !8, file: !8, line: 87, type: !148, scopeLine: 87, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !154)
-!148 = !DISubroutineType(types: !149)
-!149 = !{!13, !150}
-!150 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s205", file: !8, line: 83, size: 192, elements: !151)
-!151 = !{!152, !153}
-!152 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !150, file: !8, line: 84, baseType: !12, size: 64)
-!153 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !150, file: !8, line: 85, baseType: !29, size: 128, offset: 64)
-!154 = !{!155}
-!155 = !DILocalVariable(name: "s", arg: 1, scope: !147, file: !8, line: 87, type: !150)
-!156 = !DILocation(line: 87, column: 59, scope: !147)
-!157 = !DILocation(line: 88, column: 13, scope: !147)
-!158 = !{!159, !160, i64 0}
-!159 = !{!"s205", !160, i64 0, !39, i64 8}
-!160 = !{!"any pointer", !39, i64 0}
-!161 = !DILocation(line: 88, column: 10, scope: !147)
-!162 = !DILocation(line: 88, column: 3, scope: !147)
-!163 = distinct !DISubprogram(name: "ex206StructFieldPointerSingleElementInstances", scope: !8, file: !8, line: 96, type: !164, scopeLine: 96, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !171)
-!164 = !DISubroutineType(types: !165)
-!165 = !{!13, !166}
-!166 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s206", file: !8, line: 91, size: 256, elements: !167)
-!167 = !{!168, !169, !170}
-!168 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !166, file: !8, line: 92, baseType: !12, size: 64)
-!169 = !DIDerivedType(tag: DW_TAG_member, name: "b", scope: !166, file: !8, line: 93, baseType: !12, size: 64, offset: 64)
-!170 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !166, file: !8, line: 94, baseType: !29, size: 128, offset: 128)
-!171 = !{!172}
-!172 = !DILocalVariable(name: "s", arg: 1, scope: !163, file: !8, line: 96, type: !166)
-!173 = !DILocation(line: 96, column: 63, scope: !163)
-!174 = !DILocation(line: 97, column: 9, scope: !175)
-!175 = distinct !DILexicalBlock(scope: !163, file: !8, line: 97, column: 7)
-!176 = !{!177, !160, i64 0}
-!177 = !{!"s206", !160, i64 0, !160, i64 8, !39, i64 16}
-!178 = !DILocation(line: 97, column: 11, scope: !175)
-!179 = !DILocation(line: 97, column: 19, scope: !175)
-!180 = !DILocation(line: 97, column: 24, scope: !175)
-!181 = !{!177, !160, i64 8}
-!182 = !DILocation(line: 97, column: 26, scope: !175)
-!183 = !DILocation(line: 97, column: 7, scope: !163)
-!184 = !DILocation(line: 100, column: 18, scope: !185)
-!185 = distinct !DILexicalBlock(scope: !175, file: !8, line: 100, column: 14)
-!186 = !DILocation(line: 0, scope: !185)
-!187 = !DILocation(line: 0, scope: !175)
-!188 = !DILocation(line: 106, column: 1, scope: !163)
-!189 = distinct !DISubprogram(name: "ex207StructFieldPointerMultipleElementValues", scope: !8, file: !8, line: 112, type: !190, scopeLine: 112, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !196)
-!190 = !DISubroutineType(types: !191)
-!191 = !{!13, !192}
-!192 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s207", file: !8, line: 108, size: 192, elements: !193)
-!193 = !{!194, !195}
-!194 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !192, file: !8, line: 109, baseType: !12, size: 64)
-!195 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !192, file: !8, line: 110, baseType: !29, size: 128, offset: 64)
-!196 = !{!197}
-!197 = !DILocalVariable(name: "s", arg: 1, scope: !189, file: !8, line: 112, type: !192)
-!198 = !DILocation(line: 112, column: 62, scope: !189)
-!199 = !DILocation(line: 114, column: 12, scope: !189)
-!200 = !{!201, !160, i64 0}
-!201 = !{!"s207", !160, i64 0, !39, i64 8}
-!202 = !DILocation(line: 114, column: 10, scope: !189)
-!203 = !DILocation(line: 114, column: 19, scope: !189)
-!204 = !DILocation(line: 114, column: 17, scope: !189)
-!205 = !DILocation(line: 114, column: 3, scope: !189)
-!206 = distinct !DISubprogram(name: "ex208StructFieldPointerFunction", scope: !8, file: !8, line: 121, type: !207, scopeLine: 121, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !213)
-!207 = !DISubroutineType(types: !208)
-!208 = !{!13, !209}
-!209 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s208", file: !8, line: 117, size: 192, elements: !210)
-!210 = !{!211, !212}
-!211 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !209, file: !8, line: 118, baseType: !73, size: 64)
-!212 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !209, file: !8, line: 119, baseType: !29, size: 128, offset: 64)
-!213 = !{!214}
-!214 = !DILocalVariable(name: "s", arg: 1, scope: !206, file: !8, line: 121, type: !209)
-!215 = !DILocation(line: 121, column: 49, scope: !206)
-!216 = !DILocation(line: 123, column: 12, scope: !206)
-!217 = !{!218, !160, i64 0}
-!218 = !{!"s208", !160, i64 0, !39, i64 8}
-!219 = !DILocation(line: 123, column: 10, scope: !206)
-!220 = !DILocation(line: 123, column: 3, scope: !206)
-!221 = distinct !DISubprogram(name: "ex301ArrayElemInt", scope: !8, file: !8, line: 132, type: !222, scopeLine: 132, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !228)
-!222 = !DISubroutineType(types: !223)
-!223 = !{!13, !224}
-!224 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s301", file: !8, line: 128, size: 256, elements: !225)
-!225 = !{!226, !227}
-!226 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !224, file: !8, line: 129, baseType: !119, size: 128)
-!227 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !224, file: !8, line: 130, baseType: !29, size: 128, offset: 128)
-!228 = !{!229}
-!229 = !DILocalVariable(name: "s", arg: 1, scope: !221, file: !8, line: 132, type: !224)
-!230 = !DILocation(line: 132, column: 35, scope: !221)
-!231 = !DILocation(line: 133, column: 10, scope: !221)
-!232 = !DILocation(line: 133, column: 19, scope: !221)
-!233 = !DILocation(line: 133, column: 17, scope: !221)
-!234 = !DILocation(line: 133, column: 3, scope: !221)
-!235 = distinct !DISubprogram(name: "ex302ArrayElemStruct", scope: !8, file: !8, line: 142, type: !236, scopeLine: 142, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !246)
-!236 = !DISubroutineType(types: !237)
-!237 = !{!13, !238}
-!238 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s302", file: !8, line: 136, size: 256, elements: !239)
-!239 = !{!240, !245}
-!240 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !238, file: !8, line: 139, baseType: !241, size: 128)
-!241 = !DICompositeType(tag: DW_TAG_array_type, baseType: !242, size: 128, elements: !120)
-!242 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !238, file: !8, line: 137, size: 32, elements: !243)
-!243 = !{!244}
-!244 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !242, file: !8, line: 138, baseType: !13, size: 32)
-!245 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !238, file: !8, line: 140, baseType: !29, size: 128, offset: 128)
-!246 = !{!247}
-!247 = !DILocalVariable(name: "s", arg: 1, scope: !235, file: !8, line: 142, type: !238)
-!248 = !DILocation(line: 142, column: 38, scope: !235)
-!249 = !DILocation(line: 143, column: 21, scope: !235)
-!250 = !{!111, !38, i64 0}
-!251 = !DILocation(line: 143, column: 36, scope: !235)
-!252 = !DILocation(line: 143, column: 23, scope: !235)
-!253 = !DILocation(line: 143, column: 3, scope: !235)
-!254 = distinct !DISubprogram(name: "ex303ArrayElemArrayFixedLength", scope: !8, file: !8, line: 149, type: !255, scopeLine: 149, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !262)
-!255 = !DISubroutineType(types: !256)
-!256 = !{!13, !257}
-!257 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s303", file: !8, line: 146, size: 512, elements: !258)
-!258 = !{!259}
-!259 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !257, file: !8, line: 147, baseType: !260, size: 512)
-!260 = !DICompositeType(tag: DW_TAG_array_type, baseType: !13, size: 512, elements: !261)
-!261 = !{!121, !121}
-!262 = !{!263}
-!263 = !DILocalVariable(name: "s", arg: 1, scope: !254, file: !8, line: 149, type: !257)
-!264 = !DILocation(line: 149, column: 48, scope: !254)
-!265 = !DILocation(line: 150, column: 10, scope: !254)
-!266 = !DILocation(line: 150, column: 22, scope: !254)
-!267 = !DILocation(line: 150, column: 20, scope: !254)
-!268 = !DILocation(line: 150, column: 3, scope: !254)
-!269 = distinct !DISubprogram(name: "ex305ArrayElemPointerSingleElementValue", scope: !8, file: !8, line: 158, type: !270, scopeLine: 158, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !276)
-!270 = !DISubroutineType(types: !271)
-!271 = !{!13, !272}
-!272 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s305", file: !8, line: 155, size: 256, elements: !273)
-!273 = !{!274}
-!274 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !272, file: !8, line: 156, baseType: !275, size: 256)
-!275 = !DICompositeType(tag: DW_TAG_array_type, baseType: !12, size: 256, elements: !120)
-!276 = !{!277}
-!277 = !DILocalVariable(name: "s", arg: 1, scope: !269, file: !8, line: 158, type: !272)
-!278 = !DILocation(line: 158, column: 57, scope: !269)
-!279 = !DILocation(line: 159, column: 11, scope: !269)
-!280 = !{!160, !160, i64 0}
-!281 = !DILocation(line: 159, column: 10, scope: !269)
-!282 = !DILocation(line: 159, column: 3, scope: !269)
-!283 = distinct !DISubprogram(name: "ex306ArrayElemPointerSingleElementInstances", scope: !8, file: !8, line: 165, type: !284, scopeLine: 165, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !289)
-!284 = !DISubroutineType(types: !285)
-!285 = !{!13, !286}
-!286 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s306", file: !8, line: 162, size: 256, elements: !287)
-!287 = !{!288}
-!288 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !286, file: !8, line: 163, baseType: !275, size: 256)
+!124 = !DISubrange(count: 4)
+!125 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !119, file: !8, line: 69, baseType: !29, size: 128, offset: 128)
+!126 = !{!127}
+!127 = !DILocalVariable(name: "s", arg: 1, scope: !116, file: !8, line: 71, type: !119)
+!128 = !DILocation(line: 71, column: 50, scope: !116)
+!129 = !DILocation(line: 72, column: 10, scope: !116)
+!130 = !DILocation(line: 72, column: 19, scope: !116)
+!131 = !DILocation(line: 72, column: 17, scope: !116)
+!132 = !DILocation(line: 72, column: 3, scope: !116)
+!133 = distinct !DISubprogram(name: "ex204StructFieldArrayVariableLength", scope: !8, file: !8, line: 79, type: !134, scopeLine: 79, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !143)
+!134 = !DISubroutineType(types: !135)
+!135 = !{!13, !136}
+!136 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s204", file: !8, line: 75, size: 32, elements: !137)
+!137 = !{!138, !139}
+!138 = !DIDerivedType(tag: DW_TAG_member, name: "placeholder", scope: !136, file: !8, line: 76, baseType: !13, size: 32)
+!139 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !136, file: !8, line: 77, baseType: !140, offset: 32)
+!140 = !DICompositeType(tag: DW_TAG_array_type, baseType: !13, elements: !141)
+!141 = !{!142}
+!142 = !DISubrange(count: -1)
+!143 = !{!144}
+!144 = !DILocalVariable(name: "s", arg: 1, scope: !133, file: !8, line: 79, type: !136)
+!145 = !DILocation(line: 79, column: 53, scope: !133)
+!146 = !DILocation(line: 80, column: 10, scope: !133)
+!147 = !DILocation(line: 80, column: 19, scope: !133)
+!148 = !DILocation(line: 80, column: 17, scope: !133)
+!149 = !DILocation(line: 80, column: 3, scope: !133)
+!150 = distinct !DISubprogram(name: "ex205StructFieldPointerSingleElementValue", scope: !8, file: !8, line: 87, type: !151, scopeLine: 87, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !157)
+!151 = !DISubroutineType(types: !152)
+!152 = !{!13, !153}
+!153 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s205", file: !8, line: 83, size: 192, elements: !154)
+!154 = !{!155, !156}
+!155 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !153, file: !8, line: 84, baseType: !12, size: 64)
+!156 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !153, file: !8, line: 85, baseType: !29, size: 128, offset: 64)
+!157 = !{!158}
+!158 = !DILocalVariable(name: "s", arg: 1, scope: !150, file: !8, line: 87, type: !153)
+!159 = !DILocation(line: 87, column: 59, scope: !150)
+!160 = !DILocation(line: 88, column: 13, scope: !150)
+!161 = !{!162, !163, i64 0}
+!162 = !{!"s205", !163, i64 0, !39, i64 8}
+!163 = !{!"any pointer", !39, i64 0}
+!164 = !DILocation(line: 88, column: 10, scope: !150)
+!165 = !DILocation(line: 88, column: 3, scope: !150)
+!166 = distinct !DISubprogram(name: "ex206StructFieldPointerSingleElementInstances", scope: !8, file: !8, line: 96, type: !167, scopeLine: 96, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !174)
+!167 = !DISubroutineType(types: !168)
+!168 = !{!13, !169}
+!169 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s206", file: !8, line: 91, size: 256, elements: !170)
+!170 = !{!171, !172, !173}
+!171 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !169, file: !8, line: 92, baseType: !12, size: 64)
+!172 = !DIDerivedType(tag: DW_TAG_member, name: "b", scope: !169, file: !8, line: 93, baseType: !12, size: 64, offset: 64)
+!173 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !169, file: !8, line: 94, baseType: !29, size: 128, offset: 128)
+!174 = !{!175}
+!175 = !DILocalVariable(name: "s", arg: 1, scope: !166, file: !8, line: 96, type: !169)
+!176 = !DILocation(line: 96, column: 63, scope: !166)
+!177 = !DILocation(line: 97, column: 9, scope: !178)
+!178 = distinct !DILexicalBlock(scope: !166, file: !8, line: 97, column: 7)
+!179 = !{!180, !163, i64 0}
+!180 = !{!"s206", !163, i64 0, !163, i64 8, !39, i64 16}
+!181 = !DILocation(line: 97, column: 11, scope: !178)
+!182 = !DILocation(line: 97, column: 19, scope: !178)
+!183 = !DILocation(line: 97, column: 24, scope: !178)
+!184 = !{!180, !163, i64 8}
+!185 = !DILocation(line: 97, column: 26, scope: !178)
+!186 = !DILocation(line: 97, column: 7, scope: !166)
+!187 = !DILocation(line: 0, scope: !188)
+!188 = distinct !DILexicalBlock(scope: !178, file: !8, line: 100, column: 14)
+!189 = !DILocation(line: 0, scope: !178)
+!190 = !DILocation(line: 106, column: 1, scope: !166)
+!191 = distinct !DISubprogram(name: "ex207StructFieldPointerMultipleElementValues", scope: !8, file: !8, line: 112, type: !192, scopeLine: 112, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !198)
+!192 = !DISubroutineType(types: !193)
+!193 = !{!13, !194}
+!194 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s207", file: !8, line: 108, size: 192, elements: !195)
+!195 = !{!196, !197}
+!196 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !194, file: !8, line: 109, baseType: !12, size: 64)
+!197 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !194, file: !8, line: 110, baseType: !29, size: 128, offset: 64)
+!198 = !{!199}
+!199 = !DILocalVariable(name: "s", arg: 1, scope: !191, file: !8, line: 112, type: !194)
+!200 = !DILocation(line: 112, column: 62, scope: !191)
+!201 = !DILocation(line: 114, column: 12, scope: !191)
+!202 = !{!203, !163, i64 0}
+!203 = !{!"s207", !163, i64 0, !39, i64 8}
+!204 = !DILocation(line: 114, column: 10, scope: !191)
+!205 = !DILocation(line: 114, column: 19, scope: !191)
+!206 = !DILocation(line: 114, column: 17, scope: !191)
+!207 = !DILocation(line: 114, column: 3, scope: !191)
+!208 = distinct !DISubprogram(name: "ex208StructFieldPointerFunction", scope: !8, file: !8, line: 121, type: !209, scopeLine: 121, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !215)
+!209 = !DISubroutineType(types: !210)
+!210 = !{!13, !211}
+!211 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s208", file: !8, line: 117, size: 192, elements: !212)
+!212 = !{!213, !214}
+!213 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !211, file: !8, line: 118, baseType: !76, size: 64)
+!214 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !211, file: !8, line: 119, baseType: !29, size: 128, offset: 64)
+!215 = !{!216}
+!216 = !DILocalVariable(name: "s", arg: 1, scope: !208, file: !8, line: 121, type: !211)
+!217 = !DILocation(line: 121, column: 49, scope: !208)
+!218 = !DILocation(line: 123, column: 12, scope: !208)
+!219 = !{!220, !163, i64 0}
+!220 = !{!"s208", !163, i64 0, !39, i64 8}
+!221 = !DILocation(line: 123, column: 10, scope: !208)
+!222 = !DILocation(line: 123, column: 3, scope: !208)
+!223 = distinct !DISubprogram(name: "ex301ArrayElemInt", scope: !8, file: !8, line: 132, type: !224, scopeLine: 132, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !230)
+!224 = !DISubroutineType(types: !225)
+!225 = !{!13, !226}
+!226 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s301", file: !8, line: 128, size: 256, elements: !227)
+!227 = !{!228, !229}
+!228 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !226, file: !8, line: 129, baseType: !122, size: 128)
+!229 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !226, file: !8, line: 130, baseType: !29, size: 128, offset: 128)
+!230 = !{!231}
+!231 = !DILocalVariable(name: "s", arg: 1, scope: !223, file: !8, line: 132, type: !226)
+!232 = !DILocation(line: 132, column: 35, scope: !223)
+!233 = !DILocation(line: 133, column: 10, scope: !223)
+!234 = !DILocation(line: 133, column: 19, scope: !223)
+!235 = !DILocation(line: 133, column: 17, scope: !223)
+!236 = !DILocation(line: 133, column: 3, scope: !223)
+!237 = distinct !DISubprogram(name: "ex302ArrayElemStruct", scope: !8, file: !8, line: 142, type: !238, scopeLine: 142, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !248)
+!238 = !DISubroutineType(types: !239)
+!239 = !{!13, !240}
+!240 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s302", file: !8, line: 136, size: 256, elements: !241)
+!241 = !{!242, !247}
+!242 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !240, file: !8, line: 139, baseType: !243, size: 128)
+!243 = !DICompositeType(tag: DW_TAG_array_type, baseType: !244, size: 128, elements: !123)
+!244 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !240, file: !8, line: 137, size: 32, elements: !245)
+!245 = !{!246}
+!246 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !244, file: !8, line: 138, baseType: !13, size: 32)
+!247 = !DIDerivedType(tag: DW_TAG_member, name: "_", scope: !240, file: !8, line: 140, baseType: !29, size: 128, offset: 128)
+!248 = !{!249}
+!249 = !DILocalVariable(name: "s", arg: 1, scope: !237, file: !8, line: 142, type: !240)
+!250 = !DILocation(line: 142, column: 38, scope: !237)
+!251 = !DILocation(line: 143, column: 21, scope: !237)
+!252 = !{!114, !38, i64 0}
+!253 = !DILocation(line: 143, column: 36, scope: !237)
+!254 = !DILocation(line: 143, column: 23, scope: !237)
+!255 = !DILocation(line: 143, column: 3, scope: !237)
+!256 = distinct !DISubprogram(name: "ex303ArrayElemArrayFixedLength", scope: !8, file: !8, line: 149, type: !257, scopeLine: 149, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !264)
+!257 = !DISubroutineType(types: !258)
+!258 = !{!13, !259}
+!259 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s303", file: !8, line: 146, size: 512, elements: !260)
+!260 = !{!261}
+!261 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !259, file: !8, line: 147, baseType: !262, size: 512)
+!262 = !DICompositeType(tag: DW_TAG_array_type, baseType: !13, size: 512, elements: !263)
+!263 = !{!124, !124}
+!264 = !{!265}
+!265 = !DILocalVariable(name: "s", arg: 1, scope: !256, file: !8, line: 149, type: !259)
+!266 = !DILocation(line: 149, column: 48, scope: !256)
+!267 = !DILocation(line: 150, column: 10, scope: !256)
+!268 = !DILocation(line: 150, column: 22, scope: !256)
+!269 = !DILocation(line: 150, column: 20, scope: !256)
+!270 = !DILocation(line: 150, column: 3, scope: !256)
+!271 = distinct !DISubprogram(name: "ex305ArrayElemPointerSingleElementValue", scope: !8, file: !8, line: 158, type: !272, scopeLine: 158, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !278)
+!272 = !DISubroutineType(types: !273)
+!273 = !{!13, !274}
+!274 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s305", file: !8, line: 155, size: 256, elements: !275)
+!275 = !{!276}
+!276 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !274, file: !8, line: 156, baseType: !277, size: 256)
+!277 = !DICompositeType(tag: DW_TAG_array_type, baseType: !12, size: 256, elements: !123)
+!278 = !{!279}
+!279 = !DILocalVariable(name: "s", arg: 1, scope: !271, file: !8, line: 158, type: !274)
+!280 = !DILocation(line: 158, column: 57, scope: !271)
+!281 = !DILocation(line: 159, column: 11, scope: !271)
+!282 = !{!163, !163, i64 0}
+!283 = !DILocation(line: 159, column: 10, scope: !271)
+!284 = !DILocation(line: 159, column: 3, scope: !271)
+!285 = distinct !DISubprogram(name: "ex306ArrayElemPointerSingleElementInstances", scope: !8, file: !8, line: 165, type: !286, scopeLine: 165, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !291)
+!286 = !DISubroutineType(types: !287)
+!287 = !{!13, !288}
+!288 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s306", file: !8, line: 162, size: 256, elements: !289)
 !289 = !{!290}
-!290 = !DILocalVariable(name: "s", arg: 1, scope: !283, file: !8, line: 165, type: !286)
-!291 = !DILocation(line: 165, column: 61, scope: !283)
-!292 = !DILocation(line: 166, column: 7, scope: !293)
-!293 = distinct !DILexicalBlock(scope: !283, file: !8, line: 166, column: 7)
-!294 = !DILocation(line: 166, column: 14, scope: !293)
-!295 = !DILocation(line: 166, column: 22, scope: !293)
-!296 = !DILocation(line: 166, column: 25, scope: !293)
-!297 = !DILocation(line: 166, column: 32, scope: !293)
-!298 = !DILocation(line: 166, column: 7, scope: !283)
-!299 = !DILocation(line: 169, column: 21, scope: !300)
-!300 = distinct !DILexicalBlock(scope: !293, file: !8, line: 169, column: 14)
-!301 = !DILocation(line: 0, scope: !300)
-!302 = !DILocation(line: 0, scope: !293)
-!303 = !DILocation(line: 175, column: 1, scope: !283)
-!304 = distinct !DISubprogram(name: "ex307ArrayElemPointerMultipleElementValues", scope: !8, file: !8, line: 180, type: !305, scopeLine: 180, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !310)
-!305 = !DISubroutineType(types: !306)
-!306 = !{!13, !307}
-!307 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s307", file: !8, line: 177, size: 256, elements: !308)
-!308 = !{!309}
-!309 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !307, file: !8, line: 178, baseType: !275, size: 256)
-!310 = !{!311}
-!311 = !DILocalVariable(name: "s", arg: 1, scope: !304, file: !8, line: 180, type: !307)
-!312 = !DILocation(line: 180, column: 60, scope: !304)
-!313 = !DILocation(line: 182, column: 10, scope: !304)
-!314 = !DILocation(line: 182, column: 22, scope: !304)
-!315 = !DILocation(line: 182, column: 20, scope: !304)
-!316 = !DILocation(line: 182, column: 3, scope: !304)
-!317 = distinct !DISubprogram(name: "ex308ArrayElemPointerFunction", scope: !8, file: !8, line: 188, type: !318, scopeLine: 188, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !324)
-!318 = !DISubroutineType(types: !319)
-!319 = !{!13, !320}
-!320 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s308", file: !8, line: 185, size: 256, elements: !321)
-!321 = !{!322}
-!322 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !320, file: !8, line: 186, baseType: !323, size: 256)
-!323 = !DICompositeType(tag: DW_TAG_array_type, baseType: !73, size: 256, elements: !120)
-!324 = !{!325}
-!325 = !DILocalVariable(name: "s", arg: 1, scope: !317, file: !8, line: 188, type: !320)
-!326 = !DILocation(line: 188, column: 47, scope: !317)
-!327 = !DILocation(line: 190, column: 10, scope: !317)
-!328 = !DILocation(line: 190, column: 21, scope: !317)
-!329 = !DILocation(line: 190, column: 19, scope: !317)
-!330 = !DILocation(line: 190, column: 3, scope: !317)
-!331 = distinct !DISubprogram(name: "ex401PointerToInt", scope: !8, file: !8, line: 195, type: !43, scopeLine: 195, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !332)
-!332 = !{!333}
-!333 = !DILocalVariable(name: "a", arg: 1, scope: !331, file: !8, line: 195, type: !12)
-!334 = !DILocation(line: 0, scope: !331)
-!335 = !DILocation(line: 196, column: 10, scope: !331)
-!336 = !DILocation(line: 196, column: 3, scope: !331)
-!337 = distinct !DISubprogram(name: "ex402PointerToStruct", scope: !8, file: !8, line: 202, type: !338, scopeLine: 202, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !344)
-!338 = !DISubroutineType(types: !339)
-!339 = !{!13, !340}
-!340 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !341, size: 64)
-!341 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s402", file: !8, line: 199, size: 32, elements: !342)
-!342 = !{!343}
-!343 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !341, file: !8, line: 200, baseType: !13, size: 32)
-!344 = !{!345}
-!345 = !DILocalVariable(name: "s", arg: 1, scope: !337, file: !8, line: 202, type: !340)
-!346 = !DILocation(line: 0, scope: !337)
-!347 = !DILocation(line: 203, column: 13, scope: !337)
-!348 = !{!349, !38, i64 0}
-!349 = !{!"s402", !38, i64 0}
-!350 = !DILocation(line: 203, column: 3, scope: !337)
-!351 = distinct !DISubprogram(name: "ex405PointerToPointerSingleElementValue", scope: !8, file: !8, line: 208, type: !352, scopeLine: 208, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !355)
-!352 = !DISubroutineType(types: !353)
-!353 = !{!13, !354}
-!354 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !12, size: 64)
-!355 = !{!356}
-!356 = !DILocalVariable(name: "a", arg: 1, scope: !351, file: !8, line: 208, type: !354)
-!357 = !DILocation(line: 0, scope: !351)
-!358 = !DILocation(line: 209, column: 11, scope: !351)
-!359 = !DILocation(line: 209, column: 10, scope: !351)
-!360 = !DILocation(line: 209, column: 3, scope: !351)
-!361 = distinct !DISubprogram(name: "ex406PointerToPointerSingleElementInstances", scope: !8, file: !8, line: 212, type: !362, scopeLine: 212, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !364)
-!362 = !DISubroutineType(types: !363)
-!363 = !{!13, !354, !354}
-!364 = !{!365, !366}
-!365 = !DILocalVariable(name: "a", arg: 1, scope: !361, file: !8, line: 212, type: !354)
-!366 = !DILocalVariable(name: "b", arg: 2, scope: !361, file: !8, line: 212, type: !354)
-!367 = !DILocation(line: 0, scope: !361)
-!368 = !DILocation(line: 213, column: 7, scope: !369)
-!369 = distinct !DILexicalBlock(scope: !361, file: !8, line: 213, column: 7)
-!370 = !DILocation(line: 213, column: 10, scope: !369)
-!371 = !DILocation(line: 213, column: 18, scope: !369)
-!372 = !DILocation(line: 213, column: 21, scope: !369)
-!373 = !DILocation(line: 213, column: 24, scope: !369)
-!374 = !DILocation(line: 213, column: 7, scope: !361)
-!375 = !DILocation(line: 216, column: 17, scope: !376)
-!376 = distinct !DILexicalBlock(scope: !369, file: !8, line: 216, column: 14)
-!377 = !DILocation(line: 0, scope: !376)
-!378 = !DILocation(line: 0, scope: !369)
-!379 = !DILocation(line: 222, column: 1, scope: !361)
-!380 = distinct !DISubprogram(name: "ex407PointerToPointerMultipleElementValues", scope: !8, file: !8, line: 224, type: !352, scopeLine: 224, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !381)
+!290 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !288, file: !8, line: 163, baseType: !277, size: 256)
+!291 = !{!292}
+!292 = !DILocalVariable(name: "s", arg: 1, scope: !285, file: !8, line: 165, type: !288)
+!293 = !DILocation(line: 165, column: 61, scope: !285)
+!294 = !DILocation(line: 166, column: 7, scope: !295)
+!295 = distinct !DILexicalBlock(scope: !285, file: !8, line: 166, column: 7)
+!296 = !DILocation(line: 166, column: 14, scope: !295)
+!297 = !DILocation(line: 166, column: 22, scope: !295)
+!298 = !DILocation(line: 166, column: 25, scope: !295)
+!299 = !DILocation(line: 166, column: 32, scope: !295)
+!300 = !DILocation(line: 166, column: 7, scope: !285)
+!301 = !DILocation(line: 0, scope: !302)
+!302 = distinct !DILexicalBlock(scope: !295, file: !8, line: 169, column: 14)
+!303 = !DILocation(line: 0, scope: !295)
+!304 = !DILocation(line: 175, column: 1, scope: !285)
+!305 = distinct !DISubprogram(name: "ex307ArrayElemPointerMultipleElementValues", scope: !8, file: !8, line: 180, type: !306, scopeLine: 180, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !311)
+!306 = !DISubroutineType(types: !307)
+!307 = !{!13, !308}
+!308 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s307", file: !8, line: 177, size: 256, elements: !309)
+!309 = !{!310}
+!310 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !308, file: !8, line: 178, baseType: !277, size: 256)
+!311 = !{!312}
+!312 = !DILocalVariable(name: "s", arg: 1, scope: !305, file: !8, line: 180, type: !308)
+!313 = !DILocation(line: 180, column: 60, scope: !305)
+!314 = !DILocation(line: 182, column: 10, scope: !305)
+!315 = !DILocation(line: 182, column: 22, scope: !305)
+!316 = !DILocation(line: 182, column: 20, scope: !305)
+!317 = !DILocation(line: 182, column: 3, scope: !305)
+!318 = distinct !DISubprogram(name: "ex308ArrayElemPointerFunction", scope: !8, file: !8, line: 188, type: !319, scopeLine: 188, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !325)
+!319 = !DISubroutineType(types: !320)
+!320 = !{!13, !321}
+!321 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s308", file: !8, line: 185, size: 256, elements: !322)
+!322 = !{!323}
+!323 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !321, file: !8, line: 186, baseType: !324, size: 256)
+!324 = !DICompositeType(tag: DW_TAG_array_type, baseType: !76, size: 256, elements: !123)
+!325 = !{!326}
+!326 = !DILocalVariable(name: "s", arg: 1, scope: !318, file: !8, line: 188, type: !321)
+!327 = !DILocation(line: 188, column: 47, scope: !318)
+!328 = !DILocation(line: 190, column: 10, scope: !318)
+!329 = !DILocation(line: 190, column: 21, scope: !318)
+!330 = !DILocation(line: 190, column: 19, scope: !318)
+!331 = !DILocation(line: 190, column: 3, scope: !318)
+!332 = distinct !DISubprogram(name: "ex401PointerToInt", scope: !8, file: !8, line: 195, type: !43, scopeLine: 195, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !333)
+!333 = !{!334}
+!334 = !DILocalVariable(name: "a", arg: 1, scope: !332, file: !8, line: 195, type: !12)
+!335 = !DILocation(line: 0, scope: !332)
+!336 = !DILocation(line: 196, column: 10, scope: !332)
+!337 = !DILocation(line: 196, column: 3, scope: !332)
+!338 = distinct !DISubprogram(name: "ex402PointerToStruct", scope: !8, file: !8, line: 202, type: !339, scopeLine: 202, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !345)
+!339 = !DISubroutineType(types: !340)
+!340 = !{!13, !341}
+!341 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !342, size: 64)
+!342 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s402", file: !8, line: 199, size: 32, elements: !343)
+!343 = !{!344}
+!344 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !342, file: !8, line: 200, baseType: !13, size: 32)
+!345 = !{!346}
+!346 = !DILocalVariable(name: "s", arg: 1, scope: !338, file: !8, line: 202, type: !341)
+!347 = !DILocation(line: 0, scope: !338)
+!348 = !DILocation(line: 203, column: 13, scope: !338)
+!349 = !{!350, !38, i64 0}
+!350 = !{!"s402", !38, i64 0}
+!351 = !DILocation(line: 203, column: 3, scope: !338)
+!352 = distinct !DISubprogram(name: "ex405PointerToPointerSingleElementValue", scope: !8, file: !8, line: 208, type: !353, scopeLine: 208, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !356)
+!353 = !DISubroutineType(types: !354)
+!354 = !{!13, !355}
+!355 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !12, size: 64)
+!356 = !{!357}
+!357 = !DILocalVariable(name: "a", arg: 1, scope: !352, file: !8, line: 208, type: !355)
+!358 = !DILocation(line: 0, scope: !352)
+!359 = !DILocation(line: 209, column: 11, scope: !352)
+!360 = !DILocation(line: 209, column: 10, scope: !352)
+!361 = !DILocation(line: 209, column: 3, scope: !352)
+!362 = distinct !DISubprogram(name: "ex406PointerToPointerSingleElementInstances", scope: !8, file: !8, line: 212, type: !363, scopeLine: 212, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !365)
+!363 = !DISubroutineType(types: !364)
+!364 = !{!13, !355, !355}
+!365 = !{!366, !367}
+!366 = !DILocalVariable(name: "a", arg: 1, scope: !362, file: !8, line: 212, type: !355)
+!367 = !DILocalVariable(name: "b", arg: 2, scope: !362, file: !8, line: 212, type: !355)
+!368 = !DILocation(line: 0, scope: !362)
+!369 = !DILocation(line: 213, column: 7, scope: !370)
+!370 = distinct !DILexicalBlock(scope: !362, file: !8, line: 213, column: 7)
+!371 = !DILocation(line: 213, column: 10, scope: !370)
+!372 = !DILocation(line: 213, column: 18, scope: !370)
+!373 = !DILocation(line: 213, column: 21, scope: !370)
+!374 = !DILocation(line: 213, column: 24, scope: !370)
+!375 = !DILocation(line: 213, column: 7, scope: !362)
+!376 = !DILocation(line: 0, scope: !377)
+!377 = distinct !DILexicalBlock(scope: !370, file: !8, line: 216, column: 14)
+!378 = !DILocation(line: 0, scope: !370)
+!379 = !DILocation(line: 222, column: 1, scope: !362)
+!380 = distinct !DISubprogram(name: "ex407PointerToPointerMultipleElementValues", scope: !8, file: !8, line: 224, type: !353, scopeLine: 224, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !381)
 !381 = !{!382}
-!382 = !DILocalVariable(name: "a", arg: 1, scope: !380, file: !8, line: 224, type: !354)
+!382 = !DILocalVariable(name: "a", arg: 1, scope: !380, file: !8, line: 224, type: !355)
 !383 = !DILocation(line: 0, scope: !380)
 !384 = !DILocation(line: 226, column: 11, scope: !380)
 !385 = !DILocation(line: 226, column: 10, scope: !380)
@@ -800,7 +810,7 @@ attributes #5 = { nounwind }
 !389 = distinct !DISubprogram(name: "ex408PointerToPointerFunction", scope: !8, file: !8, line: 229, type: !390, scopeLine: 229, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !393)
 !390 = !DISubroutineType(types: !391)
 !391 = !{!13, !392}
-!392 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !73, size: 64)
+!392 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !76, size: 64)
 !393 = !{!394}
 !394 = !DILocalVariable(name: "a", arg: 1, scope: !389, file: !8, line: 229, type: !392)
 !395 = !DILocation(line: 0, scope: !389)
@@ -815,7 +825,7 @@ attributes #5 = { nounwind }
 !404 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !402, file: !8, line: 239, baseType: !405, size: 256)
 !405 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !402, file: !8, line: 237, size: 256, elements: !406)
 !406 = !{!407}
-!407 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !405, file: !8, line: 238, baseType: !275, size: 256)
+!407 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !405, file: !8, line: 238, baseType: !277, size: 256)
 !408 = !{!409}
 !409 = !DILocalVariable(name: "s", arg: 1, scope: !399, file: !8, line: 241, type: !402)
 !410 = !DILocation(line: 241, column: 48, scope: !399)
@@ -828,7 +838,7 @@ attributes #5 = { nounwind }
 !417 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s502", file: !8, line: 245, size: 256, elements: !418)
 !418 = !{!419}
 !419 = !DIDerivedType(tag: DW_TAG_member, name: "inner", scope: !417, file: !8, line: 248, baseType: !420, size: 256)
-!420 = !DICompositeType(tag: DW_TAG_array_type, baseType: !421, size: 256, elements: !120)
+!420 = !DICompositeType(tag: DW_TAG_array_type, baseType: !421, size: 256, elements: !123)
 !421 = distinct !DICompositeType(tag: DW_TAG_structure_type, scope: !417, file: !8, line: 246, size: 64, elements: !422)
 !422 = !{!423}
 !423 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !421, file: !8, line: 247, baseType: !12, size: 64)
@@ -836,8 +846,8 @@ attributes #5 = { nounwind }
 !425 = !DILocalVariable(name: "s", arg: 1, scope: !414, file: !8, line: 250, type: !417)
 !426 = !DILocation(line: 250, column: 48, scope: !414)
 !427 = !DILocation(line: 251, column: 22, scope: !414)
-!428 = !{!429, !160, i64 0}
-!429 = !{!"", !160, i64 0}
+!428 = !{!429, !163, i64 0}
+!429 = !{!"", !163, i64 0}
 !430 = !DILocation(line: 251, column: 10, scope: !414)
 !431 = !DILocation(line: 251, column: 3, scope: !414)
 !432 = distinct !DISubprogram(name: "ex503PointerArithmetic", scope: !8, file: !8, line: 254, type: !43, scopeLine: 254, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !433)
@@ -853,6 +863,6 @@ attributes #5 = { nounwind }
 !442 = !{!443}
 !443 = !DILocalVariable(name: "a", arg: 1, scope: !439, file: !8, line: 259, type: !11)
 !444 = !DILocation(line: 0, scope: !439)
-!445 = !DILocation(line: 261, column: 11, scope: !439)
-!446 = !DILocation(line: 261, column: 10, scope: !439)
-!447 = !DILocation(line: 261, column: 3, scope: !439)
+!445 = !DILocation(line: 260, column: 11, scope: !439)
+!446 = !DILocation(line: 260, column: 10, scope: !439)
+!447 = !DILocation(line: 260, column: 3, scope: !439)

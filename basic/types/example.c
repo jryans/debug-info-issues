@@ -25,12 +25,12 @@ int ex105PointerSingleElementValue(int *a) {
 int ex106PointerSingleElementInstances(int *a, int *b) {
   if (a == NULL || b == NULL) {
     // Currently fails, case unimplemented
-    return 1; // null
+    return 0; // null
   } else if (a != b) {
-    return 2; // new instance
+    return *a + *b; // new instance
   } else {
     // Currently fails, case unimplemented
-    return 3; // existing instance
+    return *a + *b; // existing instance
   }
 }
 
@@ -96,12 +96,12 @@ struct s206 {
 int ex206StructFieldPointerSingleElementInstances(struct s206 s) {
   if (s.a == NULL || s.b == NULL) {
     // Currently fails, case unimplemented
-    return 1; // null
+    return 0; // null
   } else if (s.a != s.b) {
-    return 2; // new instance
+    return *s.a + *s.b; // new instance
   } else {
     // Currently fails, case unimplemented
-    return 3; // existing instance
+    return *s.a + *s.b; // existing instance
   }
 }
 
@@ -165,12 +165,12 @@ struct s306 {
 int ex306ArrayElemPointerSingleElementInstances(struct s306 s) {
   if (s.a[0] == NULL || s.a[3] == NULL) {
     // Currently fails, case unimplemented
-    return 1; // null
+    return 0; // null
   } else if (s.a[0] != s.a[3]) {
-    return 2; // new instance
+    return *s.a[0] + *s.a[3]; // new instance
   } else {
     // Currently fails, case unimplemented
-    return 3; // existing instance
+    return *s.a[0] + *s.a[3]; // existing instance
   }
 }
 
@@ -212,12 +212,12 @@ int ex405PointerToPointerSingleElementValue(int **a) {
 int ex406PointerToPointerSingleElementInstances(int **a, int **b) {
   if (*a == NULL || *b == NULL) {
     // Currently fails, case unimplemented
-    return 1; // null
+    return 0; // null
   } else if (*a != *b) {
-    return 2; // new instance
+    return **a + **b; // new instance
   } else {
     // Currently fails, case unimplemented
-    return 3; // existing instance
+    return **a + **b; // existing instance
   }
 }
 
