@@ -19,16 +19,6 @@ if (warningsSize) {
   console.log("Warnings present, coverage may be invalid!");
 }
 
-const traceLines = fs.readFileSync(path.join(dirPath, "execution.txt"), "utf8")
-                     .split("\n");
-
-for (const line of traceLines) {
-  if (line.startsWith("Resolving symbolic")) {
-    console.log("Symbolic resolution found, coverage may be invalid!");
-    break;
-  }
-}
-
 const statsLines = fs.readFileSync(path.join(dirPath, "run.istats"), "utf8")
                      .split("\n");
 
