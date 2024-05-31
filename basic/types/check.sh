@@ -6,7 +6,7 @@ source "${SCRIPT_DIR}/../vars.sh"
 # Remove old runs in case function names have changed
 find ./klee-out-O0 -type d -name 'ex*' | xargs rm -rf
 
-KLEE_COVERAGE_OPTS="--independent-functions --output-dir=klee-out-O0 --write-no-tests"
+KLEE_COVERAGE_OPTS="--independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=4"
 ${KLEE} ${KLEE_COMMON_OPTS} ${KLEE_COVERAGE_OPTS} "$@" ${O0_BC}
 
 # Check whether each function is fully covered

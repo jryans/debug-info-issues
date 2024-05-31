@@ -59,7 +59,7 @@
 ++++ local program=klee
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/klee
 +++ KLEE=/Users/jryans/Projects/klee/build-debug/bin/klee
-+++ KLEE_COMMON_OPTS='--debug-execution-trace --output-source --max-forks=4 --search=random-path'
++++ KLEE_COMMON_OPTS='--debug-execution-trace --output-source --search=random-path'
 +++ O0_BC=klee-out-O0/final.bc
 +++ O1_BC=klee-out-O1/final.bc
 +++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
@@ -73,7 +73,7 @@
 ++++ local program=check-debug-info
 ++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 +++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-+++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --search=random-path --max-forks=4 --tsv'
 + [[ ! -s example.c ]]
 + ./build.sh
 +++ dirname ./build.sh
@@ -139,7 +139,7 @@
 +++++ local program=klee
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/klee
 ++++ KLEE=/Users/jryans/Projects/klee/build-debug/bin/klee
-++++ KLEE_COMMON_OPTS='--debug-execution-trace --output-source --max-forks=4 --search=random-path'
+++++ KLEE_COMMON_OPTS='--debug-execution-trace --output-source --search=random-path'
 ++++ O0_BC=klee-out-O0/final.bc
 ++++ O1_BC=klee-out-O1/final.bc
 ++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
@@ -153,7 +153,7 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --search=random-path --max-forks=4 --tsv'
 ++ mkdir -p klee-out-O0
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/clang example.c -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone -S -emit-llvm -o example-O0.ll
 ++ /Users/jryans/Projects/LLVM/llvm/builds/release-clang-lldb-13.0.0/bin/llvm-as -o klee-out-O0/final.bc example-O0.ll
@@ -232,7 +232,7 @@
 +++++ local program=klee
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/klee
 ++++ KLEE=/Users/jryans/Projects/klee/build-debug/bin/klee
-++++ KLEE_COMMON_OPTS='--debug-execution-trace --output-source --max-forks=4 --search=random-path'
+++++ KLEE_COMMON_OPTS='--debug-execution-trace --output-source --search=random-path'
 ++++ O0_BC=klee-out-O0/final.bc
 ++++ O1_BC=klee-out-O1/final.bc
 ++++ O1_FIXED_BC=klee-out-O1-fixed/final.bc
@@ -246,11 +246,11 @@
 +++++ local program=check-debug-info
 +++++ echo /Users/jryans/Projects/klee/build-debug/bin/check-debug-info
 ++++ CHECK=/Users/jryans/Projects/klee/build-debug/bin/check-debug-info
-++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --max-forks=4 --search=random-path --tsv'
+++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --search=random-path --max-forks=4 --tsv'
 ++ find ./klee-out-O0 -type d -name 'ex*'
 ++ xargs rm -rf
-++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests'
-++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --max-forks=4 --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests klee-out-O0/final.bc
+++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=4'
+++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=4 klee-out-O0/final.bc
 [0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.5.0'
 This may cause unexpected crashes or assertion violations.
 [0mKLEE: output directory is "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/types/klee-out-O0"
