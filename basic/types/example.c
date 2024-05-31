@@ -24,18 +24,18 @@ int ex105PointerSingleElementValue(int *a) {
 
 int ex106PointerSingleElementInstances(int *a, int *b) {
   if (a == NULL || b == NULL) {
-    // Currently fails, case unimplemented
+    // Currently passes
     return 0; // null
   } else if (a != b) {
     return *a + *b; // new instance
   } else {
-    // Currently fails, case unimplemented
+    // Currently passes
     return *a + *b; // existing instance
   }
 }
 
 int ex107PointerMultipleElementValues(int *a) {
-  // Currently fails, max of 2 elements assumed
+  // Currently passes coverage, but a[3] not actually found
   return a[0] + a[3];
 }
 
@@ -95,12 +95,12 @@ struct s206 {
 };
 int ex206StructFieldPointerSingleElementInstances(struct s206 s) {
   if (s.a == NULL || s.b == NULL) {
-    // Currently fails, case unimplemented
+    // Currently passes
     return 0; // null
   } else if (s.a != s.b) {
     return *s.a + *s.b; // new instance
   } else {
-    // Currently fails, case unimplemented
+    // Currently passes
     return *s.a + *s.b; // existing instance
   }
 }
@@ -110,7 +110,7 @@ struct s207 {
   int _[2][2]; // Force struct in LLVM IR
 };
 int ex207StructFieldPointerMultipleElementValues(struct s207 s) {
-  // Currently fails, max of 2 elements assumed
+  // Currently passes coverage, but a[3] not actually found
   return s.a[0] + s.a[3];
 }
 
@@ -164,12 +164,12 @@ struct s306 {
 };
 int ex306ArrayElemPointerSingleElementInstances(struct s306 s) {
   if (s.a[0] == NULL || s.a[3] == NULL) {
-    // Currently fails, case unimplemented
+    // Currently passes
     return 0; // null
   } else if (s.a[0] != s.a[3]) {
     return *s.a[0] + *s.a[3]; // new instance
   } else {
-    // Currently fails, case unimplemented
+    // Currently passes
     return *s.a[0] + *s.a[3]; // existing instance
   }
 }
@@ -178,7 +178,7 @@ struct s307 {
   int *a[4];
 };
 int ex307ArrayElemPointerMultipleElementValues(struct s307 s) {
-  // Currently fails, max of 2 elements assumed
+  // Currently passes coverage, but a[3] not actually found
   return s.a[0][0] + s.a[0][3];
 }
 
@@ -211,18 +211,18 @@ int ex405PointerToPointerSingleElementValue(int **a) {
 
 int ex406PointerToPointerSingleElementInstances(int **a, int **b) {
   if (*a == NULL || *b == NULL) {
-    // Currently fails, case unimplemented
+    // Currently passes
     return 0; // null
   } else if (*a != *b) {
     return **a + **b; // new instance
   } else {
-    // Currently fails, case unimplemented
+    // Currently passes
     return **a + **b; // existing instance
   }
 }
 
 int ex407PointerToPointerMultipleElementValues(int **a) {
-  // Currently fails, max of 2 elements assumed
+  // Currently passes coverage, but a[3] not actually found
   return (*a)[0] + (*a)[3];
 }
 
@@ -252,7 +252,7 @@ int ex502ArrayOfStructsWithPointer(struct s502 s) {
 }
 
 int ex503PointerArithmetic(int *a) {
-  // Currently fails, max of 2 elements assumed
+  // Currently works via symbolic resolution
   return *(a + 3);
 }
 
