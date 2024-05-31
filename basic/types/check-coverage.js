@@ -29,7 +29,7 @@ let sectionLinesCovered = 0;
 for (const line of statsLines) {
   if (sectionFound) {
     // End of section
-    if (line.startsWith("fn=") || line == "") {
+    if (line.startsWith("fn=") || line.startsWith("fl=") || line == "") {
       break;
     }
     // Examine cells of interest
