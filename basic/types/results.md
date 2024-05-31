@@ -316,9 +316,9 @@ KLEE: done: generated tests = 0
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;32m
-KLEE: done: total instructions = 13
-KLEE: done: completed paths = 8
-KLEE: done: partially completed paths = 1
+KLEE: done: total instructions = 5
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 9
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex201StructFieldInt` in independent function mode
 [0;1;32m
@@ -389,9 +389,9 @@ KLEE: done: generated tests = 0
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;32m
-KLEE: done: total instructions = 12
-KLEE: done: completed paths = 8
-KLEE: done: partially completed paths = 1
+KLEE: done: total instructions = 4
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 9
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex301ArrayElemInt` in independent function mode
 [0;1;32m
@@ -451,26 +451,8 @@ KLEE: done: generated tests = 0
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;1;31mKLEE: ERROR: example.c:190: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;32m
-KLEE: done: total instructions = 37
+KLEE: done: total instructions = 5
 KLEE: done: completed paths = 0
 KLEE: done: partially completed paths = 9
 KLEE: done: generated tests = 0
@@ -553,7 +535,7 @@ KLEE: done: completed paths = 2
 KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex503PointerArithmetic` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:256: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:258: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
@@ -561,12 +543,24 @@ KLEE: done: completed paths = 2
 KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex504PointerCast` in independent function mode
-[0;1;31mKLEE: ERROR: example.c:260: memory error: out of bound pointer
+[0;1;31mKLEE: ERROR: example.c:262: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 2
 KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 0
+[0mKLEE: Running `ex505PointerFunction` in independent function mode
+[0;1;31mKLEE: ERROR: example.c:267: invalid function pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;32m
+KLEE: done: total instructions = 7
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 9
 KLEE: done: generated tests = 0
 [0m++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex101Int ']'
@@ -607,7 +601,8 @@ Asm line 126, src line 39 not covered
 ./klee-out-O0/ex108PointerFunction
 Coverage for ex108PointerFunction
 Warnings present, coverage may be invalid!
-6 / 6 (100%) asm lines covered
+Asm line 137, src line 44 not covered
+5 / 6 (83.33333333333334%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex201StructFieldInt ']'
 ++ ./check-coverage.js ./klee-out-O0/ex201StructFieldInt
@@ -662,7 +657,8 @@ Coverage for ex207StructFieldPointerMultipleElementValues
 ./klee-out-O0/ex208StructFieldPointerFunction
 Coverage for ex208StructFieldPointerFunction
 Warnings present, coverage may be invalid!
-5 / 5 (100%) asm lines covered
+Asm line 275, src line 123 not covered
+4 / 5 (80%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex301ArrayElemInt ']'
 ++ ./check-coverage.js ./klee-out-O0/ex301ArrayElemInt
@@ -706,9 +702,13 @@ Coverage for ex307ArrayElemPointerMultipleElementValues
 ./klee-out-O0/ex308ArrayElemPointerFunction
 Coverage for ex308ArrayElemPointerFunction
 Warnings present, coverage may be invalid!
+Asm line 424, src line 190 not covered
+Asm line 425, src line 190 not covered
+Asm line 426, src line 190 not covered
+Asm line 427, src line 190 not covered
 Asm line 428, src line 190 not covered
 Asm line 429, src line 190 not covered
-9 / 11 (81.81818181818183%) asm lines covered
+5 / 11 (45.45454545454545%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex401PointerToInt ']'
 ++ ./check-coverage.js ./klee-out-O0/ex401PointerToInt
@@ -773,3 +773,13 @@ Coverage for ex503PointerArithmetic
 ./klee-out-O0/ex504PointerCast
 Coverage for ex504PointerCast
 7 / 7 (100%) asm lines covered
+++ for i in './klee-out-O0/ex*'
+++ '[' -d ./klee-out-O0/ex505PointerFunction ']'
+++ ./check-coverage.js ./klee-out-O0/ex505PointerFunction
+./klee-out-O0/ex505PointerFunction
+Coverage for ex505PointerFunction
+Warnings present, coverage may be invalid!
+Asm line 615, src line 267 not covered
+Asm line 616, src line 269 not covered
+Asm line 617, src line 269 not covered
+7 / 10 (70%) asm lines covered

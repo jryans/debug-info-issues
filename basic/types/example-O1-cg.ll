@@ -404,6 +404,15 @@ entry:
   ret i32 %1, !dbg !447
 }
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @ex505PointerFunction(i32 (...)* nocapture %a) local_unnamed_addr #3 !dbg !448 {
+entry:
+  call void @llvm.dbg.value(metadata i32 (...)* %a, metadata !450, metadata !DIExpression()), !dbg !452
+  %call = call i32 (...) %a() #5, !dbg !453
+  call void @llvm.dbg.value(metadata i32 %call, metadata !451, metadata !DIExpression()), !dbg !452
+  ret i32 %call, !dbg !454
+}
+
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
 declare void @llvm.dbg.value(metadata, metadata, metadata) #4
 
@@ -850,19 +859,26 @@ attributes #5 = { nounwind }
 !429 = !{!"", !163, i64 0}
 !430 = !DILocation(line: 251, column: 10, scope: !414)
 !431 = !DILocation(line: 251, column: 3, scope: !414)
-!432 = distinct !DISubprogram(name: "ex503PointerArithmetic", scope: !8, file: !8, line: 254, type: !43, scopeLine: 254, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !433)
+!432 = distinct !DISubprogram(name: "ex503PointerArithmetic", scope: !8, file: !8, line: 256, type: !43, scopeLine: 256, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !433)
 !433 = !{!434}
-!434 = !DILocalVariable(name: "a", arg: 1, scope: !432, file: !8, line: 254, type: !12)
+!434 = !DILocalVariable(name: "a", arg: 1, scope: !432, file: !8, line: 256, type: !12)
 !435 = !DILocation(line: 0, scope: !432)
-!436 = !DILocation(line: 256, column: 14, scope: !432)
-!437 = !DILocation(line: 256, column: 10, scope: !432)
-!438 = !DILocation(line: 256, column: 3, scope: !432)
-!439 = distinct !DISubprogram(name: "ex504PointerCast", scope: !8, file: !8, line: 259, type: !440, scopeLine: 259, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !442)
+!436 = !DILocation(line: 258, column: 14, scope: !432)
+!437 = !DILocation(line: 258, column: 10, scope: !432)
+!438 = !DILocation(line: 258, column: 3, scope: !432)
+!439 = distinct !DISubprogram(name: "ex504PointerCast", scope: !8, file: !8, line: 261, type: !440, scopeLine: 261, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !442)
 !440 = !DISubroutineType(types: !441)
 !441 = !{!13, !11}
 !442 = !{!443}
-!443 = !DILocalVariable(name: "a", arg: 1, scope: !439, file: !8, line: 259, type: !11)
+!443 = !DILocalVariable(name: "a", arg: 1, scope: !439, file: !8, line: 261, type: !11)
 !444 = !DILocation(line: 0, scope: !439)
-!445 = !DILocation(line: 260, column: 11, scope: !439)
-!446 = !DILocation(line: 260, column: 10, scope: !439)
-!447 = !DILocation(line: 260, column: 3, scope: !439)
+!445 = !DILocation(line: 262, column: 11, scope: !439)
+!446 = !DILocation(line: 262, column: 10, scope: !439)
+!447 = !DILocation(line: 262, column: 3, scope: !439)
+!448 = distinct !DISubprogram(name: "ex505PointerFunction", scope: !8, file: !8, line: 265, type: !74, scopeLine: 265, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !449)
+!449 = !{!450, !451}
+!450 = !DILocalVariable(name: "a", arg: 1, scope: !448, file: !8, line: 265, type: !76)
+!451 = !DILocalVariable(name: "result", scope: !448, file: !8, line: 267, type: !13)
+!452 = !DILocation(line: 0, scope: !448)
+!453 = !DILocation(line: 267, column: 16, scope: !448)
+!454 = !DILocation(line: 269, column: 3, scope: !448)

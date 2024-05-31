@@ -604,6 +604,21 @@ entry:
   ret i32 %2, !dbg !517
 }
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @ex505PointerFunction(i32 (...)* %a) #0 !dbg !518 {
+entry:
+  %a.addr = alloca i32 (...)*, align 8
+  %result = alloca i32, align 4
+  store i32 (...)* %a, i32 (...)** %a.addr, align 8
+  call void @llvm.dbg.declare(metadata i32 (...)** %a.addr, metadata !519, metadata !DIExpression()), !dbg !520
+  call void @llvm.dbg.declare(metadata i32* %result, metadata !521, metadata !DIExpression()), !dbg !522
+  %0 = load i32 (...)*, i32 (...)** %a.addr, align 8, !dbg !523
+  %call = call i32 (...) %0(), !dbg !523
+  store i32 %call, i32* %result, align 4, !dbg !522
+  %1 = load i32, i32* %result, align 4, !dbg !524
+  ret i32 %1, !dbg !525
+}
+
 attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 
@@ -1113,19 +1128,27 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !499 = !DILocation(line: 251, column: 22, scope: !485)
 !500 = !DILocation(line: 251, column: 10, scope: !485)
 !501 = !DILocation(line: 251, column: 3, scope: !485)
-!502 = distinct !DISubprogram(name: "ex503PointerArithmetic", scope: !8, file: !8, line: 254, type: !37, scopeLine: 254, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
-!503 = !DILocalVariable(name: "a", arg: 1, scope: !502, file: !8, line: 254, type: !12)
-!504 = !DILocation(line: 254, column: 33, scope: !502)
-!505 = !DILocation(line: 256, column: 12, scope: !502)
-!506 = !DILocation(line: 256, column: 14, scope: !502)
-!507 = !DILocation(line: 256, column: 10, scope: !502)
-!508 = !DILocation(line: 256, column: 3, scope: !502)
-!509 = distinct !DISubprogram(name: "ex504PointerCast", scope: !8, file: !8, line: 259, type: !510, scopeLine: 259, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!502 = distinct !DISubprogram(name: "ex503PointerArithmetic", scope: !8, file: !8, line: 256, type: !37, scopeLine: 256, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!503 = !DILocalVariable(name: "a", arg: 1, scope: !502, file: !8, line: 256, type: !12)
+!504 = !DILocation(line: 256, column: 33, scope: !502)
+!505 = !DILocation(line: 258, column: 12, scope: !502)
+!506 = !DILocation(line: 258, column: 14, scope: !502)
+!507 = !DILocation(line: 258, column: 10, scope: !502)
+!508 = !DILocation(line: 258, column: 3, scope: !502)
+!509 = distinct !DISubprogram(name: "ex504PointerCast", scope: !8, file: !8, line: 261, type: !510, scopeLine: 261, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
 !510 = !DISubroutineType(types: !511)
 !511 = !{!13, !11}
-!512 = !DILocalVariable(name: "a", arg: 1, scope: !509, file: !8, line: 259, type: !11)
-!513 = !DILocation(line: 259, column: 28, scope: !509)
-!514 = !DILocation(line: 260, column: 18, scope: !509)
-!515 = !DILocation(line: 260, column: 11, scope: !509)
-!516 = !DILocation(line: 260, column: 10, scope: !509)
-!517 = !DILocation(line: 260, column: 3, scope: !509)
+!512 = !DILocalVariable(name: "a", arg: 1, scope: !509, file: !8, line: 261, type: !11)
+!513 = !DILocation(line: 261, column: 28, scope: !509)
+!514 = !DILocation(line: 262, column: 18, scope: !509)
+!515 = !DILocation(line: 262, column: 11, scope: !509)
+!516 = !DILocation(line: 262, column: 10, scope: !509)
+!517 = !DILocation(line: 262, column: 3, scope: !509)
+!518 = distinct !DISubprogram(name: "ex505PointerFunction", scope: !8, file: !8, line: 265, type: !88, scopeLine: 265, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!519 = !DILocalVariable(name: "a", arg: 1, scope: !518, file: !8, line: 265, type: !90)
+!520 = !DILocation(line: 265, column: 32, scope: !518)
+!521 = !DILocalVariable(name: "result", scope: !518, file: !8, line: 267, type: !13)
+!522 = !DILocation(line: 267, column: 7, scope: !518)
+!523 = !DILocation(line: 267, column: 16, scope: !518)
+!524 = !DILocation(line: 269, column: 10, scope: !518)
+!525 = !DILocation(line: 269, column: 3, scope: !518)

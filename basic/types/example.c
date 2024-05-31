@@ -251,6 +251,8 @@ int ex502ArrayOfStructsWithPointer(struct s502 s) {
   return *s.inner[0].a;
 }
 
+// Misc. pointer cases
+
 int ex503PointerArithmetic(int *a) {
   // Currently works via symbolic resolution
   return *(a + 3);
@@ -258,4 +260,11 @@ int ex503PointerArithmetic(int *a) {
 
 int ex504PointerCast(void *a) {
   return *(int *)a;
+}
+
+int ex505PointerFunction(int (*a)()) {
+  // Triggers symbolic resolution, unclear if expected / desired
+  int result = a();
+  // Ensure KLEE state hasn't been corrupted by call above
+  return result;
 }
