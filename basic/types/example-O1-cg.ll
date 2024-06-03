@@ -26,6 +26,7 @@ target triple = "x86_64-apple-macosx14.0.0"
 %struct.anon.1 = type { [4 x i32*] }
 %struct.s502 = type { [4 x %struct.anon.2] }
 %struct.anon.2 = type { i32* }
+%struct.s506 = type { i32, %struct.s506* }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn
 define i32 @ex101Int(i32 returned %a) local_unnamed_addr #0 !dbg !15 {
@@ -90,7 +91,7 @@ entry:
 define i32 @ex108PointerFunction(i32 (...)* nocapture %a) local_unnamed_addr #3 !dbg !73 {
 entry:
   call void @llvm.dbg.value(metadata i32 (...)* %a, metadata !80, metadata !DIExpression()), !dbg !81
-  %call = call i32 (...) %a() #5, !dbg !82
+  %call = call i32 (...) %a() #6, !dbg !82
   ret i32 %call, !dbg !83
 }
 
@@ -191,7 +192,7 @@ entry:
   call void @llvm.dbg.declare(metadata %struct.s208* %s, metadata !216, metadata !DIExpression()), !dbg !217
   %a = getelementptr inbounds %struct.s208, %struct.s208* %s, i64 0, i32 0, !dbg !218
   %0 = load i32 (...)*, i32 (...)** %a, align 8, !dbg !218, !tbaa !219
-  %call = call i32 (...) %0() #5, !dbg !221
+  %call = call i32 (...) %0() #6, !dbg !221
   ret i32 %call, !dbg !222
 }
 
@@ -286,10 +287,10 @@ entry:
   call void @llvm.dbg.declare(metadata %struct.s308* %s, metadata !326, metadata !DIExpression()), !dbg !327
   %arrayidx = getelementptr inbounds %struct.s308, %struct.s308* %s, i64 0, i32 0, i64 0, !dbg !328
   %0 = load i32 (...)*, i32 (...)** %arrayidx, align 8, !dbg !328, !tbaa !282
-  %call = call i32 (...) %0() #5, !dbg !328
+  %call = call i32 (...) %0() #6, !dbg !328
   %arrayidx2 = getelementptr inbounds %struct.s308, %struct.s308* %s, i64 0, i32 0, i64 3, !dbg !329
   %1 = load i32 (...)*, i32 (...)** %arrayidx2, align 8, !dbg !329, !tbaa !282
-  %call3 = call i32 (...) %1() #5, !dbg !329
+  %call3 = call i32 (...) %1() #6, !dbg !329
   %add = add nsw i32 %call3, %call, !dbg !330
   ret i32 %add, !dbg !331
 }
@@ -362,7 +363,7 @@ define i32 @ex408PointerToPointerFunction(i32 (...)** nocapture readonly %a) loc
 entry:
   call void @llvm.dbg.value(metadata i32 (...)** %a, metadata !394, metadata !DIExpression()), !dbg !395
   %0 = load i32 (...)*, i32 (...)** %a, align 8, !dbg !396, !tbaa !282
-  %call = call i32 (...) %0() #5, !dbg !397
+  %call = call i32 (...) %0() #6, !dbg !397
   ret i32 %call, !dbg !398
 }
 
@@ -408,20 +409,61 @@ entry:
 define i32 @ex505PointerFunction(i32 (...)* nocapture %a) local_unnamed_addr #3 !dbg !448 {
 entry:
   call void @llvm.dbg.value(metadata i32 (...)* %a, metadata !450, metadata !DIExpression()), !dbg !452
-  %call = call i32 (...) %a() #5, !dbg !453
+  %call = call i32 (...) %a() #6, !dbg !453
   call void @llvm.dbg.value(metadata i32 %call, metadata !451, metadata !DIExpression()), !dbg !452
   ret i32 %call, !dbg !454
 }
 
+; Function Attrs: nofree noinline norecurse nosync nounwind readonly ssp uwtable
+define i32 @ex506ListLengthLimited(%struct.s506* nocapture readonly %s) local_unnamed_addr #4 !dbg !455 {
+entry:
+  call void @llvm.dbg.value(metadata %struct.s506* %s, metadata !464, metadata !DIExpression()), !dbg !467
+  call void @llvm.dbg.value(metadata i32 0, metadata !465, metadata !DIExpression()), !dbg !467
+  call void @llvm.dbg.value(metadata i32 0, metadata !466, metadata !DIExpression()), !dbg !467
+  br label %for.body, !dbg !468
+
+for.body:                                         ; preds = %entry, %if.end
+  %i.015 = phi i32 [ 0, %entry ], [ %inc, %if.end ]
+  %sum.014 = phi i32 [ 0, %entry ], [ %add, %if.end ]
+  %s.addr.013 = phi %struct.s506* [ %s, %entry ], [ %1, %if.end ]
+  call void @llvm.dbg.value(metadata i32 %i.015, metadata !466, metadata !DIExpression()), !dbg !467
+  call void @llvm.dbg.value(metadata i32 %sum.014, metadata !465, metadata !DIExpression()), !dbg !467
+  call void @llvm.dbg.value(metadata %struct.s506* %s.addr.013, metadata !464, metadata !DIExpression()), !dbg !467
+  %a = getelementptr inbounds %struct.s506, %struct.s506* %s.addr.013, i64 0, i32 0, !dbg !470
+  %0 = load i32, i32* %a, align 8, !dbg !470, !tbaa !473
+  %add = add nsw i32 %0, %sum.014, !dbg !475
+  call void @llvm.dbg.value(metadata i32 %add, metadata !465, metadata !DIExpression()), !dbg !467
+  %n = getelementptr inbounds %struct.s506, %struct.s506* %s.addr.013, i64 0, i32 1, !dbg !476
+  %1 = load %struct.s506*, %struct.s506** %n, align 8, !dbg !476, !tbaa !478
+  %tobool.not = icmp eq %struct.s506* %1, null, !dbg !479
+  br i1 %tobool.not, label %for.end, label %if.end, !dbg !480
+
+if.end:                                           ; preds = %for.body
+  call void @llvm.dbg.value(metadata %struct.s506* %1, metadata !464, metadata !DIExpression()), !dbg !467
+  %inc = add nuw nsw i32 %i.015, 1, !dbg !481
+  call void @llvm.dbg.value(metadata i32 %inc, metadata !466, metadata !DIExpression()), !dbg !467
+  call void @llvm.dbg.value(metadata i32 %add, metadata !465, metadata !DIExpression()), !dbg !467
+  %exitcond.not = icmp eq i32 %inc, 4, !dbg !482
+  br i1 %exitcond.not, label %for.end, label %for.body, !dbg !468, !llvm.loop !483
+
+for.end:                                          ; preds = %for.body, %if.end
+  %i.0.lcssa = phi i32 [ %i.015, %for.body ], [ 4, %if.end ], !dbg !487
+  call void @llvm.dbg.value(metadata i32 %add, metadata !465, metadata !DIExpression()), !dbg !467
+  %cmp2 = icmp eq i32 %i.0.lcssa, 4, !dbg !488
+  %.sum.1 = select i1 %cmp2, i32 0, i32 %add, !dbg !467
+  ret i32 %.sum.1, !dbg !490
+}
+
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
-declare void @llvm.dbg.value(metadata, metadata, metadata) #4
+declare void @llvm.dbg.value(metadata, metadata, metadata) #5
 
 attributes #0 = { mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { mustprogress nofree nosync nounwind readnone speculatable willreturn }
 attributes #2 = { mustprogress nofree noinline norecurse nosync nounwind readonly ssp uwtable willreturn "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #3 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
-attributes #4 = { nofree nosync nounwind readnone speculatable willreturn }
-attributes #5 = { nounwind }
+attributes #4 = { nofree noinline norecurse nosync nounwind readonly ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
+attributes #5 = { nofree nosync nounwind readnone speculatable willreturn }
+attributes #6 = { nounwind }
 
 !llvm.module.flags = !{!0, !1, !2, !3, !4, !5, !6}
 !llvm.dbg.cu = !{!7}
@@ -882,3 +924,39 @@ attributes #5 = { nounwind }
 !452 = !DILocation(line: 0, scope: !448)
 !453 = !DILocation(line: 267, column: 16, scope: !448)
 !454 = !DILocation(line: 269, column: 3, scope: !448)
+!455 = distinct !DISubprogram(name: "ex506ListLengthLimited", scope: !8, file: !8, line: 278, type: !456, scopeLine: 278, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !463)
+!456 = !DISubroutineType(types: !457)
+!457 = !{!13, !458}
+!458 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !459, size: 64)
+!459 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s506", file: !8, line: 274, size: 128, elements: !460)
+!460 = !{!461, !462}
+!461 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !459, file: !8, line: 275, baseType: !13, size: 32)
+!462 = !DIDerivedType(tag: DW_TAG_member, name: "n", scope: !459, file: !8, line: 276, baseType: !458, size: 64, offset: 64)
+!463 = !{!464, !465, !466}
+!464 = !DILocalVariable(name: "s", arg: 1, scope: !455, file: !8, line: 278, type: !458)
+!465 = !DILocalVariable(name: "sum", scope: !455, file: !8, line: 279, type: !13)
+!466 = !DILocalVariable(name: "i", scope: !455, file: !8, line: 280, type: !13)
+!467 = !DILocation(line: 0, scope: !455)
+!468 = !DILocation(line: 281, column: 3, scope: !469)
+!469 = distinct !DILexicalBlock(scope: !455, file: !8, line: 281, column: 3)
+!470 = !DILocation(line: 282, column: 15, scope: !471)
+!471 = distinct !DILexicalBlock(scope: !472, file: !8, line: 281, column: 27)
+!472 = distinct !DILexicalBlock(scope: !469, file: !8, line: 281, column: 3)
+!473 = !{!474, !38, i64 0}
+!474 = !{!"s506", !38, i64 0, !163, i64 8}
+!475 = !DILocation(line: 282, column: 9, scope: !471)
+!476 = !DILocation(line: 283, column: 13, scope: !477)
+!477 = distinct !DILexicalBlock(scope: !471, file: !8, line: 283, column: 9)
+!478 = !{!474, !163, i64 8}
+!479 = !DILocation(line: 283, column: 10, scope: !477)
+!480 = !DILocation(line: 283, column: 9, scope: !471)
+!481 = !DILocation(line: 281, column: 23, scope: !472)
+!482 = !DILocation(line: 281, column: 17, scope: !472)
+!483 = distinct !{!483, !468, !484, !485, !486}
+!484 = !DILocation(line: 286, column: 3, scope: !469)
+!485 = !{!"llvm.loop.mustprogress"}
+!486 = !{!"llvm.loop.unroll.disable"}
+!487 = !DILocation(line: 0, scope: !469)
+!488 = !DILocation(line: 287, column: 9, scope: !489)
+!489 = distinct !DILexicalBlock(scope: !455, file: !8, line: 287, column: 7)
+!490 = !DILocation(line: 290, column: 1, scope: !455)

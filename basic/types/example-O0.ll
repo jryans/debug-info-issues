@@ -26,6 +26,7 @@ target triple = "x86_64-apple-macosx14.0.0"
 %struct.anon.1 = type { [4 x i32*] }
 %struct.s502 = type { [4 x %struct.anon.2] }
 %struct.anon.2 = type { i32* }
+%struct.s506 = type { i32, %struct.s506* }
 
 ; Function Attrs: noinline nounwind ssp uwtable
 define i32 @ex101Int(i32 %a) #0 !dbg !15 {
@@ -619,6 +620,74 @@ entry:
   ret i32 %1, !dbg !525
 }
 
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @ex506ListLengthLimited(%struct.s506* %s) #0 !dbg !526 {
+entry:
+  %retval = alloca i32, align 4
+  %s.addr = alloca %struct.s506*, align 8
+  %sum = alloca i32, align 4
+  %i = alloca i32, align 4
+  store %struct.s506* %s, %struct.s506** %s.addr, align 8
+  call void @llvm.dbg.declare(metadata %struct.s506** %s.addr, metadata !534, metadata !DIExpression()), !dbg !535
+  call void @llvm.dbg.declare(metadata i32* %sum, metadata !536, metadata !DIExpression()), !dbg !537
+  store i32 0, i32* %sum, align 4, !dbg !537
+  call void @llvm.dbg.declare(metadata i32* %i, metadata !538, metadata !DIExpression()), !dbg !539
+  store i32 0, i32* %i, align 4, !dbg !540
+  br label %for.cond, !dbg !542
+
+for.cond:                                         ; preds = %for.inc, %entry
+  %0 = load i32, i32* %i, align 4, !dbg !543
+  %cmp = icmp slt i32 %0, 4, !dbg !545
+  br i1 %cmp, label %for.body, label %for.end, !dbg !546
+
+for.body:                                         ; preds = %for.cond
+  %1 = load %struct.s506*, %struct.s506** %s.addr, align 8, !dbg !547
+  %a = getelementptr inbounds %struct.s506, %struct.s506* %1, i32 0, i32 0, !dbg !549
+  %2 = load i32, i32* %a, align 8, !dbg !549
+  %3 = load i32, i32* %sum, align 4, !dbg !550
+  %add = add nsw i32 %3, %2, !dbg !550
+  store i32 %add, i32* %sum, align 4, !dbg !550
+  %4 = load %struct.s506*, %struct.s506** %s.addr, align 8, !dbg !551
+  %n = getelementptr inbounds %struct.s506, %struct.s506* %4, i32 0, i32 1, !dbg !553
+  %5 = load %struct.s506*, %struct.s506** %n, align 8, !dbg !553
+  %tobool = icmp ne %struct.s506* %5, null, !dbg !551
+  br i1 %tobool, label %if.end, label %if.then, !dbg !554
+
+if.then:                                          ; preds = %for.body
+  br label %for.end, !dbg !555
+
+if.end:                                           ; preds = %for.body
+  %6 = load %struct.s506*, %struct.s506** %s.addr, align 8, !dbg !556
+  %n1 = getelementptr inbounds %struct.s506, %struct.s506* %6, i32 0, i32 1, !dbg !557
+  %7 = load %struct.s506*, %struct.s506** %n1, align 8, !dbg !557
+  store %struct.s506* %7, %struct.s506** %s.addr, align 8, !dbg !558
+  br label %for.inc, !dbg !559
+
+for.inc:                                          ; preds = %if.end
+  %8 = load i32, i32* %i, align 4, !dbg !560
+  %inc = add nsw i32 %8, 1, !dbg !560
+  store i32 %inc, i32* %i, align 4, !dbg !560
+  br label %for.cond, !dbg !561, !llvm.loop !562
+
+for.end:                                          ; preds = %if.then, %for.cond
+  %9 = load i32, i32* %i, align 4, !dbg !565
+  %cmp2 = icmp eq i32 %9, 4, !dbg !567
+  br i1 %cmp2, label %if.then3, label %if.end4, !dbg !568
+
+if.then3:                                         ; preds = %for.end
+  store i32 0, i32* %retval, align 4, !dbg !569
+  br label %return, !dbg !569
+
+if.end4:                                          ; preds = %for.end
+  %10 = load i32, i32* %sum, align 4, !dbg !570
+  store i32 %10, i32* %retval, align 4, !dbg !571
+  br label %return, !dbg !571
+
+return:                                           ; preds = %if.end4, %if.then3
+  %11 = load i32, i32* %retval, align 4, !dbg !572
+  ret i32 %11, !dbg !572
+}
+
 attributes #0 = { noinline nounwind ssp uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "tune-cpu"="generic" }
 attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 
@@ -1152,3 +1221,50 @@ attributes #1 = { nofree nosync nounwind readnone speculatable willreturn }
 !523 = !DILocation(line: 267, column: 16, scope: !518)
 !524 = !DILocation(line: 269, column: 10, scope: !518)
 !525 = !DILocation(line: 269, column: 3, scope: !518)
+!526 = distinct !DISubprogram(name: "ex506ListLengthLimited", scope: !8, file: !8, line: 278, type: !527, scopeLine: 278, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !7, retainedNodes: !9)
+!527 = !DISubroutineType(types: !528)
+!528 = !{!13, !529}
+!529 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !530, size: 64)
+!530 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s506", file: !8, line: 274, size: 128, elements: !531)
+!531 = !{!532, !533}
+!532 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !530, file: !8, line: 275, baseType: !13, size: 32)
+!533 = !DIDerivedType(tag: DW_TAG_member, name: "n", scope: !530, file: !8, line: 276, baseType: !529, size: 64, offset: 64)
+!534 = !DILocalVariable(name: "s", arg: 1, scope: !526, file: !8, line: 278, type: !529)
+!535 = !DILocation(line: 278, column: 41, scope: !526)
+!536 = !DILocalVariable(name: "sum", scope: !526, file: !8, line: 279, type: !13)
+!537 = !DILocation(line: 279, column: 7, scope: !526)
+!538 = !DILocalVariable(name: "i", scope: !526, file: !8, line: 280, type: !13)
+!539 = !DILocation(line: 280, column: 7, scope: !526)
+!540 = !DILocation(line: 281, column: 10, scope: !541)
+!541 = distinct !DILexicalBlock(scope: !526, file: !8, line: 281, column: 3)
+!542 = !DILocation(line: 281, column: 8, scope: !541)
+!543 = !DILocation(line: 281, column: 15, scope: !544)
+!544 = distinct !DILexicalBlock(scope: !541, file: !8, line: 281, column: 3)
+!545 = !DILocation(line: 281, column: 17, scope: !544)
+!546 = !DILocation(line: 281, column: 3, scope: !541)
+!547 = !DILocation(line: 282, column: 12, scope: !548)
+!548 = distinct !DILexicalBlock(scope: !544, file: !8, line: 281, column: 27)
+!549 = !DILocation(line: 282, column: 15, scope: !548)
+!550 = !DILocation(line: 282, column: 9, scope: !548)
+!551 = !DILocation(line: 283, column: 10, scope: !552)
+!552 = distinct !DILexicalBlock(scope: !548, file: !8, line: 283, column: 9)
+!553 = !DILocation(line: 283, column: 13, scope: !552)
+!554 = !DILocation(line: 283, column: 9, scope: !548)
+!555 = !DILocation(line: 284, column: 7, scope: !552)
+!556 = !DILocation(line: 285, column: 9, scope: !548)
+!557 = !DILocation(line: 285, column: 12, scope: !548)
+!558 = !DILocation(line: 285, column: 7, scope: !548)
+!559 = !DILocation(line: 286, column: 3, scope: !548)
+!560 = !DILocation(line: 281, column: 23, scope: !544)
+!561 = !DILocation(line: 281, column: 3, scope: !544)
+!562 = distinct !{!562, !546, !563, !564}
+!563 = !DILocation(line: 286, column: 3, scope: !541)
+!564 = !{!"llvm.loop.mustprogress"}
+!565 = !DILocation(line: 287, column: 7, scope: !566)
+!566 = distinct !DILexicalBlock(scope: !526, file: !8, line: 287, column: 7)
+!567 = !DILocation(line: 287, column: 9, scope: !566)
+!568 = !DILocation(line: 287, column: 7, scope: !526)
+!569 = !DILocation(line: 288, column: 5, scope: !566)
+!570 = !DILocation(line: 289, column: 10, scope: !526)
+!571 = !DILocation(line: 289, column: 3, scope: !526)
+!572 = !DILocation(line: 290, column: 1, scope: !526)

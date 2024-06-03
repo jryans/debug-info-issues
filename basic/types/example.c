@@ -268,3 +268,23 @@ int ex505PointerFunction(int (*a)()) {
   // Ensure KLEE state hasn't been corrupted by call above
   return result;
 }
+
+// Lists
+
+struct s506 {
+  int a;
+  struct s506 *n;
+};
+int ex506ListLengthLimited(struct s506 *s) {
+  int sum = 0;
+  int i;
+  for (i = 0; i < 4; i++) {
+    sum += s->a;
+    if (!s->n) // All source lines from here onward currently uncovered
+      break;
+    s = s->n;
+  }
+  if (i == 4)
+    return 0;
+  return sum;
+}
