@@ -275,7 +275,7 @@ struct s506 {
   int a;
   struct s506 *n;
 };
-int ex506ListLengthLimited(struct s506 *s) {
+int ex506ListLengthLimitedLoop(struct s506 *s) {
   int sum = 0;
   int i;
   for (i = 0; i < 4; i++) {
@@ -286,5 +286,22 @@ int ex506ListLengthLimited(struct s506 *s) {
   }
   if (i == 4)
     return 0;
+  return sum;
+}
+
+struct s507 {
+  int a;
+  struct s507 *n;
+};
+int ex507ListLengthUnlimitedLoop(struct s507 *s) {
+  int sum = 0;
+  int i = 0;
+  while (s) { // Needs time limit to bound execution
+    sum += s->a;
+    s = s->n;
+    ++i;
+  }
+  if (i == 4)
+    return 0; // Currently unreachable, despite achieving `i == 4`
   return sum;
 }

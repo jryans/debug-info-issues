@@ -249,8 +249,8 @@
 ++++ CHECK_OPTS='--debug-only=check-debug-info,values-collector,variable --debug-execution-trace --output-source --search=random-path --max-forks=4 --tsv'
 ++ find ./klee-out-O0 -type d -name 'ex*'
 ++ xargs rm -rf
-++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=32'
-++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=32 klee-out-O0/final.bc
+++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=32 --max-time=8s'
+++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=32 --max-time=8s klee-out-O0/final.bc
 [0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.5.0'
 This may cause unexpected crashes or assertion violations.
 [0mKLEE: output directory is "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/types/klee-out-O0"
@@ -281,6 +281,7 @@ KLEE: done: generated tests = 0
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:30: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
@@ -497,22 +498,8 @@ KLEE: done: generated tests = 0
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;32m
-KLEE: done: total instructions = 470
+KLEE: done: total instructions = 472
 KLEE: done: completed paths = 29
 KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
@@ -533,11 +520,9 @@ KLEE: done: generated tests = 0
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:231: invalid function pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;31mKLEE: ERROR: example.c:231: calling function with too few arguments
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;32m
@@ -589,17 +574,29 @@ KLEE: done: total instructions = 7
 KLEE: done: completed paths = 0
 KLEE: done: partially completed paths = 33
 KLEE: done: generated tests = 0
-[0mKLEE: Running `ex506ListLengthLimited` in independent function mode
+[0mKLEE: Running `ex506ListLengthLimitedLoop` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:282: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:283: memory error: out of bound pointer
 [0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0mKLEE: HaltTimer invoked
+[0mKLEE: halting execution, dumping remaining states
 [0m[0;1;32m
-KLEE: done: total instructions = 381
-KLEE: done: completed paths = 6
-KLEE: done: partially completed paths = 27
+KLEE: done: total instructions = 239
+KLEE: done: completed paths = 3
+KLEE: done: partially completed paths = 26
+KLEE: done: generated tests = 0
+[0mKLEE: Running `ex507ListLengthUnlimitedLoop` in independent function mode
+[0;1;31mKLEE: ERROR: example.c:300: memory error: out of bound pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:301: memory error: out of bound pointer
+[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0mKLEE: HaltTimer invoked
+[0mKLEE: halting execution, dumping remaining states
+[0m[0;1;32m
+KLEE: done: total instructions = 146
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 26
 KLEE: done: generated tests = 0
 [0m++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex101Int ']'
@@ -631,8 +628,8 @@ Warnings present, coverage may be invalid!
 ++ ./check-coverage.js ./klee-out-O0/ex107PointerMultipleElementValues
 ./klee-out-O0/ex107PointerMultipleElementValues
 Coverage for ex107PointerMultipleElementValues
-Asm line 126, src line 39 not covered
 Asm line 127, src line 39 not covered
+Asm line 128, src line 39 not covered
 9 / 11 (81.81818181818183%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex108PointerFunction ']'
@@ -640,7 +637,7 @@ Asm line 127, src line 39 not covered
 ./klee-out-O0/ex108PointerFunction
 Coverage for ex108PointerFunction
 Warnings present, coverage may be invalid!
-Asm line 138, src line 44 not covered
+Asm line 139, src line 44 not covered
 5 / 6 (83.33333333333334%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex201StructFieldInt ']'
@@ -665,11 +662,11 @@ Coverage for ex203StructFieldArrayFixedLength
 ++ ./check-coverage.js ./klee-out-O0/ex204StructFieldArrayVariableLength
 ./klee-out-O0/ex204StructFieldArrayVariableLength
 Coverage for ex204StructFieldArrayVariableLength
-Asm line 181, src line 80 not covered
 Asm line 182, src line 80 not covered
 Asm line 183, src line 80 not covered
 Asm line 184, src line 80 not covered
 Asm line 185, src line 80 not covered
+Asm line 186, src line 80 not covered
 4 / 9 (44.44444444444444%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex205StructFieldPointerSingleElementValue ']'
@@ -695,7 +692,7 @@ Coverage for ex207StructFieldPointerMultipleElementValues
 ./klee-out-O0/ex208StructFieldPointerFunction
 Coverage for ex208StructFieldPointerFunction
 Warnings present, coverage may be invalid!
-Asm line 276, src line 123 not covered
+Asm line 277, src line 123 not covered
 4 / 5 (80%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex301ArrayElemInt ']'
@@ -739,12 +736,12 @@ Coverage for ex307ArrayElemPointerMultipleElementValues
 ./klee-out-O0/ex308ArrayElemPointerFunction
 Coverage for ex308ArrayElemPointerFunction
 Warnings present, coverage may be invalid!
-Asm line 425, src line 190 not covered
 Asm line 426, src line 190 not covered
 Asm line 427, src line 190 not covered
 Asm line 428, src line 190 not covered
 Asm line 429, src line 190 not covered
 Asm line 430, src line 190 not covered
+Asm line 431, src line 190 not covered
 5 / 11 (45.45454545454545%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex401PointerToInt ']'
@@ -776,8 +773,8 @@ Warnings present, coverage may be invalid!
 ++ ./check-coverage.js ./klee-out-O0/ex407PointerToPointerMultipleElementValues
 ./klee-out-O0/ex407PointerToPointerMultipleElementValues
 Coverage for ex407PointerToPointerMultipleElementValues
-Asm line 542, src line 226 not covered
 Asm line 543, src line 226 not covered
+Asm line 544, src line 226 not covered
 11 / 13 (84.61538461538461%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex408PointerToPointerFunction ']'
@@ -785,7 +782,7 @@ Asm line 543, src line 226 not covered
 ./klee-out-O0/ex408PointerToPointerFunction
 Coverage for ex408PointerToPointerFunction
 Warnings present, coverage may be invalid!
-Asm line 555, src line 231 not covered
+Asm line 556, src line 231 not covered
 6 / 7 (85.71428571428571%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
 ++ '[' -d ./klee-out-O0/ex501StructWithArrayOfPointers ']'
@@ -817,14 +814,21 @@ Coverage for ex504PointerCast
 ./klee-out-O0/ex505PointerFunction
 Coverage for ex505PointerFunction
 Warnings present, coverage may be invalid!
-Asm line 616, src line 267 not covered
-Asm line 617, src line 269 not covered
+Asm line 617, src line 267 not covered
 Asm line 618, src line 269 not covered
+Asm line 619, src line 269 not covered
 7 / 10 (70%) asm lines covered
 ++ for i in './klee-out-O0/ex*'
-++ '[' -d ./klee-out-O0/ex506ListLengthLimited ']'
-++ ./check-coverage.js ./klee-out-O0/ex506ListLengthLimited
-./klee-out-O0/ex506ListLengthLimited
-Coverage for ex506ListLengthLimited
-Warnings present, coverage may be invalid!
+++ '[' -d ./klee-out-O0/ex506ListLengthLimitedLoop ']'
+++ ./check-coverage.js ./klee-out-O0/ex506ListLengthLimitedLoop
+./klee-out-O0/ex506ListLengthLimitedLoop
+Coverage for ex506ListLengthLimitedLoop
 43 / 43 (100%) asm lines covered
+++ for i in './klee-out-O0/ex*'
+++ '[' -d ./klee-out-O0/ex507ListLengthUnlimitedLoop ']'
+++ ./check-coverage.js ./klee-out-O0/ex507ListLengthUnlimitedLoop
+./klee-out-O0/ex507ListLengthUnlimitedLoop
+Coverage for ex507ListLengthUnlimitedLoop
+Asm line 726, src line 305 not covered
+Asm line 727, src line 305 not covered
+36 / 38 (94.73684210526315%) asm lines covered

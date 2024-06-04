@@ -27,6 +27,7 @@ target triple = "x86_64-apple-macosx14.0.0"
 %struct.s502 = type { [4 x %struct.anon.2] }
 %struct.anon.2 = type { i32* }
 %struct.s506 = type { i32, %struct.s506* }
+%struct.s507 = type { i32, %struct.s507* }
 
 ; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind readnone ssp uwtable willreturn
 define i32 @ex101Int(i32 returned %a) local_unnamed_addr #0 !dbg !15 {
@@ -415,7 +416,7 @@ entry:
 }
 
 ; Function Attrs: nofree noinline norecurse nosync nounwind readonly ssp uwtable
-define i32 @ex506ListLengthLimited(%struct.s506* nocapture readonly %s) local_unnamed_addr #4 !dbg !455 {
+define i32 @ex506ListLengthLimitedLoop(%struct.s506* nocapture readonly %s) local_unnamed_addr #4 !dbg !455 {
 entry:
   call void @llvm.dbg.value(metadata %struct.s506* %s, metadata !464, metadata !DIExpression()), !dbg !467
   call void @llvm.dbg.value(metadata i32 0, metadata !465, metadata !DIExpression()), !dbg !467
@@ -452,6 +453,44 @@ for.end:                                          ; preds = %for.body, %if.end
   %cmp2 = icmp eq i32 %i.0.lcssa, 4, !dbg !488
   %.sum.1 = select i1 %cmp2, i32 0, i32 %add, !dbg !467
   ret i32 %.sum.1, !dbg !490
+}
+
+; Function Attrs: nofree noinline norecurse nosync nounwind readonly ssp uwtable
+define i32 @ex507ListLengthUnlimitedLoop(%struct.s507* readonly %s) local_unnamed_addr #4 !dbg !491 {
+entry:
+  call void @llvm.dbg.value(metadata %struct.s507* %s, metadata !500, metadata !DIExpression()), !dbg !503
+  call void @llvm.dbg.value(metadata i32 0, metadata !501, metadata !DIExpression()), !dbg !503
+  call void @llvm.dbg.value(metadata i32 0, metadata !502, metadata !DIExpression()), !dbg !503
+  %tobool.not8 = icmp eq %struct.s507* %s, null, !dbg !504
+  br i1 %tobool.not8, label %while.end, label %while.body, !dbg !504
+
+while.body:                                       ; preds = %entry, %while.body
+  %i.011 = phi i32 [ %inc, %while.body ], [ 0, %entry ]
+  %sum.010 = phi i32 [ %add, %while.body ], [ 0, %entry ]
+  %s.addr.09 = phi %struct.s507* [ %1, %while.body ], [ %s, %entry ]
+  call void @llvm.dbg.value(metadata i32 %i.011, metadata !502, metadata !DIExpression()), !dbg !503
+  call void @llvm.dbg.value(metadata i32 %sum.010, metadata !501, metadata !DIExpression()), !dbg !503
+  call void @llvm.dbg.value(metadata %struct.s507* %s.addr.09, metadata !500, metadata !DIExpression()), !dbg !503
+  %a = getelementptr inbounds %struct.s507, %struct.s507* %s.addr.09, i64 0, i32 0, !dbg !505
+  %0 = load i32, i32* %a, align 8, !dbg !505, !tbaa !507
+  %add = add nsw i32 %0, %sum.010, !dbg !509
+  call void @llvm.dbg.value(metadata i32 %add, metadata !501, metadata !DIExpression()), !dbg !503
+  %n = getelementptr inbounds %struct.s507, %struct.s507* %s.addr.09, i64 0, i32 1, !dbg !510
+  %1 = load %struct.s507*, %struct.s507** %n, align 8, !dbg !510, !tbaa !511
+  call void @llvm.dbg.value(metadata %struct.s507* %1, metadata !500, metadata !DIExpression()), !dbg !503
+  %inc = add nuw nsw i32 %i.011, 1, !dbg !512
+  call void @llvm.dbg.value(metadata i32 %inc, metadata !502, metadata !DIExpression()), !dbg !503
+  %tobool.not = icmp eq %struct.s507* %1, null, !dbg !504
+  br i1 %tobool.not, label %while.end.loopexit, label %while.body, !dbg !504, !llvm.loop !513
+
+while.end.loopexit:                               ; preds = %while.body
+  %phi.cmp = icmp eq i32 %inc, 4, !dbg !515
+  %phi.sel = select i1 %phi.cmp, i32 0, i32 %add, !dbg !515
+  br label %while.end, !dbg !515
+
+while.end:                                        ; preds = %while.end.loopexit, %entry
+  %i.0.lcssa = phi i32 [ 0, %entry ], [ %phi.sel, %while.end.loopexit ]
+  ret i32 %i.0.lcssa, !dbg !517
 }
 
 ; Function Attrs: nofree nosync nounwind readnone speculatable willreturn
@@ -924,7 +963,7 @@ attributes #6 = { nounwind }
 !452 = !DILocation(line: 0, scope: !448)
 !453 = !DILocation(line: 267, column: 16, scope: !448)
 !454 = !DILocation(line: 269, column: 3, scope: !448)
-!455 = distinct !DISubprogram(name: "ex506ListLengthLimited", scope: !8, file: !8, line: 278, type: !456, scopeLine: 278, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !463)
+!455 = distinct !DISubprogram(name: "ex506ListLengthLimitedLoop", scope: !8, file: !8, line: 278, type: !456, scopeLine: 278, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !463)
 !456 = !DISubroutineType(types: !457)
 !457 = !{!13, !458}
 !458 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !459, size: 64)
@@ -960,3 +999,30 @@ attributes #6 = { nounwind }
 !488 = !DILocation(line: 287, column: 9, scope: !489)
 !489 = distinct !DILexicalBlock(scope: !455, file: !8, line: 287, column: 7)
 !490 = !DILocation(line: 290, column: 1, scope: !455)
+!491 = distinct !DISubprogram(name: "ex507ListLengthUnlimitedLoop", scope: !8, file: !8, line: 296, type: !492, scopeLine: 296, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !7, retainedNodes: !499)
+!492 = !DISubroutineType(types: !493)
+!493 = !{!13, !494}
+!494 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !495, size: 64)
+!495 = distinct !DICompositeType(tag: DW_TAG_structure_type, name: "s507", file: !8, line: 292, size: 128, elements: !496)
+!496 = !{!497, !498}
+!497 = !DIDerivedType(tag: DW_TAG_member, name: "a", scope: !495, file: !8, line: 293, baseType: !13, size: 32)
+!498 = !DIDerivedType(tag: DW_TAG_member, name: "n", scope: !495, file: !8, line: 294, baseType: !494, size: 64, offset: 64)
+!499 = !{!500, !501, !502}
+!500 = !DILocalVariable(name: "s", arg: 1, scope: !491, file: !8, line: 296, type: !494)
+!501 = !DILocalVariable(name: "sum", scope: !491, file: !8, line: 297, type: !13)
+!502 = !DILocalVariable(name: "i", scope: !491, file: !8, line: 298, type: !13)
+!503 = !DILocation(line: 0, scope: !491)
+!504 = !DILocation(line: 299, column: 3, scope: !491)
+!505 = !DILocation(line: 300, column: 15, scope: !506)
+!506 = distinct !DILexicalBlock(scope: !491, file: !8, line: 299, column: 13)
+!507 = !{!508, !38, i64 0}
+!508 = !{!"s507", !38, i64 0, !163, i64 8}
+!509 = !DILocation(line: 300, column: 9, scope: !506)
+!510 = !DILocation(line: 301, column: 12, scope: !506)
+!511 = !{!508, !163, i64 8}
+!512 = !DILocation(line: 302, column: 5, scope: !506)
+!513 = distinct !{!513, !504, !514, !485, !486}
+!514 = !DILocation(line: 303, column: 3, scope: !491)
+!515 = !DILocation(line: 304, column: 9, scope: !516)
+!516 = distinct !DILexicalBlock(scope: !491, file: !8, line: 304, column: 7)
+!517 = !DILocation(line: 307, column: 1, scope: !491)
