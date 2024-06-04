@@ -280,7 +280,7 @@ int ex506ListLengthLimited(struct s506 *s) {
   int i;
   for (i = 0; i < 4; i++) {
     sum += s->a;
-    if (!s->n) // All source lines from here onward currently uncovered
+    if (!s->n)
       break;
     s = s->n;
   }
