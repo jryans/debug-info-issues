@@ -34,10 +34,7 @@ int ex106PointerSingleElementInstances(int *a, int *b) {
   }
 }
 
-int ex107PointerMultipleElementValues(int *a) {
-  // Currently passes coverage, but a[3] not actually found
-  return a[0] + a[3];
-}
+// Multiple element case covered by pointer as array section
 
 int ex108PointerFunction(int (*a)()) {
   // Triggers symbolic resolution, unclear if expected / desired
@@ -231,38 +228,82 @@ int ex408PointerToPointerFunction(int (**a)()) {
   return (*a)();
 }
 
+// Pointer as array of...
+
+int ex501PointerAsArrayOfInt(int *a) {
+  // Currently fails, a[3] not found
+  return a[0] + a[3];
+}
+
+struct s502 {
+  int a;
+};
+int ex502PointerAsArrayOfStruct(struct s502 *s) {
+  // Currently fails, s[3] not found
+  return s[0].a + s[3].a;
+}
+
+// Array cases are not possible as a pointer function argument in C
+
+int ex505PointerAsArrayOfPointerSingleElementValue(int **a) {
+  // Currently passes
+  return *a[0];
+}
+
+int ex506PointerAsArrayOfPointerSingleElementInstances(int **a) {
+  // Currently fails, a[3] not found
+  if (a[0] == NULL || a[3] == NULL) {
+    return 0; // null
+  } else if (a[0] != a[3]) {
+    return *a[0] + *a[3]; // new instance
+  } else {
+    return *a[0] + *a[3]; // existing instance
+  }
+}
+
+int ex507PointerAsArrayOfPointerMultipleElementValues(int **a) {
+  // Currently fails, a[3] not found
+  return *a[0] + *a[3];
+}
+
+int ex508PointerAsArrayOfPointerFunction(int (**a)()) {
+  // Triggers symbolic resolution, unclear if expected / desired
+  // Currently fails, a[3] not found
+  return a[0]() + a[3]();
+}
+
 // Nested pointers
 
-struct s501 {
+struct s601 {
   struct {
     int *a[4];
   } inner;
 };
-int ex501StructWithArrayOfPointers(struct s501 s) {
+int ex601StructWithArrayOfPointers(struct s601 s) {
   return *s.inner.a[0];
 }
 
-struct s502 {
+struct s602 {
   struct {
     int *a;
   } inner[4];
 };
-int ex502ArrayOfStructsWithPointer(struct s502 s) {
+int ex602ArrayOfStructsWithPointer(struct s602 s) {
   return *s.inner[0].a;
 }
 
 // Misc. pointer cases
 
-int ex503PointerArithmetic(int *a) {
+int ex603PointerArithmetic(int *a) {
   // Currently works via symbolic resolution
   return *(a + 3);
 }
 
-int ex504PointerCast(void *a) {
+int ex604PointerCast(void *a) {
   return *(int *)a;
 }
 
-int ex505PointerFunction(int (*a)()) {
+int ex605PointerFunction(int (*a)()) {
   // Triggers symbolic resolution, unclear if expected / desired
   int result = a();
   // Ensure KLEE state hasn't been corrupted by call above
@@ -271,11 +312,11 @@ int ex505PointerFunction(int (*a)()) {
 
 // Lists
 
-struct s506 {
+struct s606 {
   int a;
-  struct s506 *n;
+  struct s606 *n;
 };
-int ex506ListLengthLimitedLoop(struct s506 *s) {
+int ex606ListLengthLimitedLoop(struct s606 *s) {
   int sum = 0;
   int i;
   for (i = 0; i < 4; i++) {
@@ -289,11 +330,11 @@ int ex506ListLengthLimitedLoop(struct s506 *s) {
   return sum;
 }
 
-struct s507 {
+struct s607 {
   int a;
-  struct s507 *n;
+  struct s607 *n;
 };
-int ex507ListLengthUnlimitedLoop(struct s507 *s) {
+int ex607ListLengthUnlimitedLoop(struct s607 *s) {
   int sum = 0;
   int i = 0;
   while (s) { // Needs time limit to bound execution
