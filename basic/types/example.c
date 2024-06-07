@@ -219,7 +219,7 @@ int ex406PointerToPointerSingleElementInstances(int **a, int **b) {
 }
 
 int ex407PointerToPointerMultipleElementValues(int **a) {
-  // Currently passes coverage, but a[3] not actually found
+  // Currently fails, a[3] not found
   return (*a)[0] + (*a)[3];
 }
 
