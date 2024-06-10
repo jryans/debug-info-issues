@@ -10,7 +10,7 @@ shift
 # Remove old runs in case function names have changed
 find "./klee-out-${LEVEL}" -type d -name 'ex*' | xargs rm -rf
 
-KLEE_COVERAGE_OPTS="--independent-functions --output-dir=klee-out-${LEVEL} --write-no-tests --max-forks=32 --max-time=8s"
+KLEE_COVERAGE_OPTS="--independent-functions --output-dir=klee-out-${LEVEL} --write-no-tests --emit-all-errors --max-forks=32 --max-time=8s"
 LEVEL_BC_OPT="${LEVEL}_BC"
 ${KLEE} ${KLEE_COMMON_OPTS} ${KLEE_COVERAGE_OPTS} "$@" ${!LEVEL_BC_OPT}
 

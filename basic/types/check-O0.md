@@ -80,9 +80,9 @@
 + shift
 + find ./klee-out-O0 -type d -name 'ex*'
 + xargs rm -rf
-+ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=32 --max-time=8s'
++ KLEE_COVERAGE_OPTS='--independent-functions --output-dir=klee-out-O0 --write-no-tests --emit-all-errors --max-forks=32 --max-time=8s'
 + LEVEL_BC_OPT=O0_BC
-+ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests --max-forks=32 --max-time=8s klee-out-O0/final.bc
++ /Users/jryans/Projects/klee/build-debug/bin/klee --debug-execution-trace --output-source --search=random-path --independent-functions --output-dir=klee-out-O0 --write-no-tests --emit-all-errors --max-forks=32 --max-time=8s klee-out-O0/final.bc
 [0;35mKLEE: WARNING: Module and host target triples do not match: 'x86_64-apple-macosx14.0.0' != 'x86_64-apple-darwin23.5.0'
 This may cause unexpected crashes or assertion violations.
 [0mKLEE: output directory is "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/types/klee-out-O0"
@@ -100,7 +100,6 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex105PointerSingleElementValue` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:22: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 3
@@ -108,11 +107,9 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex106PointerSingleElementInstances` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:30: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:33: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:30: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:30: memory error: out of bound pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
@@ -131,11 +128,42 @@ KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex108PointerFunction` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:41: invalid function pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 5
 KLEE: done: completed paths = 0
@@ -161,7 +189,6 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex204StructFieldArrayVariableLength` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:77: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 4
 KLEE: done: completed paths = 0
@@ -169,7 +196,6 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex205StructFieldPointerSingleElementValue` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:85: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 6
 KLEE: done: completed paths = 2
@@ -177,11 +203,10 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex206StructFieldPointerSingleElementInstances` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:101: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:98: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:98: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:98: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:98: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 103
 KLEE: done: completed paths = 13
@@ -189,9 +214,8 @@ KLEE: done: partially completed paths = 5
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex207StructFieldPointerMultipleElementValues` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:111: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:111: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:111: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 15
 KLEE: done: completed paths = 1
@@ -199,11 +223,42 @@ KLEE: done: partially completed paths = 3
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex208StructFieldPointerFunction` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:120: invalid function pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 4
 KLEE: done: completed paths = 0
@@ -229,7 +284,6 @@ KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex305ArrayElemPointerSingleElementValue` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:156: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 7
 KLEE: done: completed paths = 2
@@ -237,11 +291,10 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex306ArrayElemPointerSingleElementInstances` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:170: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:167: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:167: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:167: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:167: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 115
 KLEE: done: completed paths = 13
@@ -249,9 +302,8 @@ KLEE: done: partially completed paths = 5
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex307ArrayElemPointerMultipleElementValues` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:179: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:179: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:179: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 18
 KLEE: done: completed paths = 1
@@ -259,11 +311,42 @@ KLEE: done: partially completed paths = 3
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex308ArrayElemPointerFunction` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:187: invalid function pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 5
 KLEE: done: completed paths = 0
@@ -271,7 +354,6 @@ KLEE: done: partially completed paths = 33
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex401PointerToInt` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:193: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 3
@@ -279,7 +361,6 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex402PointerToStruct` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:200: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 9
 KLEE: done: completed paths = 3
@@ -287,9 +368,7 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex405PointerToPointerSingleElementValue` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:206: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:206: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 14
 KLEE: done: completed paths = 6
@@ -297,9 +376,16 @@ KLEE: done: partially completed paths = 2
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex406PointerToPointerSingleElementInstances` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:210: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:210: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:210: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:210: memory error: out of bound pointer
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
@@ -328,17 +414,19 @@ KLEE: done: generated tests = 0
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;1;32m
-KLEE: done: total instructions = 485
+KLEE: done: total instructions = 470
 KLEE: done: completed paths = 29
 KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex407PointerToPointerMultipleElementValues` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:223: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 35
 KLEE: done: completed paths = 0
@@ -346,14 +434,43 @@ KLEE: done: partially completed paths = 8
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex408PointerToPointerFunction` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:228: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
 [0m[0;1;31mKLEE: ERROR: example.c:228: calling function with too few arguments
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
-[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:228: invalid function pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 9
 KLEE: done: completed paths = 0
@@ -361,9 +478,9 @@ KLEE: done: partially completed paths = 33
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex501PointerAsArrayOfInt` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:235: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:235: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:235: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:235: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 15
 KLEE: done: completed paths = 0
@@ -371,9 +488,9 @@ KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex502PointerAsArrayOfStruct` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:243: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:243: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:243: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:243: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 19
 KLEE: done: completed paths = 0
@@ -381,9 +498,7 @@ KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex505PointerAsArrayOfPointerSingleElementValue` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:250: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:250: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 15
 KLEE: done: completed paths = 6
@@ -391,9 +506,9 @@ KLEE: done: partially completed paths = 2
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex506PointerAsArrayOfPointerSingleElementInstances` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:255: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:255: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:255: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:255: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 26
 KLEE: done: completed paths = 1
@@ -401,11 +516,13 @@ KLEE: done: partially completed paths = 4
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex507PointerAsArrayOfPointerMultipleElementValues` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:266: memory error: out of bound pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 27
 KLEE: done: completed paths = 0
@@ -413,16 +530,43 @@ KLEE: done: partially completed paths = 8
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex508PointerAsArrayOfPointerFunction` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:272: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
 [0m[0;1;31mKLEE: ERROR: example.c:272: calling function with too few arguments
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:272: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:272: calling function with too few arguments
 [0m[0;1;32m
 KLEE: done: total instructions = 10
 KLEE: done: completed paths = 0
@@ -430,7 +574,6 @@ KLEE: done: partially completed paths = 33
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex601StructWithArrayOfPointers` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:283: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 2
@@ -438,7 +581,6 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex602ArrayOfStructsWithPointer` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:292: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 2
@@ -446,7 +588,6 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex603PointerArithmetic` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:299: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 9
 KLEE: done: completed paths = 3
@@ -454,7 +595,6 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex604PointerCast` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:303: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;32m
 KLEE: done: total instructions = 8
 KLEE: done: completed paths = 2
@@ -462,11 +602,42 @@ KLEE: done: partially completed paths = 1
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex605PointerFunction` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
 [0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;31mKLEE: ERROR: example.c:308: invalid function pointer
 [0m[0;1;32m
 KLEE: done: total instructions = 7
 KLEE: done: completed paths = 0
@@ -474,27 +645,51 @@ KLEE: done: partially completed paths = 33
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex606ListLengthLimitedLoop` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:323: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:323: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:324: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:323: memory error: out of bound pointer
 [0mKLEE: HaltTimer invoked
 [0mKLEE: halting execution, dumping remaining states
 [0m[0;1;32m
-KLEE: done: total instructions = 240
-KLEE: done: completed paths = 3
-KLEE: done: partially completed paths = 24
+KLEE: done: total instructions = 158
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 25
 KLEE: done: generated tests = 0
 [0mKLEE: Running `ex607ListLengthUnlimitedLoop` in independent function mode
 [0;1;31mKLEE: ERROR: example.c:341: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
 [0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
-[0m[0;1;37mKLEE: NOTE: now ignoring this error at this location
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:341: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:342: memory error: out of bound pointer
+[0m[0;1;31mKLEE: ERROR: example.c:341: memory error: out of bound pointer
 [0mKLEE: HaltTimer invoked
 [0mKLEE: halting execution, dumping remaining states
 [0m[0;1;32m
-KLEE: done: total instructions = 211
-KLEE: done: completed paths = 3
-KLEE: done: partially completed paths = 25
+KLEE: done: total instructions = 151
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 26
 KLEE: done: generated tests = 0
 [0m+ for i in './klee-out-${LEVEL}/ex*'
 + '[' -d ./klee-out-O0/ex101Int ']'
@@ -795,7 +990,9 @@ Asm line 752, src line 310 not covered
 + ./check-coverage.js ./klee-out-O0/ex606ListLengthLimitedLoop
 ./klee-out-O0/ex606ListLengthLimitedLoop
 Coverage for ex606ListLengthLimitedLoop
-43 / 43 (100%) asm lines covered
+Asm line 804, src line 329 not covered
+Asm line 805, src line 329 not covered
+41 / 43 (95.34883720930233%) asm lines covered
 + for i in './klee-out-${LEVEL}/ex*'
 + '[' -d ./klee-out-O0/ex607ListLengthUnlimitedLoop ']'
 + ./check-coverage.js ./klee-out-O0/ex607ListLengthUnlimitedLoop
