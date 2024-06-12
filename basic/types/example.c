@@ -107,7 +107,7 @@ struct s207 {
   int _[2][2]; // Force struct in LLVM IR
 };
 int ex207StructFieldPointerMultipleElementValues(struct s207 s) {
-  // Currently passes coverage, but a[3] not actually found
+  // Currently passes
   return s.a[0] + s.a[3];
 }
 
@@ -175,7 +175,7 @@ struct s307 {
   int *a[4];
 };
 int ex307ArrayElemPointerMultipleElementValues(struct s307 s) {
-  // Currently passes coverage, but a[3] not actually found
+  // Currently passes
   return s.a[0][0] + s.a[0][3];
 }
 
@@ -219,7 +219,7 @@ int ex406PointerToPointerSingleElementInstances(int **a, int **b) {
 }
 
 int ex407PointerToPointerMultipleElementValues(int **a) {
-  // Currently fails, a[3] not found
+  // Currently passes
   return (*a)[0] + (*a)[3];
 }
 
@@ -231,7 +231,7 @@ int ex408PointerToPointerFunction(int (**a)()) {
 // Pointer as array of...
 
 int ex501PointerAsArrayOfInt(int *a) {
-  // Currently fails, a[3] not found
+  // Currently passes
   return a[0] + a[3];
 }
 
@@ -239,7 +239,7 @@ struct s502 {
   int a;
 };
 int ex502PointerAsArrayOfStruct(struct s502 *s) {
-  // Currently fails, s[3] not found
+  // Currently passes
   return s[0].a + s[3].a;
 }
 
@@ -251,7 +251,7 @@ int ex505PointerAsArrayOfPointerSingleElementValue(int **a) {
 }
 
 int ex506PointerAsArrayOfPointerSingleElementInstances(int **a) {
-  // Currently fails, a[3] not found
+  // Currently passes
   if (a[0] == NULL || a[3] == NULL) {
     return 0; // null
   } else if (a[0] != a[3]) {
@@ -262,7 +262,7 @@ int ex506PointerAsArrayOfPointerSingleElementInstances(int **a) {
 }
 
 int ex507PointerAsArrayOfPointerMultipleElementValues(int **a) {
-  // Currently fails, a[3] not found
+  // Currently passes
   return *a[0] + *a[3];
 }
 
