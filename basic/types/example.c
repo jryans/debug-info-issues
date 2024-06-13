@@ -116,7 +116,7 @@ struct s208 {
   int _[2][2]; // Force struct in LLVM IR
 };
 int ex208StructFieldPointerFunction(struct s208 s) {
-  // Triggers symbolic resolution, unclear if expected / desired
+  // Uses concrete pointer, no symbolic resolution
   return s.a();
 }
 
@@ -183,7 +183,7 @@ struct s308 {
   int (*a[4])();
 };
 int ex308ArrayElemPointerFunction(struct s308 s) {
-  // Triggers symbolic resolution, unclear if expected / desired
+  // Uses concrete pointer, no symbolic resolution
   return s.a[0]() + s.a[3]();
 }
 
