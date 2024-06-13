@@ -37,7 +37,7 @@ int ex106PointerSingleElementInstances(int *a, int *b) {
 // Multiple element case covered by pointer as array section
 
 int ex108PointerFunction(int (*a)()) {
-  // Triggers symbolic resolution, unclear if expected / desired
+  // Uses concrete pointer, no symbolic resolution
   return a();
 }
 
@@ -224,7 +224,7 @@ int ex407PointerToPointerMultipleElementValues(int **a) {
 }
 
 int ex408PointerToPointerFunction(int (**a)()) {
-  // Triggers symbolic resolution, unclear if expected / desired
+  // Uses concrete pointer, no symbolic resolution
   return (*a)();
 }
 
@@ -267,8 +267,8 @@ int ex507PointerAsArrayOfPointerMultipleElementValues(int **a) {
 }
 
 int ex508PointerAsArrayOfPointerFunction(int (**a)()) {
-  // Triggers symbolic resolution, unclear if expected / desired
-  // Currently fails, a[3] not found
+  // Uses concrete pointer, no symbolic resolution
+  // Currently passes
   return a[0]() + a[3]();
 }
 
@@ -295,7 +295,7 @@ int ex602ArrayOfStructsWithPointer(struct s602 s) {
 // Misc. pointer cases
 
 int ex603PointerArithmetic(int *a) {
-  // Currently works via symbolic resolution
+  // Currently passes
   return *(a + 3);
 }
 
@@ -304,7 +304,7 @@ int ex604PointerCast(void *a) {
 }
 
 int ex605PointerFunction(int (*a)()) {
-  // Triggers symbolic resolution, unclear if expected / desired
+  // Uses concrete pointer, no symbolic resolution
   int result = a();
   // Ensure KLEE state hasn't been corrupted by call above
   return result;
