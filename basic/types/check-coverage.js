@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 
 const dirPath = process.argv[2];
-console.log(dirPath);
 
 if (!dirPath) {
   throw new Error("Directory required");
