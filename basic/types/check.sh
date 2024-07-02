@@ -18,5 +18,5 @@ ${KLEE} ${KLEE_COMMON_OPTS} ${KLEE_COVERAGE_OPTS} "$@" ${!LEVEL_BC_OPT}
 for i in ./klee-out-${LEVEL}/ex*
 do
   [ -d "$i" ] || continue
-  ./check-coverage.js $i
+  ${CHECK_COVERAGE} $i
 done

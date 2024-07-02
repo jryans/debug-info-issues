@@ -44,6 +44,7 @@ CC_LINK_OPTS="${CC_LINK_SYSROOT_OPTS}"
 OPT=$(llvm release-clang-lldb-13.0.0 opt)
 OPT_CFG_OPTS="--passes=dot-cfg-only --disable-output"
 FILTER_DOT="$(dirname "${BASH_SOURCE[0]}")/tools/filter-dot.js"
+CHECK_COVERAGE="$(dirname "${BASH_SOURCE[0]}")/tools/check-coverage.js"
 
 LLC=$(llvm release-clang-lldb-13.0.0 llc)
 
