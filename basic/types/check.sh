@@ -15,8 +15,4 @@ LEVEL_BC_OPT="${LEVEL}_BC"
 ${KLEE} ${KLEE_COMMON_OPTS} ${KLEE_COVERAGE_OPTS} "$@" ${!LEVEL_BC_OPT}
 
 # Check whether each function is fully covered
-for i in ./klee-out-${LEVEL}/ex*
-do
-  [ -d "$i" ] || continue
-  ${CHECK_COVERAGE} $i
-done
+${CHECK_COVERAGE} ./klee-out-${LEVEL}
