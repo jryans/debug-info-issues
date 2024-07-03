@@ -91,26 +91,21 @@ This may cause unexpected crashes or assertion violations.
 [0m[0;35mKLEE: WARNING: undefined reference to function: sscanf
 [0m
 ## Running `example` in independent function mode
-[0;1;32m
-KLEE: done: total instructions = 30
-KLEE: done: completed paths = 2
+[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;35mKLEE: WARNING: Skipping fork (max-forks reached)
+[0m[0;1;32m
+KLEE: done: total instructions = 614
+KLEE: done: completed paths = 33
 KLEE: done: partially completed paths = 0
 KLEE: done: generated tests = 0
 [0m
 + ./../../tools/check-coverage.js ./klee-out-O0
 ## Coverage for `example`
 
-Asm line 42, src line 11 not covered
-Asm line 43, src line 11 not covered
-Asm line 44, src line 11 not covered
-Asm line 45, src line 11 not covered
-Asm line 46, src line 11 not covered
-Asm line 47, src line 10 not covered
-Asm line 48, src line 10 not covered
-Asm line 49, src line 10 not covered
-Asm line 50, src line 10 not covered
-28 / 37 (75.67567567567568%) asm lines covered
+Warnings present, coverage may be invalid!
+37 / 37 (100%) asm lines covered
 
 ## Summary
 
-28 / 37 (75.67567567567568%) asm lines covered
+37 / 37 (100%) asm lines covered
