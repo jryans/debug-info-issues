@@ -31,7 +31,8 @@ LLVM_AS=$(llvm release-clang-lldb-13.0.0 llvm-as)
 # TODO: Might be able to use `--sysroot` to cover both `-isysroot` and `-syslibroot`
 CC_SYSROOT_OPTS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 # Modified by some files to add further compilation flags
-CC_COMMON_OPTS="${CC_SYSROOT_OPTS} -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone"
+CC_COMMON_OPTS="${CC_SYSROOT_OPTS} -g -fno-discard-value-names -Xclang -disable-O0-optnone"
+CC_NIL_OPTS="-fno-inline"
 CC_IR_OPTS="-S -emit-llvm"
 CC_CG_IR_OPTS="-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope"
 CC_O0_OPTS=""

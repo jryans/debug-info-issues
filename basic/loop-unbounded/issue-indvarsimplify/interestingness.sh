@@ -17,7 +17,7 @@ if
   grep -F 'i++' ${SRC_FILE} && \
   grep -E 'return.*\by' ${SRC_FILE} && \
   # Ensure the reduced program parses and compiles in general
-  ${CLANG} -Weverything -O0 -c ${SRC_FILE} ${CC_COMMON_OPTS} -o /dev/null 2> reduce.tmp/cc-O0 && \
+  ${CLANG} -Weverything -O0 -c ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_NIL_OPTS} -o /dev/null 2> reduce.tmp/cc-O0 && \
   # Avoid various forms of bad behaviour
   ! grep -F 'unused variable' reduce.tmp/cc-O0 && \
   ! grep -F 'set but not used' reduce.tmp/cc-O0 && \
@@ -32,7 +32,7 @@ if
   ! grep -F 'non-void function does not return' reduce.tmp/cc-O0 && \
   ! grep -F 'zero size arrays are an extension' reduce.tmp/cc-O0 && \
   # Produce the optimised version
-  ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_CG_IR_OPTS} ${CC_O1_OPTS} -o /dev/null 2> reduce.tmp/O1-cg-raw.ll && \
+  ${CLANG} ${SRC_FILE} ${CC_COMMON_OPTS} ${CC_NIL_OPTS} ${CC_CG_IR_OPTS} ${CC_O1_OPTS} -o /dev/null 2> reduce.tmp/O1-cg-raw.ll && \
   filter_cg_ir reduce.tmp/O1-cg-raw.ll reduce.tmp/O1-cg.ll && \
   ${PRINT_MODULE} reduce.tmp/O1-cg.ll > reduce.tmp/O1-cg-di.ll && \
   # Check for required optimised IR characteristics
