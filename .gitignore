@@ -1,6 +1,8 @@
+concrete-trace-*
+klee-out*
+
 a.out*
 *.bc
-klee-out*
 *.dSYM
 *.dwarf
 example-O?
