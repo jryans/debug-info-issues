@@ -42,6 +42,8 @@ CC_LINK_SYSROOT_OPTS="-Xlinker -syslibroot /Applications/Xcode.app/Contents/Deve
 # Modified by some files to add further linking flags
 CC_LINK_OPTS="${CC_LINK_SYSROOT_OPTS}"
 
+LD_NPIE_OPTS="-Wl,-no_pie"
+
 OPT=$(llvm release-clang-lldb-13.0.0 opt)
 OPT_CFG_OPTS="--passes=dot-cfg-only --disable-output"
 FILTER_DOT="$(dirname "${BASH_SOURCE[0]}")/tools/filter-dot.js"
