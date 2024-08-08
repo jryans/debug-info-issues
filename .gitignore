@@ -2,6 +2,7 @@ a.out*
 *.bc
 klee-out*
 *.dSYM
+*.dwarf
 example-O?
 *.tmp
 *.o
