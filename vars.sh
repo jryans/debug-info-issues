@@ -74,3 +74,5 @@ AFTER_FIXED_BC="klee-out-after-fixed/final.bc"
 
 SYM_CHECK=$(klee debug check-debug-info)
 SYM_CHECK_OPTS="--debug-only=check-debug-info,values-collector,variable ${KLEE_COMMON_OPTS} --max-forks=4 --tsv"
+
+CON_COLLECT_INSTRUMENTATION="${HOME}/Projects/debug-info-concrete-check/binary-instrumentation/build/libcollect-trace-preload.dylib"

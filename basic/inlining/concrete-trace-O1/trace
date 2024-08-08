@@ -1,0 +1,8 @@
+main at example.c:49:0
+main at example.c:50:11
+  Jump to external code
+ex103DoubleIncBarrier at example.c:37:3
+  barrier at example.c:16:0
+  barrier at example.c:19:1
+main at example.c:55:3
+🔔 Ignoring return, stack depth would have wrapped around
