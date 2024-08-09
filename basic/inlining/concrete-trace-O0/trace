@@ -38,4 +38,3 @@ main at example.c:54:7
     collatz at example.c:13:1
   ex104DoubleCollatz at example.c:46:3
 main at example.c:55:3
-🔔 Ignoring return, stack depth would have wrapped around
