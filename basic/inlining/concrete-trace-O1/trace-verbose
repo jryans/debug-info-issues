@@ -1,7 +1,6 @@
 0x0000000100000f60
 	push	rbp
 push
-main + 0x0000 at example.c:49:0
 Inlined chain:
 main
 Inlined chain changed!
@@ -9,41 +8,41 @@ Old chain: 0
 New chain: 1
 Oldest chain link: main
 stack[0]: main
+main + 0x0000 at example.c:49:0
 
 0x0000000100000f61
 	mov	rbp, rsp
-main + 0x0001 at example.c:49:0
 Inlined chain:
 main
+main + 0x0001 at example.c:49:0
 
 0x0000000100000f64
 	sub	rsp, 16
-main + 0x0004 at example.c:49:0
 Inlined chain:
 main
+main + 0x0004 at example.c:49:0
 
 0x0000000100000f68
 	mov	rdi, qword ptr [rsi]
-main + 0x0008 at example.c:50:16
 Inlined chain:
 main
+main + 0x0008 at example.c:50:16
 
 0x0000000100000f6b
 	call	54
-main + 0x000b at example.c:50:11
 Inlined chain:
 main
+main + 0x000b at example.c:50:11
 
 0x0000000100000fa6
 	jmp	qword ptr [rip + 84]
 push
-  Jump to external code
 Inlined chain:
+  Jump to external code
 
 0x0000000100000f70
 	add	eax, 4
 pop
-inc + 0x0000 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
@@ -57,26 +56,26 @@ main at example.c:53:7
 push
   ex103DoubleIncBarrier at example.c:36:3
 push
+    inc + 0x0000 at example.c:4:3
 
 0x0000000100000f73
 	mov	dword ptr [rbp - 4], eax
-    inc + 0x0003 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
 inc
+    inc + 0x0003 at example.c:4:3
 
 0x0000000100000f76
 	lea	rdi, [rbp - 4]
-    inc + 0x0006 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
 inc
+    inc + 0x0006 at example.c:4:3
 
 0x0000000100000f7a
 	call	-175
-    ex103DoubleIncBarrier + 0x000a at example.c:37:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
@@ -88,11 +87,11 @@ stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
 pop
+  ex103DoubleIncBarrier + 0x000a at example.c:37:3
 
 0x0000000100000ed0
 	push	rbp
 push
-    barrier + 0x0000 at example.c:16:0
 Inlined chain:
 barrier
 Inlined chain changed!
@@ -100,53 +99,53 @@ Old chain: 2
 New chain: 1
 Oldest chain link: barrier
 stack[2]: barrier
+    barrier + 0x0000 at example.c:16:0
 
 0x0000000100000ed1
 	mov	rbp, rsp
-    barrier + 0x0001 at example.c:16:0
 Inlined chain:
 barrier
+    barrier + 0x0001 at example.c:16:0
 
 0x0000000100000ed4
 	mov	eax, dword ptr [rdi]
-    barrier + 0x0004 at example.c:17:27
 Inlined chain:
 barrier
+    barrier + 0x0004 at example.c:17:27
 
 0x0000000100000ed6
 	mov	dword ptr [rbp - 4], eax
-    barrier + 0x0006 at example.c:17:16
 Inlined chain:
 barrier
+    barrier + 0x0006 at example.c:17:16
 
 0x0000000100000ed9
 	mov	eax, dword ptr [rbp - 4]
-    barrier + 0x0009 at example.c:18:8
 Inlined chain:
 barrier
+    barrier + 0x0009 at example.c:18:8
 
 0x0000000100000edc
 	mov	dword ptr [rdi], eax
-    barrier + 0x000c at example.c:18:6
 Inlined chain:
 barrier
+    barrier + 0x000c at example.c:18:6
 
 0x0000000100000ede
 	pop	rbp
-    barrier + 0x000e at example.c:19:1
 Inlined chain:
 barrier
+    barrier + 0x000e at example.c:19:1
 
 0x0000000100000edf
 	ret
-    barrier + 0x000f at example.c:19:1
 Inlined chain:
 barrier
+    barrier + 0x000f at example.c:19:1
 pop
 
 0x0000000100000f7f
 	mov	eax, dword ptr [rbp - 4]
-  inc + 0x0000 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
@@ -159,18 +158,18 @@ stack[1]: ex103DoubleIncBarrier
 stack[0]: main
   ex103DoubleIncBarrier at example.c:38:3
 push
+    inc + 0x0000 at example.c:4:3
 
 0x0000000100000f82
 	add	eax, 1
-    inc + 0x0003 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
 inc
+    inc + 0x0003 at example.c:4:3
 
 0x0000000100000f85
 	mov	ecx, eax
-    collatz + 0x0000 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
@@ -188,42 +187,42 @@ main at example.c:54:7
 push
   ex104DoubleCollatz at example.c:44:7
 push
+    collatz + 0x0000 at example.c:8:7
 
 0x0000000100000f87
 	shr	ecx
-    collatz + 0x0002 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x0002 at example.c:8:7
 
 0x0000000100000f89
 	test	al, 1
-    collatz + 0x0004 at example.c:8:13
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x0004 at example.c:8:13
 
 0x0000000100000f8b
 	lea	eax, [rax + 2*rax + 1]
-    collatz + 0x0006 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x0006 at example.c:8:7
 
 0x0000000100000f8f
 	cmove	eax, ecx
-    collatz + 0x000a at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x000a at example.c:8:7
 
 0x0000000100000f92
 	mov	ecx, eax
-    collatz + 0x0000 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
@@ -238,42 +237,42 @@ stack[0]: main
 pop
   ex104DoubleCollatz at example.c:45:7
 push
+    collatz + 0x0000 at example.c:8:7
 
 0x0000000100000f94
 	shr	ecx
-    collatz + 0x0002 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x0002 at example.c:8:7
 
 0x0000000100000f96
 	test	al, 1
-    collatz + 0x0004 at example.c:8:13
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x0004 at example.c:8:13
 
 0x0000000100000f98
 	lea	eax, [rax + 2*rax + 1]
-    collatz + 0x0006 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x0006 at example.c:8:7
 
 0x0000000100000f9c
 	cmove	eax, ecx
-    collatz + 0x000a at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
 collatz
+    collatz + 0x000a at example.c:8:7
 
 0x0000000100000f9f
 	add	rsp, 16
-    main + 0x003f at example.c:55:3
 Inlined chain:
 main
 Inlined chain changed!
@@ -285,16 +284,17 @@ stack[1]: ex104DoubleCollatz
 stack[0]: main
 pop
 pop
+main + 0x003f at example.c:55:3
 
 0x0000000100000fa3
 	pop	rbp
-main + 0x0043 at example.c:55:3
 Inlined chain:
 main
+main + 0x0043 at example.c:55:3
 
 0x0000000100000fa4
 	ret
-main + 0x0044 at example.c:55:3
 Inlined chain:
 main
+main + 0x0044 at example.c:55:3
 
