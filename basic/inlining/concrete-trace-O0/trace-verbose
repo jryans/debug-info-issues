@@ -1,672 +1,1159 @@
 0x0000000100000f50
 	push	rbp
+push
 main + 0x0000 at example.c:49:0
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 0
+New chain: 1
+Oldest chain link: main
+stack[0]: main
 
 0x0000000100000f51
 	mov	rbp, rsp
 main + 0x0001 at example.c:49:0
+Inlined chain:
+main
 
 0x0000000100000f54
 	sub	rsp, 32
 main + 0x0004 at example.c:49:0
+Inlined chain:
+main
 
 0x0000000100000f58
 	mov	dword ptr [rbp - 4], 0
 main + 0x0008 at example.c:49:0
+Inlined chain:
+main
 
 0x0000000100000f5f
 	mov	dword ptr [rbp - 8], edi
 main + 0x000f at example.c:49:0
+Inlined chain:
+main
 
 0x0000000100000f62
 	mov	qword ptr [rbp - 16], rsi
 main + 0x0012 at example.c:49:0
+Inlined chain:
+main
 
 0x0000000100000f66
 	mov	rax, qword ptr [rbp - 16]
 main + 0x0016 at example.c:50:16
+Inlined chain:
+main
 
 0x0000000100000f6a
 	mov	rdi, qword ptr [rax]
 main + 0x001a at example.c:50:16
+Inlined chain:
+main
 
 0x0000000100000f6d
 	call	56
 main + 0x001d at example.c:50:11
+Inlined chain:
+main
 
 0x0000000100000faa
 	jmp	qword ptr [rip + 80]
+push
   Jump to external code
+Inlined chain:
 
 0x0000000100000f72
 	mov	dword ptr [rbp - 20], eax
+pop
 main + 0x0022 at example.c:50:7
+Inlined chain:
+main
 
 0x0000000100000f75
 	mov	edi, dword ptr [rbp - 20]
 main + 0x0025 at example.c:51:22
+Inlined chain:
+main
 
 0x0000000100000f78
 	call	-253
 main + 0x0028 at example.c:51:7
+Inlined chain:
+main
 
 0x0000000100000e80
 	push	rbp
+push
   ex101SingleInc + 0x0000 at example.c:21:0
+Inlined chain:
+ex101SingleInc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex101SingleInc
+stack[1]: ex101SingleInc
 
 0x0000000100000e81
 	mov	rbp, rsp
   ex101SingleInc + 0x0001 at example.c:21:0
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e84
 	sub	rsp, 16
   ex101SingleInc + 0x0004 at example.c:21:0
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e88
 	mov	dword ptr [rbp - 4], edi
   ex101SingleInc + 0x0008 at example.c:21:0
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e8b
 	mov	eax, dword ptr [rbp - 4]
   ex101SingleInc + 0x000b at example.c:22:11
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e8e
 	mov	dword ptr [rbp - 8], eax
   ex101SingleInc + 0x000e at example.c:22:7
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e91
 	lea	rdi, [rbp - 8]
   ex101SingleInc + 0x0011 at example.c:23:3
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e95
 	call	-154
   ex101SingleInc + 0x0015 at example.c:23:3
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000e00
 	push	rbp
+push
     inc + 0x0000 at example.c:3:0
+Inlined chain:
+inc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: inc
+stack[2]: inc
 
 0x0000000100000e01
 	mov	rbp, rsp
     inc + 0x0001 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e04
 	mov	qword ptr [rbp - 8], rdi
     inc + 0x0004 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e08
 	mov	rax, qword ptr [rbp - 8]
     inc + 0x0008 at example.c:4:6
+Inlined chain:
+inc
 
 0x0000000100000e0c
 	mov	ecx, dword ptr [rax]
     inc + 0x000c at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e0e
 	add	ecx, 1
     inc + 0x000e at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e11
 	mov	dword ptr [rax], ecx
     inc + 0x0011 at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e13
 	pop	rbp
     inc + 0x0013 at example.c:5:1
+Inlined chain:
+inc
 
 0x0000000100000e14
 	ret
     inc + 0x0014 at example.c:5:1
+Inlined chain:
+inc
+pop
 
 0x0000000100000e9a
 	mov	eax, dword ptr [rbp - 8]
   ex101SingleInc + 0x001a at example.c:24:10
+Inlined chain:
+ex101SingleInc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex101SingleInc
+stack[1]: ex101SingleInc
 
 0x0000000100000e9d
 	add	rsp, 16
   ex101SingleInc + 0x001d at example.c:24:3
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000ea1
 	pop	rbp
   ex101SingleInc + 0x0021 at example.c:24:3
+Inlined chain:
+ex101SingleInc
 
 0x0000000100000ea2
 	ret
   ex101SingleInc + 0x0022 at example.c:24:3
+Inlined chain:
+ex101SingleInc
+pop
 
 0x0000000100000f7d
 	mov	dword ptr [rbp - 20], eax
 main + 0x002d at example.c:51:5
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: main
+stack[0]: main
 
 0x0000000100000f80
 	mov	edi, dword ptr [rbp - 20]
 main + 0x0030 at example.c:52:22
+Inlined chain:
+main
 
 0x0000000100000f83
 	call	-216
 main + 0x0033 at example.c:52:7
+Inlined chain:
+main
 
 0x0000000100000eb0
 	push	rbp
+push
   ex102DoubleInc + 0x0000 at example.c:27:0
+Inlined chain:
+ex102DoubleInc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex102DoubleInc
+stack[1]: ex102DoubleInc
 
 0x0000000100000eb1
 	mov	rbp, rsp
   ex102DoubleInc + 0x0001 at example.c:27:0
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000eb4
 	sub	rsp, 16
   ex102DoubleInc + 0x0004 at example.c:27:0
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000eb8
 	mov	dword ptr [rbp - 4], edi
   ex102DoubleInc + 0x0008 at example.c:27:0
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000ebb
 	mov	eax, dword ptr [rbp - 4]
   ex102DoubleInc + 0x000b at example.c:28:11
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000ebe
 	mov	dword ptr [rbp - 8], eax
   ex102DoubleInc + 0x000e at example.c:28:7
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000ec1
 	lea	rdi, [rbp - 8]
   ex102DoubleInc + 0x0011 at example.c:29:3
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000ec5
 	call	-202
   ex102DoubleInc + 0x0015 at example.c:29:3
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000e00
 	push	rbp
+push
     inc + 0x0000 at example.c:3:0
+Inlined chain:
+inc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: inc
+stack[2]: inc
 
 0x0000000100000e01
 	mov	rbp, rsp
     inc + 0x0001 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e04
 	mov	qword ptr [rbp - 8], rdi
     inc + 0x0004 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e08
 	mov	rax, qword ptr [rbp - 8]
     inc + 0x0008 at example.c:4:6
+Inlined chain:
+inc
 
 0x0000000100000e0c
 	mov	ecx, dword ptr [rax]
     inc + 0x000c at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e0e
 	add	ecx, 1
     inc + 0x000e at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e11
 	mov	dword ptr [rax], ecx
     inc + 0x0011 at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e13
 	pop	rbp
     inc + 0x0013 at example.c:5:1
+Inlined chain:
+inc
 
 0x0000000100000e14
 	ret
     inc + 0x0014 at example.c:5:1
+Inlined chain:
+inc
+pop
 
 0x0000000100000eca
 	lea	rdi, [rbp - 8]
   ex102DoubleInc + 0x001a at example.c:30:3
+Inlined chain:
+ex102DoubleInc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex102DoubleInc
+stack[1]: ex102DoubleInc
 
 0x0000000100000ece
 	call	-211
   ex102DoubleInc + 0x001e at example.c:30:3
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000e00
 	push	rbp
+push
     inc + 0x0000 at example.c:3:0
+Inlined chain:
+inc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: inc
+stack[2]: inc
 
 0x0000000100000e01
 	mov	rbp, rsp
     inc + 0x0001 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e04
 	mov	qword ptr [rbp - 8], rdi
     inc + 0x0004 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e08
 	mov	rax, qword ptr [rbp - 8]
     inc + 0x0008 at example.c:4:6
+Inlined chain:
+inc
 
 0x0000000100000e0c
 	mov	ecx, dword ptr [rax]
     inc + 0x000c at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e0e
 	add	ecx, 1
     inc + 0x000e at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e11
 	mov	dword ptr [rax], ecx
     inc + 0x0011 at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e13
 	pop	rbp
     inc + 0x0013 at example.c:5:1
+Inlined chain:
+inc
 
 0x0000000100000e14
 	ret
     inc + 0x0014 at example.c:5:1
+Inlined chain:
+inc
+pop
 
 0x0000000100000ed3
 	mov	eax, dword ptr [rbp - 8]
   ex102DoubleInc + 0x0023 at example.c:31:10
+Inlined chain:
+ex102DoubleInc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex102DoubleInc
+stack[1]: ex102DoubleInc
 
 0x0000000100000ed6
 	add	rsp, 16
   ex102DoubleInc + 0x0026 at example.c:31:3
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000eda
 	pop	rbp
   ex102DoubleInc + 0x002a at example.c:31:3
+Inlined chain:
+ex102DoubleInc
 
 0x0000000100000edb
 	ret
   ex102DoubleInc + 0x002b at example.c:31:3
+Inlined chain:
+ex102DoubleInc
+pop
 
 0x0000000100000f88
 	mov	dword ptr [rbp - 20], eax
 main + 0x0038 at example.c:52:5
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: main
+stack[0]: main
 
 0x0000000100000f8b
 	mov	edi, dword ptr [rbp - 20]
 main + 0x003b at example.c:53:29
+Inlined chain:
+main
 
 0x0000000100000f8e
 	call	-179
 main + 0x003e at example.c:53:7
+Inlined chain:
+main
 
 0x0000000100000ee0
 	push	rbp
+push
   ex103DoubleIncBarrier + 0x0000 at example.c:34:0
+Inlined chain:
+ex103DoubleIncBarrier
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex103DoubleIncBarrier
+stack[1]: ex103DoubleIncBarrier
 
 0x0000000100000ee1
 	mov	rbp, rsp
   ex103DoubleIncBarrier + 0x0001 at example.c:34:0
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000ee4
 	sub	rsp, 16
   ex103DoubleIncBarrier + 0x0004 at example.c:34:0
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000ee8
 	mov	dword ptr [rbp - 4], edi
   ex103DoubleIncBarrier + 0x0008 at example.c:34:0
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000eeb
 	mov	eax, dword ptr [rbp - 4]
   ex103DoubleIncBarrier + 0x000b at example.c:35:11
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000eee
 	mov	dword ptr [rbp - 8], eax
   ex103DoubleIncBarrier + 0x000e at example.c:35:7
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000ef1
 	lea	rdi, [rbp - 8]
   ex103DoubleIncBarrier + 0x0011 at example.c:36:3
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000ef5
 	call	-250
   ex103DoubleIncBarrier + 0x0015 at example.c:36:3
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000e00
 	push	rbp
+push
     inc + 0x0000 at example.c:3:0
+Inlined chain:
+inc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: inc
+stack[2]: inc
 
 0x0000000100000e01
 	mov	rbp, rsp
     inc + 0x0001 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e04
 	mov	qword ptr [rbp - 8], rdi
     inc + 0x0004 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e08
 	mov	rax, qword ptr [rbp - 8]
     inc + 0x0008 at example.c:4:6
+Inlined chain:
+inc
 
 0x0000000100000e0c
 	mov	ecx, dword ptr [rax]
     inc + 0x000c at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e0e
 	add	ecx, 1
     inc + 0x000e at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e11
 	mov	dword ptr [rax], ecx
     inc + 0x0011 at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e13
 	pop	rbp
     inc + 0x0013 at example.c:5:1
+Inlined chain:
+inc
 
 0x0000000100000e14
 	ret
     inc + 0x0014 at example.c:5:1
+Inlined chain:
+inc
+pop
 
 0x0000000100000efa
 	lea	rdi, [rbp - 8]
   ex103DoubleIncBarrier + 0x001a at example.c:37:3
+Inlined chain:
+ex103DoubleIncBarrier
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex103DoubleIncBarrier
+stack[1]: ex103DoubleIncBarrier
 
 0x0000000100000efe
 	call	-163
   ex103DoubleIncBarrier + 0x001e at example.c:37:3
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000e60
 	push	rbp
+push
     barrier + 0x0000 at example.c:16:0
+Inlined chain:
+barrier
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: barrier
+stack[2]: barrier
 
 0x0000000100000e61
 	mov	rbp, rsp
     barrier + 0x0001 at example.c:16:0
+Inlined chain:
+barrier
 
 0x0000000100000e64
 	mov	qword ptr [rbp - 8], rdi
     barrier + 0x0004 at example.c:16:0
+Inlined chain:
+barrier
 
 0x0000000100000e68
 	mov	rax, qword ptr [rbp - 8]
     barrier + 0x0008 at example.c:17:28
+Inlined chain:
+barrier
 
 0x0000000100000e6c
 	mov	eax, dword ptr [rax]
     barrier + 0x000c at example.c:17:27
+Inlined chain:
+barrier
 
 0x0000000100000e6e
 	mov	dword ptr [rbp - 12], eax
     barrier + 0x000e at example.c:17:16
+Inlined chain:
+barrier
 
 0x0000000100000e71
 	mov	ecx, dword ptr [rbp - 12]
     barrier + 0x0011 at example.c:18:8
+Inlined chain:
+barrier
 
 0x0000000100000e74
 	mov	rax, qword ptr [rbp - 8]
     barrier + 0x0014 at example.c:18:4
+Inlined chain:
+barrier
 
 0x0000000100000e78
 	mov	dword ptr [rax], ecx
     barrier + 0x0018 at example.c:18:6
+Inlined chain:
+barrier
 
 0x0000000100000e7a
 	pop	rbp
     barrier + 0x001a at example.c:19:1
+Inlined chain:
+barrier
 
 0x0000000100000e7b
 	ret
     barrier + 0x001b at example.c:19:1
+Inlined chain:
+barrier
+pop
 
 0x0000000100000f03
 	lea	rdi, [rbp - 8]
   ex103DoubleIncBarrier + 0x0023 at example.c:38:3
+Inlined chain:
+ex103DoubleIncBarrier
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex103DoubleIncBarrier
+stack[1]: ex103DoubleIncBarrier
 
 0x0000000100000f07
 	call	-268
   ex103DoubleIncBarrier + 0x0027 at example.c:38:3
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000e00
 	push	rbp
+push
     inc + 0x0000 at example.c:3:0
+Inlined chain:
+inc
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: inc
+stack[2]: inc
 
 0x0000000100000e01
 	mov	rbp, rsp
     inc + 0x0001 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e04
 	mov	qword ptr [rbp - 8], rdi
     inc + 0x0004 at example.c:3:0
+Inlined chain:
+inc
 
 0x0000000100000e08
 	mov	rax, qword ptr [rbp - 8]
     inc + 0x0008 at example.c:4:6
+Inlined chain:
+inc
 
 0x0000000100000e0c
 	mov	ecx, dword ptr [rax]
     inc + 0x000c at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e0e
 	add	ecx, 1
     inc + 0x000e at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e11
 	mov	dword ptr [rax], ecx
     inc + 0x0011 at example.c:4:3
+Inlined chain:
+inc
 
 0x0000000100000e13
 	pop	rbp
     inc + 0x0013 at example.c:5:1
+Inlined chain:
+inc
 
 0x0000000100000e14
 	ret
     inc + 0x0014 at example.c:5:1
+Inlined chain:
+inc
+pop
 
 0x0000000100000f0c
 	mov	eax, dword ptr [rbp - 8]
   ex103DoubleIncBarrier + 0x002c at example.c:39:10
+Inlined chain:
+ex103DoubleIncBarrier
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex103DoubleIncBarrier
+stack[1]: ex103DoubleIncBarrier
 
 0x0000000100000f0f
 	add	rsp, 16
   ex103DoubleIncBarrier + 0x002f at example.c:39:3
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000f13
 	pop	rbp
   ex103DoubleIncBarrier + 0x0033 at example.c:39:3
+Inlined chain:
+ex103DoubleIncBarrier
 
 0x0000000100000f14
 	ret
   ex103DoubleIncBarrier + 0x0034 at example.c:39:3
+Inlined chain:
+ex103DoubleIncBarrier
+pop
 
 0x0000000100000f93
 	mov	dword ptr [rbp - 20], eax
 main + 0x0043 at example.c:53:5
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: main
+stack[0]: main
 
 0x0000000100000f96
 	mov	edi, dword ptr [rbp - 20]
 main + 0x0046 at example.c:54:26
+Inlined chain:
+main
 
 0x0000000100000f99
 	call	-126
 main + 0x0049 at example.c:54:7
+Inlined chain:
+main
 
 0x0000000100000f20
 	push	rbp
+push
   ex104DoubleCollatz + 0x0000 at example.c:42:0
+Inlined chain:
+ex104DoubleCollatz
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex104DoubleCollatz
+stack[1]: ex104DoubleCollatz
 
 0x0000000100000f21
 	mov	rbp, rsp
   ex104DoubleCollatz + 0x0001 at example.c:42:0
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f24
 	sub	rsp, 16
   ex104DoubleCollatz + 0x0004 at example.c:42:0
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f28
 	mov	dword ptr [rbp - 4], edi
   ex104DoubleCollatz + 0x0008 at example.c:42:0
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f2b
 	mov	eax, dword ptr [rbp - 4]
   ex104DoubleCollatz + 0x000b at example.c:43:11
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f2e
 	mov	dword ptr [rbp - 8], eax
   ex104DoubleCollatz + 0x000e at example.c:43:7
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f31
 	mov	edi, dword ptr [rbp - 8]
   ex104DoubleCollatz + 0x0011 at example.c:44:15
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f34
 	call	-281
   ex104DoubleCollatz + 0x0014 at example.c:44:7
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000e20
 	push	rbp
+push
     collatz + 0x0000 at example.c:7:0
+Inlined chain:
+collatz
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: collatz
+stack[2]: collatz
 
 0x0000000100000e21
 	mov	rbp, rsp
     collatz + 0x0001 at example.c:7:0
+Inlined chain:
+collatz
 
 0x0000000100000e24
 	mov	dword ptr [rbp - 8], edi
     collatz + 0x0004 at example.c:7:0
+Inlined chain:
+collatz
 
 0x0000000100000e27
 	mov	eax, dword ptr [rbp - 8]
     collatz + 0x0007 at example.c:8:7
+Inlined chain:
+collatz
 
 0x0000000100000e2a
 	and	eax, 1
     collatz + 0x000a at example.c:8:9
+Inlined chain:
+collatz
 
 0x0000000100000e2d
 	cmp	eax, 0
     collatz + 0x000d at example.c:8:13
+Inlined chain:
+collatz
 
 0x0000000100000e30
 	jne	14
     collatz + 0x0010 at example.c:8:7
+Inlined chain:
+collatz
 
 0x0000000100000e44
 	imul	eax, dword ptr [rbp - 8], 3
     collatz + 0x0024 at example.c:11:14
+Inlined chain:
+collatz
 
 0x0000000100000e48
 	add	eax, 1
     collatz + 0x0028 at example.c:11:18
+Inlined chain:
+collatz
 
 0x0000000100000e4b
 	mov	dword ptr [rbp - 4], eax
     collatz + 0x002b at example.c:11:5
+Inlined chain:
+collatz
 
 0x0000000100000e4e
 	mov	eax, dword ptr [rbp - 4]
     collatz + 0x002e at example.c:13:1
+Inlined chain:
+collatz
 
 0x0000000100000e51
 	pop	rbp
     collatz + 0x0031 at example.c:13:1
+Inlined chain:
+collatz
 
 0x0000000100000e52
 	ret
     collatz + 0x0032 at example.c:13:1
+Inlined chain:
+collatz
+pop
 
 0x0000000100000f39
 	mov	dword ptr [rbp - 8], eax
   ex104DoubleCollatz + 0x0019 at example.c:44:5
+Inlined chain:
+ex104DoubleCollatz
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex104DoubleCollatz
+stack[1]: ex104DoubleCollatz
 
 0x0000000100000f3c
 	mov	edi, dword ptr [rbp - 8]
   ex104DoubleCollatz + 0x001c at example.c:45:15
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f3f
 	call	-292
   ex104DoubleCollatz + 0x001f at example.c:45:7
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000e20
 	push	rbp
+push
     collatz + 0x0000 at example.c:7:0
+Inlined chain:
+collatz
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: collatz
+stack[2]: collatz
 
 0x0000000100000e21
 	mov	rbp, rsp
     collatz + 0x0001 at example.c:7:0
+Inlined chain:
+collatz
 
 0x0000000100000e24
 	mov	dword ptr [rbp - 8], edi
     collatz + 0x0004 at example.c:7:0
+Inlined chain:
+collatz
 
 0x0000000100000e27
 	mov	eax, dword ptr [rbp - 8]
     collatz + 0x0007 at example.c:8:7
+Inlined chain:
+collatz
 
 0x0000000100000e2a
 	and	eax, 1
     collatz + 0x000a at example.c:8:9
+Inlined chain:
+collatz
 
 0x0000000100000e2d
 	cmp	eax, 0
     collatz + 0x000d at example.c:8:13
+Inlined chain:
+collatz
 
 0x0000000100000e30
 	jne	14
     collatz + 0x0010 at example.c:8:7
+Inlined chain:
+collatz
 
 0x0000000100000e36
 	mov	eax, dword ptr [rbp - 8]
     collatz + 0x0016 at example.c:9:12
+Inlined chain:
+collatz
 
 0x0000000100000e39
 	shr	eax, 1
     collatz + 0x0019 at example.c:9:14
+Inlined chain:
+collatz
 
 0x0000000100000e3c
 	mov	dword ptr [rbp - 4], eax
     collatz + 0x001c at example.c:9:5
+Inlined chain:
+collatz
 
 0x0000000100000e3f
 	jmp	10
     collatz + 0x001f at example.c:9:5
+Inlined chain:
+collatz
 
 0x0000000100000e4e
 	mov	eax, dword ptr [rbp - 4]
     collatz + 0x002e at example.c:13:1
+Inlined chain:
+collatz
 
 0x0000000100000e51
 	pop	rbp
     collatz + 0x0031 at example.c:13:1
+Inlined chain:
+collatz
 
 0x0000000100000e52
 	ret
     collatz + 0x0032 at example.c:13:1
+Inlined chain:
+collatz
+pop
 
 0x0000000100000f44
 	mov	dword ptr [rbp - 8], eax
   ex104DoubleCollatz + 0x0024 at example.c:45:5
+Inlined chain:
+ex104DoubleCollatz
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: ex104DoubleCollatz
+stack[1]: ex104DoubleCollatz
 
 0x0000000100000f47
 	mov	eax, dword ptr [rbp - 8]
   ex104DoubleCollatz + 0x0027 at example.c:46:10
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f4a
 	add	rsp, 16
   ex104DoubleCollatz + 0x002a at example.c:46:3
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f4e
 	pop	rbp
   ex104DoubleCollatz + 0x002e at example.c:46:3
+Inlined chain:
+ex104DoubleCollatz
 
 0x0000000100000f4f
 	ret
   ex104DoubleCollatz + 0x002f at example.c:46:3
+Inlined chain:
+ex104DoubleCollatz
+pop
 
 0x0000000100000f9e
 	mov	dword ptr [rbp - 20], eax
 main + 0x004e at example.c:54:5
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Oldest chain link: main
+stack[0]: main
 
 0x0000000100000fa1
 	mov	eax, dword ptr [rbp - 20]
 main + 0x0051 at example.c:55:10
+Inlined chain:
+main
 
 0x0000000100000fa4
 	add	rsp, 32
 main + 0x0054 at example.c:55:3
+Inlined chain:
+main
 
 0x0000000100000fa8
 	pop	rbp
 main + 0x0058 at example.c:55:3
+Inlined chain:
+main
 
 0x0000000100000fa9
 	ret
 main + 0x0059 at example.c:55:3
+Inlined chain:
+main
 

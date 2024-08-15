@@ -1,7 +1,17 @@
 main at example.c:49:0
 main at example.c:50:11
   Jump to external code
-ex103DoubleIncBarrier at example.c:37:3
-  barrier at example.c:16:0
-  barrier at example.c:19:1
+main at example.c:53:7
+  ex103DoubleIncBarrier at example.c:36:3
+    inc at example.c:4:3
+    ex103DoubleIncBarrier at example.c:37:3
+    barrier at example.c:16:0
+    barrier at example.c:19:1
+  ex103DoubleIncBarrier at example.c:38:3
+    inc at example.c:4:3
+main at example.c:54:7
+  ex104DoubleCollatz at example.c:44:7
+    collatz at example.c:8:7
+  ex104DoubleCollatz at example.c:45:7
+    collatz at example.c:8:7
 main at example.c:55:3
