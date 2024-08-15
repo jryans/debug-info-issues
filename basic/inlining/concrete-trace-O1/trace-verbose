@@ -54,8 +54,10 @@ Oldest chain link: main
 stack[0]: main
 main at example.c:53:7
 push
+  ex103DoubleIncBarrier at example.c:34:0
   ex103DoubleIncBarrier at example.c:36:3
 push
+    inc at example.c:3:0
     inc + 0x0000 at example.c:4:3
 
 0x0000000100000f73
@@ -158,6 +160,7 @@ stack[1]: ex103DoubleIncBarrier
 stack[0]: main
   ex103DoubleIncBarrier at example.c:38:3
 push
+    inc at example.c:3:0
     inc + 0x0000 at example.c:4:3
 
 0x0000000100000f82
@@ -185,8 +188,10 @@ pop
 pop
 main at example.c:54:7
 push
+  ex104DoubleCollatz at example.c:42:0
   ex104DoubleCollatz at example.c:44:7
 push
+    collatz at example.c:7:0
     collatz + 0x0000 at example.c:8:7
 
 0x0000000100000f87
@@ -237,6 +242,7 @@ stack[0]: main
 pop
   ex104DoubleCollatz at example.c:45:7
 push
+    collatz at example.c:7:0
     collatz + 0x0000 at example.c:8:7
 
 0x0000000100000f94
