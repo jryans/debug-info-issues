@@ -88,6 +88,7 @@ Oldest chain link: main
 stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
+    IRF: inc at example.c:0:0
 pop
   CF: ex103DoubleIncBarrier + 0x000a at example.c:37:3
 
@@ -185,7 +186,9 @@ Oldest chain link: main
 stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
+    IRF: inc at example.c:0:0
 pop
+  IRF: ex103DoubleIncBarrier at example.c:0:0
 pop
 ICF: main at example.c:54:7
 push
@@ -240,6 +243,7 @@ Oldest chain link: main
 stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 stack[0]: main
+    IRF: collatz at example.c:0:0
 pop
   ICF: ex104DoubleCollatz at example.c:45:7
 push
@@ -289,7 +293,9 @@ Oldest chain link: main
 stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 stack[0]: main
+    IRF: collatz at example.c:0:0
 pop
+  IRF: ex104DoubleCollatz at example.c:0:0
 pop
 
 0x0000000100000fa3
