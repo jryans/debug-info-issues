@@ -62,7 +62,7 @@ push
 
 0x0000000100000f73
 	mov	dword ptr [rbp - 4], eax
-    CT: inc + 0x0003 at example.c:4:3
+    V: inc + 0x0003 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
@@ -166,7 +166,7 @@ push
 
 0x0000000100000f82
 	add	eax, 1
-    CT: inc + 0x0003 at example.c:4:3
+    V: inc + 0x0003 at example.c:4:3
 Inlined chain:
 main
 ex103DoubleIncBarrier
@@ -199,7 +199,7 @@ push
 
 0x0000000100000f87
 	shr	ecx
-    CT: collatz + 0x0002 at example.c:8:7
+    V: collatz + 0x0002 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
@@ -251,7 +251,7 @@ push
 
 0x0000000100000f94
 	shr	ecx
-    CT: collatz + 0x0002 at example.c:8:7
+    V: collatz + 0x0002 at example.c:8:7
 Inlined chain:
 main
 ex104DoubleCollatz
