@@ -7,8 +7,13 @@ main
 Inlined chain changed!
 Old chain: 0
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000f61
 	mov	rbp, rsp
@@ -51,8 +56,13 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 3
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 ICF: main at example.c:53:7
 push
   ICT: ex103DoubleIncBarrier at example.c:34:0
@@ -84,12 +94,19 @@ ex103DoubleIncBarrier
 Inlined chain changed!
 Old chain: 3
 New chain: 2
+Aligning inlined chain
 Oldest chain link: main
 stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
+Popping any frames not found
+stack[2]: inc
+inlinedChain[2]: past end of chain
     IRF: inc at example.c:0:0
 pop
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[1]: ex103DoubleIncBarrier
+Pushing any new frames
   CF: ex103DoubleIncBarrier + 0x000a at example.c:37:3
 
 0x0000000100000ed0
@@ -101,8 +118,13 @@ barrier
 Inlined chain changed!
 Old chain: 2
 New chain: 1
+Aligning inlined chain
 Oldest chain link: barrier
 stack[2]: barrier
+Popping any frames not found
+stack[2]: barrier
+inlinedChain[0]: barrier
+Pushing any new frames
 
 0x0000000100000ed1
 	mov	rbp, rsp
@@ -157,9 +179,14 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 3
+Aligning inlined chain
 Oldest chain link: main
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
+Popping any frames not found
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[1]: ex103DoubleIncBarrier
+Pushing any new frames
   ICF: ex103DoubleIncBarrier at example.c:38:3
 push
     ICT: inc at example.c:3:0
@@ -182,14 +209,23 @@ collatz
 Inlined chain changed!
 Old chain: 3
 New chain: 3
+Aligning inlined chain
 Oldest chain link: main
 stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
+Popping any frames not found
+stack[2]: inc
+inlinedChain[2]: collatz
     IRF: inc at example.c:0:0
 pop
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[1]: ex104DoubleCollatz
   IRF: ex103DoubleIncBarrier at example.c:0:0
 pop
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 ICF: main at example.c:54:7
 push
   ICT: ex104DoubleCollatz at example.c:42:0
@@ -239,12 +275,19 @@ collatz
 Inlined chain changed!
 Old chain: 3
 New chain: 3
+Aligning inlined chain
 Oldest chain link: main
 stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 stack[0]: main
+Popping any frames not found
+stack[2]: collatz
+inlinedChain[2]: collatz
     IRF: collatz at example.c:0:0
 pop
+stack[1]: ex104DoubleCollatz
+inlinedChain[1]: ex104DoubleCollatz
+Pushing any new frames
   ICF: ex104DoubleCollatz at example.c:45:7
 push
     ICT: collatz at example.c:7:0
@@ -289,14 +332,23 @@ main
 Inlined chain changed!
 Old chain: 3
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 stack[0]: main
+Popping any frames not found
+stack[2]: collatz
+inlinedChain[2]: past end of chain
     IRF: collatz at example.c:0:0
 pop
+stack[1]: ex104DoubleCollatz
+inlinedChain[1]: past end of chain
   IRF: ex104DoubleCollatz at example.c:0:0
 pop
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000fa3
 	pop	rbp

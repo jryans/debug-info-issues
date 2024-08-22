@@ -7,8 +7,13 @@ main
 Inlined chain changed!
 Old chain: 0
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000f51
 	mov	rbp, rsp
@@ -92,8 +97,13 @@ ex101SingleInc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex101SingleInc
 stack[1]: ex101SingleInc
+Popping any frames not found
+stack[1]: ex101SingleInc
+inlinedChain[0]: ex101SingleInc
+Pushing any new frames
 
 0x0000000100000e81
 	mov	rbp, rsp
@@ -146,8 +156,13 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: inc
 stack[2]: inc
+Popping any frames not found
+stack[2]: inc
+inlinedChain[0]: inc
+Pushing any new frames
 
 0x0000000100000e01
 	mov	rbp, rsp
@@ -206,8 +221,13 @@ ex101SingleInc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex101SingleInc
 stack[1]: ex101SingleInc
+Popping any frames not found
+stack[1]: ex101SingleInc
+inlinedChain[0]: ex101SingleInc
+Pushing any new frames
 
 0x0000000100000e9d
 	add	rsp, 16
@@ -236,8 +256,13 @@ main
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000f80
 	mov	edi, dword ptr [rbp - 20]
@@ -260,8 +285,13 @@ ex102DoubleInc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex102DoubleInc
 stack[1]: ex102DoubleInc
+Popping any frames not found
+stack[1]: ex102DoubleInc
+inlinedChain[0]: ex102DoubleInc
+Pushing any new frames
 
 0x0000000100000eb1
 	mov	rbp, rsp
@@ -314,8 +344,13 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: inc
 stack[2]: inc
+Popping any frames not found
+stack[2]: inc
+inlinedChain[0]: inc
+Pushing any new frames
 
 0x0000000100000e01
 	mov	rbp, rsp
@@ -374,8 +409,13 @@ ex102DoubleInc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex102DoubleInc
 stack[1]: ex102DoubleInc
+Popping any frames not found
+stack[1]: ex102DoubleInc
+inlinedChain[0]: ex102DoubleInc
+Pushing any new frames
 
 0x0000000100000ece
 	call	-211
@@ -392,8 +432,13 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: inc
 stack[2]: inc
+Popping any frames not found
+stack[2]: inc
+inlinedChain[0]: inc
+Pushing any new frames
 
 0x0000000100000e01
 	mov	rbp, rsp
@@ -452,8 +497,13 @@ ex102DoubleInc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex102DoubleInc
 stack[1]: ex102DoubleInc
+Popping any frames not found
+stack[1]: ex102DoubleInc
+inlinedChain[0]: ex102DoubleInc
+Pushing any new frames
 
 0x0000000100000ed6
 	add	rsp, 16
@@ -482,8 +532,13 @@ main
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000f8b
 	mov	edi, dword ptr [rbp - 20]
@@ -506,8 +561,13 @@ ex103DoubleIncBarrier
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex103DoubleIncBarrier
 stack[1]: ex103DoubleIncBarrier
+Popping any frames not found
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[0]: ex103DoubleIncBarrier
+Pushing any new frames
 
 0x0000000100000ee1
 	mov	rbp, rsp
@@ -560,8 +620,13 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: inc
 stack[2]: inc
+Popping any frames not found
+stack[2]: inc
+inlinedChain[0]: inc
+Pushing any new frames
 
 0x0000000100000e01
 	mov	rbp, rsp
@@ -620,8 +685,13 @@ ex103DoubleIncBarrier
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex103DoubleIncBarrier
 stack[1]: ex103DoubleIncBarrier
+Popping any frames not found
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[0]: ex103DoubleIncBarrier
+Pushing any new frames
 
 0x0000000100000efe
 	call	-163
@@ -638,8 +708,13 @@ barrier
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: barrier
 stack[2]: barrier
+Popping any frames not found
+stack[2]: barrier
+inlinedChain[0]: barrier
+Pushing any new frames
 
 0x0000000100000e61
 	mov	rbp, rsp
@@ -710,8 +785,13 @@ ex103DoubleIncBarrier
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex103DoubleIncBarrier
 stack[1]: ex103DoubleIncBarrier
+Popping any frames not found
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[0]: ex103DoubleIncBarrier
+Pushing any new frames
 
 0x0000000100000f07
 	call	-268
@@ -728,8 +808,13 @@ inc
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: inc
 stack[2]: inc
+Popping any frames not found
+stack[2]: inc
+inlinedChain[0]: inc
+Pushing any new frames
 
 0x0000000100000e01
 	mov	rbp, rsp
@@ -788,8 +873,13 @@ ex103DoubleIncBarrier
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex103DoubleIncBarrier
 stack[1]: ex103DoubleIncBarrier
+Popping any frames not found
+stack[1]: ex103DoubleIncBarrier
+inlinedChain[0]: ex103DoubleIncBarrier
+Pushing any new frames
 
 0x0000000100000f0f
 	add	rsp, 16
@@ -818,8 +908,13 @@ main
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000f96
 	mov	edi, dword ptr [rbp - 20]
@@ -842,8 +937,13 @@ ex104DoubleCollatz
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex104DoubleCollatz
 stack[1]: ex104DoubleCollatz
+Popping any frames not found
+stack[1]: ex104DoubleCollatz
+inlinedChain[0]: ex104DoubleCollatz
+Pushing any new frames
 
 0x0000000100000f21
 	mov	rbp, rsp
@@ -896,8 +996,13 @@ collatz
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: collatz
 stack[2]: collatz
+Popping any frames not found
+stack[2]: collatz
+inlinedChain[0]: collatz
+Pushing any new frames
 
 0x0000000100000e21
 	mov	rbp, rsp
@@ -980,8 +1085,13 @@ ex104DoubleCollatz
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex104DoubleCollatz
 stack[1]: ex104DoubleCollatz
+Popping any frames not found
+stack[1]: ex104DoubleCollatz
+inlinedChain[0]: ex104DoubleCollatz
+Pushing any new frames
 
 0x0000000100000f3c
 	mov	edi, dword ptr [rbp - 8]
@@ -1004,8 +1114,13 @@ collatz
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: collatz
 stack[2]: collatz
+Popping any frames not found
+stack[2]: collatz
+inlinedChain[0]: collatz
+Pushing any new frames
 
 0x0000000100000e21
 	mov	rbp, rsp
@@ -1094,8 +1209,13 @@ ex104DoubleCollatz
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: ex104DoubleCollatz
 stack[1]: ex104DoubleCollatz
+Popping any frames not found
+stack[1]: ex104DoubleCollatz
+inlinedChain[0]: ex104DoubleCollatz
+Pushing any new frames
 
 0x0000000100000f47
 	mov	eax, dword ptr [rbp - 8]
@@ -1130,8 +1250,13 @@ main
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
 Oldest chain link: main
 stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
 
 0x0000000100000fa1
 	mov	eax, dword ptr [rbp - 20]
