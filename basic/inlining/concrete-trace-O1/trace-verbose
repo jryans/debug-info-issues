@@ -53,12 +53,12 @@ Old chain: 1
 New chain: 3
 Oldest chain link: main
 stack[0]: main
-CF: main at example.c:53:7
+ICF: main at example.c:53:7
 push
-  CT: ex103DoubleIncBarrier at example.c:34:0
-  CF: ex103DoubleIncBarrier at example.c:36:3
+  ICT: ex103DoubleIncBarrier at example.c:34:0
+  ICF: ex103DoubleIncBarrier at example.c:36:3
 push
-    CT: inc at example.c:3:0
+    ICT: inc at example.c:3:0
 
 0x0000000100000f73
 	mov	dword ptr [rbp - 4], eax
@@ -159,9 +159,9 @@ New chain: 3
 Oldest chain link: main
 stack[1]: ex103DoubleIncBarrier
 stack[0]: main
-  CF: ex103DoubleIncBarrier at example.c:38:3
+  ICF: ex103DoubleIncBarrier at example.c:38:3
 push
-    CT: inc at example.c:3:0
+    ICT: inc at example.c:3:0
 
 0x0000000100000f82
 	add	eax, 1
@@ -187,12 +187,12 @@ stack[1]: ex103DoubleIncBarrier
 stack[0]: main
 pop
 pop
-CF: main at example.c:54:7
+ICF: main at example.c:54:7
 push
-  CT: ex104DoubleCollatz at example.c:42:0
-  CF: ex104DoubleCollatz at example.c:44:7
+  ICT: ex104DoubleCollatz at example.c:42:0
+  ICF: ex104DoubleCollatz at example.c:44:7
 push
-    CT: collatz at example.c:7:0
+    ICT: collatz at example.c:7:0
 
 0x0000000100000f87
 	shr	ecx
@@ -241,9 +241,9 @@ stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 stack[0]: main
 pop
-  CF: ex104DoubleCollatz at example.c:45:7
+  ICF: ex104DoubleCollatz at example.c:45:7
 push
-    CT: collatz at example.c:7:0
+    ICT: collatz at example.c:7:0
 
 0x0000000100000f94
 	shr	ecx

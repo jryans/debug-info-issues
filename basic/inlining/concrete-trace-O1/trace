@@ -1,23 +1,23 @@
 CT: main at example.c:49:0
 CF: main at example.c:50:11
   CT: Jump to external code
-CF: main at example.c:53:7
-  CT: ex103DoubleIncBarrier at example.c:34:0
-  CF: ex103DoubleIncBarrier at example.c:36:3
-    CT: inc at example.c:3:0
+ICF: main at example.c:53:7
+  ICT: ex103DoubleIncBarrier at example.c:34:0
+  ICF: ex103DoubleIncBarrier at example.c:36:3
+    ICT: inc at example.c:3:0
     CT: inc at example.c:4:3
   CF: ex103DoubleIncBarrier at example.c:37:3
     CT: barrier at example.c:16:0
     RF: barrier at example.c:19:1
-  CF: ex103DoubleIncBarrier at example.c:38:3
-    CT: inc at example.c:3:0
+  ICF: ex103DoubleIncBarrier at example.c:38:3
+    ICT: inc at example.c:3:0
     CT: inc at example.c:4:3
-CF: main at example.c:54:7
-  CT: ex104DoubleCollatz at example.c:42:0
-  CF: ex104DoubleCollatz at example.c:44:7
-    CT: collatz at example.c:7:0
+ICF: main at example.c:54:7
+  ICT: ex104DoubleCollatz at example.c:42:0
+  ICF: ex104DoubleCollatz at example.c:44:7
+    ICT: collatz at example.c:7:0
     CT: collatz at example.c:8:7
-  CF: ex104DoubleCollatz at example.c:45:7
-    CT: collatz at example.c:7:0
+  ICF: ex104DoubleCollatz at example.c:45:7
+    ICT: collatz at example.c:7:0
     CT: collatz at example.c:8:7
 RF: main at example.c:55:3
