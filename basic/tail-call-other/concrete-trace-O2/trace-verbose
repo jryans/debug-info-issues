@@ -1,0 +1,76 @@
+0x0000000100000fa0
+	push	rbp
+push
+CT: main + 0x0000 at example.c:15:0
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 0
+New chain: 1
+Aligning inlined chain
+Oldest chain link: main
+stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+
+0x0000000100000fa1
+	mov	rbp, rsp
+V: main + 0x0001 at example.c:15:0
+Inlined chain:
+main
+
+0x0000000100000fa4
+	call	-25
+Inlined chain:
+main
+
+0x0000000100000f90
+	push	rbp
+CF: main + 0x0004 at example.c:16:3
+push
+  CT: trace2_initialize_clock + 0x0000 at example.c:11:0
+Inlined chain:
+trace2_initialize_clock
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: trace2_initialize_clock
+stack[1]: trace2_initialize_clock
+Popping any frames not found
+stack[1]: trace2_initialize_clock
+inlinedChain[0]: trace2_initialize_clock
+Pushing any new frames
+
+0x0000000100000f91
+	mov	rbp, rsp
+  V: trace2_initialize_clock + 0x0001 at example.c:11:0
+Inlined chain:
+trace2_initialize_clock
+
+0x0000000100000f94
+	pop	rbp
+  V: trace2_initialize_clock + 0x0004 at example.c:12:2
+Inlined chain:
+trace2_initialize_clock
+
+0x0000000100000f95
+	jmp	-42
+  V: trace2_initialize_clock + 0x0005 at example.c:12:2
+Inlined chain:
+trace2_initialize_clock
+
+0x0000000100000f70
+	push	rbp
+  V: tr2tls_start_process_clock + 0x0000 at example.c:5:0
+Inlined chain:
+tr2tls_start_process_clock
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: tr2tls_start_process_clock
+stack[1]: trace2_initialize_clock
+stack[0]: main
