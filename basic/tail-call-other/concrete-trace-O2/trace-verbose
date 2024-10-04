@@ -58,13 +58,15 @@ trace2_initialize_clock
 
 0x0000000100000f95
 	jmp	-42
-  V: trace2_initialize_clock + 0x0005 at example.c:12:2
+Branch is a tail call
 Inlined chain:
 trace2_initialize_clock
 
 0x0000000100000f70
 	push	rbp
-  V: tr2tls_start_process_clock + 0x0000 at example.c:5:0
+  CF: trace2_initialize_clock + 0x0005 at example.c:12:2
+push
+    CT: tr2tls_start_process_clock + 0x0000 at example.c:5:0
 Inlined chain:
 tr2tls_start_process_clock
 Inlined chain changed!
@@ -72,5 +74,61 @@ Old chain: 1
 New chain: 1
 Aligning inlined chain
 Oldest chain link: tr2tls_start_process_clock
+stack[2]: tr2tls_start_process_clock
+Popping any frames not found
+stack[2]: tr2tls_start_process_clock
+inlinedChain[0]: tr2tls_start_process_clock
+Pushing any new frames
+
+0x0000000100000f71
+	mov	rbp, rsp
+    V: tr2tls_start_process_clock + 0x0001 at example.c:5:0
+Inlined chain:
+tr2tls_start_process_clock
+
+0x0000000100000f74
+	cmp	byte ptr [rip + 133], 0
+    V: tr2tls_start_process_clock + 0x0004 at example.c:6:6
+Inlined chain:
+tr2tls_start_process_clock
+
+0x0000000100000f7b
+	jne	7
+    V: tr2tls_start_process_clock + 0x000b at example.c:6:6
+Inlined chain:
+tr2tls_start_process_clock
+
+0x0000000100000f7d
+	mov	byte ptr [rip + 124], 1
+    V: tr2tls_start_process_clock + 0x000d at example.c:8:26
+Inlined chain:
+tr2tls_start_process_clock
+
+0x0000000100000f84
+	pop	rbp
+    V: tr2tls_start_process_clock + 0x0014 at example.c:9:1
+Inlined chain:
+tr2tls_start_process_clock
+
+0x0000000100000f85
+	ret
+Inlined chain:
+tr2tls_start_process_clock
+    RF: tr2tls_start_process_clock + 0x0015 at example.c:9:1
+pop
+
+0x0000000100000fa9
+	xor	eax, eax
+  V: main + 0x0009 at example.c:17:1
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: main
 stack[1]: trace2_initialize_clock
 stack[0]: main
+Popping any frames not found
+stack[1]: trace2_initialize_clock
+inlinedChain[1]: past end of chain
