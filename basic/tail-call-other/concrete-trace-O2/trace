@@ -4,3 +4,5 @@ CF: main at example.c:16:3
   CF: trace2_initialize_clock at example.c:12:2
     CT: tr2tls_start_process_clock at example.c:5:0
     RF: tr2tls_start_process_clock at example.c:9:1
+  RF: trace2_initialize_clock at example.c:0:0
+RF: main at example.c:17:1

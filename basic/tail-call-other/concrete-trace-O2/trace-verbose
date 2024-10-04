@@ -116,10 +116,13 @@ Inlined chain:
 tr2tls_start_process_clock
     RF: tr2tls_start_process_clock + 0x0015 at example.c:9:1
 pop
+Returning from artificial frame
+  RF: trace2_initialize_clock at example.c:0:0
+pop
 
 0x0000000100000fa9
 	xor	eax, eax
-  V: main + 0x0009 at example.c:17:1
+V: main + 0x0009 at example.c:17:1
 Inlined chain:
 main
 Inlined chain changed!
@@ -127,8 +130,21 @@ Old chain: 1
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[1]: trace2_initialize_clock
 stack[0]: main
 Popping any frames not found
-stack[1]: trace2_initialize_clock
-inlinedChain[1]: past end of chain
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+
+0x0000000100000fab
+	pop	rbp
+V: main + 0x000b at example.c:17:1
+Inlined chain:
+main
+
+0x0000000100000fac
+	ret
+Inlined chain:
+main
+RF: main + 0x000c at example.c:17:1
+
