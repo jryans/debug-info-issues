@@ -61,16 +61,20 @@ main
 	call	56
 Inlined chain:
 main
-CF: main + 0x001d at example.c:50:11
 
+Last inst. was call-like
+Call return target: 0x0000000100000f72
 0x0000000100000faa
 	jmp	qword ptr [rip + 80]
+CF: main + 0x001d at example.c:50:11
 push
   CT: Jump to external code
 Inlined chain:
 
+Last inst. moved to external code: 0x00007ff810076faa
 0x0000000100000f72
 	mov	dword ptr [rbp - 20], eax
+Call return target matches
 pop
 V: main + 0x0022 at example.c:50:7
 Inlined chain:
@@ -86,10 +90,12 @@ main
 	call	-253
 Inlined chain:
 main
-CF: main + 0x0028 at example.c:51:7
 
+Last inst. was call-like
+Call return target: 0x0000000100000f7d
 0x0000000100000e80
 	push	rbp
+CF: main + 0x0028 at example.c:51:7
 push
   CT: ex101SingleInc + 0x0000 at example.c:21:0
 Inlined chain:
@@ -145,10 +151,12 @@ ex101SingleInc
 	call	-154
 Inlined chain:
 ex101SingleInc
-  CF: ex101SingleInc + 0x0015 at example.c:23:3
 
+Last inst. was call-like
+Call return target: 0x0000000100000e9a
 0x0000000100000e00
 	push	rbp
+  CF: ex101SingleInc + 0x0015 at example.c:23:3
 push
     CT: inc + 0x0000 at example.c:3:0
 Inlined chain:
@@ -274,10 +282,12 @@ main
 	call	-216
 Inlined chain:
 main
-CF: main + 0x0033 at example.c:52:7
 
+Last inst. was call-like
+Call return target: 0x0000000100000f88
 0x0000000100000eb0
 	push	rbp
+CF: main + 0x0033 at example.c:52:7
 push
   CT: ex102DoubleInc + 0x0000 at example.c:27:0
 Inlined chain:
@@ -333,10 +343,12 @@ ex102DoubleInc
 	call	-202
 Inlined chain:
 ex102DoubleInc
-  CF: ex102DoubleInc + 0x0015 at example.c:29:3
 
+Last inst. was call-like
+Call return target: 0x0000000100000eca
 0x0000000100000e00
 	push	rbp
+  CF: ex102DoubleInc + 0x0015 at example.c:29:3
 push
     CT: inc + 0x0000 at example.c:3:0
 Inlined chain:
@@ -421,10 +433,12 @@ Pushing any new frames
 	call	-211
 Inlined chain:
 ex102DoubleInc
-  CF: ex102DoubleInc + 0x001e at example.c:30:3
 
+Last inst. was call-like
+Call return target: 0x0000000100000ed3
 0x0000000100000e00
 	push	rbp
+  CF: ex102DoubleInc + 0x001e at example.c:30:3
 push
     CT: inc + 0x0000 at example.c:3:0
 Inlined chain:
@@ -550,10 +564,12 @@ main
 	call	-179
 Inlined chain:
 main
-CF: main + 0x003e at example.c:53:7
 
+Last inst. was call-like
+Call return target: 0x0000000100000f93
 0x0000000100000ee0
 	push	rbp
+CF: main + 0x003e at example.c:53:7
 push
   CT: ex103DoubleIncBarrier + 0x0000 at example.c:34:0
 Inlined chain:
@@ -609,10 +625,12 @@ ex103DoubleIncBarrier
 	call	-250
 Inlined chain:
 ex103DoubleIncBarrier
-  CF: ex103DoubleIncBarrier + 0x0015 at example.c:36:3
 
+Last inst. was call-like
+Call return target: 0x0000000100000efa
 0x0000000100000e00
 	push	rbp
+  CF: ex103DoubleIncBarrier + 0x0015 at example.c:36:3
 push
     CT: inc + 0x0000 at example.c:3:0
 Inlined chain:
@@ -697,10 +715,12 @@ Pushing any new frames
 	call	-163
 Inlined chain:
 ex103DoubleIncBarrier
-  CF: ex103DoubleIncBarrier + 0x001e at example.c:37:3
 
+Last inst. was call-like
+Call return target: 0x0000000100000f03
 0x0000000100000e60
 	push	rbp
+  CF: ex103DoubleIncBarrier + 0x001e at example.c:37:3
 push
     CT: barrier + 0x0000 at example.c:16:0
 Inlined chain:
@@ -797,10 +817,12 @@ Pushing any new frames
 	call	-268
 Inlined chain:
 ex103DoubleIncBarrier
-  CF: ex103DoubleIncBarrier + 0x0027 at example.c:38:3
 
+Last inst. was call-like
+Call return target: 0x0000000100000f0c
 0x0000000100000e00
 	push	rbp
+  CF: ex103DoubleIncBarrier + 0x0027 at example.c:38:3
 push
     CT: inc + 0x0000 at example.c:3:0
 Inlined chain:
@@ -926,10 +948,12 @@ main
 	call	-126
 Inlined chain:
 main
-CF: main + 0x0049 at example.c:54:7
 
+Last inst. was call-like
+Call return target: 0x0000000100000f9e
 0x0000000100000f20
 	push	rbp
+CF: main + 0x0049 at example.c:54:7
 push
   CT: ex104DoubleCollatz + 0x0000 at example.c:42:0
 Inlined chain:
@@ -985,10 +1009,12 @@ ex104DoubleCollatz
 	call	-281
 Inlined chain:
 ex104DoubleCollatz
-  CF: ex104DoubleCollatz + 0x0014 at example.c:44:7
 
+Last inst. was call-like
+Call return target: 0x0000000100000f39
 0x0000000100000e20
 	push	rbp
+  CF: ex104DoubleCollatz + 0x0014 at example.c:44:7
 push
     CT: collatz + 0x0000 at example.c:7:0
 Inlined chain:
@@ -1103,10 +1129,12 @@ ex104DoubleCollatz
 	call	-292
 Inlined chain:
 ex104DoubleCollatz
-  CF: ex104DoubleCollatz + 0x001f at example.c:45:7
 
+Last inst. was call-like
+Call return target: 0x0000000100000f44
 0x0000000100000e20
 	push	rbp
+  CF: ex104DoubleCollatz + 0x001f at example.c:45:7
 push
     CT: collatz + 0x0000 at example.c:7:0
 Inlined chain:
