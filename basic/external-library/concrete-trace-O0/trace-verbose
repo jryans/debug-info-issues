@@ -108,6 +108,7 @@ push
     CT: Jump to external code
 Inlined chain:
 
+Last inst. moved to external code: 0x00007ff8100708f6
 0x0000000100000d45
 	imul	rax, qword ptr [rbp - 16], 1000000000
 Call return target matches
@@ -493,6 +494,7 @@ unsorted_string_list_lookup
 Inlined chain:
 unsorted_string_list_lookup
 
+Last inst. moved to external code: 0x00007ff8101ee4e0
 Last inst. was call-like
 Call return target: 0x0000000100000e07
 0x0000000100000e07
@@ -621,6 +623,7 @@ push
     CT: Jump to external code
 Inlined chain:
 
+Last inst. moved to external code: 0x00007ff80ffdf170
 0x0000000100000ec2
 	mov	qword ptr [rbp - 8], rax
 Call return target matches
@@ -661,6 +664,7 @@ push
     CT: Jump to external code
 Inlined chain:
 
+Last inst. moved to external code: 0x00007ff810077b26
 0x0000000100000edd
 	mov	rdi, qword ptr [rbp - 8]
 Call return target matches
@@ -738,6 +742,7 @@ push
       CT: Jump to external code
 Inlined chain:
 
+Last inst. moved to external code: 0x00007ff8101835c8
 0x0000000100000e6f
 	mov	ecx, eax
 Call return target matches
@@ -885,6 +890,7 @@ push
     CT: Jump to external code
 Inlined chain:
 
+Last inst. moved to external code: 0x00007ff80ffdfc2d
 0x0000000100000f0d
 	add	rsp, 16
 Call return target matches
