@@ -1,0 +1,26 @@
+CT: main at example.c:76:0
+CF: main at example.c:77:3
+  CT: gettimeofday_nanos at example.c:12:0
+  CF: gettimeofday_nanos at example.c:14:3
+    CT: Jump to external code
+  RF: gettimeofday_nanos at example.c:15:3
+CF: main at example.c:81:3
+  CT: unsorted_string_list_lookup at example.c:40:0
+  CF: unsorted_string_list_lookup at example.c:45:10
+  CT: unsorted_string_list_lookup at example.c:45:10
+  RF: unsorted_string_list_lookup at example.c:49:1
+CF: main at example.c:83:3
+  CT: git_setup_gettext at example.c:61:0
+  CF: git_setup_gettext at example.c:62:15
+    CT: Jump to external code
+  CF: git_setup_gettext at example.c:63:3
+    CT: Jump to external code
+  CF: git_setup_gettext at example.c:65:8
+    CT: is_directory at example.c:54:0
+    CF: is_directory at example.c:56:12
+      CT: Jump to external code
+    RF: is_directory at example.c:56:3
+  CF: git_setup_gettext at example.c:71:3
+    CT: Jump to external code
+  RF: git_setup_gettext at example.c:72:1
+RF: main at example.c:84:1
