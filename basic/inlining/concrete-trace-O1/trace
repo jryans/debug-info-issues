@@ -1,6 +1,6 @@
 CT: main at example.c:49:0
 CF: main at example.c:50:11
-  CT: Jump to external code
+  CT: 🔔 No info for this address
 ICF: main at example.c:53:7
   ICT: ex103DoubleIncBarrier at example.c:34:0
   ICF: ex103DoubleIncBarrier at example.c:36:3
