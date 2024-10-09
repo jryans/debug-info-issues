@@ -12,13 +12,13 @@ mkdir -p concrete-trace-O0
     ${CON_COLLECT_INSTRUMENTATION} \
     "$@" \
     ../example-O0 \
-    0 || true
+    || true
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
     "$@" \
     ../example-O0 \
-    0 || true
+    || true
 )
 
 mkdir -p concrete-trace-O1
@@ -30,13 +30,13 @@ mkdir -p concrete-trace-O1
     "${CON_COLLECT_INSTRUMENTATION}" \
     "$@" \
     ../example-O1 \
-    0 || true
+    || true
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
     "$@" \
     ../example-O1 \
-    0 || true
+    || true
 )
 
 mkdir -p concrete-trace-O2
@@ -48,11 +48,11 @@ mkdir -p concrete-trace-O2
     "${CON_COLLECT_INSTRUMENTATION}" \
     "$@" \
     ../example-O2 \
-    0 || true
+    || true
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
     "$@" \
     ../example-O2 \
-    0 || true
+    || true
 )
