@@ -43,7 +43,7 @@ main
 	call	-516
 Inlined chain:
 main
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000f34
 
 0x0000000100000d30
@@ -98,7 +98,7 @@ gettimeofday_nanos
 	call	599
 Inlined chain:
 gettimeofday_nanos
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000d45
 
 0x0000000100000f9c
@@ -107,7 +107,7 @@ Call return target: 0x0000000100000d45
 push
     CT: Jump to external code
 Inlined chain:
-Last inst. moved to external code: 0x00007ff8100708f6
+Inst. moved to external code: 0x00007ff8100708f6
 
 0x0000000100000d45
 	imul	rax, qword ptr [rbp - 16], 1000000000
@@ -252,7 +252,7 @@ main
 	call	-546
 Inlined chain:
 main
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000f82
 
 0x0000000100000d60
@@ -493,8 +493,8 @@ unsorted_string_list_lookup
 	call	rax
 Inlined chain:
 unsorted_string_list_lookup
-Last inst. moved to external code: 0x00007ff8101ee4e0
-Last inst. was call-like
+Inst. moved to external code: 0x00007ff8101ee4e0
+Inst. was call-like
 Call return target: 0x0000000100000e07
 
 0x0000000100000e07
@@ -570,7 +570,7 @@ Popping any frames not found
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000f87
 
 0x0000000100000eb0
@@ -613,7 +613,7 @@ git_setup_gettext
 	call	224
 Inlined chain:
 git_setup_gettext
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000ec2
 
 0x0000000100000fa2
@@ -622,7 +622,7 @@ Call return target: 0x0000000100000ec2
 push
     CT: Jump to external code
 Inlined chain:
-Last inst. moved to external code: 0x00007ff80ffdf170
+Inst. moved to external code: 0x00007ff80ffdf170
 
 0x0000000100000ec2
 	mov	qword ptr [rbp - 8], rax
@@ -654,7 +654,7 @@ git_setup_gettext
 	call	179
 Inlined chain:
 git_setup_gettext
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000edd
 
 0x0000000100000f90
@@ -663,7 +663,7 @@ Call return target: 0x0000000100000edd
 push
     CT: Jump to external code
 Inlined chain:
-Last inst. moved to external code: 0x00007ff810077b26
+Inst. moved to external code: 0x00007ff810077b26
 
 0x0000000100000edd
 	mov	rdi, qword ptr [rbp - 8]
@@ -677,7 +677,7 @@ git_setup_gettext
 	call	-150
 Inlined chain:
 git_setup_gettext
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000ee6
 
 0x0000000100000e50
@@ -732,7 +732,7 @@ is_directory
 	call	313
 Inlined chain:
 is_directory
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000e6f
 
 0x0000000100000fa8
@@ -741,7 +741,7 @@ Call return target: 0x0000000100000e6f
 push
       CT: Jump to external code
 Inlined chain:
-Last inst. moved to external code: 0x00007ff8101835c8
+Inst. moved to external code: 0x00007ff8101835c8
 
 0x0000000100000e6f
 	mov	ecx, eax
@@ -880,7 +880,7 @@ git_setup_gettext
 	call	137
 Inlined chain:
 git_setup_gettext
-Last inst. was call-like
+Inst. was call-like
 Call return target: 0x0000000100000f0d
 
 0x0000000100000f96
@@ -889,7 +889,7 @@ Call return target: 0x0000000100000f0d
 push
     CT: Jump to external code
 Inlined chain:
-Last inst. moved to external code: 0x00007ff80ffdfc2d
+Inst. moved to external code: 0x00007ff80ffdfc2d
 
 0x0000000100000f0d
 	add	rsp, 16
