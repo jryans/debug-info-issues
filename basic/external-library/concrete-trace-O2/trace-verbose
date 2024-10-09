@@ -31,9 +31,9 @@ main
 	call	-285
 Inlined chain:
 main
-
 Last inst. was call-like
 Call return target: 0x0000000100000f1d
+
 0x0000000100000e00
 	push	rbp
 CF: main + 0x0008 at example.c:77:3
@@ -80,17 +80,17 @@ gettimeofday_nanos
 	call	343
 Inlined chain:
 gettimeofday_nanos
-
 Last inst. was call-like
 Call return target: 0x0000000100000e13
+
 0x0000000100000f6a
 	jmp	qword ptr [rip + 152]
   CF: gettimeofday_nanos + 0x000e at example.c:14:3
 push
     CT: Jump to external code
 Inlined chain:
-
 Last inst. moved to external code: 0x00007ff8100708f6
+
 0x0000000100000e13
 	imul	rcx, qword ptr [rbp - 16], 1000000000
 Call return target matches
@@ -210,9 +210,9 @@ main
 	call	-295
 Inlined chain:
 main
-
 Last inst. was call-like
 Call return target: 0x0000000100000f57
+
 0x0000000100000e30
 	push	rbp
 CF: main + 0x0042 at example.c:81:3
@@ -343,10 +343,10 @@ unsorted_string_list_lookup
 	call	r12
 Inlined chain:
 unsorted_string_list_lookup
-
 Last inst. moved to external code: 0x00007ff8101ee4e0
 Last inst. was call-like
 Call return target: 0x0000000100000e69
+
 0x0000000100000e69
 	test	eax, eax
   CF: unsorted_string_list_lookup + 0x0036 at example.c:45:10
@@ -420,9 +420,9 @@ Popping any frames not found
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-
 Last inst. was call-like
 Call return target: 0x0000000100000f5c
+
 0x0000000100000ed0
 	push	rbp
 CF: main + 0x0047 at example.c:83:3
@@ -469,17 +469,17 @@ git_setup_gettext
 	call	144
 Inlined chain:
 git_setup_gettext
-
 Last inst. was call-like
 Call return target: 0x0000000100000ee0
+
 0x0000000100000f70
 	jmp	qword ptr [rip + 154]
   CF: git_setup_gettext + 0x000b at example.c:62:15
 push
     CT: Jump to external code
 Inlined chain:
-
 Last inst. moved to external code: 0x00007ff80ffdf170
+
 0x0000000100000ee0
 	mov	rbx, rax
 Call return target matches
@@ -510,9 +510,9 @@ git_setup_gettext
 	call	-103
 Inlined chain:
 git_setup_gettext
-
 Last inst. was call-like
 Call return target: 0x0000000100000ef7
+
 0x0000000100000e90
 	push	rbp
   CF: git_setup_gettext + 0x0022 at example.c:65:8
@@ -553,17 +553,17 @@ is_directory
 	call	207
 Inlined chain:
 is_directory
-
 Last inst. was call-like
 Call return target: 0x0000000100000ea7
+
 0x0000000100000f76
 	jmp	qword ptr [rip + 156]
     CF: is_directory + 0x0012 at example.c:56:12
 push
       CT: Jump to external code
 Inlined chain:
-
 Last inst. moved to external code: 0x00007ff8101835c8
+
 0x0000000100000ea7
 	test	eax, eax
 Call return target matches
@@ -695,8 +695,8 @@ git_setup_gettext
 	jmp	qword ptr [rip + 150]
   V: Jump to external code
 Inlined chain:
-
 Last inst. moved to external code: 0x00007ff80ffdfc2d
+
 0x0000000100000f5c
 	xor	eax, eax
   V: main + 0x004c at example.c:84:1
