@@ -945,4 +945,5 @@ main
 Inlined chain:
 main
 RF: main + 0x006e at example.c:84:1
+pop
 
