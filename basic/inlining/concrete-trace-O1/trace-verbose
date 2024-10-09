@@ -38,14 +38,14 @@ V: main + 0x0008 at example.c:50:16
 	call	54
 Inlined chain:
 main
-CF: main + 0x000b at example.c:50:11
 push
 Inst. was call-like
 Call return target: 0x0000000100000f70
-  CT: 🔔 No info for this address
 
 0x0000000100000fa6
 	jmp	qword ptr [rip + 84]
+CF: main + 0x000b at example.c:50:11
+  CT: Jump to external code
 Inlined chain:
   V: Jump to external code
 Inst. moved to external code: 0x00007ff810076faa
@@ -113,14 +113,14 @@ pop
 stack[1]: ex103DoubleIncBarrier
 inlinedChain[1]: ex103DoubleIncBarrier
 Pushing any new frames
-  CF: ex103DoubleIncBarrier + 0x000a at example.c:37:3
 push
 Inst. was call-like
 Call return target: 0x0000000100000f7f
-    CT: barrier + 0x0000 at example.c:16:0
 
 0x0000000100000ed0
 	push	rbp
+  CF: ex103DoubleIncBarrier + 0x000a at example.c:37:3
+    CT: barrier + 0x0000 at example.c:16:0
 Inlined chain:
 barrier
 Inlined chain changed!

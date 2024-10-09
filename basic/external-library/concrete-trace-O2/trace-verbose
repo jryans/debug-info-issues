@@ -32,14 +32,14 @@ V: main + 0x0004 at example.c:76:0
 	call	-285
 Inlined chain:
 main
-CF: main + 0x0008 at example.c:77:3
 push
 Inst. was call-like
 Call return target: 0x0000000100000f1d
-  CT: gettimeofday_nanos + 0x0000 at example.c:12:0
 
 0x0000000100000e00
 	push	rbp
+CF: main + 0x0008 at example.c:77:3
+  CT: gettimeofday_nanos + 0x0000 at example.c:12:0
 Inlined chain:
 gettimeofday_nanos
 Inlined chain changed!
@@ -82,14 +82,14 @@ gettimeofday_nanos
 	call	343
 Inlined chain:
 gettimeofday_nanos
-  CF: gettimeofday_nanos + 0x000e at example.c:14:3
 push
 Inst. was call-like
 Call return target: 0x0000000100000e13
-    CT: 🔔 No info for this address
 
 0x0000000100000f6a
 	jmp	qword ptr [rip + 152]
+  CF: gettimeofday_nanos + 0x000e at example.c:14:3
+    CT: Jump to external code
 Inlined chain:
     V: Jump to external code
 Inst. moved to external code: 0x00007ff8100708f6
@@ -213,14 +213,14 @@ V: main + 0x003e at example.c:81:3
 	call	-295
 Inlined chain:
 main
-CF: main + 0x0042 at example.c:81:3
 push
 Inst. was call-like
 Call return target: 0x0000000100000f57
-  CT: unsorted_string_list_lookup + 0x0000 at example.c:40:0
 
 0x0000000100000e30
 	push	rbp
+CF: main + 0x0042 at example.c:81:3
+  CT: unsorted_string_list_lookup + 0x0000 at example.c:40:0
 Inlined chain:
 unsorted_string_list_lookup
 Inlined chain changed!
@@ -348,14 +348,14 @@ unsorted_string_list_lookup
 Inlined chain:
 unsorted_string_list_lookup
 Inst. moved to external code: 0x00007ff8101ee4e0
-  CF: unsorted_string_list_lookup + 0x0036 at example.c:45:10
 push
 Inst. was call-like
 Call return target: 0x0000000100000e69
-    CT: External code
 
 0x0000000100000e69
 	test	eax, eax
+  CF: unsorted_string_list_lookup + 0x0036 at example.c:45:10
+    CT: External code
 Call return target matches
 pop
 Inlined chain:
@@ -425,14 +425,14 @@ Popping any frames not found
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-CF: main + 0x0047 at example.c:83:3
 push
 Inst. was call-like
 Call return target: 0x0000000100000f5c
-  CT: git_setup_gettext + 0x0000 at example.c:61:0
 
 0x0000000100000ed0
 	push	rbp
+CF: main + 0x0047 at example.c:83:3
+  CT: git_setup_gettext + 0x0000 at example.c:61:0
 Inlined chain:
 git_setup_gettext
 Inlined chain changed!
@@ -475,14 +475,14 @@ git_setup_gettext
 	call	144
 Inlined chain:
 git_setup_gettext
-  CF: git_setup_gettext + 0x000b at example.c:62:15
 push
 Inst. was call-like
 Call return target: 0x0000000100000ee0
-    CT: 🔔 No info for this address
 
 0x0000000100000f70
 	jmp	qword ptr [rip + 154]
+  CF: git_setup_gettext + 0x000b at example.c:62:15
+    CT: Jump to external code
 Inlined chain:
     V: Jump to external code
 Inst. moved to external code: 0x00007ff80ffdf170
@@ -517,14 +517,14 @@ git_setup_gettext
 	call	-103
 Inlined chain:
 git_setup_gettext
-  CF: git_setup_gettext + 0x0022 at example.c:65:8
 push
 Inst. was call-like
 Call return target: 0x0000000100000ef7
-    CT: is_directory + 0x0000 at example.c:54:0
 
 0x0000000100000e90
 	push	rbp
+  CF: git_setup_gettext + 0x0022 at example.c:65:8
+    CT: is_directory + 0x0000 at example.c:54:0
 Inlined chain:
 is_directory
 Inlined chain changed!
@@ -561,14 +561,14 @@ is_directory
 	call	207
 Inlined chain:
 is_directory
-    CF: is_directory + 0x0012 at example.c:56:12
 push
 Inst. was call-like
 Call return target: 0x0000000100000ea7
-      CT: 🔔 No info for this address
 
 0x0000000100000f76
 	jmp	qword ptr [rip + 156]
+    CF: is_directory + 0x0012 at example.c:56:12
+      CT: Jump to external code
 Inlined chain:
       V: Jump to external code
 Inst. moved to external code: 0x00007ff8101835c8
