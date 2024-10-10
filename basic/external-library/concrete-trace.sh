@@ -6,6 +6,7 @@ source "${SCRIPT_DIR}/../vars.sh"
 mkdir -p concrete-trace-O0
 (
   cd concrete-trace-O0
+  rm trace*
   env \
     CON_TRACE_VERBOSE=1 \
     CON_TRACE_SOURCE=1 \
@@ -19,8 +20,8 @@ mkdir -p concrete-trace-O0
     ${CON_COLLECT_INSTRUMENTATION} \
     "$@" \
     ../example-O0 \
-    && mv trace trace-eld \
     || true
+  mv trace trace-eld
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
@@ -32,6 +33,7 @@ mkdir -p concrete-trace-O0
 mkdir -p concrete-trace-O2
 (
   cd concrete-trace-O2
+  rm trace*
   env \
     CON_TRACE_VERBOSE=1 \
     CON_TRACE_SOURCE=1 \
@@ -45,8 +47,8 @@ mkdir -p concrete-trace-O2
     ${CON_COLLECT_INSTRUMENTATION} \
     "$@" \
     ../example-O2 \
-    && mv trace trace-eld \
     || true
+  mv trace trace-eld
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
