@@ -5,7 +5,7 @@ CF: main at example.c:77:3
 CF: main at example.c:81:3
   CT: unsorted_string_list_lookup at example.c:40:0
   CF: unsorted_string_list_lookup at example.c:45:10
-  CT: unsorted_string_list_lookup at example.c:45:10
+    CT: External code
   RF: unsorted_string_list_lookup at example.c:49:1
 CF: main at example.c:83:3
   CT: git_setup_gettext at example.c:61:0
