@@ -91,12 +91,20 @@ Call return target: 0x0000000100000e13
   CF: gettimeofday_nanos + 0x000e at example.c:14:3
     CT: Jump to external code
 Inlined chain:
-    V: Jump to external code
 Inst. moved to external code: 0x00007ff8100708f6
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000e13
 
 0x0000000100000e13
 	imul	rcx, qword ptr [rbp - 16], 1000000000
+    CF: Jump to external code
+      CT: External code
 Call return target matches
+pop
+Returning from artificial frame
+    RF: Jump to external code
 pop
 Inlined chain:
 gettimeofday_nanos
@@ -299,7 +307,6 @@ unsorted_string_list_lookup
 	jne	7
 Inlined chain:
 unsorted_string_list_lookup
-  V: unsorted_string_list_lookup + 0x001b at example.c:42:28
 
 0x0000000100000e4d
 	mov	r12, qword ptr [rip + 460]
@@ -317,7 +324,6 @@ unsorted_string_list_lookup
 	je	40
 Inlined chain:
 unsorted_string_list_lookup
-  V: unsorted_string_list_lookup + 0x0027 at example.c:44:3
 
 0x0000000100000e59
 	cmp	qword ptr [r15 + 8], 0
@@ -329,7 +335,6 @@ unsorted_string_list_lookup
 	jle	33
 Inlined chain:
 unsorted_string_list_lookup
-  V: unsorted_string_list_lookup + 0x002e at example.c:44:3
 
 0x0000000100000e60
 	mov	rsi, qword ptr [rbx]
@@ -366,7 +371,6 @@ unsorted_string_list_lookup
 	je	22
 Inlined chain:
 unsorted_string_list_lookup
-  V: unsorted_string_list_lookup + 0x003b at example.c:45:9
 
 0x0000000100000e83
 	mov	rax, rbx
@@ -484,12 +488,20 @@ Call return target: 0x0000000100000ee0
   CF: git_setup_gettext + 0x000b at example.c:62:15
     CT: Jump to external code
 Inlined chain:
-    V: Jump to external code
 Inst. moved to external code: 0x00007ff80ffdf170
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000ee0
 
 0x0000000100000ee0
 	mov	rbx, rax
+    CF: Jump to external code
+      CT: External code
 Call return target matches
+pop
+Returning from artificial frame
+    RF: Jump to external code
 pop
 Inlined chain:
 git_setup_gettext
@@ -570,12 +582,20 @@ Call return target: 0x0000000100000ea7
     CF: is_directory + 0x0012 at example.c:56:12
       CT: Jump to external code
 Inlined chain:
-      V: Jump to external code
 Inst. moved to external code: 0x00007ff8101835c8
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000ea7
 
 0x0000000100000ea7
 	test	eax, eax
+      CF: Jump to external code
+        CT: External code
 Call return target matches
+pop
+Returning from artificial frame
+      RF: Jump to external code
 pop
 Inlined chain:
 is_directory
@@ -662,7 +682,6 @@ Pushing any new frames
 	je	7
 Inlined chain:
 git_setup_gettext
-  V: git_setup_gettext + 0x0029 at example.c:65:7
 
 0x0000000100000efb
 	mov	byte ptr [rip + 310], 1
@@ -698,16 +717,25 @@ git_setup_gettext
 	jmp	84
 Inlined chain:
 git_setup_gettext
-  V: git_setup_gettext + 0x003b at example.c:0:0
 
 0x0000000100000f64
 	jmp	qword ptr [rip + 150]
 Inlined chain:
-  V: Jump to external code
 Inst. moved to external code: 0x00007ff80ffdfc2d
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000f5c
 
 0x0000000100000f5c
 	xor	eax, eax
+  CF: Jump to external code
+    CT: External code
+Call return target matches
+pop
+Returning from artificial frame
+  RF: git_setup_gettext + 0xfffffffffebe08d0 at example.c:0:0
+pop
 Inlined chain:
 main
 Inlined chain changed!
@@ -715,8 +743,29 @@ Old chain: 1
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[1]: git_setup_gettext
 stack[0]: main
 Popping any frames not found
-stack[1]: git_setup_gettext
-inlinedChain[1]: past end of chain
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+V: main + 0x004c at example.c:84:1
+
+0x0000000100000f5e
+	add	rsp, 64
+Inlined chain:
+main
+V: main + 0x004e at example.c:84:1
+
+0x0000000100000f62
+	pop	rbp
+Inlined chain:
+main
+V: main + 0x0052 at example.c:84:1
+
+0x0000000100000f63
+	ret
+Inlined chain:
+main
+RF: main + 0x0053 at example.c:84:1
+pop
+

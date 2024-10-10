@@ -10,3 +10,5 @@ CF: main at example.c:83:3
   CF: git_setup_gettext at example.c:65:8
     CT: is_directory at example.c:54:0
     RF: is_directory at example.c:56:3
+  RF: git_setup_gettext at example.c:0:0
+RF: main at example.c:84:1

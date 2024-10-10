@@ -1,6 +1,9 @@
 CT: main at example.c:49:0
 CF: main at example.c:50:11
   CT: Jump to external code
+  CF: Jump to external code
+    CT: External code
+  RF: Jump to external code
 CF: main at example.c:51:7
   CT: ex101SingleInc at example.c:21:0
   CF: ex101SingleInc at example.c:23:3

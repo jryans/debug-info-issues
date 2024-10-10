@@ -71,12 +71,20 @@ Call return target: 0x0000000100000f72
 CF: main + 0x001d at example.c:50:11
   CT: Jump to external code
 Inlined chain:
-  V: Jump to external code
 Inst. moved to external code: 0x00007ff810076faa
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000f72
 
 0x0000000100000f72
 	mov	dword ptr [rbp - 20], eax
+  CF: Jump to external code
+    CT: External code
 Call return target matches
+pop
+Returning from artificial frame
+  RF: Jump to external code
 pop
 Inlined chain:
 main
@@ -1077,7 +1085,6 @@ collatz
 	jne	14
 Inlined chain:
 collatz
-    V: collatz + 0x0010 at example.c:8:7
 
 0x0000000100000e44
 	imul	eax, dword ptr [rbp - 8], 3
@@ -1198,7 +1205,6 @@ collatz
 	jne	14
 Inlined chain:
 collatz
-    V: collatz + 0x0010 at example.c:8:7
 
 0x0000000100000e36
 	mov	eax, dword ptr [rbp - 8]
@@ -1222,7 +1228,6 @@ collatz
 	jmp	10
 Inlined chain:
 collatz
-    V: collatz + 0x001f at example.c:9:5
 
 0x0000000100000e4e
 	mov	eax, dword ptr [rbp - 4]
