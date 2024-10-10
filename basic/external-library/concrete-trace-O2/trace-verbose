@@ -734,7 +734,7 @@ Call return target: 0x0000000100000f5c
 Call return target matches
 pop
 Returning from artificial frame
-  RF: git_setup_gettext + 0xfffffffffebe08d0 at example.c:0:0
+  RF: git_setup_gettext + 0xffffffffffffffd0 at example.c:0:0
 pop
 Inlined chain:
 main
