@@ -71,7 +71,7 @@ Call return target: 0x0000000100000f72
 CF: main + 0x001d at example.c:50:11
   CT: Jump to external code
 Inlined chain:
-Inst. moved to external code: 0x00007ff810076faa
+Inst. moved to external code: 0x00007ff8026dafaa
 Branch is a tail call
 push
 Inst. was call-like
