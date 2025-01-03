@@ -46,11 +46,21 @@ int ex104DoubleCollatz(int n) {
   return x;
 }
 
+int ex105DoubleIncBarrierInc(int n) {
+  int x = n;
+  inc(&x);
+  inc(&x);
+  barrier(&x);
+  inc(&x);
+  return x;
+}
+
 int main(int argc, const char **argv) {
   int n = atoi(argv[0]);
   n = ex101SingleInc(n);
   n = ex102DoubleInc(n);
   n = ex103DoubleIncBarrier(n);
   n = ex104DoubleCollatz(n);
+  n = ex105DoubleIncBarrierInc(n);
   return n;
 }

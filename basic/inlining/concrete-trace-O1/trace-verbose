@@ -1,6 +1,6 @@
 push
-CT: main + 0x0000 at example.c:49:0
-0x0000000100000f60
+CT: main + 0x0000 at example.c:58:0
+0x0000000100000f50
 	push	rbp
 Inlined chain:
 main
@@ -14,46 +14,46 @@ Popping any frames not found
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-V: main + 0x0000 at example.c:49:0
+V: main + 0x0000 at example.c:58:0
 
-0x0000000100000f61
+0x0000000100000f51
 	mov	rbp, rsp
 Inlined chain:
 main
-V: main + 0x0001 at example.c:49:0
+V: main + 0x0001 at example.c:58:0
 
-0x0000000100000f64
+0x0000000100000f54
 	sub	rsp, 16
 Inlined chain:
 main
-V: main + 0x0004 at example.c:49:0
+V: main + 0x0004 at example.c:58:0
 
-0x0000000100000f68
+0x0000000100000f58
 	mov	rdi, qword ptr [rsi]
 Inlined chain:
 main
-V: main + 0x0008 at example.c:50:16
+V: main + 0x0008 at example.c:59:16
 
-0x0000000100000f6b
-	call	54
+0x0000000100000f5b
+	call	74
 Inlined chain:
 main
 push
 Inst. was call-like
-Call return target: 0x0000000100000f70
+Call return target: 0x0000000100000f60
 
-0x0000000100000fa6
-	jmp	qword ptr [rip + 84]
-CF: main + 0x000b at example.c:50:11
+0x0000000100000faa
+	jmp	qword ptr [rip + 80]
+CF: main + 0x000b at example.c:59:11
   CT: Jump to external code
 Inlined chain:
 Inst. moved to external code: 0x00007ff8026dafaa
 Branch is a tail call
 push
 Inst. was call-like
-Call return target: 0x0000000100000f70
+Call return target: 0x0000000100000f60
 
-0x0000000100000f70
+0x0000000100000f60
 	add	eax, 4
   CF: Jump to external code
     CT: External code
@@ -76,7 +76,7 @@ Popping any frames not found
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-ICF: main at example.c:53:7
+ICF: main at example.c:62:7
 push
   ICT: ex103DoubleIncBarrier at example.c:34:0
   ICF: ex103DoubleIncBarrier at example.c:36:3
@@ -84,7 +84,7 @@ push
     ICT: inc at example.c:3:0
     V: inc + 0x0000 at example.c:4:3
 
-0x0000000100000f73
+0x0000000100000f63
 	mov	dword ptr [rbp - 4], eax
 Inlined chain:
 main
@@ -92,7 +92,7 @@ ex103DoubleIncBarrier
 inc
     V: inc + 0x0003 at example.c:4:3
 
-0x0000000100000f76
+0x0000000100000f66
 	lea	rdi, [rbp - 4]
 Inlined chain:
 main
@@ -100,8 +100,8 @@ ex103DoubleIncBarrier
 inc
     V: inc + 0x0006 at example.c:4:3
 
-0x0000000100000f7a
-	call	-175
+0x0000000100000f6a
+	call	-223
 Inlined chain:
 main
 ex103DoubleIncBarrier
@@ -123,9 +123,9 @@ inlinedChain[1]: ex103DoubleIncBarrier
 Pushing any new frames
 push
 Inst. was call-like
-Call return target: 0x0000000100000f7f
+Call return target: 0x0000000100000f6f
 
-0x0000000100000ed0
+0x0000000100000e90
 	push	rbp
   CF: ex103DoubleIncBarrier + 0x000a at example.c:37:3
     CT: barrier + 0x0000 at example.c:16:0
@@ -143,50 +143,50 @@ inlinedChain[0]: barrier
 Pushing any new frames
     V: barrier + 0x0000 at example.c:16:0
 
-0x0000000100000ed1
+0x0000000100000e91
 	mov	rbp, rsp
 Inlined chain:
 barrier
     V: barrier + 0x0001 at example.c:16:0
 
-0x0000000100000ed4
+0x0000000100000e94
 	mov	eax, dword ptr [rdi]
 Inlined chain:
 barrier
     V: barrier + 0x0004 at example.c:17:27
 
-0x0000000100000ed6
+0x0000000100000e96
 	mov	dword ptr [rbp - 4], eax
 Inlined chain:
 barrier
     V: barrier + 0x0006 at example.c:17:16
 
-0x0000000100000ed9
+0x0000000100000e99
 	mov	eax, dword ptr [rbp - 4]
 Inlined chain:
 barrier
     V: barrier + 0x0009 at example.c:18:8
 
-0x0000000100000edc
+0x0000000100000e9c
 	mov	dword ptr [rdi], eax
 Inlined chain:
 barrier
     V: barrier + 0x000c at example.c:18:6
 
-0x0000000100000ede
+0x0000000100000e9e
 	pop	rbp
 Inlined chain:
 barrier
     V: barrier + 0x000e at example.c:19:1
 
-0x0000000100000edf
+0x0000000100000e9f
 	ret
 Inlined chain:
 barrier
     RF: barrier + 0x000f at example.c:19:1
 pop
 
-0x0000000100000f7f
+0x0000000100000f6f
 	mov	eax, dword ptr [rbp - 4]
 Inlined chain:
 main
@@ -208,7 +208,7 @@ push
     ICT: inc at example.c:3:0
     V: inc + 0x0000 at example.c:4:3
 
-0x0000000100000f82
+0x0000000100000f72
 	add	eax, 1
 Inlined chain:
 main
@@ -216,7 +216,7 @@ ex103DoubleIncBarrier
 inc
     V: inc + 0x0003 at example.c:4:3
 
-0x0000000100000f85
+0x0000000100000f75
 	mov	ecx, eax
 Inlined chain:
 main
@@ -242,7 +242,7 @@ pop
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-ICF: main at example.c:54:7
+ICF: main at example.c:63:7
 push
   ICT: ex104DoubleCollatz at example.c:42:0
   ICF: ex104DoubleCollatz at example.c:44:7
@@ -250,7 +250,7 @@ push
     ICT: collatz at example.c:7:0
     V: collatz + 0x0000 at example.c:8:7
 
-0x0000000100000f87
+0x0000000100000f77
 	shr	ecx
 Inlined chain:
 main
@@ -258,7 +258,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x0002 at example.c:8:7
 
-0x0000000100000f89
+0x0000000100000f79
 	test	al, 1
 Inlined chain:
 main
@@ -266,7 +266,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x0004 at example.c:8:13
 
-0x0000000100000f8b
+0x0000000100000f7b
 	lea	eax, [rax + 2*rax + 1]
 Inlined chain:
 main
@@ -274,7 +274,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x0006 at example.c:8:7
 
-0x0000000100000f8f
+0x0000000100000f7f
 	cmove	eax, ecx
 Inlined chain:
 main
@@ -282,7 +282,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x000a at example.c:8:7
 
-0x0000000100000f92
+0x0000000100000f82
 	mov	ecx, eax
 Inlined chain:
 main
@@ -309,7 +309,7 @@ push
     ICT: collatz at example.c:7:0
     V: collatz + 0x0000 at example.c:8:7
 
-0x0000000100000f94
+0x0000000100000f84
 	shr	ecx
 Inlined chain:
 main
@@ -317,7 +317,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x0002 at example.c:8:7
 
-0x0000000100000f96
+0x0000000100000f86
 	test	al, 1
 Inlined chain:
 main
@@ -325,7 +325,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x0004 at example.c:8:13
 
-0x0000000100000f98
+0x0000000100000f88
 	lea	eax, [rax + 2*rax + 1]
 Inlined chain:
 main
@@ -333,7 +333,7 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x0006 at example.c:8:7
 
-0x0000000100000f9c
+0x0000000100000f8c
 	cmove	eax, ecx
 Inlined chain:
 main
@@ -341,7 +341,173 @@ ex104DoubleCollatz
 collatz
     V: collatz + 0x000a at example.c:8:7
 
-0x0000000100000f9f
+0x0000000100000f8f
+	add	eax, 2
+Inlined chain:
+main
+ex105DoubleIncBarrierInc
+inc
+Inlined chain changed!
+Old chain: 3
+New chain: 3
+Aligning inlined chain
+Oldest chain link: main
+stack[2]: collatz
+stack[1]: ex104DoubleCollatz
+stack[0]: main
+Popping any frames not found
+stack[2]: collatz
+inlinedChain[2]: inc
+    IRF: collatz at example.c:0:0
+pop
+stack[1]: ex104DoubleCollatz
+inlinedChain[1]: ex105DoubleIncBarrierInc
+  IRF: ex104DoubleCollatz at example.c:0:0
+pop
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+ICF: main at example.c:64:7
+push
+  ICT: ex105DoubleIncBarrierInc at example.c:49:0
+  ICF: ex105DoubleIncBarrierInc at example.c:52:3
+push
+    ICT: inc at example.c:3:0
+    V: inc + 0x0000 at example.c:4:3
+
+0x0000000100000f92
+	mov	dword ptr [rbp - 8], eax
+Inlined chain:
+main
+ex105DoubleIncBarrierInc
+inc
+    V: inc + 0x0003 at example.c:4:3
+
+0x0000000100000f95
+	lea	rdi, [rbp - 8]
+Inlined chain:
+main
+ex105DoubleIncBarrierInc
+inc
+    V: inc + 0x0006 at example.c:4:3
+
+0x0000000100000f99
+	call	-270
+Inlined chain:
+main
+ex105DoubleIncBarrierInc
+Inlined chain changed!
+Old chain: 3
+New chain: 2
+Aligning inlined chain
+Oldest chain link: main
+stack[2]: inc
+stack[1]: ex105DoubleIncBarrierInc
+stack[0]: main
+Popping any frames not found
+stack[2]: inc
+inlinedChain[2]: past end of chain
+    IRF: inc at example.c:0:0
+pop
+stack[1]: ex105DoubleIncBarrierInc
+inlinedChain[1]: ex105DoubleIncBarrierInc
+Pushing any new frames
+push
+Inst. was call-like
+Call return target: 0x0000000100000f9e
+
+0x0000000100000e90
+	push	rbp
+  CF: ex105DoubleIncBarrierInc + 0x000a at example.c:53:3
+    CT: barrier + 0x0000 at example.c:16:0
+Inlined chain:
+barrier
+Inlined chain changed!
+Old chain: 2
+New chain: 1
+Aligning inlined chain
+Oldest chain link: barrier
+stack[2]: barrier
+Popping any frames not found
+stack[2]: barrier
+inlinedChain[0]: barrier
+Pushing any new frames
+    V: barrier + 0x0000 at example.c:16:0
+
+0x0000000100000e91
+	mov	rbp, rsp
+Inlined chain:
+barrier
+    V: barrier + 0x0001 at example.c:16:0
+
+0x0000000100000e94
+	mov	eax, dword ptr [rdi]
+Inlined chain:
+barrier
+    V: barrier + 0x0004 at example.c:17:27
+
+0x0000000100000e96
+	mov	dword ptr [rbp - 4], eax
+Inlined chain:
+barrier
+    V: barrier + 0x0006 at example.c:17:16
+
+0x0000000100000e99
+	mov	eax, dword ptr [rbp - 4]
+Inlined chain:
+barrier
+    V: barrier + 0x0009 at example.c:18:8
+
+0x0000000100000e9c
+	mov	dword ptr [rdi], eax
+Inlined chain:
+barrier
+    V: barrier + 0x000c at example.c:18:6
+
+0x0000000100000e9e
+	pop	rbp
+Inlined chain:
+barrier
+    V: barrier + 0x000e at example.c:19:1
+
+0x0000000100000e9f
+	ret
+Inlined chain:
+barrier
+    RF: barrier + 0x000f at example.c:19:1
+pop
+
+0x0000000100000f9e
+	mov	eax, dword ptr [rbp - 8]
+Inlined chain:
+main
+ex105DoubleIncBarrierInc
+inc
+Inlined chain changed!
+Old chain: 1
+New chain: 3
+Aligning inlined chain
+Oldest chain link: main
+stack[1]: ex105DoubleIncBarrierInc
+stack[0]: main
+Popping any frames not found
+stack[1]: ex105DoubleIncBarrierInc
+inlinedChain[1]: ex105DoubleIncBarrierInc
+Pushing any new frames
+  ICF: ex105DoubleIncBarrierInc at example.c:54:3
+push
+    ICT: inc at example.c:3:0
+    V: inc + 0x0000 at example.c:4:3
+
+0x0000000100000fa1
+	add	eax, 1
+Inlined chain:
+main
+ex105DoubleIncBarrierInc
+inc
+    V: inc + 0x0003 at example.c:4:3
+
+0x0000000100000fa4
 	add	rsp, 16
 Inlined chain:
 main
@@ -350,33 +516,33 @@ Old chain: 3
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[2]: collatz
-stack[1]: ex104DoubleCollatz
+stack[2]: inc
+stack[1]: ex105DoubleIncBarrierInc
 stack[0]: main
 Popping any frames not found
-stack[2]: collatz
+stack[2]: inc
 inlinedChain[2]: past end of chain
-    IRF: collatz at example.c:0:0
+    IRF: inc at example.c:0:0
 pop
-stack[1]: ex104DoubleCollatz
+stack[1]: ex105DoubleIncBarrierInc
 inlinedChain[1]: past end of chain
-  IRF: ex104DoubleCollatz at example.c:0:0
+  IRF: ex105DoubleIncBarrierInc at example.c:0:0
 pop
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-V: main + 0x003f at example.c:55:3
+V: main + 0x0054 at example.c:65:3
 
-0x0000000100000fa3
+0x0000000100000fa8
 	pop	rbp
 Inlined chain:
 main
-V: main + 0x0043 at example.c:55:3
+V: main + 0x0058 at example.c:65:3
 
-0x0000000100000fa4
+0x0000000100000fa9
 	ret
 Inlined chain:
 main
-RF: main + 0x0044 at example.c:55:3
+RF: main + 0x0059 at example.c:65:3
 pop
 
