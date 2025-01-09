@@ -1,0 +1,978 @@
+push
+CT: main + 0x0000 at example.c:95:0
+0x0000000100000f40
+	push	rbp
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 0
+New chain: 1
+Aligning inlined chain
+Oldest chain link: main
+stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+V: main + 0x0000 at example.c:95:0
+
+0x0000000100000f41
+	mov	rbp, rsp
+Inlined chain:
+main
+V: main + 0x0001 at example.c:95:0
+
+0x0000000100000f44
+	sub	rsp, 32
+Inlined chain:
+main
+V: main + 0x0004 at example.c:95:0
+
+0x0000000100000f48
+	mov	rax, qword ptr [rip + 225]
+Inlined chain:
+main
+V: main + 0x0008 at example.c:96:17
+
+0x0000000100000f4f
+	mov	qword ptr [rbp - 16], rax
+Inlined chain:
+main
+V: main + 0x000f at example.c:96:17
+
+0x0000000100000f53
+	movups	xmm0, xmmword ptr [rip + 198]
+Inlined chain:
+main
+V: main + 0x0013 at example.c:96:17
+
+0x0000000100000f5a
+	movaps	xmmword ptr [rbp - 32], xmm0
+Inlined chain:
+main
+V: main + 0x001a at example.c:96:17
+
+0x0000000100000f5e
+	lea	rsi, [rip + 51]
+Inlined chain:
+main
+V: main + 0x001e at example.c:97:3
+
+0x0000000100000f65
+	lea	rdx, [rip + 50]
+Inlined chain:
+main
+V: main + 0x0025 at example.c:97:3
+
+0x0000000100000f6c
+	lea	rcx, [rip + 47]
+Inlined chain:
+main
+V: main + 0x002c at example.c:97:3
+
+0x0000000100000f73
+	lea	rdi, [rbp - 32]
+Inlined chain:
+main
+V: main + 0x0033 at example.c:97:3
+
+0x0000000100000f77
+	xor	eax, eax
+Inlined chain:
+main
+V: main + 0x0037 at example.c:97:3
+
+0x0000000100000f79
+	call	-238
+Inlined chain:
+main
+push
+Inst. was call-like
+Call return target: 0x0000000100000f7e
+
+0x0000000100000e90
+	push	rbp
+CF: main + 0x0039 at example.c:97:3
+  CT: strbuf_addf + 0x0000 at example.c:88:0
+Inlined chain:
+strbuf_addf
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: strbuf_addf
+stack[1]: strbuf_addf
+Popping any frames not found
+stack[1]: strbuf_addf
+inlinedChain[0]: strbuf_addf
+Pushing any new frames
+  V: strbuf_addf + 0x0000 at example.c:88:0
+
+0x0000000100000e91
+	mov	rbp, rsp
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0001 at example.c:88:0
+
+0x0000000100000e94
+	sub	rsp, 208
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0004 at example.c:88:0
+
+0x0000000100000e9b
+	mov	qword ptr [rbp - 192], rdx
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x000b at example.c:88:0
+
+0x0000000100000ea2
+	mov	qword ptr [rbp - 184], rcx
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0012 at example.c:88:0
+
+0x0000000100000ea9
+	mov	qword ptr [rbp - 176], r8
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0019 at example.c:88:0
+
+0x0000000100000eb0
+	mov	qword ptr [rbp - 168], r9
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0020 at example.c:88:0
+
+0x0000000100000eb7
+	test	al, al
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0027 at example.c:88:0
+
+0x0000000100000eb9
+	je	38
+Inlined chain:
+strbuf_addf
+
+0x0000000100000ee1
+	mov	rax, qword ptr [rip + 288]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0051 at example.c:88:0
+
+0x0000000100000ee8
+	mov	rax, qword ptr [rax]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0058 at example.c:88:0
+
+0x0000000100000eeb
+	mov	qword ptr [rbp - 8], rax
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x005b at example.c:88:0
+
+0x0000000100000eef
+	lea	rax, [rbp - 208]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x005f at example.c:88:0
+
+0x0000000100000ef6
+	mov	qword ptr [rbp - 16], rax
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0066 at example.c:90:3
+
+0x0000000100000efa
+	lea	rax, [rbp + 16]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x006a at example.c:90:3
+
+0x0000000100000efe
+	mov	qword ptr [rbp - 24], rax
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x006e at example.c:90:3
+
+0x0000000100000f02
+	movabs	rax, 206158430224
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0072 at example.c:90:3
+
+0x0000000100000f0c
+	mov	qword ptr [rbp - 32], rax
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x007c at example.c:90:3
+
+0x0000000100000f10
+	lea	rdx, [rbp - 32]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0080 at example.c:90:3
+
+0x0000000100000f14
+	call	-521
+Inlined chain:
+strbuf_addf
+push
+Inst. was call-like
+Call return target: 0x0000000100000f19
+
+0x0000000100000d10
+	push	rbp
+  CF: strbuf_addf + 0x0084 at example.c:91:3
+    CT: strbuf_vaddf + 0x0000 at example.c:72:0
+Inlined chain:
+strbuf_vaddf
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    V: strbuf_vaddf + 0x0000 at example.c:72:0
+
+0x0000000100000d11
+	mov	rbp, rsp
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0001 at example.c:72:0
+
+0x0000000100000d14
+	push	r15
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0004 at example.c:72:0
+
+0x0000000100000d16
+	push	r14
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0006 at example.c:72:0
+
+0x0000000100000d18
+	push	r12
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0008 at example.c:72:0
+
+0x0000000100000d1a
+	push	rbx
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x000a at example.c:72:0
+
+0x0000000100000d1b
+	sub	rsp, 32
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x000b at example.c:72:0
+
+0x0000000100000d1f
+	mov	r14, rdx
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x000f at example.c:72:0
+
+0x0000000100000d22
+	mov	r15, rsi
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0012 at example.c:72:0
+
+0x0000000100000d25
+	mov	rbx, rdi
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0015 at example.c:72:0
+
+0x0000000100000d28
+	mov	rax, qword ptr [rip + 729]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0018 at example.c:72:0
+
+0x0000000100000d2f
+	mov	rax, qword ptr [rax]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x001f at example.c:72:0
+
+0x0000000100000d32
+	mov	qword ptr [rbp - 40], rax
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0022 at example.c:72:0
+
+0x0000000100000d36
+	mov	r12, qword ptr [rdi]
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+Inlined chain changed!
+Old chain: 1
+New chain: 2
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    ICF: strbuf_vaddf at example.c:76:8
+push
+      ICT: strbuf_avail at example.c:51:0
+      V: strbuf_avail + 0xfffffffffec4ea36 at example.c:52:14
+
+0x0000000100000d39
+	test	r12, r12
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+      V: strbuf_avail + 0xfffffffffec4ea39 at example.c:52:10
+
+0x0000000100000d3c
+	je	18
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+
+0x0000000100000d50
+	mov	qword ptr [rbx + 16], 0
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+Inlined chain changed!
+Old chain: 2
+New chain: 2
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[3]: strbuf_avail
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[3]: strbuf_avail
+inlinedChain[1]: strbuf_grow
+      IRF: strbuf_avail at example.c:0:0
+pop
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    ICF: strbuf_vaddf at example.c:77:5
+push
+      ICT: strbuf_grow at example.c:63:0
+      V: strbuf_grow + 0xffff805bc8df8650 at example.c:66:13
+
+0x0000000100000d58
+	mov	rax, qword ptr [rbx + 8]
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea58 at example.c:67:3
+
+0x0000000100000d5c
+	add	rax, 65
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea5c at example.c:67:3
+
+0x0000000100000d60
+	cmp	rax, r12
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea60 at example.c:67:3
+
+0x0000000100000d63
+	jbe	34
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+
+0x0000000100000d65
+	lea	rsi, [r12 + 2*r12]
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xffff805bc8df5e65 at example.c:67:3
+
+0x0000000100000d69
+	add	rsi, 48
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea69 at example.c:67:3
+
+0x0000000100000d6d
+	shr	rsi
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea6d at example.c:67:3
+
+0x0000000100000d70
+	cmp	rsi, rax
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea70 at example.c:67:3
+
+0x0000000100000d73
+	cmovb	rsi, rax
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea73 at example.c:67:3
+
+0x0000000100000d77
+	mov	qword ptr [rbx], rsi
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea77 at example.c:67:3
+
+0x0000000100000d7a
+	mov	rdi, qword ptr [rbx + 16]
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea7a at example.c:67:3
+
+0x0000000100000d7e
+	call	521
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+push
+Inst. was call-like
+Call return target: 0x0000000100000d83
+
+0x0000000100000f8c
+	jmp	qword ptr [rip + 126]
+      CF: strbuf_grow + 0xfffffffffec4ea7e at example.c:67:3
+        CT: Jump to external code
+Inlined chain:
+Inst. moved to external code: 0x00007ff802644e9d
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000d83
+
+0x0000000100000d83
+	mov	qword ptr [rbx + 16], rax
+        CF: Jump to external code
+          CT: External code
+Call return target matches
+pop
+Returning from artificial frame
+        RF: Jump to external code
+pop
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xffff805bc8df8f83 at example.c:67:3
+
+0x0000000100000d87
+	test	r12, r12
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+Inlined chain changed!
+Old chain: 2
+New chain: 2
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[3]: strbuf_grow
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[3]: strbuf_grow
+inlinedChain[1]: strbuf_avail
+      IRF: strbuf_grow at example.c:0:0
+pop
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    ICF: strbuf_vaddf at example.c:76:8
+push
+      ICT: strbuf_avail at example.c:51:0
+      V: strbuf_avail + 0xfffffffffec4ea87 at example.c:52:10
+
+0x0000000100000d8a
+	jne	7
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+Inlined chain changed!
+Old chain: 2
+New chain: 2
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[3]: strbuf_avail
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[3]: strbuf_avail
+inlinedChain[1]: strbuf_grow
+      IRF: strbuf_avail at example.c:0:0
+pop
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    ICF: strbuf_vaddf at example.c:77:5
+push
+      ICT: strbuf_grow at example.c:63:0
+
+0x0000000100000d8c
+	mov	rax, qword ptr [rbx + 16]
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xffff805bc8deff8c at example.c:69:9
+
+0x0000000100000d90
+	mov	byte ptr [rax], 0
+Inlined chain:
+strbuf_vaddf
+strbuf_grow
+      V: strbuf_grow + 0xfffffffffec4ea90 at example.c:69:16
+
+0x0000000100000d93
+	mov	rax, qword ptr [r14 + 16]
+Inlined chain:
+strbuf_vaddf
+Inlined chain changed!
+Old chain: 2
+New chain: 1
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[3]: strbuf_grow
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[3]: strbuf_grow
+inlinedChain[1]: past end of chain
+      IRF: strbuf_grow at example.c:0:0
+pop
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    V: strbuf_vaddf + 0x0083 at example.c:78:3
+
+0x0000000100000d97
+	mov	qword ptr [rbp - 48], rax
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0087 at example.c:78:3
+
+0x0000000100000d9b
+	movups	xmm0, xmmword ptr [r14]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x008b at example.c:78:3
+
+0x0000000100000d9f
+	movaps	xmmword ptr [rbp - 64], xmm0
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x008f at example.c:78:3
+
+0x0000000100000da3
+	mov	rsi, qword ptr [rbx]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0093 at example.c:79:9
+
+0x0000000100000da6
+	mov	rax, qword ptr [rbx + 8]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0096 at example.c:79:9
+
+0x0000000100000daa
+	mov	rdi, qword ptr [rbx + 16]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x009a at example.c:79:9
+
+0x0000000100000dae
+	add	rdi, rax
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x009e at example.c:79:9
+
+0x0000000100000db1
+	sub	rsi, rax
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x00a1 at example.c:79:9
+
+0x0000000100000db4
+	lea	rcx, [rbp - 64]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x00a4 at example.c:79:9
+
+0x0000000100000db8
+	mov	rdx, r15
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x00a8 at example.c:79:9
+
+0x0000000100000dbb
+	call	466
+Inlined chain:
+strbuf_vaddf
+push
+Inst. was call-like
+Call return target: 0x0000000100000dc0
+
+0x0000000100000f92
+	jmp	qword ptr [rip + 128]
+    CF: strbuf_vaddf + 0x00ab at example.c:79:9
+      CT: Jump to external code
+Inlined chain:
+Inst. moved to external code: 0x00007ff8026d2ab3
+Branch is a tail call
+push
+Inst. was call-like
+Call return target: 0x0000000100000dc0
+
+0x0000000100000dc0
+	cdqe
+      CF: Jump to external code
+        CT: External code
+Call return target matches
+pop
+Returning from artificial frame
+      RF: Jump to external code
+pop
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x00b0 at example.c:81:7
+
+0x0000000100000dc2
+	mov	r12, qword ptr [rbx]
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+Inlined chain changed!
+Old chain: 1
+New chain: 2
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    ICF: strbuf_vaddf at example.c:81:13
+push
+      ICT: strbuf_avail at example.c:51:0
+      V: strbuf_avail + 0xfffffffffec4eac2 at example.c:52:14
+
+0x0000000100000dc5
+	test	r12, r12
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+      V: strbuf_avail + 0xfffffffffec4eac5 at example.c:52:10
+
+0x0000000100000dc8
+	je	17
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+
+0x0000000100000dca
+	mov	rcx, qword ptr [rbx + 8]
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+      V: strbuf_avail + 0xffff805bc8df97ca at example.c:52:38
+
+0x0000000100000dce
+	not	rcx
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+      V: strbuf_avail + 0xfffffffffec4eace at example.c:52:42
+
+0x0000000100000dd1
+	add	rcx, r12
+Inlined chain:
+strbuf_vaddf
+strbuf_avail
+      V: strbuf_avail + 0xfffffffffec4ead1 at example.c:52:42
+
+0x0000000100000dd4
+	cmp	rcx, rax
+Inlined chain:
+strbuf_vaddf
+Inlined chain changed!
+Old chain: 2
+New chain: 1
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[3]: strbuf_avail
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[3]: strbuf_avail
+inlinedChain[1]: past end of chain
+      IRF: strbuf_avail at example.c:0:0
+pop
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    V: strbuf_vaddf + 0x00c4 at example.c:81:11
+
+0x0000000100000dd7
+	jb	9
+Inlined chain:
+strbuf_vaddf
+
+0x0000000100000dd9
+	jmp	110
+Inlined chain:
+strbuf_vaddf
+
+0x0000000100000e49
+	cdqe
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0139 at example.c:85:31
+
+0x0000000100000e4b
+	add	rax, qword ptr [rbx + 8]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x013b at example.c:85:29
+
+0x0000000100000e4f
+	mov	qword ptr [rbx + 8], rax
+Inlined chain:
+strbuf_vaddf
+strbuf_setlen
+Inlined chain changed!
+Old chain: 1
+New chain: 2
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    ICF: strbuf_vaddf at example.c:85:3
+push
+      ICT: strbuf_setlen at example.c:55:0
+      V: strbuf_setlen + 0x0000 at example.c:56:11
+
+0x0000000100000e53
+	mov	rcx, qword ptr [rbx + 16]
+Inlined chain:
+strbuf_vaddf
+strbuf_setlen
+      V: strbuf_setlen + 0x0004 at example.c:57:11
+
+0x0000000100000e57
+	lea	rdx, [rip + 474]
+Inlined chain:
+strbuf_vaddf
+strbuf_setlen
+      V: strbuf_setlen + 0x0008 at example.c:57:15
+
+0x0000000100000e5e
+	cmp	rcx, rdx
+Inlined chain:
+strbuf_vaddf
+strbuf_setlen
+      V: strbuf_setlen + 0x000f at example.c:57:15
+
+0x0000000100000e61
+	je	4
+Inlined chain:
+strbuf_vaddf
+strbuf_setlen
+
+0x0000000100000e63
+	mov	byte ptr [rcx + rax], 0
+Inlined chain:
+strbuf_vaddf
+strbuf_setlen
+      V: strbuf_setlen + 0x0014 at example.c:58:18
+
+0x0000000100000e67
+	mov	rax, qword ptr [rip + 410]
+Inlined chain:
+strbuf_vaddf
+Inlined chain changed!
+Old chain: 2
+New chain: 1
+Aligning inlined chain
+Oldest chain link: strbuf_vaddf
+stack[3]: strbuf_setlen
+stack[2]: strbuf_vaddf
+Popping any frames not found
+stack[3]: strbuf_setlen
+inlinedChain[1]: past end of chain
+      IRF: strbuf_setlen at example.c:0:0
+pop
+stack[2]: strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
+Pushing any new frames
+    V: strbuf_vaddf + 0x0157 at example.c:0:18
+
+0x0000000100000e6e
+	mov	rax, qword ptr [rax]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x015e at example.c:0:18
+
+0x0000000100000e71
+	cmp	rax, qword ptr [rbp - 40]
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0161 at example.c:0:18
+
+0x0000000100000e75
+	jne	13
+Inlined chain:
+strbuf_vaddf
+
+0x0000000100000e77
+	add	rsp, 32
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0167 at example.c:86:1
+
+0x0000000100000e7b
+	pop	rbx
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x016b at example.c:86:1
+
+0x0000000100000e7c
+	pop	r12
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x016c at example.c:86:1
+
+0x0000000100000e7e
+	pop	r14
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x016e at example.c:86:1
+
+0x0000000100000e80
+	pop	r15
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0170 at example.c:86:1
+
+0x0000000100000e82
+	pop	rbp
+Inlined chain:
+strbuf_vaddf
+    V: strbuf_vaddf + 0x0172 at example.c:86:1
+
+0x0000000100000e83
+	ret
+Inlined chain:
+strbuf_vaddf
+    RF: strbuf_vaddf + 0x0173 at example.c:86:1
+pop
+
+0x0000000100000f19
+	mov	rax, qword ptr [rip + 232]
+Inlined chain:
+strbuf_addf
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: strbuf_addf
+stack[1]: strbuf_addf
+Popping any frames not found
+stack[1]: strbuf_addf
+inlinedChain[0]: strbuf_addf
+Pushing any new frames
+  V: strbuf_addf + 0x0089 at example.c:0:3
+
+0x0000000100000f20
+	mov	rax, qword ptr [rax]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0090 at example.c:0:3
+
+0x0000000100000f23
+	cmp	rax, qword ptr [rbp - 8]
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0093 at example.c:0:3
+
+0x0000000100000f27
+	jne	9
+Inlined chain:
+strbuf_addf
+
+0x0000000100000f29
+	add	rsp, 208
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x0099 at example.c:93:1
+
+0x0000000100000f30
+	pop	rbp
+Inlined chain:
+strbuf_addf
+  V: strbuf_addf + 0x00a0 at example.c:93:1
+
+0x0000000100000f31
+	ret
+Inlined chain:
+strbuf_addf
+  RF: strbuf_addf + 0x00a1 at example.c:93:1
+pop
+
+0x0000000100000f7e
+	xor	eax, eax
+Inlined chain:
+main
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: main
+stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+V: main + 0x003e at example.c:98:1
+
+0x0000000100000f80
+	add	rsp, 32
+Inlined chain:
+main
+V: main + 0x0040 at example.c:98:1
+
+0x0000000100000f84
+	pop	rbp
+Inlined chain:
+main
+V: main + 0x0044 at example.c:98:1
+
+0x0000000100000f85
+	ret
+Inlined chain:
+main
+RF: main + 0x0045 at example.c:98:1
+pop
+
