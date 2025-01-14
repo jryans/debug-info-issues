@@ -331,14 +331,14 @@ Pushing any new frames
     ICF: strbuf_vaddf at example.c:76:8
 push
       ICT: strbuf_avail at example.c:51:0
-      V: strbuf_avail + 0xfffffffffec4ea36 at example.c:52:14
+      V: strbuf_avail + 0xfffffffffec4dd36 at example.c:52:14
 
 0x0000000100000d39
 	test	r12, r12
 Inlined chain:
 strbuf_vaddf
 strbuf_avail
-      V: strbuf_avail + 0xfffffffffec4ea39 at example.c:52:10
+      V: strbuf_avail + 0xfffffffffec4dd39 at example.c:52:10
 
 0x0000000100000d3c
 	je	18
@@ -369,28 +369,28 @@ Pushing any new frames
     ICF: strbuf_vaddf at example.c:77:5
 push
       ICT: strbuf_grow at example.c:63:0
-      V: strbuf_grow + 0xffff805bc8df8650 at example.c:66:13
+      V: strbuf_grow + 0xffff801564cf8650 at example.c:66:13
 
 0x0000000100000d58
 	mov	rax, qword ptr [rbx + 8]
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea58 at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd58 at example.c:67:3
 
 0x0000000100000d5c
 	add	rax, 65
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea5c at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd5c at example.c:67:3
 
 0x0000000100000d60
 	cmp	rax, r12
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea60 at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd60 at example.c:67:3
 
 0x0000000100000d63
 	jbe	34
@@ -403,49 +403,49 @@ strbuf_grow
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xffff805bc8df5e65 at example.c:67:3
+      V: strbuf_grow + 0xffff801564cf5e65 at example.c:67:3
 
 0x0000000100000d69
 	add	rsi, 48
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea69 at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd69 at example.c:67:3
 
 0x0000000100000d6d
 	shr	rsi
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea6d at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd6d at example.c:67:3
 
 0x0000000100000d70
 	cmp	rsi, rax
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea70 at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd70 at example.c:67:3
 
 0x0000000100000d73
 	cmovb	rsi, rax
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea73 at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd73 at example.c:67:3
 
 0x0000000100000d77
 	mov	qword ptr [rbx], rsi
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea77 at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd77 at example.c:67:3
 
 0x0000000100000d7a
 	mov	rdi, qword ptr [rbx + 16]
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea7a at example.c:67:3
+      V: strbuf_grow + 0xfffffffffec4dd7a at example.c:67:3
 
 0x0000000100000d7e
 	call	521
@@ -458,7 +458,7 @@ Call return target: 0x0000000100000d83
 
 0x0000000100000f8c
 	jmp	qword ptr [rip + 126]
-      CF: strbuf_grow + 0xfffffffffec4ea7e at example.c:67:3
+      CF: strbuf_grow + 0xfffffffffec4dd7e at example.c:67:3
         CT: Jump to external code
 Inlined chain:
 Inst. moved to external code: 0x00007ff802644e9d
@@ -479,7 +479,7 @@ pop
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xffff805bc8df8f83 at example.c:67:3
+      V: strbuf_grow + 0xffff801564cf8f83 at example.c:67:3
 
 0x0000000100000d87
 	test	r12, r12
@@ -501,10 +501,8 @@ pop
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
-    ICF: strbuf_vaddf at example.c:76:8
-push
-      ICT: strbuf_avail at example.c:51:0
-      V: strbuf_avail + 0xfffffffffec4ea87 at example.c:52:10
+Not at entry address, skipping inlined frame
+    V: strbuf_avail + 0xfffffffffec4dd87 at example.c:52:10
 
 0x0000000100000d8a
 	jne	7
@@ -516,33 +514,26 @@ Old chain: 2
 New chain: 2
 Aligning inlined chain
 Oldest chain link: strbuf_vaddf
-stack[3]: strbuf_avail
 stack[2]: strbuf_vaddf
 Popping any frames not found
-stack[3]: strbuf_avail
-inlinedChain[1]: strbuf_grow
-      IRF: strbuf_avail at example.c:0:0
-pop
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
-    ICF: strbuf_vaddf at example.c:77:5
-push
-      ICT: strbuf_grow at example.c:63:0
+Not at entry address, skipping inlined frame
 
 0x0000000100000d8c
 	mov	rax, qword ptr [rbx + 16]
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xffff805bc8deff8c at example.c:69:9
+    V: strbuf_grow + 0xffff801564ceff8c at example.c:69:9
 
 0x0000000100000d90
 	mov	byte ptr [rax], 0
 Inlined chain:
 strbuf_vaddf
 strbuf_grow
-      V: strbuf_grow + 0xfffffffffec4ea90 at example.c:69:16
+    V: strbuf_grow + 0xfffffffffec4dd90 at example.c:69:16
 
 0x0000000100000d93
 	mov	rax, qword ptr [r14 + 16]
@@ -553,13 +544,8 @@ Old chain: 2
 New chain: 1
 Aligning inlined chain
 Oldest chain link: strbuf_vaddf
-stack[3]: strbuf_grow
 stack[2]: strbuf_vaddf
 Popping any frames not found
-stack[3]: strbuf_grow
-inlinedChain[1]: past end of chain
-      IRF: strbuf_grow at example.c:0:0
-pop
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
@@ -675,14 +661,14 @@ Pushing any new frames
     ICF: strbuf_vaddf at example.c:81:13
 push
       ICT: strbuf_avail at example.c:51:0
-      V: strbuf_avail + 0xfffffffffec4eac2 at example.c:52:14
+      V: strbuf_avail + 0xfffffffffec4ddc2 at example.c:52:14
 
 0x0000000100000dc5
 	test	r12, r12
 Inlined chain:
 strbuf_vaddf
 strbuf_avail
-      V: strbuf_avail + 0xfffffffffec4eac5 at example.c:52:10
+      V: strbuf_avail + 0xfffffffffec4ddc5 at example.c:52:10
 
 0x0000000100000dc8
 	je	17
@@ -695,21 +681,21 @@ strbuf_avail
 Inlined chain:
 strbuf_vaddf
 strbuf_avail
-      V: strbuf_avail + 0xffff805bc8df97ca at example.c:52:38
+      V: strbuf_avail + 0xffff801564cf98ca at example.c:52:38
 
 0x0000000100000dce
 	not	rcx
 Inlined chain:
 strbuf_vaddf
 strbuf_avail
-      V: strbuf_avail + 0xfffffffffec4eace at example.c:52:42
+      V: strbuf_avail + 0xfffffffffec4ddce at example.c:52:42
 
 0x0000000100000dd1
 	add	rcx, r12
 Inlined chain:
 strbuf_vaddf
 strbuf_avail
-      V: strbuf_avail + 0xfffffffffec4ead1 at example.c:52:42
+      V: strbuf_avail + 0xfffffffffec4ddd1 at example.c:52:42
 
 0x0000000100000dd4
 	cmp	rcx, rax

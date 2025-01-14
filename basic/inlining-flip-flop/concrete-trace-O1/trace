@@ -14,12 +14,6 @@ CF: main at example.c:97:3
           CT: External code
         RF: Jump to external code
       IRF: strbuf_grow at example.c:0:0
-    ICF: strbuf_vaddf at example.c:76:8
-      ICT: strbuf_avail at example.c:51:0
-      IRF: strbuf_avail at example.c:0:0
-    ICF: strbuf_vaddf at example.c:77:5
-      ICT: strbuf_grow at example.c:63:0
-      IRF: strbuf_grow at example.c:0:0
     CF: strbuf_vaddf at example.c:79:9
       CT: Jump to external code
       CF: Jump to external code
