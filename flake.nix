@@ -30,6 +30,12 @@
             packages = with pkgs; [
             ];
             hardeningDisable = [ "fortify" ];
+            # `NIX_LDFLAGS` sets unneeded self-rpath
+            # and also doesn't handle spaces properly,
+            # so we disable it.
+            shellHook = ''
+              export NIX_LDFLAGS=""
+            '';
           };
         }
       );
