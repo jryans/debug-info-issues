@@ -98,3 +98,5 @@ if [[ "$OS" == 'mac' ]]; then
 else
   CON_COLLECT_INSTRUMENTATION="LD_PRELOAD=${HOME}/Projects/debug-info-concrete-check/binary-instrumentation/build/libcollect-trace-preload.so"
 fi
+
+CON_COMPARE="${HOME}/Projects/debug-info-concrete-check/compare-traces/target/release/debug-info-concrete-compare-traces"
