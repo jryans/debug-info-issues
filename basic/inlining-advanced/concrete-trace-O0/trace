@@ -1,0 +1,43 @@
+CT: config_with_options at config.c:2182:0
+CF: config_with_options at config.c:2212:9
+  CT: do_git_config_sequence at config.c:2124:0
+  CF: do_git_config_sequence at config.c:2126:24
+    CT: git_system_config at config.c:2073:0
+    CF: git_system_config at config.c:2074:40
+      CT: Jump to external code for getenv
+      RF: Jump to external code for getenv
+    CF: git_system_config at config.c:2074:24
+      CT: xstrdup_or_null at git-compat-util.h:1168:0
+      RF: xstrdup_or_null at git-compat-util.h:1169:2
+    CF: git_system_config at config.c:2076:19
+      CT: system_path at exec-cmd.c:262:0
+      CF: system_path at exec-cmd.c:268:2
+        CT: strbuf_addf at strbuf.c:333:0
+        CF: strbuf_addf at strbuf.c:336:2
+          CT: strbuf_vaddf at strbuf.c:390:0
+          CF: strbuf_vaddf at strbuf.c:394:7
+            CT: strbuf_avail at strbuf.h:140:0
+            RF: strbuf_avail at strbuf.h:141:2
+          CF: strbuf_vaddf at strbuf.c:395:3
+            CT: strbuf_grow at strbuf.c:92:0
+            CF: strbuf_grow at strbuf.c:99:2
+              CT: xrealloc at wrapper.c:127:0
+              CF: xrealloc at wrapper.c:135:2
+                CT: memory_limit_check at wrapper.c:18:0
+                RF: memory_limit_check at wrapper.c:35:1
+              CF: xrealloc at wrapper.c:136:8
+                CT: Jump to external code for realloc
+                RF: Jump to external code for realloc
+              RF: xrealloc at wrapper.c:140:1
+            RF: strbuf_grow at strbuf.c:102:1
+          CF: strbuf_vaddf at strbuf.c:397:8
+            CT: Jump to external code for vsnprintf
+            RF: Jump to external code for vsnprintf
+          CF: strbuf_vaddf at strbuf.c:401:12
+            CT: strbuf_avail at strbuf.h:140:0
+            RF: strbuf_avail at strbuf.h:141:2
+          CF: strbuf_vaddf at strbuf.c:407:2
+            CT: strbuf_setlen at strbuf.h:161:0
+            RF: strbuf_setlen at strbuf.h:169:1
+          RF: strbuf_vaddf at strbuf.c:408:1
+        RF: strbuf_addf at strbuf.c:338:1

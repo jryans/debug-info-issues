@@ -1,0 +1,58 @@
+CT: config_with_options at config.c:2182:0
+ICF: config_with_options at config.c:2212:9
+  ICT: do_git_config_sequence at config.c:2122:0
+  ICF: do_git_config_sequence at config.c:2126:24
+    ICT: git_system_config at config.c:2072:0
+    CF: git_system_config at config.c:2074:40
+      CT: Jump to external code for getenv
+      RF: Jump to external code for getenv
+    ICF: git_system_config at config.c:2074:24
+      ICT: xstrdup_or_null at git-compat-util.h:1167:0
+      IRF: xstrdup_or_null at git-compat-util.h:0:0
+    IRF: git_system_config at config.c:0:0
+  ICF: do_git_config_sequence at config.c:2126:24
+    ICT: git_system_config at config.c:2072:0
+    CF: git_system_config at config.c:2076:19
+      CT: system_path at exec-cmd.c:262:0
+      CF: system_path at exec-cmd.c:268:2
+        CT: strbuf_addf at strbuf.c:333:0
+        CF: strbuf_addf at strbuf.c:336:2
+          CT: strbuf_vaddf at strbuf.c:390:0
+          ICF: strbuf_vaddf at strbuf.c:394:7
+            ICT: strbuf_avail at strbuf.h:139:0
+            IRF: strbuf_avail at strbuf.h:0:0
+          ICF: strbuf_vaddf at strbuf.c:395:3
+            ICT: strbuf_grow at strbuf.c:91:0
+            IRF: strbuf_grow at strbuf.c:0:0
+          ICF: strbuf_vaddf at strbuf.c:394:7
+            ICT: strbuf_avail at strbuf.h:139:0
+            IRF: strbuf_avail at strbuf.h:0:0
+          ICF: strbuf_vaddf at strbuf.c:395:3
+            ICT: strbuf_grow at strbuf.c:91:0
+            CF: strbuf_grow at strbuf.c:99:2
+              CT: xrealloc at wrapper.c:127:0
+              ICF: xrealloc at wrapper.c:135:2
+                ICT: memory_limit_check at wrapper.c:17:0
+                IRF: memory_limit_check at wrapper.c:0:0
+              CF: xrealloc at wrapper.c:136:8
+                CT: Jump to external code for realloc
+                RF: Jump to external code for realloc
+              RF: xrealloc at wrapper.c:140:1
+            IRF: strbuf_grow at strbuf.c:0:0
+          ICF: strbuf_vaddf at strbuf.c:394:7
+            ICT: strbuf_avail at strbuf.h:139:0
+            IRF: strbuf_avail at strbuf.h:0:0
+          ICF: strbuf_vaddf at strbuf.c:395:3
+            ICT: strbuf_grow at strbuf.c:91:0
+            IRF: strbuf_grow at strbuf.c:0:0
+          CF: strbuf_vaddf at strbuf.c:397:8
+            CT: Jump to external code for vsnprintf
+            RF: Jump to external code for vsnprintf
+          ICF: strbuf_vaddf at strbuf.c:401:12
+            ICT: strbuf_avail at strbuf.h:139:0
+            IRF: strbuf_avail at strbuf.h:0:0
+          ICF: strbuf_vaddf at strbuf.c:407:2
+            ICT: strbuf_setlen at strbuf.h:160:0
+            IRF: strbuf_setlen at strbuf.h:0:0
+          RF: strbuf_vaddf at strbuf.c:408:1
+        RF: strbuf_addf at strbuf.c:338:1
