@@ -4,38 +4,38 @@ ICF: main at example.c:59:11
   CF: atoi at stdlib.h:483:16
     CT: Jump to external code for strtol
     RF: Jump to external code for strtol
-  IRF: atoi at stdlib.h:0:0
+  IRF: No info for this address
 ICF: main at example.c:62:7
   ICT: ex103DoubleIncBarrier at example.c:34:0
   ICF: ex103DoubleIncBarrier at example.c:36:3
     ICT: inc at example.c:3:0
-    IRF: inc at example.c:0:0
+    IRF: inc at example.c:4:3
   CF: ex103DoubleIncBarrier at example.c:37:3
     CT: barrier at example.c:17:27
     RF: barrier at example.c:19:1
   ICF: ex103DoubleIncBarrier at example.c:38:3
     ICT: inc at example.c:3:0
-    IRF: inc at example.c:0:0
+    IRF: inc at example.c:4:3
   IRF: ex103DoubleIncBarrier at example.c:0:0
 ICF: main at example.c:63:7
   ICT: ex104DoubleCollatz at example.c:42:0
   ICF: ex104DoubleCollatz at example.c:44:7
     ICT: collatz at example.c:7:0
-    IRF: collatz at example.c:0:0
+    IRF: collatz at example.c:8:7
   ICF: ex104DoubleCollatz at example.c:45:7
     ICT: collatz at example.c:7:0
-    IRF: collatz at example.c:0:0
+    IRF: collatz at example.c:8:7
   IRF: ex104DoubleCollatz at example.c:0:0
 ICF: main at example.c:64:7
   ICT: ex105DoubleIncBarrierInc at example.c:49:0
   ICF: ex105DoubleIncBarrierInc at example.c:52:3
     ICT: inc at example.c:3:0
-    IRF: inc at example.c:0:0
+    IRF: inc at example.c:4:3
   CF: ex105DoubleIncBarrierInc at example.c:53:3
     CT: barrier at example.c:17:27
     RF: barrier at example.c:19:1
   ICF: ex105DoubleIncBarrierInc at example.c:54:3
     ICT: inc at example.c:3:0
-    IRF: inc at example.c:0:0
+    IRF: inc at example.c:4:3
   IRF: ex105DoubleIncBarrierInc at example.c:0:0
 RF: main at example.c:65:3

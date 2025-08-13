@@ -1,4 +1,4 @@
-PPID: 922491, PID: 922495
+PPID: 932647, PID: 932651
 Push stack[0]: main
 CT: main + 0x0000 at example.c:58:0
 0x00000000004011e0
@@ -64,7 +64,7 @@ Call return target: 0x00000000004011f0
   CF: atoi + 0x0007 at stdlib.h:483:16
     CT: Jump to external code for strtol
 Inlined chain:
-Inst. moved to external code: 0x00007f86034ef300
+Inst. moved to external code: 0x00007f443e222300
 Branch is a tail call
 stack[2]: <unknown> marked as artificial
 Push stack[3]: <unknown>
@@ -92,7 +92,7 @@ stack[0]: main
 Popping any frames not found
 stack[1]: atoi
 inlinedChain[1]: ex103DoubleIncBarrier
-  IRF: atoi at stdlib.h:0:0
+  IRF: No info for this address
 Pop stack[1]: atoi
 stack[0]: main
 inlinedChain[0]: main
@@ -137,7 +137,7 @@ stack[0]: main
 Popping any frames not found
 stack[2]: inc
 inlinedChain[2]: past end of chain
-    IRF: inc at example.c:0:0
+    IRF: inc + 0x0006 at example.c:4:3
 Pop stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 inlinedChain[1]: ex103DoubleIncBarrier
@@ -236,7 +236,7 @@ stack[0]: main
 Popping any frames not found
 stack[2]: inc
 inlinedChain[2]: collatz
-    IRF: inc at example.c:0:0
+    IRF: inc + 0x0003 at example.c:4:3
 Pop stack[2]: inc
 stack[1]: ex103DoubleIncBarrier
 inlinedChain[1]: ex104DoubleCollatz
@@ -302,7 +302,7 @@ stack[0]: main
 Popping any frames not found
 stack[2]: collatz
 inlinedChain[2]: collatz
-    IRF: collatz at example.c:0:0
+    IRF: collatz + 0x000a at example.c:8:7
 Pop stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 inlinedChain[1]: ex104DoubleCollatz
@@ -361,7 +361,7 @@ stack[0]: main
 Popping any frames not found
 stack[2]: collatz
 inlinedChain[2]: inc
-    IRF: collatz at example.c:0:0
+    IRF: collatz + 0x000a at example.c:8:7
 Pop stack[2]: collatz
 stack[1]: ex104DoubleCollatz
 inlinedChain[1]: ex105DoubleIncBarrierInc
@@ -410,7 +410,7 @@ stack[0]: main
 Popping any frames not found
 stack[2]: inc
 inlinedChain[2]: past end of chain
-    IRF: inc at example.c:0:0
+    IRF: inc + 0x0007 at example.c:4:3
 Pop stack[2]: inc
 stack[1]: ex105DoubleIncBarrierInc
 inlinedChain[1]: ex105DoubleIncBarrierInc
@@ -507,7 +507,7 @@ stack[0]: main
 Popping any frames not found
 stack[2]: inc
 inlinedChain[2]: past end of chain
-    IRF: inc at example.c:0:0
+    IRF: inc + 0x0004 at example.c:4:3
 Pop stack[2]: inc
 stack[1]: ex105DoubleIncBarrierInc
 inlinedChain[1]: past end of chain
