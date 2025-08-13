@@ -1,0 +1,16 @@
+ICF: strbuf_vaddf at strbuf.c:395:3
+  ICT: strbuf_grow at strbuf.c:91:0
+  IRF: strbuf_grow at strbuf.c:0:0
+  ICT: strbuf_grow at strbuf.c:91:0
+  CF: strbuf_grow at strbuf.c:99:2
+    CT: xrealloc at wrapper.c:127:0
+    ICF: xrealloc at wrapper.c:135:2
+      ICT: memory_limit_check at wrapper.c:17:0
+      IRF: memory_limit_check at wrapper.c:0:0
+    CF: xrealloc at wrapper.c:136:8
+      CT: Jump to external code for realloc
+      RF: Jump to external code for realloc
+    RF: xrealloc at wrapper.c:140:1
+  IRF: strbuf_grow at strbuf.c:0:0
+  ICT: strbuf_grow at strbuf.c:91:0
+  IRF: strbuf_grow at strbuf.c:0:0
