@@ -1,7 +1,3 @@
-Analysing divergences…
-
-Divergence analysis complete!
-
 ## Divergences by source coordinates
 
 CoordinatesRemoved
@@ -105,18 +101,13 @@ UnexpectedReturnAdded
 
 Uncategorised
   After events:
-    ICF: do_git_config_sequence at config.c:2126:24
+    ICF: strbuf_vaddf at strbuf.c:394:7
   Occurrences: 1
 
 Uncategorised
   After events:
-    ICF: strbuf_vaddf at strbuf.c:394:7
-  Occurrences: 2
-
-Uncategorised
-  After events:
     ICF: strbuf_vaddf at strbuf.c:395:3
-  Occurrences: 2
+  Occurrences: 1
 
 Uncategorised
   After events:
@@ -133,6 +124,16 @@ Uncategorised
     ICT: strbuf_grow at strbuf.c:91:0
   Occurrences: 2
 
+Uncategorised
+  Before events:
+    CF: strbuf_vaddf at strbuf.c:394:7
+  Occurrences: 1
+
+Uncategorised
+  Before events:
+    CF: strbuf_vaddf at strbuf.c:395:3
+  Occurrences: 1
+
 ## Divergences with unique coordinates by type
 
 CoordinatesRemoved
@@ -145,9 +146,9 @@ UnexpectedReturnAdded
   Unique divergence coordinates: 3
 
 Uncategorised
-  Unique divergence coordinates: 6
+  Unique divergence coordinates: 7
 
 ## Summary
 
-21 unique divergence coordinates
-29 divergence occurrences
+22 unique divergence coordinates
+28 divergence occurrences

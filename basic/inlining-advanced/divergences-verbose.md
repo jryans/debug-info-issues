@@ -1,7 +1,3 @@
-Analysing divergences…
-
-Divergence analysis complete!
-
 ## Divergences by source coordinates
 
 CoordinatesRemoved
@@ -26,7 +22,7 @@ CoordinatesRemoved
   After events:
     IRF: strbuf_grow at strbuf.c:0:0
   Occurrences: 1
-  Example trace lines: -32, +26
+  Example trace lines: -32, +47
 
 CoordinatesRemoved
   Before events:
@@ -82,7 +78,7 @@ CoordinatesChangedSmall
   After events:
     ICT: strbuf_grow at strbuf.c:91:0
   Occurrences: 1
-  Example trace lines: -22, +25
+  Example trace lines: -22, +46
 
 CoordinatesChangedSmall
   Before events:
@@ -116,25 +112,19 @@ UnexpectedReturnAdded
   After events:
     IRF: strbuf_grow at strbuf.c:0:0
   Occurrences: 2
-  Example trace lines: -1, +41
-
-Uncategorised
-  After events:
-    ICF: do_git_config_sequence at config.c:2126:24
-  Occurrences: 1
-  Example trace lines: -1, +13
+  Example trace lines: -1, +26
 
 Uncategorised
   After events:
     ICF: strbuf_vaddf at strbuf.c:394:7
-  Occurrences: 2
-  Example trace lines: -1, +27
+  Occurrences: 1
+  Example trace lines: -1, +21
 
 Uncategorised
   After events:
     ICF: strbuf_vaddf at strbuf.c:395:3
-  Occurrences: 2
-  Example trace lines: -1, +30
+  Occurrences: 1
+  Example trace lines: -1, +24
 
 Uncategorised
   After events:
@@ -152,7 +142,19 @@ Uncategorised
   After events:
     ICT: strbuf_grow at strbuf.c:91:0
   Occurrences: 2
-  Example trace lines: -1, +31
+  Example trace lines: -1, +25
+
+Uncategorised
+  Before events:
+    CF: strbuf_vaddf at strbuf.c:394:7
+  Occurrences: 1
+  Example trace lines: -18, +1
+
+Uncategorised
+  Before events:
+    CF: strbuf_vaddf at strbuf.c:395:3
+  Occurrences: 1
+  Example trace lines: -21, +1
 
 ## Divergences with unique coordinates by type
 
@@ -166,9 +168,9 @@ UnexpectedReturnAdded
   Unique divergence coordinates: 3
 
 Uncategorised
-  Unique divergence coordinates: 6
+  Unique divergence coordinates: 7
 
 ## Summary
 
-21 unique divergence coordinates
-29 divergence occurrences
+22 unique divergence coordinates
+28 divergence occurrences
