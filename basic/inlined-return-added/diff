@@ -1,0 +1,26 @@
+<  CT: check_commit at object-file.c:2328:0
+>  ICT: check_commit at object-file.c:2327:0
+---
++  IRF: check_commit at object-file.c:2332:7
+---
+-  CF: check_commit at object-file.c:2332:7
+-    CT: _ at gettext.h:45:0
+-    CF: _ at gettext.h:48:9
+-      CT: Jump to external code for gettext
+-      RF: Jump to external code for gettext
+-    RF: _ at gettext.h:49:1
+---
++CF: index_mem at object-file.c:0:0
++  CT: _ at gettext.h:45:0
+---
++  CF: _ at gettext.h:48:9
++    CT: Jump to external code for dcgettext
+---
++    RF: Jump to external code for dcgettext
++  RF: _ at gettext.h:49:1
+---
+-  CF: check_commit at object-file.c:2332:3
+-    CT: die at usage.c:172:0
+---
++CF: index_mem at object-file.c:0:0
++  CT: die at usage.c:172:0

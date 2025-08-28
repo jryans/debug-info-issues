@@ -1,0 +1,13 @@
+CF: index_mem at object-file.c:2370:4
+  CT: check_commit at object-file.c:2328:0
+  CF: check_commit at object-file.c:2331:6
+    CT: parse_commit_buffer at commit.c:420:0
+    RF: parse_commit_buffer at commit.c:501:1
+  CF: check_commit at object-file.c:2332:7
+    CT: _ at gettext.h:45:0
+    CF: _ at gettext.h:48:9
+      CT: Jump to external code for gettext
+      RF: Jump to external code for gettext
+    RF: _ at gettext.h:49:1
+  CF: check_commit at object-file.c:2332:3
+    CT: die at usage.c:172:0
