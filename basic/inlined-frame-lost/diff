@@ -1,0 +1,2950 @@
+Diff {
+    before_file_path: Some(
+        "/home/jryans/Projects/Debug Info/Issues/basic/inlined-frame-lost/concrete-trace-O0/trace",
+    ),
+    after_file_path: Some(
+        "/home/jryans/Projects/Debug Info/Issues/basic/inlined-frame-lost/concrete-trace-O1/trace",
+    ),
+    before_trace: Trace {
+        lines: [
+            "CF: git_path at path.c:488:2",
+            "  CT: do_git_path at path.c:432:0",
+            "  CF: do_git_path at path.c:434:2",
+            "    CT: strbuf_worktree_gitdir at path.c:420:0",
+            "    CF: strbuf_worktree_gitdir at path.c:422:3",
+            "      CT: strbuf_addstr at strbuf.h:304:0",
+            "      CF: strbuf_addstr at strbuf.h:305:20",
+            "        CT: Jump to external code for strlen",
+            "        RF: Jump to external code for strlen",
+            "      CF: strbuf_addstr at strbuf.h:305:2",
+            "        CT: strbuf_add at strbuf.c:297:0",
+            "        CF: strbuf_add at strbuf.c:298:2",
+            "          CT: strbuf_grow at strbuf.c:92:0",
+            "          CF: strbuf_grow at strbuf.c:99:2",
+            "            CT: st_mult at git-compat-util.h:991:0",
+            "            RF: st_mult at git-compat-util.h:995:2",
+            "          CF: strbuf_grow at strbuf.c:99:2",
+            "            CT: xrealloc at wrapper.c:127:0",
+            "            CF: xrealloc at wrapper.c:135:2",
+            "              CT: memory_limit_check at wrapper.c:18:0",
+            "              RF: memory_limit_check at wrapper.c:35:1",
+            "            CF: xrealloc at wrapper.c:136:8",
+            "              CT: Jump to external code for realloc",
+            "              RF: Jump to external code for realloc",
+            "            RF: xrealloc at wrapper.c:140:1",
+            "          RF: strbuf_grow at strbuf.c:102:1",
+            "        CF: strbuf_add at strbuf.c:299:2",
+            "          CT: Jump to external code for memcpy",
+            "          RF: Jump to external code for memcpy",
+            "        CF: strbuf_add at strbuf.c:300:2",
+            "          CT: strbuf_setlen at strbuf.h:161:0",
+            "          RF: strbuf_setlen at strbuf.h:169:1",
+            "        RF: strbuf_add at strbuf.c:301:1",
+            "      RF: strbuf_addstr at strbuf.h:306:1",
+            "    RF: strbuf_worktree_gitdir at path.c:427:1",
+        ],
+        events: [
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "git_path at path.c:488:2",
+                location: Location {
+                    function: Some(
+                        "git_path",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        488,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "do_git_path at path.c:432:0",
+                        location: Location {
+                            function: Some(
+                                "do_git_path",
+                            ),
+                            file: Some(
+                                "path.c",
+                            ),
+                            line: Some(
+                                432,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "do_git_path at path.c:432:0",
+                location: Location {
+                    function: Some(
+                        "do_git_path",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        432,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "do_git_path at path.c:434:2",
+                location: Location {
+                    function: Some(
+                        "do_git_path",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        434,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "strbuf_worktree_gitdir at path.c:420:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_worktree_gitdir",
+                            ),
+                            file: Some(
+                                "path.c",
+                            ),
+                            line: Some(
+                                420,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "strbuf_worktree_gitdir at path.c:420:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        420,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_worktree_gitdir at path.c:422:3",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        422,
+                    ),
+                    column: Some(
+                        3,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "strbuf_addstr at strbuf.h:304:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_addstr",
+                            ),
+                            file: Some(
+                                "strbuf.h",
+                            ),
+                            line: Some(
+                                304,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "strbuf_addstr at strbuf.h:304:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_addstr",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        304,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_addstr at strbuf.h:305:20",
+                location: Location {
+                    function: Some(
+                        "strbuf_addstr",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        305,
+                    ),
+                    column: Some(
+                        20,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "Jump to external code for strlen",
+                        location: Location {
+                            function: Some(
+                                "strlen",
+                            ),
+                            file: None,
+                            line: None,
+                            column: None,
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "Jump to external code for strlen",
+                location: Location {
+                    function: Some(
+                        "strlen",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "Jump to external code for strlen",
+                location: Location {
+                    function: Some(
+                        "strlen",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_addstr at strbuf.h:305:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_addstr",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        305,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "strbuf_add at strbuf.c:297:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_add",
+                            ),
+                            file: Some(
+                                "strbuf.c",
+                            ),
+                            line: Some(
+                                297,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "strbuf_add at strbuf.c:297:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        297,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_add at strbuf.c:298:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        298,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "strbuf_grow at strbuf.c:92:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_grow",
+                            ),
+                            file: Some(
+                                "strbuf.c",
+                            ),
+                            line: Some(
+                                92,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "strbuf_grow at strbuf.c:92:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        92,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_grow at strbuf.c:99:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        99,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "st_mult at git-compat-util.h:991:0",
+                        location: Location {
+                            function: Some(
+                                "st_mult",
+                            ),
+                            file: Some(
+                                "git-compat-util.h",
+                            ),
+                            line: Some(
+                                991,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "st_mult at git-compat-util.h:991:0",
+                location: Location {
+                    function: Some(
+                        "st_mult",
+                    ),
+                    file: Some(
+                        "git-compat-util.h",
+                    ),
+                    line: Some(
+                        991,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "st_mult at git-compat-util.h:995:2",
+                location: Location {
+                    function: Some(
+                        "st_mult",
+                    ),
+                    file: Some(
+                        "git-compat-util.h",
+                    ),
+                    line: Some(
+                        995,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_grow at strbuf.c:99:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        99,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "xrealloc at wrapper.c:127:0",
+                        location: Location {
+                            function: Some(
+                                "xrealloc",
+                            ),
+                            file: Some(
+                                "wrapper.c",
+                            ),
+                            line: Some(
+                                127,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "xrealloc at wrapper.c:127:0",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        127,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "xrealloc at wrapper.c:135:2",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        135,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "memory_limit_check at wrapper.c:18:0",
+                        location: Location {
+                            function: Some(
+                                "memory_limit_check",
+                            ),
+                            file: Some(
+                                "wrapper.c",
+                            ),
+                            line: Some(
+                                18,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "memory_limit_check at wrapper.c:18:0",
+                location: Location {
+                    function: Some(
+                        "memory_limit_check",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        18,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "memory_limit_check at wrapper.c:35:1",
+                location: Location {
+                    function: Some(
+                        "memory_limit_check",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        35,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "xrealloc at wrapper.c:136:8",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        136,
+                    ),
+                    column: Some(
+                        8,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "Jump to external code for realloc",
+                        location: Location {
+                            function: Some(
+                                "realloc",
+                            ),
+                            file: None,
+                            line: None,
+                            column: None,
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "Jump to external code for realloc",
+                location: Location {
+                    function: Some(
+                        "realloc",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "Jump to external code for realloc",
+                location: Location {
+                    function: Some(
+                        "realloc",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "xrealloc at wrapper.c:140:1",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        140,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "strbuf_grow at strbuf.c:102:1",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        102,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_add at strbuf.c:299:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        299,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "Jump to external code for memcpy",
+                        location: Location {
+                            function: Some(
+                                "memcpy",
+                            ),
+                            file: None,
+                            line: None,
+                            column: None,
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "Jump to external code for memcpy",
+                location: Location {
+                    function: Some(
+                        "memcpy",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "Jump to external code for memcpy",
+                location: Location {
+                    function: Some(
+                        "memcpy",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_add at strbuf.c:300:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        300,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "strbuf_setlen at strbuf.h:161:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_setlen",
+                            ),
+                            file: Some(
+                                "strbuf.h",
+                            ),
+                            line: Some(
+                                161,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "strbuf_setlen at strbuf.h:161:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_setlen",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        161,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "strbuf_setlen at strbuf.h:169:1",
+                location: Location {
+                    function: Some(
+                        "strbuf_setlen",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        169,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "strbuf_add at strbuf.c:301:1",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        301,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "strbuf_addstr at strbuf.h:306:1",
+                location: Location {
+                    function: Some(
+                        "strbuf_addstr",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        306,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "strbuf_worktree_gitdir at path.c:427:1",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        427,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+        ],
+        tree: Tree {
+            root: TreeNode {
+                index: Root,
+                parent: None,
+                children: [
+                    Node(
+                        0,
+                    ),
+                ],
+            },
+            nodes: [
+                TreeNode {
+                    index: Node(
+                        0,
+                    ),
+                    parent: Some(
+                        Root,
+                    ),
+                    children: [
+                        Node(
+                            1,
+                        ),
+                        Node(
+                            2,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        1,
+                    ),
+                    parent: Some(
+                        Node(
+                            0,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        2,
+                    ),
+                    parent: Some(
+                        Node(
+                            0,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            3,
+                        ),
+                        Node(
+                            4,
+                        ),
+                        Node(
+                            34,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        3,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        4,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            5,
+                        ),
+                        Node(
+                            6,
+                        ),
+                        Node(
+                            9,
+                        ),
+                        Node(
+                            33,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        5,
+                    ),
+                    parent: Some(
+                        Node(
+                            4,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        6,
+                    ),
+                    parent: Some(
+                        Node(
+                            4,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            7,
+                        ),
+                        Node(
+                            8,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        7,
+                    ),
+                    parent: Some(
+                        Node(
+                            6,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        8,
+                    ),
+                    parent: Some(
+                        Node(
+                            6,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        9,
+                    ),
+                    parent: Some(
+                        Node(
+                            4,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            10,
+                        ),
+                        Node(
+                            11,
+                        ),
+                        Node(
+                            26,
+                        ),
+                        Node(
+                            29,
+                        ),
+                        Node(
+                            32,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        10,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        11,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            12,
+                        ),
+                        Node(
+                            13,
+                        ),
+                        Node(
+                            16,
+                        ),
+                        Node(
+                            25,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        12,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        13,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            14,
+                        ),
+                        Node(
+                            15,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        14,
+                    ),
+                    parent: Some(
+                        Node(
+                            13,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        15,
+                    ),
+                    parent: Some(
+                        Node(
+                            13,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        16,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            17,
+                        ),
+                        Node(
+                            18,
+                        ),
+                        Node(
+                            21,
+                        ),
+                        Node(
+                            24,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        17,
+                    ),
+                    parent: Some(
+                        Node(
+                            16,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        18,
+                    ),
+                    parent: Some(
+                        Node(
+                            16,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            19,
+                        ),
+                        Node(
+                            20,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        19,
+                    ),
+                    parent: Some(
+                        Node(
+                            18,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        20,
+                    ),
+                    parent: Some(
+                        Node(
+                            18,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        21,
+                    ),
+                    parent: Some(
+                        Node(
+                            16,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            22,
+                        ),
+                        Node(
+                            23,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        22,
+                    ),
+                    parent: Some(
+                        Node(
+                            21,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        23,
+                    ),
+                    parent: Some(
+                        Node(
+                            21,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        24,
+                    ),
+                    parent: Some(
+                        Node(
+                            16,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        25,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        26,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            27,
+                        ),
+                        Node(
+                            28,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        27,
+                    ),
+                    parent: Some(
+                        Node(
+                            26,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        28,
+                    ),
+                    parent: Some(
+                        Node(
+                            26,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        29,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            30,
+                        ),
+                        Node(
+                            31,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        30,
+                    ),
+                    parent: Some(
+                        Node(
+                            29,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        31,
+                    ),
+                    parent: Some(
+                        Node(
+                            29,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        32,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        33,
+                    ),
+                    parent: Some(
+                        Node(
+                            4,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        34,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [],
+                },
+            ],
+        },
+    },
+    after_trace: Trace {
+        lines: [
+            "CF: git_path at path.c:488:2",
+            "  CT: do_git_path at path.c:432:0",
+            "  ICF: do_git_path at path.c:434:2",
+            "    ICT: strbuf_worktree_gitdir at path.c:417:0",
+            "    CF: strbuf_worktree_gitdir at path.c:0:0",
+            "      CT: Jump to external code for strlen",
+            "      RF: Jump to external code for strlen",
+            "    CF: strbuf_worktree_gitdir at path.c:0:0",
+            "      ICT: strbuf_add at strbuf.c:296:0",
+            "      ICF: strbuf_add at strbuf.c:298:2",
+            "        ICT: strbuf_grow at strbuf.c:91:0",
+            "        CF: strbuf_grow at strbuf.c:99:2",
+            "          CT: xrealloc at wrapper.c:127:0",
+            "          ICF: xrealloc at wrapper.c:135:2",
+            "            ICT: memory_limit_check at wrapper.c:17:0",
+            "            IRF: memory_limit_check at wrapper.c:0:0",
+            "          CF: xrealloc at wrapper.c:136:8",
+            "            CT: Jump to external code for realloc",
+            "            RF: Jump to external code for realloc",
+            "          RF: xrealloc at wrapper.c:140:1",
+            "        IRF: strbuf_grow at strbuf.c:0:0",
+            "      CF: strbuf_add at strbuf.c:299:2",
+            "        CT: Jump to external code for memcpy",
+            "        RF: Jump to external code for memcpy",
+            "      ICF: strbuf_add at strbuf.c:300:2",
+            "        ICT: strbuf_setlen at strbuf.h:160:0",
+            "        IRF: strbuf_setlen at strbuf.h:0:0",
+            "      RF: strbuf_add at strbuf.c:301:1",
+            "    IRF: strbuf_worktree_gitdir at path.c:0:0",
+            "    ICT: strbuf_worktree_gitdir at path.c:417:0",
+            "    IRF: strbuf_worktree_gitdir at path.c:421:7",
+        ],
+        events: [
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "git_path at path.c:488:2",
+                location: Location {
+                    function: Some(
+                        "git_path",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        488,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "do_git_path at path.c:432:0",
+                        location: Location {
+                            function: Some(
+                                "do_git_path",
+                            ),
+                            file: Some(
+                                "path.c",
+                            ),
+                            line: Some(
+                                432,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "do_git_path at path.c:432:0",
+                location: Location {
+                    function: Some(
+                        "do_git_path",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        432,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallFrom,
+                detail: "do_git_path at path.c:434:2",
+                location: Location {
+                    function: Some(
+                        "do_git_path",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        434,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: InlinedChain,
+                        event_type: CallTo,
+                        detail: "strbuf_worktree_gitdir at path.c:417:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_worktree_gitdir",
+                            ),
+                            file: Some(
+                                "path.c",
+                            ),
+                            line: Some(
+                                417,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallTo,
+                detail: "strbuf_worktree_gitdir at path.c:417:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        417,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_worktree_gitdir at path.c:0:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        0,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "Jump to external code for strlen",
+                        location: Location {
+                            function: Some(
+                                "strlen",
+                            ),
+                            file: None,
+                            line: None,
+                            column: None,
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "Jump to external code for strlen",
+                location: Location {
+                    function: Some(
+                        "strlen",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "Jump to external code for strlen",
+                location: Location {
+                    function: Some(
+                        "strlen",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_worktree_gitdir at path.c:0:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        0,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: InlinedChain,
+                        event_type: CallTo,
+                        detail: "strbuf_add at strbuf.c:296:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_add",
+                            ),
+                            file: Some(
+                                "strbuf.c",
+                            ),
+                            line: Some(
+                                296,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallTo,
+                detail: "strbuf_add at strbuf.c:296:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        296,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallFrom,
+                detail: "strbuf_add at strbuf.c:298:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        298,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: InlinedChain,
+                        event_type: CallTo,
+                        detail: "strbuf_grow at strbuf.c:91:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_grow",
+                            ),
+                            file: Some(
+                                "strbuf.c",
+                            ),
+                            line: Some(
+                                91,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallTo,
+                detail: "strbuf_grow at strbuf.c:91:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        91,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_grow at strbuf.c:99:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        99,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "xrealloc at wrapper.c:127:0",
+                        location: Location {
+                            function: Some(
+                                "xrealloc",
+                            ),
+                            file: Some(
+                                "wrapper.c",
+                            ),
+                            line: Some(
+                                127,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "xrealloc at wrapper.c:127:0",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        127,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallFrom,
+                detail: "xrealloc at wrapper.c:135:2",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        135,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: InlinedChain,
+                        event_type: CallTo,
+                        detail: "memory_limit_check at wrapper.c:17:0",
+                        location: Location {
+                            function: Some(
+                                "memory_limit_check",
+                            ),
+                            file: Some(
+                                "wrapper.c",
+                            ),
+                            line: Some(
+                                17,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallTo,
+                detail: "memory_limit_check at wrapper.c:17:0",
+                location: Location {
+                    function: Some(
+                        "memory_limit_check",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        17,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: ReturnFrom,
+                detail: "memory_limit_check at wrapper.c:0:0",
+                location: Location {
+                    function: Some(
+                        "memory_limit_check",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        0,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "xrealloc at wrapper.c:136:8",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        136,
+                    ),
+                    column: Some(
+                        8,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "Jump to external code for realloc",
+                        location: Location {
+                            function: Some(
+                                "realloc",
+                            ),
+                            file: None,
+                            line: None,
+                            column: None,
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "Jump to external code for realloc",
+                location: Location {
+                    function: Some(
+                        "realloc",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "Jump to external code for realloc",
+                location: Location {
+                    function: Some(
+                        "realloc",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "xrealloc at wrapper.c:140:1",
+                location: Location {
+                    function: Some(
+                        "xrealloc",
+                    ),
+                    file: Some(
+                        "wrapper.c",
+                    ),
+                    line: Some(
+                        140,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: ReturnFrom,
+                detail: "strbuf_grow at strbuf.c:0:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_grow",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        0,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallFrom,
+                detail: "strbuf_add at strbuf.c:299:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        299,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: Stack,
+                        event_type: CallTo,
+                        detail: "Jump to external code for memcpy",
+                        location: Location {
+                            function: Some(
+                                "memcpy",
+                            ),
+                            file: None,
+                            line: None,
+                            column: None,
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: Stack,
+                event_type: CallTo,
+                detail: "Jump to external code for memcpy",
+                location: Location {
+                    function: Some(
+                        "memcpy",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "Jump to external code for memcpy",
+                location: Location {
+                    function: Some(
+                        "memcpy",
+                    ),
+                    file: None,
+                    line: None,
+                    column: None,
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallFrom,
+                detail: "strbuf_add at strbuf.c:300:2",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        300,
+                    ),
+                    column: Some(
+                        2,
+                    ),
+                },
+                partner: Some(
+                    Event {
+                        event_source: InlinedChain,
+                        event_type: CallTo,
+                        detail: "strbuf_setlen at strbuf.h:160:0",
+                        location: Location {
+                            function: Some(
+                                "strbuf_setlen",
+                            ),
+                            file: Some(
+                                "strbuf.h",
+                            ),
+                            line: Some(
+                                160,
+                            ),
+                            column: Some(
+                                0,
+                            ),
+                        },
+                        partner: None,
+                    },
+                ),
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallTo,
+                detail: "strbuf_setlen at strbuf.h:160:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_setlen",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        160,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: ReturnFrom,
+                detail: "strbuf_setlen at strbuf.h:0:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_setlen",
+                    ),
+                    file: Some(
+                        "strbuf.h",
+                    ),
+                    line: Some(
+                        0,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: Stack,
+                event_type: ReturnFrom,
+                detail: "strbuf_add at strbuf.c:301:1",
+                location: Location {
+                    function: Some(
+                        "strbuf_add",
+                    ),
+                    file: Some(
+                        "strbuf.c",
+                    ),
+                    line: Some(
+                        301,
+                    ),
+                    column: Some(
+                        1,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: ReturnFrom,
+                detail: "strbuf_worktree_gitdir at path.c:0:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        0,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: CallTo,
+                detail: "strbuf_worktree_gitdir at path.c:417:0",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        417,
+                    ),
+                    column: Some(
+                        0,
+                    ),
+                },
+                partner: None,
+            },
+            Event {
+                event_source: InlinedChain,
+                event_type: ReturnFrom,
+                detail: "strbuf_worktree_gitdir at path.c:421:7",
+                location: Location {
+                    function: Some(
+                        "strbuf_worktree_gitdir",
+                    ),
+                    file: Some(
+                        "path.c",
+                    ),
+                    line: Some(
+                        421,
+                    ),
+                    column: Some(
+                        7,
+                    ),
+                },
+                partner: None,
+            },
+        ],
+        tree: Tree {
+            root: TreeNode {
+                index: Root,
+                parent: None,
+                children: [
+                    Node(
+                        0,
+                    ),
+                ],
+            },
+            nodes: [
+                TreeNode {
+                    index: Node(
+                        0,
+                    ),
+                    parent: Some(
+                        Root,
+                    ),
+                    children: [
+                        Node(
+                            1,
+                        ),
+                        Node(
+                            2,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        1,
+                    ),
+                    parent: Some(
+                        Node(
+                            0,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        2,
+                    ),
+                    parent: Some(
+                        Node(
+                            0,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            3,
+                        ),
+                        Node(
+                            4,
+                        ),
+                        Node(
+                            7,
+                        ),
+                        Node(
+                            28,
+                        ),
+                        Node(
+                            29,
+                        ),
+                        Node(
+                            30,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        3,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        4,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            5,
+                        ),
+                        Node(
+                            6,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        5,
+                    ),
+                    parent: Some(
+                        Node(
+                            4,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        6,
+                    ),
+                    parent: Some(
+                        Node(
+                            4,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        7,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            8,
+                        ),
+                        Node(
+                            9,
+                        ),
+                        Node(
+                            21,
+                        ),
+                        Node(
+                            24,
+                        ),
+                        Node(
+                            27,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        8,
+                    ),
+                    parent: Some(
+                        Node(
+                            7,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        9,
+                    ),
+                    parent: Some(
+                        Node(
+                            7,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            10,
+                        ),
+                        Node(
+                            11,
+                        ),
+                        Node(
+                            20,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        10,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        11,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            12,
+                        ),
+                        Node(
+                            13,
+                        ),
+                        Node(
+                            16,
+                        ),
+                        Node(
+                            19,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        12,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        13,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            14,
+                        ),
+                        Node(
+                            15,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        14,
+                    ),
+                    parent: Some(
+                        Node(
+                            13,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        15,
+                    ),
+                    parent: Some(
+                        Node(
+                            13,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        16,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            17,
+                        ),
+                        Node(
+                            18,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        17,
+                    ),
+                    parent: Some(
+                        Node(
+                            16,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        18,
+                    ),
+                    parent: Some(
+                        Node(
+                            16,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        19,
+                    ),
+                    parent: Some(
+                        Node(
+                            11,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        20,
+                    ),
+                    parent: Some(
+                        Node(
+                            9,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        21,
+                    ),
+                    parent: Some(
+                        Node(
+                            7,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            22,
+                        ),
+                        Node(
+                            23,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        22,
+                    ),
+                    parent: Some(
+                        Node(
+                            21,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        23,
+                    ),
+                    parent: Some(
+                        Node(
+                            21,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        24,
+                    ),
+                    parent: Some(
+                        Node(
+                            7,
+                        ),
+                    ),
+                    children: [
+                        Node(
+                            25,
+                        ),
+                        Node(
+                            26,
+                        ),
+                    ],
+                },
+                TreeNode {
+                    index: Node(
+                        25,
+                    ),
+                    parent: Some(
+                        Node(
+                            24,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        26,
+                    ),
+                    parent: Some(
+                        Node(
+                            24,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        27,
+                    ),
+                    parent: Some(
+                        Node(
+                            7,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        28,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        29,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [],
+                },
+                TreeNode {
+                    index: Node(
+                        30,
+                    ),
+                    parent: Some(
+                        Node(
+                            2,
+                        ),
+                    ),
+                    children: [],
+                },
+            ],
+        },
+    },
+    matching: Some(
+        {
+            Node(
+                34,
+            ) <> Node(
+                28,
+            ),
+            Node(
+                3,
+            ) <> Node(
+                3,
+            ),
+            Root <> Root,
+            Node(
+                1,
+            ) <> Node(
+                1,
+            ),
+            Node(
+                0,
+            ) <> Node(
+                0,
+            ),
+        },
+    ),
+    grouped_diff_ops: [
+        [
+            Insert {
+                old_index: 0,
+                new_index: 2,
+                new_len: 1,
+            },
+        ],
+        [
+            Delete {
+                old_index: 2,
+                old_len: 31,
+                new_index: 0,
+            },
+        ],
+        [
+            Replace {
+                old_index: 3,
+                old_len: 1,
+                new_index: 3,
+                new_len: 1,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 4,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 6,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 8,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 10,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 12,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 14,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 16,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 18,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 20,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 22,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 24,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 26,
+                new_len: 2,
+            },
+        ],
+        [
+            Insert {
+                old_index: 0,
+                new_index: 29,
+                new_len: 2,
+            },
+        ],
+        [
+            Replace {
+                old_index: 34,
+                old_len: 1,
+                new_index: 28,
+                new_len: 1,
+            },
+        ],
+    ],
+}
+
++  ICF: do_git_path at path.c:434:2
+---
+-  CF: do_git_path at path.c:434:2
+-    CT: strbuf_worktree_gitdir at path.c:420:0
+-    CF: strbuf_worktree_gitdir at path.c:422:3
+-      CT: strbuf_addstr at strbuf.h:304:0
+-      CF: strbuf_addstr at strbuf.h:305:20
+-        CT: Jump to external code for strlen
+-        RF: Jump to external code for strlen
+-      CF: strbuf_addstr at strbuf.h:305:2
+-        CT: strbuf_add at strbuf.c:297:0
+-        CF: strbuf_add at strbuf.c:298:2
+-          CT: strbuf_grow at strbuf.c:92:0
+-          CF: strbuf_grow at strbuf.c:99:2
+-            CT: st_mult at git-compat-util.h:991:0
+-            RF: st_mult at git-compat-util.h:995:2
+-          CF: strbuf_grow at strbuf.c:99:2
+-            CT: xrealloc at wrapper.c:127:0
+-            CF: xrealloc at wrapper.c:135:2
+-              CT: memory_limit_check at wrapper.c:18:0
+-              RF: memory_limit_check at wrapper.c:35:1
+-            CF: xrealloc at wrapper.c:136:8
+-              CT: Jump to external code for realloc
+-              RF: Jump to external code for realloc
+-            RF: xrealloc at wrapper.c:140:1
+-          RF: strbuf_grow at strbuf.c:102:1
+-        CF: strbuf_add at strbuf.c:299:2
+-          CT: Jump to external code for memcpy
+-          RF: Jump to external code for memcpy
+-        CF: strbuf_add at strbuf.c:300:2
+-          CT: strbuf_setlen at strbuf.h:161:0
+-          RF: strbuf_setlen at strbuf.h:169:1
+-        RF: strbuf_add at strbuf.c:301:1
+---
+<    CT: strbuf_worktree_gitdir at path.c:420:0
+>    ICT: strbuf_worktree_gitdir at path.c:417:0
+---
++    CF: strbuf_worktree_gitdir at path.c:0:0
++      CT: Jump to external code for strlen
+---
++      RF: Jump to external code for strlen
++    CF: strbuf_worktree_gitdir at path.c:0:0
+---
++      ICT: strbuf_add at strbuf.c:296:0
++      ICF: strbuf_add at strbuf.c:298:2
+---
++        ICT: strbuf_grow at strbuf.c:91:0
++        CF: strbuf_grow at strbuf.c:99:2
+---
++          CT: xrealloc at wrapper.c:127:0
++          ICF: xrealloc at wrapper.c:135:2
+---
++            ICT: memory_limit_check at wrapper.c:17:0
++            IRF: memory_limit_check at wrapper.c:0:0
+---
++          CF: xrealloc at wrapper.c:136:8
++            CT: Jump to external code for realloc
+---
++            RF: Jump to external code for realloc
++          RF: xrealloc at wrapper.c:140:1
+---
++        IRF: strbuf_grow at strbuf.c:0:0
++      CF: strbuf_add at strbuf.c:299:2
+---
++        CT: Jump to external code for memcpy
++        RF: Jump to external code for memcpy
+---
++      ICF: strbuf_add at strbuf.c:300:2
++        ICT: strbuf_setlen at strbuf.h:160:0
+---
++        IRF: strbuf_setlen at strbuf.h:0:0
++      RF: strbuf_add at strbuf.c:301:1
+---
++    ICT: strbuf_worktree_gitdir at path.c:417:0
++    IRF: strbuf_worktree_gitdir at path.c:421:7
+---
+<    RF: strbuf_worktree_gitdir at path.c:427:1
+>    IRF: strbuf_worktree_gitdir at path.c:0:0
+---

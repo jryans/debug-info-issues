@@ -1,0 +1,35 @@
+CF: git_path at path.c:488:2
+  CT: do_git_path at path.c:432:0
+  CF: do_git_path at path.c:434:2
+    CT: strbuf_worktree_gitdir at path.c:420:0
+    CF: strbuf_worktree_gitdir at path.c:422:3
+      CT: strbuf_addstr at strbuf.h:304:0
+      CF: strbuf_addstr at strbuf.h:305:20
+        CT: Jump to external code for strlen
+        RF: Jump to external code for strlen
+      CF: strbuf_addstr at strbuf.h:305:2
+        CT: strbuf_add at strbuf.c:297:0
+        CF: strbuf_add at strbuf.c:298:2
+          CT: strbuf_grow at strbuf.c:92:0
+          CF: strbuf_grow at strbuf.c:99:2
+            CT: st_mult at git-compat-util.h:991:0
+            RF: st_mult at git-compat-util.h:995:2
+          CF: strbuf_grow at strbuf.c:99:2
+            CT: xrealloc at wrapper.c:127:0
+            CF: xrealloc at wrapper.c:135:2
+              CT: memory_limit_check at wrapper.c:18:0
+              RF: memory_limit_check at wrapper.c:35:1
+            CF: xrealloc at wrapper.c:136:8
+              CT: Jump to external code for realloc
+              RF: Jump to external code for realloc
+            RF: xrealloc at wrapper.c:140:1
+          RF: strbuf_grow at strbuf.c:102:1
+        CF: strbuf_add at strbuf.c:299:2
+          CT: Jump to external code for memcpy
+          RF: Jump to external code for memcpy
+        CF: strbuf_add at strbuf.c:300:2
+          CT: strbuf_setlen at strbuf.h:161:0
+          RF: strbuf_setlen at strbuf.h:169:1
+        RF: strbuf_add at strbuf.c:301:1
+      RF: strbuf_addstr at strbuf.h:306:1
+    RF: strbuf_worktree_gitdir at path.c:427:1

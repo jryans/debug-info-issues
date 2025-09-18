@@ -1,0 +1,31 @@
+CF: git_path at path.c:488:2
+  CT: do_git_path at path.c:432:0
+  ICF: do_git_path at path.c:434:2
+    ICT: strbuf_worktree_gitdir at path.c:417:0
+    CF: strbuf_worktree_gitdir at path.c:0:0
+      CT: Jump to external code for strlen
+      RF: Jump to external code for strlen
+    CF: strbuf_worktree_gitdir at path.c:0:0
+      ICT: strbuf_add at strbuf.c:296:0
+      ICF: strbuf_add at strbuf.c:298:2
+        ICT: strbuf_grow at strbuf.c:91:0
+        CF: strbuf_grow at strbuf.c:99:2
+          CT: xrealloc at wrapper.c:127:0
+          ICF: xrealloc at wrapper.c:135:2
+            ICT: memory_limit_check at wrapper.c:17:0
+            IRF: memory_limit_check at wrapper.c:0:0
+          CF: xrealloc at wrapper.c:136:8
+            CT: Jump to external code for realloc
+            RF: Jump to external code for realloc
+          RF: xrealloc at wrapper.c:140:1
+        IRF: strbuf_grow at strbuf.c:0:0
+      CF: strbuf_add at strbuf.c:299:2
+        CT: Jump to external code for memcpy
+        RF: Jump to external code for memcpy
+      ICF: strbuf_add at strbuf.c:300:2
+        ICT: strbuf_setlen at strbuf.h:160:0
+        IRF: strbuf_setlen at strbuf.h:0:0
+      RF: strbuf_add at strbuf.c:301:1
+    IRF: strbuf_worktree_gitdir at path.c:0:0
+    ICT: strbuf_worktree_gitdir at path.c:417:0
+    IRF: strbuf_worktree_gitdir at path.c:421:7
