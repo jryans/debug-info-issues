@@ -1,0 +1,17 @@
+CT: strbuf_vaddf at strbuf.c:390:0
+CF: strbuf_vaddf at strbuf.c:394:7
+  CT: strbuf_avail at strbuf.h:140:0
+  RF: strbuf_avail at strbuf.h:141:2
+CF: strbuf_vaddf at strbuf.c:395:3
+  CT: strbuf_grow at strbuf.c:92:0
+  CF: strbuf_grow at strbuf.c:99:2
+    CT: xrealloc at wrapper.c:127:0
+    CF: xrealloc at wrapper.c:135:2
+      CT: memory_limit_check at wrapper.c:18:0
+      RF: memory_limit_check at wrapper.c:35:1
+    RF: xrealloc at wrapper.c:140:1
+  RF: strbuf_grow at strbuf.c:102:1
+CF: strbuf_vaddf at strbuf.c:401:12
+  CT: strbuf_avail at strbuf.h:140:0
+  RF: strbuf_avail at strbuf.h:141:2
+RF: strbuf_vaddf at strbuf.c:408:1
