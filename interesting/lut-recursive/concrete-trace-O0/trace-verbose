@@ -1,4 +1,4 @@
-PPID: 2463262, PID: 2463275
+PPID: 2485570, PID: 2485574
 Push stack[0]: main
 CT: main + 0x0000 at example.c:16:0
 0x0000000000401130
@@ -712,8 +712,25 @@ inlinedChain[0]: fft_lut_init
 
 0x000000000040120b
 	add	rsp, 32
-Call return target matches
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x009b at example.c:14:1
+
+0x000000000040120f
+	pop	rbp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x009f at example.c:14:1
+
+0x0000000000401210
+	ret
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    RF: fft_lut_init + 0x00a0 at example.c:14:1
 Pop stack[2]: fft_lut_init
+
+0x000000000040120b
+	add	rsp, 32
 Inlined chain:
 inlinedChain[0]: fft_lut_init
   V: fft_lut_init + 0x009b at example.c:14:1
@@ -731,25 +748,6 @@ inlinedChain[0]: fft_lut_init
   RF: fft_lut_init + 0x00a0 at example.c:14:1
 Pop stack[1]: fft_lut_init
 
-0x000000000040120b
-	add	rsp, 32
-Inlined chain:
-inlinedChain[0]: fft_lut_init
-V: fft_lut_init + 0x009b at example.c:14:1
-
-0x000000000040120f
-	pop	rbp
-Inlined chain:
-inlinedChain[0]: fft_lut_init
-V: fft_lut_init + 0x009f at example.c:14:1
-
-0x0000000000401210
-	ret
-Inlined chain:
-inlinedChain[0]: fft_lut_init
-RF: fft_lut_init + 0x00a0 at example.c:14:1
-Pop stack[0]: main
-
 0x0000000000401160
 	xor	eax, eax
 Inlined chain:
@@ -757,3 +755,31 @@ inlinedChain[0]: main
 Inlined chain changed!
 Old chain: 1
 New chain: 1
+Aligning inlined chain
+Oldest chain link: main
+stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+V: main + 0x0030 at example.c:19:3
+
+0x0000000000401162
+	add	rsp, 16
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0032 at example.c:19:3
+
+0x0000000000401166
+	pop	rbp
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0036 at example.c:19:3
+
+0x0000000000401167
+	ret
+Inlined chain:
+inlinedChain[0]: main
+RF: main + 0x0037 at example.c:19:3
+Pop stack[0]: main
+

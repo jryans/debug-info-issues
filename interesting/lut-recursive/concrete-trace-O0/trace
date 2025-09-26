@@ -9,5 +9,6 @@ CF: main at example.c:18:3
     RF: fft_lut_init at example.c:14:1
   CF: fft_lut_init at example.c:12:5
     CT: fft_lut_init at example.c:5:0
+    RF: fft_lut_init at example.c:14:1
   RF: fft_lut_init at example.c:14:1
-RF: fft_lut_init at example.c:14:1
+RF: main at example.c:19:3
