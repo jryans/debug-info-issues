@@ -1,4 +1,4 @@
-CT: main at example.c:95:0
+ICT: main at example.c:95:0
 CF: main at example.c:97:3
   CT: strbuf_addf at example.c:88:0
   CF: strbuf_addf at example.c:91:3
@@ -9,22 +9,24 @@ CF: main at example.c:97:3
     ICF: strbuf_vaddf at example.c:77:5
       ICT: strbuf_grow at example.c:63:0
       CF: strbuf_grow at example.c:67:3
-        CT: Jump to external code
-        CF: Jump to external code
-          CT: External code
-        RF: Jump to external code
-      IRF: strbuf_grow at example.c:0:0
+        CT: Jump to external code for realloc
+        RF: Jump to external code for realloc
+      IRF: strbuf_grow at example.c:67:3
+    ICF: strbuf_vaddf at example.c:76:8
+      ICT: strbuf_avail at example.c:51:0
+      IRF: strbuf_avail at example.c:52:10
+    ICF: strbuf_vaddf at example.c:77:5
+      ICT: strbuf_grow at example.c:63:0
+      IRF: strbuf_grow at example.c:69:16
     CF: strbuf_vaddf at example.c:79:9
-      CT: Jump to external code
-      CF: Jump to external code
-        CT: External code
-      RF: Jump to external code
+      CT: Jump to external code for vsnprintf
+      RF: Jump to external code for vsnprintf
     ICF: strbuf_vaddf at example.c:81:13
       ICT: strbuf_avail at example.c:51:0
-      IRF: strbuf_avail at example.c:0:0
+      IRF: strbuf_avail at example.c:52:42
     ICF: strbuf_vaddf at example.c:85:3
       ICT: strbuf_setlen at example.c:55:0
-      IRF: strbuf_setlen at example.c:0:0
+      IRF: strbuf_setlen at example.c:58:18
     RF: strbuf_vaddf at example.c:86:1
   RF: strbuf_addf at example.c:93:1
 RF: main at example.c:98:1

@@ -1,6 +1,4 @@
-PPID: 932647, PID: 932651
-Push stack[0]: main
-CT: main + 0x0000 at example.c:58:0
+PPID: 2525864, PID: 2525868
 0x00000000004011e0
 	push	rax
 Inlined chain:
@@ -10,11 +8,10 @@ Old chain: 0
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[0]: main
 Popping any frames not found
-stack[0]: main
-inlinedChain[0]: main
 Pushing any new frames
+Push stack[0]: main
+ICT: main at example.c:58:0
 V: main + 0x0000 at example.c:58:0
 
 0x00000000004011e1
@@ -64,7 +61,7 @@ Call return target: 0x00000000004011f0
   CF: atoi + 0x0007 at stdlib.h:483:16
     CT: Jump to external code for strtol
 Inlined chain:
-Inst. moved to external code: 0x00007f443e222300
+Inst. moved to external code: 0x00007f4211da4300
 Branch is a tail call
 stack[2]: <unknown> marked as artificial
 Push stack[3]: <unknown>
@@ -92,7 +89,7 @@ stack[0]: main
 Popping any frames not found
 stack[1]: atoi
 inlinedChain[1]: ex103DoubleIncBarrier
-  IRF: No info for this address
+  IRF: atoi at stdlib.h:0:0
 Pop stack[1]: atoi
 stack[0]: main
 inlinedChain[0]: main

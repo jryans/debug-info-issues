@@ -1,125 +1,123 @@
-push
-CT: main + 0x0000 at example.c:95:0
-0x0000000100000f40
+PPID: 2525378, PID: 2525382
+0x00000000004014c0
 	push	rbp
 Inlined chain:
-main
+inlinedChain[0]: main
 Inlined chain changed!
 Old chain: 0
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[0]: main
 Popping any frames not found
-stack[0]: main
-inlinedChain[0]: main
 Pushing any new frames
+Push stack[0]: main
+ICT: main at example.c:95:0
 V: main + 0x0000 at example.c:95:0
 
-0x0000000100000f41
+0x00000000004014c1
 	mov	rbp, rsp
 Inlined chain:
-main
+inlinedChain[0]: main
 V: main + 0x0001 at example.c:95:0
 
-0x0000000100000f44
+0x00000000004014c4
 	sub	rsp, 48
 Inlined chain:
-main
+inlinedChain[0]: main
 V: main + 0x0004 at example.c:95:0
 
-0x0000000100000f48
+0x00000000004014c8
 	mov	dword ptr [rbp - 4], edi
 Inlined chain:
-main
+inlinedChain[0]: main
 V: main + 0x0008 at example.c:95:0
 
-0x0000000100000f4b
+0x00000000004014cb
 	mov	qword ptr [rbp - 16], rsi
 Inlined chain:
-main
+inlinedChain[0]: main
 V: main + 0x000b at example.c:95:0
 
-0x0000000100000f4f
-	mov	rax, qword ptr [rip + 202]
+0x00000000004014cf
+	mov	rax, qword ptr [4202504]
 Inlined chain:
-main
+inlinedChain[0]: main
 V: main + 0x000f at example.c:96:17
 
-0x0000000100000f56
+0x00000000004014d7
 	mov	qword ptr [rbp - 40], rax
 Inlined chain:
-main
-V: main + 0x0016 at example.c:96:17
+inlinedChain[0]: main
+V: main + 0x0017 at example.c:96:17
 
-0x0000000100000f5a
-	mov	rax, qword ptr [rip + 199]
+0x00000000004014db
+	mov	rax, qword ptr [4202512]
 Inlined chain:
-main
-V: main + 0x001a at example.c:96:17
+inlinedChain[0]: main
+V: main + 0x001b at example.c:96:17
 
-0x0000000100000f61
+0x00000000004014e3
 	mov	qword ptr [rbp - 32], rax
 Inlined chain:
-main
-V: main + 0x0021 at example.c:96:17
+inlinedChain[0]: main
+V: main + 0x0023 at example.c:96:17
 
-0x0000000100000f65
-	mov	rax, qword ptr [rip + 196]
+0x00000000004014e7
+	mov	rax, qword ptr [4202520]
 Inlined chain:
-main
-V: main + 0x0025 at example.c:96:17
+inlinedChain[0]: main
+V: main + 0x0027 at example.c:96:17
 
-0x0000000100000f6c
+0x00000000004014ef
 	mov	qword ptr [rbp - 24], rax
 Inlined chain:
-main
-V: main + 0x002c at example.c:96:17
+inlinedChain[0]: main
+V: main + 0x002f at example.c:96:17
 
-0x0000000100000f70
+0x00000000004014f3
 	lea	rdi, [rbp - 40]
 Inlined chain:
-main
-V: main + 0x0030 at example.c:97:3
+inlinedChain[0]: main
+V: main + 0x0033 at example.c:97:3
 
-0x0000000100000f74
-	lea	rsi, [rip + 47]
+0x00000000004014f7
+	movabs	rsi, 4202528
 Inlined chain:
-main
-V: main + 0x0034 at example.c:97:3
+inlinedChain[0]: main
+V: main + 0x0037 at example.c:97:3
 
-0x0000000100000f7b
-	lea	rdx, [rip + 46]
+0x0000000000401501
+	movabs	rdx, 4202534
 Inlined chain:
-main
-V: main + 0x003b at example.c:97:3
+inlinedChain[0]: main
+V: main + 0x0041 at example.c:97:3
 
-0x0000000100000f82
-	lea	rcx, [rip + 43]
+0x000000000040150b
+	movabs	rcx, 4202538
 Inlined chain:
-main
-V: main + 0x0042 at example.c:97:3
+inlinedChain[0]: main
+V: main + 0x004b at example.c:97:3
 
-0x0000000100000f89
+0x0000000000401515
 	mov	al, 0
 Inlined chain:
-main
-V: main + 0x0049 at example.c:97:3
+inlinedChain[0]: main
+V: main + 0x0055 at example.c:97:3
 
-0x0000000100000f8b
-	call	-288
+0x0000000000401517
+	call	-252
 Inlined chain:
-main
-push
+inlinedChain[0]: main
+Push stack[1]: strbuf_addf
 Inst. was call-like
-Call return target: 0x0000000100000f90
+Call return target: 0x000000000040151c
 
-0x0000000100000e70
+0x0000000000401420
 	push	rbp
-CF: main + 0x004b at example.c:97:3
+CF: main + 0x0057 at example.c:97:3
   CT: strbuf_addf + 0x0000 at example.c:88:0
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -132,157 +130,133 @@ inlinedChain[0]: strbuf_addf
 Pushing any new frames
   V: strbuf_addf + 0x0000 at example.c:88:0
 
-0x0000000100000e71
+0x0000000000401421
 	mov	rbp, rsp
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x0001 at example.c:88:0
 
-0x0000000100000e74
+0x0000000000401424
 	sub	rsp, 224
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x0004 at example.c:88:0
 
-0x0000000100000e7b
+0x000000000040142b
 	test	al, al
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x000b at example.c:88:0
 
-0x0000000100000e7d
+0x000000000040142d
 	je	41
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
 
-0x0000000100000eac
+0x000000000040145c
 	mov	qword ptr [rbp - 184], r9
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x003c at example.c:88:0
 
-0x0000000100000eb3
+0x0000000000401463
 	mov	qword ptr [rbp - 192], r8
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x0043 at example.c:88:0
 
-0x0000000100000eba
+0x000000000040146a
 	mov	qword ptr [rbp - 200], rcx
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x004a at example.c:88:0
 
-0x0000000100000ec1
+0x0000000000401471
 	mov	qword ptr [rbp - 208], rdx
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x0051 at example.c:88:0
 
-0x0000000100000ec8
-	mov	rax, qword ptr [rip + 313]
+0x0000000000401478
+	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
   V: strbuf_addf + 0x0058 at example.c:88:0
 
-0x0000000100000ecf
-	mov	rax, qword ptr [rax]
+0x000000000040147c
+	mov	qword ptr [rbp - 16], rsi
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x005f at example.c:88:0
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x005c at example.c:88:0
 
-0x0000000100000ed2
-	mov	qword ptr [rbp - 8], rax
+0x0000000000401480
+	lea	rax, [rbp - 224]
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0062 at example.c:88:0
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0060 at example.c:88:0
 
-0x0000000100000ed6
-	mov	qword ptr [rbp - 40], rdi
+0x0000000000401487
+	mov	qword ptr [rbp - 32], rax
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0066 at example.c:88:0
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0067 at example.c:90:3
 
-0x0000000100000eda
-	mov	qword ptr [rbp - 48], rsi
+0x000000000040148b
+	lea	rax, [rbp + 16]
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x006a at example.c:88:0
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x006b at example.c:90:3
 
-0x0000000100000ede
-	lea	rax, [rbp - 32]
+0x000000000040148f
+	mov	qword ptr [rbp - 40], rax
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x006e at example.c:90:3
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x006f at example.c:90:3
 
-0x0000000100000ee2
-	lea	rcx, [rbp - 224]
+0x0000000000401493
+	mov	dword ptr [rbp - 44], 48
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0072 at example.c:90:3
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0073 at example.c:90:3
 
-0x0000000100000ee9
-	mov	qword ptr [rax + 16], rcx
+0x000000000040149a
+	mov	dword ptr [rbp - 48], 16
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0079 at example.c:90:3
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x007a at example.c:90:3
 
-0x0000000100000eed
-	lea	rcx, [rbp + 16]
+0x00000000004014a1
+	mov	rdi, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x007d at example.c:90:3
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0081 at example.c:91:16
 
-0x0000000100000ef1
-	mov	qword ptr [rax + 8], rcx
+0x00000000004014a5
+	mov	rsi, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0081 at example.c:90:3
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0085 at example.c:91:20
 
-0x0000000100000ef5
-	mov	dword ptr [rax + 4], 48
+0x00000000004014a9
+	lea	rdx, [rbp - 48]
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0085 at example.c:90:3
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0089 at example.c:91:20
 
-0x0000000100000efc
-	mov	dword ptr [rax], 16
+0x00000000004014ad
+	call	-562
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x008c at example.c:90:3
-
-0x0000000100000f02
-	mov	rdi, qword ptr [rbp - 40]
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0092 at example.c:91:16
-
-0x0000000100000f06
-	mov	rsi, qword ptr [rbp - 48]
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x0096 at example.c:91:20
-
-0x0000000100000f0a
-	lea	rdx, [rbp - 32]
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x009a at example.c:91:25
-
-0x0000000100000f0e
-	call	-627
-Inlined chain:
-strbuf_addf
-push
+inlinedChain[0]: strbuf_addf
+Push stack[2]: strbuf_vaddf
 Inst. was call-like
-Call return target: 0x0000000100000f13
+Call return target: 0x00000000004014b2
 
-0x0000000100000ca0
+0x0000000000401280
 	push	rbp
-  CF: strbuf_addf + 0x009e at example.c:91:3
+  CF: strbuf_addf + 0x008d at example.c:91:3
     CT: strbuf_vaddf + 0x0000 at example.c:72:0
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -295,74 +269,56 @@ inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
     V: strbuf_vaddf + 0x0000 at example.c:72:0
 
-0x0000000100000ca1
+0x0000000000401281
 	mov	rbp, rsp
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
     V: strbuf_vaddf + 0x0001 at example.c:72:0
 
-0x0000000100000ca4
+0x0000000000401284
 	sub	rsp, 80
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
     V: strbuf_vaddf + 0x0004 at example.c:72:0
 
-0x0000000100000ca8
-	mov	rax, qword ptr [rip + 857]
+0x0000000000401288
+	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
     V: strbuf_vaddf + 0x0008 at example.c:72:0
 
-0x0000000100000caf
-	mov	rax, qword ptr [rax]
+0x000000000040128c
+	mov	qword ptr [rbp - 16], rsi
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x000f at example.c:72:0
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x000c at example.c:72:0
 
-0x0000000100000cb2
-	mov	qword ptr [rbp - 8], rax
+0x0000000000401290
+	mov	qword ptr [rbp - 24], rdx
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0012 at example.c:72:0
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0010 at example.c:72:0
 
-0x0000000100000cb6
-	mov	qword ptr [rbp - 40], rdi
+0x0000000000401294
+	mov	rdi, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0016 at example.c:72:0
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0014 at example.c:76:21
 
-0x0000000100000cba
-	mov	qword ptr [rbp - 48], rsi
+0x0000000000401298
+	call	227
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x001a at example.c:72:0
-
-0x0000000100000cbe
-	mov	qword ptr [rbp - 56], rdx
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x001e at example.c:72:0
-
-0x0000000100000cc2
-	mov	rdi, qword ptr [rbp - 40]
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0022 at example.c:76:21
-
-0x0000000100000cc6
-	call	277
-Inlined chain:
-strbuf_vaddf
-push
+inlinedChain[0]: strbuf_vaddf
+Push stack[3]: strbuf_avail
 Inst. was call-like
-Call return target: 0x0000000100000ccb
+Call return target: 0x000000000040129d
 
-0x0000000100000de0
+0x0000000000401380
 	push	rbp
-    CF: strbuf_vaddf + 0x0026 at example.c:76:8
+    CF: strbuf_vaddf + 0x0018 at example.c:76:8
       CT: strbuf_avail + 0x0000 at example.c:51:0
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -375,75 +331,75 @@ inlinedChain[0]: strbuf_avail
 Pushing any new frames
       V: strbuf_avail + 0x0000 at example.c:51:0
 
-0x0000000100000de1
+0x0000000000401381
 	mov	rbp, rsp
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0001 at example.c:51:0
 
-0x0000000100000de4
+0x0000000000401384
 	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0004 at example.c:51:0
 
-0x0000000100000de8
+0x0000000000401388
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0008 at example.c:52:10
 
-0x0000000100000dec
+0x000000000040138c
 	cmp	qword ptr [rax], 0
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x000c at example.c:52:10
 
-0x0000000100000df0
+0x0000000000401390
 	je	28
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
 
-0x0000000100000e12
+0x00000000004013b2
 	xor	eax, eax
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0032 at example.c:52:10
 
-0x0000000100000e14
+0x00000000004013b4
 	mov	qword ptr [rbp - 16], rax
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0034 at example.c:52:10
 
-0x0000000100000e18
+0x00000000004013b8
 	jmp	0
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
 
-0x0000000100000e1d
+0x00000000004013bd
 	mov	rax, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x003d at example.c:0:10
 
-0x0000000100000e21
+0x00000000004013c1
 	pop	rbp
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0041 at example.c:52:3
 
-0x0000000100000e22
+0x00000000004013c2
 	ret
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       RF: strbuf_avail + 0x0042 at example.c:52:3
-pop
+Pop stack[3]: strbuf_avail
 
-0x0000000100000ccb
+0x000000000040129d
 	cmp	rax, 0
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -454,39 +410,39 @@ Popping any frames not found
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
-    V: strbuf_vaddf + 0x002b at example.c:76:8
+    V: strbuf_vaddf + 0x001d at example.c:76:8
 
-0x0000000100000ccf
+0x00000000004012a1
 	jne	14
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 
-0x0000000100000cd5
-	mov	rdi, qword ptr [rbp - 40]
+0x00000000004012a7
+	mov	rdi, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0035 at example.c:77:17
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0027 at example.c:77:17
 
-0x0000000100000cd9
+0x00000000004012ab
 	mov	esi, 64
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0039 at example.c:77:5
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x002b at example.c:77:5
 
-0x0000000100000cde
-	call	-387
+0x00000000004012b0
+	call	-373
 Inlined chain:
-strbuf_vaddf
-push
+inlinedChain[0]: strbuf_vaddf
+Push stack[3]: strbuf_grow
 Inst. was call-like
-Call return target: 0x0000000100000ce3
+Call return target: 0x00000000004012b5
 
-0x0000000100000b60
+0x0000000000401140
 	push	rbp
-    CF: strbuf_vaddf + 0x003e at example.c:77:5
+    CF: strbuf_vaddf + 0x0030 at example.c:77:5
       CT: strbuf_grow + 0x0000 at example.c:63:0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -499,297 +455,297 @@ inlinedChain[0]: strbuf_grow
 Pushing any new frames
       V: strbuf_grow + 0x0000 at example.c:63:0
 
-0x0000000100000b61
+0x0000000000401141
 	mov	rbp, rsp
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0001 at example.c:63:0
 
-0x0000000100000b64
+0x0000000000401144
 	sub	rsp, 32
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0004 at example.c:63:0
 
-0x0000000100000b68
+0x0000000000401148
 	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0008 at example.c:63:0
 
-0x0000000100000b6c
+0x000000000040114c
 	mov	qword ptr [rbp - 16], rsi
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x000c at example.c:63:0
 
-0x0000000100000b70
+0x0000000000401150
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0010 at example.c:64:18
 
-0x0000000100000b74
+0x0000000000401154
 	cmp	qword ptr [rax], 0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0014 at example.c:64:17
 
-0x0000000100000b78
+0x0000000000401158
 	setne	al
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0018 at example.c:64:17
 
-0x0000000100000b7b
+0x000000000040115b
 	xor	al, -1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x001b at example.c:64:17
 
-0x0000000100000b7d
+0x000000000040115d
 	and	al, 1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x001d at example.c:64:17
 
-0x0000000100000b7f
+0x000000000040115f
 	movzx	eax, al
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x001f at example.c:64:17
 
-0x0000000100000b82
+0x0000000000401162
 	mov	dword ptr [rbp - 20], eax
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0022 at example.c:64:7
 
-0x0000000100000b85
+0x0000000000401165
 	cmp	dword ptr [rbp - 20], 0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0025 at example.c:65:7
 
-0x0000000100000b89
+0x0000000000401169
 	je	12
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000b8f
+0x000000000040116f
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x002f at example.c:66:5
 
-0x0000000100000b93
+0x0000000000401173
 	mov	qword ptr [rax + 16], 0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0033 at example.c:66:13
 
-0x0000000100000b9b
+0x000000000040117b
 	jmp	0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000ba0
+0x0000000000401180
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0040 at example.c:67:3
 
-0x0000000100000ba4
+0x0000000000401184
 	mov	rax, qword ptr [rax + 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0044 at example.c:67:3
 
-0x0000000100000ba8
+0x0000000000401188
 	add	rax, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0048 at example.c:67:3
 
-0x0000000100000bac
+0x000000000040118c
 	add	rax, 1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x004c at example.c:67:3
 
-0x0000000100000bb0
+0x0000000000401190
 	mov	rcx, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0050 at example.c:67:3
 
-0x0000000100000bb4
+0x0000000000401194
 	cmp	rax, qword ptr [rcx]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0054 at example.c:67:3
 
-0x0000000100000bb7
+0x0000000000401197
 	jbe	150
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000bbd
+0x000000000040119d
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x005d at example.c:67:3
 
-0x0000000100000bc1
+0x00000000004011a1
 	mov	rax, qword ptr [rax]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0061 at example.c:67:3
 
-0x0000000100000bc4
+0x00000000004011a4
 	add	rax, 16
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0064 at example.c:67:3
 
-0x0000000100000bc8
+0x00000000004011a8
 	imul	rax, rax, 3
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0068 at example.c:67:3
 
-0x0000000100000bcc
+0x00000000004011ac
 	shr	rax, 1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x006c at example.c:67:3
 
-0x0000000100000bd0
+0x00000000004011b0
 	mov	rcx, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0070 at example.c:67:3
 
-0x0000000100000bd4
+0x00000000004011b4
 	mov	rcx, qword ptr [rcx + 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0074 at example.c:67:3
 
-0x0000000100000bd8
+0x00000000004011b8
 	add	rcx, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0078 at example.c:67:3
 
-0x0000000100000bdc
+0x00000000004011bc
 	add	rcx, 1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x007c at example.c:67:3
 
-0x0000000100000be0
+0x00000000004011c0
 	cmp	rax, rcx
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0080 at example.c:67:3
 
-0x0000000100000be3
+0x00000000004011c3
 	jae	28
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000be9
+0x00000000004011c9
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0089 at example.c:67:3
 
-0x0000000100000bed
+0x00000000004011cd
 	mov	rcx, qword ptr [rax + 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x008d at example.c:67:3
 
-0x0000000100000bf1
+0x00000000004011d1
 	add	rcx, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0091 at example.c:67:3
 
-0x0000000100000bf5
+0x00000000004011d5
 	add	rcx, 1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0095 at example.c:67:3
 
-0x0000000100000bf9
+0x00000000004011d9
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0099 at example.c:67:3
 
-0x0000000100000bfd
+0x00000000004011dd
 	mov	qword ptr [rax], rcx
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x009d at example.c:67:3
 
-0x0000000100000c00
+0x00000000004011e0
 	jmp	26
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000c1f
+0x00000000004011ff
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00bf at example.c:67:3
 
-0x0000000100000c23
+0x0000000000401203
 	mov	rax, qword ptr [rax + 16]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00c3 at example.c:67:3
 
-0x0000000100000c27
+0x0000000000401207
 	mov	qword ptr [rbp - 32], rax
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00c7 at example.c:67:3
 
-0x0000000100000c2b
+0x000000000040120b
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00cb at example.c:67:3
 
-0x0000000100000c2f
+0x000000000040120f
 	mov	rsi, qword ptr [rax]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00cf at example.c:67:3
 
-0x0000000100000c32
+0x0000000000401212
 	mov	edi, 1
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00d2 at example.c:67:3
 
-0x0000000100000c37
+0x0000000000401217
 	call	68
 Inlined chain:
-strbuf_grow
-push
+inlinedChain[0]: strbuf_grow
+Push stack[4]: st_mult
 Inst. was call-like
-Call return target: 0x0000000100000c3c
+Call return target: 0x000000000040121c
 
-0x0000000100000c80
+0x0000000000401260
 	push	rbp
       CF: strbuf_grow + 0x00d7 at example.c:67:3
         CT: st_mult + 0x0000 at example.c:20:0
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -802,53 +758,53 @@ inlinedChain[0]: st_mult
 Pushing any new frames
         V: st_mult + 0x0000 at example.c:20:0
 
-0x0000000100000c81
+0x0000000000401261
 	mov	rbp, rsp
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         V: st_mult + 0x0001 at example.c:20:0
 
-0x0000000100000c84
+0x0000000000401264
 	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         V: st_mult + 0x0004 at example.c:20:0
 
-0x0000000100000c88
+0x0000000000401268
 	mov	qword ptr [rbp - 16], rsi
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         V: st_mult + 0x0008 at example.c:20:0
 
-0x0000000100000c8c
+0x000000000040126c
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         V: st_mult + 0x000c at example.c:20:59
 
-0x0000000100000c90
+0x0000000000401270
 	imul	rax, qword ptr [rbp - 16]
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         V: st_mult + 0x0010 at example.c:20:61
 
-0x0000000100000c95
+0x0000000000401275
 	pop	rbp
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         V: st_mult + 0x0015 at example.c:20:52
 
-0x0000000100000c96
+0x0000000000401276
 	ret
 Inlined chain:
-st_mult
+inlinedChain[0]: st_mult
         RF: st_mult + 0x0016 at example.c:20:52
-pop
+Pop stack[4]: st_mult
 
-0x0000000100000c3c
+0x000000000040121c
 	mov	rdi, qword ptr [rbp - 32]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -861,113 +817,112 @@ inlinedChain[0]: strbuf_grow
 Pushing any new frames
       V: strbuf_grow + 0x00dc at example.c:67:3
 
-0x0000000100000c40
+0x0000000000401220
 	mov	rsi, rax
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00e0 at example.c:67:3
 
-0x0000000100000c43
-	call	860
+0x0000000000401223
+	call	-488
 Inlined chain:
-strbuf_grow
-push
+inlinedChain[0]: strbuf_grow
+Push stack[4]: <unknown>
 Inst. was call-like
-Call return target: 0x0000000100000c48
+Call return target: 0x0000000000401228
 
-0x0000000100000fa4
-	jmp	qword ptr [rip + 110]
+0x0000000000401040
+	jmp	qword ptr [rip + 12194]
       CF: strbuf_grow + 0x00e3 at example.c:67:3
-        CT: Jump to external code
+        CT: Jump to external code for realloc
 Inlined chain:
-Inst. moved to external code: 0x00007ff802644e9d
+Inst. moved to external code: 0x00007fdcf2543bb0
 Branch is a tail call
-push
+stack[4]: <unknown> marked as artificial
+Push stack[5]: <unknown>
 Inst. was call-like
-Call return target: 0x0000000100000c48
+Call return target: 0x0000000000401228
 
-0x0000000100000c48
+0x0000000000401228
 	mov	rcx, rax
-        CF: Jump to external code
-          CT: External code
 Call return target matches
-pop
+Pop stack[5]: <unknown>
 Returning from artificial frame
-        RF: Jump to external code
-pop
+        RF: Jump to external code for realloc
+Pop stack[4]: <unknown>
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00e8 at example.c:67:3
 
-0x0000000100000c4b
+0x000000000040122b
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00eb at example.c:67:3
 
-0x0000000100000c4f
+0x000000000040122f
 	mov	qword ptr [rax + 16], rcx
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00ef at example.c:67:3
 
-0x0000000100000c53
+0x0000000000401233
 	jmp	0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000c58
+0x0000000000401238
 	cmp	dword ptr [rbp - 20], 0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x00f8 at example.c:68:7
 
-0x0000000100000c5c
+0x000000000040123c
 	je	11
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
 
-0x0000000100000c62
+0x0000000000401242
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0102 at example.c:69:5
 
-0x0000000100000c66
+0x0000000000401246
 	mov	rax, qword ptr [rax + 16]
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0106 at example.c:69:9
 
-0x0000000100000c6a
+0x000000000040124a
 	mov	byte ptr [rax], 0
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x010a at example.c:69:16
 
-0x0000000100000c6d
+0x000000000040124d
 	add	rsp, 32
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x010d at example.c:70:1
 
-0x0000000100000c71
+0x0000000000401251
 	pop	rbp
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       V: strbuf_grow + 0x0111 at example.c:70:1
 
-0x0000000100000c72
+0x0000000000401252
 	ret
 Inlined chain:
-strbuf_grow
+inlinedChain[0]: strbuf_grow
       RF: strbuf_grow + 0x0112 at example.c:70:1
-pop
+Pop stack[3]: strbuf_grow
 
-0x0000000100000ce3
-	lea	rax, [rbp - 32]
+0x00000000004012b5
+	lea	rax, [rbp - 64]
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -978,180 +933,167 @@ Popping any frames not found
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
-    V: strbuf_vaddf + 0x0043 at example.c:78:3
+    V: strbuf_vaddf + 0x0035 at example.c:78:3
 
-0x0000000100000ce7
-	mov	rcx, qword ptr [rbp - 56]
+0x00000000004012b9
+	mov	rcx, qword ptr [rbp - 24]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0047 at example.c:78:3
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0039 at example.c:78:3
 
-0x0000000100000ceb
+0x00000000004012bd
 	mov	rdx, qword ptr [rcx + 16]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x004b at example.c:78:3
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x003d at example.c:78:3
 
-0x0000000100000cef
+0x00000000004012c1
 	mov	qword ptr [rax + 16], rdx
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x004f at example.c:78:3
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0041 at example.c:78:3
 
-0x0000000100000cf3
+0x00000000004012c5
 	movups	xmm0, xmmword ptr [rcx]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0053 at example.c:78:3
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0045 at example.c:78:3
 
-0x0000000100000cf6
+0x00000000004012c8
 	movups	xmmword ptr [rax], xmm0
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0056 at example.c:78:3
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0048 at example.c:78:3
 
-0x0000000100000cf9
-	mov	rax, qword ptr [rbp - 40]
+0x00000000004012cb
+	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0059 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x004b at example.c:79:19
 
-0x0000000100000cfd
+0x00000000004012cf
 	mov	rdi, qword ptr [rax + 16]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x005d at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x004f at example.c:79:23
 
-0x0000000100000d01
-	mov	rax, qword ptr [rbp - 40]
+0x00000000004012d3
+	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0061 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0053 at example.c:79:29
 
-0x0000000100000d05
+0x00000000004012d7
 	add	rdi, qword ptr [rax + 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0065 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0057 at example.c:79:27
 
-0x0000000100000d09
-	mov	rax, qword ptr [rbp - 40]
+0x00000000004012db
+	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0069 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x005b at example.c:79:38
 
-0x0000000100000d0d
+0x00000000004012df
 	mov	rsi, qword ptr [rax]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x006d at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x005f at example.c:79:42
 
-0x0000000100000d10
-	mov	rax, qword ptr [rbp - 40]
+0x00000000004012e2
+	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0070 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0062 at example.c:79:50
 
-0x0000000100000d14
+0x00000000004012e6
 	sub	rsi, qword ptr [rax + 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0074 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0066 at example.c:79:48
 
-0x0000000100000d18
-	mov	r8, qword ptr [rbp - 48]
+0x00000000004012ea
+	mov	rdx, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0078 at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x006a at example.c:79:59
 
-0x0000000100000d1c
-	lea	r9, [rbp - 32]
+0x00000000004012ee
+	lea	rcx, [rbp - 64]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x007c at example.c:79:9
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x006e at example.c:79:64
 
-0x0000000100000d20
-	xor	edx, edx
+0x00000000004012f2
+	call	-711
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0080 at example.c:79:9
-
-0x0000000100000d22
-	mov	rcx, -1
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0082 at example.c:79:9
-
-0x0000000100000d29
-	call	624
-Inlined chain:
-strbuf_vaddf
-push
+inlinedChain[0]: strbuf_vaddf
+Push stack[3]: <unknown>
 Inst. was call-like
-Call return target: 0x0000000100000d2e
+Call return target: 0x00000000004012f7
 
-0x0000000100000f9e
-	jmp	qword ptr [rip + 108]
-    CF: strbuf_vaddf + 0x0089 at example.c:79:9
-      CT: Jump to external code
+0x0000000000401030
+	jmp	qword ptr [rip + 12202]
+    CF: strbuf_vaddf + 0x0072 at example.c:79:9
+      CT: Jump to external code for vsnprintf
 Inlined chain:
-Inst. moved to external code: 0x00007ff8026e07ee
+Inst. moved to external code: 0x00007fdcf2526b80
 Branch is a tail call
-push
+stack[3]: <unknown> marked as artificial
+Push stack[4]: <unknown>
 Inst. was call-like
-Call return target: 0x0000000100000d2e
+Call return target: 0x00000000004012f7
 
-0x0000000100000d2e
-	mov	dword ptr [rbp - 60], eax
-      CF: Jump to external code
-        CT: External code
+0x00000000004012f7
+	mov	dword ptr [rbp - 28], eax
 Call return target matches
-pop
+Pop stack[4]: <unknown>
 Returning from artificial frame
-      RF: Jump to external code
-pop
+      RF: Jump to external code for vsnprintf
+Pop stack[3]: <unknown>
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x008e at example.c:79:7
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0077 at example.c:79:7
 
-0x0000000100000d31
-	lea	rax, [rbp - 32]
+0x00000000004012fa
+	lea	rax, [rbp - 64]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0091 at example.c:80:3
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x007a at example.c:80:3
 
-0x0000000100000d35
-	movsxd	rax, dword ptr [rbp - 60]
+0x00000000004012fe
+	movsxd	rax, dword ptr [rbp - 28]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0095 at example.c:81:7
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x007e at example.c:81:7
 
-0x0000000100000d39
+0x0000000000401302
 	mov	qword ptr [rbp - 72], rax
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0099 at example.c:81:7
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0082 at example.c:81:7
 
-0x0000000100000d3d
-	mov	rdi, qword ptr [rbp - 40]
+0x0000000000401306
+	mov	rdi, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x009d at example.c:81:26
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0086 at example.c:81:26
 
-0x0000000100000d41
-	call	154
+0x000000000040130a
+	call	113
 Inlined chain:
-strbuf_vaddf
-push
+inlinedChain[0]: strbuf_vaddf
+Push stack[3]: strbuf_avail
 Inst. was call-like
-Call return target: 0x0000000100000d46
+Call return target: 0x000000000040130f
 
-0x0000000100000de0
+0x0000000000401380
 	push	rbp
-    CF: strbuf_vaddf + 0x00a1 at example.c:81:13
+    CF: strbuf_vaddf + 0x008a at example.c:81:13
       CT: strbuf_avail + 0x0000 at example.c:51:0
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -1164,99 +1106,99 @@ inlinedChain[0]: strbuf_avail
 Pushing any new frames
       V: strbuf_avail + 0x0000 at example.c:51:0
 
-0x0000000100000de1
+0x0000000000401381
 	mov	rbp, rsp
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0001 at example.c:51:0
 
-0x0000000100000de4
+0x0000000000401384
 	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0004 at example.c:51:0
 
-0x0000000100000de8
+0x0000000000401388
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0008 at example.c:52:10
 
-0x0000000100000dec
+0x000000000040138c
 	cmp	qword ptr [rax], 0
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x000c at example.c:52:10
 
-0x0000000100000df0
+0x0000000000401390
 	je	28
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
 
-0x0000000100000df6
+0x0000000000401396
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0016 at example.c:52:22
 
-0x0000000100000dfa
+0x000000000040139a
 	mov	rax, qword ptr [rax]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x001a at example.c:52:26
 
-0x0000000100000dfd
+0x000000000040139d
 	mov	rcx, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x001d at example.c:52:34
 
-0x0000000100000e01
+0x00000000004013a1
 	sub	rax, qword ptr [rcx + 8]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0021 at example.c:52:32
 
-0x0000000100000e05
+0x00000000004013a5
 	sub	rax, 1
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0025 at example.c:52:42
 
-0x0000000100000e09
+0x00000000004013a9
 	mov	qword ptr [rbp - 16], rax
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0029 at example.c:52:42
 
-0x0000000100000e0d
+0x00000000004013ad
 	jmp	11
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
 
-0x0000000100000e1d
+0x00000000004013bd
 	mov	rax, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x003d at example.c:0:10
 
-0x0000000100000e21
+0x00000000004013c1
 	pop	rbp
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       V: strbuf_avail + 0x0041 at example.c:52:3
 
-0x0000000100000e22
+0x00000000004013c2
 	ret
 Inlined chain:
-strbuf_avail
+inlinedChain[0]: strbuf_avail
       RF: strbuf_avail + 0x0042 at example.c:52:3
-pop
+Pop stack[3]: strbuf_avail
 
-0x0000000100000d46
+0x000000000040130f
 	mov	rcx, rax
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -1267,69 +1209,69 @@ Popping any frames not found
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
-    V: strbuf_vaddf + 0x00a6 at example.c:81:13
+    V: strbuf_vaddf + 0x008f at example.c:81:13
 
-0x0000000100000d49
+0x0000000000401312
 	mov	rax, qword ptr [rbp - 72]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x00a9 at example.c:81:13
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0092 at example.c:81:13
 
-0x0000000100000d4d
+0x0000000000401316
 	cmp	rax, rcx
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x00ad at example.c:81:11
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x0096 at example.c:81:11
 
-0x0000000100000d50
-	jbe	69
+0x0000000000401319
+	jbe	60
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 
-0x0000000100000d9b
-	mov	rdi, qword ptr [rbp - 40]
+0x000000000040135b
+	mov	rdi, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x00fb at example.c:85:17
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x00db at example.c:85:17
 
-0x0000000100000d9f
-	mov	rax, qword ptr [rbp - 40]
+0x000000000040135f
+	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x00ff at example.c:85:21
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x00df at example.c:85:21
 
-0x0000000100000da3
+0x0000000000401363
 	mov	rsi, qword ptr [rax + 8]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0103 at example.c:85:25
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x00e3 at example.c:85:25
 
-0x0000000100000da7
-	movsxd	rax, dword ptr [rbp - 60]
+0x0000000000401367
+	movsxd	rax, dword ptr [rbp - 28]
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0107 at example.c:85:31
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x00e7 at example.c:85:31
 
-0x0000000100000dab
+0x000000000040136b
 	add	rsi, rax
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x010b at example.c:85:29
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x00eb at example.c:85:29
 
-0x0000000100000dae
-	call	125
+0x000000000040136e
+	call	93
 Inlined chain:
-strbuf_vaddf
-push
+inlinedChain[0]: strbuf_vaddf
+Push stack[3]: strbuf_setlen
 Inst. was call-like
-Call return target: 0x0000000100000db3
+Call return target: 0x0000000000401373
 
-0x0000000100000e30
+0x00000000004013d0
 	push	rbp
-    CF: strbuf_vaddf + 0x010e at example.c:85:3
+    CF: strbuf_vaddf + 0x00ee at example.c:85:3
       CT: strbuf_setlen + 0x0000 at example.c:55:0
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -1342,106 +1284,106 @@ inlinedChain[0]: strbuf_setlen
 Pushing any new frames
       V: strbuf_setlen + 0x0000 at example.c:55:0
 
-0x0000000100000e31
+0x00000000004013d1
 	mov	rbp, rsp
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x0001 at example.c:55:0
 
-0x0000000100000e34
+0x00000000004013d4
 	mov	qword ptr [rbp - 8], rdi
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x0004 at example.c:55:0
 
-0x0000000100000e38
+0x00000000004013d8
 	mov	qword ptr [rbp - 16], rsi
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x0008 at example.c:55:0
 
-0x0000000100000e3c
+0x00000000004013dc
 	mov	rcx, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x000c at example.c:56:13
 
-0x0000000100000e40
+0x00000000004013e0
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x0010 at example.c:56:3
 
-0x0000000100000e44
+0x00000000004013e4
 	mov	qword ptr [rax + 8], rcx
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x0014 at example.c:56:11
 
-0x0000000100000e48
+0x00000000004013e8
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x0018 at example.c:57:7
 
-0x0000000100000e4c
-	lea	rcx, [rip + 485]
+0x00000000004013ec
+	movabs	rcx, 4210705
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
       V: strbuf_setlen + 0x001c at example.c:57:7
 
-0x0000000100000e53
+0x00000000004013f6
 	cmp	qword ptr [rax + 16], rcx
 Inlined chain:
-strbuf_setlen
-      V: strbuf_setlen + 0x0023 at example.c:57:15
+inlinedChain[0]: strbuf_setlen
+      V: strbuf_setlen + 0x0026 at example.c:57:15
 
-0x0000000100000e57
+0x00000000004013fa
 	je	16
 Inlined chain:
-strbuf_setlen
+inlinedChain[0]: strbuf_setlen
 
-0x0000000100000e5d
+0x0000000000401400
 	mov	rax, qword ptr [rbp - 8]
 Inlined chain:
-strbuf_setlen
-      V: strbuf_setlen + 0x002d at example.c:58:5
+inlinedChain[0]: strbuf_setlen
+      V: strbuf_setlen + 0x0030 at example.c:58:5
 
-0x0000000100000e61
+0x0000000000401404
 	mov	rax, qword ptr [rax + 16]
 Inlined chain:
-strbuf_setlen
-      V: strbuf_setlen + 0x0031 at example.c:58:9
+inlinedChain[0]: strbuf_setlen
+      V: strbuf_setlen + 0x0034 at example.c:58:9
 
-0x0000000100000e65
+0x0000000000401408
 	mov	rcx, qword ptr [rbp - 16]
 Inlined chain:
-strbuf_setlen
-      V: strbuf_setlen + 0x0035 at example.c:58:13
+inlinedChain[0]: strbuf_setlen
+      V: strbuf_setlen + 0x0038 at example.c:58:13
 
-0x0000000100000e69
+0x000000000040140c
 	mov	byte ptr [rax + rcx], 0
 Inlined chain:
-strbuf_setlen
-      V: strbuf_setlen + 0x0039 at example.c:58:18
+inlinedChain[0]: strbuf_setlen
+      V: strbuf_setlen + 0x003c at example.c:58:18
 
-0x0000000100000e6d
+0x0000000000401410
 	pop	rbp
 Inlined chain:
-strbuf_setlen
-      V: strbuf_setlen + 0x003d at example.c:59:1
+inlinedChain[0]: strbuf_setlen
+      V: strbuf_setlen + 0x0040 at example.c:59:1
 
-0x0000000100000e6e
+0x0000000000401411
 	ret
 Inlined chain:
-strbuf_setlen
-      RF: strbuf_setlen + 0x003e at example.c:59:1
-pop
+inlinedChain[0]: strbuf_setlen
+      RF: strbuf_setlen + 0x0041 at example.c:59:1
+Pop stack[3]: strbuf_setlen
 
-0x0000000100000db3
-	mov	rax, qword ptr [rip + 590]
+0x0000000000401373
+	add	rsp, 80
 Inlined chain:
-strbuf_vaddf
+inlinedChain[0]: strbuf_vaddf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -1452,54 +1394,25 @@ Popping any frames not found
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
 Pushing any new frames
-    V: strbuf_vaddf + 0x0113 at example.c:85:3
+    V: strbuf_vaddf + 0x00f3 at example.c:86:1
 
-0x0000000100000dba
-	mov	rax, qword ptr [rax]
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x011a at example.c:85:3
-
-0x0000000100000dbd
-	mov	rcx, qword ptr [rbp - 8]
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x011d at example.c:85:3
-
-0x0000000100000dc1
-	cmp	rax, rcx
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x0121 at example.c:85:3
-
-0x0000000100000dc4
-	jne	6
-Inlined chain:
-strbuf_vaddf
-
-0x0000000100000dca
-	add	rsp, 80
-Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x012a at example.c:86:1
-
-0x0000000100000dce
+0x0000000000401377
 	pop	rbp
 Inlined chain:
-strbuf_vaddf
-    V: strbuf_vaddf + 0x012e at example.c:86:1
+inlinedChain[0]: strbuf_vaddf
+    V: strbuf_vaddf + 0x00f7 at example.c:86:1
 
-0x0000000100000dcf
+0x0000000000401378
 	ret
 Inlined chain:
-strbuf_vaddf
-    RF: strbuf_vaddf + 0x012f at example.c:86:1
-pop
+inlinedChain[0]: strbuf_vaddf
+    RF: strbuf_vaddf + 0x00f8 at example.c:86:1
+Pop stack[2]: strbuf_vaddf
 
-0x0000000100000f13
-	lea	rax, [rbp - 32]
+0x00000000004014b2
+	add	rsp, 224
 Inlined chain:
-strbuf_addf
+inlinedChain[0]: strbuf_addf
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -1510,60 +1423,25 @@ Popping any frames not found
 stack[1]: strbuf_addf
 inlinedChain[0]: strbuf_addf
 Pushing any new frames
-  V: strbuf_addf + 0x00a3 at example.c:92:3
+  V: strbuf_addf + 0x0092 at example.c:93:1
 
-0x0000000100000f17
-	mov	rax, qword ptr [rip + 234]
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x00a7 at example.c:92:3
-
-0x0000000100000f1e
-	mov	rax, qword ptr [rax]
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x00ae at example.c:92:3
-
-0x0000000100000f21
-	mov	rcx, qword ptr [rbp - 8]
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x00b1 at example.c:92:3
-
-0x0000000100000f25
-	cmp	rax, rcx
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x00b5 at example.c:92:3
-
-0x0000000100000f28
-	jne	9
-Inlined chain:
-strbuf_addf
-
-0x0000000100000f2e
-	add	rsp, 224
-Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x00be at example.c:93:1
-
-0x0000000100000f35
+0x00000000004014b9
 	pop	rbp
 Inlined chain:
-strbuf_addf
-  V: strbuf_addf + 0x00c5 at example.c:93:1
+inlinedChain[0]: strbuf_addf
+  V: strbuf_addf + 0x0099 at example.c:93:1
 
-0x0000000100000f36
+0x00000000004014ba
 	ret
 Inlined chain:
-strbuf_addf
-  RF: strbuf_addf + 0x00c6 at example.c:93:1
-pop
+inlinedChain[0]: strbuf_addf
+  RF: strbuf_addf + 0x009a at example.c:93:1
+Pop stack[1]: strbuf_addf
 
-0x0000000100000f90
+0x000000000040151c
 	xor	eax, eax
 Inlined chain:
-main
+inlinedChain[0]: main
 Inlined chain changed!
 Old chain: 1
 New chain: 1
@@ -1574,24 +1452,24 @@ Popping any frames not found
 stack[0]: main
 inlinedChain[0]: main
 Pushing any new frames
-V: main + 0x0050 at example.c:98:1
+V: main + 0x005c at example.c:98:1
 
-0x0000000100000f92
+0x000000000040151e
 	add	rsp, 48
 Inlined chain:
-main
-V: main + 0x0052 at example.c:98:1
+inlinedChain[0]: main
+V: main + 0x005e at example.c:98:1
 
-0x0000000100000f96
+0x0000000000401522
 	pop	rbp
 Inlined chain:
-main
-V: main + 0x0056 at example.c:98:1
+inlinedChain[0]: main
+V: main + 0x0062 at example.c:98:1
 
-0x0000000100000f97
+0x0000000000401523
 	ret
 Inlined chain:
-main
-RF: main + 0x0057 at example.c:98:1
-pop
+inlinedChain[0]: main
+RF: main + 0x0063 at example.c:98:1
+Pop stack[0]: main
 

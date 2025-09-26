@@ -202,7 +202,7 @@ attributes #3 = { nounwind readonly willreturn }
 !llvm.ident = !{!8}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "clang version 13.0.0 (git@github.com:llvm/llvm-project.git 8ac458cab1f2d84a892fc9eed882a493995170a3)", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, splitDebugInlining: false, nameTableKind: None)
-!1 = !DIFile(filename: "example.c", directory: "/home/jryans/Projects/Malleable/Experiments/Debug Info/Issues/basic/inlining")
+!1 = !DIFile(filename: "example.c", directory: "/home/jryans/Projects/Debug Info/Issues/basic/inlining")
 !2 = !{}
 !3 = !{i32 7, !"Dwarf Version", i32 4}
 !4 = !{i32 2, !"Debug Info Version", i32 3}

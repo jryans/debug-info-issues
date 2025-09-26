@@ -1,10 +1,10 @@
-CT: main at example.c:58:0
+ICT: main at example.c:58:0
 ICF: main at example.c:59:11
   ICT: atoi at stdlib.h:481:0
   CF: atoi at stdlib.h:483:16
     CT: Jump to external code for strtol
     RF: Jump to external code for strtol
-  IRF: No info for this address
+  IRF: atoi at stdlib.h:0:0
 ICF: main at example.c:62:7
   ICT: ex103DoubleIncBarrier at example.c:34:0
   ICF: ex103DoubleIncBarrier at example.c:36:3

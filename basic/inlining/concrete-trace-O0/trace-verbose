@@ -1,6 +1,4 @@
-PPID: 932637, PID: 932645
-Push stack[0]: main
-CT: main + 0x0000 at example.c:58:0
+PPID: 2525858, PID: 2525862
 0x00000000004012c0
 	push	rbp
 Inlined chain:
@@ -10,11 +8,10 @@ Old chain: 0
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[0]: main
 Popping any frames not found
-stack[0]: main
-inlinedChain[0]: main
 Pushing any new frames
+Push stack[0]: main
+ICT: main at example.c:58:0
 V: main + 0x0000 at example.c:58:0
 
 0x00000000004012c1
@@ -72,7 +69,7 @@ Call return target: 0x00000000004012e2
 CF: main + 0x001d at example.c:59:11
   CT: Jump to external code for atoi
 Inlined chain:
-Inst. moved to external code: 0x00007fddec4ecbe0
+Inst. moved to external code: 0x00007fde21d2bbe0
 Branch is a tail call
 stack[1]: <unknown> marked as artificial
 Push stack[2]: <unknown>

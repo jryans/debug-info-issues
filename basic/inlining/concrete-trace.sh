@@ -1,4 +1,4 @@
-set -eux
+set -ux
 
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
@@ -6,7 +6,7 @@ source "${SCRIPT_DIR}/../vars.sh"
 mkdir -p concrete-trace-O0
 (
   cd concrete-trace-O0
-  rm trace*
+  rm -f trace*
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
@@ -27,7 +27,7 @@ mkdir -p concrete-trace-O0
 mkdir -p concrete-trace-O1
 (
   cd concrete-trace-O1
-  rm trace*
+  rm -f trace*
   env \
     CON_TRACE_SOURCE=1 \
     ${CON_COLLECT_INSTRUMENTATION} \
