@@ -1,1 +1,11 @@
-CT: fft_lut_init at example.c:7:19
+ICT: main at example.c:16:0
+ICF: main at example.c:18:3
+  ICT: fft_lut_init at example.c:5:0
+  ICF: fft_lut_init at example.c:10:5
+    ICT: fft_lut_init at example.c:5:0
+    IRF: fft_lut_init at example.c:7:19
+  ICF: fft_lut_init at example.c:12:5
+    ICT: fft_lut_init at example.c:5:0
+    IRF: fft_lut_init at example.c:7:19
+  IRF: fft_lut_init at example.c:0:0
+RF: main at example.c:19:3

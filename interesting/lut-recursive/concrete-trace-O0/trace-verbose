@@ -1,6 +1,4 @@
-PPID: 2485570, PID: 2485574
-Push stack[0]: main
-CT: main + 0x0000 at example.c:16:0
+PPID: 2494194, PID: 2494198
 0x0000000000401130
 	push	rbp
 Inlined chain:
@@ -10,11 +8,10 @@ Old chain: 0
 New chain: 1
 Aligning inlined chain
 Oldest chain link: main
-stack[0]: main
 Popping any frames not found
-stack[0]: main
-inlinedChain[0]: main
 Pushing any new frames
+Push stack[0]: main
+ICT: main at example.c:16:0
 V: main + 0x0000 at example.c:16:0
 
 0x0000000000401131

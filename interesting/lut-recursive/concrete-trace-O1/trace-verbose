@@ -1,6 +1,4 @@
-PPID: 2483413, PID: 2483427
-Push stack[0]: fft_lut_init
-CT: fft_lut_init + 0x0000 at example.c:7:19
+PPID: 2494200, PID: 2494204
 0x0000000000401130
 	mov	dword ptr [rip + 12006], 131072
 Inlined chain:
@@ -12,6 +10,75 @@ Old chain: 0
 New chain: 3
 Aligning inlined chain
 Oldest chain link: main
-stack[0]: fft_lut_init
 Popping any frames not found
 Pushing any new frames
+Push stack[0]: main
+ICT: main at example.c:16:0
+ICF: main at example.c:18:3
+Push stack[1]: fft_lut_init
+  ICT: fft_lut_init at example.c:5:0
+  ICF: fft_lut_init at example.c:10:5
+Push stack[2]: fft_lut_init
+    ICT: fft_lut_init at example.c:5:0
+    V: fft_lut_init + 0x0000 at example.c:7:19
+
+0x000000000040113a
+	mov	word ptr [rip + 12001], 3
+Inlined chain:
+inlinedChain[2]: fft_lut_init
+inlinedChain[1]: fft_lut_init
+inlinedChain[0]: main
+Inlined chain changed!
+Old chain: 3
+New chain: 3
+Aligning inlined chain
+Oldest chain link: main
+stack[2]: fft_lut_init
+stack[1]: fft_lut_init
+stack[0]: main
+Popping any frames not found
+stack[2]: fft_lut_init
+inlinedChain[2]: fft_lut_init
+    IRF: fft_lut_init + 0x0000 at example.c:7:19
+Pop stack[2]: fft_lut_init
+stack[1]: fft_lut_init
+inlinedChain[1]: fft_lut_init
+Pushing any new frames
+  ICF: fft_lut_init at example.c:12:5
+Push stack[2]: fft_lut_init
+    ICT: fft_lut_init at example.c:5:0
+    V: fft_lut_init + 0x0000 at example.c:7:19
+
+0x0000000000401143
+	xor	eax, eax
+Inlined chain:
+inlinedChain[0]: main
+Inlined chain changed!
+Old chain: 3
+New chain: 1
+Aligning inlined chain
+Oldest chain link: main
+stack[2]: fft_lut_init
+stack[1]: fft_lut_init
+stack[0]: main
+Popping any frames not found
+stack[2]: fft_lut_init
+inlinedChain[2]: past end of chain
+    IRF: fft_lut_init + 0x0000 at example.c:7:19
+Pop stack[2]: fft_lut_init
+stack[1]: fft_lut_init
+inlinedChain[1]: past end of chain
+  IRF: fft_lut_init at example.c:0:0
+Pop stack[1]: fft_lut_init
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+V: main + 0x0013 at example.c:19:3
+
+0x0000000000401145
+	ret
+Inlined chain:
+inlinedChain[0]: main
+RF: main + 0x0015 at example.c:19:3
+Pop stack[0]: main
+
