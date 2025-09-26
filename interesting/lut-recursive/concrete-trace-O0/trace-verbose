@@ -1,0 +1,759 @@
+PPID: 2463262, PID: 2463275
+Push stack[0]: main
+CT: main + 0x0000 at example.c:16:0
+0x0000000000401130
+	push	rbp
+Inlined chain:
+inlinedChain[0]: main
+Inlined chain changed!
+Old chain: 0
+New chain: 1
+Aligning inlined chain
+Oldest chain link: main
+stack[0]: main
+Popping any frames not found
+stack[0]: main
+inlinedChain[0]: main
+Pushing any new frames
+V: main + 0x0000 at example.c:16:0
+
+0x0000000000401131
+	mov	rbp, rsp
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0001 at example.c:16:0
+
+0x0000000000401134
+	sub	rsp, 16
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0004 at example.c:16:0
+
+0x0000000000401138
+	mov	dword ptr [rbp - 4], 0
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0008 at example.c:16:0
+
+0x000000000040113f
+	mov	dword ptr [rbp - 8], 0
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x000f at example.c:17:7
+
+0x0000000000401146
+	movabs	rdi, 4210720
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0016 at example.c:18:3
+
+0x0000000000401150
+	xor	esi, esi
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0020 at example.c:18:3
+
+0x0000000000401152
+	mov	edx, 16
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0022 at example.c:18:3
+
+0x0000000000401157
+	lea	rcx, [rbp - 8]
+Inlined chain:
+inlinedChain[0]: main
+V: main + 0x0027 at example.c:18:3
+
+0x000000000040115b
+	call	16
+Inlined chain:
+inlinedChain[0]: main
+Push stack[1]: fft_lut_init
+Inst. was call-like
+Call return target: 0x0000000000401160
+
+0x0000000000401170
+	push	rbp
+CF: main + 0x002b at example.c:18:3
+  CT: fft_lut_init + 0x0000 at example.c:5:0
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+Inlined chain changed!
+Old chain: 1
+New chain: 1
+Aligning inlined chain
+Oldest chain link: fft_lut_init
+stack[1]: fft_lut_init
+Popping any frames not found
+stack[1]: fft_lut_init
+inlinedChain[0]: fft_lut_init
+Pushing any new frames
+  V: fft_lut_init + 0x0000 at example.c:5:0
+
+0x0000000000401171
+	mov	rbp, rsp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0001 at example.c:5:0
+
+0x0000000000401174
+	sub	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0004 at example.c:5:0
+
+0x0000000000401178
+	mov	qword ptr [rbp - 8], rdi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0008 at example.c:5:0
+
+0x000000000040117c
+	mov	dword ptr [rbp - 12], esi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x000c at example.c:5:0
+
+0x000000000040117f
+	mov	dword ptr [rbp - 16], edx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x000f at example.c:5:0
+
+0x0000000000401182
+	mov	qword ptr [rbp - 24], rcx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0012 at example.c:5:0
+
+0x0000000000401186
+	cmp	dword ptr [rbp - 16], 16
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0016 at example.c:6:12
+
+0x000000000040118a
+	jge	40
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x00000000004011b8
+	mov	rdi, qword ptr [rbp - 8]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0048 at example.c:10:18
+
+0x00000000004011bc
+	mov	esi, dword ptr [rbp - 12]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x004c at example.c:10:25
+
+0x00000000004011bf
+	mov	edx, dword ptr [rbp - 16]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x004f at example.c:10:30
+
+0x00000000004011c2
+	sar	edx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0052 at example.c:10:35
+
+0x00000000004011c4
+	mov	rcx, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0054 at example.c:10:41
+
+0x00000000004011c8
+	call	-93
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+Push stack[2]: fft_lut_init
+Inst. was call-like
+Call return target: 0x00000000004011cd
+
+0x0000000000401170
+	push	rbp
+  CF: fft_lut_init + 0x0058 at example.c:10:5
+    CT: fft_lut_init + 0x0000 at example.c:5:0
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0000 at example.c:5:0
+
+0x0000000000401171
+	mov	rbp, rsp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0001 at example.c:5:0
+
+0x0000000000401174
+	sub	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0004 at example.c:5:0
+
+0x0000000000401178
+	mov	qword ptr [rbp - 8], rdi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0008 at example.c:5:0
+
+0x000000000040117c
+	mov	dword ptr [rbp - 12], esi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x000c at example.c:5:0
+
+0x000000000040117f
+	mov	dword ptr [rbp - 16], edx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x000f at example.c:5:0
+
+0x0000000000401182
+	mov	qword ptr [rbp - 24], rcx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0012 at example.c:5:0
+
+0x0000000000401186
+	cmp	dword ptr [rbp - 16], 16
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0016 at example.c:6:12
+
+0x000000000040118a
+	jge	40
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x0000000000401190
+	mov	eax, dword ptr [rbp - 12]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0020 at example.c:7:21
+
+0x0000000000401193
+	sar	eax, 2
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0023 at example.c:7:25
+
+0x0000000000401196
+	mov	dx, ax
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0026 at example.c:7:21
+
+0x0000000000401199
+	mov	rax, qword ptr [rbp - 8]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0029 at example.c:7:5
+
+0x000000000040119d
+	mov	rcx, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x002d at example.c:7:12
+
+0x00000000004011a1
+	movsxd	rcx, dword ptr [rcx]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0031 at example.c:7:5
+
+0x00000000004011a4
+	mov	word ptr [rax + 2*rcx], dx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0034 at example.c:7:19
+
+0x00000000004011a8
+	mov	rax, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0038 at example.c:8:7
+
+0x00000000004011ac
+	mov	ecx, dword ptr [rax]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x003c at example.c:8:13
+
+0x00000000004011ae
+	add	ecx, 1
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x003e at example.c:8:13
+
+0x00000000004011b1
+	mov	dword ptr [rax], ecx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0041 at example.c:8:13
+
+0x00000000004011b3
+	jmp	83
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x000000000040120b
+	add	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x009b at example.c:14:1
+
+0x000000000040120f
+	pop	rbp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x009f at example.c:14:1
+
+0x0000000000401210
+	ret
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    RF: fft_lut_init + 0x00a0 at example.c:14:1
+Pop stack[2]: fft_lut_init
+
+0x00000000004011cd
+	mov	rdi, qword ptr [rbp - 8]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x005d at example.c:11:18
+
+0x00000000004011d1
+	mov	esi, dword ptr [rbp - 12]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0061 at example.c:11:25
+
+0x00000000004011d4
+	mov	eax, dword ptr [rbp - 16]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0064 at example.c:11:32
+
+0x00000000004011d7
+	sar	eax
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0067 at example.c:11:37
+
+0x00000000004011d9
+	add	esi, eax
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0069 at example.c:11:29
+
+0x00000000004011db
+	mov	edx, dword ptr [rbp - 16]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x006b at example.c:11:44
+
+0x00000000004011de
+	sar	edx, 2
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x006e at example.c:11:49
+
+0x00000000004011e1
+	mov	rcx, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0071 at example.c:11:55
+
+0x00000000004011e5
+	call	-122
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+Push stack[2]: fft_lut_init
+Inst. was call-like
+Call return target: 0x00000000004011ea
+
+0x0000000000401170
+	push	rbp
+  CF: fft_lut_init + 0x0075 at example.c:11:5
+    CT: fft_lut_init + 0x0000 at example.c:5:0
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0000 at example.c:5:0
+
+0x0000000000401171
+	mov	rbp, rsp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0001 at example.c:5:0
+
+0x0000000000401174
+	sub	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0004 at example.c:5:0
+
+0x0000000000401178
+	mov	qword ptr [rbp - 8], rdi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0008 at example.c:5:0
+
+0x000000000040117c
+	mov	dword ptr [rbp - 12], esi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x000c at example.c:5:0
+
+0x000000000040117f
+	mov	dword ptr [rbp - 16], edx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x000f at example.c:5:0
+
+0x0000000000401182
+	mov	qword ptr [rbp - 24], rcx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0012 at example.c:5:0
+
+0x0000000000401186
+	cmp	dword ptr [rbp - 16], 16
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0016 at example.c:6:12
+
+0x000000000040118a
+	jge	40
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x0000000000401190
+	mov	eax, dword ptr [rbp - 12]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0020 at example.c:7:21
+
+0x0000000000401193
+	sar	eax, 2
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0023 at example.c:7:25
+
+0x0000000000401196
+	mov	dx, ax
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0026 at example.c:7:21
+
+0x0000000000401199
+	mov	rax, qword ptr [rbp - 8]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0029 at example.c:7:5
+
+0x000000000040119d
+	mov	rcx, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x002d at example.c:7:12
+
+0x00000000004011a1
+	movsxd	rcx, dword ptr [rcx]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0031 at example.c:7:5
+
+0x00000000004011a4
+	mov	word ptr [rax + 2*rcx], dx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0034 at example.c:7:19
+
+0x00000000004011a8
+	mov	rax, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0038 at example.c:8:7
+
+0x00000000004011ac
+	mov	ecx, dword ptr [rax]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x003c at example.c:8:13
+
+0x00000000004011ae
+	add	ecx, 1
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x003e at example.c:8:13
+
+0x00000000004011b1
+	mov	dword ptr [rax], ecx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0041 at example.c:8:13
+
+0x00000000004011b3
+	jmp	83
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x000000000040120b
+	add	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x009b at example.c:14:1
+
+0x000000000040120f
+	pop	rbp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x009f at example.c:14:1
+
+0x0000000000401210
+	ret
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    RF: fft_lut_init + 0x00a0 at example.c:14:1
+Pop stack[2]: fft_lut_init
+
+0x00000000004011ea
+	mov	rdi, qword ptr [rbp - 8]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x007a at example.c:12:18
+
+0x00000000004011ee
+	mov	esi, dword ptr [rbp - 12]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x007e at example.c:12:25
+
+0x00000000004011f1
+	mov	eax, dword ptr [rbp - 16]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0081 at example.c:12:36
+
+0x00000000004011f4
+	sar	eax, 2
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0084 at example.c:12:41
+
+0x00000000004011f7
+	imul	eax, eax, 3
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0087 at example.c:12:33
+
+0x00000000004011fa
+	add	esi, eax
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x008a at example.c:12:29
+
+0x00000000004011fc
+	mov	edx, dword ptr [rbp - 16]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x008c at example.c:12:48
+
+0x00000000004011ff
+	sar	edx, 2
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x008f at example.c:12:53
+
+0x0000000000401202
+	mov	rcx, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x0092 at example.c:12:59
+
+0x0000000000401206
+	call	-155
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+Push stack[2]: fft_lut_init
+Inst. was call-like
+Call return target: 0x000000000040120b
+
+0x0000000000401170
+	push	rbp
+  CF: fft_lut_init + 0x0096 at example.c:12:5
+    CT: fft_lut_init + 0x0000 at example.c:5:0
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0000 at example.c:5:0
+
+0x0000000000401171
+	mov	rbp, rsp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0001 at example.c:5:0
+
+0x0000000000401174
+	sub	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0004 at example.c:5:0
+
+0x0000000000401178
+	mov	qword ptr [rbp - 8], rdi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0008 at example.c:5:0
+
+0x000000000040117c
+	mov	dword ptr [rbp - 12], esi
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x000c at example.c:5:0
+
+0x000000000040117f
+	mov	dword ptr [rbp - 16], edx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x000f at example.c:5:0
+
+0x0000000000401182
+	mov	qword ptr [rbp - 24], rcx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0012 at example.c:5:0
+
+0x0000000000401186
+	cmp	dword ptr [rbp - 16], 16
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0016 at example.c:6:12
+
+0x000000000040118a
+	jge	40
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x0000000000401190
+	mov	eax, dword ptr [rbp - 12]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0020 at example.c:7:21
+
+0x0000000000401193
+	sar	eax, 2
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0023 at example.c:7:25
+
+0x0000000000401196
+	mov	dx, ax
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0026 at example.c:7:21
+
+0x0000000000401199
+	mov	rax, qword ptr [rbp - 8]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0029 at example.c:7:5
+
+0x000000000040119d
+	mov	rcx, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x002d at example.c:7:12
+
+0x00000000004011a1
+	movsxd	rcx, dword ptr [rcx]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0031 at example.c:7:5
+
+0x00000000004011a4
+	mov	word ptr [rax + 2*rcx], dx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0034 at example.c:7:19
+
+0x00000000004011a8
+	mov	rax, qword ptr [rbp - 24]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0038 at example.c:8:7
+
+0x00000000004011ac
+	mov	ecx, dword ptr [rax]
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x003c at example.c:8:13
+
+0x00000000004011ae
+	add	ecx, 1
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x003e at example.c:8:13
+
+0x00000000004011b1
+	mov	dword ptr [rax], ecx
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+    V: fft_lut_init + 0x0041 at example.c:8:13
+
+0x00000000004011b3
+	jmp	83
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+
+0x000000000040120b
+	add	rsp, 32
+Call return target matches
+Pop stack[2]: fft_lut_init
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x009b at example.c:14:1
+
+0x000000000040120f
+	pop	rbp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  V: fft_lut_init + 0x009f at example.c:14:1
+
+0x0000000000401210
+	ret
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+  RF: fft_lut_init + 0x00a0 at example.c:14:1
+Pop stack[1]: fft_lut_init
+
+0x000000000040120b
+	add	rsp, 32
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+V: fft_lut_init + 0x009b at example.c:14:1
+
+0x000000000040120f
+	pop	rbp
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+V: fft_lut_init + 0x009f at example.c:14:1
+
+0x0000000000401210
+	ret
+Inlined chain:
+inlinedChain[0]: fft_lut_init
+RF: fft_lut_init + 0x00a0 at example.c:14:1
+Pop stack[0]: main
+
+0x0000000000401160
+	xor	eax, eax
+Inlined chain:
+inlinedChain[0]: main
+Inlined chain changed!
+Old chain: 1
+New chain: 1

@@ -1,0 +1,17 @@
+PPID: 2483413, PID: 2483427
+Push stack[0]: fft_lut_init
+CT: fft_lut_init + 0x0000 at example.c:7:19
+0x0000000000401130
+	mov	dword ptr [rip + 12006], 131072
+Inlined chain:
+inlinedChain[2]: fft_lut_init
+inlinedChain[1]: fft_lut_init
+inlinedChain[0]: main
+Inlined chain changed!
+Old chain: 0
+New chain: 3
+Aligning inlined chain
+Oldest chain link: main
+stack[0]: fft_lut_init
+Popping any frames not found
+Pushing any new frames
