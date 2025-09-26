@@ -1,5 +1,3 @@
-set -eux
-
 UNAME=`uname`
 
 if [[ "$UNAME" == 'Darwin' ]]; then
