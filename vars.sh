@@ -42,7 +42,7 @@ else
   CC_SYSROOT_OPTS="-B/nix/store/maxa3xhmxggrc5v2vc0c3pjb79hjlkp9-glibc-2.40-66/lib/ -idirafter /nix/store/81awch8mhqanda1vy0c09bflgra4cxh0-glibc-2.40-66-dev/include -B/nix/store/yg4ahy7gahx91nq80achmzilrjyv0scj-gcc-13.3.0/lib/gcc/x86_64-unknown-linux-gnu/13.3.0 --gcc-toolchain=/nix/store/yg4ahy7gahx91nq80achmzilrjyv0scj-gcc-13.3.0 -B/nix/store/w9mcn0hi97xp5m9ds5nsc4cr99qspz9h-clang-18.1.8-lib/lib -resource-dir=/nix/store/c6mlpw8bb0n9rc38hihmy0zzc1w81ljr-clang-wrapper-18.1.8/resource-root ${NIX_CFLAGS_COMPILE}"
 fi
 # Modified by some files to add further compilation flags
-CC_COMMON_OPTS="${CC_SYSROOT_OPTS} -g -fno-discard-value-names -Xclang -disable-O0-optnone"
+CC_COMMON_OPTS="${CC_SYSROOT_OPTS} -g -fno-pie -fno-discard-value-names -Xclang -disable-O0-optnone"
 CC_NIL_OPTS="-fno-inline"
 CC_IR_OPTS="-S -emit-llvm"
 CC_CG_IR_OPTS="-S -w -mllvm -print-after=codegenprepare -mllvm -print-module-scope"
@@ -57,7 +57,7 @@ fi
 if [[ "$OS" == 'mac' ]]; then
   LD_COMMON_OPTS="${LD_SYSROOT_OPTS} -Wl,-no_pie"
 else
-  LD_COMMON_OPTS="${LD_SYSROOT_OPTS}"
+  LD_COMMON_OPTS="${LD_SYSROOT_OPTS} -Wl,-no-pie"
 fi
 # Modified by some files to add further linking flags
 CC_LINK_OPTS="${LD_COMMON_OPTS}"
