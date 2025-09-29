@@ -1,4 +1,4 @@
-PPID: 3149183, PID: 3149187
+PPID: 3157863, PID: 3157867
 0x00000000004014c0
 	push	rbp
 Inlined chain:
@@ -836,7 +836,7 @@ Call return target: 0x0000000000401228
       CF: strbuf_grow + 0x00e3 at example.c:67:3
         CT: Jump to external code for realloc
 Inlined chain:
-Inst. moved to external code: 0x00007fb70497dbb0
+Inst. moved to external code: 0x00007f5e8e765bb0
 Branch is a tail call
 stack[4]: <unknown> marked as artificial
 Push stack[5]: <unknown>
@@ -1038,7 +1038,7 @@ Call return target: 0x00000000004012f7
     CF: strbuf_vaddf + 0x0072 at example.c:79:9
       CT: Jump to external code for vsnprintf
 Inlined chain:
-Inst. moved to external code: 0x00007fb704960b80
+Inst. moved to external code: 0x00007f5e8e748b80
 Branch is a tail call
 stack[3]: <unknown> marked as artificial
 Push stack[4]: <unknown>

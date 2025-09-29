@@ -1,4 +1,4 @@
-PPID: 3149118, PID: 3149122
+PPID: 3157816, PID: 3157820
 0x00000000004012c0
 	push	rbp
 Inlined chain:
@@ -69,7 +69,7 @@ Call return target: 0x00000000004012e2
 CF: main + 0x001d at example.c:59:11
   CT: Jump to external code for atoi
 Inlined chain:
-Inst. moved to external code: 0x00007f1c0638abe0
+Inst. moved to external code: 0x00007f0186ec7be0
 Branch is a tail call
 stack[1]: <unknown> marked as artificial
 Push stack[2]: <unknown>
