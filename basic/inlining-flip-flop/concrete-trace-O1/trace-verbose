@@ -1,4 +1,4 @@
-PPID: 2525384, PID: 2525388
+PPID: 3149189, PID: 3149193
 0x0000000000401380
 	sub	rsp, 24
 Inlined chain:
@@ -257,7 +257,7 @@ Pushing any new frames
     ICF: strbuf_vaddf at example.c:76:8
 Push stack[3]: strbuf_avail
       ICT: strbuf_avail at example.c:51:0
-      V: strbuf_avail - 0x3c8fefdc at example.c:52:14
+      V: strbuf_avail - 0xcedfdc at example.c:52:14
 
 0x00000000004011b7
 	test	r12, r12
@@ -309,14 +309,14 @@ inlinedChain[0]: strbuf_vaddf
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fefb6 at example.c:67:3
+      V: strbuf_grow - 0xcedfb6 at example.c:67:3
 
 0x00000000004011de
 	cmp	rax, r12
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fefb2 at example.c:67:3
+      V: strbuf_grow - 0xcedfb2 at example.c:67:3
 
 0x00000000004011e1
 	jbe	34
@@ -336,42 +336,42 @@ inlinedChain[0]: strbuf_vaddf
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fefa9 at example.c:67:3
+      V: strbuf_grow - 0xcedfa9 at example.c:67:3
 
 0x00000000004011eb
 	shr	rsi
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fefa5 at example.c:67:3
+      V: strbuf_grow - 0xcedfa5 at example.c:67:3
 
 0x00000000004011ee
 	cmp	rsi, rax
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fefa2 at example.c:67:3
+      V: strbuf_grow - 0xcedfa2 at example.c:67:3
 
 0x00000000004011f1
 	cmovb	rsi, rax
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fef9f at example.c:67:3
+      V: strbuf_grow - 0xcedf9f at example.c:67:3
 
 0x00000000004011f5
 	mov	qword ptr [rbx], rsi
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fef9b at example.c:67:3
+      V: strbuf_grow - 0xcedf9b at example.c:67:3
 
 0x00000000004011f8
 	mov	rdi, qword ptr [rbx + 16]
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fef98 at example.c:67:3
+      V: strbuf_grow - 0xcedf98 at example.c:67:3
 
 0x00000000004011fc
 	call	-449
@@ -384,10 +384,10 @@ Call return target: 0x0000000000401201
 
 0x0000000000401040
 	jmp	qword ptr [rip + 12194]
-      CF: strbuf_grow - 0x3c8fef94 at example.c:67:3
+      CF: strbuf_grow - 0xcedf94 at example.c:67:3
         CT: Jump to external code for realloc
 Inlined chain:
-Inst. moved to external code: 0x00007f38d4ac0bb0
+Inst. moved to external code: 0x00007f6c5790bbb0
 Branch is a tail call
 stack[4]: <unknown> marked as artificial
 Push stack[5]: <unknown>
@@ -429,7 +429,7 @@ Pushing any new frames
     ICF: strbuf_vaddf at example.c:76:8
 Push stack[3]: strbuf_avail
       ICT: strbuf_avail at example.c:51:0
-      V: strbuf_avail - 0x3c8fef8b at example.c:52:10
+      V: strbuf_avail - 0xcedf8b at example.c:52:10
 
 0x0000000000401208
 	jne	7
@@ -446,7 +446,7 @@ stack[2]: strbuf_vaddf
 Popping any frames not found
 stack[3]: strbuf_avail
 inlinedChain[1]: strbuf_grow
-      IRF: strbuf_avail - 0x3c8fef8b at example.c:52:10
+      IRF: strbuf_avail - 0xcedf8b at example.c:52:10
 Pop stack[3]: strbuf_avail
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
@@ -467,7 +467,7 @@ inlinedChain[0]: strbuf_vaddf
 Inlined chain:
 inlinedChain[1]: strbuf_grow
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_grow - 0x3c8fef82 at example.c:69:16
+      V: strbuf_grow - 0xcedf82 at example.c:69:16
 
 0x0000000000401211
 	mov	rax, qword ptr [r14 + 16]
@@ -483,7 +483,7 @@ stack[2]: strbuf_vaddf
 Popping any frames not found
 stack[3]: strbuf_grow
 inlinedChain[1]: past end of chain
-      IRF: strbuf_grow - 0x3c8fef82 at example.c:69:16
+      IRF: strbuf_grow - 0xcedf82 at example.c:69:16
 Pop stack[3]: strbuf_grow
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
@@ -563,7 +563,7 @@ Call return target: 0x000000000040123e
     CF: strbuf_vaddf + 0x0099 at example.c:79:9
       CT: Jump to external code for vsnprintf
 Inlined chain:
-Inst. moved to external code: 0x00007f38d4aa3b80
+Inst. moved to external code: 0x00007f6c578eeb80
 Branch is a tail call
 stack[3]: <unknown> marked as artificial
 Push stack[4]: <unknown>
@@ -599,7 +599,7 @@ Pushing any new frames
     ICF: strbuf_vaddf at example.c:81:13
 Push stack[3]: strbuf_avail
       ICT: strbuf_avail at example.c:51:0
-      V: strbuf_avail - 0x3c8fef50 at example.c:52:14
+      V: strbuf_avail - 0xcedf50 at example.c:52:14
 
 0x0000000000401243
 	test	r12, r12
@@ -626,14 +626,14 @@ inlinedChain[0]: strbuf_vaddf
 Inlined chain:
 inlinedChain[1]: strbuf_avail
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_avail - 0x3c8fef44 at example.c:52:42
+      V: strbuf_avail - 0xcedf44 at example.c:52:42
 
 0x000000000040124f
 	add	rcx, r12
 Inlined chain:
 inlinedChain[1]: strbuf_avail
 inlinedChain[0]: strbuf_vaddf
-      V: strbuf_avail - 0x3c8fef41 at example.c:52:42
+      V: strbuf_avail - 0xcedf41 at example.c:52:42
 
 0x0000000000401252
 	cmp	rcx, rax
@@ -649,7 +649,7 @@ stack[2]: strbuf_vaddf
 Popping any frames not found
 stack[3]: strbuf_avail
 inlinedChain[1]: past end of chain
-      IRF: strbuf_avail - 0x3c8fef41 at example.c:52:42
+      IRF: strbuf_avail - 0xcedf41 at example.c:52:42
 Pop stack[3]: strbuf_avail
 stack[2]: strbuf_vaddf
 inlinedChain[0]: strbuf_vaddf
