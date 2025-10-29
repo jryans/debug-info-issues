@@ -32,6 +32,7 @@ DIAGNOSTICS_FILE="diagnostics.yaml"
 CLANG_TIDY_OPTS="--checks=clang-diagnostic-*,clang-analyzer-*,misc-* --export-fixes=${DIAGNOSTICS_FILE}"
 
 CLANG=$(llvm release-clang-lldb-13.0.0 clang)
+CLANG_CXX=$(llvm release-clang-lldb-13.0.0 clang++)
 LLVM_AS=$(llvm release-clang-lldb-13.0.0 llvm-as)
 # TODO: Rename these removing `OPTS` suffix...?
 if [[ "$OS" == 'mac' ]]; then
