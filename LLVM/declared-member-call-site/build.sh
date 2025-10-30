@@ -24,3 +24,15 @@ mkdir -p O1
   ${CLANG_CXX} ../callee.cpp ${CC_COMMON_OPTS} -fno-inline ${CC_O1_OPTS} -c -o callee.o
   ${CLANG_CXX} caller.o callee.o ${CC_COMMON_OPTS} ${CC_O1_OPTS} ${CC_LINK_OPTS} -o example
 )
+
+CLANG_CXX=$(llvm debug-clang-lldb clang++)
+
+mkdir -p O1-fixed
+(
+  cd O1-fixed
+  ${CLANG_CXX} ../caller.cpp ${CC_COMMON_OPTS} -fno-inline ${CC_IR_OPTS} ${CC_O1_OPTS} -o caller.ll
+  ${CLANG_CXX} ../callee.cpp ${CC_COMMON_OPTS} -fno-inline ${CC_IR_OPTS} ${CC_O1_OPTS} -o callee.ll
+  ${CLANG_CXX} ../caller.cpp ${CC_COMMON_OPTS} -fno-inline ${CC_O1_OPTS} -c -o caller.o
+  ${CLANG_CXX} ../callee.cpp ${CC_COMMON_OPTS} -fno-inline ${CC_O1_OPTS} -c -o callee.o
+  ${CLANG_CXX} caller.o callee.o ${CC_COMMON_OPTS} ${CC_O1_OPTS} ${CC_LINK_OPTS} -o example
+)
