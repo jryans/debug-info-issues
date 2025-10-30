@@ -1,10 +1,10 @@
-int foo(int blah) {
-  int bob;
-  for (bob = blah; bob < blah + 10; ++bob) {
-    if (bob < 3)
+int example(int input) {
+  int current;
+  for (current = input; current < input + 10; ++current) {
+    if (current < 3)
       return 0;
   }
   return 1;
 }
 
-int main() { foo(0); }
+int main() { example(0); }

@@ -7,12 +7,17 @@
 It seems the loop-strength-reduction pass doesn't preserve debug information,
 for any transformation it makes. Compiling the example below with llvm/clang @
 r340912 and options "-O2 -g -fno-inline" for x86_64, using both gdb and lldb,
-both the value of "bob" and "blah" are reported as being optimised out, after
-being rewritten by LSR.
+both the value of "current" and "input" are reported as being optimised out,
+after being rewritten by LSR.
 
-Which would be fairly frustrating if one landed in the loop and were unable to determine either the loop bound or which iteration it was on. (The example is contrived, but LSR still knackers more complicated loops).
+Which would be fairly frustrating if one landed in the loop and were unable to
+determine either the loop bound or which iteration it was on. (The example is
+contrived, but LSR still knackers more complicated loops).
 
-This isn't a bug per se, and the DebugInfo doesn't mislead anyone, it's just a poor debug experience that will annoy developers. Particularly galling is that the values of "bob" and "blah" remain in registers for the whole loop, but are still not available to the debugger.
+This isn't a bug per se, and the DebugInfo doesn't mislead anyone, it's just a
+poor debug experience that will annoy developers. Particularly galling is that
+the values of "current" and "input" remain in registers for the whole loop, but
+are still not available to the debugger.
 
 ## IR before `LoopStrengthReduce`
 
@@ -20,22 +25,22 @@ This isn't a bug per se, and the DebugInfo doesn't mislead anyone, it's just a p
 ; Preheader:
 entry:
 [..]
-  %cmp1 = icmp slt i32 %blah, 3, !dbg !16
-  %0 = add nsw i32 %blah, 9, !dbg !21
+  %cmp1 = icmp slt i32 %input, 3, !dbg !16
+  %0 = add nsw i32 %input, 9, !dbg !21
   br label %for.body, !dbg !22
 
 ; Loop:
 for.body:
-  %bob.06 = phi i32 [ %blah, %entry ], [ %inc, %for.cond ]
-  call void @llvm.dbg.value(metadata i32 %bob.06, metadata !14, ...), !dbg !15
-  call void @llvm.dbg.value(metadata i32 %bob.06, metadata !14, ...), !dbg !15
+  %current.06 = phi i32 [ %input, %entry ], [ %inc, %for.cond ]
+  call void @llvm.dbg.value(metadata i32 %current.06, metadata !14, ...), !dbg !15
+  call void @llvm.dbg.value(metadata i32 %current.06, metadata !14, ...), !dbg !15
   br i1 %cmp1, label %cleanup, label %for.cond, !dbg !26
 
 for.cond:
-  %inc = add nsw i32 %bob.06, 1, !dbg !23
+  %inc = add nsw i32 %current.06, 1, !dbg !23
   call void @llvm.dbg.value(metadata i32 %inc, metadata !14, ...), !dbg !15
   call void @llvm.dbg.value(metadata i32 %inc, metadata !14, ...), !dbg !15
-  %cmp = icmp slt i32 %bob.06, %0, !dbg !23
+  %cmp = icmp slt i32 %current.06, %0, !dbg !23
   br i1 %cmp, label %for.body, label %cleanup, !dbg !22, !llvm.loop !24
 
 ; Exit blocks
@@ -49,9 +54,9 @@ cleanup:
 ; Preheader:
 entry:
 [..]
-  %cmp1 = icmp slt i32 %blah, 3, !dbg !16
-  %0 = add nsw i32 %blah, 9, !dbg !21
-  %1 = add i32 %blah, -1, !dbg !22
+  %cmp1 = icmp slt i32 %input, 3, !dbg !16
+  %0 = add nsw i32 %input, 9, !dbg !21
+  %1 = add i32 %input, -1, !dbg !22
   br label %for.body, !dbg !22
 
 ; Loop:

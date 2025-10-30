@@ -4,27 +4,27 @@ target datalayout = "e-m:o-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16
 target triple = "x86_64-apple-macosx13.0.0"
 
 ; Function Attrs: noinline nounwind uwtable
-define dso_local i32 @foo(i32 %blah) #0 !dbg !7 {
+define dso_local i32 @example(i32 %input) #0 !dbg !7 {
 entry:
   %retval = alloca i32, align 4
-  %blah.addr = alloca i32, align 4
-  %bob = alloca i32, align 4
-  store i32 %blah, i32* %blah.addr, align 4
-  call void @llvm.dbg.declare(metadata i32* %blah.addr, metadata !12, metadata !DIExpression()), !dbg !13
-  call void @llvm.dbg.declare(metadata i32* %bob, metadata !14, metadata !DIExpression()), !dbg !15
-  %0 = load i32, i32* %blah.addr, align 4, !dbg !16
-  store i32 %0, i32* %bob, align 4, !dbg !18
+  %input.addr = alloca i32, align 4
+  %current = alloca i32, align 4
+  store i32 %input, i32* %input.addr, align 4
+  call void @llvm.dbg.declare(metadata i32* %input.addr, metadata !12, metadata !DIExpression()), !dbg !13
+  call void @llvm.dbg.declare(metadata i32* %current, metadata !14, metadata !DIExpression()), !dbg !15
+  %0 = load i32, i32* %input.addr, align 4, !dbg !16
+  store i32 %0, i32* %current, align 4, !dbg !18
   br label %for.cond, !dbg !19
 
 for.cond:                                         ; preds = %for.inc, %entry
-  %1 = load i32, i32* %bob, align 4, !dbg !20
-  %2 = load i32, i32* %blah.addr, align 4, !dbg !22
+  %1 = load i32, i32* %current, align 4, !dbg !20
+  %2 = load i32, i32* %input.addr, align 4, !dbg !22
   %add = add nsw i32 %2, 10, !dbg !23
   %cmp = icmp slt i32 %1, %add, !dbg !24
   br i1 %cmp, label %for.body, label %for.end, !dbg !25
 
 for.body:                                         ; preds = %for.cond
-  %3 = load i32, i32* %bob, align 4, !dbg !26
+  %3 = load i32, i32* %current, align 4, !dbg !26
   %cmp1 = icmp slt i32 %3, 3, !dbg !29
   br i1 %cmp1, label %if.then, label %if.end, !dbg !30
 
@@ -36,9 +36,9 @@ if.end:                                           ; preds = %for.body
   br label %for.inc, !dbg !32
 
 for.inc:                                          ; preds = %if.end
-  %4 = load i32, i32* %bob, align 4, !dbg !33
+  %4 = load i32, i32* %current, align 4, !dbg !33
   %inc = add nsw i32 %4, 1, !dbg !33
-  store i32 %inc, i32* %bob, align 4, !dbg !33
+  store i32 %inc, i32* %current, align 4, !dbg !33
   br label %for.cond, !dbg !34, !llvm.loop !35
 
 for.end:                                          ; preds = %for.cond
@@ -67,14 +67,14 @@ attributes #1 = { nounwind readnone speculatable willreturn }
 !4 = !{i32 2, !"Debug Info Version", i32 3}
 !5 = !{i32 1, !"wchar_size", i32 4}
 !6 = !{!"clang version 11.0.0 (https://github.com/llvm/llvm-project.git 176249bd6732a8044d457092ed932768724a6f06)"}
-!7 = distinct !DISubprogram(name: "foo", scope: !8, file: !8, line: 1, type: !9, scopeLine: 1, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
+!7 = distinct !DISubprogram(name: "example", scope: !8, file: !8, line: 1, type: !9, scopeLine: 1, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
 !8 = !DIFile(filename: "example.c", directory: "/Users/jryans/Projects/Malleable/Experiments/Debug Info/Issues/LLVM/loopstrengthreduce-drops-dbg-value")
 !9 = !DISubroutineType(types: !10)
 !10 = !{!11, !11}
 !11 = !DIBasicType(name: "int", size: 32, encoding: DW_ATE_signed)
-!12 = !DILocalVariable(name: "blah", arg: 1, scope: !7, file: !8, line: 1, type: !11)
+!12 = !DILocalVariable(name: "input", arg: 1, scope: !7, file: !8, line: 1, type: !11)
 !13 = !DILocation(line: 1, column: 13, scope: !7)
-!14 = !DILocalVariable(name: "bob", scope: !7, file: !8, line: 2, type: !11)
+!14 = !DILocalVariable(name: "current", scope: !7, file: !8, line: 2, type: !11)
 !15 = !DILocation(line: 2, column: 7, scope: !7)
 !16 = !DILocation(line: 3, column: 14, scope: !17)
 !17 = distinct !DILexicalBlock(scope: !7, file: !8, line: 3, column: 3)
